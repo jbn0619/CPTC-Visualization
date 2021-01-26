@@ -137,4 +137,17 @@ namespace Assets.Scripts
         }
     }
 
+    [Serializable]
+    public class TeamInfo
+    {
+        public int teamId;
+        public List<Node> discoveredNodes;
+        public List<Alert> alerts;
+
+        public static TeamInfo CreateFromJSON(string jsonString)
+        {
+            return JsonUtility.FromJson<TeamInfo>(jsonString);
+        }
+    }
+
 }
