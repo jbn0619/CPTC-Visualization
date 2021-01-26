@@ -64,7 +64,7 @@ public class JSONWriter: MonoBehaviour
         c.Add(2);
         List<Node> nodes = new List<Node>();
         nodes.Add(new Node(0, NodeTypes.Host, c));
-        Team myTeam = new Team(4, alerts, nodes);
+        Team myTeam = new Team(4, alerts, c);
 
         Debug.Log(myTeam.ConvertToJSON());
 
