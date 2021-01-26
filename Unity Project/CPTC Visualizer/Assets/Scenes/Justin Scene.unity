@@ -237,9 +237,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fileName: data.json
   randomizeInfrastructure: 0
-  maxTeams: 9
-  maxNodes: 5
-  maxAlerts: 100
+  teamCount: 10
+  nodeCount: 37
+  networkCount: 5
+  alertCount: 62
 --- !u!4 &864925171
 Transform:
   m_ObjectHideFlags: 0
