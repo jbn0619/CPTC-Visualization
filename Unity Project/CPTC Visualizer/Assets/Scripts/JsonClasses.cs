@@ -8,30 +8,6 @@ using UnityEngine;
 namespace Assets.Scripts
 {
     /// <summary>
-    /// A collection of a node's data, including node id, node type and what nodes this one is connected to. 
-    /// </summary>
-    [Serializable]
-    public class Node
-    {
-        public int id;
-        public string type;
-        public List<int> connections;
-
-        /// <summary>
-        /// Constructor for the Node class.
-        /// </summary>
-        /// <param name="i">This node's id.</param>
-        /// <param name="t">This node's type.</param>
-        /// <param name="c">What nodes this one is connected to.</param>
-        public Node(int i, NodeTypes t, List<int> c)
-        {
-            id = i;
-            type = t.ToString();
-            connections = c;
-        }
-    }
-
-    /// <summary>
     /// An alert's data, namely what type of alert they are.
     /// </summary>
     [Serializable]
@@ -71,16 +47,29 @@ namespace Assets.Scripts
             alerts = a;
             discoveredNodeIds = n;
         }
+    }
+
+    /// <summary>
+    /// A collection of a node's data, including node id, node type and what nodes this one is connected to. 
+    /// </summary>
+    [Serializable]
+    public class Node
+    {
+        public int id;
+        public string type;
+        public List<int> connections;
 
         /// <summary>
-        /// Converts this team object and all data within it into a json-formatted string.
+        /// Constructor for the Node class.
         /// </summary>
-        /// <returns>A large string in a JSON format.</returns>
-        public string ConvertToJSON()
+        /// <param name="i">This node's id.</param>
+        /// <param name="t">This node's type.</param>
+        /// <param name="c">What nodes this one is connected to.</param>
+        public Node(int i, NodeTypes t, List<int> c)
         {
-            string teamInfo = "";
-            teamInfo = JsonUtility.ToJson(this);
-            return teamInfo;
+            id = i;
+            type = t.ToString();
+            connections = c;
         }
     }
 
@@ -124,17 +113,37 @@ namespace Assets.Scripts
         {
             networks = n;
         }
+    }
+
+    /// <summary>
+    /// All of the data necessary to mimick a CPTC competition. Inlcudes a network-infrastructure, teams and events.
+    /// </summary>
+    [Serializable]
+    public class CPTCData
+    {
+        public Infrastructure infrastructure;
+        public List<Team> teams;
 
         /// <summary>
-        /// Converts this infrastructure object and all data within it into a json-formatted string.
+        /// Constructor for the CPTCData class.
+        /// </summary>
+        /// <param name="i">This data set's infrastructure. Contains networks, nodes and all their relevant connections.</param>
+        /// <param name="t">This data set's teams. Contains team IDs, all their alerts and what nodes they've discovered.</param>
+        public CPTCData(Infrastructure i, List<Team> t)
+        {
+            infrastructure = i;
+            teams = t;
+        }
+
+        /// <summary>
+        /// Converts this CPTCData object and all data within it into a json-formatted string.
         /// </summary>
         /// <returns>A large string in a JSON format.</returns>
         public string ConvertToJSON()
         {
-            string infrastructureInfo = "";
-            infrastructureInfo = JsonUtility.ToJson(this);
-            return infrastructureInfo;
+            string cptcInfo = "";
+            cptcInfo = JsonUtility.ToJson(this);
+            return cptcInfo;
         }
     }
-
 }

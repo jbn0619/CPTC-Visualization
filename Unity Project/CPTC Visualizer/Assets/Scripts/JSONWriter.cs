@@ -1,4 +1,5 @@
 using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
@@ -22,22 +23,24 @@ public class JSONWriter: MonoBehaviour
     [SerializeField]
     private bool randomizeInfrastructure;
 
-    [SerializeField]
-    private int maxTeams;
-
-    [SerializeField]
-    private int maxNodes;
-
     // This is in alerts per team.
     [SerializeField]
-    private int maxAlerts;
+    [Range(1, 100)]
+    private int alertCount;
 
+    [SerializeField]
+    [Range(1, 100)]
     private int teamCount;
+
+    // This is in nodes per network.
+    [SerializeField]
+    [Range(1, 100)]
     private int nodeCount;
 
-    // This is in alerts per team.
-    private int alertCount;
-    
+    [SerializeField]
+    [Range(1, 100)]
+    private int networkCount;
+
     #endregion Fields
     
     #region Properties
@@ -47,45 +50,16 @@ public class JSONWriter: MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // Alerts hold event types
 
-        // Teams hold discovered node IDs and alerts
-
-        // Entire infrastructure holds nodes
-
-        // Nodes hold node IDs, type, and connections.
-
-        List<Alert> alerts = new List<Alert>();
-        alerts.Add(new Alert(CPTCEvents.Discovery));
-        alerts.Add(new Alert(CPTCEvents.ShutDown));
-
-        List<int> c = new List<int>();
-        c.Add(1);
-        c.Add(2);
-        List<Node> nodes = new List<Node>();
-        nodes.Add(new Node(0, NodeTypes.Host, c));
-        Team myTeam = new Team(4, alerts, c);
-
-        Debug.Log(myTeam.ConvertToJSON());
-
-        // Make an infrastructure
-        List<Assets.Scripts.Network> networks = new List<Assets.Scripts.Network>();
-        List<int> netC = new List<int>();
-        netC.Add(1);
-        netC.Add(3);
-        netC.Add(2);
-        Assets.Scripts.Network net = new Assets.Scripts.Network(2, nodes, netC);
-        networks.Add(net);
-
-        Infrastructure infra = new Infrastructure(networks);
-
-        Debug.Log(infra.ConvertToJSON());
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            GenerateData();
+        }
     }
 
     /// <summary>
@@ -93,35 +67,147 @@ public class JSONWriter: MonoBehaviour
     /// </summary>
     public void GenerateData()
     {
-        // Set up how much of each data type there will be.
-        alertCount = Random.Range(1, maxAlerts);
-        teamCount = Random.Range(1, maxTeams);
-        nodeCount = Random.Range(1, maxNodes);
 
-        // First, check if we're randomizing the node infrastructure or not.
+        // Create an infrastructure either randomly or standardly.
+        Infrastructure infra0;
         if (randomizeInfrastructure == false)
         {
-            // Generate a standard infrastructure of 5 nodes.
+            // Generate a standard infrastructure of 1 network with 5 nodes.
             nodeCount = 5;
 
-            
-            // Generate nodes.
-            for (int i = 0; i < nodeCount; i++)
-            {
+            List<int> nc0 = new List<int>();
+            nc0.Add(1);
+            nc0.Add(3);
+            nc0.Add(4);
+            Node n0 = new Node(0, NodeTypes.Host, nc0);
 
-            }
+            List<int> nc1 = new List<int>();
+            nc1.Add(0);
+            nc1.Add(2);
+            Node n1 = new Node(1, NodeTypes.Host, nc1);
+
+            List<int> nc2 = new List<int>();
+            nc2.Add(1);
+            nc2.Add(3);
+            Node n2 = new Node(2, NodeTypes.Host, nc2);
+
+            List<int> nc3 = new List<int>();
+            nc3.Add(0);
+            nc3.Add(2);
+            Node n3 = new Node(3, NodeTypes.Host, nc3);
+
+            List<int> nc4 = new List<int>();
+            nc4.Add(0);
+            Node n4 = new Node(4, NodeTypes.Host, nc4);
+
+            List<Node> nodes = new List<Node>();
+            nodes.Add(n0);
+            nodes.Add(n1);
+            nodes.Add(n2);
+            nodes.Add(n3);
+            nodes.Add(n4);
+
+            List<int> netC0 = new List<int>();
+            Assets.Scripts.Network net1 = new Assets.Scripts.Network(0, nodes, netC0);
+            List<Assets.Scripts.Network> networks = new List<Assets.Scripts.Network>();
+            networks.Add(net1);
+            infra0 = new Infrastructure(networks);
         }
         else
         {
+            // Create each network first before making the full infrastructure object.
+            int globalNodeCount = 0;
+            List<Assets.Scripts.Network> networks = new List<Assets.Scripts.Network>();
+            for (int i = 0; i < networkCount; i++)
+            {
+                // Create the nodes to be used in this network.
+                List<Node> nodes = new List<Node>();
+                for (int j = 0; j < nodeCount; j++)
+                {
+                    int id = globalNodeCount;
+                    globalNodeCount++;
 
+                    // Randomly determine how many connections this node will have, then generate them.
+                    int conNum = UnityEngine.Random.Range(1, 5);
+                    List<int> nodeConnections = new List<int>();
+                    for (int k = 0; k < conNum; k++)
+                    {
+                        nodeConnections.Add(UnityEngine.Random.Range(0, globalNodeCount));
+                    }
+
+                    // Randomly determine this node's type.
+                    int tIndex = UnityEngine.Random.Range(0, Enum.GetNames(typeof(NodeTypes)).Length);
+                    NodeTypes t = (NodeTypes)tIndex;
+
+                    // Add the new node to nodes.
+                    Node n = new Node(id, t, nodeConnections);
+                    nodes.Add(n);
+                }
+
+                // Generate network connections.
+                int netConNum = UnityEngine.Random.Range(1, 5);
+                List<int> netCon = new List<int>();
+                for (int l = 0; l < netConNum; l++)
+                {
+                    netCon.Add(UnityEngine.Random.Range(0, i));
+                }
+
+                // Add the new network to networks.
+                Assets.Scripts.Network net = new Assets.Scripts.Network(i, nodes, netCon);
+                networks.Add(net);
+            }
+
+            // Create the infrastructure.
+            infra0 = new Infrastructure(networks);
         }
+
+        // Next create each team and their alerts.
+        List<Team> teams = new List<Team>();
+        for (int i = 0; i < teamCount; i++)
+        {
+            // Create any IDs for nodes this team has discovered.
+            List<int> dNodes = new List<int>();
+            dNodes.Add(0);
+
+            // Create the alerts here.
+            List<Alert> alerts = new List<Alert>();
+            for (int j = 0; j < alertCount; j++)
+            {
+                // Grabs a random value from the CPTCEvents enum type.
+                int eIndex = UnityEngine.Random.Range(0, Enum.GetNames(typeof(CPTCEvents)).Length);
+                CPTCEvents e = (CPTCEvents)eIndex;
+                Alert a = new Alert(e);
+
+                alerts.Add(a);
+            }
+
+            // Create each team object with their alerts and discoveredNodes information
+            Team t = new Team(i, alerts, dNodes);
+            teams.Add(t);
+        }
+
+        CPTCData finalData = new CPTCData(infra0, teams);
+
+        SaveToJson(finalData);
     }
 
     /// <summary>
-    /// Savees any generated data to a Json file.
+    /// Saves any generated data to a Json file.
     /// </summary>
-    private void SaveToJson()
+    private void SaveToJson(CPTCData data)
     {
+        string filePath = "Assets/Data/" + fileName;
 
+        try
+        {
+            using (StreamWriter sw = File.CreateText(filePath))
+            {
+                sw.WriteLine(data.ConvertToJSON());
+            }
+        }
+        catch (Exception e)
+        {
+            Debug.Log(e.Message);
+        }
     }
 }
