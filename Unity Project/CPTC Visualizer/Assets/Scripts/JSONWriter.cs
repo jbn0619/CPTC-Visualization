@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
+using Assets.Scripts;
 
 public enum CPTCEvents { Exploit, ShutDown, StartUp, Discovery}
 
@@ -53,6 +54,32 @@ public class JSONWriter: MonoBehaviour
         // Entire infrastructure holds nodes
 
         // Nodes hold node IDs, type, and connections.
+
+        List<Alert> alerts = new List<Alert>();
+        alerts.Add(new Alert(CPTCEvents.Discovery));
+        alerts.Add(new Alert(CPTCEvents.ShutDown));
+
+        List<int> c = new List<int>();
+        c.Add(1);
+        c.Add(2);
+        List<Node> nodes = new List<Node>();
+        nodes.Add(new Node(0, NodeTypes.Host, c));
+        Team myTeam = new Team(4, alerts, nodes);
+
+        Debug.Log(myTeam.ConvertToJSON());
+
+        // Make an infrastructure
+        List<Assets.Scripts.Network> networks = new List<Assets.Scripts.Network>();
+        List<int> netC = new List<int>();
+        netC.Add(1);
+        netC.Add(3);
+        netC.Add(2);
+        Assets.Scripts.Network net = new Assets.Scripts.Network(2, nodes, netC);
+        networks.Add(net);
+
+        Infrastructure infra = new Infrastructure(networks);
+
+        Debug.Log(infra.ConvertToJSON());
     }
 
     // Update is called once per frame
@@ -77,7 +104,12 @@ public class JSONWriter: MonoBehaviour
             // Generate a standard infrastructure of 5 nodes.
             nodeCount = 5;
 
+            
+            // Generate nodes.
+            for (int i = 0; i < nodeCount; i++)
+            {
 
+            }
         }
         else
         {

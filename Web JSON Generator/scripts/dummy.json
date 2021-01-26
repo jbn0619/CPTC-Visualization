@@ -1,0 +1,70 @@
+{
+    "Teams" : 
+    [
+        {
+            "teamId" : 0,
+            "discoveredNodes": 
+            [
+                {
+                    "id" : 0,
+                    "connections" : [1, 2, 3]
+                },
+                {
+                    "id" : 1,
+                    "connections" : [3, 0, 4]
+                }
+            ],
+            "alerts" : 
+            [
+                {
+                    "alertType" : "Exploit"
+                },
+                {
+                    "alertType" : "ShutDown"
+                },
+                {
+                    "alertType" : "StartUp"
+                },
+                {
+                    "alertType" : "Discoery"
+                }
+            ]
+        },
+        {
+            "teamId" : 1,
+            "discoveredNodes":
+            [
+                {
+                    "id" : 0,
+                    "connections" : [1, 2, 3]
+                }
+            ],
+            "alerts":
+            [
+                {
+                    "alertType" : "StartUp"
+                },
+                {
+                    "alertType" : "Discoery"
+                }
+            ]
+        }
+    ],
+    "Infrastructure":
+    [
+        {
+            "networkID": 0,
+            "nodes":
+            [
+                {
+                    "id" : 0,
+                    "connections" : [1, 2, 3]
+                },
+                {
+                    "id" : 1,
+                    "connections" : [3, 0, 4]
+                }
+            ]
+        }
+    ]
+}
