@@ -79,7 +79,6 @@ public class JSONWriter: MonoBehaviour
     /// </summary>
     public void GenerateData()
     {
-
         // Create an infrastructure either randomly or standardly.
         Infrastructure infra0;
         if (randomizeInfrastructure == false)
@@ -144,7 +143,15 @@ public class JSONWriter: MonoBehaviour
                     List<int> nodeConnections = new List<int>();
                     for (int k = 0; k < conNum; k++)
                     {
-                        nodeConnections.Add(UnityEngine.Random.Range(0, globalNodeCount));
+                        // There are a few pieces of criteria for a connection to get added:
+                        // 1) The connection is not to itself.
+                        // 2) The connection is not a repeat.
+                        int nextCon = UnityEngine.Random.Range((i * nodeCount), nodeCount * (i + 1));
+
+                        if (nextCon != id && nodeConnections.Contains(nextCon) == false)
+                        {
+                            nodeConnections.Add(nextCon);
+                        }
                     }
 
                     // Randomly determine this node's type.
@@ -161,7 +168,12 @@ public class JSONWriter: MonoBehaviour
                 List<int> netCon = new List<int>();
                 for (int l = 0; l < netConNum; l++)
                 {
-                    netCon.Add(UnityEngine.Random.Range(0, i));
+                    int newCon = UnityEngine.Random.Range(0, networkCount);
+
+                    if (newCon != i && netCon.Contains(newCon) == false)
+                    {
+                        netCon.Add(newCon);
+                    }
                 }
 
                 // Add the new network to networks.
