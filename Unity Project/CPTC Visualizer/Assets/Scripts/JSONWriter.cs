@@ -2,6 +2,7 @@ using System.Collections;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using System.IO;
 using Assets.Scripts;
 
@@ -44,6 +45,17 @@ public class JSONWriter: MonoBehaviour
     #endregion Fields
     
     #region Properties
+
+    /// <summary>
+    /// Gets if the writer will randomize the infrastructure or not.
+    /// </summary>
+    public bool RandomizeInfrastructure
+    {
+        get
+        {
+            return randomizeInfrastructure;
+        }
+    }
     
     #endregion Properties
     
@@ -210,4 +222,36 @@ public class JSONWriter: MonoBehaviour
             Debug.Log(e.Message);
         }
     }
+
+    #region UI Methods
+
+    /// <summary>
+    /// Flips the randomizeInfrastructure bool when the toggle button is clicked.
+    /// </summary>
+    public void FlipRandomInfra()
+    {
+        randomizeInfrastructure = !randomizeInfrastructure;
+    }
+
+    public void EditAlertCount(InputField sender)
+    {
+        int.TryParse(sender.text, out alertCount);
+    }
+
+    public void EditTeamCount(InputField sender)
+    {
+        int.TryParse(sender.text, out teamCount);
+    }
+
+    public void EditNodeCount(InputField sender)
+    {
+        int.TryParse(sender.text, out nodeCount);
+    }
+
+    public void EditNetworkCount(InputField sender)
+    {
+        int.TryParse(sender.text, out networkCount);
+    }
+
+    #endregion UI Methods
 }
