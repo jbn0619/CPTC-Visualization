@@ -7,7 +7,7 @@ using System.IO;
 public class JSONReader : MonoBehaviour
 {
     #region Fields
-    public List<TeamInfo> teams;
+    //public List<TeamInfo> teams;
 
     #endregion Fields
 
@@ -33,23 +33,23 @@ public class JSONReader : MonoBehaviour
     /// </summary>
     public void ReadJson()
     {
-
         Debug.Log("Attempting to read file...");
-        StreamReader reader = new StreamReader("Assets/Resources/dummy.json");
+        StreamReader reader = new StreamReader("Assets/Data/data.json");
         string input = reader.ReadToEnd();
         reader.Close();
 
-        input = input.Replace("\n", "").Replace(" ", "");
+        JSONReciever payload = JsonUtility.FromJson<JSONReciever>(input);
 
-        //teams.Add(TeamInfo.CreateFromJSON(input));
+        //Debug.Log(payload.teams.Length);
+        //Debug.Log(payload.infrastructure.networks.Length);
 
-        //Teams.Add(team);
-
-        //Debug.Log(team.teamId);
-    }
-
-    public void PackageTeamInfo(string jsonString)
-    {
-        string[] teams = jsonString.Split();
+        //Debug.Log(payload.infrastructure.networks[0].nodes.Length);
+        //for (int i = 0; i < payload.infrastructure.networks[0].nodes.Length; i++)
+        //{
+        //    for(int j = 0; j < payload.infrastructure.networks[0].nodes[i].connections.Length; j++)
+        //    {
+        //        Debug.Log(payload.infrastructure.networks[0].nodes[i].connections[j]);
+        //    }
+        //}
     }
 }

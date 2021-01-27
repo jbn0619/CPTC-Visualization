@@ -133,6 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1078119312}
   - component: {fileID: 1078119313}
+  - component: {fileID: 1078119314}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -166,7 +167,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8237aa5b6bfbe784e85e8c971b329f88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  teams: []
+--- !u!114 &1078119314
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1078119311}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8043ebfd3f049624489d82250bcbb6f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fileName: data.json
+  randomizeInfrastructure: 1
+  alertCount: 61
+  teamCount: 7
+  nodeCount: 56
+  networkCount: 5
 --- !u!1 &1536344160
 GameObject:
   m_ObjectHideFlags: 0
