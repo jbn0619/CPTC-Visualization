@@ -40,6 +40,6 @@ public class JSONReader : MonoBehaviour
 
         CPTCData payload = JsonUtility.FromJson<CPTCData>(input);
 
-
+        Infrastructure i = payload.infrastructure;
     }
 }

@@ -7,6 +7,7 @@ public class InfrastructureData: MonoBehaviour
     #region Fields
 
     private List<NetworkData> networks;
+    private List<NodeData> allNodes;
 
     #endregion Fields
 
@@ -22,6 +23,17 @@ public class InfrastructureData: MonoBehaviour
             return networks;
         }
     }
+
+    /// <summary>
+    /// Gets a list of ALL nodes in all networks in this infrastructure.
+    /// </summary>
+    public List<NodeData> AllNodes
+    {
+        get
+        {
+            return allNodes;
+        }
+    }
     
     #endregion Properties
     
@@ -30,6 +42,7 @@ public class InfrastructureData: MonoBehaviour
     {
         // Initailize fields.
         networks = new List<NetworkData>();
+        allNodes = new List<NodeData>();
     }
 
     // Update is called once per frame
