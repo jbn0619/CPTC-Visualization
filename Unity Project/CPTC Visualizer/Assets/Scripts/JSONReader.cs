@@ -38,18 +38,8 @@ public class JSONReader : MonoBehaviour
         string input = reader.ReadToEnd();
         reader.Close();
 
-        JSONReciever payload = JsonUtility.FromJson<JSONReciever>(input);
+        CPTCData payload = JsonUtility.FromJson<CPTCData>(input);
 
-        //Debug.Log(payload.teams.Length);
-        //Debug.Log(payload.infrastructure.networks.Length);
 
-        //Debug.Log(payload.infrastructure.networks[0].nodes.Length);
-        //for (int i = 0; i < payload.infrastructure.networks[0].nodes.Length; i++)
-        //{
-        //    for(int j = 0; j < payload.infrastructure.networks[0].nodes[i].connections.Length; j++)
-        //    {
-        //        Debug.Log(payload.infrastructure.networks[0].nodes[i].connections[j]);
-        //    }
-        //}
     }
 }
