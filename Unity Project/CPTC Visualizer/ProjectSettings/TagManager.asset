@@ -3,7 +3,12 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Infrastructure
+  - Network
+  - Node
+  - Team
+  - Alert
   layers:
   - Default
   - TransparentFX
