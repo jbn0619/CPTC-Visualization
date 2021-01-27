@@ -39,7 +39,5 @@ public class JSONReader : MonoBehaviour
         reader.Close();
 
         CPTCData payload = JsonUtility.FromJson<CPTCData>(input);
-
-
     }
 }
