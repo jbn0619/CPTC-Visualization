@@ -167,6 +167,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 256cec50dcacd5d43ae4b5b21fd382a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  teams: []
+  networks: []
+  timeBetweenAlerts: 5
+  timer: 0
+  simulationStart: 0
+  networkGO: {fileID: 3744525091222794657, guid: 53904a191a1b3bb42a5ff5939ecba9e9, type: 3}
+  nodeGO: {fileID: 2293037716747613465, guid: 637a865eaa3d36b4f8b56dff4ba76f7b, type: 3}
 --- !u!114 &1078119314
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -183,7 +190,7 @@ MonoBehaviour:
   randomizeInfrastructure: 1
   alertCount: 61
   teamCount: 7
-  nodeCount: 56
+  nodeCount: 7
   networkCount: 5
 --- !u!1 &1536344160
 GameObject:
