@@ -122,6 +122,8 @@ public class InfrastructureManager: Singleton<InfrastructureManager>
             tempNet.transform.localScale = new Vector2(0.5f, 0.5f);
             tempNet.transform.parent = this.transform;
 
+
+            List<GameObject> networkNodes;
             for(int j = 0; j < networks[i].nodes.Count; j++)
             {
                 radius = 0.75f;
@@ -133,6 +135,8 @@ public class InfrastructureManager: Singleton<InfrastructureManager>
 
                 tempNode.transform.localScale = new Vector2(0.15f, 0.15f);
                 tempNode.transform.parent = tempNet.transform;
+                
+
             }
         }
     }
