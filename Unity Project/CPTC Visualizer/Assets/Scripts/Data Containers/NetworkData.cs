@@ -7,6 +7,7 @@ public class NetworkData: MonoBehaviour
     #region Fields
 
     private int id;
+    private bool isActive;
     private List<NodeData> nodes;
     private List<int> connections;
     
@@ -29,6 +30,21 @@ public class NetworkData: MonoBehaviour
             {
                 id = value;
             }
+        }
+    }
+
+    /// <summary>
+    /// Gets or sets if this network has been shut down or not.
+    /// </summary>
+    public bool IsActive
+    {
+        get
+        {
+            return isActive;
+        }
+        set
+        {
+            isActive = value;
         }
     }
 

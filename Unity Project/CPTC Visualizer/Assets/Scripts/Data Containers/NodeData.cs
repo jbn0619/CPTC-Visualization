@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class NodeData: MonoBehaviour
 {
     #region Fields
 
     private int id;
+    private bool isActive;
     private NodeTypes type;
     private List<int> connections;
     
@@ -29,6 +31,21 @@ public class NodeData: MonoBehaviour
             {
                 id = value;
             }
+        }
+    }
+
+    /// <summary>
+    /// Gets or sets if this node has been shut down or not.
+    /// </summary>
+    public bool IsActive
+    {
+        get
+        {
+            return isActive;
+        }
+        set
+        {
+            isActive = value;
         }
     }
 
@@ -67,7 +84,8 @@ public class NodeData: MonoBehaviour
         connections = new List<int>();
 
         // How to convert from string to enum:
-        // Enum.TryParse(sring, out myEnumType myType);
+        //Enum.TryParse(string, out NodeTypes newType);
+        
     }
 
     // Update is called once per frame

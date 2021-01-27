@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class AlertData: MonoBehaviour
 {
@@ -33,7 +34,7 @@ public class AlertData: MonoBehaviour
     void Start()
     {
         // How to convert from string to enum:
-        // Enum.TryParse(sring, out myEnumType myType);
+        //Enum.TryParse(string, out CPTCEvents newEvent);
     }
 
     // Update is called once per frame
