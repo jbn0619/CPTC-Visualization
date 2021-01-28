@@ -3,24 +3,41 @@ using System.Collections.Generic;
 using UnityEngine;
 using Assets.Scripts;
 using System.IO;
+using System;
 
 public class InfrastructureManager: Singleton<InfrastructureManager>
 {
     #region Fields
 
-    [SerializeField]
-    List<Team> teams;
+    private InfrastructureData infrastructure;
 
     [SerializeField]
-    List<Assets.Scripts.Network> networks;
+    List<TeamData> teams;
+
+    [SerializeField]
+    List<NetworkData> networks;
 
     public int timeBetweenAlerts = 5;
 
     public float timer;
     public bool simulationStart = false;
 
-    public GameObject networkGO;
-    public GameObject nodeGO;
+    [Header("GameObject Prefabs")]
+
+    [SerializeField]
+    private NodeData nodeGO;
+
+    [SerializeField]
+    private NetworkData networkGO;
+
+    [SerializeField]
+    private InfrastructureData infraGO;
+
+    [SerializeField]
+    private TeamData teamGO;
+
+    [SerializeField]
+    private AlertData alertGO;
 
     #endregion Fields
     
@@ -31,7 +48,7 @@ public class InfrastructureManager: Singleton<InfrastructureManager>
     // Start is called before the first frame update
     void Start()
     {
-        
+        infrastructure = new InfrastructureData();
     }
 
     // Update is called once per frame
@@ -76,15 +93,63 @@ public class InfrastructureManager: Singleton<InfrastructureManager>
         teams.Clear();
         networks.Clear();
 
-        // Collects the team and network data
+        // Collects the team data first.
         for(int i = 0; i < payload.teams.Count; i++)
         {
-            teams.Add(payload.teams[i]);
+            TeamData newTeam = Instantiate(teamGO, Vector3.zero, Quaternion.identity);
+            newTeam.TeamId = payload.teams[i].teamId;
+            // Move all discovered node-IDs into newTeam.
+            foreach (int n in payload.teams[i].discoveredNodeIds)
+            {
+                newTeam.DiscoveredNodeIds.Add(n);
+            }
+
+            // Convert all alerts into AlertData gameObjects.
+            foreach (Alert a in payload.teams[i].alerts)
+            {
+                AlertData newAlert = Instantiate(alertGO, newTeam.transform);
+                Enum.TryParse(a.type, out CPTCEvents newEvent);
+                newAlert.Type = newEvent;
+                newTeam.Alerts.Add(newAlert);
+            }
+
+            teams.Add(newTeam);
         }
+
+        infrastructure = Instantiate(infraGO, Vector3.zero, Quaternion.identity);
 
         for(int i = 0; i < payload.infrastructure.networks.Count; i++)
         {
-            networks.Add(payload.infrastructure.networks[i]);
+            NetworkData newNet = Instantiate(networkGO, infrastructure.transform);
+            newNet.Id = payload.infrastructure.networks[i].networkId;
+
+            // Move all network connection-IDs into newNet.
+            foreach (int n in payload.infrastructure.networks[i].networkConnections)
+            {
+                newNet.Connections.Add(n);
+            }
+
+            // Move all the nodes into this network.
+            for (int k = 0; k < payload.infrastructure.networks[i].nodes.Count; k++)
+            {
+                NodeData newNode = Instantiate(nodeGO, newNet.transform);
+                newNode.Id = payload.infrastructure.networks[i].nodes[k].id;
+                newNode.IsActive = true;
+                Enum.TryParse(payload.infrastructure.networks[i].nodes[k].type, out NodeTypes newType);
+                newNode.Type = newType;
+
+                // Move all the node's connection-IDs into newNode.
+                foreach (int c in payload.infrastructure.networks[i].nodes[k].connections)
+                {
+                    newNode.Connections.Add(c);
+                }
+
+                // Pass this node's reference to its network and the infrastructure.
+                newNet.Nodes.Add(newNode);
+                infrastructure.AllNodes.Add(newNode);
+            }
+
+            infrastructure.Networks.Add(newNet);
         }
 
         GenerateGraph(payload.infrastructure);
@@ -95,12 +160,12 @@ public class InfrastructureManager: Singleton<InfrastructureManager>
     /// </summary>
     public void RunAlerts()
     {
-        foreach(Team team in teams)
+        foreach(TeamData team in teams)
         {
-            if(team.alerts.Count > 0)
+            if(team.Alerts.Count > 0)
             {
-                Debug.Log("ALERT: Team " + team.teamId + " attempted " + team.alerts[0].type);
-                team.alerts.RemoveAt(0);
+                Debug.Log("ALERT: Team " + team.TeamId + " attempted " + team.Alerts[0].Type);
+                team.Alerts.RemoveAt(0);
             }
         }
     }
@@ -118,9 +183,9 @@ public class InfrastructureManager: Singleton<InfrastructureManager>
             float radius = 3f;
             float angle = i * Mathf.PI * 2f / networks.Count;
 
-            GameObject tempNet = Instantiate(networkGO, new Vector3(Mathf.Cos(angle)*radius, Mathf.Sin(angle) * radius, 0), Quaternion.identity);
-            tempNet.transform.localScale = new Vector2(0.5f, 0.5f);
-            tempNet.transform.parent = this.transform;
+            //GameObject tempNet = Instantiate(networkGO, new Vector3(Mathf.Cos(angle)*radius, Mathf.Sin(angle) * radius, 0), Quaternion.identity);
+            //tempNet.transform.localScale = new Vector2(0.5f, 0.5f);
+            //tempNet.transform.parent = this.transform;
 
 
             List<GameObject> networkNodes;
@@ -129,12 +194,12 @@ public class InfrastructureManager: Singleton<InfrastructureManager>
                 radius = 0.75f;
                 angle = j * Mathf.PI * 2f / networks[i].nodes.Count;
 
-                GameObject tempNode = Instantiate(nodeGO, new Vector3(tempNet.transform.position.x + Mathf.Cos(angle) * radius,
-                    tempNet.transform.position.y + Mathf.Sin(angle) * radius, 0),
-                    Quaternion.identity);
+                //GameObject tempNode = Instantiate(nodeGO, new Vector3(tempNet.transform.position.x + Mathf.Cos(angle) * radius,
+                    //tempNet.transform.position.y + Mathf.Sin(angle) * radius, 0),
+                    //Quaternion.identity);
 
-                tempNode.transform.localScale = new Vector2(0.15f, 0.15f);
-                tempNode.transform.parent = tempNet.transform;
+                //tempNode.transform.localScale = new Vector2(0.15f, 0.15f);
+                //tempNode.transform.parent = tempNet.transform;
                 
 
             }

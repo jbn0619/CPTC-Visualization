@@ -7,7 +7,11 @@ public class TeamData: MonoBehaviour
     #region Fields
 
     private int teamId;
+
+    [SerializeField]
     private List<AlertData> alerts;
+
+    [SerializeField]
     private List<int> discoveredNodeIds;
     
     #endregion Fields
@@ -59,9 +63,7 @@ public class TeamData: MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // Initialize fields
-        alerts = new List<AlertData>();
-        discoveredNodeIds = new List<int>();
+
     }
 
     // Update is called once per frame

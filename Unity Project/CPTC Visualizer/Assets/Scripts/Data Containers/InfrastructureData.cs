@@ -6,7 +6,10 @@ public class InfrastructureData: MonoBehaviour
 {
     #region Fields
 
+    [SerializeField]
     private List<NetworkData> networks;
+
+    [SerializeField]
     private List<NodeData> allNodes;
 
     #endregion Fields
@@ -40,9 +43,7 @@ public class InfrastructureData: MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // Initailize fields.
-        networks = new List<NetworkData>();
-        allNodes = new List<NodeData>();
+
     }
 
     // Update is called once per frame

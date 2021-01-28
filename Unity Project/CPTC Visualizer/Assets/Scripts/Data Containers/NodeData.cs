@@ -10,6 +10,8 @@ public class NodeData: MonoBehaviour
     private int id;
     private bool isActive;
     private NodeTypes type;
+
+    [SerializeField]
     private List<int> connections;
     
     #endregion Fields
@@ -80,9 +82,6 @@ public class NodeData: MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // Initialize fields.
-        connections = new List<int>();
-
         // How to convert from string to enum:
         //Enum.TryParse(string, out NodeTypes newType);
         

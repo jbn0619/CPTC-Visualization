@@ -8,7 +8,11 @@ public class NetworkData: MonoBehaviour
 
     private int id;
     private bool isActive;
+
+    [SerializeField]
     private List<NodeData> nodes;
+
+    [SerializeField]
     private List<int> connections;
     
     #endregion Fields
@@ -75,9 +79,7 @@ public class NetworkData: MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // Initialize fields.
-        nodes = new List<NodeData>();
-        connections = new List<int>();
+
     }
 
     // Update is called once per frame

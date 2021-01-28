@@ -9,6 +9,7 @@ TagManager:
   - Node
   - Team
   - Alert
+  - CanvasCollection
   layers:
   - Default
   - TransparentFX
