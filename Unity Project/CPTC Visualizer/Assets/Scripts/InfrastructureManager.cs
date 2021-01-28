@@ -90,9 +90,18 @@ public class InfrastructureManager: Singleton<InfrastructureManager>
         reader.Close();
         CPTCData payload = JsonUtility.FromJson<CPTCData>(input);
 
-        teams.Clear();
-        networks.Clear();
-
+        // Clean up our objects.
+        if (infrastructure != null)
+        {
+            GameObject.Destroy(infrastructure.gameObject);
+            foreach (TeamData t in teams)
+            {
+                GameObject.Destroy(t.gameObject);
+            }
+            teams.Clear();
+            networks.Clear();
+        }
+        
         // Collects the team data first.
         for(int i = 0; i < payload.teams.Count; i++)
         {
@@ -116,6 +125,7 @@ public class InfrastructureManager: Singleton<InfrastructureManager>
             teams.Add(newTeam);
         }
 
+        // Instantiate our infrastructure and populate it.
         infrastructure = Instantiate(infraGO, Vector3.zero, Quaternion.identity);
 
         for(int i = 0; i < payload.infrastructure.networks.Count; i++)
@@ -152,7 +162,7 @@ public class InfrastructureManager: Singleton<InfrastructureManager>
             infrastructure.Networks.Add(newNet);
         }
 
-        GenerateGraph(payload.infrastructure);
+        GenerateGraph();
     }
 
     /// <summary>
@@ -174,34 +184,23 @@ public class InfrastructureManager: Singleton<InfrastructureManager>
     /// Generates the graph and connects nodes. Builds an outward circular graph of networks and nodes.
     /// </summary>
     /// <param name="infrastructure"></param>
-    public void GenerateGraph(Infrastructure infrastructure)
+    public void GenerateGraph()
     {
-        List<Assets.Scripts.Network> networks = infrastructure.networks;
-
-        for(int i = 0; i < networks.Count; i++)
+        for(int i = 0; i < infrastructure.Networks.Count; i++)
         {
             float radius = 3f;
-            float angle = i * Mathf.PI * 2f / networks.Count;
+            float angle = i * Mathf.PI * 2f / infrastructure.Networks.Count;
 
-            //GameObject tempNet = Instantiate(networkGO, new Vector3(Mathf.Cos(angle)*radius, Mathf.Sin(angle) * radius, 0), Quaternion.identity);
-            //tempNet.transform.localScale = new Vector2(0.5f, 0.5f);
-            //tempNet.transform.parent = this.transform;
+            infrastructure.Networks[i].gameObject.transform.position = new Vector3(Mathf.Cos(angle) * radius, Mathf.Sin(angle) * radius, 0);
+            infrastructure.Networks[i].gameObject.transform.localScale = new Vector2(0.5f, 0.5f);
 
-
-            List<GameObject> networkNodes;
-            for(int j = 0; j < networks[i].nodes.Count; j++)
+            for(int j = 0; j < infrastructure.Networks[i].Nodes.Count; j++)
             {
                 radius = 0.75f;
-                angle = j * Mathf.PI * 2f / networks[i].nodes.Count;
+                angle = j * Mathf.PI * 2f / infrastructure.Networks[i].Nodes.Count;
 
-                //GameObject tempNode = Instantiate(nodeGO, new Vector3(tempNet.transform.position.x + Mathf.Cos(angle) * radius,
-                    //tempNet.transform.position.y + Mathf.Sin(angle) * radius, 0),
-                    //Quaternion.identity);
-
-                //tempNode.transform.localScale = new Vector2(0.15f, 0.15f);
-                //tempNode.transform.parent = tempNet.transform;
-                
-
+                infrastructure.Networks[i].Nodes[j].gameObject.transform.position = new Vector3(infrastructure.Networks[i].transform.position.x + Mathf.Cos(angle) * radius, infrastructure.Networks[i].transform.position.y + Mathf.Sin(angle) * radius, 0);
+                infrastructure.Networks[i].Nodes[j].gameObject.transform.localScale = new Vector2(0.15f, 0.15f);
             }
         }
     }
