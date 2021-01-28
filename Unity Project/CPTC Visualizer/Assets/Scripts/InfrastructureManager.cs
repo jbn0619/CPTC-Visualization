@@ -10,12 +10,7 @@ public class InfrastructureManager: Singleton<InfrastructureManager>
     #region Fields
 
     private InfrastructureData infrastructure;
-
-    [SerializeField]
-    List<TeamData> teams;
-
-    [SerializeField]
-    List<NetworkData> networks;
+    private List<TeamData> teams;
 
     public int timeBetweenAlerts = 5;
 
@@ -23,25 +18,31 @@ public class InfrastructureManager: Singleton<InfrastructureManager>
     public bool simulationStart = false;
 
     [Header("GameObject Prefabs")]
-
     [SerializeField]
     private NodeData nodeGO;
-
     [SerializeField]
     private NetworkData networkGO;
-
     [SerializeField]
     private InfrastructureData infraGO;
-
     [SerializeField]
     private TeamData teamGO;
-
     [SerializeField]
     private AlertData alertGO;
 
     #endregion Fields
     
     #region Properties
+
+    /// <summary>
+    /// Gets a list of all teams currently in the competition.
+    /// </summary>
+    public List<TeamData> Teams
+    {
+        get
+        {
+            return teams;
+        }
+    }
     
     #endregion Properties
     
@@ -49,6 +50,7 @@ public class InfrastructureManager: Singleton<InfrastructureManager>
     void Start()
     {
         infrastructure = new InfrastructureData();
+        teams = new List<TeamData>();
     }
 
     // Update is called once per frame
@@ -56,8 +58,6 @@ public class InfrastructureManager: Singleton<InfrastructureManager>
     {
         if (Input.GetKeyDown(KeyCode.R))
         {
-            //DestroyChildren();
-
             ReadJson();
         }
 
@@ -81,7 +81,7 @@ public class InfrastructureManager: Singleton<InfrastructureManager>
     }
 
     /// <summary>
-    /// Read in data from a JSON file and convert it
+    /// Read in data from a JSON file and convert it into Data containers split-up into gameObjects.
     /// </summary>
     public void ReadJson()
     {
@@ -99,7 +99,6 @@ public class InfrastructureManager: Singleton<InfrastructureManager>
                 GameObject.Destroy(t.gameObject);
             }
             teams.Clear();
-            networks.Clear();
         }
         
         // Collects the team data first.
@@ -183,9 +182,9 @@ public class InfrastructureManager: Singleton<InfrastructureManager>
     /// <summary>
     /// Generates the graph and connects nodes. Builds an outward circular graph of networks and nodes.
     /// </summary>
-    /// <param name="infrastructure"></param>
     public void GenerateGraph()
     {
+        // Place each network first, then place nodes around them.
         for(int i = 0; i < infrastructure.Networks.Count; i++)
         {
             float radius = 3f;
@@ -194,6 +193,7 @@ public class InfrastructureManager: Singleton<InfrastructureManager>
             infrastructure.Networks[i].gameObject.transform.position = new Vector3(Mathf.Cos(angle) * radius, Mathf.Sin(angle) * radius, 0);
             infrastructure.Networks[i].gameObject.transform.localScale = new Vector2(0.5f, 0.5f);
 
+            // Place each of the netowrk's nodes around in a circle.
             for(int j = 0; j < infrastructure.Networks[i].Nodes.Count; j++)
             {
                 radius = 0.75f;
@@ -203,18 +203,5 @@ public class InfrastructureManager: Singleton<InfrastructureManager>
                 infrastructure.Networks[i].Nodes[j].gameObject.transform.localScale = new Vector2(0.15f, 0.15f);
             }
         }
-    }
-
-    public void DestroyChildren()
-    {
-        if(transform.childCount > 0)
-        {
-            foreach(Transform child in this.transform)
-            {
-                DestroyChildren();
-            }
-        }
-
-        Destroy(gameObject);
     }
 }
