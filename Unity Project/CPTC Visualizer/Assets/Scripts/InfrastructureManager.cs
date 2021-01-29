@@ -162,6 +162,8 @@ public class InfrastructureManager: Singleton<InfrastructureManager>
         }
 
         GenerateGraph();
+
+        DuplicateInfrastructure();
     }
 
     /// <summary>
@@ -176,6 +178,17 @@ public class InfrastructureManager: Singleton<InfrastructureManager>
                 Debug.Log("ALERT: Team " + team.TeamId + " attempted " + team.Alerts[0].Type);
                 team.Alerts.RemoveAt(0);
             }
+        }
+    }
+
+    /// <summary>
+    /// Takes this script's infrastructure and duplicates it. It then sends those copies to each team so each team can edit their own infrastructures with their alerts and whatnot.
+    /// </summary>
+    public void DuplicateInfrastructure()
+    {
+        foreach(TeamData team in teams)
+        {
+            GameObject newInfra = Instantiate(infrastructure.gameObject, team.gameObject.transform);
         }
     }
 

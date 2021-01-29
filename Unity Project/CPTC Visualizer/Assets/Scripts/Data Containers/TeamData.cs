@@ -13,6 +13,8 @@ public class TeamData: MonoBehaviour
 
     [SerializeField]
     private List<int> discoveredNodeIds;
+
+    private InfrastructureData infraCopy;
     
     #endregion Fields
     
@@ -55,6 +57,21 @@ public class TeamData: MonoBehaviour
         get
         {
             return discoveredNodeIds;
+        }
+    }
+
+    /// <summary>
+    /// Gets or sets this team's copy of the infrastructure data.
+    /// </summary>
+    public InfrastructureData InfraCopy
+    {
+        get
+        {
+            return infraCopy;
+        }
+        set
+        {
+            infraCopy = value;
         }
     }
     
