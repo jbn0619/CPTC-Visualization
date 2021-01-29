@@ -100,13 +100,33 @@ public class TeamData: MonoBehaviour
         switch (newAlert.Type)
         {
             case CPTCEvents.Discovery:
+                // Grab a random discovered-node, then "discover" one of its connections.
+                int baseNode = discoveredNodeIds[Random.Range(0, discoveredNodeIds.Count)];
+                int newNode = infraCopy.AllNodes[baseNode].Connections[Random.Range(0, infraCopy.AllNodes[baseNode].Connections.Count)];
+                discoveredNodeIds.Add(newNode);
                 break;
             case CPTCEvents.Exploit:
                 break;
             case CPTCEvents.ShutDown:
+                foreach (int n in newAlert.AffectedNodes)
+                {
+                    infraCopy.AllNodes[n].IsActive = false;
+                }
                 break;
             case CPTCEvents.StartUp:
+                foreach (int n in newAlert.AffectedNodes)
+                {
+                    infraCopy.AllNodes[n].IsActive = true;
+                }
                 break;
         }
+    }
+
+    /// <summary>
+    /// Dynamically moves all of this team's infrastructure into the scene.
+    /// </summary>
+    public void BuildTeamInfrastructure()
+    {
+
     }
 }
