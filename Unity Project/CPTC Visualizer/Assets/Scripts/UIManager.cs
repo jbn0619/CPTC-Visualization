@@ -8,6 +8,7 @@ public class UIManager: Singleton<UIManager>
     #region Fields
 
     private List<Canvas> sceneCanvases;
+    private Canvas activeCanvas;
 
     #endregion Fields
 
@@ -74,6 +75,10 @@ public class UIManager: Singleton<UIManager>
                 if (i > 0)
                 {
                     sceneCanvases[i].gameObject.SetActive(false);
+                }
+                else
+                {
+                    activeCanvas = sceneCanvases[0];
                 }
             }
         }
