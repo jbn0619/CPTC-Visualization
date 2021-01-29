@@ -12,6 +12,17 @@ public class UIManager: Singleton<UIManager>
 
     #endregion Fields
 
+    /// <summary>
+    /// Gets what canvas is currently-active in this scene.
+    /// </summary>
+    public Canvas ActiveCanvas
+    {
+        get
+        {
+            return activeCanvas;
+        }
+    }
+
     #region Properties
 
     /// <summary>
