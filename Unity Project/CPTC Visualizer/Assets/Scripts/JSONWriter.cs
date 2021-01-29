@@ -245,21 +245,37 @@ public class JSONWriter: MonoBehaviour
         randomizeInfrastructure = !randomizeInfrastructure;
     }
 
+    /// <summary>
+    /// Edits the number of alerts per team based on its corresponding inputField.
+    /// </summary>
+    /// <param name="sender">The inputField that was changed.</param>
     public void EditAlertCount(InputField sender)
     {
         int.TryParse(sender.text, out alertCount);
     }
 
+    /// <summary>
+    /// Edits the number of teams based on its corresponding inputField.
+    /// </summary>
+    /// <param name="sender">The inputField that was changed.</param>
     public void EditTeamCount(InputField sender)
     {
         int.TryParse(sender.text, out teamCount);
     }
 
+    /// <summary>
+    /// Edits the number of nodes per network based on its corresponding inputField.
+    /// </summary>
+    /// <param name="sender">The inputField that was changed.</param>
     public void EditNodeCount(InputField sender)
     {
         int.TryParse(sender.text, out nodeCount);
     }
 
+    /// <summary>
+    /// Edits the number of networks based on its corresponding inputField.
+    /// </summary>
+    /// <param name="sender">The inputField that was changed.</param>
     public void EditNetworkCount(InputField sender)
     {
         int.TryParse(sender.text, out networkCount);
