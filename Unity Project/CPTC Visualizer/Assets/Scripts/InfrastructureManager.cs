@@ -118,6 +118,13 @@ public class InfrastructureManager: Singleton<InfrastructureManager>
                 AlertData newAlert = Instantiate(alertGO, newTeam.transform);
                 Enum.TryParse(a.type, out CPTCEvents newEvent);
                 newAlert.Type = newEvent;
+
+                // Transfer over our affected nodes for this alert.
+                foreach(int n in a.affectedNodes)
+                {
+                    newAlert.AffectedNodes.Add(n);
+                }
+                
                 newTeam.Alerts.Add(newAlert);
             }
 

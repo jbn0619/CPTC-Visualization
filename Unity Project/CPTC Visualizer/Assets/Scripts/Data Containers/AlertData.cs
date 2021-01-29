@@ -8,6 +8,9 @@ public class AlertData: MonoBehaviour
     #region Fields
 
     private CPTCEvents type;
+
+    [SerializeField]
+    private List<int> affectedNodes;
     
     #endregion Fields
     
@@ -25,6 +28,17 @@ public class AlertData: MonoBehaviour
         set
         {
             type = value;
+        }
+    }
+
+    /// <summary>
+    /// Gets a list of all nodes this alert/event has influenced.
+    /// </summary>
+    public List<int> AffectedNodes
+    {
+        get
+        {
+            return affectedNodes;
         }
     }
     

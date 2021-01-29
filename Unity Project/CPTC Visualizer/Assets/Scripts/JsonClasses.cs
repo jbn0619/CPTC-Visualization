@@ -15,13 +15,16 @@ namespace Assets.Scripts
     {
         public string type;
 
+        public List<int> affectedNodes;
+
         /// <summary>
         /// Constructor for the Alert class.
         /// </summary>
         /// <param name="t">This alert's type.</param>
-        public Alert(CPTCEvents t)
+        public Alert(CPTCEvents t, List<int> a)
         {
             type = t.ToString();
+            affectedNodes = a;
         }
     }
 

@@ -200,7 +200,16 @@ public class JSONWriter: MonoBehaviour
                 // Grabs a random value from the CPTCEvents enum type.
                 int eIndex = UnityEngine.Random.Range(0, Enum.GetNames(typeof(CPTCEvents)).Length);
                 CPTCEvents e = (CPTCEvents)eIndex;
-                Alert a = new Alert(e);
+
+                // List-out affected nodes.
+                List<int> affectedNodes = new List<int>();
+                int affectNum = UnityEngine.Random.Range(1, 5);
+                for (int k = 0; k < affectNum; k++)
+                {
+                    affectedNodes.Add(UnityEngine.Random.Range(0, nodeCount * networkCount));
+                }
+
+                Alert a = new Alert(e, affectedNodes);
 
                 alerts.Add(a);
             }

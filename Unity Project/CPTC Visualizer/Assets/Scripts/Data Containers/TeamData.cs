@@ -88,4 +88,25 @@ public class TeamData: MonoBehaviour
     {
         
     }
+
+    /// <summary>
+    /// Reads the first alert in the alerts list and changes the infrastructure based-on that.
+    /// </summary>
+    public void ReadNextAlert()
+    {
+        AlertData newAlert = alerts[0];
+        alerts.RemoveAt(0);
+
+        switch (newAlert.Type)
+        {
+            case CPTCEvents.Discovery:
+                break;
+            case CPTCEvents.Exploit:
+                break;
+            case CPTCEvents.ShutDown:
+                break;
+            case CPTCEvents.StartUp:
+                break;
+        }
+    }
 }
