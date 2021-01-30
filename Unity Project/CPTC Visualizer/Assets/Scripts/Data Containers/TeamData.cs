@@ -94,32 +94,42 @@ public class TeamData: MonoBehaviour
     /// </summary>
     public void ReadNextAlert()
     {
-        AlertData newAlert = alerts[0];
-        alerts.RemoveAt(0);
-
-        switch (newAlert.Type)
+        if (alerts.Count > 0)
         {
-            case CPTCEvents.Discovery:
-                // Grab a random discovered-node, then "discover" one of its connections.
-                int baseNode = discoveredNodeIds[Random.Range(0, discoveredNodeIds.Count)];
-                int newNode = infraCopy.AllNodes[baseNode].Connections[Random.Range(0, infraCopy.AllNodes[baseNode].Connections.Count)];
-                discoveredNodeIds.Add(newNode);
-                break;
-            case CPTCEvents.Exploit:
-                break;
-            case CPTCEvents.ShutDown:
-                foreach (int n in newAlert.AffectedNodes)
-                {
-                    infraCopy.AllNodes[n].IsActive = false;
-                }
-                break;
-            case CPTCEvents.StartUp:
-                foreach (int n in newAlert.AffectedNodes)
-                {
-                    infraCopy.AllNodes[n].IsActive = true;
-                }
-                break;
+            AlertData newAlert = alerts[0];
+            alerts.RemoveAt(0);
+
+            switch (newAlert.Type)
+            {
+                case CPTCEvents.Discovery:
+                    // Grab a random discovered-node, then "discover" one of its connections.
+                    int baseNode = discoveredNodeIds[Random.Range(0, discoveredNodeIds.Count)];
+                    int newNode = infraCopy.AllNodes[baseNode].Connections[Random.Range(0, infraCopy.AllNodes[baseNode].Connections.Count)];
+                    discoveredNodeIds.Add(newNode);
+                    break;
+                case CPTCEvents.Exploit:
+                    break;
+                case CPTCEvents.ShutDown:
+                    foreach (int n in newAlert.AffectedNodes)
+                    {
+                        infraCopy.AllNodes[n].IsActive = false;
+                    }
+                    break;
+                case CPTCEvents.StartUp:
+                    foreach (int n in newAlert.AffectedNodes)
+                    {
+                        infraCopy.AllNodes[n].IsActive = true;
+                    }
+                    break;
+            }
+
+            Debug.Log("ALERT: Team " + teamId + " attempted " + newAlert.Type);
         }
+        else
+        {
+            Debug.Log("Team " + teamId + " has done NOTHING");
+        }
+
 
         // After changes have been made, update the team's visual graph.
         BuildTeamGraph();
@@ -150,6 +160,9 @@ public class TeamData: MonoBehaviour
 
                 // If the node gets shut down, then disable it (for now).
                 infraCopy.Networks[i].Nodes[j].gameObject.SetActive(infraCopy.Networks[i].Nodes[j].IsActive);
+
+                // See if we can display the node based-on if this team has discovered it or not.
+                infraCopy.Networks[i].Nodes[j].gameObject.SetActive(discoveredNodeIds.Contains(infraCopy.Networks[i].Nodes[j].Id));
             }
         }
     }

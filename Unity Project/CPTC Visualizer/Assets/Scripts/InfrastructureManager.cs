@@ -200,15 +200,6 @@ public class InfrastructureManager: Singleton<InfrastructureManager>
         foreach(TeamData team in teams)
         {
             team.ReadNextAlert();
-            if(team.Alerts.Count > 0)
-            {
-                Debug.Log("ALERT: Team " + team.TeamId + " attempted " + team.Alerts[0].Type);
-                team.Alerts.RemoveAt(0);
-            }
-            else
-            {
-                Debug.Log("Team " + team.TeamId + " has done NOTHING");
-            }
         }
     }
 
