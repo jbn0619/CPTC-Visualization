@@ -101,20 +101,28 @@ public class TeamData: MonoBehaviour
 
             switch (newAlert.Type)
             {
+                // This is a low-priority event.
                 case CPTCEvents.Discovery:
                     // Grab a random discovered-node, then "discover" one of its connections.
                     int baseNode = discoveredNodeIds[Random.Range(0, discoveredNodeIds.Count)];
+                    if (infraCopy.AllNodes[baseNode].Connections.Count == 0)
+                    {
+                        break;
+                    }
                     int newNode = infraCopy.AllNodes[baseNode].Connections[Random.Range(0, infraCopy.AllNodes[baseNode].Connections.Count)];
                     discoveredNodeIds.Add(newNode);
                     break;
+                // This is a high-priority event.
                 case CPTCEvents.Exploit:
                     break;
+                // This is a high-priority event.
                 case CPTCEvents.ShutDown:
                     foreach (int n in newAlert.AffectedNodes)
                     {
                         infraCopy.AllNodes[n].IsActive = false;
                     }
                     break;
+                // This is a low-priority event.
                 case CPTCEvents.StartUp:
                     foreach (int n in newAlert.AffectedNodes)
                     {
@@ -129,7 +137,6 @@ public class TeamData: MonoBehaviour
         {
             Debug.Log("Team " + teamId + " has done NOTHING");
         }
-
 
         // After changes have been made, update the team's visual graph.
         BuildTeamGraph();
