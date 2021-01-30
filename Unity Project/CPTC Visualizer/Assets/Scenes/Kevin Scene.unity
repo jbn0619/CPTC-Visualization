@@ -290,6 +290,10 @@ PrefabInstance:
       propertyPath: networkGO
       value: 
       objectReference: {fileID: 3744525091222794658, guid: 53904a191a1b3bb42a5ff5939ecba9e9, type: 3}
+    - target: {fileID: 4795010010054222756, guid: 4981e6d4588497b4b93df4cc6d8cea7e, type: 3}
+      propertyPath: timeBetweenAlerts
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4795010010054222757, guid: 4981e6d4588497b4b93df4cc6d8cea7e, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -340,7 +344,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4795010010054222759, guid: 4981e6d4588497b4b93df4cc6d8cea7e, type: 3}
       propertyPath: alertCount
-      value: 1
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4795010010054222778, guid: 4981e6d4588497b4b93df4cc6d8cea7e, type: 3}
       propertyPath: m_Name

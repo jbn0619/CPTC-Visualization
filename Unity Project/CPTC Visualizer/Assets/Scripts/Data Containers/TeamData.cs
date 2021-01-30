@@ -120,12 +120,15 @@ public class TeamData: MonoBehaviour
                 }
                 break;
         }
+
+        // After changes have been made, update the team's visual graph.
+        BuildTeamGraph();
     }
 
     /// <summary>
     /// Dynamically moves all of this team's infrastructure into the scene.
     /// </summary>
-    public void BuildTeamInfrastructure()
+    public void BuildTeamGraph()
     {
         // Place each network first, then place nodes around them.
         for (int i = 0; i < infraCopy.Networks.Count; i++)
@@ -144,6 +147,9 @@ public class TeamData: MonoBehaviour
 
                 infraCopy.Networks[i].Nodes[j].gameObject.transform.position = new Vector3(infraCopy.Networks[i].transform.position.x + Mathf.Cos(angle) * radius, infraCopy.Networks[i].transform.position.y + Mathf.Sin(angle) * radius, 0);
                 infraCopy.Networks[i].Nodes[j].gameObject.transform.localScale = new Vector2(0.15f, 0.15f);
+
+                // If the node gets shut down, then disable it (for now).
+                infraCopy.Networks[i].Nodes[j].gameObject.SetActive(infraCopy.Networks[i].Nodes[j].IsActive);
             }
         }
     }

@@ -81,14 +81,21 @@ public class InfrastructureManager: Singleton<InfrastructureManager>
                 simulationStart = false;
                 return;
             }
-            timer = Time.time;
+            timer = 0;
             simulationStart = true;
         }
-
-        if(simulationStart && (Time.time >= timer + timeBetweenAlerts))
+        
+        // If the simulation is running, then update timer and see if we need to run alerts.
+        if(simulationStart)
         {
-            timer = Time.time;
-            RunAlerts();
+            timer += Time.deltaTime;
+
+            // If enough time has passed, run alerts and reset the timer.
+            if (timer >= timeBetweenAlerts)
+            {
+                timer = 0;
+                RunAlerts();
+            }
         }
     }
 
@@ -192,10 +199,15 @@ public class InfrastructureManager: Singleton<InfrastructureManager>
     {
         foreach(TeamData team in teams)
         {
+            team.ReadNextAlert();
             if(team.Alerts.Count > 0)
             {
                 Debug.Log("ALERT: Team " + team.TeamId + " attempted " + team.Alerts[0].Type);
                 team.Alerts.RemoveAt(0);
+            }
+            else
+            {
+                Debug.Log("Team " + team.TeamId + " has done NOTHING");
             }
         }
     }
@@ -209,6 +221,7 @@ public class InfrastructureManager: Singleton<InfrastructureManager>
         {
             InfrastructureData newInfra = Instantiate(infrastructure, team.gameObject.transform);
             team.InfraCopy = newInfra;
+            team.BuildTeamGraph();
             team.InfraCopy.gameObject.SetActive(false);
         }
     }
@@ -268,7 +281,7 @@ public class InfrastructureManager: Singleton<InfrastructureManager>
         {
             currentTeamView = teams.Count - 1;
             teams[currentTeamView].InfraCopy.gameObject.SetActive(true);
-            teams[currentTeamView].BuildTeamInfrastructure();
+            teams[currentTeamView].BuildTeamGraph();
         }
         // The case when we wrap from the end of teams list back to infrastructure.
         else if (currentTeamView >= teams.Count)
@@ -280,7 +293,6 @@ public class InfrastructureManager: Singleton<InfrastructureManager>
         else
         {
             teams[currentTeamView].InfraCopy.gameObject.SetActive(true);
-            teams[currentTeamView].BuildTeamInfrastructure();
         }
     }
 }
