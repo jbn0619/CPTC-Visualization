@@ -127,6 +127,24 @@ public class TeamData: MonoBehaviour
     /// </summary>
     public void BuildTeamInfrastructure()
     {
+        // Place each network first, then place nodes around them.
+        for (int i = 0; i < infraCopy.Networks.Count; i++)
+        {
+            float radius = 3f;
+            float angle = i * Mathf.PI * 2f / infraCopy.Networks.Count;
 
+            infraCopy.Networks[i].gameObject.transform.position = new Vector3(Mathf.Cos(angle) * radius, Mathf.Sin(angle) * radius, 0);
+            infraCopy.Networks[i].gameObject.transform.localScale = new Vector2(0.5f, 0.5f);
+
+            // Place each of the netowrk's nodes around in a circle.
+            for (int j = 0; j < infraCopy.Networks[i].Nodes.Count; j++)
+            {
+                radius = 0.75f;
+                angle = j * Mathf.PI * 2f / infraCopy.Networks[i].Nodes.Count;
+
+                infraCopy.Networks[i].Nodes[j].gameObject.transform.position = new Vector3(infraCopy.Networks[i].transform.position.x + Mathf.Cos(angle) * radius, infraCopy.Networks[i].transform.position.y + Mathf.Sin(angle) * radius, 0);
+                infraCopy.Networks[i].Nodes[j].gameObject.transform.localScale = new Vector2(0.15f, 0.15f);
+            }
+        }
     }
 }

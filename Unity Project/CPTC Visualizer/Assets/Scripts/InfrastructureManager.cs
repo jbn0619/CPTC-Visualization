@@ -11,6 +11,7 @@ public class InfrastructureManager: Singleton<InfrastructureManager>
 
     private InfrastructureData infrastructure;
     private List<TeamData> teams;
+    private int currentTeamView;
 
     public int timeBetweenAlerts = 5;
 
@@ -51,6 +52,7 @@ public class InfrastructureManager: Singleton<InfrastructureManager>
     {
         infrastructure = new InfrastructureData();
         teams = new List<TeamData>();
+        currentTeamView = -1;
     }
 
     // Update is called once per frame
@@ -59,6 +61,16 @@ public class InfrastructureManager: Singleton<InfrastructureManager>
         if (Input.GetKeyDown(KeyCode.R))
         {
             ReadJson();
+        }
+
+        // Check for a view-switch input
+        if (Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            ChangeTeamView(1);
+        }
+        else if (Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            ChangeTeamView(-1);
         }
 
         //Starts or ends the simulation
@@ -195,7 +207,9 @@ public class InfrastructureManager: Singleton<InfrastructureManager>
     {
         foreach(TeamData team in teams)
         {
-            GameObject newInfra = Instantiate(infrastructure.gameObject, team.gameObject.transform);
+            InfrastructureData newInfra = Instantiate(infrastructure, team.gameObject.transform);
+            team.InfraCopy = newInfra;
+            team.InfraCopy.gameObject.SetActive(false);
         }
     }
 
@@ -222,6 +236,51 @@ public class InfrastructureManager: Singleton<InfrastructureManager>
                 infrastructure.Networks[i].Nodes[j].gameObject.transform.position = new Vector3(infrastructure.Networks[i].transform.position.x + Mathf.Cos(angle) * radius, infrastructure.Networks[i].transform.position.y + Mathf.Sin(angle) * radius, 0);
                 infrastructure.Networks[i].Nodes[j].gameObject.transform.localScale = new Vector2(0.15f, 0.15f);
             }
+        }
+    }
+
+    /// <summary>
+    /// Changes what infrastructure is currently-displayed in the scene.
+    /// </summary>
+    public void ChangeTeamView(int deltaIndex)
+    {
+        // Check what team is currently-viewed and set it to false (hide it)
+        if (currentTeamView == -1)
+        {
+            infrastructure.gameObject.SetActive(false);
+        }
+        else
+        {
+            teams[currentTeamView].InfraCopy.gameObject.SetActive(false);
+        }
+        // Update the index based-on what key was hit.
+        currentTeamView += deltaIndex;
+
+        // Check what index we're at and take the appropriate actions for either wrapping-through the collection in either direction or seeing if we're in teams or infrastructure.
+
+        // The case when we're not looking at teams, but infrastructure.
+        if (currentTeamView == -1)
+        {
+            infrastructure.gameObject.SetActive(true);
+        }
+        // The case when we wrap from the bottom to the end of the teams list.
+        else if (currentTeamView < -1)
+        {
+            currentTeamView = teams.Count - 1;
+            teams[currentTeamView].InfraCopy.gameObject.SetActive(true);
+            teams[currentTeamView].BuildTeamInfrastructure();
+        }
+        // The case when we wrap from the end of teams list back to infrastructure.
+        else if (currentTeamView >= teams.Count)
+        {
+            currentTeamView = -1;
+            infrastructure.gameObject.SetActive(true);
+        }
+        // The case when we're somewhere within the teams list.
+        else
+        {
+            teams[currentTeamView].InfraCopy.gameObject.SetActive(true);
+            teams[currentTeamView].BuildTeamInfrastructure();
         }
     }
 }

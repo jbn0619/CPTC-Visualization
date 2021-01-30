@@ -334,6 +334,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4795010010054222759, guid: 4981e6d4588497b4b93df4cc6d8cea7e, type: 3}
+      propertyPath: teamCount
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4795010010054222759, guid: 4981e6d4588497b4b93df4cc6d8cea7e, type: 3}
+      propertyPath: alertCount
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4795010010054222778, guid: 4981e6d4588497b4b93df4cc6d8cea7e, type: 3}
       propertyPath: m_Name
       value: Infrastructure Manager
