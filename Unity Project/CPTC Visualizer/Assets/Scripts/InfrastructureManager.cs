@@ -18,6 +18,9 @@ public class InfrastructureManager: Singleton<InfrastructureManager>
     public float timer;
     public bool simulationStart = false;
 
+    [SerializeField]
+    private bool showConnections;
+
     [Header("GameObject Prefabs")]
     [SerializeField]
     private NodeData nodeGO;
@@ -229,6 +232,7 @@ public class InfrastructureManager: Singleton<InfrastructureManager>
             float radius = 3f;
             float angle = i * Mathf.PI * 2f / infrastructure.Networks.Count;
 
+            // Move the network to another position based-on a..radial position?
             infrastructure.Networks[i].gameObject.transform.position = new Vector3(Mathf.Cos(angle) * radius, Mathf.Sin(angle) * radius, 0);
             infrastructure.Networks[i].gameObject.transform.localScale = new Vector2(0.5f, 0.5f);
 
@@ -242,11 +246,20 @@ public class InfrastructureManager: Singleton<InfrastructureManager>
                 radius = 0.75f;
                 angle = j * Mathf.PI * 2f / infrastructure.Networks[i].Nodes.Count;
 
+                // Move the node to another position based-on a radial position.
                 infrastructure.Networks[i].Nodes[j].gameObject.transform.position = new Vector3(infrastructure.Networks[i].transform.position.x + Mathf.Cos(angle) * radius, infrastructure.Networks[i].transform.position.y + Mathf.Sin(angle) * radius, 0);
                 infrastructure.Networks[i].Nodes[j].gameObject.transform.localScale = new Vector2(0.15f, 0.15f);
             }
         }
 
+        GenerateConnections();
+    }
+
+    /// <summary>
+    /// Generate conneciton gameObjects to display as part of the graph.
+    /// </summary>
+    public void GenerateConnections()
+    {
         // Display node connecitons.
         for (int i = 0; i < infrastructure.AllNodes.Count; i++)
         {
@@ -260,6 +273,15 @@ public class InfrastructureManager: Singleton<InfrastructureManager>
                 newLine.SetPosition(1, endPos);
                 newLine.startWidth = 0.01f;
                 newLine.endWidth = 0.01f;
+
+                // Add the new lineRenderer to this node's list of references.
+                infrastructure.AllNodes[i].ConnectionGOS.Add(newLine);
+
+                // If showConnections is disabled, then hide all connections after generating them so they're "hidden".
+                if (showConnections == false)
+                {
+                    newLine.gameObject.SetActive(false);
+                }
             }
         }
 
@@ -283,6 +305,15 @@ public class InfrastructureManager: Singleton<InfrastructureManager>
                 newLine.SetPosition(1, endPos);
                 newLine.startWidth = 0.1f;
                 newLine.endWidth = 0.1f;
+
+                // Add the new lineRenderer to the network's list of references.
+                infrastructure.Networks[i].ConnectionGOS.Add(newLine);
+
+                // If showConnections is disabled, then hide all connections after generating them so they're "hidden".
+                if (showConnections == false)
+                {
+                    newLine.gameObject.SetActive(false);
+                }
             }
         }
     }

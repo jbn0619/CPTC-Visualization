@@ -109,7 +109,12 @@ public class TeamData: MonoBehaviour
                     {
                         break;
                     }
-                    int newNode = infraCopy.AllNodes[baseNode].Connections[Random.Range(0, infraCopy.AllNodes[baseNode].Connections.Count)];
+
+                    // Determine what node will be discovered, and activate the corresponding connection gameObject.
+                    int randIndex = Random.Range(0, infraCopy.AllNodes[baseNode].Connections.Count);
+                    int newNode = infraCopy.AllNodes[baseNode].Connections[randIndex];
+                    infraCopy.AllNodes[baseNode].ConnectionGOS[randIndex].gameObject.SetActive(true);
+
                     discoveredNodeIds.Add(newNode);
                     break;
                 // This is a high-priority event.

@@ -13,6 +13,9 @@ public class NodeData: MonoBehaviour
 
     [SerializeField]
     private List<int> connections;
+
+    [SerializeField]
+    private List<LineRenderer> connectionGOS;
     
     #endregion Fields
     
@@ -74,6 +77,17 @@ public class NodeData: MonoBehaviour
         get
         {
             return connections;
+        }
+    }
+
+    /// <summary>
+    /// Gets a list of gameObjects that represent this node's connections.
+    /// </summary>
+    public List<LineRenderer> ConnectionGOS
+    {
+        get
+        {
+            return connectionGOS;
         }
     }
     

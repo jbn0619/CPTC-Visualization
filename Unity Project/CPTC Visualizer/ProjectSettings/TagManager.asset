@@ -10,6 +10,7 @@ TagManager:
   - Team
   - Alert
   - CanvasCollection
+  - Connection
   layers:
   - Default
   - TransparentFX

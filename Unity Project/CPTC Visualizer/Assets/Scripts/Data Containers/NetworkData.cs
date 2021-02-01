@@ -14,9 +14,12 @@ public class NetworkData: MonoBehaviour
 
     [SerializeField]
     private List<int> connections;
-    
+
+    [SerializeField]
+    private List<LineRenderer> connectionGOS;
+
     #endregion Fields
-    
+
     #region Properties
 
     /// <summary>
@@ -71,6 +74,17 @@ public class NetworkData: MonoBehaviour
         get
         {
             return connections;
+        }
+    }
+
+    /// <summary>
+    /// Gets a list of gameObjects that represent this network's connections.
+    /// </summary>
+    public List<LineRenderer> ConnectionGOS
+    {
+        get
+        {
+            return connectionGOS;
         }
     }
     
