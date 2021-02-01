@@ -4017,7 +4017,7 @@ PrefabInstance:
       objectReference: {fileID: 6558307667720637234, guid: 33dbeb45e25272a45b81cc111b75d023, type: 3}
     - target: {fileID: 4795010010054222756, guid: 4981e6d4588497b4b93df4cc6d8cea7e, type: 3}
       propertyPath: showConnections
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4795010010054222756, guid: 4981e6d4588497b4b93df4cc6d8cea7e, type: 3}
       propertyPath: timeBetweenAlerts
