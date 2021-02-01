@@ -170,6 +170,8 @@ public class TeamData: MonoBehaviour
 
                 // See if we can display the node based-on if this team has discovered it or not.
                 infraCopy.Networks[i].Nodes[j].gameObject.SetActive(discoveredNodeIds.Contains(infraCopy.Networks[i].Nodes[j].Id));
+
+                
             }
         }
     }

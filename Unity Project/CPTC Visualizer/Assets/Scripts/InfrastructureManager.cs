@@ -29,6 +29,8 @@ public class InfrastructureManager: Singleton<InfrastructureManager>
     private TeamData teamGO;
     [SerializeField]
     private AlertData alertGO;
+    [SerializeField]
+    private LineRenderer connectionGO;
 
     #endregion Fields
     
@@ -231,6 +233,10 @@ public class InfrastructureManager: Singleton<InfrastructureManager>
             infrastructure.Networks[i].gameObject.transform.position = new Vector3(Mathf.Cos(angle) * radius, Mathf.Sin(angle) * radius, 0);
             infrastructure.Networks[i].gameObject.transform.localScale = new Vector2(0.5f, 0.5f);
 
+            // Edit the network's child sprite to re-size it to encompase the node sprites.
+            SpriteRenderer netSprite = infrastructure.Networks[i].GetComponentInChildren<SpriteRenderer>();
+            netSprite.transform.localScale = new Vector2(radius + 1, radius + 1);
+
             // Place each of the netowrk's nodes around in a circle.
             for(int j = 0; j < infrastructure.Networks[i].Nodes.Count; j++)
             {
@@ -239,6 +245,33 @@ public class InfrastructureManager: Singleton<InfrastructureManager>
 
                 infrastructure.Networks[i].Nodes[j].gameObject.transform.position = new Vector3(infrastructure.Networks[i].transform.position.x + Mathf.Cos(angle) * radius, infrastructure.Networks[i].transform.position.y + Mathf.Sin(angle) * radius, 0);
                 infrastructure.Networks[i].Nodes[j].gameObject.transform.localScale = new Vector2(0.15f, 0.15f);
+            }
+        }
+
+        // Display node connecitons.
+        for (int i = 0; i < infrastructure.AllNodes.Count; i++)
+        {
+            // Go node-by-node and create LineRenderers for each connection.
+            foreach (int c in infrastructure.AllNodes[i].Connections)
+            {
+                LineRenderer newLine = Instantiate(connectionGO, infrastructure.AllNodes[i].transform);
+                Vector3 startPos = infrastructure.AllNodes[i].gameObject.transform.position;
+                Vector3 endPos = infrastructure.AllNodes[c].gameObject.transform.position;
+                newLine.SetPosition(0, startPos);
+                newLine.SetPosition(1, endPos);
+                newLine.startWidth = 0.01f;
+                newLine.endWidth = 0.01f;
+                newLine.startColor = Color.black;
+                newLine.endColor = Color.black;
+            }
+        }
+
+        // Display network connections.
+        for (int i = 0; i < infrastructure.Networks.Count; i++)
+        {
+            foreach (int c in infrastructure.Networks[i].Connections)
+            {
+
             }
         }
     }
