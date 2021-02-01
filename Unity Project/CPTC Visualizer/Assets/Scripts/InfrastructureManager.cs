@@ -52,7 +52,6 @@ public class InfrastructureManager: Singleton<InfrastructureManager>
     // Start is called before the first frame update
     void Start()
     {
-        infrastructure = new InfrastructureData();
         teams = new List<TeamData>();
         currentTeamView = -1;
     }
@@ -261,8 +260,6 @@ public class InfrastructureManager: Singleton<InfrastructureManager>
                 newLine.SetPosition(1, endPos);
                 newLine.startWidth = 0.01f;
                 newLine.endWidth = 0.01f;
-                newLine.startColor = Color.black;
-                newLine.endColor = Color.black;
             }
         }
 
@@ -271,7 +268,21 @@ public class InfrastructureManager: Singleton<InfrastructureManager>
         {
             foreach (int c in infrastructure.Networks[i].Connections)
             {
+                LineRenderer newLine = Instantiate(connectionGO, infrastructure.Networks[i].transform);
+                Vector3 startPos = infrastructure.Networks[i].gameObject.transform.position;
+                Vector3 endPos = infrastructure.Networks[c].gameObject.transform.position;
 
+                // Make the start and end positions line-up with the edges of the network sprite.
+                Vector3 dir = endPos - startPos;
+                dir.Normalize();
+                startPos += dir;
+                endPos -= dir;
+
+                // Setup the line renderer to display properly.
+                newLine.SetPosition(0, startPos);
+                newLine.SetPosition(1, endPos);
+                newLine.startWidth = 0.1f;
+                newLine.endWidth = 0.1f;
             }
         }
     }
