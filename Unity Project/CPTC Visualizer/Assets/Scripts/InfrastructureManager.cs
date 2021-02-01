@@ -361,4 +361,33 @@ public class InfrastructureManager: Singleton<InfrastructureManager>
             teams[currentTeamView].InfraCopy.gameObject.SetActive(true);
         }
     }
+
+    /// <summary>
+    /// This method is called by a button to change the currently-viewed infrastructure to a team at a specific index.
+    /// </summary>
+    /// <param name="teamIndex">The id of the team to display.</param>
+    public void SelectTeamView(int teamIndex)
+    {
+        // First, disable the currently-active infrastructure.
+        if (currentTeamView == -1)
+        {
+            infrastructure.gameObject.SetActive(false);
+        }
+        else
+        {
+            teams[currentTeamView].InfraCopy.gameObject.SetActive(false);
+        }
+
+        // Next, do a simple check to make sure teamIndex is an acceptable value. If it is, then change currentTeamView to that new index.
+        if (teamIndex == -1)
+        {
+            currentTeamView = -1;
+            infrastructure.gameObject.SetActive(true);
+        }
+        else if (teamIndex >= 0 && teamIndex < teams.Count)
+        {
+            currentTeamView = teamIndex;
+            teams[currentTeamView].InfraCopy.gameObject.SetActive(true);
+        }
+    }
 }
