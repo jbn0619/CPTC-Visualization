@@ -7,16 +7,15 @@ public class AlertContainer: MonoBehaviour
 {
     #region Fields
     [SerializeField]
-    private GameObject alertNotif;
+    private AlertNotif alertNotif;
 
     [SerializeField]
     private List<int> alertPriorityQueue;
 
     [SerializeField]
-    private List<GameObject> shownAlerts;
+    private List<AlertNotif> shownAlerts;
 
     private float alertExpirationTimer;
-
 
     private Canvas canvas;
 
@@ -50,7 +49,7 @@ public class AlertContainer: MonoBehaviour
 
         if(Time.time >= alertExpirationTimer + 5.0f)
         {
-            shownAlerts[0].GetComponent<AlertNotif>().TargetPos = new Vector3(-200, 0, 0);
+            shownAlerts[0].TargetPos = new Vector3(-200, 0, 0);
         }
         if(Time.time >= alertExpirationTimer + 6.0f)
         {
@@ -69,15 +68,15 @@ public class AlertContainer: MonoBehaviour
         {
             for(int i = 0; i < shownAlerts.Count; i++)
             {
-                shownAlerts[i].GetComponent<AlertNotif>().TargetPos = new Vector3(0, -50, 0);
+                shownAlerts[i].TargetPos = new Vector3(0, -50, 0);
             }
         }
-
-        GameObject newAlert = Instantiate(alertNotif, new Vector3(-100.0f, 400.0f, 0), Quaternion.identity);
+        
+        AlertNotif newAlert = Instantiate(alertNotif, new Vector3(-100.0f, 400.0f, 0), Quaternion.identity);
         shownAlerts.Add(newAlert);
         newAlert.transform.SetParent(canvas.transform);
-        newAlert.GetComponent<AlertNotif>().TargetPos = new Vector3(200, 0, 0);
-        newAlert.GetComponentInChildren<Text>().text = "Alert Level " + alertPriorityQueue[0];
+        newAlert.TargetPos = new Vector3(200, 0, 0);
+        newAlert.Text.text = "Alert Level " + alertPriorityQueue[0];
 
         alertPriorityQueue.RemoveAt(0);
     }
@@ -102,8 +101,8 @@ public class AlertContainer: MonoBehaviour
         alertPriorityQueue.Add(_alertPriority);
     }
 
-    public void DestroyAlert(GameObject _alert)
+    public void DestroyAlert(AlertNotif _alert)
     {
-        Destroy(_alert);
+        Destroy(_alert.gameObject);
     }
 }

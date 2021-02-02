@@ -1,12 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class AlertNotif: MonoBehaviour
 {
     #region Fields
     private Vector3 targetPos;
     private float step;
+
+    [SerializeField]
+    private Text text;
 
     #endregion Fields
 
@@ -25,6 +29,15 @@ public class AlertNotif: MonoBehaviour
             targetPos = transform.position + value;
         }
     }
+
+    public Text Text
+    {
+        get
+        {
+            return text;
+        }
+    }
+
     #endregion Properties
     
     // Start is called before the first frame update
