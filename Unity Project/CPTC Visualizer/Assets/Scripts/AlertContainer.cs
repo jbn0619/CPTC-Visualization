@@ -16,6 +16,7 @@ public class AlertContainer: MonoBehaviour
     private List<AlertNotif> shownAlerts;
 
     private float alertExpirationTimer;
+    private float lastAlertAdded;
 
     private Canvas canvas;
 
@@ -32,12 +33,18 @@ public class AlertContainer: MonoBehaviour
     void Start()
     {
         canvas = UIManager.Instance.ActiveCanvas;
+        lastAlertAdded = 0.0f;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(shownAlerts.Count < 5 && alertPriorityQueue.Count > 0)
+        // Adds an alert if there is space in shownAlerts.
+        //      This is timegated to cheaply keep alert notifications
+        //      from moving improperly.
+        if(shownAlerts.Count < 5 
+            && alertPriorityQueue.Count > 0
+            && Time.time > lastAlertAdded)
         {
             if(shownAlerts.Count == 0)
             {
@@ -45,17 +52,22 @@ public class AlertContainer: MonoBehaviour
             }
 
             AddNewAlert();
-        }
 
-        if(Time.time >= alertExpirationTimer + 5.0f)
-        {
-            shownAlerts[0].TargetPos = new Vector3(-200, 0, 0);
+            lastAlertAdded = Time.time + 0.5f;
         }
-        if(Time.time >= alertExpirationTimer + 6.0f)
+        else if(shownAlerts.Count > 0)
         {
-            DestroyAlert(shownAlerts[0]);
-            shownAlerts.RemoveAt(0);
-            alertExpirationTimer = Time.time;
+            // Removes an alert if the epiration timer is reached
+            if (Time.time >= alertExpirationTimer + 5.0f)
+            {
+                shownAlerts[0].TargetPos = new Vector3(-200, 0, 0);
+            }
+            if (Time.time >= alertExpirationTimer + 5.5f)
+            {
+                DestroyAlert(shownAlerts[0]);
+                shownAlerts.RemoveAt(0);
+                alertExpirationTimer = Time.time;
+            }
         }
     }
 
@@ -64,6 +76,7 @@ public class AlertContainer: MonoBehaviour
     /// </summary>
     public void AddNewAlert()
     {
+        // Moves events down
         if(shownAlerts.Count > 0)
         {
             for(int i = 0; i < shownAlerts.Count; i++)
@@ -72,6 +85,7 @@ public class AlertContainer: MonoBehaviour
             }
         }
         
+        // Slides new event into the top of the container
         AlertNotif newAlert = Instantiate(alertNotif, new Vector3(-100.0f, 400.0f, 0), Quaternion.identity);
         shownAlerts.Add(newAlert);
         newAlert.transform.SetParent(canvas.transform);

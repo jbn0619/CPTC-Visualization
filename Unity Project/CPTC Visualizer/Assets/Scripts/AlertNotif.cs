@@ -7,6 +7,7 @@ public class AlertNotif: MonoBehaviour
 {
     #region Fields
     private Vector3 targetPos;
+    private float yPos;
     private float step;
 
     [SerializeField]
@@ -44,6 +45,7 @@ public class AlertNotif: MonoBehaviour
     void Start()
     {
         step = 1.0f;
+        yPos = targetPos.y;
     }
 
     // Update is called once per frame
