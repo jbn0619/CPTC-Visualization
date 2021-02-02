@@ -629,7 +629,7 @@ GameObject:
   - component: {fileID: 283446549}
   - component: {fileID: 283446548}
   m_Layer: 5
-  m_Name: Alert Container
+  m_Name: Alert Creation Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2113,7 +2113,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3251258551968159787, guid: 59125007fb681ce4e9611e4ecfe48a1a, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3251258551968159787, guid: 59125007fb681ce4e9611e4ecfe48a1a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3378,7 +3378,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   alertNotif: {fileID: -8004500244792746381, guid: b09565fcc8d6b8e4483a27ab48f1ffce, type: 3}
-  alertPriorityQueue: 
+  alertPriorityQueue: []
   shownAlerts: []
 --- !u!4 &1743057228
 Transform:
@@ -4012,6 +4012,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3744525091222794658, guid: 53904a191a1b3bb42a5ff5939ecba9e9, type: 3}
     - target: {fileID: 4795010010054222756, guid: 4981e6d4588497b4b93df4cc6d8cea7e, type: 3}
+      propertyPath: alertManager
+      value: 
+      objectReference: {fileID: 1743057227}
+    - target: {fileID: 4795010010054222756, guid: 4981e6d4588497b4b93df4cc6d8cea7e, type: 3}
       propertyPath: connectionGO
       value: 
       objectReference: {fileID: 6558307667720637234, guid: 33dbeb45e25272a45b81cc111b75d023, type: 3}
@@ -4025,7 +4029,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4795010010054222757, guid: 4981e6d4588497b4b93df4cc6d8cea7e, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4795010010054222757, guid: 4981e6d4588497b4b93df4cc6d8cea7e, type: 3}
       propertyPath: m_LocalPosition.x

@@ -10,8 +10,14 @@ public class AlertNotif: MonoBehaviour
     private float yPos;
     private float step;
 
+    private int teamID;
+    private int priority;
+
     [SerializeField]
-    private Text text;
+    private string notifText;
+
+    [SerializeField]
+    private Text textBox;
 
     #endregion Fields
 
@@ -31,14 +37,42 @@ public class AlertNotif: MonoBehaviour
         }
     }
 
-    public Text Text
+    public string NotifText
     {
         get
         {
-            return text;
+            return notifText;
+        }
+        set
+        {
+            notifText = value;
         }
     }
 
+    public int TeamID
+    {
+        get
+        {
+            return teamID;
+        }
+
+        set
+        {
+            teamID = value;
+        }
+    }
+
+    public int Priority
+    {
+        get
+        {
+            return priority;
+        }
+        set
+        {
+            priority = value;
+        }
+    }
     #endregion Properties
     
     // Start is called before the first frame update
@@ -52,5 +86,6 @@ public class AlertNotif: MonoBehaviour
     void Update()
     {
         transform.position = Vector3.MoveTowards(transform.position, TargetPos, step);
+        textBox.text = notifText;
     }
 }
