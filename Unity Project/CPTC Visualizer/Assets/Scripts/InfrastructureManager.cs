@@ -229,16 +229,16 @@ public class InfrastructureManager: Singleton<InfrastructureManager>
         // Place each network first, then place nodes around them.
         for(int i = 0; i < infrastructure.Networks.Count; i++)
         {
-            float radius = 3f;
+            float radius = 3;
             float angle = i * Mathf.PI * 2f / infrastructure.Networks.Count;
 
             // Move the network to another position based-on a..radial position?
             infrastructure.Networks[i].gameObject.transform.position = new Vector3(Mathf.Cos(angle) * radius, Mathf.Sin(angle) * radius, 0);
             infrastructure.Networks[i].gameObject.transform.localScale = new Vector2(0.5f, 0.5f);
 
-            // Edit the network's child sprite to re-size it to encompase the node sprites.
-            SpriteRenderer netSprite = infrastructure.Networks[i].GetComponentInChildren<SpriteRenderer>();
-            netSprite.transform.localScale = new Vector2(radius + 1, radius + 1);
+            // Edit the network's lineRenderer to re-size it to encompase the node sprites.
+            float nodeRadius = infrastructure.Networks[i].Nodes.Count / 5;
+            GenerateNetworkOutline(infrastructure.Networks[i], nodeRadius);
 
             // Place each of the netowrk's nodes around in a circle.
             for(int j = 0; j < infrastructure.Networks[i].Nodes.Count; j++)
@@ -251,8 +251,31 @@ public class InfrastructureManager: Singleton<InfrastructureManager>
                 infrastructure.Networks[i].Nodes[j].gameObject.transform.localScale = new Vector2(0.15f, 0.15f);
             }
         }
-
         GenerateConnections();
+    }
+
+    /// <summary>
+    /// Generates an outline for the given network with a lineRenderer.
+    /// </summary>
+    /// <param name="network"></param>
+    /// <param name="radius"></param>
+    public void GenerateNetworkOutline(NetworkData network, float radius)
+    {
+        // infrastructure.Networks[i].gameObject.transform.position = new Vector3(Mathf.Cos(angle) * radius, Mathf.Sin(angle) * radius, 0);
+        Vector3[] newPositions = new Vector3[(network.Nodes.Count * 2) + 2];
+        for (int i = 0; i <= (network.Nodes.Count * 2) + 1; i++)
+        {
+            float angle = i * Mathf.PI / network.Nodes.Count;
+            newPositions[i] = network.gameObject.transform.position + new Vector3(Mathf.Cos(angle) * radius, Mathf.Sin(angle) * radius, 0);
+        }
+
+        // Setup lineRenderer
+        network.Outline.startColor = Color.white;
+        network.Outline.endColor = Color.white;
+        network.Outline.startWidth = 0.15f;
+        network.Outline.endWidth = 0.15f;
+        network.Outline.positionCount = (network.Nodes.Count * 2) + 2;
+        network.Outline.SetPositions(newPositions);
     }
 
     /// <summary>

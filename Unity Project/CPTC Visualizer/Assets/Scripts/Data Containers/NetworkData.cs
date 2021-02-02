@@ -18,6 +18,9 @@ public class NetworkData: MonoBehaviour
     [SerializeField]
     private List<LineRenderer> connectionGOS;
 
+    [SerializeField]
+    private LineRenderer outline;
+
     #endregion Fields
 
     #region Properties
@@ -85,6 +88,17 @@ public class NetworkData: MonoBehaviour
         get
         {
             return connectionGOS;
+        }
+    }
+
+    /// <summary>
+    /// Gets a lineRenderer object that represents the borders of this network.
+    /// </summary>
+    public LineRenderer Outline
+    {
+        get
+        {
+            return outline;
         }
     }
     
