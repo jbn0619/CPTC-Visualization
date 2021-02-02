@@ -257,8 +257,8 @@ public class InfrastructureManager: Singleton<InfrastructureManager>
     /// <summary>
     /// Generates an outline for the given network with a lineRenderer.
     /// </summary>
-    /// <param name="network"></param>
-    /// <param name="radius"></param>
+    /// <param name="network">The network we need to visualize here.</param>
+    /// <param name="radius">How large the network must be in-order to encapsulate all its nodes.</param>
     public void GenerateNetworkOutline(NetworkData network, float radius)
     {
         // infrastructure.Networks[i].gameObject.transform.position = new Vector3(Mathf.Cos(angle) * radius, Mathf.Sin(angle) * radius, 0);
