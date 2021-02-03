@@ -4,6 +4,8 @@ using UnityEngine;
 using Assets.Scripts;
 using System.IO;
 using System;
+using UnityEngine.UI;
+using UnityEngine.Events;
 
 public class InfrastructureManager: Singleton<InfrastructureManager>
 {
@@ -11,8 +13,7 @@ public class InfrastructureManager: Singleton<InfrastructureManager>
 
     private InfrastructureData infrastructure;
     private List<TeamData> teams;
-    private int currentTeamView;
-
+    
     public int timeBetweenAlerts = 5;
 
     public float timer;
@@ -34,6 +35,13 @@ public class InfrastructureManager: Singleton<InfrastructureManager>
     private AlertData alertGO;
     [SerializeField]
     private LineRenderer connectionGO;
+
+    [Header("Team View Fields")]
+    private int currentTeamView;
+    [SerializeField]
+    private TeamViewButton teamViewButGO;
+
+    private List<TeamViewButton> teamViewButtons;
 
     #endregion Fields
     
@@ -252,6 +260,7 @@ public class InfrastructureManager: Singleton<InfrastructureManager>
             }
         }
         GenerateConnections();
+        GenerateTeamViewButtons();
     }
 
     /// <summary>
@@ -341,6 +350,8 @@ public class InfrastructureManager: Singleton<InfrastructureManager>
         }
     }
 
+    #region Team View Methods
+
     /// <summary>
     /// Changes what infrastructure is currently-displayed in the scene.
     /// </summary>
@@ -413,4 +424,46 @@ public class InfrastructureManager: Singleton<InfrastructureManager>
             teams[currentTeamView].InfraCopy.gameObject.SetActive(true);
         }
     }
+
+    /// <summary>
+    /// Generates enough buttons to switch between every team's view, and the main infrastructure view.
+    /// </summary>
+    public void GenerateTeamViewButtons()
+    {
+        // Make sure we properly clear-out the previous buttons before making new ones.
+        if (teamViewButtons != null)
+        {
+            foreach (TeamViewButton t in teamViewButtons)
+            {
+                Destroy(t.gameObject);
+            }
+            teamViewButtons.Clear();
+        }
+        else
+        {
+            teamViewButtons = new List<TeamViewButton>();
+        }
+
+        // Create each button, then edit their index and text fields.
+        for (int i = 0; i < teams.Count + 1; i++)
+        {
+            TeamViewButton newButton = Instantiate(teamViewButGO, UIManager.Instance.ActiveCanvas.transform);
+            if (i == teams.Count)
+            {
+                newButton.NewTeamIndex = -1;
+                newButton.ButtonText.text = "Main";
+            }
+            else
+            {
+                newButton.NewTeamIndex = i;
+                newButton.ButtonText.text = "Team " + i;
+            }
+
+            // Finally, move the button to its proper spot and add it to teamViewButtons.
+            newButton.gameObject.transform.position = new Vector3(95 + (i * 150), Screen.height - 75, 0);
+            teamViewButtons.Add(newButton);
+        }
+    }
+
+    #endregion Team View Methods
 }
