@@ -4,6 +4,8 @@ using UnityEngine;
 using Assets.Scripts;
 using System.IO;
 using System;
+using UnityEngine.UI;
+using UnityEngine.Events;
 
 public class InfrastructureManager: Singleton<InfrastructureManager>
 {
@@ -11,8 +13,7 @@ public class InfrastructureManager: Singleton<InfrastructureManager>
 
     private InfrastructureData infrastructure;
     private List<TeamData> teams;
-    private int currentTeamView;
-
+    
     public int timeBetweenAlerts = 5;
 
     public float timer;
@@ -36,6 +37,16 @@ public class InfrastructureManager: Singleton<InfrastructureManager>
     private LineRenderer connectionGO;
     [SerializeField]
     private NotificationManager notificationManager;
+
+    [Header("Team View Fields")]
+    private int currentTeamView;
+    [SerializeField]
+    private TeamViewButton teamViewButGO;
+
+    private List<TeamViewButton> teamViewButtons;
+
+    [SerializeField]
+    private Text teamViewLabel;
 
     #endregion Fields
     
@@ -235,16 +246,16 @@ public class InfrastructureManager: Singleton<InfrastructureManager>
         // Place each network first, then place nodes around them.
         for(int i = 0; i < infrastructure.Networks.Count; i++)
         {
-            float radius = 3f;
+            float radius = 3;
             float angle = i * Mathf.PI * 2f / infrastructure.Networks.Count;
 
             // Move the network to another position based-on a..radial position?
             infrastructure.Networks[i].gameObject.transform.position = new Vector3(Mathf.Cos(angle) * radius, Mathf.Sin(angle) * radius, 0);
             infrastructure.Networks[i].gameObject.transform.localScale = new Vector2(0.5f, 0.5f);
 
-            // Edit the network's child sprite to re-size it to encompase the node sprites.
-            SpriteRenderer netSprite = infrastructure.Networks[i].GetComponentInChildren<SpriteRenderer>();
-            netSprite.transform.localScale = new Vector2(radius + 1, radius + 1);
+            // Edit the network's lineRenderer to re-size it to encompase the node sprites.
+            float nodeRadius = infrastructure.Networks[i].Nodes.Count / 5;
+            GenerateNetworkOutline(infrastructure.Networks[i], nodeRadius);
 
             // Place each of the netowrk's nodes around in a circle.
             for(int j = 0; j < infrastructure.Networks[i].Nodes.Count; j++)
@@ -257,8 +268,32 @@ public class InfrastructureManager: Singleton<InfrastructureManager>
                 infrastructure.Networks[i].Nodes[j].gameObject.transform.localScale = new Vector2(0.15f, 0.15f);
             }
         }
-
         GenerateConnections();
+        GenerateTeamViewButtons();
+    }
+
+    /// <summary>
+    /// Generates an outline for the given network with a lineRenderer.
+    /// </summary>
+    /// <param name="network">The network we need to visualize here.</param>
+    /// <param name="radius">How large the network must be in-order to encapsulate all its nodes.</param>
+    public void GenerateNetworkOutline(NetworkData network, float radius)
+    {
+        // infrastructure.Networks[i].gameObject.transform.position = new Vector3(Mathf.Cos(angle) * radius, Mathf.Sin(angle) * radius, 0);
+        Vector3[] newPositions = new Vector3[(network.Nodes.Count * 2) + 2];
+        for (int i = 0; i <= (network.Nodes.Count * 2) + 1; i++)
+        {
+            float angle = i * Mathf.PI / network.Nodes.Count;
+            newPositions[i] = network.gameObject.transform.position + new Vector3(Mathf.Cos(angle) * radius, Mathf.Sin(angle) * radius, 0);
+        }
+
+        // Setup lineRenderer
+        network.Outline.startColor = Color.white;
+        network.Outline.endColor = Color.white;
+        network.Outline.startWidth = 0.15f;
+        network.Outline.endWidth = 0.15f;
+        network.Outline.positionCount = (network.Nodes.Count * 2) + 2;
+        network.Outline.SetPositions(newPositions);
     }
 
     /// <summary>
@@ -323,6 +358,8 @@ public class InfrastructureManager: Singleton<InfrastructureManager>
             }
         }
     }
+
+    #region Team View Methods
 
     /// <summary>
     /// Changes what infrastructure is currently-displayed in the scene.
@@ -389,11 +426,55 @@ public class InfrastructureManager: Singleton<InfrastructureManager>
         {
             currentTeamView = -1;
             infrastructure.gameObject.SetActive(true);
+            teamViewLabel.text = "Main Infrastructure";
         }
         else if (teamIndex >= 0 && teamIndex < teams.Count)
         {
             currentTeamView = teamIndex;
             teams[currentTeamView].InfraCopy.gameObject.SetActive(true);
+            teamViewLabel.text = "Team " + teamIndex;
         }
     }
+
+    /// <summary>
+    /// Generates enough buttons to switch between every team's view, and the main infrastructure view.
+    /// </summary>
+    public void GenerateTeamViewButtons()
+    {
+        // Make sure we properly clear-out the previous buttons before making new ones.
+        if (teamViewButtons != null)
+        {
+            foreach (TeamViewButton t in teamViewButtons)
+            {
+                Destroy(t.gameObject);
+            }
+            teamViewButtons.Clear();
+        }
+        else
+        {
+            teamViewButtons = new List<TeamViewButton>();
+        }
+
+        // Create each button, then edit their index and text fields.
+        for (int i = 0; i < teams.Count + 1; i++)
+        {
+            TeamViewButton newButton = Instantiate(teamViewButGO, UIManager.Instance.ActiveCanvas.transform);
+            if (i == teams.Count)
+            {
+                newButton.NewTeamIndex = -1;
+                newButton.ButtonText.text = "Main";
+            }
+            else
+            {
+                newButton.NewTeamIndex = i;
+                newButton.ButtonText.text = "Team " + i;
+            }
+
+            // Finally, move the button to its proper spot and add it to teamViewButtons.
+            newButton.gameObject.transform.position = new Vector3(95 + (i * 150), Screen.height - 75, 0);
+            teamViewButtons.Add(newButton);
+        }
+    }
+
+    #endregion Team View Methods
 }
