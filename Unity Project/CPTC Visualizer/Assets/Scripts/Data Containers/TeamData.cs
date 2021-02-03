@@ -158,7 +158,7 @@ public class TeamData: MonoBehaviour
             float radius = 3f;
             float angle = i * Mathf.PI * 2f / infraCopy.Networks.Count;
 
-            infraCopy.Networks[i].gameObject.transform.position = new Vector3(Mathf.Cos(angle) * radius, Mathf.Sin(angle) * radius, 0);
+            infraCopy.Networks[i].gameObject.transform.position = infraCopy.gameObject.transform.position + new Vector3(Mathf.Cos(angle) * radius, Mathf.Sin(angle) * radius, 0);
             infraCopy.Networks[i].gameObject.transform.localScale = new Vector2(0.5f, 0.5f);
 
             // Place each of the netowrk's nodes around in a circle.
@@ -167,7 +167,7 @@ public class TeamData: MonoBehaviour
                 radius = 0.75f;
                 angle = j * Mathf.PI * 2f / infraCopy.Networks[i].Nodes.Count;
 
-                infraCopy.Networks[i].Nodes[j].gameObject.transform.position = new Vector3(infraCopy.Networks[i].transform.position.x + Mathf.Cos(angle) * radius, infraCopy.Networks[i].transform.position.y + Mathf.Sin(angle) * radius, 0);
+                infraCopy.Networks[i].Nodes[j].gameObject.transform.position = infraCopy.Networks[i].gameObject.transform.position + new Vector3(Mathf.Cos(angle) * radius, Mathf.Sin(angle) * radius, 0);
                 infraCopy.Networks[i].Nodes[j].gameObject.transform.localScale = new Vector2(0.15f, 0.15f);
 
                 // If the node gets shut down, then disable it (for now).
