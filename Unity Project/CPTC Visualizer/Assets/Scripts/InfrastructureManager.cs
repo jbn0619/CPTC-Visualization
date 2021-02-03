@@ -43,6 +43,9 @@ public class InfrastructureManager: Singleton<InfrastructureManager>
 
     private List<TeamViewButton> teamViewButtons;
 
+    [SerializeField]
+    private Text teamViewLabel;
+
     #endregion Fields
     
     #region Properties
@@ -417,11 +420,13 @@ public class InfrastructureManager: Singleton<InfrastructureManager>
         {
             currentTeamView = -1;
             infrastructure.gameObject.SetActive(true);
+            teamViewLabel.text = "Main Infrastructure";
         }
         else if (teamIndex >= 0 && teamIndex < teams.Count)
         {
             currentTeamView = teamIndex;
             teams[currentTeamView].InfraCopy.gameObject.SetActive(true);
+            teamViewLabel.text = "Team " + teamIndex;
         }
     }
 
