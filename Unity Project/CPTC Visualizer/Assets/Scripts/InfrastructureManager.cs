@@ -35,7 +35,7 @@ public class InfrastructureManager: Singleton<InfrastructureManager>
     [SerializeField]
     private LineRenderer connectionGO;
     [SerializeField]
-    private AlertContainer alertManager;
+    private NotificationManager notificationManager;
 
     #endregion Fields
     
@@ -207,8 +207,8 @@ public class InfrastructureManager: Singleton<InfrastructureManager>
         {
             if(team.Alerts.Count > 0)
             {
+                notificationManager.CreateNotification(team.TeamId, team.Alerts[0].Type);
                 team.ReadNextAlert();
-                alertManager.CreateAlert(team.TeamId, team.Alerts[0].Type);
             }
         }
     }
