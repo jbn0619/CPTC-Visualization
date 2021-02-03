@@ -59,8 +59,19 @@ public class TeamViewButton: MonoBehaviour
             return buttonText;
         }
     }
-    
+
     #endregion Properties
+
+    void Start()
+    {
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
 
     /// <summary>
     /// Sets what team view is active based-on this script's index.

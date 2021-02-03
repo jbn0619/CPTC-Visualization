@@ -1,0 +1,424 @@
+Using pre-set license
+Built from '2020.2/release' branch; Version is '2020.2.2f1 (068178b99f32) revision 426360'; Using compiler version '192528614'; Build Type 'Release'
+OS: 'Windows 10 Home; OS build 19042.746; Version 2009; 64bit' Language: 'en' Physical Memory: 16328 MB
+BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1, IsPro: 0
+
+ COMMAND LINE ARGUMENTS:
+E:\Program Files\Unity\2020.2.2f1\Editor\Unity.exe
+-adb2
+-batchMode
+-noUpm
+-name
+AssetImportWorker0
+-projectPath
+E:/justi/Documents/repos/CPTC-Visualization/Unity Project/CPTC Visualizer
+-logFile
+Logs/AssetImportWorker0.log
+-srvPort
+64393
+Successfully changed project path to: E:/justi/Documents/repos/CPTC-Visualization/Unity Project/CPTC Visualizer
+E:/justi/Documents/repos/CPTC-Visualization/Unity Project/CPTC Visualizer
+Using Asset Import Pipeline V2.
+Refreshing native plugins compatible for Editor in 89.43 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Initialize engine version: 2020.2.2f1 (068178b99f32)
+[Subsystems] Discovering subsystems at path E:/Program Files/Unity/2020.2.2f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path E:/justi/Documents/repos/CPTC-Visualization/Unity Project/CPTC Visualizer/Assets
+GfxDevice: creating device client; threaded=0
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.1]
+    Renderer: Radeon (TM) RX 480 Graphics (ID=0x67df)
+    Vendor:   
+    VRAM:     8171 MB
+    Driver:   27.20.14501.18003
+Initialize mono
+Mono path[0] = 'E:/Program Files/Unity/2020.2.2f1/Editor/Data/Managed'
+Mono path[1] = 'E:/Program Files/Unity/2020.2.2f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit'
+Mono config path = 'E:/Program Files/Unity/2020.2.2f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56732
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: E:/Program Files/Unity/2020.2.2f1/Editor/Data/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll
+Register platform support module: E:/Program Files/Unity/2020.2.2f1/Editor/Data/PlaybackEngines/MacStandaloneSupport/UnityEditor.OSXStandalone.Extensions.dll
+Register platform support module: E:/Program Files/Unity/2020.2.2f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Register platform support module: E:/Program Files/Unity/2020.2.2f1/Editor/Data/PlaybackEngines/LinuxStandaloneSupport/UnityEditor.LinuxStandalone.Extensions.dll
+Registered in 0.004625 seconds.
+Native extension for LinuxStandalone target not found
+Native extension for WindowsStandalone target not found
+Native extension for OSXStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 89.60 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+Mono: successfully reloaded assembly
+- Completed reload, in 10.885 seconds
+Platform modules already initialized, skipping
+Registering precompiled user dll's ...
+Registered in 0.010423 seconds.
+Begin MonoManager ReloadAssembly
+Symbol file data-000001E574BE5020 doesn't match image E:\justi\Documents\repos\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Animation.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001E572845C30 doesn't match image E:\justi\Documents\repos\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.InternalAPIEngineBridge.001.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001E576232A30 doesn't match image E:\justi\Documents\repos\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.VSCode.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001E574838C40 doesn't match image E:\justi\Documents\repos\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.PixelPerfect.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001E57293B020 doesn't match image E:\justi\Documents\repos\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Tilemap.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001E5763C3DD0 doesn't match image E:\justi\Documents\repos\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\PsdPlugin.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001E574C0D230 doesn't match image E:\justi\Documents\repos\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.TextMeshPro.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001E574EFBE30 doesn't match image E:\justi\Documents\repos\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.VisualStudio.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001E575D05020 doesn't match image E:\justi\Documents\repos\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\UnityEngine.TestRunner.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001E575D27C30 doesn't match image E:\justi\Documents\repos\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.Timeline.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001E574D87020 doesn't match image E:\justi\Documents\repos\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.TextMeshPro.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001E572AC4420 doesn't match image E:\justi\Documents\repos\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\UnityEditor.TestRunner.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001E57294FE30 doesn't match image E:\justi\Documents\repos\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.Searcher.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001E574E6DE40 doesn't match image E:\justi\Documents\repos\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.IK.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001E574E05630 doesn't match image E:\justi\Documents\repos\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Sprite.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001E5763C3DD0 doesn't match image E:\justi\Documents\repos\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Psdimporter.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001E5763C3DD0 doesn't match image E:\justi\Documents\repos\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Path.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001E572EDDB30 doesn't match image E:\justi\Documents\repos\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.ShaderGraph.Utilities.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001E575D27C30 doesn't match image E:\justi\Documents\repos\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.RenderPipelines.Core.Runtime.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001E575D3D640 doesn't match image E:\justi\Documents\repos\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\UnityEditor.UI.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001E57466C010 doesn't match image E:\justi\Documents\repos\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.InputSystem.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001E575D3D640 doesn't match image E:\justi\Documents\repos\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.Rider.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001E57480EC90 doesn't match image E:\justi\Documents\repos\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.RenderPipelines.Core.ShaderLibrary.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001E5749BBC20 doesn't match image E:\justi\Documents\repos\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\UnityEngine.UI.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001E5729DD030 doesn't match image E:\justi\Documents\repos\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.InternalAPIEditorBridge.001.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001E57466C010 doesn't match image E:\justi\Documents\repos\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.Mathematics.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001E574E18840 doesn't match image E:\justi\Documents\repos\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.IK.Runtime.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001E57466C010 doesn't match image E:\justi\Documents\repos\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.ShaderGraph.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001E572D64E30 doesn't match image E:\justi\Documents\repos\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Animation.Triangle.Runtime.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001E575A3F820 doesn't match image E:\justi\Documents\repos\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Animation.Runtime.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001E572C23A50 doesn't match image E:\justi\Documents\repos\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.PixelPerfect.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001E57480E490 doesn't match image E:\justi\Documents\repos\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001E57470A020 doesn't match image E:\justi\Documents\repos\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.Timeline.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001E574AA6420 doesn't match image E:\justi\Documents\repos\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.CollabProxy.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001E575DC7030 doesn't match image E:\justi\Documents\repos\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.Mathematics.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001E5729E6AA0 doesn't match image E:\justi\Documents\repos\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Common.Runtime.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001E574AA6420 doesn't match image E:\justi\Documents\repos\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.SpriteShape.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001E574EFBE30 doesn't match image E:\justi\Documents\repos\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Common.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001E574CCF010 doesn't match image E:\justi\Documents\repos\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.RenderPipelines.Core.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001E574DB7E30 doesn't match image E:\justi\Documents\repos\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.SpriteShape.Runtime.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Native extension for LinuxStandalone target not found
+Native extension for WindowsStandalone target not found
+Native extension for OSXStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 96.19 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.900 seconds
+Platform modules already initialized, skipping
+========================================================================
+Worker process is ready to serve import requests
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.09 seconds
+Refreshing native plugins compatible for Editor in 0.65 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 2894 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 118.4 MB.
+System memory in use after: 118.5 MB.
+
+Unloading 27 unused Assets to reduce memory usage. Loaded Objects now: 3341.
+Total: 2.460100 ms (FindLiveObjects: 0.307000 ms CreateObjectMapping: 0.178300 ms MarkObjects: 1.841700 ms  DeleteObjects: 0.131800 ms)
+
+========================================================================
+Received Import Request.
+  path: Assets/Prefabs/UI Items/TeamButton.prefab
+  artifactKey: Guid(d57865530575a6c4198c1281c021f867) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/UI Items/TeamButton.prefab using Guid(d57865530575a6c4198c1281c021f867) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '30622f53b765e44187bdf4dd04d60dd5') in 0.122207 seconds
+  Import took 0.128652 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 6.955088 seconds.
+  path: Assets/Scripts/TeamViewButton.cs
+  artifactKey: Guid(e2a5ab165558c0c40b6215e7d7be51d3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/TeamViewButton.cs using Guid(e2a5ab165558c0c40b6215e7d7be51d3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0fcc2bb642211e37f1573d7a8449f630') in 0.035493 seconds
+  Import took 0.047261 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 10.938382 seconds.
+  path: Assets/Scripts/UIManager.cs
+  artifactKey: Guid(55e22c12bfc3f8a43a20569a561cedf6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/UIManager.cs using Guid(55e22c12bfc3f8a43a20569a561cedf6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0c5b7c04c6e002c20c142085a2b6d465') in 0.008882 seconds
+  Import took 0.022218 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.825476 seconds.
+  path: Assets/Scripts/TeamManager.cs
+  artifactKey: Guid(ede27d25a264db743bcd8c6ef2d500b8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/TeamManager.cs using Guid(ede27d25a264db743bcd8c6ef2d500b8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ee2ac43403a15829c029c48ff1cb362c') in 0.019255 seconds
+  Import took 0.027734 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.423385 seconds.
+  path: Assets/Scripts/NotificationManager.cs
+  artifactKey: Guid(e77f5a52d876e6c4285fdff513683fe1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/NotificationManager.cs using Guid(e77f5a52d876e6c4285fdff513683fe1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e43fbb7c0dbfce4b2298a380f36ebd6d') in 0.006674 seconds
+  Import took 0.012639 seconds .
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.002877 seconds.
+Begin MonoManager ReloadAssembly
+Symbol file data-000001E575A02010 doesn't match image E:\justi\Documents\repos\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Animation.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001E54991D600 doesn't match image E:\justi\Documents\repos\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.InternalAPIEngineBridge.001.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001E572C48220 doesn't match image E:\justi\Documents\repos\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.VSCode.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001E5499209D0 doesn't match image E:\justi\Documents\repos\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.PixelPerfect.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001E576221020 doesn't match image E:\justi\Documents\repos\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Tilemap.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001E5744F6880 doesn't match image E:\justi\Documents\repos\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\PsdPlugin.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001E576586020 doesn't match image E:\justi\Documents\repos\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.TextMeshPro.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001E574EFBE30 doesn't match image E:\justi\Documents\repos\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.VisualStudio.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001E5744F6880 doesn't match image E:\justi\Documents\repos\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\UnityEngine.TestRunner.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001E57817A010 doesn't match image E:\justi\Documents\repos\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.Timeline.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001E575A02010 doesn't match image E:\justi\Documents\repos\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.TextMeshPro.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001E57817A010 doesn't match image E:\justi\Documents\repos\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\UnityEditor.TestRunner.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001E578749680 doesn't match image E:\justi\Documents\repos\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.Searcher.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001E572BDA7A0 doesn't match image E:\justi\Documents\repos\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.IK.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001E575D83630 doesn't match image E:\justi\Documents\repos\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Sprite.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001E575D83630 doesn't match image E:\justi\Documents\repos\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Psdimporter.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001E577B9A060 doesn't match image E:\justi\Documents\repos\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Path.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001E577E5C3E0 doesn't match image E:\justi\Documents\repos\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.ShaderGraph.Utilities.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001E577B9A060 doesn't match image E:\justi\Documents\repos\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.RenderPipelines.Core.Runtime.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001E575A3AA30 doesn't match image E:\justi\Documents\repos\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\UnityEditor.UI.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001E576E90080 doesn't match image E:\justi\Documents\repos\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.InputSystem.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001E574846040 doesn't match image E:\justi\Documents\repos\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.Rider.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001E577F5E270 doesn't match image E:\justi\Documents\repos\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.RenderPipelines.Core.ShaderLibrary.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001E572820010 doesn't match image E:\justi\Documents\repos\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\UnityEngine.UI.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001E572BDD3B0 doesn't match image E:\justi\Documents\repos\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.InternalAPIEditorBridge.001.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001E576E90080 doesn't match image E:\justi\Documents\repos\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.Mathematics.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001E578192A20 doesn't match image E:\justi\Documents\repos\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.IK.Runtime.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001E576E90080 doesn't match image E:\justi\Documents\repos\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.ShaderGraph.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001E574FAA010 doesn't match image E:\justi\Documents\repos\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Animation.Triangle.Runtime.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001E574819C80 doesn't match image E:\justi\Documents\repos\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Animation.Runtime.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001E5765A0A40 doesn't match image E:\justi\Documents\repos\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.PixelPerfect.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001E577F5F670 doesn't match image E:\justi\Documents\repos\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001E578332030 doesn't match image E:\justi\Documents\repos\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.Timeline.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001E574E62430 doesn't match image E:\justi\Documents\repos\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.CollabProxy.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001E577BB8E80 doesn't match image E:\justi\Documents\repos\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.Mathematics.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001E572EDCB50 doesn't match image E:\justi\Documents\repos\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Common.Runtime.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001E574E62430 doesn't match image E:\justi\Documents\repos\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.SpriteShape.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001E578192A20 doesn't match image E:\justi\Documents\repos\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Common.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001E5781A8010 doesn't match image E:\justi\Documents\repos\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.RenderPipelines.Core.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001E576F4DA20 doesn't match image E:\justi\Documents\repos\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.SpriteShape.Runtime.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Native extension for LinuxStandalone target not found
+Native extension for WindowsStandalone target not found
+Native extension for OSXStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 0.57 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+Mono: successfully reloaded assembly
+- Completed reload, in  3.056 seconds
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.70 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 2883 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 118.3 MB.
+System memory in use after: 118.4 MB.
+
+Unloading 14 unused Assets to reduce memory usage. Loaded Objects now: 3346.
+Total: 4.941700 ms (FindLiveObjects: 0.353000 ms CreateObjectMapping: 0.179400 ms MarkObjects: 4.272600 ms  DeleteObjects: 0.134700 ms)
+
+========================================================================
+Received Import Request.
+  Time since last request: 99.936758 seconds.
+  path: Assets/Scripts/TeamViewButton.cs
+  artifactKey: Guid(e2a5ab165558c0c40b6215e7d7be51d3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/TeamViewButton.cs using Guid(e2a5ab165558c0c40b6215e7d7be51d3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd7e84801af2d431eb56ccf9d30362b01') in 0.424378 seconds
+  Import took 0.433868 seconds .
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.002100 seconds.
+Begin MonoManager ReloadAssembly
+Symbol file data-000001E575A02010 doesn't match image E:\justi\Documents\repos\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Animation.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001E575F031F0 doesn't match image E:\justi\Documents\repos\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.InternalAPIEngineBridge.001.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001E575E3B020 doesn't match image E:\justi\Documents\repos\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.VSCode.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001E577F50480 doesn't match image E:\justi\Documents\repos\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.PixelPerfect.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001E57602C020 doesn't match image E:\justi\Documents\repos\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Tilemap.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001E576612020 doesn't match image E:\justi\Documents\repos\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\PsdPlugin.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001E572B21010 doesn't match image E:\justi\Documents\repos\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.TextMeshPro.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001E575E92010 doesn't match image E:\justi\Documents\repos\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.VisualStudio.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001E572EC8C80 doesn't match image E:\justi\Documents\repos\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\UnityEngine.TestRunner.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001E576221020 doesn't match image E:\justi\Documents\repos\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.Timeline.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001E574D87020 doesn't match image E:\justi\Documents\repos\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.TextMeshPro.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001E576221020 doesn't match image E:\justi\Documents\repos\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\UnityEditor.TestRunner.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001E5772D0060 doesn't match image E:\justi\Documents\repos\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.Searcher.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001E576040E30 doesn't match image E:\justi\Documents\repos\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.IK.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001E576221020 doesn't match image E:\justi\Documents\repos\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Sprite.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001E574811C70 doesn't match image E:\justi\Documents\repos\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Psdimporter.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001E574811C70 doesn't match image E:\justi\Documents\repos\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Path.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001E577E5BF10 doesn't match image E:\justi\Documents\repos\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.ShaderGraph.Utilities.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001E57510C010 doesn't match image E:\justi\Documents\repos\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.RenderPipelines.Core.Runtime.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001E574811C70 doesn't match image E:\justi\Documents\repos\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\UnityEditor.UI.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001E5770EC010 doesn't match image E:\justi\Documents\repos\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.InputSystem.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001E57450BCE0 doesn't match image E:\justi\Documents\repos\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.Rider.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001E5762EC660 doesn't match image E:\justi\Documents\repos\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.RenderPipelines.Core.ShaderLibrary.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001E577C94020 doesn't match image E:\justi\Documents\repos\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\UnityEngine.UI.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001E5729DD030 doesn't match image E:\justi\Documents\repos\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.InternalAPIEditorBridge.001.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001E57828C010 doesn't match image E:\justi\Documents\repos\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.Mathematics.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001E577AAF230 doesn't match image E:\justi\Documents\repos\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.IK.Runtime.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001E57828C010 doesn't match image E:\justi\Documents\repos\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.ShaderGraph.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001E577D4D060 doesn't match image E:\justi\Documents\repos\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Animation.Triangle.Runtime.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001E574819C80 doesn't match image E:\justi\Documents\repos\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Animation.Runtime.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001E57808BED0 doesn't match image E:\justi\Documents\repos\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.PixelPerfect.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001E5762EC460 doesn't match image E:\justi\Documents\repos\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001E5786AB010 doesn't match image E:\justi\Documents\repos\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.Timeline.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001E57511EC20 doesn't match image E:\justi\Documents\repos\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.CollabProxy.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001E575EF6020 doesn't match image E:\justi\Documents\repos\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.Mathematics.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001E5767B2420 doesn't match image E:\justi\Documents\repos\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Common.Runtime.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001E57511EC20 doesn't match image E:\justi\Documents\repos\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.SpriteShape.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001E576040E30 doesn't match image E:\justi\Documents\repos\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Common.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001E5781A8010 doesn't match image E:\justi\Documents\repos\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.RenderPipelines.Core.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001E577D4D060 doesn't match image E:\justi\Documents\repos\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.SpriteShape.Runtime.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Native extension for LinuxStandalone target not found
+Native extension for WindowsStandalone target not found
+Native extension for OSXStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 0.51 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+Mono: successfully reloaded assembly
+- Completed reload, in  4.341 seconds
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.48 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 2883 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 118.6 MB.
+System memory in use after: 118.7 MB.
+
+Unloading 13 unused Assets to reduce memory usage. Loaded Objects now: 3349.
+Total: 3.226000 ms (FindLiveObjects: 0.395500 ms CreateObjectMapping: 0.272500 ms MarkObjects: 2.287600 ms  DeleteObjects: 0.269000 ms)
+
+AssetImportWorkerClient::OnTransportError - code=2 error=End of file
