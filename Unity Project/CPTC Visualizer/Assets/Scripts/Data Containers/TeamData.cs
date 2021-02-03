@@ -124,15 +124,24 @@ public class TeamData: MonoBehaviour
                 case CPTCEvents.ShutDown:
                     foreach (int n in newAlert.AffectedNodes)
                     {
-                        infraCopy.AllNodes[n].IsActive = false;
+                        // Make sure we're not shutting-down a node that's already been shut down.
+                        if (infraCopy.ShutDownNodes.Contains(n) == false)
+                        {
+                            // Disable the node's gameObject, then add its ID to shutDownNodes.
+                            infraCopy.ShutDownNodes.Add(n);
+                            //infraCopy.AllNodes[n].gameObject.SetActive(false);
+                            infraCopy.AllNodes[n].NodeSprite.color = Color.red;
+                        }
                     }
                     break;
                 // This is a low-priority event.
                 case CPTCEvents.StartUp:
-                    foreach (int n in newAlert.AffectedNodes)
-                    {
-                        infraCopy.AllNodes[n].IsActive = true;
-                    }
+                    // Grab a random node that has been shut down, and start it up again.
+                    int startUpIndex = Random.Range(0, infraCopy.ShutDownNodes.Count);
+                    startUpIndex = infraCopy.ShutDownNodes[startUpIndex];
+                    //infraCopy.AllNodes[startUpIndex].gameObject.SetActive(true);
+                    infraCopy.AllNodes[startUpIndex].NodeSprite.color = Color.white;
+                    infraCopy.ShutDownNodes.Remove(startUpIndex);
                     break;
             }
 
@@ -176,7 +185,18 @@ public class TeamData: MonoBehaviour
                 // See if we can display the node based-on if this team has discovered it or not.
                 infraCopy.Networks[i].Nodes[j].gameObject.SetActive(discoveredNodeIds.Contains(infraCopy.Networks[i].Nodes[j].Id));
 
-                
+                // Check what connections need to be turned-off or left on.
+                for (int k = 0; k < infraCopy.Networks[i].Nodes[j].Connections.Count; k++)
+                {
+                    if (discoveredNodeIds.Contains(infraCopy.Networks[i].Nodes[j].Connections[k]) == false)
+                    {
+                        infraCopy.Networks[i].Nodes[j].ConnectionGOS[k].gameObject.SetActive(false);
+                    }
+                    else
+                    {
+                        infraCopy.Networks[i].Nodes[j].ConnectionGOS[k].gameObject.SetActive(true);
+                    }
+                }
             }
         }
     }
