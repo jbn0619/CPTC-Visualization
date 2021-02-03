@@ -168,7 +168,7 @@ public class InfrastructureManager: Singleton<InfrastructureManager>
         }
 
         // Instantiate our infrastructure and populate it.
-        infrastructure = Instantiate(infraGO, Vector3.zero, Quaternion.identity);
+        infrastructure = Instantiate(infraGO, this.gameObject.transform);
 
         for(int i = 0; i < payload.infrastructure.networks.Count; i++)
         {
@@ -471,7 +471,7 @@ public class InfrastructureManager: Singleton<InfrastructureManager>
             }
 
             // Finally, move the button to its proper spot and add it to teamViewButtons.
-            newButton.gameObject.transform.position = new Vector3(95 + (i * 150), Screen.height - 75, 0);
+            newButton.gameObject.transform.position = new Vector3(95 + (i * 100), Screen.height - 50, 0);
             teamViewButtons.Add(newButton);
         }
     }

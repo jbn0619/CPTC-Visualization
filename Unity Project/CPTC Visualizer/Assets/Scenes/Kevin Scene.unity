@@ -3364,9 +3364,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e77f5a52d876e6c4285fdff513683fe1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  alertNotif: {fileID: 0}
-  alertPriorityQueue: 
-  shownAlerts: []
+  notification: {fileID: 0}
+  alertPriorityQueue: []
+  activeNotifs: []
+  notifEpireTimers: []
 --- !u!4 &1743057228
 Transform:
   m_ObjectHideFlags: 0
@@ -3996,11 +3997,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4795010010054222757, guid: 4981e6d4588497b4b93df4cc6d8cea7e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 368
       objectReference: {fileID: 0}
     - target: {fileID: 4795010010054222757, guid: 4981e6d4588497b4b93df4cc6d8cea7e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 256
       objectReference: {fileID: 0}
     - target: {fileID: 4795010010054222757, guid: 4981e6d4588497b4b93df4cc6d8cea7e, type: 3}
       propertyPath: m_LocalPosition.z
