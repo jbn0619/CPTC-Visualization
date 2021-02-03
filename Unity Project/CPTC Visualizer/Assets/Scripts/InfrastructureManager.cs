@@ -220,7 +220,7 @@ public class InfrastructureManager: Singleton<InfrastructureManager>
         {
             if(team.Alerts.Count > 0)
             {
-                //notificationManager.CreateNotification(team.TeamId, team.Alerts[0].Type);
+                notificationManager.CreateNotification(team.TeamId, team.Alerts[0].Type);
                 team.ReadNextAlert();
             }
         }

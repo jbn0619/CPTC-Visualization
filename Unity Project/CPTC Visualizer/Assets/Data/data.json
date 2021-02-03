@@ -1,1 +1,1692 @@
-{"infrastructure":{"networks":[{"networkId":0,"nodes":[{"id":0,"type":"Router","connections":[4,2]},{"id":1,"type":"Host","connections":[6,2]},{"id":2,"type":"Router","connections":[1,6]},{"id":3,"type":"Host","connections":[]},{"id":4,"type":"Host","connections":[3,0,5]},{"id":5,"type":"Host","connections":[1,0]},{"id":6,"type":"Router","connections":[1,3,5]}],"networkConnections":[4,2]},{"networkId":1,"nodes":[{"id":7,"type":"Router","connections":[13]},{"id":8,"type":"Router","connections":[13,7]},{"id":9,"type":"Router","connections":[7,10,12]},{"id":10,"type":"Router","connections":[12]},{"id":11,"type":"Router","connections":[12,10]},{"id":12,"type":"Router","connections":[7,11]},{"id":13,"type":"Router","connections":[9]}],"networkConnections":[2]},{"networkId":2,"nodes":[{"id":14,"type":"Host","connections":[18,19]},{"id":15,"type":"Host","connections":[20,19,16]},{"id":16,"type":"Router","connections":[18,19]},{"id":17,"type":"Host","connections":[20,14]},{"id":18,"type":"Host","connections":[14,20,17]},{"id":19,"type":"Host","connections":[17]},{"id":20,"type":"Host","connections":[18,14,15]}],"networkConnections":[3]},{"networkId":3,"nodes":[{"id":21,"type":"Router","connections":[25,27]},{"id":22,"type":"Host","connections":[23,27]},{"id":23,"type":"Host","connections":[24,21,25,27]},{"id":24,"type":"Host","connections":[22,23,27]},{"id":25,"type":"Router","connections":[24]},{"id":26,"type":"Host","connections":[23,27]},{"id":27,"type":"Host","connections":[22]}],"networkConnections":[4,1,0]},{"networkId":4,"nodes":[{"id":28,"type":"Router","connections":[33,29,34,30]},{"id":29,"type":"Host","connections":[34,33,30,31]},{"id":30,"type":"Router","connections":[]},{"id":31,"type":"Host","connections":[29]},{"id":32,"type":"Host","connections":[31]},{"id":33,"type":"Host","connections":[34,31]},{"id":34,"type":"Router","connections":[30,28]}],"networkConnections":[1,2]}]},"teams":[{"teamId":0,"alerts":[{"type":"ShutDown","affectedNodes":[11,13,4]},{"type":"ShutDown","affectedNodes":[4,6,20]},{"type":"Discovery","affectedNodes":[20]},{"type":"ShutDown","affectedNodes":[1,17,8]},{"type":"Discovery","affectedNodes":[20,22]},{"type":"ShutDown","affectedNodes":[30,18]},{"type":"ShutDown","affectedNodes":[28,28]},{"type":"ShutDown","affectedNodes":[1]},{"type":"Discovery","affectedNodes":[17,13]},{"type":"Discovery","affectedNodes":[15]},{"type":"ShutDown","affectedNodes":[7,15]},{"type":"StartUp","affectedNodes":[24,12]},{"type":"Discovery","affectedNodes":[1]},{"type":"Exploit","affectedNodes":[17,21,22]},{"type":"Discovery","affectedNodes":[1]},{"type":"Exploit","affectedNodes":[14]},{"type":"Discovery","affectedNodes":[14,13,3,17]},{"type":"Discovery","affectedNodes":[28,17,9]},{"type":"ShutDown","affectedNodes":[26]},{"type":"Exploit","affectedNodes":[6,25,26]},{"type":"StartUp","affectedNodes":[6,10,0]},{"type":"Exploit","affectedNodes":[26]},{"type":"Discovery","affectedNodes":[14]},{"type":"Discovery","affectedNodes":[26,9]},{"type":"Exploit","affectedNodes":[33,5,9]},{"type":"Discovery","affectedNodes":[23,10,28,30]},{"type":"Exploit","affectedNodes":[0]},{"type":"ShutDown","affectedNodes":[13]},{"type":"Discovery","affectedNodes":[9,34,27,22]},{"type":"Exploit","affectedNodes":[26]},{"type":"Discovery","affectedNodes":[22,29,28]},{"type":"Exploit","affectedNodes":[21,16]},{"type":"Exploit","affectedNodes":[20,14,21]},{"type":"StartUp","affectedNodes":[24,5,9,20]},{"type":"StartUp","affectedNodes":[27,20,12]},{"type":"Discovery","affectedNodes":[5,21,14,12]},{"type":"Discovery","affectedNodes":[11,3,19]},{"type":"Exploit","affectedNodes":[17,22,29,4]},{"type":"Exploit","affectedNodes":[6,7,11,9]},{"type":"Discovery","affectedNodes":[24,4,9]},{"type":"StartUp","affectedNodes":[31,12,27,25]},{"type":"Discovery","affectedNodes":[18,32]},{"type":"StartUp","affectedNodes":[6]},{"type":"Exploit","affectedNodes":[31]},{"type":"Exploit","affectedNodes":[14,32,11]},{"type":"StartUp","affectedNodes":[27,8,28,22]},{"type":"Discovery","affectedNodes":[13,30,23]},{"type":"StartUp","affectedNodes":[15,23]},{"type":"ShutDown","affectedNodes":[34,10]},{"type":"Exploit","affectedNodes":[1,1,9]},{"type":"StartUp","affectedNodes":[33,22,21,26]},{"type":"StartUp","affectedNodes":[27,6]},{"type":"Exploit","affectedNodes":[34]},{"type":"ShutDown","affectedNodes":[3]},{"type":"ShutDown","affectedNodes":[29,21,17]},{"type":"Discovery","affectedNodes":[32,30]},{"type":"Discovery","affectedNodes":[33,30,2,9]},{"type":"StartUp","affectedNodes":[32,8,28,18]},{"type":"Discovery","affectedNodes":[26,6,1]},{"type":"StartUp","affectedNodes":[11,29]}],"discoveredNodeIds":[0]},{"teamId":1,"alerts":[{"type":"Exploit","affectedNodes":[31,5,21]},{"type":"ShutDown","affectedNodes":[34,11]},{"type":"Discovery","affectedNodes":[16,30,31,15]},{"type":"StartUp","affectedNodes":[27,4,11,34]},{"type":"Discovery","affectedNodes":[18,4]},{"type":"Discovery","affectedNodes":[22]},{"type":"Discovery","affectedNodes":[33,13,25,26]},{"type":"Discovery","affectedNodes":[21]},{"type":"ShutDown","affectedNodes":[14,34,29]},{"type":"StartUp","affectedNodes":[11]},{"type":"StartUp","affectedNodes":[33]},{"type":"ShutDown","affectedNodes":[30,16,34,9]},{"type":"ShutDown","affectedNodes":[17,29,17]},{"type":"Exploit","affectedNodes":[12,2,25,4]},{"type":"Discovery","affectedNodes":[31]},{"type":"Discovery","affectedNodes":[18,7,20,24]},{"type":"Exploit","affectedNodes":[1,5,20]},{"type":"StartUp","affectedNodes":[19,22,2,8]},{"type":"Discovery","affectedNodes":[26]},{"type":"ShutDown","affectedNodes":[20,18,22]},{"type":"Discovery","affectedNodes":[30,33,8,15]},{"type":"StartUp","affectedNodes":[24]},{"type":"Exploit","affectedNodes":[26]},{"type":"StartUp","affectedNodes":[33,19,4,30]},{"type":"Exploit","affectedNodes":[17]},{"type":"StartUp","affectedNodes":[19,26]},{"type":"Discovery","affectedNodes":[31,3,8]},{"type":"Discovery","affectedNodes":[29,29]},{"type":"Exploit","affectedNodes":[5,7,26]},{"type":"StartUp","affectedNodes":[31,27,19,1]},{"type":"StartUp","affectedNodes":[20]},{"type":"Exploit","affectedNodes":[5,32,18]},{"type":"Exploit","affectedNodes":[17,5,32]},{"type":"StartUp","affectedNodes":[22,10]},{"type":"StartUp","affectedNodes":[32]},{"type":"Exploit","affectedNodes":[30,19,33,11]},{"type":"Exploit","affectedNodes":[3,6,31,24]},{"type":"ShutDown","affectedNodes":[34,25,9,2]},{"type":"Exploit","affectedNodes":[20]},{"type":"StartUp","affectedNodes":[5,10,31]},{"type":"ShutDown","affectedNodes":[7]},{"type":"Discovery","affectedNodes":[8,12,21]},{"type":"StartUp","affectedNodes":[4,19,17]},{"type":"Exploit","affectedNodes":[9]},{"type":"StartUp","affectedNodes":[28,17,23]},{"type":"ShutDown","affectedNodes":[18]},{"type":"Discovery","affectedNodes":[1,12,33]},{"type":"StartUp","affectedNodes":[11,11,9]},{"type":"ShutDown","affectedNodes":[13,30]},{"type":"Discovery","affectedNodes":[5,26,27,29]},{"type":"ShutDown","affectedNodes":[15]},{"type":"StartUp","affectedNodes":[22,28]},{"type":"Exploit","affectedNodes":[18,5,3]},{"type":"ShutDown","affectedNodes":[8,25]},{"type":"Exploit","affectedNodes":[9,29,23,15]},{"type":"StartUp","affectedNodes":[21,29]},{"type":"ShutDown","affectedNodes":[16,9]},{"type":"Exploit","affectedNodes":[1,1]},{"type":"ShutDown","affectedNodes":[3,6,29,33]},{"type":"Exploit","affectedNodes":[9,13,27]}],"discoveredNodeIds":[0]},{"teamId":2,"alerts":[{"type":"ShutDown","affectedNodes":[9,18]},{"type":"Exploit","affectedNodes":[34]},{"type":"ShutDown","affectedNodes":[15,4,18,33]},{"type":"StartUp","affectedNodes":[1,32,16]},{"type":"ShutDown","affectedNodes":[10]},{"type":"Exploit","affectedNodes":[10,30]},{"type":"ShutDown","affectedNodes":[8]},{"type":"ShutDown","affectedNodes":[0,26,7]},{"type":"StartUp","affectedNodes":[0,34,29]},{"type":"Exploit","affectedNodes":[1,10,23]},{"type":"ShutDown","affectedNodes":[16,14]},{"type":"Discovery","affectedNodes":[3,29]},{"type":"ShutDown","affectedNodes":[8]},{"type":"ShutDown","affectedNodes":[31,2,24,9]},{"type":"StartUp","affectedNodes":[17,23]},{"type":"StartUp","affectedNodes":[9,5]},{"type":"StartUp","affectedNodes":[15]},{"type":"ShutDown","affectedNodes":[24]},{"type":"ShutDown","affectedNodes":[15]},{"type":"ShutDown","affectedNodes":[16,11,0,31]},{"type":"Discovery","affectedNodes":[12,10,19,17]},{"type":"Exploit","affectedNodes":[4,31]},{"type":"Exploit","affectedNodes":[7,1,25,13]},{"type":"Discovery","affectedNodes":[27,31,25]},{"type":"StartUp","affectedNodes":[17,12,5,29]},{"type":"Discovery","affectedNodes":[7,27,31]},{"type":"ShutDown","affectedNodes":[18,12,21]},{"type":"Exploit","affectedNodes":[22,26,18]},{"type":"Exploit","affectedNodes":[24,3,11]},{"type":"ShutDown","affectedNodes":[31,24]},{"type":"StartUp","affectedNodes":[11,1,26,17]},{"type":"Discovery","affectedNodes":[1,30,14]},{"type":"ShutDown","affectedNodes":[11,27,3,17]},{"type":"Discovery","affectedNodes":[30]},{"type":"ShutDown","affectedNodes":[4,29,3]},{"type":"Exploit","affectedNodes":[30]},{"type":"ShutDown","affectedNodes":[12,29]},{"type":"StartUp","affectedNodes":[10,16]},{"type":"ShutDown","affectedNodes":[7,29,17]},{"type":"Exploit","affectedNodes":[25]},{"type":"ShutDown","affectedNodes":[23]},{"type":"Exploit","affectedNodes":[18,15,34,21]},{"type":"StartUp","affectedNodes":[0,26,24,15]},{"type":"StartUp","affectedNodes":[26,10,11,14]},{"type":"StartUp","affectedNodes":[3]},{"type":"StartUp","affectedNodes":[6]},{"type":"Discovery","affectedNodes":[29]},{"type":"StartUp","affectedNodes":[10]},{"type":"Discovery","affectedNodes":[16]},{"type":"ShutDown","affectedNodes":[31,3,6]},{"type":"StartUp","affectedNodes":[3,28]},{"type":"Exploit","affectedNodes":[17,33]},{"type":"Discovery","affectedNodes":[24,34]},{"type":"Exploit","affectedNodes":[15]},{"type":"Exploit","affectedNodes":[14]},{"type":"Exploit","affectedNodes":[26]},{"type":"Exploit","affectedNodes":[22,30]},{"type":"Discovery","affectedNodes":[27,17,17]},{"type":"Discovery","affectedNodes":[8,20]},{"type":"Discovery","affectedNodes":[9,25,13]}],"discoveredNodeIds":[0]}]}
+{
+    "infrastructure": {
+        "networks": [
+            {
+                "networkId": 0,
+                "nodes": [
+                    {
+                        "id": 0,
+                        "type": "Host",
+                        "connections": []
+                    },
+                    {
+                        "id": 1,
+                        "type": "Router",
+                        "connections": [
+                            4,
+                            2
+                        ]
+                    },
+                    {
+                        "id": 2,
+                        "type": "Host",
+                        "connections": [
+                            1
+                        ]
+                    },
+                    {
+                        "id": 3,
+                        "type": "Router",
+                        "connections": [
+                            1,
+                            4
+                        ]
+                    },
+                    {
+                        "id": 4,
+                        "type": "Router",
+                        "connections": [
+                            2
+                        ]
+                    },
+                    {
+                        "id": 5,
+                        "type": "Router",
+                        "connections": [
+                            1
+                        ]
+                    }
+                ],
+                "networkConnections": [
+                    6,
+                    3,
+                    7,
+                    5
+                ]
+            },
+            {
+                "networkId": 1,
+                "nodes": [
+                    {
+                        "id": 6,
+                        "type": "Host",
+                        "connections": [
+                            8,
+                            10
+                        ]
+                    },
+                    {
+                        "id": 7,
+                        "type": "Router",
+                        "connections": [
+                            11,
+                            10
+                        ]
+                    },
+                    {
+                        "id": 8,
+                        "type": "Host",
+                        "connections": [
+                            11,
+                            7,
+                            9
+                        ]
+                    },
+                    {
+                        "id": 9,
+                        "type": "Router",
+                        "connections": [
+                            10
+                        ]
+                    },
+                    {
+                        "id": 10,
+                        "type": "Router",
+                        "connections": [
+                            7,
+                            9,
+                            6
+                        ]
+                    },
+                    {
+                        "id": 11,
+                        "type": "Host",
+                        "connections": [
+                            9,
+                            7,
+                            6
+                        ]
+                    }
+                ],
+                "networkConnections": [
+                    3,
+                    5
+                ]
+            },
+            {
+                "networkId": 2,
+                "nodes": [
+                    {
+                        "id": 12,
+                        "type": "Host",
+                        "connections": [
+                            17
+                        ]
+                    },
+                    {
+                        "id": 13,
+                        "type": "Router",
+                        "connections": []
+                    },
+                    {
+                        "id": 14,
+                        "type": "Router",
+                        "connections": [
+                            15,
+                            16
+                        ]
+                    },
+                    {
+                        "id": 15,
+                        "type": "Host",
+                        "connections": [
+                            13
+                        ]
+                    },
+                    {
+                        "id": 16,
+                        "type": "Host",
+                        "connections": [
+                            17
+                        ]
+                    },
+                    {
+                        "id": 17,
+                        "type": "Host",
+                        "connections": [
+                            13,
+                            16,
+                            15
+                        ]
+                    }
+                ],
+                "networkConnections": [
+                    1,
+                    3
+                ]
+            },
+            {
+                "networkId": 3,
+                "nodes": [
+                    {
+                        "id": 18,
+                        "type": "Host",
+                        "connections": [
+                            23,
+                            19
+                        ]
+                    },
+                    {
+                        "id": 19,
+                        "type": "Host",
+                        "connections": [
+                            20,
+                            21
+                        ]
+                    },
+                    {
+                        "id": 20,
+                        "type": "Router",
+                        "connections": [
+                            23,
+                            19,
+                            21
+                        ]
+                    },
+                    {
+                        "id": 21,
+                        "type": "Router",
+                        "connections": [
+                            19,
+                            23,
+                            20
+                        ]
+                    },
+                    {
+                        "id": 22,
+                        "type": "Router",
+                        "connections": [
+                            23,
+                            21
+                        ]
+                    },
+                    {
+                        "id": 23,
+                        "type": "Router",
+                        "connections": [
+                            20,
+                            19,
+                            18
+                        ]
+                    }
+                ],
+                "networkConnections": [
+                    1,
+                    5
+                ]
+            },
+            {
+                "networkId": 4,
+                "nodes": [
+                    {
+                        "id": 24,
+                        "type": "Host",
+                        "connections": [
+                            26,
+                            25
+                        ]
+                    },
+                    {
+                        "id": 25,
+                        "type": "Host",
+                        "connections": [
+                            24
+                        ]
+                    },
+                    {
+                        "id": 26,
+                        "type": "Host",
+                        "connections": [
+                            25,
+                            27,
+                            28
+                        ]
+                    },
+                    {
+                        "id": 27,
+                        "type": "Router",
+                        "connections": []
+                    },
+                    {
+                        "id": 28,
+                        "type": "Host",
+                        "connections": [
+                            25,
+                            26
+                        ]
+                    },
+                    {
+                        "id": 29,
+                        "type": "Router",
+                        "connections": [
+                            27
+                        ]
+                    }
+                ],
+                "networkConnections": [
+                    6,
+                    2
+                ]
+            },
+            {
+                "networkId": 5,
+                "nodes": [
+                    {
+                        "id": 30,
+                        "type": "Router",
+                        "connections": [
+                            31
+                        ]
+                    },
+                    {
+                        "id": 31,
+                        "type": "Host",
+                        "connections": [
+                            34,
+                            33
+                        ]
+                    },
+                    {
+                        "id": 32,
+                        "type": "Router",
+                        "connections": []
+                    },
+                    {
+                        "id": 33,
+                        "type": "Router",
+                        "connections": [
+                            30,
+                            32,
+                            35,
+                            31
+                        ]
+                    },
+                    {
+                        "id": 34,
+                        "type": "Router",
+                        "connections": [
+                            30,
+                            31,
+                            35,
+                            32
+                        ]
+                    },
+                    {
+                        "id": 35,
+                        "type": "Router",
+                        "connections": [
+                            34,
+                            32,
+                            31
+                        ]
+                    }
+                ],
+                "networkConnections": [
+                    4,
+                    6
+                ]
+            },
+            {
+                "networkId": 6,
+                "nodes": [
+                    {
+                        "id": 36,
+                        "type": "Host",
+                        "connections": [
+                            40
+                        ]
+                    },
+                    {
+                        "id": 37,
+                        "type": "Router",
+                        "connections": [
+                            41
+                        ]
+                    },
+                    {
+                        "id": 38,
+                        "type": "Host",
+                        "connections": [
+                            37,
+                            39
+                        ]
+                    },
+                    {
+                        "id": 39,
+                        "type": "Host",
+                        "connections": [
+                            40
+                        ]
+                    },
+                    {
+                        "id": 40,
+                        "type": "Host",
+                        "connections": [
+                            37,
+                            39
+                        ]
+                    },
+                    {
+                        "id": 41,
+                        "type": "Host",
+                        "connections": [
+                            37,
+                            40
+                        ]
+                    }
+                ],
+                "networkConnections": [
+                    2,
+                    5
+                ]
+            },
+            {
+                "networkId": 7,
+                "nodes": [
+                    {
+                        "id": 42,
+                        "type": "Router",
+                        "connections": [
+                            47
+                        ]
+                    },
+                    {
+                        "id": 43,
+                        "type": "Host",
+                        "connections": [
+                            47,
+                            42
+                        ]
+                    },
+                    {
+                        "id": 44,
+                        "type": "Router",
+                        "connections": [
+                            43,
+                            46
+                        ]
+                    },
+                    {
+                        "id": 45,
+                        "type": "Router",
+                        "connections": [
+                            47,
+                            43
+                        ]
+                    },
+                    {
+                        "id": 46,
+                        "type": "Host",
+                        "connections": [
+                            44
+                        ]
+                    },
+                    {
+                        "id": 47,
+                        "type": "Host",
+                        "connections": [
+                            42,
+                            44
+                        ]
+                    }
+                ],
+                "networkConnections": [
+                    5
+                ]
+            }
+        ]
+    },
+    "teams": [
+        {
+            "teamId": 0,
+            "alerts": [
+                {
+                    "type": "Exploit",
+                    "affectedNodes": [
+                        24,
+                        16,
+                        24
+                    ]
+                },
+                {
+                    "type": "StartUp",
+                    "affectedNodes": [
+                        25
+                    ]
+                },
+                {
+                    "type": "Discovery",
+                    "affectedNodes": [
+                        4,
+                        37
+                    ]
+                },
+                {
+                    "type": "Discovery",
+                    "affectedNodes": [
+                        23,
+                        46,
+                        7
+                    ]
+                },
+                {
+                    "type": "StartUp",
+                    "affectedNodes": [
+                        40,
+                        32,
+                        43
+                    ]
+                },
+                {
+                    "type": "Exploit",
+                    "affectedNodes": [
+                        47,
+                        25,
+                        30,
+                        16
+                    ]
+                },
+                {
+                    "type": "ShutDown",
+                    "affectedNodes": [
+                        40,
+                        29,
+                        47
+                    ]
+                },
+                {
+                    "type": "ShutDown",
+                    "affectedNodes": [
+                        43,
+                        7,
+                        40
+                    ]
+                },
+                {
+                    "type": "Exploit",
+                    "affectedNodes": [
+                        43
+                    ]
+                },
+                {
+                    "type": "ShutDown",
+                    "affectedNodes": [
+                        9
+                    ]
+                },
+                {
+                    "type": "ShutDown",
+                    "affectedNodes": [
+                        34,
+                        24,
+                        44,
+                        43
+                    ]
+                },
+                {
+                    "type": "ShutDown",
+                    "affectedNodes": [
+                        36,
+                        20,
+                        34,
+                        10
+                    ]
+                },
+                {
+                    "type": "Exploit",
+                    "affectedNodes": [
+                        41,
+                        33,
+                        25,
+                        19
+                    ]
+                },
+                {
+                    "type": "Discovery",
+                    "affectedNodes": [
+                        37,
+                        44,
+                        14,
+                        36
+                    ]
+                },
+                {
+                    "type": "Exploit",
+                    "affectedNodes": [
+                        16,
+                        9,
+                        41,
+                        14
+                    ]
+                },
+                {
+                    "type": "StartUp",
+                    "affectedNodes": [
+                        30,
+                        6,
+                        23,
+                        18
+                    ]
+                },
+                {
+                    "type": "Exploit",
+                    "affectedNodes": [
+                        12,
+                        3
+                    ]
+                },
+                {
+                    "type": "Exploit",
+                    "affectedNodes": [
+                        22
+                    ]
+                },
+                {
+                    "type": "Discovery",
+                    "affectedNodes": [
+                        18,
+                        6,
+                        43
+                    ]
+                },
+                {
+                    "type": "ShutDown",
+                    "affectedNodes": [
+                        27,
+                        10
+                    ]
+                },
+                {
+                    "type": "StartUp",
+                    "affectedNodes": [
+                        20
+                    ]
+                },
+                {
+                    "type": "Exploit",
+                    "affectedNodes": [
+                        37,
+                        18
+                    ]
+                },
+                {
+                    "type": "StartUp",
+                    "affectedNodes": [
+                        19
+                    ]
+                },
+                {
+                    "type": "Discovery",
+                    "affectedNodes": [
+                        44
+                    ]
+                },
+                {
+                    "type": "Discovery",
+                    "affectedNodes": [
+                        42
+                    ]
+                },
+                {
+                    "type": "ShutDown",
+                    "affectedNodes": [
+                        15,
+                        40,
+                        41
+                    ]
+                },
+                {
+                    "type": "Exploit",
+                    "affectedNodes": [
+                        13,
+                        41,
+                        42
+                    ]
+                },
+                {
+                    "type": "Discovery",
+                    "affectedNodes": [
+                        40,
+                        34,
+                        8
+                    ]
+                },
+                {
+                    "type": "StartUp",
+                    "affectedNodes": [
+                        9
+                    ]
+                },
+                {
+                    "type": "ShutDown",
+                    "affectedNodes": [
+                        16,
+                        8,
+                        27,
+                        23
+                    ]
+                },
+                {
+                    "type": "Discovery",
+                    "affectedNodes": [
+                        36,
+                        10
+                    ]
+                },
+                {
+                    "type": "StartUp",
+                    "affectedNodes": [
+                        15,
+                        27
+                    ]
+                }
+            ],
+            "discoveredNodeIds": [
+                0
+            ]
+        },
+        {
+            "teamId": 1,
+            "alerts": [
+                {
+                    "type": "ShutDown",
+                    "affectedNodes": [
+                        47
+                    ]
+                },
+                {
+                    "type": "Exploit",
+                    "affectedNodes": [
+                        14,
+                        19,
+                        40
+                    ]
+                },
+                {
+                    "type": "ShutDown",
+                    "affectedNodes": [
+                        28,
+                        1,
+                        7
+                    ]
+                },
+                {
+                    "type": "ShutDown",
+                    "affectedNodes": [
+                        10,
+                        5,
+                        13,
+                        16
+                    ]
+                },
+                {
+                    "type": "StartUp",
+                    "affectedNodes": [
+                        26
+                    ]
+                },
+                {
+                    "type": "ShutDown",
+                    "affectedNodes": [
+                        3
+                    ]
+                },
+                {
+                    "type": "Discovery",
+                    "affectedNodes": [
+                        24
+                    ]
+                },
+                {
+                    "type": "Discovery",
+                    "affectedNodes": [
+                        13,
+                        6
+                    ]
+                },
+                {
+                    "type": "Discovery",
+                    "affectedNodes": [
+                        32
+                    ]
+                },
+                {
+                    "type": "Exploit",
+                    "affectedNodes": [
+                        44,
+                        44,
+                        40
+                    ]
+                },
+                {
+                    "type": "ShutDown",
+                    "affectedNodes": [
+                        35,
+                        1,
+                        3
+                    ]
+                },
+                {
+                    "type": "Discovery",
+                    "affectedNodes": [
+                        11,
+                        18,
+                        8,
+                        19
+                    ]
+                },
+                {
+                    "type": "StartUp",
+                    "affectedNodes": [
+                        34,
+                        36,
+                        46
+                    ]
+                },
+                {
+                    "type": "Exploit",
+                    "affectedNodes": [
+                        29,
+                        43,
+                        9,
+                        11
+                    ]
+                },
+                {
+                    "type": "Discovery",
+                    "affectedNodes": [
+                        41,
+                        44
+                    ]
+                },
+                {
+                    "type": "StartUp",
+                    "affectedNodes": [
+                        9,
+                        18,
+                        47
+                    ]
+                },
+                {
+                    "type": "Discovery",
+                    "affectedNodes": [
+                        41,
+                        5,
+                        42,
+                        46
+                    ]
+                },
+                {
+                    "type": "Exploit",
+                    "affectedNodes": [
+                        1,
+                        24
+                    ]
+                },
+                {
+                    "type": "Exploit",
+                    "affectedNodes": [
+                        24,
+                        6,
+                        43
+                    ]
+                },
+                {
+                    "type": "Discovery",
+                    "affectedNodes": [
+                        20,
+                        10,
+                        35
+                    ]
+                },
+                {
+                    "type": "StartUp",
+                    "affectedNodes": [
+                        19,
+                        0,
+                        43,
+                        22
+                    ]
+                },
+                {
+                    "type": "ShutDown",
+                    "affectedNodes": [
+                        5
+                    ]
+                },
+                {
+                    "type": "StartUp",
+                    "affectedNodes": [
+                        35
+                    ]
+                },
+                {
+                    "type": "Exploit",
+                    "affectedNodes": [
+                        9
+                    ]
+                },
+                {
+                    "type": "ShutDown",
+                    "affectedNodes": [
+                        15,
+                        18,
+                        41,
+                        22
+                    ]
+                },
+                {
+                    "type": "ShutDown",
+                    "affectedNodes": [
+                        7,
+                        9,
+                        25
+                    ]
+                },
+                {
+                    "type": "ShutDown",
+                    "affectedNodes": [
+                        13,
+                        9,
+                        26
+                    ]
+                },
+                {
+                    "type": "Discovery",
+                    "affectedNodes": [
+                        7,
+                        34,
+                        34,
+                        4
+                    ]
+                },
+                {
+                    "type": "Exploit",
+                    "affectedNodes": [
+                        38,
+                        0
+                    ]
+                },
+                {
+                    "type": "Exploit",
+                    "affectedNodes": [
+                        45,
+                        4,
+                        11
+                    ]
+                },
+                {
+                    "type": "Discovery",
+                    "affectedNodes": [
+                        11,
+                        35,
+                        13
+                    ]
+                },
+                {
+                    "type": "Discovery",
+                    "affectedNodes": [
+                        11,
+                        1,
+                        44
+                    ]
+                }
+            ],
+            "discoveredNodeIds": [
+                0
+            ]
+        },
+        {
+            "teamId": 2,
+            "alerts": [
+                {
+                    "type": "Exploit",
+                    "affectedNodes": [
+                        0,
+                        27,
+                        2
+                    ]
+                },
+                {
+                    "type": "StartUp",
+                    "affectedNodes": [
+                        46,
+                        42,
+                        12,
+                        34
+                    ]
+                },
+                {
+                    "type": "Exploit",
+                    "affectedNodes": [
+                        18
+                    ]
+                },
+                {
+                    "type": "StartUp",
+                    "affectedNodes": [
+                        39,
+                        45,
+                        28
+                    ]
+                },
+                {
+                    "type": "Discovery",
+                    "affectedNodes": [
+                        37,
+                        39
+                    ]
+                },
+                {
+                    "type": "StartUp",
+                    "affectedNodes": [
+                        15,
+                        29,
+                        36,
+                        3
+                    ]
+                },
+                {
+                    "type": "StartUp",
+                    "affectedNodes": [
+                        44,
+                        10,
+                        10,
+                        30
+                    ]
+                },
+                {
+                    "type": "StartUp",
+                    "affectedNodes": [
+                        43,
+                        39
+                    ]
+                },
+                {
+                    "type": "Discovery",
+                    "affectedNodes": [
+                        15
+                    ]
+                },
+                {
+                    "type": "Discovery",
+                    "affectedNodes": [
+                        37,
+                        18
+                    ]
+                },
+                {
+                    "type": "ShutDown",
+                    "affectedNodes": [
+                        22,
+                        32,
+                        43,
+                        12
+                    ]
+                },
+                {
+                    "type": "Discovery",
+                    "affectedNodes": [
+                        16,
+                        47,
+                        40
+                    ]
+                },
+                {
+                    "type": "Discovery",
+                    "affectedNodes": [
+                        33,
+                        35,
+                        26,
+                        14
+                    ]
+                },
+                {
+                    "type": "StartUp",
+                    "affectedNodes": [
+                        39,
+                        31,
+                        24,
+                        18
+                    ]
+                },
+                {
+                    "type": "ShutDown",
+                    "affectedNodes": [
+                        43,
+                        26,
+                        18
+                    ]
+                },
+                {
+                    "type": "StartUp",
+                    "affectedNodes": [
+                        6,
+                        30,
+                        6,
+                        46
+                    ]
+                },
+                {
+                    "type": "Discovery",
+                    "affectedNodes": [
+                        23
+                    ]
+                },
+                {
+                    "type": "Exploit",
+                    "affectedNodes": [
+                        31,
+                        30,
+                        23
+                    ]
+                },
+                {
+                    "type": "ShutDown",
+                    "affectedNodes": [
+                        41
+                    ]
+                },
+                {
+                    "type": "Discovery",
+                    "affectedNodes": [
+                        3,
+                        7,
+                        19,
+                        3
+                    ]
+                },
+                {
+                    "type": "ShutDown",
+                    "affectedNodes": [
+                        47,
+                        18,
+                        12
+                    ]
+                },
+                {
+                    "type": "StartUp",
+                    "affectedNodes": [
+                        8
+                    ]
+                },
+                {
+                    "type": "Exploit",
+                    "affectedNodes": [
+                        20,
+                        18,
+                        30
+                    ]
+                },
+                {
+                    "type": "Exploit",
+                    "affectedNodes": [
+                        44,
+                        1,
+                        13
+                    ]
+                },
+                {
+                    "type": "StartUp",
+                    "affectedNodes": [
+                        22,
+                        8,
+                        13,
+                        0
+                    ]
+                },
+                {
+                    "type": "StartUp",
+                    "affectedNodes": [
+                        30,
+                        33,
+                        20
+                    ]
+                },
+                {
+                    "type": "ShutDown",
+                    "affectedNodes": [
+                        37,
+                        0,
+                        17,
+                        40
+                    ]
+                },
+                {
+                    "type": "Discovery",
+                    "affectedNodes": [
+                        24
+                    ]
+                },
+                {
+                    "type": "Discovery",
+                    "affectedNodes": [
+                        43,
+                        10
+                    ]
+                },
+                {
+                    "type": "Exploit",
+                    "affectedNodes": [
+                        26,
+                        22
+                    ]
+                },
+                {
+                    "type": "Exploit",
+                    "affectedNodes": [
+                        42,
+                        42
+                    ]
+                },
+                {
+                    "type": "StartUp",
+                    "affectedNodes": [
+                        10,
+                        20
+                    ]
+                }
+            ],
+            "discoveredNodeIds": [
+                0
+            ]
+        },
+        {
+            "teamId": 3,
+            "alerts": [
+                {
+                    "type": "Discovery",
+                    "affectedNodes": [
+                        14,
+                        2,
+                        21,
+                        5
+                    ]
+                },
+                {
+                    "type": "Exploit",
+                    "affectedNodes": [
+                        46,
+                        21,
+                        8,
+                        47
+                    ]
+                },
+                {
+                    "type": "StartUp",
+                    "affectedNodes": [
+                        7,
+                        34,
+                        8,
+                        18
+                    ]
+                },
+                {
+                    "type": "Exploit",
+                    "affectedNodes": [
+                        17,
+                        12,
+                        7,
+                        43
+                    ]
+                },
+                {
+                    "type": "Discovery",
+                    "affectedNodes": [
+                        33,
+                        8,
+                        12
+                    ]
+                },
+                {
+                    "type": "ShutDown",
+                    "affectedNodes": [
+                        2,
+                        11,
+                        24
+                    ]
+                },
+                {
+                    "type": "ShutDown",
+                    "affectedNodes": [
+                        28,
+                        29
+                    ]
+                },
+                {
+                    "type": "StartUp",
+                    "affectedNodes": [
+                        43,
+                        19,
+                        5
+                    ]
+                },
+                {
+                    "type": "StartUp",
+                    "affectedNodes": [
+                        25,
+                        9
+                    ]
+                },
+                {
+                    "type": "Exploit",
+                    "affectedNodes": [
+                        23,
+                        3,
+                        21,
+                        7
+                    ]
+                },
+                {
+                    "type": "ShutDown",
+                    "affectedNodes": [
+                        9
+                    ]
+                },
+                {
+                    "type": "StartUp",
+                    "affectedNodes": [
+                        27,
+                        26,
+                        21,
+                        5
+                    ]
+                },
+                {
+                    "type": "Exploit",
+                    "affectedNodes": [
+                        42
+                    ]
+                },
+                {
+                    "type": "StartUp",
+                    "affectedNodes": [
+                        4,
+                        45,
+                        10,
+                        5
+                    ]
+                },
+                {
+                    "type": "StartUp",
+                    "affectedNodes": [
+                        15
+                    ]
+                },
+                {
+                    "type": "Exploit",
+                    "affectedNodes": [
+                        35
+                    ]
+                },
+                {
+                    "type": "Discovery",
+                    "affectedNodes": [
+                        0,
+                        19,
+                        24,
+                        41
+                    ]
+                },
+                {
+                    "type": "StartUp",
+                    "affectedNodes": [
+                        1,
+                        24,
+                        1
+                    ]
+                },
+                {
+                    "type": "Exploit",
+                    "affectedNodes": [
+                        6
+                    ]
+                },
+                {
+                    "type": "Discovery",
+                    "affectedNodes": [
+                        16,
+                        14,
+                        13,
+                        26
+                    ]
+                },
+                {
+                    "type": "Exploit",
+                    "affectedNodes": [
+                        7,
+                        5,
+                        45,
+                        34
+                    ]
+                },
+                {
+                    "type": "ShutDown",
+                    "affectedNodes": [
+                        37
+                    ]
+                },
+                {
+                    "type": "StartUp",
+                    "affectedNodes": [
+                        47
+                    ]
+                },
+                {
+                    "type": "Exploit",
+                    "affectedNodes": [
+                        33,
+                        29,
+                        39
+                    ]
+                },
+                {
+                    "type": "Exploit",
+                    "affectedNodes": [
+                        17,
+                        0
+                    ]
+                },
+                {
+                    "type": "ShutDown",
+                    "affectedNodes": [
+                        16,
+                        3
+                    ]
+                },
+                {
+                    "type": "ShutDown",
+                    "affectedNodes": [
+                        20
+                    ]
+                },
+                {
+                    "type": "ShutDown",
+                    "affectedNodes": [
+                        0
+                    ]
+                },
+                {
+                    "type": "Exploit",
+                    "affectedNodes": [
+                        6,
+                        42,
+                        39
+                    ]
+                },
+                {
+                    "type": "ShutDown",
+                    "affectedNodes": [
+                        20,
+                        47
+                    ]
+                },
+                {
+                    "type": "Exploit",
+                    "affectedNodes": [
+                        31,
+                        11,
+                        43
+                    ]
+                },
+                {
+                    "type": "Discovery",
+                    "affectedNodes": [
+                        32,
+                        43,
+                        14
+                    ]
+                }
+            ],
+            "discoveredNodeIds": [
+                0
+            ]
+        },
+        {
+            "teamId": 4,
+            "alerts": [
+                {
+                    "type": "ShutDown",
+                    "affectedNodes": [
+                        30
+                    ]
+                },
+                {
+                    "type": "ShutDown",
+                    "affectedNodes": [
+                        7,
+                        37,
+                        39
+                    ]
+                },
+                {
+                    "type": "Exploit",
+                    "affectedNodes": [
+                        23
+                    ]
+                },
+                {
+                    "type": "ShutDown",
+                    "affectedNodes": [
+                        41
+                    ]
+                },
+                {
+                    "type": "StartUp",
+                    "affectedNodes": [
+                        43
+                    ]
+                },
+                {
+                    "type": "ShutDown",
+                    "affectedNodes": [
+                        16,
+                        22,
+                        24,
+                        6
+                    ]
+                },
+                {
+                    "type": "ShutDown",
+                    "affectedNodes": [
+                        14,
+                        32
+                    ]
+                },
+                {
+                    "type": "Exploit",
+                    "affectedNodes": [
+                        39,
+                        4,
+                        8,
+                        30
+                    ]
+                },
+                {
+                    "type": "ShutDown",
+                    "affectedNodes": [
+                        21,
+                        27,
+                        29,
+                        29
+                    ]
+                },
+                {
+                    "type": "ShutDown",
+                    "affectedNodes": [
+                        20,
+                        37
+                    ]
+                },
+                {
+                    "type": "Discovery",
+                    "affectedNodes": [
+                        28
+                    ]
+                },
+                {
+                    "type": "Exploit",
+                    "affectedNodes": [
+                        44
+                    ]
+                },
+                {
+                    "type": "Discovery",
+                    "affectedNodes": [
+                        6
+                    ]
+                },
+                {
+                    "type": "ShutDown",
+                    "affectedNodes": [
+                        5,
+                        13,
+                        20
+                    ]
+                },
+                {
+                    "type": "StartUp",
+                    "affectedNodes": [
+                        14
+                    ]
+                },
+                {
+                    "type": "ShutDown",
+                    "affectedNodes": [
+                        45,
+                        29
+                    ]
+                },
+                {
+                    "type": "Exploit",
+                    "affectedNodes": [
+                        4
+                    ]
+                },
+                {
+                    "type": "StartUp",
+                    "affectedNodes": [
+                        9,
+                        14,
+                        33
+                    ]
+                },
+                {
+                    "type": "ShutDown",
+                    "affectedNodes": [
+                        21,
+                        34,
+                        37,
+                        28
+                    ]
+                },
+                {
+                    "type": "Discovery",
+                    "affectedNodes": [
+                        23
+                    ]
+                },
+                {
+                    "type": "StartUp",
+                    "affectedNodes": [
+                        14,
+                        5,
+                        27,
+                        36
+                    ]
+                },
+                {
+                    "type": "ShutDown",
+                    "affectedNodes": [
+                        19,
+                        8
+                    ]
+                },
+                {
+                    "type": "StartUp",
+                    "affectedNodes": [
+                        26,
+                        30
+                    ]
+                },
+                {
+                    "type": "ShutDown",
+                    "affectedNodes": [
+                        38,
+                        40
+                    ]
+                },
+                {
+                    "type": "ShutDown",
+                    "affectedNodes": [
+                        47,
+                        38
+                    ]
+                },
+                {
+                    "type": "Discovery",
+                    "affectedNodes": [
+                        6,
+                        6,
+                        32
+                    ]
+                },
+                {
+                    "type": "ShutDown",
+                    "affectedNodes": [
+                        37,
+                        5
+                    ]
+                },
+                {
+                    "type": "StartUp",
+                    "affectedNodes": [
+                        14,
+                        33,
+                        44,
+                        42
+                    ]
+                },
+                {
+                    "type": "Discovery",
+                    "affectedNodes": [
+                        30
+                    ]
+                },
+                {
+                    "type": "Discovery",
+                    "affectedNodes": [
+                        30
+                    ]
+                },
+                {
+                    "type": "ShutDown",
+                    "affectedNodes": [
+                        47
+                    ]
+                },
+                {
+                    "type": "ShutDown",
+                    "affectedNodes": [
+                        36,
+                        29,
+                        14
+                    ]
+                }
+            ],
+            "discoveredNodeIds": [
+                0
+            ]
+        }
+    ]
+}
