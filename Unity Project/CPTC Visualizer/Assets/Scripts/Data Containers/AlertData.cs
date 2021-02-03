@@ -3,7 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class AlertData: MonoBehaviour
+/// <summary>
+/// Used to contain data from the alerts read in
+/// Uses an interface that allows the data to be stored into the priority queues
+/// </summary>
+public class AlertData : MonoBehaviour, IPriorityEvent
 {
     #region Fields
 
@@ -11,12 +15,15 @@ public class AlertData: MonoBehaviour
 
     [SerializeField]
     private List<int> affectedNodes;
-    
+
+    private int team;
+    private int timestamp;
+    private int priority;
     #endregion Fields
-    
+
     #region Properties
 
-  /// <summary>
+    /// <summary>
     /// Gets or sets what kind of event this alert is.
     /// </summary>
     public CPTCEvents Type
@@ -41,9 +48,32 @@ public class AlertData: MonoBehaviour
             return affectedNodes;
         }
     }
-    
+
+    public int Resultant
+    {
+        get { return timestamp / (priority * 5); }
+    }
+
+    public int Priority
+    {
+        get { return priority; }
+    }
+
+    // probably going to be deleted
+    public int EventID => throw new NotImplementedException();
+
+    public int Team
+    {
+        get { return team; }
+    }
+
+    public int Timestamp
+    {
+        get { return timestamp; }
+    }
+
     #endregion Properties
-    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -54,6 +84,6 @@ public class AlertData: MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }
