@@ -168,7 +168,7 @@ public class InfrastructureManager: Singleton<InfrastructureManager>
         }
 
         // Instantiate our infrastructure and populate it.
-        infrastructure = Instantiate(infraGO, this.gameObject.transform);
+        infrastructure = Instantiate(infraGO);
 
         for(int i = 0; i < payload.infrastructure.networks.Count; i++)
         {
@@ -203,6 +203,8 @@ public class InfrastructureManager: Singleton<InfrastructureManager>
 
             infrastructure.Networks.Add(newNet);
         }
+
+        infrastructure.gameObject.transform.position = this.gameObject.transform.position;
 
         GenerateGraph();
 
@@ -250,7 +252,7 @@ public class InfrastructureManager: Singleton<InfrastructureManager>
             float angle = i * Mathf.PI * 2f / infrastructure.Networks.Count;
 
             // Move the network to another position based-on a..radial position?
-            infrastructure.Networks[i].gameObject.transform.position = new Vector3(Mathf.Cos(angle) * radius, Mathf.Sin(angle) * radius, 0);
+            infrastructure.Networks[i].gameObject.transform.position = infrastructure.gameObject.transform.position + new Vector3(Mathf.Cos(angle) * radius, Mathf.Sin(angle) * radius, 0);
             infrastructure.Networks[i].gameObject.transform.localScale = new Vector2(0.5f, 0.5f);
 
             // Edit the network's lineRenderer to re-size it to encompase the node sprites.
