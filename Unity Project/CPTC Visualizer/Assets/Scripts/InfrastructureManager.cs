@@ -233,9 +233,12 @@ public class InfrastructureManager: Singleton<InfrastructureManager>
     {
         foreach(TeamData team in teams)
         {
+            // Instantiate a copy of the infrastructure, and make it a child of the team's gameObject.
             InfrastructureData newInfra = Instantiate(infrastructure, team.gameObject.transform);
             newInfra.gameObject.transform.position = infrastructure.gameObject.transform.position;
             team.InfraCopy = newInfra;
+
+            // Create the team's graph, then hide it for later.
             team.BuildTeamGraph();
             team.InfraCopy.gameObject.SetActive(false);
         }

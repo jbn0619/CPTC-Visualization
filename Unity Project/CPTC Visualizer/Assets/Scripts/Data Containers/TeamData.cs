@@ -119,6 +119,10 @@ public class TeamData: MonoBehaviour
                     break;
                 // This is a high-priority event.
                 case CPTCEvents.Exploit:
+                    int randNodeIndex = Random.Range(0, discoveredNodeIds.Count);
+                    int randNodeID = discoveredNodeIds[randNodeIndex];
+
+                    infraCopy.AllNodes[randNodeID].NodeSprite.color = Color.magenta;
                     break;
                 // This is a high-priority event.
                 case CPTCEvents.ShutDown:
@@ -164,16 +168,18 @@ public class TeamData: MonoBehaviour
         // Place each network first, then place nodes around them.
         for (int i = 0; i < infraCopy.Networks.Count; i++)
         {
-            float radius = 3f;
+            float radius = infraCopy.Networks.Count / 1.5f;
             float angle = i * Mathf.PI * 2f / infraCopy.Networks.Count;
 
             infraCopy.Networks[i].gameObject.transform.position = infraCopy.gameObject.transform.position + new Vector3(Mathf.Cos(angle) * radius, Mathf.Sin(angle) * radius, 0);
             infraCopy.Networks[i].gameObject.transform.localScale = new Vector2(0.5f, 0.5f);
 
+            float nodeRadius = infraCopy.Networks.Count / (radius * 2);
+
             // Place each of the netowrk's nodes around in a circle.
             for (int j = 0; j < infraCopy.Networks[i].Nodes.Count; j++)
             {
-                radius = 0.75f;
+                radius = nodeRadius;
                 angle = j * Mathf.PI * 2f / infraCopy.Networks[i].Nodes.Count;
 
                 infraCopy.Networks[i].Nodes[j].gameObject.transform.position = infraCopy.Networks[i].gameObject.transform.position + new Vector3(Mathf.Cos(angle) * radius, Mathf.Sin(angle) * radius, 0);
