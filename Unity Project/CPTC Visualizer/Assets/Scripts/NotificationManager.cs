@@ -13,12 +13,14 @@ public class NotificationManager: MonoBehaviour
     private List<Notification> alertPriorityQueue;
 
     [SerializeField]
-    private List<Notification> activeNotifs;
+    private Notification[] activeNotifs;
 
     [SerializeField]
-    private List<float> notifEpireTimers;
+    private float[] notifEpireTimers;
     private float notifExpireTimer;
     private float lastNotifAdded;
+
+    private int numActiveNotifs;
 
     private Canvas canvas;
 
@@ -33,7 +35,9 @@ public class NotificationManager: MonoBehaviour
     {
         canvas = UIManager.Instance.ActiveCanvas;
 
-        notifEpireTimers = new List<float>();
+        activeNotifs = new Notification[6];
+        notifEpireTimers = new float[6];
+        numActiveNotifs = 0;
     }
 
     // Update is called once per frame
@@ -42,11 +46,11 @@ public class NotificationManager: MonoBehaviour
         // Adds an alert if there is space in shownAlerts.
         //      This is timegated to cheaply keep alert notifications
         //      from moving improperly.
-        if(activeNotifs.Count < 6 
+        if(numActiveNotifs < 6 
             && alertPriorityQueue.Count > 0
             && Time.time > lastNotifAdded)
         {
-            if(activeNotifs.Count == 0)
+            if(numActiveNotifs == 0)
             {
                 notifExpireTimer = Time.time;
                 lastNotifAdded = Time.time;
@@ -56,7 +60,7 @@ public class NotificationManager: MonoBehaviour
 
             lastNotifAdded = Time.time + 0.75f;
         }
-        else if(activeNotifs.Count > 0)
+        else if(numActiveNotifs > 0)
         {
             RemoveOldNotifications();
         }
@@ -68,14 +72,16 @@ public class NotificationManager: MonoBehaviour
     /// </summary>
     public void AddNewNotification()
     {
+        ShiftNotificationsDown();
+
         // Moves events down
-        if(activeNotifs.Count > 0)
-        {
-            for(int i = 0; i < activeNotifs.Count; i++)
-            {
-                activeNotifs[i].TargetPos = new Vector3(0, -60, 0);
-            }
-        }
+        //if (numActiveNotifs > 0)
+        //{
+        //    for(int i = 0; i < numActiveNotifs; i++)
+        //    {
+        //        activeNotifs[i].TargetPos = new Vector3(0, -60, 0);
+        //    }
+        //}
         
         // Slides new event into the top of the container
         Notification newNotif = Instantiate(notification, 
@@ -85,9 +91,11 @@ public class NotificationManager: MonoBehaviour
         newNotif.TargetPos = new Vector3(230, 0, 0);
         newNotif.NotifText = alertPriorityQueue[0].NotifText;
         newNotif.Priority = alertPriorityQueue[0].Priority;
-        activeNotifs.Add(newNotif);
+        
+        activeNotifs[0] = newNotif;
+        numActiveNotifs++;
 
-        notifEpireTimers.Add(Time.time);
+        notifEpireTimers[0] = Time.time;
 
         alertPriorityQueue.RemoveAt(0);
     }
@@ -116,7 +124,7 @@ public class NotificationManager: MonoBehaviour
     {
         int removed = -1;
 
-        for (int i = 0; i < activeNotifs.Count; i++)
+        for (int i = numActiveNotifs - 1; i < numActiveNotifs; i++)
         {
             int priority = activeNotifs[i].Priority;
 
@@ -161,10 +169,36 @@ public class NotificationManager: MonoBehaviour
         {
             activeNotifs[removed].TargetPos = new Vector3(-250, 0, 0);
             activeNotifs[removed].Invoke("DestroySelf", 0.5f);
-            notifEpireTimers.RemoveAt(removed);
-            activeNotifs.RemoveAt(removed);
-        }
+            notifEpireTimers[removed] = 0;
+            activeNotifs[removed] = null;
 
+            numActiveNotifs--;
+        }
+    }
+
+    /// <summary>
+    /// Shift Notifications Down
+    ///     Checks all notifications and moves them down in the list if an
+    ///     open space is avialable.
+    /// </summary>
+    public void ShiftNotificationsDown()
+    {
+        if (numActiveNotifs > 0)
+        {
+            for (int i = 4; i >= 0; i--)
+            {
+                if (activeNotifs[i] != null
+                    && activeNotifs[i + 1] == null)
+                {
+                    activeNotifs[i].TargetPos = new Vector3(0, -60, 0);
+                    activeNotifs[i + 1] = activeNotifs[i];
+                    activeNotifs[i] = null;
+
+                    notifEpireTimers[i + 1] = notifEpireTimers[i];
+                    notifEpireTimers[i] = 0;
+                }
+            }
+        }
     }
 
     /// <summary>
