@@ -6,8 +6,7 @@ public class CameraManager: MonoBehaviour
 {
     #region Fields
 
-    [SerializeField]
-    private Camera cam;
+    
 
     [Header("Camera Controls")]
     [SerializeField]
@@ -18,7 +17,12 @@ public class CameraManager: MonoBehaviour
     private KeyCode left;
     [SerializeField]
     private KeyCode right;
+    [SerializeField]
+    private KeyCode faster;
 
+    [Header("Other fields")]
+    [SerializeField]
+    private Camera cam;
     [SerializeField]
     private float moveSpeed;
 
@@ -39,7 +43,7 @@ public class CameraManager: MonoBehaviour
     {
         // Begin by seeing if we're using faster speed or not.
         float speed;
-        if (Input.GetKey(KeyCode.LeftShift)) speed = moveSpeed * 2;
+        if (Input.GetKey(faster)) speed = moveSpeed * 2;
         else speed = moveSpeed;
 
         // Check to see what direction the camera will move in.
