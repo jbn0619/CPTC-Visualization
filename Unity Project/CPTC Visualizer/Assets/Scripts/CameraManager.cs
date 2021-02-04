@@ -6,8 +6,6 @@ public class CameraManager: MonoBehaviour
 {
     #region Fields
 
-    
-
     [Header("Camera Controls")]
     [SerializeField]
     private KeyCode up;
