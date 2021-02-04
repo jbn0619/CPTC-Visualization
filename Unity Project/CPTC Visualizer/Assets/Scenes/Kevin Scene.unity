@@ -3364,7 +3364,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e77f5a52d876e6c4285fdff513683fe1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  notification: {fileID: 0}
+  notification: {fileID: -8004500244792746381, guid: b09565fcc8d6b8e4483a27ab48f1ffce, type: 3}
   alertPriorityQueue: []
   activeNotifs: []
   notifEpireTimers: []
@@ -3991,6 +3991,10 @@ PrefabInstance:
       propertyPath: timeBetweenAlerts
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 4795010010054222756, guid: 4981e6d4588497b4b93df4cc6d8cea7e, type: 3}
+      propertyPath: notificationManager
+      value: 
+      objectReference: {fileID: 1743057227}
     - target: {fileID: 4795010010054222757, guid: 4981e6d4588497b4b93df4cc6d8cea7e, type: 3}
       propertyPath: m_RootOrder
       value: 1

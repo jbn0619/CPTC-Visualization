@@ -5,6 +5,7 @@ using UnityEngine;
 public class PriorityQueue
 {
     #region Fields
+    [SerializeField]
     private List<IPriorityEvent> queue;
 
     #endregion Fields
@@ -15,7 +16,7 @@ public class PriorityQueue
     /// </summary>
     public IPriorityEvent Peek
     {
-        get { return queue[0]; }
+        get { return IsEmpty ? null : queue[0]; }
     }
 
     /// <summary>
@@ -31,7 +32,7 @@ public class PriorityQueue
     /// </summary>
     public bool IsEmpty
     {
-        get { return Size > 0 ? true : false; }
+        get { return Size > 0 ? false : true; }
     }
     #endregion Properties
 
@@ -62,6 +63,11 @@ public class PriorityQueue
     /// <param name="_data">New Data</param>
     public void Push(IPriorityEvent _data)
     {
+        if (Size == 0)
+        {
+            queue.Add(_data);
+        }
+
         int count = queue.Count;
         for (int i = 0; i < count; i++)
         {

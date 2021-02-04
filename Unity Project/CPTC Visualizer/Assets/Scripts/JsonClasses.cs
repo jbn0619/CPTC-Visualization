@@ -16,15 +16,19 @@ namespace Assets.Scripts
         public string type;
 
         public List<int> affectedNodes;
+        public int priority;
+        public int timestamp;
 
         /// <summary>
         /// Constructor for the Alert class.
         /// </summary>
         /// <param name="t">This alert's type.</param>
-        public Alert(CPTCEvents t, List<int> a)
+        public Alert(CPTCEvents t, List<int> a, int _priority, int _time)
         {
             type = t.ToString();
             affectedNodes = a;
+            priority = _priority;
+            timestamp = _time;
         }
     }
 

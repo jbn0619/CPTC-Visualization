@@ -141,6 +141,7 @@ public class InfrastructureManager: Singleton<InfrastructureManager>
         for(int i = 0; i < payload.teams.Count; i++)
         {
             TeamData newTeam = Instantiate(teamGO, Vector3.zero, Quaternion.identity);
+            newTeam.SetupQueue();
             newTeam.TeamId = payload.teams[i].teamId;
             // Move all discovered node-IDs into newTeam.
             foreach (int n in payload.teams[i].discoveredNodeIds)
@@ -154,6 +155,8 @@ public class InfrastructureManager: Singleton<InfrastructureManager>
                 AlertData newAlert = Instantiate(alertGO, newTeam.transform);
                 Enum.TryParse(a.type, out CPTCEvents newEvent);
                 newAlert.Type = newEvent;
+                newAlert.Priority = a.priority;
+                newAlert.Timestamp = a.timestamp;
 
                 // Transfer over our affected nodes for this alert.
                 foreach(int n in a.affectedNodes)
@@ -161,7 +164,7 @@ public class InfrastructureManager: Singleton<InfrastructureManager>
                     newAlert.AffectedNodes.Add(n);
                 }
                 
-                newTeam.Alerts.Add(newAlert);
+                newTeam.Queue.Push(newAlert); // .Alerts.Add(newAlert);
             }
 
             teams.Add(newTeam);
@@ -218,9 +221,9 @@ public class InfrastructureManager: Singleton<InfrastructureManager>
     {
         foreach(TeamData team in teams)
         {
-            if(team.Alerts.Count > 0)
+            if(!team.Queue.IsEmpty) // team.Alerts.Count > 0
             {
-                notificationManager.CreateNotification(team.TeamId, team.Alerts[0].Type);
+                notificationManager.CreateNotification(team.TeamId, ((AlertData)(team.Queue.Peek)).Type); // team.Alerts[0].Type
                 team.ReadNextAlert();
             }
         }
