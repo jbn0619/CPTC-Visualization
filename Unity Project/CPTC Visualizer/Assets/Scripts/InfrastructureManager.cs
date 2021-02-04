@@ -237,6 +237,7 @@ public class InfrastructureManager: Singleton<InfrastructureManager>
         foreach(TeamData team in teams)
         {
             InfrastructureData newInfra = Instantiate(infrastructure, team.gameObject.transform);
+            newInfra.gameObject.transform.position = infrastructure.gameObject.transform.position;
             team.InfraCopy = newInfra;
             team.BuildTeamGraph();
             team.InfraCopy.gameObject.SetActive(false);
@@ -269,7 +270,7 @@ public class InfrastructureManager: Singleton<InfrastructureManager>
                 angle = j * Mathf.PI * 2f / infrastructure.Networks[i].Nodes.Count;
 
                 // Move the node to another position based-on a radial position.
-                infrastructure.Networks[i].Nodes[j].gameObject.transform.position = new Vector3(infrastructure.Networks[i].transform.position.x + Mathf.Cos(angle) * radius, infrastructure.Networks[i].transform.position.y + Mathf.Sin(angle) * radius, 0);
+                infrastructure.Networks[i].Nodes[j].gameObject.transform.position = infrastructure.Networks[i].gameObject.transform.position + new Vector3(Mathf.Cos(angle) * radius, Mathf.Sin(angle) * radius, 0);
                 infrastructure.Networks[i].Nodes[j].gameObject.transform.localScale = new Vector2(0.15f, 0.15f);
             }
         }

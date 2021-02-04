@@ -12,6 +12,9 @@ public class InfrastructureData: MonoBehaviour
     [SerializeField]
     private List<NodeData> allNodes;
 
+    [SerializeField]
+    private List<int> shutDownNodes;
+
     #endregion Fields
 
     #region Properties
@@ -35,6 +38,17 @@ public class InfrastructureData: MonoBehaviour
         get
         {
             return allNodes;
+        }
+    }
+
+    /// <summary>
+    /// Gets a list of IDs of shut-down nodes.
+    /// </summary>
+    public List<int> ShutDownNodes
+    {
+        get
+        {
+            return shutDownNodes;
         }
     }
     

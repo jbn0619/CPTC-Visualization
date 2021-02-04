@@ -16,6 +16,9 @@ public class NodeData: MonoBehaviour
 
     [SerializeField]
     private List<LineRenderer> connectionGOS;
+
+    [SerializeField]
+    private SpriteRenderer nodeSprite;
     
     #endregion Fields
     
@@ -88,6 +91,17 @@ public class NodeData: MonoBehaviour
         get
         {
             return connectionGOS;
+        }
+    }
+
+    /// <summary>
+    /// Gets this node's sprite renderer.
+    /// </summary>
+    public SpriteRenderer NodeSprite
+    {
+        get
+        {
+            return nodeSprite;
         }
     }
     
