@@ -201,6 +201,28 @@ public class JSONWriter: MonoBehaviour
                 int eIndex = UnityEngine.Random.Range(0, Enum.GetNames(typeof(CPTCEvents)).Length);
                 CPTCEvents e = (CPTCEvents)eIndex;
 
+                int time = j * UnityEngine.Random.Range(1, 10);
+
+                int p = 5;
+                switch (e)
+                {
+                    case CPTCEvents.Discovery:
+                        p = 3;
+                        break;
+
+                    case CPTCEvents.Exploit:
+                        p = 1;
+                        break;
+
+                    case CPTCEvents.ShutDown:
+                        p = 2;
+                        break;
+
+                    case CPTCEvents.StartUp:
+                        p = 5;
+                        break;
+                }
+
                 // List-out affected nodes.
                 List<int> affectedNodes = new List<int>();
                 int affectNum = UnityEngine.Random.Range(1, 5);
@@ -209,7 +231,7 @@ public class JSONWriter: MonoBehaviour
                     affectedNodes.Add(UnityEngine.Random.Range(0, nodeCount * networkCount));
                 }
 
-                Alert a = new Alert(e, affectedNodes);
+                Alert a = new Alert(e, affectedNodes, p, time);
 
                 alerts.Add(a);
             }

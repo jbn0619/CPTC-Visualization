@@ -12,6 +12,9 @@ public class TeamData: MonoBehaviour
     private List<AlertData> alerts;
 
     [SerializeField]
+    private PriorityQueue queue;
+
+    [SerializeField]
     private List<int> discoveredNodeIds;
 
     private InfrastructureData infraCopy;
@@ -36,6 +39,15 @@ public class TeamData: MonoBehaviour
                 teamId = value;
             }
         }
+    }
+
+    /// <summary>
+    /// Returns a reference to the queue that should allow
+    /// other classes to interact with the queue of the team
+    /// </summary>
+    public PriorityQueue Queue
+    {
+        get { return queue; }
     }
 
     /// <summary>
@@ -80,7 +92,12 @@ public class TeamData: MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // queue = new PriorityQueue();
+    }
 
+    public void SetupQueue()
+    {
+        queue = new PriorityQueue();
     }
 
     // Update is called once per frame
@@ -94,10 +111,10 @@ public class TeamData: MonoBehaviour
     /// </summary>
     public void ReadNextAlert()
     {
-        if (alerts.Count > 0)
+        if (!queue.IsEmpty) // alerts.Count > 0
         {
-            AlertData newAlert = alerts[0];
-            alerts.RemoveAt(0);
+            AlertData newAlert = (AlertData)queue.Pop(); // alerts[0];
+            //alerts.RemoveAt(0);
 
             switch (newAlert.Type)
             {

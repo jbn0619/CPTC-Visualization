@@ -57,6 +57,7 @@ public class AlertData : MonoBehaviour, IPriorityEvent
     public int Priority
     {
         get { return priority; }
+        set { priority = value; }
     }
 
     // probably going to be deleted
@@ -70,6 +71,7 @@ public class AlertData : MonoBehaviour, IPriorityEvent
     public int Timestamp
     {
         get { return timestamp; }
+        set { timestamp = value; }
     }
 
     #endregion Properties
