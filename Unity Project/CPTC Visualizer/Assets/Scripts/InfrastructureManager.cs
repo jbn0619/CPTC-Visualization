@@ -249,7 +249,7 @@ public class InfrastructureManager: Singleton<InfrastructureManager>
         // Place each network first, then place nodes around them.
         for(int i = 0; i < infrastructure.Networks.Count; i++)
         {
-            float radius = 3;
+            float radius = infrastructure.Networks.Count / 1.5f;
             float angle = i * Mathf.PI * 2f / infrastructure.Networks.Count;
 
             // Move the network to another position based-on a..radial position?
@@ -257,13 +257,13 @@ public class InfrastructureManager: Singleton<InfrastructureManager>
             infrastructure.Networks[i].gameObject.transform.localScale = new Vector2(0.5f, 0.5f);
 
             // Edit the network's lineRenderer to re-size it to encompase the node sprites.
-            float nodeRadius = infrastructure.Networks[i].Nodes.Count / 5;
-            GenerateNetworkOutline(infrastructure.Networks[i], nodeRadius);
+            float nodeRadius = infrastructure.Networks.Count / (radius * 2);
+            GenerateNetworkOutline(infrastructure.Networks[i], nodeRadius + 0.5f);
 
             // Place each of the netowrk's nodes around in a circle.
             for(int j = 0; j < infrastructure.Networks[i].Nodes.Count; j++)
             {
-                radius = 0.75f;
+                radius = nodeRadius;
                 angle = j * Mathf.PI * 2f / infrastructure.Networks[i].Nodes.Count;
 
                 // Move the node to another position based-on a radial position.
