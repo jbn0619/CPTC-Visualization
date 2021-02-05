@@ -167,6 +167,11 @@ public class TeamData: MonoBehaviour
                         infraCopy.ShutDownNodes.Remove(startUpIndex);
                     }
                     break;
+                case CPTCEvents.NetworkScan:
+                    // Get a random network to scan.
+                    int netIndex = Random.Range(0, infraCopy.Networks.Count);
+                    infraCopy.Networks[netIndex].ScanActive = true;
+                    break;
                 default:
                     break;
             }

@@ -6,7 +6,7 @@ using UnityEngine.UI;
 using System.IO;
 using Assets.Scripts;
 
-public enum CPTCEvents { Exploit, ShutDown, StartUp, Discovery}
+public enum CPTCEvents { Exploit, ShutDown, StartUp, Discovery, NetworkScan}
 
 public enum NodeTypes { Host, Router}
 

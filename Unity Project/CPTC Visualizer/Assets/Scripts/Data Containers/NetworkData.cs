@@ -8,6 +8,10 @@ public class NetworkData: MonoBehaviour
 
     private int id;
     private bool isActive;
+    private bool scanActive;
+    [SerializeField]
+    private float scanTime;
+    private float scanCount;
 
     [SerializeField]
     private List<NodeData> nodes;
@@ -101,18 +105,48 @@ public class NetworkData: MonoBehaviour
             return outline;
         }
     }
+
+    /// <summary>
+    /// Gets or set if this network is being scanned or not.
+    /// </summary>
+    public bool ScanActive
+    {
+        get
+        {
+            return scanActive;
+        }
+        set
+        {
+            scanActive = value;
+        }
+    }
     
     #endregion Properties
     
     // Start is called before the first frame update
     void Start()
     {
-
+        scanCount = 0;
+        scanActive = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        // Check what material we need to look-at.
+        if (scanActive)
+        {
+            scanCount += Time.deltaTime;
+            if (scanCount >= scanTime)
+            {
+                scanActive = false;
+                scanCount = 0f;
+            }
+            outline.material = GeneralResources.Instance.NetScan;
+        }
+        else
+        {
+            outline.material = GeneralResources.Instance.NetBase;
+        }
     }
 }
