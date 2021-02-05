@@ -151,18 +151,23 @@ public class TeamData: MonoBehaviour
                             // Disable the node's gameObject, then add its ID to shutDownNodes.
                             infraCopy.ShutDownNodes.Add(n);
                             //infraCopy.AllNodes[n].gameObject.SetActive(false);
-                            infraCopy.AllNodes[n].NodeSprite.color = Color.red;
+                            infraCopy.AllNodes[n].NodeSprite.enabled = false;
                         }
                     }
                     break;
                 // This is a low-priority event.
                 case CPTCEvents.StartUp:
                     // Grab a random node that has been shut down, and start it up again.
-                    int startUpIndex = Random.Range(0, infraCopy.ShutDownNodes.Count);
-                    startUpIndex = infraCopy.ShutDownNodes[startUpIndex];
-                    //infraCopy.AllNodes[startUpIndex].gameObject.SetActive(true);
-                    infraCopy.AllNodes[startUpIndex].NodeSprite.color = Color.white;
-                    infraCopy.ShutDownNodes.Remove(startUpIndex);
+                    if (infraCopy.ShutDownNodes.Count > 0)
+                    {
+                        int startUpIndex = Random.Range(0, infraCopy.ShutDownNodes.Count);
+                        startUpIndex = infraCopy.ShutDownNodes[startUpIndex];
+                        //infraCopy.AllNodes[startUpIndex].gameObject.SetActive(true);
+                        infraCopy.AllNodes[startUpIndex].NodeSprite.enabled = true;
+                        infraCopy.ShutDownNodes.Remove(startUpIndex);
+                    }
+                    break;
+                default:
                     break;
             }
 
