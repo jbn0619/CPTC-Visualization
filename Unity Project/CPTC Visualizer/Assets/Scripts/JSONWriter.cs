@@ -56,7 +56,6 @@ public class JSONWriter: MonoBehaviour
             return randomizeInfrastructure;
         }
     }
-    
     #endregion Properties
     
     // Start is called before the first frame update
