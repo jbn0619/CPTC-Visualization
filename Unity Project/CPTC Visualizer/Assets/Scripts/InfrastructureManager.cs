@@ -7,18 +7,24 @@ using System;
 using UnityEngine.UI;
 using UnityEngine.Events;
 
+public enum CompetitionType { CPTC, CCDC}
+
 public class InfrastructureManager: Singleton<InfrastructureManager>
 {
     #region Fields
 
     private InfrastructureData infrastructure;
     private List<TeamData> teams;
-    
-    public int timeBetweenAlerts = 5;
 
-    public float timer;
-    public bool simulationStart = false;
-
+    [Header("Simulation Fields")]
+    [SerializeField]
+    private CompetitionType competitionType;
+    [SerializeField]
+    private int timeBetweenAlerts = 5;
+    [SerializeField]
+    private float timer;
+    [SerializeField]
+    private bool simulationStart = false;
     [SerializeField]
     private bool showConnections;
 
@@ -38,15 +44,14 @@ public class InfrastructureManager: Singleton<InfrastructureManager>
     [SerializeField]
     private NotificationManager notificationManager;
 
-    [Header("Team View Fields")]
-    private int currentTeamView;
+    [Header("Team View Fields")] 
     [SerializeField]
     private TeamViewButton teamViewButGO;
-
-    private List<TeamViewButton> teamViewButtons;
-
     [SerializeField]
     private Text teamViewLabel;
+
+    private int currentTeamView;
+    private List<TeamViewButton> teamViewButtons;
 
     #endregion Fields
     
@@ -465,23 +470,30 @@ public class InfrastructureManager: Singleton<InfrastructureManager>
         }
 
         // Create each button, then edit their index and text fields.
-        for (int i = 0; i < teams.Count + 1; i++)
+        if (UIManager.Instance.ActiveCanvas != null)
         {
-            TeamViewButton newButton = Instantiate(teamViewButGO, UIManager.Instance.ActiveCanvas.transform);
-            if (i == teams.Count)
+            for (int i = 0; i < teams.Count + 1; i++)
             {
-                newButton.NewTeamIndex = -1;
-                newButton.ButtonText.text = "Main";
-            }
-            else
-            {
-                newButton.NewTeamIndex = i;
-                newButton.ButtonText.text = "Team " + i;
-            }
+                TeamViewButton newButton = Instantiate(teamViewButGO, UIManager.Instance.ActiveCanvas.transform);
+                if (i == teams.Count)
+                {
+                    newButton.NewTeamIndex = -1;
+                    newButton.ButtonText.text = "Main";
+                }
+                else
+                {
+                    newButton.NewTeamIndex = i;
+                    newButton.ButtonText.text = "Team " + i;
+                }
 
-            // Finally, move the button to its proper spot and add it to teamViewButtons.
-            newButton.gameObject.transform.position = new Vector3(95 + (i * 100), Screen.height - 50, 0);
-            teamViewButtons.Add(newButton);
+                // Finally, move the button to its proper spot and add it to teamViewButtons.
+                newButton.gameObject.transform.position = new Vector3(95 + (i * 100), Screen.height - 50, 0);
+                teamViewButtons.Add(newButton);
+            }
+        }
+        else
+        {
+            Debug.Log("ERROR: NO ACTIVE CANVAS IN SCENE!");
         }
     }
 
