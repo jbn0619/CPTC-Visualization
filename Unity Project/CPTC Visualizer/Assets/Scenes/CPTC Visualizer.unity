@@ -3366,7 +3366,7 @@ GameObject:
   - component: {fileID: 1743057228}
   - component: {fileID: 1743057227}
   m_Layer: 0
-  m_Name: AlertManager
+  m_Name: Notification Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3388,6 +3388,8 @@ MonoBehaviour:
   alertPriorityQueue: []
   activeNotifs: []
   notifEpireTimers: []
+  numActiveNotifs: 0
+  currentTime: 0
 --- !u!4 &1743057228
 Transform:
   m_ObjectHideFlags: 0
