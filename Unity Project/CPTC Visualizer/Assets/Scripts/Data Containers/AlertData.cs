@@ -16,6 +16,7 @@ public class AlertData : MonoBehaviour, IPriorityEvent
     [SerializeField]
     private List<int> affectedNodes;
 
+    // fields to help the priority queues
     private int team;
     private int timestamp;
     private int priority;
