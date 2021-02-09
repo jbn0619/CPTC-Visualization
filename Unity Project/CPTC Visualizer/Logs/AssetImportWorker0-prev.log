@@ -1,166 +1,548 @@
 Using pre-set license
 Built from '2020.2/staging' branch; Version is '2020.2.3f1 (8ff31bc5bf5b) revision 9433883'; Using compiler version '192528614'; Build Type 'Release'
-OS: 'Windows 10 Home; OS build 18363.1316; Version 1909; 64bit' Language: 'en' Physical Memory: 16318 MB
+OS: 'Windows 10 Home; OS build 19042.746; Version 2009; 64bit' Language: 'en' Physical Memory: 16328 MB
 BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1, IsPro: 0
 
  COMMAND LINE ARGUMENTS:
-C:\Program Files\Unity\Hub\Editor\2020.2.3f1\Editor\Unity.exe
+E:\Program Files\Unity\2020.2.3f1\Editor\Unity.exe
 -adb2
 -batchMode
 -noUpm
 -name
 AssetImportWorker0
 -projectPath
-C:/Users/klapo/Documents/GitHub/CPTC-Visualization/Unity Project/CPTC Visualizer
+E:/justi/Documents/repos/CPTC-Visualization/Unity Project/CPTC Visualizer
 -logFile
 Logs/AssetImportWorker0.log
 -srvPort
-64727
-Successfully changed project path to: C:/Users/klapo/Documents/GitHub/CPTC-Visualization/Unity Project/CPTC Visualizer
-C:/Users/klapo/Documents/GitHub/CPTC-Visualization/Unity Project/CPTC Visualizer
+64364
+Successfully changed project path to: E:/justi/Documents/repos/CPTC-Visualization/Unity Project/CPTC Visualizer
+E:/justi/Documents/repos/CPTC-Visualization/Unity Project/CPTC Visualizer
 Using Asset Import Pipeline V2.
-Refreshing native plugins compatible for Editor in 41.10 ms, found 1 plugins.
+Refreshing native plugins compatible for Editor in 76.19 ms, found 1 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 2020.2.3f1 (8ff31bc5bf5b)
-[Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/2020.2.3f1/Editor/Data/Resources/UnitySubsystems
-[Subsystems] Discovering subsystems at path C:/Users/klapo/Documents/GitHub/CPTC-Visualization/Unity Project/CPTC Visualizer/Assets
+[Subsystems] Discovering subsystems at path E:/Program Files/Unity/2020.2.3f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path E:/justi/Documents/repos/CPTC-Visualization/Unity Project/CPTC Visualizer/Assets
 GfxDevice: creating device client; threaded=0
 Direct3D:
     Version:  Direct3D 11.0 [level 11.1]
-    Renderer: NVIDIA GeForce RTX 2060 (ID=0x1e89)
+    Renderer: Radeon (TM) RX 480 Graphics (ID=0x67df)
     Vendor:   
-    VRAM:     5968 MB
-    Driver:   27.21.14.5751
+    VRAM:     8171 MB
+    Driver:   27.20.14501.18003
 Initialize mono
-Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/2020.2.3f1/Editor/Data/Managed'
-Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/2020.2.3f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit'
-Mono config path = 'C:/Program Files/Unity/Hub/Editor/2020.2.3f1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56416
+Mono path[0] = 'E:/Program Files/Unity/2020.2.3f1/Editor/Data/Managed'
+Mono path[1] = 'E:/Program Files/Unity/2020.2.3f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit'
+Mono config path = 'E:/Program Files/Unity/2020.2.3f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56160
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
-Register platform support module: C:/Program Files/Unity/Hub/Editor/2020.2.3f1/Editor/Data/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll
-Register platform support module: C:/Program Files/Unity/Hub/Editor/2020.2.3f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
-Registered in 0.002503 seconds.
+Register platform support module: E:/Program Files/Unity/2020.2.3f1/Editor/Data/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll
+Register platform support module: E:/Program Files/Unity/2020.2.3f1/Editor/Data/PlaybackEngines/MacStandaloneSupport/UnityEditor.OSXStandalone.Extensions.dll
+Register platform support module: E:/Program Files/Unity/2020.2.3f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Register platform support module: E:/Program Files/Unity/2020.2.3f1/Editor/Data/PlaybackEngines/LinuxStandaloneSupport/UnityEditor.LinuxStandalone.Extensions.dll
+Registered in 0.003232 seconds.
+Native extension for LinuxStandalone target not found
 Native extension for WindowsStandalone target not found
+Native extension for OSXStandalone target not found
 Native extension for WebGL target not found
-Refreshing native plugins compatible for Editor in 44.78 ms, found 1 plugins.
+Refreshing native plugins compatible for Editor in 67.04 ms, found 1 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Invoked RoslynAnalysisRunner static constructor.
 RoslynAnalysisRunner will not be running.
 RoslynAnalysisRunner has terminated.
 Mono: successfully reloaded assembly
-- Completed reload, in  2.351 seconds
+- Completed reload, in 10.583 seconds
 Platform modules already initialized, skipping
 Registering precompiled user dll's ...
-Registered in 0.001360 seconds.
+Registered in 0.002314 seconds.
 Begin MonoManager ReloadAssembly
-Symbol file data-000002560CDE6020 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Animation.Editor.dll
-Symbol file LoadedFromMemory is not a mono symbol file
-Symbol file data-0000025607EFBB40 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.InternalAPIEngineBridge.001.dll
-Symbol file LoadedFromMemory is not a mono symbol file
-Symbol file data-0000025607DC41C0 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.VSCode.Editor.dll
-Symbol file LoadedFromMemory is not a mono symbol file
-Symbol file data-000002560884F3E0 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.PixelPerfect.dll
-Symbol file LoadedFromMemory is not a mono symbol file
-Symbol file data-0000025607ED9010 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Tilemap.Editor.dll
-Symbol file LoadedFromMemory is not a mono symbol file
-Symbol file data-00000256081A3010 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\PsdPlugin.dll
-Symbol file LoadedFromMemory is not a mono symbol file
-Symbol file data-00000256080B61E0 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.TextMeshPro.Editor.dll
-Symbol file LoadedFromMemory is not a mono symbol file
-Symbol file data-000002560D3DDA20 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.VisualStudio.Editor.dll
-Symbol file LoadedFromMemory is not a mono symbol file
-Symbol file data-00000256081A3010 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\UnityEngine.TestRunner.dll
-Symbol file LoadedFromMemory is not a mono symbol file
-Symbol file data-00000256080C77F0 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.Timeline.dll
-Symbol file LoadedFromMemory is not a mono symbol file
-Symbol file data-000002560C83C010 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.TextMeshPro.dll
-Symbol file LoadedFromMemory is not a mono symbol file
-Symbol file data-00000256080C77F0 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\UnityEditor.TestRunner.dll
-Symbol file LoadedFromMemory is not a mono symbol file
-Symbol file data-000002560E1AF010 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.Searcher.Editor.dll
-Symbol file LoadedFromMemory is not a mono symbol file
-Symbol file data-000002560E33FC40 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.IK.Editor.dll
-Symbol file LoadedFromMemory is not a mono symbol file
-Symbol file data-00000256080C77F0 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Sprite.Editor.dll
-Symbol file LoadedFromMemory is not a mono symbol file
-Symbol file data-000002560E057620 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Psdimporter.Editor.dll
-Symbol file LoadedFromMemory is not a mono symbol file
-Symbol file data-000002560E057620 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Path.Editor.dll
-Symbol file LoadedFromMemory is not a mono symbol file
-Symbol file data-000002560E2176F0 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.ShaderGraph.Utilities.dll
-Symbol file LoadedFromMemory is not a mono symbol file
-Symbol file data-000002560D548630 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.RenderPipelines.Core.Runtime.dll
-Symbol file LoadedFromMemory is not a mono symbol file
-Symbol file data-000002560E057620 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\UnityEditor.UI.dll
-Symbol file LoadedFromMemory is not a mono symbol file
-Symbol file data-00000256081B3690 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.InputSystem.dll
-Symbol file LoadedFromMemory is not a mono symbol file
-Symbol file data-000002560837EDB0 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.Rider.Editor.dll
-Symbol file LoadedFromMemory is not a mono symbol file
-Symbol file data-000002560E337C80 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.RenderPipelines.Core.ShaderLibrary.dll
-Symbol file LoadedFromMemory is not a mono symbol file
-Symbol file data-000002560D476010 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\UnityEngine.UI.dll
-Symbol file LoadedFromMemory is not a mono symbol file
-Symbol file data-000002560C7F9820 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.InternalAPIEditorBridge.001.dll
-Symbol file LoadedFromMemory is not a mono symbol file
-Symbol file data-000002560CE3A020 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.Mathematics.dll
-Symbol file LoadedFromMemory is not a mono symbol file
-Symbol file data-000002560D1F8030 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.IK.Runtime.dll
-Symbol file LoadedFromMemory is not a mono symbol file
-Symbol file data-000002560CE3A020 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.ShaderGraph.Editor.dll
-Symbol file LoadedFromMemory is not a mono symbol file
-Symbol file data-000002560CD50010 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Animation.Triangle.Runtime.dll
-Symbol file LoadedFromMemory is not a mono symbol file
-Symbol file data-000002560CE23830 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Animation.Runtime.dll
-Symbol file LoadedFromMemory is not a mono symbol file
-Symbol file data-000002560DF8E9B0 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.PixelPerfect.Editor.dll
-Symbol file LoadedFromMemory is not a mono symbol file
-Symbol file data-000002560D4ABFC0 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll
-Symbol file LoadedFromMemory is not a mono symbol file
-Symbol file data-000002560D085520 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.Timeline.Editor.dll
-Symbol file LoadedFromMemory is not a mono symbol file
-Symbol file data-00000256082834A0 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.CollabProxy.Editor.dll
-Symbol file LoadedFromMemory is not a mono symbol file
-Symbol file data-0000025607D5B240 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.Mathematics.Editor.dll
-Symbol file LoadedFromMemory is not a mono symbol file
-Symbol file data-000002560886BFE0 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Common.Runtime.dll
-Symbol file LoadedFromMemory is not a mono symbol file
-Symbol file data-000002560CD77620 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.SpriteShape.Editor.dll
-Symbol file LoadedFromMemory is not a mono symbol file
-Symbol file data-0000025608298AB0 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Common.Editor.dll
-Symbol file LoadedFromMemory is not a mono symbol file
-Symbol file data-00000256087E6010 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.RenderPipelines.Core.Editor.dll
-Symbol file LoadedFromMemory is not a mono symbol file
-Symbol file data-000002560CD7FA30 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.SpriteShape.Runtime.dll
-Symbol file LoadedFromMemory is not a mono symbol file
+Native extension for LinuxStandalone target not found
 Native extension for WindowsStandalone target not found
+Native extension for OSXStandalone target not found
 Native extension for WebGL target not found
-Refreshing native plugins compatible for Editor in 43.20 ms, found 1 plugins.
+Refreshing native plugins compatible for Editor in 64.75 ms, found 1 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Invoked RoslynAnalysisRunner static constructor.
 RoslynAnalysisRunner will not be running.
 RoslynAnalysisRunner has terminated.
 Mono: successfully reloaded assembly
-- Completed reload, in  1.034 seconds
+- Completed reload, in  1.511 seconds
 Platform modules already initialized, skipping
 ========================================================================
 Worker process is ready to serve import requests
-Launched and connected shader compiler UnityShaderCompiler.exe after 0.04 seconds
-Refreshing native plugins compatible for Editor in 0.41 ms, found 1 plugins.
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.19 seconds
+Refreshing native plugins compatible for Editor in 0.51 ms, found 1 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 2897 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 119.3 MB.
-System memory in use after: 119.4 MB.
+Unloading 2899 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 118.5 MB.
+System memory in use after: 118.6 MB.
 
-Unloading 27 unused Assets to reduce memory usage. Loaded Objects now: 3344.
-Total: 2.109800 ms (FindLiveObjects: 0.211600 ms CreateObjectMapping: 0.103400 ms MarkObjects: 1.696800 ms  DeleteObjects: 0.097100 ms)
+Unloading 27 unused Assets to reduce memory usage. Loaded Objects now: 3346.
+Total: 2.899100 ms (FindLiveObjects: 0.332200 ms CreateObjectMapping: 0.164100 ms MarkObjects: 2.257600 ms  DeleteObjects: 0.143300 ms)
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.002164 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for LinuxStandalone target not found
+Native extension for WindowsStandalone target not found
+Native extension for OSXStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 0.60 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.687 seconds
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.83 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 2888 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 118.1 MB.
+System memory in use after: 118.2 MB.
+
+Unloading 13 unused Assets to reduce memory usage. Loaded Objects now: 3349.
+Total: 5.059400 ms (FindLiveObjects: 0.724700 ms CreateObjectMapping: 0.369500 ms MarkObjects: 3.847700 ms  DeleteObjects: 0.115800 ms)
 
 ========================================================================
 Received Import Request.
-  path: Assets/Scripts/NotificationManager.cs
-  artifactKey: Guid(e77f5a52d876e6c4285fdff513683fe1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/NotificationManager.cs using Guid(e77f5a52d876e6c4285fdff513683fe1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5f924754553aa577bfea1550a116bceb') in 0.042667 seconds
-  Import took 0.052726 seconds .
+  path: Assets/Scenes/CCDC Visualizer.unity
+  artifactKey: Guid(c15f677cd1aeb0d449cce3bcfb379ad0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CCDC Visualizer.unity using Guid(c15f677cd1aeb0d449cce3bcfb379ad0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '200f8b43165af50ffe128a78ad84f4f8') in 0.157122 seconds
+  Import took 0.170383 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.117738 seconds.
+  path: Assets/Scenes/CCDC Visualizer.unity
+  artifactKey: Guid(c15f677cd1aeb0d449cce3bcfb379ad0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CCDC Visualizer.unity using Guid(c15f677cd1aeb0d449cce3bcfb379ad0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '200f8b43165af50ffe128a78ad84f4f8') in 0.053804 seconds
+  Import took 0.074853 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 6.672733 seconds.
+  path: Assets/Scenes/Main Menu.unity
+  artifactKey: Guid(70692d337a30ede4f88f37f539df4a54) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/Main Menu.unity using Guid(70692d337a30ede4f88f37f539df4a54) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3a2e4b869b43d44867afa5e2e6f5b977') in 0.052628 seconds
+  Import took 0.059821 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 4028.647702 seconds.
+  path: Assets/Prefabs/Data Containers/Network.prefab
+  artifactKey: Guid(53904a191a1b3bb42a5ff5939ecba9e9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Data Containers/Network.prefab using Guid(53904a191a1b3bb42a5ff5939ecba9e9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c13f60be4b6c75c093c7f6d053b51cf2') in 0.170170 seconds
+  Import took 0.239099 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 22.116837 seconds.
+  path: Assets/Prefabs/Managers/Infrastructure Manager.prefab
+  artifactKey: Guid(4981e6d4588497b4b93df4cc6d8cea7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Managers/Infrastructure Manager.prefab using Guid(4981e6d4588497b4b93df4cc6d8cea7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '56f57a59e2bdf120c33fd6471845ea7d') in 0.019412 seconds
+  Import took 0.036522 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 22.949661 seconds.
+  path: Assets/Prefabs/Managers/Infrastructure Manager.prefab
+  artifactKey: Guid(4981e6d4588497b4b93df4cc6d8cea7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Managers/Infrastructure Manager.prefab using Guid(4981e6d4588497b4b93df4cc6d8cea7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '268ee456acd0b2c2074f29db0046b9de') in 0.014393 seconds
+  Import took 0.020012 seconds .
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.003596 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for LinuxStandalone target not found
+Native extension for WindowsStandalone target not found
+Native extension for OSXStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 0.49 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.463 seconds
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 1.40 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 2888 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 118.2 MB.
+System memory in use after: 118.3 MB.
+
+Unloading 13 unused Assets to reduce memory usage. Loaded Objects now: 3352.
+Total: 3.807700 ms (FindLiveObjects: 0.278500 ms CreateObjectMapping: 0.159100 ms MarkObjects: 3.197800 ms  DeleteObjects: 0.158100 ms)
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.001897 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for LinuxStandalone target not found
+Native extension for WindowsStandalone target not found
+Native extension for OSXStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 0.53 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.507 seconds
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.47 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 2888 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 118.3 MB.
+System memory in use after: 118.4 MB.
+
+Unloading 13 unused Assets to reduce memory usage. Loaded Objects now: 3355.
+Total: 2.712800 ms (FindLiveObjects: 0.341500 ms CreateObjectMapping: 0.158200 ms MarkObjects: 2.083500 ms  DeleteObjects: 0.127500 ms)
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.002324 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for LinuxStandalone target not found
+Native extension for WindowsStandalone target not found
+Native extension for OSXStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 0.48 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.612 seconds
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.60 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 2888 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 118.3 MB.
+System memory in use after: 118.4 MB.
+
+Unloading 13 unused Assets to reduce memory usage. Loaded Objects now: 3358.
+Total: 2.559700 ms (FindLiveObjects: 0.345200 ms CreateObjectMapping: 0.149200 ms MarkObjects: 1.906500 ms  DeleteObjects: 0.157500 ms)
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.004514 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for LinuxStandalone target not found
+Native extension for WindowsStandalone target not found
+Native extension for OSXStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 0.86 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.433 seconds
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 1.29 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 2888 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 118.3 MB.
+System memory in use after: 118.4 MB.
+
+Unloading 13 unused Assets to reduce memory usage. Loaded Objects now: 3361.
+Total: 3.219800 ms (FindLiveObjects: 0.423400 ms CreateObjectMapping: 0.201400 ms MarkObjects: 2.450200 ms  DeleteObjects: 0.143300 ms)
+
+========================================================================
+Received Import Request.
+  Time since last request: 290.190914 seconds.
+  path: Assets/Scenes/CPTC Visualizer.unity
+  artifactKey: Guid(9bf9e6124aa888d459dbd8050f86425a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CPTC Visualizer.unity using Guid(9bf9e6124aa888d459dbd8050f86425a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8ae72ff29de0fe04e8b594597925413b') in 0.025436 seconds
+  Import took 0.045169 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 15.011995 seconds.
+  path: Assets/Prefabs/Managers/AlertManager.prefab
+  artifactKey: Guid(081f406ec1fe00a4ea07053cf6f26f64) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Managers/AlertManager.prefab using Guid(081f406ec1fe00a4ea07053cf6f26f64) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '98ca3252b80f2734fe2dce6cf1f20cb5') in 0.068009 seconds
+  Import took 0.072839 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 4.101625 seconds.
+  path: Assets/Prefabs/Managers/AlertManager.prefab
+  artifactKey: Guid(081f406ec1fe00a4ea07053cf6f26f64) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Managers/AlertManager.prefab using Guid(081f406ec1fe00a4ea07053cf6f26f64) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '94c6d55242a6d43b0be54026d47f7aa9') in 0.009288 seconds
+  Import took 0.014103 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 13.486407 seconds.
+  path: Assets/Scenes/CCDC Visualizer.unity
+  artifactKey: Guid(c15f677cd1aeb0d449cce3bcfb379ad0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CCDC Visualizer.unity using Guid(c15f677cd1aeb0d449cce3bcfb379ad0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'da0980fe4b0a06b297c0199499ba0ec2') in 0.012187 seconds
+  Import took 0.027559 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 2.127407 seconds.
+  path: Assets/Scenes/Credits.unity
+  artifactKey: Guid(d3934bde2e30f634da9727264587f7b2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/Credits.unity using Guid(d3934bde2e30f634da9727264587f7b2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '229d223149542aeb64d02907300a3721') in 0.007341 seconds
+  Import took 0.013280 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 1.752703 seconds.
+  path: Assets/Scenes/Data Generator.unity
+  artifactKey: Guid(e0a59113c5395f34ea7d9636dfc23eaf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/Data Generator.unity using Guid(e0a59113c5395f34ea7d9636dfc23eaf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e5f32e75d2cf2a1e1551a764efe76d61') in 0.007993 seconds
+  Import took 0.014807 seconds .
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.010368 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for LinuxStandalone target not found
+Native extension for WindowsStandalone target not found
+Native extension for OSXStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 0.54 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.618 seconds
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.51 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 2888 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 118.4 MB.
+System memory in use after: 118.5 MB.
+
+Unloading 14 unused Assets to reduce memory usage. Loaded Objects now: 3366.
+Total: 3.563400 ms (FindLiveObjects: 0.295800 ms CreateObjectMapping: 0.160200 ms MarkObjects: 2.978800 ms  DeleteObjects: 0.127200 ms)
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.002092 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for LinuxStandalone target not found
+Native extension for WindowsStandalone target not found
+Native extension for OSXStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 0.48 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.533 seconds
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.47 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 2888 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 118.4 MB.
+System memory in use after: 118.5 MB.
+
+Unloading 13 unused Assets to reduce memory usage. Loaded Objects now: 3369.
+Total: 5.995800 ms (FindLiveObjects: 0.692200 ms CreateObjectMapping: 0.345800 ms MarkObjects: 4.661800 ms  DeleteObjects: 0.294100 ms)
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.002243 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for LinuxStandalone target not found
+Native extension for WindowsStandalone target not found
+Native extension for OSXStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 0.55 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.796 seconds
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.47 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 2888 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 118.4 MB.
+System memory in use after: 118.5 MB.
+
+Unloading 13 unused Assets to reduce memory usage. Loaded Objects now: 3372.
+Total: 4.996000 ms (FindLiveObjects: 0.333800 ms CreateObjectMapping: 0.153300 ms MarkObjects: 4.359700 ms  DeleteObjects: 0.133200 ms)
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.005341 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for LinuxStandalone target not found
+Native extension for WindowsStandalone target not found
+Native extension for OSXStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 0.78 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.538 seconds
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.51 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 2888 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 118.4 MB.
+System memory in use after: 118.5 MB.
+
+Unloading 13 unused Assets to reduce memory usage. Loaded Objects now: 3375.
+Total: 2.607800 ms (FindLiveObjects: 0.346200 ms CreateObjectMapping: 0.151800 ms MarkObjects: 1.991300 ms  DeleteObjects: 0.116900 ms)
+
+========================================================================
+Received Import Request.
+  Time since last request: 496.192289 seconds.
+  path: Assets/Scenes/CPTC Visualizer.unity
+  artifactKey: Guid(9bf9e6124aa888d459dbd8050f86425a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CPTC Visualizer.unity using Guid(9bf9e6124aa888d459dbd8050f86425a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '75c378d97483df5084a58554a0cecb5a') in 0.021107 seconds
+  Import took 0.026496 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.015232 seconds.
+  path: Assets/Scenes/CPTC Visualizer.unity
+  artifactKey: Guid(9bf9e6124aa888d459dbd8050f86425a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CPTC Visualizer.unity using Guid(9bf9e6124aa888d459dbd8050f86425a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '75c378d97483df5084a58554a0cecb5a') in 0.009822 seconds
+  Import took 0.015727 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.688504 seconds.
+  path: Assets/Scenes/CCDC Visualizer.unity
+  artifactKey: Guid(c15f677cd1aeb0d449cce3bcfb379ad0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CCDC Visualizer.unity using Guid(c15f677cd1aeb0d449cce3bcfb379ad0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6cb33949822f599988102bb89f168483') in 0.006095 seconds
+  Import took 0.015701 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 45.164290 seconds.
+  path: Assets/Scenes/CCDC Visualizer.unity
+  artifactKey: Guid(c15f677cd1aeb0d449cce3bcfb379ad0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CCDC Visualizer.unity using Guid(c15f677cd1aeb0d449cce3bcfb379ad0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '29d42a2e57f6bc9479be794f46d5c400') in 0.013212 seconds
+  Import took 0.026303 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 10.763370 seconds.
+  path: Assets/Scenes/CCDC Visualizer.unity
+  artifactKey: Guid(c15f677cd1aeb0d449cce3bcfb379ad0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CCDC Visualizer.unity using Guid(c15f677cd1aeb0d449cce3bcfb379ad0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4874dcf738c2cbc5c7dab8488db686d8') in 0.012554 seconds
+  Import took 0.025243 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 10.040862 seconds.
+  path: Assets/Scenes/CPTC Visualizer.unity
+  artifactKey: Guid(9bf9e6124aa888d459dbd8050f86425a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CPTC Visualizer.unity using Guid(9bf9e6124aa888d459dbd8050f86425a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '94fe5e525e184bda4346e08909eeb30c') in 0.013422 seconds
+  Import took 0.028623 seconds .
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.004522 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for LinuxStandalone target not found
+Native extension for WindowsStandalone target not found
+Native extension for OSXStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 1.96 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.387 seconds
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.55 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 2888 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 118.5 MB.
+System memory in use after: 118.6 MB.
+
+Unloading 13 unused Assets to reduce memory usage. Loaded Objects now: 3378.
+Total: 4.914300 ms (FindLiveObjects: 0.490600 ms CreateObjectMapping: 1.654400 ms MarkObjects: 2.633200 ms  DeleteObjects: 0.134600 ms)
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.003790 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for LinuxStandalone target not found
+Native extension for WindowsStandalone target not found
+Native extension for OSXStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 0.56 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.319 seconds
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.69 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 2888 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 118.5 MB.
+System memory in use after: 118.6 MB.
+
+Unloading 13 unused Assets to reduce memory usage. Loaded Objects now: 3381.
+Total: 12.177200 ms (FindLiveObjects: 8.333800 ms CreateObjectMapping: 0.230200 ms MarkObjects: 3.441600 ms  DeleteObjects: 0.169500 ms)
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.001901 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for LinuxStandalone target not found
+Native extension for WindowsStandalone target not found
+Native extension for OSXStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 0.51 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.366 seconds
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.69 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 2888 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 118.5 MB.
+System memory in use after: 118.6 MB.
+
+Unloading 13 unused Assets to reduce memory usage. Loaded Objects now: 3384.
+Total: 5.486900 ms (FindLiveObjects: 0.446200 ms CreateObjectMapping: 0.246200 ms MarkObjects: 4.649700 ms  DeleteObjects: 0.142800 ms)
+
+========================================================================
+Received Import Request.
+  Time since last request: 305.871652 seconds.
+  path: Assets/Scenes/CCDC Visualizer.unity
+  artifactKey: Guid(c15f677cd1aeb0d449cce3bcfb379ad0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CCDC Visualizer.unity using Guid(c15f677cd1aeb0d449cce3bcfb379ad0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '580a13360c6b8b5d343f54097856db7e') in 0.028405 seconds
+  Import took 0.040122 seconds .
 
 AssetImportWorkerClient::OnTransportError - code=2 error=End of file

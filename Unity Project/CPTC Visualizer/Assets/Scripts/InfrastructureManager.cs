@@ -6,6 +6,7 @@ using System.IO;
 using System;
 using UnityEngine.UI;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public enum CompetitionType { CPTC, CCDC}
 
@@ -75,6 +76,8 @@ public class InfrastructureManager: Singleton<InfrastructureManager>
     {
         teams = new List<TeamData>();
         currentTeamView = -1;
+
+        SceneManager.sceneLoaded += CleanOnSceneChange;
     }
 
     // Update is called once per frame
@@ -373,6 +376,15 @@ public class InfrastructureManager: Singleton<InfrastructureManager>
         }
     }
 
+    /// <summary>
+    /// Cleans-up various lists and variables for this script when switching scenes.
+    /// </summary>
+    public void CleanOnSceneChange(Scene scene, LoadSceneMode mode)
+    {
+        teamViewButtons.Clear();
+        teams.Clear();
+    }
+
     #region Team View Methods
 
     /// <summary>
@@ -460,7 +472,7 @@ public class InfrastructureManager: Singleton<InfrastructureManager>
         {
             foreach (TeamViewButton t in teamViewButtons)
             {
-                Destroy(t.gameObject);
+                if (t != null) Destroy(t.gameObject);
             }
             teamViewButtons.Clear();
         }
