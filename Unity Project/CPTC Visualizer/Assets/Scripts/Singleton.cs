@@ -10,7 +10,7 @@ public class Singleton<T>: MonoBehaviour where T : Component
 {
     #region Fields
 
-    private static T instance;
+    protected static T instance;
     
     #endregion Fields
     

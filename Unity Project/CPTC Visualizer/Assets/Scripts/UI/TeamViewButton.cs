@@ -8,6 +8,9 @@ public class TeamViewButton: MonoBehaviour
     #region Fields
 
     [SerializeField]
+    private CompetitionType compType;
+
+    [SerializeField]
     private int newTeamIndex;
 
     [SerializeField]
@@ -19,6 +22,17 @@ public class TeamViewButton: MonoBehaviour
     #endregion Fields
     
     #region Properties
+
+    /// <summary>
+    /// Gets what kind of competition this button will be set for.
+    /// </summary>
+    public CompetitionType CompType
+    {
+        get
+        {
+            return compType;
+        }
+    }
 
     /// <summary>
     /// Gets or sets the index of the team view as long as it's a lega value.
@@ -78,6 +92,15 @@ public class TeamViewButton: MonoBehaviour
     /// </summary>
     public void SetTeamView()
     {
-        InfrastructureManager.Instance.SelectTeamView(newTeamIndex);
+        switch (compType)
+        {
+            case CompetitionType.CCDC:
+                CCDCManager.Instance.TeamManager.SelectTeamView(newTeamIndex);
+                break;
+            case CompetitionType.CPTC:
+                CPTCManager.Instance.TeamManager.SelectTeamView(newTeamIndex);
+                break;
+        }
+        
     }
 }

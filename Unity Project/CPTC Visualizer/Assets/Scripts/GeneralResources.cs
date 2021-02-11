@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum CompetitionType { CPTC, CCDC }
+
 public class GeneralResources: Singleton<GeneralResources>
 {
     #region Fields
