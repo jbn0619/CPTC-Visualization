@@ -8,11 +8,11 @@ public class CCDCManager: Singleton<CCDCManager>
 
     [Header("Manager GameObjects")]
     [SerializeField]
-    private InfrastructureManager infraManager;
+    private CCDCInfrastructureManager infraManager;
     [SerializeField]
-    private TeamManager teamManager;
+    private CCDCTeamManager teamManager;
     [SerializeField]
-    private EventManager eventManager;
+    private CCDCEventManager eventManager;
     
     #endregion Fields
     
@@ -21,7 +21,7 @@ public class CCDCManager: Singleton<CCDCManager>
     /// <summary>
     /// Gets a reference to this scene's infrastructure manager if it exists.
     /// </summary>
-    public InfrastructureManager InfraManager
+    public CCDCInfrastructureManager InfraManager
     {
         get
         {
@@ -32,7 +32,7 @@ public class CCDCManager: Singleton<CCDCManager>
     /// <summary>
     /// Gets a reference to this scene's team manager if it exists.
     /// </summary>
-    public TeamManager TeamManager
+    public CCDCTeamManager TeamManager
     {
         get
         {
@@ -43,7 +43,7 @@ public class CCDCManager: Singleton<CCDCManager>
     /// <summary>
     /// Gets a reference to this scene's event manager if it exists.
     /// </summary>
-    public EventManager EventManager
+    public CCDCEventManager EventManager
     {
         get
         {

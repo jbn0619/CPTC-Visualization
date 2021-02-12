@@ -8,39 +8,29 @@ using UnityEngine.UI;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
-public class InfrastructureManager : MonoBehaviour
+public abstract class InfrastructureManager : MonoBehaviour
 {
     #region Fields
 
     [SerializeField]
-    private CompetitionType compType;
-    private InfrastructureData infrastructure;
-
-    [Header("Simulation Fields")]
-    [SerializeField]
-    private int timeBetweenAlerts = 5;
-    [SerializeField]
-    private float timer;
-    [SerializeField]
-    private bool simulationStart = false;
-    [SerializeField]
-    private bool showConnections;
+    protected CompetitionType compType;
+    protected InfrastructureData infrastructure;
+    protected bool showConnections;
 
     [Header("GameObject Prefabs")]
     [SerializeField]
-    private NodeData nodeGO;
+    protected NodeData nodeGO;
     [SerializeField]
-    private NetworkData networkGO;
+    protected NetworkData networkGO;
     [SerializeField]
-    private InfrastructureData infraGO;
+    protected InfrastructureData infraGO;
     [SerializeField]
-    private TeamData teamGO;
+    protected TeamData teamGO;
     [SerializeField]
-    private AlertData alertGO;
+    protected AlertData alertGO;
     [SerializeField]
-    private LineRenderer connectionGO;
-    [SerializeField]
-    private NotificationManager notificationManager;
+    protected LineRenderer connectionGO;
+
 
     #endregion Fields
     
@@ -59,48 +49,19 @@ public class InfrastructureManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        /*switch (compType)
-        {
-            case CompetitionType.CCDC:
-                break;
-            case CompetitionType.CPTC:
-                break;
-        }*/
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        //Starts or ends the simulation
-        if (Input.GetKeyDown(KeyCode.Return))
-        {
-            if(simulationStart)
-            {
-                simulationStart = false;
-                return;
-            }
-            timer = 0;
-            simulationStart = true;
-        }
         
-        // If the simulation is running, then update timer and see if we need to run alerts.
-        if(simulationStart)
-        {
-            timer += Time.deltaTime;
-
-            // If enough time has passed, run alerts and reset the timer.
-            if (timer >= timeBetweenAlerts)
-            {
-                timer = 0;
-                RunAlerts();
-            }
-        }
     }
 
     /// <summary>
     /// Read in data from a JSON file and convert it into Data containers split-up into gameObjects.
     /// </summary>
-    public void ReadJson()
+    public virtual void ReadJson()
     {
         StreamReader reader = new StreamReader("Assets/Data/data.json");
         string input = reader.ReadToEnd();
@@ -218,39 +179,9 @@ public class InfrastructureManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Reads out alerts from each team
-    /// </summary>
-    public void RunAlerts()
-    {
-        switch (compType)
-        {
-            case CompetitionType.CCDC:
-                foreach (TeamData team in CCDCManager.Instance.TeamManager.Teams)
-                {
-                    if (!team.Queue.IsEmpty) // team.Alerts.Count > 0
-                    {
-                        notificationManager.CreateNotification(team.TeamId, ((AlertData)(team.Queue.Peek)).Type); // team.Alerts[0].Type
-                        team.ReadNextAlert();
-                    }
-                }
-                break;
-            case CompetitionType.CPTC:
-                foreach (TeamData team in CPTCManager.Instance.TeamManager.Teams)
-                {
-                    if (!team.Queue.IsEmpty) // team.Alerts.Count > 0
-                    {
-                        notificationManager.CreateNotification(team.TeamId, ((AlertData)(team.Queue.Peek)).Type); // team.Alerts[0].Type
-                        team.ReadNextAlert();
-                    }
-                }
-                break;
-        }
-    }
-
-    /// <summary>
     /// Takes this script's infrastructure and duplicates it. It then sends those copies to each team so each team can edit their own infrastructures with their alerts and whatnot.
     /// </summary>
-    public void DuplicateInfrastructure()
+    public virtual void DuplicateInfrastructure()
     {
         foreach(TeamData team in CCDCManager.Instance.TeamManager.Teams)
         {
@@ -268,7 +199,7 @@ public class InfrastructureManager : MonoBehaviour
     /// <summary>
     /// Generates the graph and connects nodes. Builds an outward circular graph of networks and nodes.
     /// </summary>
-    public void GenerateGraph()
+    public virtual void GenerateGraph()
     {
         // Place each network first, then place nodes around them.
         for(int i = 0; i < infrastructure.Networks.Count; i++)
@@ -296,17 +227,6 @@ public class InfrastructureManager : MonoBehaviour
             }
         }
         GenerateConnections();
-
-        switch (compType)
-        {
-            case CompetitionType.CCDC:
-                CCDCManager.Instance.TeamManager.GenerateTeamViewButtons();
-                break;
-            case CompetitionType.CPTC:
-                CPTCManager.Instance.TeamManager.GenerateTeamViewButtons();
-                break;
-        }
-        
     }
 
     /// <summary>
@@ -314,7 +234,7 @@ public class InfrastructureManager : MonoBehaviour
     /// </summary>
     /// <param name="network">The network we need to visualize here.</param>
     /// <param name="radius">How large the network must be in-order to encapsulate all its nodes.</param>
-    public void GenerateNetworkOutline(NetworkData network, float radius)
+    public virtual void GenerateNetworkOutline(NetworkData network, float radius)
     {
         // infrastructure.Networks[i].gameObject.transform.position = new Vector3(Mathf.Cos(angle) * radius, Mathf.Sin(angle) * radius, 0);
         Vector3[] newPositions = new Vector3[(network.Nodes.Count * 2) + 2];
@@ -336,7 +256,7 @@ public class InfrastructureManager : MonoBehaviour
     /// <summary>
     /// Generate conneciton gameObjects to display as part of the graph.
     /// </summary>
-    public void GenerateConnections()
+    public virtual void GenerateConnections()
     {
         // Display node connecitons.
         for (int i = 0; i < infrastructure.AllNodes.Count; i++)

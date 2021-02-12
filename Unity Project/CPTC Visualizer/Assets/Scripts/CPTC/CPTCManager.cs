@@ -8,13 +8,13 @@ public class CPTCManager: Singleton<CPTCManager>
 
     [Header("Manager GameObjects")]
     [SerializeField]
-    private InfrastructureManager infraManager;
+    private CPTCInfrastructureManager infraManager;
     [SerializeField]
-    private TeamManager teamManager;
+    private CPTCTeamManager teamManager;
     [SerializeField]
-    private EventManager eventManager;
+    private CPTCEventManager eventManager;
     [SerializeField]
-    private NotificationManager notifManager;
+    private CPTCNotificationManager notifManager;
 
     #endregion Fields
 
@@ -23,7 +23,7 @@ public class CPTCManager: Singleton<CPTCManager>
     /// <summary>
     /// Gets a reference to this scene's infrastructure manager if it exists.
     /// </summary>
-    public InfrastructureManager InfraManager
+    public CPTCInfrastructureManager InfraManager
     {
         get
         {
@@ -34,7 +34,7 @@ public class CPTCManager: Singleton<CPTCManager>
     /// <summary>
     /// Gets a reference to this scene's team manager if it exists.
     /// </summary>
-    public TeamManager TeamManager
+    public CPTCTeamManager TeamManager
     {
         get
         {
@@ -45,7 +45,7 @@ public class CPTCManager: Singleton<CPTCManager>
     /// <summary>
     /// Gets a reference to this scene's event manager if it exists.
     /// </summary>
-    public EventManager EventManager
+    public CPTCEventManager EventManager
     {
         get
         {
@@ -56,7 +56,7 @@ public class CPTCManager: Singleton<CPTCManager>
     /// <summary>
     /// Gets a reference to this scene's notification manager if it exists.
     /// </summary>
-    public NotificationManager NotifManager
+    public CPTCNotificationManager NotifManager
     {
         get
         {

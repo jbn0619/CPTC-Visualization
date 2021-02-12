@@ -3,30 +3,30 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class NotificationManager: MonoBehaviour
+public abstract class NotificationManager : MonoBehaviour
 {
     #region Fields
 
     [SerializeField]
-    private CompetitionType compType;
+    protected CompetitionType compType;
     [SerializeField]
-    private Notification notification;
+    protected Notification notification;
 
     [SerializeField]
-    private List<Notification> alertPriorityQueue;
+    protected List<Notification> alertPriorityQueue;
 
     [SerializeField]
-    private Notification[] activeNotifs;
+    protected Notification[] activeNotifs;
 
     [SerializeField]
-    private float[] notifEpireTimers;
+    protected float[] notifEpireTimers;
     //private float notifExpireTimer;
-    private float lastNotifAdded;
+    protected float lastNotifAdded;
 
     [SerializeField]
-    private int numActiveNotifs;
+    protected int numActiveNotifs;
 
-    private Canvas canvas;
+    protected Canvas canvas;
 
     public float currentTime;
 
@@ -85,7 +85,7 @@ public class NotificationManager: MonoBehaviour
     /// Displays a new alert from the top of the priority queue. Shifts 
     ///     any currently displayed alerts downward.
     /// </summary>
-    public void AddNewNotification()
+    public virtual void AddNewNotification()
     {
         ShiftNotificationsDown();
         // Moves events down
@@ -122,7 +122,7 @@ public class NotificationManager: MonoBehaviour
     /// <param name="_alertPriority"></param>
     /// <param name="_teamID"></param>
     /// <param name="_alertType"></param>
-    public void CreateNotification(int _teamID, CPTCEvents _alertType)
+    public virtual void CreateNotification(int _teamID, CPTCEvents _alertType)
     {
         Notification newNotif = new Notification();
         newNotif.TeamID = _teamID;
@@ -134,7 +134,7 @@ public class NotificationManager: MonoBehaviour
         alertPriorityQueue.Add(newNotif);
     }
 
-    public void RemoveOldNotifications()
+    public virtual void RemoveOldNotifications()
     {
         if (numActiveNotifs > 0)
         {
@@ -203,7 +203,7 @@ public class NotificationManager: MonoBehaviour
     ///     Checks all notifications and moves them down in the list if an
     ///     open space is avialable.
     /// </summary>
-    public void ShiftNotificationsDown()
+    public virtual void ShiftNotificationsDown()
     {
         if (numActiveNotifs > 0)
         {
@@ -223,7 +223,7 @@ public class NotificationManager: MonoBehaviour
         }
     }
 
-    public void ShiftNotificationsUp()
+    public virtual void ShiftNotificationsUp()
     {
         if (numActiveNotifs > 0)
         {
@@ -249,7 +249,7 @@ public class NotificationManager: MonoBehaviour
     ///     a programmer and used an Invoke(), so heck you Robley.
     /// </summary>
     /// <param name="_alert"></param>
-    public void DestroyAlert(Notification _alert)
+    public virtual void DestroyAlert(Notification _alert)
     {
         Destroy(_alert.gameObject);
     }
