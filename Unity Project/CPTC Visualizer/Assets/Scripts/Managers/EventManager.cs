@@ -50,13 +50,12 @@ public abstract class EventManager : MonoBehaviour
         //Starts or ends the simulation
         if (Input.GetKeyDown(KeyCode.Return))
         {
-            if (simulationStart)
+            if (simulationStart) simulationStart = false;
+            else
             {
-                simulationStart = false;
-                return;
+                timer = 0;
+                simulationStart = true;
             }
-            timer = 0;
-            simulationStart = true;
         }
 
         // If the simulation is running, then update timer and see if we need to run alerts.

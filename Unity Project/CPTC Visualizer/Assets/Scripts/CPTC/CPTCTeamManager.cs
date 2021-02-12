@@ -26,6 +26,7 @@ public class CPTCTeamManager : TeamManager
     void Start()
     {
         teams = new List<TeamData>();
+        teamViewButtons = new List<TeamViewButton>();
         currentTeamView = -1;
 
         SceneManager.sceneLoaded += CleanOnSceneChange;

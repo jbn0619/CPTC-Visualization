@@ -14,8 +14,9 @@ public abstract class InfrastructureManager : MonoBehaviour
 
     [SerializeField]
     protected CompetitionType compType;
-    protected InfrastructureData infrastructure;
+    [SerializeField]
     protected bool showConnections;
+    protected InfrastructureData infrastructure;
 
     [Header("GameObject Prefabs")]
     [SerializeField]

@@ -4148,62 +4148,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 0}
-      propertyPath: maxX
-      value: 800
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: maxY
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: nodeGO
-      value: 
-      objectReference: {fileID: 5904582636167753093, guid: cf186f7800c0d1c4d93725d8c84cd8df, type: 3}
-    - target: {fileID: 0}
-      propertyPath: teamGO
-      value: 
-      objectReference: {fileID: 4608635970073130537, guid: 1804220bf3f3d8844a0e938b914ccbda, type: 3}
-    - target: {fileID: 0}
-      propertyPath: alertGO
-      value: 
-      objectReference: {fileID: 5410984709795667232, guid: ec4b4fd374482e4498b9b14e33b1c0fe, type: 3}
-    - target: {fileID: 0}
-      propertyPath: infraGO
-      value: 
-      objectReference: {fileID: 2293037716747613467, guid: 637a865eaa3d36b4f8b56dff4ba76f7b, type: 3}
-    - target: {fileID: 0}
-      propertyPath: networkGO
-      value: 
-      objectReference: {fileID: 3744525091222794658, guid: 53904a191a1b3bb42a5ff5939ecba9e9, type: 3}
-    - target: {fileID: 0}
-      propertyPath: connectionGO
-      value: 
-      objectReference: {fileID: 6558307667720637234, guid: 33dbeb45e25272a45b81cc111b75d023, type: 3}
-    - target: {fileID: 0}
-      propertyPath: teamViewButGO
-      value: 
-      objectReference: {fileID: 6343373906729853186, guid: d57865530575a6c4198c1281c021f867, type: 3}
-    - target: {fileID: 0}
-      propertyPath: teamViewLabel
-      value: 
-      objectReference: {fileID: 1309307770}
-    - target: {fileID: 0}
-      propertyPath: teamViewButton
-      value: 
-      objectReference: {fileID: 3998824116543854852, guid: d57865530575a6c4198c1281c021f867, type: 3}
-    - target: {fileID: 0}
-      propertyPath: showConnections
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: timeBetweenAlerts
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: notificationManager
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 4795010010054222757, guid: 4981e6d4588497b4b93df4cc6d8cea7e, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -4280,6 +4224,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   compType: 0
+  showConnections: 1
   nodeGO: {fileID: 5904582636167753093, guid: cf186f7800c0d1c4d93725d8c84cd8df, type: 3}
   networkGO: {fileID: 3744525091222794658, guid: 53904a191a1b3bb42a5ff5939ecba9e9, type: 3}
   infraGO: {fileID: 2293037716747613467, guid: 637a865eaa3d36b4f8b56dff4ba76f7b, type: 3}
