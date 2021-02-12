@@ -32,7 +32,7 @@ public class CPTCInfrastructureManager : InfrastructureManager
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.R)) ReadJson();
     }
 
     /// <summary>
@@ -138,7 +138,7 @@ public class CPTCInfrastructureManager : InfrastructureManager
     /// </summary>
     public override void DuplicateInfrastructure()
     {
-        foreach(TeamData team in CCDCManager.Instance.TeamManager.Teams)
+        foreach(TeamData team in CPTCManager.Instance.TeamManager.Teams)
         {
             // Instantiate a copy of the infrastructure, and make it a child of the team's gameObject.
             InfrastructureData newInfra = Instantiate(infrastructure, team.gameObject.transform);

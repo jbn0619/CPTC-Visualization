@@ -153,6 +153,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   compType: 1
+  timeBetweenAlerts: 5
+  timer: 0
+  simulationStart: 0
+  showConnections: 0
 --- !u!4 &5992341
 Transform:
   m_ObjectHideFlags: 0
@@ -380,8 +384,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   compType: 1
-  teamViewButGO: {fileID: 0}
-  teamViewLabel: {fileID: 0}
+  teamViewLabel: {fileID: 1311593172}
 --- !u!4 &939808357
 Transform:
   m_ObjectHideFlags: 0

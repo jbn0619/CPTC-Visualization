@@ -1084,7 +1084,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1743057227}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: AlertContainer, Assembly-CSharp
         m_MethodName: CreateAlert
         m_Mode: 3
@@ -1296,7 +1296,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1743057227}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: AlertContainer, Assembly-CSharp
         m_MethodName: CreateAlert
         m_Mode: 3
@@ -2100,6 +2100,54 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 933656491}
   m_CullTransparentMesh: 1
+--- !u!1 &934387274
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 934387275}
+  - component: {fileID: 934387276}
+  m_Layer: 0
+  m_Name: Event Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &934387275
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 934387274}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 570.8691, y: 262.04883, z: -34.364944}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &934387276
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 934387274}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce970b4a688be6742b3175326450b04d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  compType: 0
+  timeBetweenAlerts: 5
+  timer: 0
+  simulationStart: 0
+  showConnections: 0
 --- !u!1001 &943187812
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2113,7 +2161,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3251258551968159787, guid: 59125007fb681ce4e9611e4ecfe48a1a, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3251258551968159787, guid: 59125007fb681ce4e9611e4ecfe48a1a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3044,7 +3092,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1743057227}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: AlertContainer, Assembly-CSharp
         m_MethodName: CreateAlert
         m_Mode: 3
@@ -3094,6 +3142,53 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1353603292}
   m_CullTransparentMesh: 1
+--- !u!1 &1392705296
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1392705298}
+  - component: {fileID: 1392705297}
+  m_Layer: 0
+  m_Name: CPTC Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1392705297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1392705296}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fccd9afc9095314095c9ea427c4d22e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  infraManager: {fileID: 4795010008984823863}
+  teamManager: {fileID: 1663631652}
+  eventManager: {fileID: 934387276}
+  notifManager: {fileID: 1743057227}
+--- !u!4 &1392705298
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1392705296}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 570.8691, y: 262.04883, z: -34.364944}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1466497090
 GameObject:
   m_ObjectHideFlags: 0
@@ -3355,6 +3450,52 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1642559496}
   m_CullTransparentMesh: 1
+--- !u!1 &1663631651
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1663631653}
+  - component: {fileID: 1663631652}
+  m_Layer: 0
+  m_Name: Team Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1663631652
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1663631651}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37265aac8af0d784d844add4027775fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  compType: 0
+  teamViewLabel: {fileID: 1309307770}
+  teamViewButGO: {fileID: 6343373906729853186, guid: d57865530575a6c4198c1281c021f867, type: 3}
+--- !u!4 &1663631653
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1663631651}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 570.8691, y: 262.04883, z: -34.364944}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1743057226
 GameObject:
   m_ObjectHideFlags: 0
@@ -3381,9 +3522,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1743057226}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e77f5a52d876e6c4285fdff513683fe1, type: 3}
+  m_Script: {fileID: 11500000, guid: c3d031cf68287134582c7f66f3c32c4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  compType: 0
   notification: {fileID: -8004500244792746381, guid: b09565fcc8d6b8e4483a27ab48f1ffce, type: 3}
   alertPriorityQueue: []
   activeNotifs: []
@@ -3413,7 +3555,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 181434906990953941, guid: 319f6a7111856b240b7efce723a88dc9, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 181434906990953941, guid: 319f6a7111856b240b7efce723a88dc9, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4006,65 +4148,65 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4795010010054222756, guid: 4981e6d4588497b4b93df4cc6d8cea7e, type: 3}
+    - target: {fileID: 0}
       propertyPath: maxX
       value: 800
       objectReference: {fileID: 0}
-    - target: {fileID: 4795010010054222756, guid: 4981e6d4588497b4b93df4cc6d8cea7e, type: 3}
+    - target: {fileID: 0}
       propertyPath: maxY
       value: 100
       objectReference: {fileID: 0}
-    - target: {fileID: 4795010010054222756, guid: 4981e6d4588497b4b93df4cc6d8cea7e, type: 3}
+    - target: {fileID: 0}
       propertyPath: nodeGO
       value: 
       objectReference: {fileID: 5904582636167753093, guid: cf186f7800c0d1c4d93725d8c84cd8df, type: 3}
-    - target: {fileID: 4795010010054222756, guid: 4981e6d4588497b4b93df4cc6d8cea7e, type: 3}
+    - target: {fileID: 0}
       propertyPath: teamGO
       value: 
       objectReference: {fileID: 4608635970073130537, guid: 1804220bf3f3d8844a0e938b914ccbda, type: 3}
-    - target: {fileID: 4795010010054222756, guid: 4981e6d4588497b4b93df4cc6d8cea7e, type: 3}
+    - target: {fileID: 0}
       propertyPath: alertGO
       value: 
       objectReference: {fileID: 5410984709795667232, guid: ec4b4fd374482e4498b9b14e33b1c0fe, type: 3}
-    - target: {fileID: 4795010010054222756, guid: 4981e6d4588497b4b93df4cc6d8cea7e, type: 3}
+    - target: {fileID: 0}
       propertyPath: infraGO
       value: 
       objectReference: {fileID: 2293037716747613467, guid: 637a865eaa3d36b4f8b56dff4ba76f7b, type: 3}
-    - target: {fileID: 4795010010054222756, guid: 4981e6d4588497b4b93df4cc6d8cea7e, type: 3}
+    - target: {fileID: 0}
       propertyPath: networkGO
       value: 
       objectReference: {fileID: 3744525091222794658, guid: 53904a191a1b3bb42a5ff5939ecba9e9, type: 3}
-    - target: {fileID: 4795010010054222756, guid: 4981e6d4588497b4b93df4cc6d8cea7e, type: 3}
+    - target: {fileID: 0}
       propertyPath: connectionGO
       value: 
       objectReference: {fileID: 6558307667720637234, guid: 33dbeb45e25272a45b81cc111b75d023, type: 3}
-    - target: {fileID: 4795010010054222756, guid: 4981e6d4588497b4b93df4cc6d8cea7e, type: 3}
+    - target: {fileID: 0}
       propertyPath: teamViewButGO
       value: 
       objectReference: {fileID: 6343373906729853186, guid: d57865530575a6c4198c1281c021f867, type: 3}
-    - target: {fileID: 4795010010054222756, guid: 4981e6d4588497b4b93df4cc6d8cea7e, type: 3}
+    - target: {fileID: 0}
       propertyPath: teamViewLabel
       value: 
       objectReference: {fileID: 1309307770}
-    - target: {fileID: 4795010010054222756, guid: 4981e6d4588497b4b93df4cc6d8cea7e, type: 3}
+    - target: {fileID: 0}
       propertyPath: teamViewButton
       value: 
       objectReference: {fileID: 3998824116543854852, guid: d57865530575a6c4198c1281c021f867, type: 3}
-    - target: {fileID: 4795010010054222756, guid: 4981e6d4588497b4b93df4cc6d8cea7e, type: 3}
+    - target: {fileID: 0}
       propertyPath: showConnections
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 4795010010054222756, guid: 4981e6d4588497b4b93df4cc6d8cea7e, type: 3}
+    - target: {fileID: 0}
       propertyPath: timeBetweenAlerts
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 4795010010054222756, guid: 4981e6d4588497b4b93df4cc6d8cea7e, type: 3}
+    - target: {fileID: 0}
       propertyPath: notificationManager
       value: 
-      objectReference: {fileID: 1743057227}
+      objectReference: {fileID: 0}
     - target: {fileID: 4795010010054222757, guid: 4981e6d4588497b4b93df4cc6d8cea7e, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4795010010054222757, guid: 4981e6d4588497b4b93df4cc6d8cea7e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4120,3 +4262,28 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4981e6d4588497b4b93df4cc6d8cea7e, type: 3}
+--- !u!1 &4795010008984823862 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4795010010054222778, guid: 4981e6d4588497b4b93df4cc6d8cea7e, type: 3}
+  m_PrefabInstance: {fileID: 4795010008984823861}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4795010008984823863
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4795010008984823862}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f61b1c727f73f347a15c1363de16d70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  compType: 0
+  nodeGO: {fileID: 5904582636167753093, guid: cf186f7800c0d1c4d93725d8c84cd8df, type: 3}
+  networkGO: {fileID: 3744525091222794658, guid: 53904a191a1b3bb42a5ff5939ecba9e9, type: 3}
+  infraGO: {fileID: 2293037716747613467, guid: 637a865eaa3d36b4f8b56dff4ba76f7b, type: 3}
+  teamGO: {fileID: 4608635970073130537, guid: 1804220bf3f3d8844a0e938b914ccbda, type: 3}
+  alertGO: {fileID: 5410984709795667232, guid: ec4b4fd374482e4498b9b14e33b1c0fe, type: 3}
+  connectionGO: {fileID: 6558307667720637234, guid: 33dbeb45e25272a45b81cc111b75d023, type: 3}
+  notificationManager: {fileID: 1743057227}
