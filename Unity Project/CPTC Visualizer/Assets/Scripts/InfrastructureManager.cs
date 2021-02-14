@@ -452,13 +452,13 @@ public class InfrastructureManager: Singleton<InfrastructureManager>
         {
             currentTeamView = -1;
             infrastructure.gameObject.SetActive(true);
-            teamViewLabel.text = "Main Infrastructure";
+            //teamViewLabel.text = "Main Infrastructure";
         }
         else if (teamIndex >= 0 && teamIndex < teams.Count)
         {
             currentTeamView = teamIndex;
             teams[currentTeamView].InfraCopy.gameObject.SetActive(true);
-            teamViewLabel.text = "Team " + teamIndex;
+            //teamViewLabel.text = "Team " + teamIndex;
         }
     }
 
