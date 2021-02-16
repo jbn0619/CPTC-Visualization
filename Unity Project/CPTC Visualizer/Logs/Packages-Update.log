@@ -48,3 +48,11 @@ The following packages were updated:
   com.unity.2d.animation from version 5.0.1 to 5.0.3
   com.unity.2d.psdimporter from version 4.0.1 to 4.0.2
   com.unity.2d.spriteshape from version 5.0.1 to 5.1.0
+
+=== Tue Feb 16 12:51:35 2021
+
+Packages were changed.
+Update Mode: updateDependencies
+
+The following packages were updated:
+  com.unity.shadergraph from version 10.2.2 to 10.3.1
