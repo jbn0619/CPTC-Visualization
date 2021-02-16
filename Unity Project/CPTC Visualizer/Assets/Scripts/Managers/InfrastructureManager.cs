@@ -32,7 +32,6 @@ public abstract class InfrastructureManager : MonoBehaviour
     [SerializeField]
     protected LineRenderer connectionGO;
 
-
     #endregion Fields
     
     #region Properties
@@ -56,7 +55,16 @@ public abstract class InfrastructureManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R)) ReadJson();
+        BaseUpdate();
+    }
+
+    protected void BaseUpdate()
+    {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            Debug.Log("Here!");
+            ReadJson();
+        }
     }
 
     /// <summary>

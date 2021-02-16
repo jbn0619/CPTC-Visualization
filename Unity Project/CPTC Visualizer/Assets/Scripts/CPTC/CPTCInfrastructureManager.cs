@@ -32,7 +32,7 @@ public class CPTCInfrastructureManager : InfrastructureManager
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R)) ReadJson();
+        BaseUpdate();
     }
 
     /// <summary>
@@ -59,7 +59,7 @@ public class CPTCInfrastructureManager : InfrastructureManager
         // Collects the team data first.
         for(int i = 0; i < payload.teams.Count; i++)
         {
-            TeamData newTeam = Instantiate(teamGO, Vector3.zero, Quaternion.identity);
+            TeamData newTeam = Instantiate(teamGO, CPTCManager.Instance.TeamManager.gameObject.transform);
             newTeam.SetupQueue();
             newTeam.TeamId = payload.teams[i].teamId;
             // Move all discovered node-IDs into newTeam.
@@ -127,6 +127,7 @@ public class CPTCInfrastructureManager : InfrastructureManager
         }
 
         infrastructure.gameObject.transform.position = this.gameObject.transform.position;
+        infrastructure.gameObject.transform.parent = this.gameObject.transform;
 
         GenerateGraph();
 

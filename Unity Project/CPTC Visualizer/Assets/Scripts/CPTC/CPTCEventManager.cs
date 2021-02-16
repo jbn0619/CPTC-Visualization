@@ -24,7 +24,7 @@ public class CPTCEventManager : EventManager
     // Update is called once per frame
     void Update()
     {
-        
+        BaseUpdate();
     }
 
     /// <summary>

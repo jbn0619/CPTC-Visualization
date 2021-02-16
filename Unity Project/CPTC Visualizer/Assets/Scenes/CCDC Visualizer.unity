@@ -343,17 +343,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4981e6d4588497b4b93df4cc6d8cea7e, type: 3}
---- !u!114 &607337993 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4795010010054222756, guid: 4981e6d4588497b4b93df4cc6d8cea7e, type: 3}
-  m_PrefabInstance: {fileID: 607337992}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 256cec50dcacd5d43ae4b5b21fd382a1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &939808355
 GameObject:
   m_ObjectHideFlags: 0
@@ -714,7 +703,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a95aca795a5f3b48886f438a34457c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  infraManager: {fileID: 607337993}
+  infraManager: {fileID: 2069386909}
   teamManager: {fileID: 939808356}
   eventManager: {fileID: 5992340}
 --- !u!4 &1972424271
@@ -788,3 +777,28 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 59125007fb681ce4e9611e4ecfe48a1a, type: 3}
+--- !u!1 &2069386908 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4795010010054222778, guid: 4981e6d4588497b4b93df4cc6d8cea7e, type: 3}
+  m_PrefabInstance: {fileID: 607337992}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2069386909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2069386908}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 256cec50dcacd5d43ae4b5b21fd382a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  compType: 1
+  showConnections: 1
+  nodeGO: {fileID: 5904582636167753093, guid: cf186f7800c0d1c4d93725d8c84cd8df, type: 3}
+  networkGO: {fileID: 3744525091222794658, guid: 53904a191a1b3bb42a5ff5939ecba9e9, type: 3}
+  infraGO: {fileID: 2293037716747613467, guid: 637a865eaa3d36b4f8b56dff4ba76f7b, type: 3}
+  teamGO: {fileID: 4608635970073130537, guid: 1804220bf3f3d8844a0e938b914ccbda, type: 3}
+  alertGO: {fileID: 5410984709795667232, guid: ec4b4fd374482e4498b9b14e33b1c0fe, type: 3}
+  connectionGO: {fileID: 6558307667720637234, guid: 33dbeb45e25272a45b81cc111b75d023, type: 3}

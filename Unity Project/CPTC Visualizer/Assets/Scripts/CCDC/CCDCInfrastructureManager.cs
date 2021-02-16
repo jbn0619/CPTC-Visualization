@@ -31,7 +31,7 @@ public class CCDCInfrastructureManager : InfrastructureManager
     // Update is called once per frame
     void Update()
     {
-        
+        BaseUpdate();
     }
 
     /// <summary>
@@ -58,7 +58,7 @@ public class CCDCInfrastructureManager : InfrastructureManager
         // Collects the team data first.
         for(int i = 0; i < payload.teams.Count; i++)
         {
-            TeamData newTeam = Instantiate(teamGO, Vector3.zero, Quaternion.identity);
+            TeamData newTeam = Instantiate(teamGO, CCDCManager.Instance.TeamManager.gameObject.transform);
             newTeam.SetupQueue();
             newTeam.TeamId = payload.teams[i].teamId;
             // Move all discovered node-IDs into newTeam.

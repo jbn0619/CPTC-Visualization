@@ -31,15 +31,7 @@ public class CCDCTeamManager: TeamManager
     // Update is called once per frame
     void Update()
     {
-        // Check for a view-switch input
-        if (Input.GetKeyDown(KeyCode.RightArrow))
-        {
-            ChangeTeamView(1);
-        }
-        else if (Input.GetKeyDown(KeyCode.LeftArrow))
-        {
-            ChangeTeamView(-1);
-        }
+        BaseUpdate();
     }
 
     #region Team View Methods

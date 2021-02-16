@@ -23,7 +23,7 @@ public class CCDCEventManager: EventManager
     // Update is called once per frame
     void Update()
     {
-        
+        BaseUpdate();
     }
 
     /// <summary>
