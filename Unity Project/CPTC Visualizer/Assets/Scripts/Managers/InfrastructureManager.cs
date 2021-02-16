@@ -239,6 +239,26 @@ public abstract class InfrastructureManager : MonoBehaviour
                 // Move the node to another position based-on a radial position.
                 infrastructure.Networks[i].Nodes[j].gameObject.transform.position = infrastructure.Networks[i].gameObject.transform.position + new Vector3(Mathf.Cos(angle) * radius, Mathf.Sin(angle) * radius, 0);
                 infrastructure.Networks[i].Nodes[j].gameObject.transform.localScale = new Vector2(0.15f, 0.15f);
+
+                // Next, check their state to edit their color.
+                switch (infrastructure.Networks[i].Nodes[j].State)
+                {
+                    case NodeState.Off:
+                        infrastructure.Networks[i].Nodes[j].NodeSprite.color = Color.gray;
+                        break;
+                    case NodeState.On:
+                        infrastructure.Networks[i].Nodes[j].NodeSprite.color = Color.blue;
+                        break;
+                    case NodeState.NotWorking:
+                        infrastructure.Networks[i].Nodes[j].NodeSprite.color = Color.red;
+                        break;
+                }
+
+                // Disable the node's sprite if it is hidden.
+                if (infrastructure.Networks[i].Nodes[j].IsHidden)
+                {
+                    infrastructure.Networks[i].Nodes[j].NodeSprite.gameObject.SetActive(false);
+                }
             }
         }
         GenerateConnections();
