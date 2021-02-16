@@ -64,7 +64,9 @@ namespace Assets.Scripts
     {
         public int id;
         public string type;
+        public string state;
         public List<int> connections;
+        public bool isHidden;
 
         /// <summary>
         /// Constructor for the Node class.
@@ -72,11 +74,13 @@ namespace Assets.Scripts
         /// <param name="i">This node's id.</param>
         /// <param name="t">This node's type.</param>
         /// <param name="c">What nodes this one is connected to.</param>
-        public Node(int i, NodeTypes t, List<int> c)
+        public Node(int i, NodeTypes t, NodeState s, List<int> c, bool h = false)
         {
             id = i;
             type = t.ToString();
+            state = s.ToString();
             connections = c;
+            isHidden = h;
         }
     }
 

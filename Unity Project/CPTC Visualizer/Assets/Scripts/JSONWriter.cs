@@ -10,6 +10,8 @@ public enum CPTCEvents { Exploit, ShutDown, StartUp, Discovery, NetworkScan}
 
 public enum NodeTypes { Host, Router}
 
+public enum NodeState { Off, On, NotWorking}
+
 public class JSONWriter: MonoBehaviour
 {
     #region Fields
@@ -90,26 +92,26 @@ public class JSONWriter: MonoBehaviour
             nc0.Add(1);
             nc0.Add(3);
             nc0.Add(4);
-            Node n0 = new Node(0, NodeTypes.Host, nc0);
+            Node n0 = new Node(0, NodeTypes.Host, NodeState.On, nc0);
 
             List<int> nc1 = new List<int>();
             nc1.Add(0);
             nc1.Add(2);
-            Node n1 = new Node(1, NodeTypes.Host, nc1);
+            Node n1 = new Node(1, NodeTypes.Host, NodeState.On, nc1);
 
             List<int> nc2 = new List<int>();
             nc2.Add(1);
             nc2.Add(3);
-            Node n2 = new Node(2, NodeTypes.Host, nc2);
+            Node n2 = new Node(2, NodeTypes.Host, NodeState.On, nc2);
 
             List<int> nc3 = new List<int>();
             nc3.Add(0);
             nc3.Add(2);
-            Node n3 = new Node(3, NodeTypes.Host, nc3);
+            Node n3 = new Node(3, NodeTypes.Host, NodeState.On, nc3);
 
             List<int> nc4 = new List<int>();
             nc4.Add(0);
-            Node n4 = new Node(4, NodeTypes.Host, nc4);
+            Node n4 = new Node(4, NodeTypes.Host, NodeState.On, nc4);
 
             List<Node> nodes = new List<Node>();
             nodes.Add(n0);
@@ -157,9 +159,12 @@ public class JSONWriter: MonoBehaviour
                     // Randomly determine this node's type.
                     int tIndex = UnityEngine.Random.Range(0, Enum.GetNames(typeof(NodeTypes)).Length);
                     NodeTypes t = (NodeTypes)tIndex;
+                    int sIndex = UnityEngine.Random.Range(0, Enum.GetNames(typeof(NodeState)).Length);
+                    NodeState s = (NodeState)sIndex;
+                    bool hidden = Convert.ToBoolean(UnityEngine.Random.Range(0, 2));
 
                     // Add the new node to nodes.
-                    Node n = new Node(id, t, nodeConnections);
+                    Node n = new Node(id, t, s, nodeConnections, hidden);
                     nodes.Add(n);
                 }
 

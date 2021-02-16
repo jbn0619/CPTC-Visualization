@@ -10,6 +10,8 @@ public class NodeData: MonoBehaviour
     private int id;
     private bool isActive;
     private NodeTypes type;
+    private NodeState state;
+    private bool isHidden;
 
     [SerializeField]
     private List<int> connections;
@@ -58,6 +60,21 @@ public class NodeData: MonoBehaviour
     }
 
     /// <summary>
+    /// Gets or sets if this node is hidden from view or not.
+    /// </summary>
+    public bool IsHidden
+    {
+        get
+        {
+            return isHidden;
+        }
+        set
+        {
+            isHidden = value;
+        }
+    }
+
+    /// <summary>
     /// Gets or sets what type of node this is.
     /// </summary>
     public NodeTypes Type
@@ -69,6 +86,21 @@ public class NodeData: MonoBehaviour
         set
         {
             type = value;
+        }
+    }
+
+    /// <summary>
+    /// Gets or sets what this node's state is.
+    /// </summary>
+    public NodeState State
+    {
+        get
+        {
+            return state;
+        }
+        set
+        {
+            state = value;
         }
     }
 

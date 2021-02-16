@@ -111,6 +111,10 @@ public class CPTCInfrastructureManager : InfrastructureManager
                 newNode.IsActive = true;
                 Enum.TryParse(payload.infrastructure.networks[i].nodes[k].type, out NodeTypes newType);
                 newNode.Type = newType;
+                Enum.TryParse(payload.infrastructure.networks[i].nodes[k].state, out NodeState newState);
+                newNode.State = newState;
+
+                newNode.IsHidden = payload.infrastructure.networks[i].nodes[k].isHidden;
 
                 // Move all the node's connection-IDs into newNode.
                 foreach (int c in payload.infrastructure.networks[i].nodes[k].connections)

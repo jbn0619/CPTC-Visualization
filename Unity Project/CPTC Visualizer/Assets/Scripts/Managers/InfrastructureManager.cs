@@ -58,11 +58,13 @@ public abstract class InfrastructureManager : MonoBehaviour
         BaseUpdate();
     }
 
+    /// <summary>
+    /// The base update for an Infrastructure manager that all child classes will automatically run.
+    /// </summary>
     protected void BaseUpdate()
     {
         if (Input.GetKeyDown(KeyCode.R))
         {
-            Debug.Log("Here!");
             ReadJson();
         }
     }
@@ -165,6 +167,10 @@ public abstract class InfrastructureManager : MonoBehaviour
                 newNode.IsActive = true;
                 Enum.TryParse(payload.infrastructure.networks[i].nodes[k].type, out NodeTypes newType);
                 newNode.Type = newType;
+                Enum.TryParse(payload.infrastructure.networks[i].nodes[k].state, out NodeState newState);
+                newNode.State = newState;
+
+                newNode.IsHidden = payload.infrastructure.networks[i].nodes[k].isHidden;
 
                 // Move all the node's connection-IDs into newNode.
                 foreach (int c in payload.infrastructure.networks[i].nodes[k].connections)
