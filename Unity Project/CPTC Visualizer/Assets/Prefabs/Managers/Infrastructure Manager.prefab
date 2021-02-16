@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4795010010054222757}
   - component: {fileID: 4795010010054222759}
-  - component: {fileID: 4795010010054222756}
   m_Layer: 0
   m_Name: Infrastructure Manager
   m_TagString: Untagged
@@ -50,22 +49,3 @@ MonoBehaviour:
   teamCount: 7
   nodeCount: 7
   networkCount: 5
---- !u!114 &4795010010054222756
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4795010010054222778}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 256cec50dcacd5d43ae4b5b21fd382a1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  teams: []
-  networks: []
-  timeBetweenAlerts: 5
-  timer: 0
-  simulationStart: 0
-  networkGO: {fileID: 3744525091222794657, guid: 53904a191a1b3bb42a5ff5939ecba9e9, type: 3}
-  nodeGO: {fileID: 5904582636167753091, guid: cf186f7800c0d1c4d93725d8c84cd8df, type: 3}
