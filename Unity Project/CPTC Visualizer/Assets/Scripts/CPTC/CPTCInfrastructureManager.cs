@@ -262,6 +262,18 @@ public class CPTCInfrastructureManager : InfrastructureManager
                 {
                     newLine.gameObject.SetActive(false);
                 }
+                // Next, check if a connection needs to be hidden because either a node is shut-down or hidden from view.
+                else if (showHiddenConnections == false)
+                {
+                    if (infrastructure.AllNodes[i].IsHidden || infrastructure.AllNodes[i].State == NodeState.Off)
+                    {
+                        newLine.gameObject.SetActive(false);
+                    }
+                    else if (infrastructure.AllNodes[c].IsHidden || infrastructure.AllNodes[c].State == NodeState.Off)
+                    {
+                        newLine.gameObject.SetActive(false);
+                    }
+                }
             }
         }
 

@@ -208,7 +208,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0.15294118, g: 0.15294118, b: 0.15294118, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -338,12 +338,28 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4795010010054222759, guid: 4981e6d4588497b4b93df4cc6d8cea7e, type: 3}
+      propertyPath: genType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4795010010054222759, guid: 4981e6d4588497b4b93df4cc6d8cea7e, type: 3}
       propertyPath: teamCount
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4795010010054222759, guid: 4981e6d4588497b4b93df4cc6d8cea7e, type: 3}
       propertyPath: networkCount
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4795010010054222759, guid: 4981e6d4588497b4b93df4cc6d8cea7e, type: 3}
+      propertyPath: fixedCCDCInfrastructure
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4795010010054222759, guid: 4981e6d4588497b4b93df4cc6d8cea7e, type: 3}
+      propertyPath: fixedCPTCInfrastructure
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4795010010054222759, guid: 4981e6d4588497b4b93df4cc6d8cea7e, type: 3}
+      propertyPath: randomizeInfrastructure
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4795010010054222778, guid: 4981e6d4588497b4b93df4cc6d8cea7e, type: 3}
       propertyPath: m_Name
@@ -804,6 +820,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   compType: 1
   showConnections: 1
+  showHiddenConnections: 1
   nodeGO: {fileID: 5904582636167753093, guid: cf186f7800c0d1c4d93725d8c84cd8df, type: 3}
   networkGO: {fileID: 3744525091222794658, guid: 53904a191a1b3bb42a5ff5939ecba9e9, type: 3}
   infraGO: {fileID: 2293037716747613467, guid: 637a865eaa3d36b4f8b56dff4ba76f7b, type: 3}
