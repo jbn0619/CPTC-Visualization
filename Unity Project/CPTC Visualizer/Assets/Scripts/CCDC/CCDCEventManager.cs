@@ -6,11 +6,22 @@ public class CCDCEventManager: EventManager
 {
     #region Fields
 
-
+    private List<UptimeChartData> uptimeCharts;
 
     #endregion Fields
 
     #region Properties
+
+    /// <summary>
+    /// Gets a list of all the uptime charts in this scene.
+    /// </summary>
+    public List<UptimeChartData> UptimeCharts
+    {
+        get
+        {
+            return uptimeCharts;
+        }
+    }
 
     #endregion Properties
 

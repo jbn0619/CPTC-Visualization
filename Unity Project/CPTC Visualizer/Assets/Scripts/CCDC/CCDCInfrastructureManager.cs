@@ -12,7 +12,8 @@ public class CCDCInfrastructureManager : InfrastructureManager
 {
     #region Fields
 
-    
+    [SerializeField]
+    private UptimeChartData uptimeChartGO;
 
     #endregion Fields
     
@@ -159,6 +160,9 @@ public class CCDCInfrastructureManager : InfrastructureManager
     /// </summary>
     public override void GenerateGraph()
     {
+        // Open-up the uptime chart canvas and add charts to it.
+        UIManager.Instance.SceneCanvases[1].gameObject.SetActive(true);
+
         // Place each network first, then place nodes around them.
         for(int i = 0; i < infrastructure.Networks.Count; i++)
         {
@@ -180,8 +184,15 @@ public class CCDCInfrastructureManager : InfrastructureManager
                 angle = j * Mathf.PI * 2f / infrastructure.Networks[i].Nodes.Count;
 
                 // Move the node to another position based-on a radial position.
-                infrastructure.Networks[i].Nodes[j].gameObject.transform.position = infrastructure.Networks[i].gameObject.transform.position + new Vector3(Mathf.Cos(angle) * radius, Mathf.Sin(angle) * radius, 0);
-                infrastructure.Networks[i].Nodes[j].gameObject.transform.localScale = new Vector2(0.15f, 0.15f);
+                infrastructure.Networks[i].Nodes[j].gameObject.transform.position = infrastructure.Networks[i].gameObject.transform.position + new Vector3(Mathf.Cos(angle) * radius, Mathf.Sin(angle) * radius, 0) + new Vector3(-0.15f, 0, 0);
+                infrastructure.Networks[i].Nodes[j].gameObject.transform.localScale = new Vector2(0.5f, 0.5f);
+
+                // Next, place an uptime chart that corresponds to this node.
+                UptimeChartData newChart = Instantiate(uptimeChartGO, UIManager.Instance.SceneCanvases[1].gameObject.transform);
+                newChart.gameObject.transform.position = infrastructure.Networks[i].Nodes[j].gameObject.transform.position + new Vector3(0.35f, 0, 0);
+                newChart.gameObject.transform.localScale = new Vector2(0.002f, 0.008f);
+                newChart.ID = infrastructure.Networks[i].Nodes[j].Id;
+                CCDCManager.Instance.EventManager.UptimeCharts.Add(newChart);
 
                 // Next, check their state to edit their color.
                 switch (infrastructure.Networks[i].Nodes[j].State)
@@ -190,7 +201,7 @@ public class CCDCInfrastructureManager : InfrastructureManager
                         infrastructure.Networks[i].Nodes[j].NodeSprite.color = Color.gray;
                         break;
                     case NodeState.On:
-                        infrastructure.Networks[i].Nodes[j].NodeSprite.color = Color.blue;
+                        infrastructure.Networks[i].Nodes[j].NodeSprite.color = Color.cyan;
                         break;
                     case NodeState.NotWorking:
                         infrastructure.Networks[i].Nodes[j].NodeSprite.color = Color.red;

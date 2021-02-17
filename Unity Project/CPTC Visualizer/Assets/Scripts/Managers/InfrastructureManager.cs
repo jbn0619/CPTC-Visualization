@@ -249,7 +249,7 @@ public abstract class InfrastructureManager : MonoBehaviour
                         infrastructure.Networks[i].Nodes[j].NodeSprite.color = Color.gray;
                         break;
                     case NodeState.On:
-                        infrastructure.Networks[i].Nodes[j].NodeSprite.color = Color.blue;
+                        infrastructure.Networks[i].Nodes[j].NodeSprite.color = Color.cyan;
                         break;
                     case NodeState.NotWorking:
                         infrastructure.Networks[i].Nodes[j].NodeSprite.color = Color.red;
