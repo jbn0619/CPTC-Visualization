@@ -7,6 +7,9 @@ public class UptimeChartData: MonoBehaviour
 {
     #region Fields
 
+    private int upTicks;
+    private int downTicks;
+
     [SerializeField]
     private int id;
 
@@ -31,6 +34,36 @@ public class UptimeChartData: MonoBehaviour
         set
         {
             if (value >= 0) id = value;
+        }
+    }
+
+    /// <summary>
+    /// Gets or sets how-many ticks this chart's node has been on for.
+    /// </summary>
+    public int UpTicks
+    {
+        get
+        {
+            return upTicks;
+        }
+        set
+        {
+            if (value > upTicks) upTicks = value;
+        }
+    }
+
+    /// <summary>
+    /// Gets or sets how-many ticks this chart's node has been off for.
+    /// </summary>
+    public int DownTicks
+    {
+        get
+        {
+            return downTicks;
+        }
+        set
+        {
+            if (value > downTicks) downTicks = value;
         }
     }
 
@@ -61,12 +94,26 @@ public class UptimeChartData: MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        upTicks = 0;
+        downTicks = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    public void UpdateData(bool isUp)
+    {
+        // First, update our tick counts
+        if (isUp) upTicks++;
+        else downTicks++;
+
+        // Next, recalculate ratios and change the slider values.
+        int totalTicks = upTicks + downTicks;
+
+        blueSlider.value = upTicks / totalTicks;
+        redSlider.value = downTicks / totalTicks;
     }
 }

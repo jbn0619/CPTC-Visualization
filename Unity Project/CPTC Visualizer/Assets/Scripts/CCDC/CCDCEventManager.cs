@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.IO;
 
 public class CCDCEventManager: EventManager
 {
@@ -34,6 +35,7 @@ public class CCDCEventManager: EventManager
     // Update is called once per frame
     void Update()
     {
+        
         BaseUpdate();
     }
 
@@ -48,6 +50,26 @@ public class CCDCEventManager: EventManager
             {
                 team.ReadNextAlert();
             }
+        }
+    }
+
+    /// <summary>
+    /// Reads a JSON of uptime-data for ever node and changes node colors/uptime charts accordingly.
+    /// </summary>
+    public void ReadNodeStateJSON()
+    {
+        // READ NODE STATES HERE
+        throw new System.Exception("TODO");
+
+        StreamReader reader = new StreamReader("Assets/Data/data.json");
+        string input = reader.ReadToEnd();
+        reader.Close();
+
+        bool testBool = false;
+
+        for (int i = 0; i < uptimeCharts.Count; i++)
+        {
+            uptimeCharts[i].UpdateData(testBool);
         }
     }
 }
