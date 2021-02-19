@@ -2,21 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
+using System.IO;
 
 public class TeamViewAI: MonoBehaviour
 {
     #region Fields
-    private int[] teamTracker;
-    [SerializeField]
-    private int[] teamDeltas;
+    // other references
+    private List<Inject> injects; // list of injects for the comp
+    private CCDCTeamManager manager; // manager reference
 
+    // team references
     [SerializeField]
-    private Text UpdateText;
-
+    private int numOfTeams; // should be ten for now
+    private float timeBeforeChange; // should be 60
+    private int previousTeam; // keeps track to not display twice in a row
+    private int[] teamTracker; // keeps track of number of displays
     [SerializeField]
-    private int numOfTeams;
-    private float timeBeforeChange;
-    private int previousTeam;
+    private int[] teamDeltas; // keeps track of the changes in infra
     #endregion Fields
 
     #region Properties
@@ -26,29 +29,155 @@ public class TeamViewAI: MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // starting references
         teamTracker = new int[numOfTeams];
         teamDeltas = new int[numOfTeams];
         previousTeam = -1;
+        manager = CCDCManager.Instance.TeamManager;
+
+        // injects
+        injects = new List<Inject>();
+        ReadInjects();
     }
 
     // Update is called once per frame
     void Update()
     {
+        // updates timer
         timeBeforeChange -= Time.deltaTime;
         
+        // checks if its time 
         if (timeBeforeChange <= 0)
         {
+            // temp vars to test if it's time ofr an inject
+            bool injectTime = false;
+            int injectIndex = -1;
+            
+            // loop that goes through injects
+            for (int i = 0; i < injects.Count; i++)
+            {
+                // checks each inject
+                if (CheckInjects(injects[i]))
+                { 
+                    // sets temp vars
+                    injectTime = true;
+                    injectIndex = i;
+                }
+            }
+
+            // resets the deltas
             ResetChanges();
 
-            RandomizeDeltas();
+            // checks if it's time
+            if (injectTime)
+            {
+                // show the inject and such
+                Debug.Log("STOP; INJECT TIME");
+            }
+            else
+            {
+                // gives random deltas
+                RandomizeDeltas();
 
-            previousTeam = Prioritize();
+                // sets the previous team so that it doesn't
+                // show the same team twice in a row
+                previousTeam = Prioritize();
 
-            UpdateText.text = "Team " + previousTeam;
-            Debug.Log("Showing team " + previousTeam + " with " + teamTracker[previousTeam] + " times shown");
-
+                // switches to the correct team view
+                manager.SelectTeamView(previousTeam);
+            }
         }
+    }
 
+    /// <summary>
+    /// Checsk if it's the time to display an inject
+    /// </summary>
+    /// <returns>true/false</returns>
+    public bool CheckInjects(Inject inject)
+    {
+        return DateTime.Now.ToShortTimeString() == inject.Timestamp ? true : false;
+    }
+
+    /// <summary>
+    /// Reads in and creates the injects for the
+    /// competition screens
+    /// </summary>
+    public void ReadInjects()
+    {
+        // path of injects file
+        string path = "Assets\\Data\\injects.txt";
+
+        // checks if the file exists
+        if (File.Exists(path))
+        {
+            // opens a stream reader
+            using (StreamReader r = File.OpenText(path))
+            {
+                // try just in case of error
+                try
+                {
+                    // temp vars for reading in proper data
+                    string line = r.ReadLine();
+                    int pos = 0;
+                    string time = "";
+                    string name = "";
+                    string description = "";
+
+                    // loop that reads in all the data
+                    while (line != null && line != "")
+                    {
+                        // skips the comments/blank lines
+                        if (line[0] == '#')
+                        {
+                            line = r.ReadLine();
+                            continue;
+                        }
+
+                        // First in the inject, name
+                        if (pos == 0)
+                        {
+                            name = line;
+                            pos++;
+                        }
+                        // second in the inject, description
+                        else if (pos == 1)
+                        {
+                            description = line;
+                            pos++;
+                        }
+                        // third, timestamp, then resets the vars
+                        else if (pos == 2)
+                        {
+                            time = line;
+                            injects.Add(new Inject(name, description, time));
+                            Debug.Log("Added new inject: " + name);
+                            time = "";
+                            name = "";
+                            description = "";
+                            pos = 0;
+                        }
+                        else
+                        {
+                            // uh oh, this shouldn't happen :<
+                            Debug.LogError("ERROR: Reading in injects failed. Check the file format!");
+                        }
+
+                        // gets the next line
+                        line = r.ReadLine();
+                    }
+                }
+                catch (Exception e)
+                {
+                    // displays the error
+                    Debug.LogError(e.Message);
+                }
+            }
+        }
+        else
+        {
+            // Why isn't the file there???
+            Debug.LogError("ERROR: Reading in injects failed. The file does not exist!");
+        }
     }
 
     /// <summary>
@@ -60,11 +189,15 @@ public class TeamViewAI: MonoBehaviour
 
     }
 
+    /// <summary>
+    /// Used for testing random deltas to make sure the 
+    /// views are sending properly
+    /// </summary>
     public void RandomizeDeltas()
     {
         for (int i = 0; i < numOfTeams; i++)
         {
-            teamDeltas[i] += Random.Range(0, 9);
+            teamDeltas[i] += UnityEngine.Random.Range(0, 9);
         }
     }
 

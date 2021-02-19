@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/Scenes/AITesting.unity
+- path: Assets/Scenes/CCDC Visualizer.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0

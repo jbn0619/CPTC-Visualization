@@ -1,0 +1,27 @@
+# 
+# Format by Robley Evans
+# Use # as a way to use comments or a blank line
+#
+# This file is used for adding inject
+# that will be shown at the proper time 
+# on the day of the compeition
+#
+# Format:
+# Name
+# Description (keep on one line)
+# Time
+#
+# Example:
+Example Inject
+This is an inject that is going to be used to show how to add injects
+12:57 PM
+#
+# Example 2:
+Inject 2
+This is the second inject in the competition
+1:00 PM
+#
+# Example 2:
+Inject 3
+This is the third inject in the competition
+1:02 PM

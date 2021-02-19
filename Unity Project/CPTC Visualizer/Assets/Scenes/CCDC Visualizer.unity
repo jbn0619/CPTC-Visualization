@@ -343,17 +343,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4981e6d4588497b4b93df4cc6d8cea7e, type: 3}
---- !u!114 &607337993 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4795010010054222756, guid: 4981e6d4588497b4b93df4cc6d8cea7e, type: 3}
-  m_PrefabInstance: {fileID: 607337992}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 256cec50dcacd5d43ae4b5b21fd382a1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &939808355
 GameObject:
   m_ObjectHideFlags: 0
@@ -695,6 +684,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1972424271}
   - component: {fileID: 1972424270}
+  - component: {fileID: 1972424272}
   m_Layer: 0
   m_Name: CCDC Manager
   m_TagString: Untagged
@@ -714,7 +704,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a95aca795a5f3b48886f438a34457c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  infraManager: {fileID: 607337993}
+  infraManager: {fileID: 0}
   teamManager: {fileID: 939808356}
   eventManager: {fileID: 5992340}
 --- !u!4 &1972424271
@@ -731,6 +721,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1972424272
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1972424269}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a474294e8a1a36f42943fd37649bc24a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  teamDeltas: 
+  numOfTeams: 10
 --- !u!1001 &2025822034
 PrefabInstance:
   m_ObjectHideFlags: 0
