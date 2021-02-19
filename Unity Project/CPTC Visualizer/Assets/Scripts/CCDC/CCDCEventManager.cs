@@ -9,6 +9,12 @@ public class CCDCEventManager: EventManager
 
     private List<UptimeChartData> uptimeCharts;
 
+    [Header("Game Object Prefabs")]
+    [SerializeField]
+    private NotificationButton bannerGO;
+    [SerializeField]
+    private NotificationButton markerGO;
+
     #endregion Fields
 
     #region Properties

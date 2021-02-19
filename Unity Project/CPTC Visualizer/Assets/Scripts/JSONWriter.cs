@@ -8,6 +8,8 @@ using Assets.Scripts;
 
 public enum CPTCEvents { Exploit, ShutDown, StartUp, Discovery, NetworkScan}
 
+public enum CCDCAttackType { Recon, Infiltration, Kill, DataSwap}
+
 public enum NodeTypes { Host, Router}
 
 public enum NodeState { Off, On, NotWorking}
