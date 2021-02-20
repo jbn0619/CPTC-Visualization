@@ -15,11 +15,11 @@ E:/justi/Documents/repos/CPTC-Visualization/Unity Project/CPTC Visualizer
 -logFile
 Logs/AssetImportWorker0.log
 -srvPort
-60845
+56755
 Successfully changed project path to: E:/justi/Documents/repos/CPTC-Visualization/Unity Project/CPTC Visualizer
 E:/justi/Documents/repos/CPTC-Visualization/Unity Project/CPTC Visualizer
 Using Asset Import Pipeline V2.
-Refreshing native plugins compatible for Editor in 77.07 ms, found 1 plugins.
+Refreshing native plugins compatible for Editor in 59.46 ms, found 1 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 2020.2.4f1 (becced5a802b)
 [Subsystems] Discovering subsystems at path E:/Program Files/Unity/2020.2.4f1/Editor/Data/Resources/UnitySubsystems
@@ -35,184 +35,206 @@ Initialize mono
 Mono path[0] = 'E:/Program Files/Unity/2020.2.4f1/Editor/Data/Managed'
 Mono path[1] = 'E:/Program Files/Unity/2020.2.4f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit'
 Mono config path = 'E:/Program Files/Unity/2020.2.4f1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56104
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56808
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
 Register platform support module: E:/Program Files/Unity/2020.2.4f1/Editor/Data/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll
 Register platform support module: E:/Program Files/Unity/2020.2.4f1/Editor/Data/PlaybackEngines/MacStandaloneSupport/UnityEditor.OSXStandalone.Extensions.dll
 Register platform support module: E:/Program Files/Unity/2020.2.4f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
 Register platform support module: E:/Program Files/Unity/2020.2.4f1/Editor/Data/PlaybackEngines/LinuxStandaloneSupport/UnityEditor.LinuxStandalone.Extensions.dll
-Registered in 0.003706 seconds.
+Registered in 0.003507 seconds.
 Native extension for LinuxStandalone target not found
 Native extension for WindowsStandalone target not found
 Native extension for OSXStandalone target not found
 Native extension for WebGL target not found
-Refreshing native plugins compatible for Editor in 57.58 ms, found 1 plugins.
+Refreshing native plugins compatible for Editor in 59.40 ms, found 1 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Invoked RoslynAnalysisRunner static constructor.
 RoslynAnalysisRunner will not be running.
 RoslynAnalysisRunner has terminated.
 Mono: successfully reloaded assembly
-- Completed reload, in  8.869 seconds
+- Completed reload, in  6.438 seconds
 Platform modules already initialized, skipping
 Registering precompiled user dll's ...
-Registered in 0.001759 seconds.
+Registered in 0.002030 seconds.
 Begin MonoManager ReloadAssembly
 Native extension for LinuxStandalone target not found
 Native extension for WindowsStandalone target not found
 Native extension for OSXStandalone target not found
 Native extension for WebGL target not found
-Refreshing native plugins compatible for Editor in 57.75 ms, found 1 plugins.
+Refreshing native plugins compatible for Editor in 69.52 ms, found 1 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Invoked RoslynAnalysisRunner static constructor.
 RoslynAnalysisRunner will not be running.
 RoslynAnalysisRunner has terminated.
 Mono: successfully reloaded assembly
-- Completed reload, in  1.398 seconds
+- Completed reload, in  1.454 seconds
 Platform modules already initialized, skipping
 ========================================================================
 Worker process is ready to serve import requests
 Launched and connected shader compiler UnityShaderCompiler.exe after 0.07 seconds
-Refreshing native plugins compatible for Editor in 0.60 ms, found 1 plugins.
+Refreshing native plugins compatible for Editor in 0.61 ms, found 1 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 2919 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 119.1 MB.
-System memory in use after: 119.2 MB.
+Unloading 2922 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 119.3 MB.
+System memory in use after: 119.3 MB.
 
-Unloading 26 unused Assets to reduce memory usage. Loaded Objects now: 3368.
-Total: 2.828500 ms (FindLiveObjects: 0.390500 ms CreateObjectMapping: 0.215400 ms MarkObjects: 2.079700 ms  DeleteObjects: 0.141400 ms)
+Unloading 26 unused Assets to reduce memory usage. Loaded Objects now: 3371.
+Total: 2.966000 ms (FindLiveObjects: 0.635200 ms CreateObjectMapping: 0.224700 ms MarkObjects: 1.979800 ms  DeleteObjects: 0.124900 ms)
+
+========================================================================
+Received Import Request.
+  path: Assets/Scripts/CCDC/CCDCTeamManager.cs
+  artifactKey: Guid(ede27d25a264db743bcd8c6ef2d500b8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/CCDC/CCDCTeamManager.cs using Guid(ede27d25a264db743bcd8c6ef2d500b8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8b6b3cf00b46e7f31e979160cb6345f1') in 0.037834 seconds
+  Import took 0.047461 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.001363 seconds.
+  path: Assets/Scripts/CCDC/CCDCManager.cs
+  artifactKey: Guid(6a95aca795a5f3b48886f438a34457c1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/CCDC/CCDCManager.cs using Guid(6a95aca795a5f3b48886f438a34457c1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1b0264a3880d2d77b34df83c1b06be20') in 0.005617 seconds
+  Import took 0.014071 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.001618 seconds.
+  path: Assets/Scripts/CCDC/Managers
+  artifactKey: Guid(b3d08384f75f4d646b84e2dfd51d0335) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/CCDC/Managers using Guid(b3d08384f75f4d646b84e2dfd51d0335) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8a15f0c39af3205aa7ea4f0f69c5502f') in 0.005706 seconds
+  Import took 0.013222 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.001082 seconds.
+  path: Assets/Scripts/CCDC/CCDCEventManager.cs
+  artifactKey: Guid(2271fa2a1ee57464b93b5f99c292d3dd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/CCDC/CCDCEventManager.cs using Guid(2271fa2a1ee57464b93b5f99c292d3dd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '36350edfb695ae1e3af9d342c506aa4e') in 0.007994 seconds
+  Import took 0.013007 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.001456 seconds.
+  path: Assets/Scripts/CCDC/CCDCTeamData.cs
+  artifactKey: Guid(219d601b0fa4792439b76a7a9af61242) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/CCDC/CCDCTeamData.cs using Guid(219d601b0fa4792439b76a7a9af61242) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '442d89d247521dbd3fd7e32ea4bd2a0b') in 0.004732 seconds
+  Import took 0.012658 seconds .
 
 ========================================================================
 Received Prepare
 Registering precompiled user dll's ...
-Registered in 0.002611 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for LinuxStandalone target not found
-Native extension for WindowsStandalone target not found
-Native extension for OSXStandalone target not found
-Native extension for WebGL target not found
-Refreshing native plugins compatible for Editor in 0.60 ms, found 1 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Invoked RoslynAnalysisRunner static constructor.
-RoslynAnalysisRunner will not be running.
-RoslynAnalysisRunner has terminated.
-Mono: successfully reloaded assembly
-- Completed reload, in  1.306 seconds
-Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 0.71 ms, found 1 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 2908 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 118.8 MB.
-System memory in use after: 118.9 MB.
-
-Unloading 13 unused Assets to reduce memory usage. Loaded Objects now: 3371.
-Total: 3.042400 ms (FindLiveObjects: 0.291800 ms CreateObjectMapping: 0.175000 ms MarkObjects: 2.448500 ms  DeleteObjects: 0.125500 ms)
-
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.001917 seconds.
+Registered in 0.002082 seconds.
 Begin MonoManager ReloadAssembly
 Native extension for LinuxStandalone target not found
 Native extension for WindowsStandalone target not found
 Native extension for OSXStandalone target not found
 Native extension for WebGL target not found
 Refreshing native plugins compatible for Editor in 0.50 ms, found 1 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
+Preloading 0 native plugins for Editor in 0.02 ms.
 Invoked RoslynAnalysisRunner static constructor.
 RoslynAnalysisRunner will not be running.
 RoslynAnalysisRunner has terminated.
 Mono: successfully reloaded assembly
-- Completed reload, in  1.212 seconds
+- Completed reload, in  1.271 seconds
 Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 0.46 ms, found 1 plugins.
+Refreshing native plugins compatible for Editor in 0.49 ms, found 1 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 2908 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 118.8 MB.
+Unloading 2911 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 118.9 MB.
 System memory in use after: 119.0 MB.
 
 Unloading 13 unused Assets to reduce memory usage. Loaded Objects now: 3374.
-Total: 2.910200 ms (FindLiveObjects: 0.294600 ms CreateObjectMapping: 0.157400 ms MarkObjects: 2.235500 ms  DeleteObjects: 0.162200 ms)
+Total: 3.195900 ms (FindLiveObjects: 0.458800 ms CreateObjectMapping: 0.356000 ms MarkObjects: 2.235600 ms  DeleteObjects: 0.144100 ms)
+
+========================================================================
+Received Import Request.
+  Time since last request: 59.768452 seconds.
+  path: Assets/Scripts/CPTC/Managers
+  artifactKey: Guid(2a7d3f9b05dc5034db544aaf05afbf5b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/CPTC/Managers using Guid(2a7d3f9b05dc5034db544aaf05afbf5b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4d78131dde73d1ddbc11a55c5530ec45') in 0.036033 seconds
+  Import took 0.041604 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 1.535187 seconds.
+  path: Assets/Scripts/CPTC/CPTCEventManager.cs
+  artifactKey: Guid(ce970b4a688be6742b3175326450b04d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/CPTC/CPTCEventManager.cs using Guid(ce970b4a688be6742b3175326450b04d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c10cdf90ec636b0b9b8c12a8afeed512') in 0.005075 seconds
+  Import took 0.010381 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.880198 seconds.
+  path: Assets/Scripts/CPTC/CPTCInfrastructureManager.cs
+  artifactKey: Guid(0f61b1c727f73f347a15c1363de16d70) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/CPTC/CPTCInfrastructureManager.cs using Guid(0f61b1c727f73f347a15c1363de16d70) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4d6c54c05091ef6806c29821a848cc48') in 0.007165 seconds
+  Import took 0.011891 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.031544 seconds.
+  path: Assets/Scripts/CPTC/CPTCInfrastructureManager.cs
+  artifactKey: Guid(0f61b1c727f73f347a15c1363de16d70) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/CPTC/CPTCInfrastructureManager.cs using Guid(0f61b1c727f73f347a15c1363de16d70) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4d6c54c05091ef6806c29821a848cc48') in 0.005616 seconds
+  Import took 0.010965 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 1.459021 seconds.
+  path: Assets/Scripts/CPTC/CPTCManager.cs
+  artifactKey: Guid(0fccd9afc9095314095c9ea427c4d22e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/CPTC/CPTCManager.cs using Guid(0fccd9afc9095314095c9ea427c4d22e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0bd98ded87dea7ae82e79aeef2ac041d') in 0.004687 seconds
+  Import took 0.011277 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.912184 seconds.
+  path: Assets/Scripts/CPTC/CPTCNotificationManager.cs
+  artifactKey: Guid(c3d031cf68287134582c7f66f3c32c4e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/CPTC/CPTCNotificationManager.cs using Guid(c3d031cf68287134582c7f66f3c32c4e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ac498a3dc76448fb012559b28a3cbbe5') in 0.018839 seconds
+  Import took 0.026659 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.687453 seconds.
+  path: Assets/Scripts/CPTC/CPTCTeamManager.cs
+  artifactKey: Guid(37265aac8af0d784d844add4027775fd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/CPTC/CPTCTeamManager.cs using Guid(37265aac8af0d784d844add4027775fd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3cf608d751fb87b4649c3c9eff0a05aa') in 0.008540 seconds
+  Import took 0.019473 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.007495 seconds.
+  path: Assets/Scripts/CPTC/CPTCTeamManager.cs
+  artifactKey: Guid(37265aac8af0d784d844add4027775fd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/CPTC/CPTCTeamManager.cs using Guid(37265aac8af0d784d844add4027775fd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3cf608d751fb87b4649c3c9eff0a05aa') in 0.004867 seconds
+  Import took 0.012737 seconds .
 
 ========================================================================
 Received Prepare
 Registering precompiled user dll's ...
-Registered in 0.002462 seconds.
+Registered in 0.001797 seconds.
 Begin MonoManager ReloadAssembly
 Native extension for LinuxStandalone target not found
 Native extension for WindowsStandalone target not found
 Native extension for OSXStandalone target not found
 Native extension for WebGL target not found
-Refreshing native plugins compatible for Editor in 0.57 ms, found 1 plugins.
+Refreshing native plugins compatible for Editor in 0.52 ms, found 1 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Invoked RoslynAnalysisRunner static constructor.
 RoslynAnalysisRunner will not be running.
 RoslynAnalysisRunner has terminated.
 Mono: successfully reloaded assembly
-- Completed reload, in  1.359 seconds
+- Completed reload, in  1.175 seconds
 Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 0.54 ms, found 1 plugins.
+Refreshing native plugins compatible for Editor in 0.52 ms, found 1 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 2908 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 118.9 MB.
-System memory in use after: 119.0 MB.
+Unloading 2911 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 119.0 MB.
+System memory in use after: 119.1 MB.
 
 Unloading 13 unused Assets to reduce memory usage. Loaded Objects now: 3377.
-Total: 3.352700 ms (FindLiveObjects: 0.399700 ms CreateObjectMapping: 0.198600 ms MarkObjects: 2.618100 ms  DeleteObjects: 0.134600 ms)
-
-========================================================================
-Received Import Request.
-  path: Assets/Prefabs/UI Items/NotificationMarker.prefab
-  artifactKey: Guid(185f20017618360488fc26d38202c963) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/UI Items/NotificationMarker.prefab using Guid(185f20017618360488fc26d38202c963) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bc3a7f0d434b5f954acf280410df66b1') in 0.133628 seconds
-  Import took 0.139865 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 1.320534 seconds.
-  path: Assets/Prefabs/UI Items/NotificationBanner.prefab
-  artifactKey: Guid(fe3dc780c40307641bce6f37a0177a2c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/UI Items/NotificationBanner.prefab using Guid(fe3dc780c40307641bce6f37a0177a2c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd6096feecb2764e90f657491a76c04a9') in 0.006758 seconds
-  Import took 0.011367 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.027570 seconds.
-  path: Assets/Prefabs/UI Items/NotificationBanner.prefab
-  artifactKey: Guid(fe3dc780c40307641bce6f37a0177a2c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/UI Items/NotificationBanner.prefab using Guid(fe3dc780c40307641bce6f37a0177a2c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd6096feecb2764e90f657491a76c04a9') in 0.011993 seconds
-  Import took 0.016509 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 3.852670 seconds.
-  path: Assets/Prefabs/UI Items/NotificationBanner.prefab
-  artifactKey: Guid(fe3dc780c40307641bce6f37a0177a2c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/UI Items/NotificationBanner.prefab using Guid(fe3dc780c40307641bce6f37a0177a2c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '688950d7f434857a0b2f0a931c8b7da1') in 0.019446 seconds
-  Import took 0.035002 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.334849 seconds.
-  path: Assets/Prefabs/UI Items/NotificationBanner.prefab
-  artifactKey: Guid(fe3dc780c40307641bce6f37a0177a2c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/UI Items/NotificationBanner.prefab using Guid(fe3dc780c40307641bce6f37a0177a2c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3b32f3ed6618303000c00173d878fbb6') in 0.006040 seconds
-  Import took 0.011254 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 5.258998 seconds.
-  path: Assets/Prefabs/UI Items/NotificationMarker.prefab
-  artifactKey: Guid(185f20017618360488fc26d38202c963) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/UI Items/NotificationMarker.prefab using Guid(185f20017618360488fc26d38202c963) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8f82b0cb2b5551808c92888a7cdc2d50') in 0.013045 seconds
-  Import took 0.017876 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.983816 seconds.
-  path: Assets/Prefabs/UI Items/NotificationMarker.prefab
-  artifactKey: Guid(185f20017618360488fc26d38202c963) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/UI Items/NotificationMarker.prefab using Guid(185f20017618360488fc26d38202c963) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b1c541c9e9436c669e15a5bf67ee4c52') in 0.007819 seconds
-  Import took 0.013127 seconds .
+Total: 2.464700 ms (FindLiveObjects: 0.271000 ms CreateObjectMapping: 0.154400 ms MarkObjects: 1.927600 ms  DeleteObjects: 0.110300 ms)
 
 AssetImportWorkerClient::OnTransportError - code=2 error=End of file
