@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.IO;
 using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -74,15 +75,9 @@ namespace AttackCompilerForm
         }
 
         /// <summary>
-        /// Converts the information of this object into a JSON-format.
+        /// Converts this object's data into a single-line string for the list box.
         /// </summary>
-        /// <returns>A JSON-formatted string of this object's data.</returns>
-        public string ToJSON()
-        {
-            
-            return "";
-        }
-
+        /// <returns>A string of data in a single line.</returns>
         public string ToListBoxString()
         {
             string result = "";

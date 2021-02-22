@@ -4,7 +4,10 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.IO;
 using System.Text;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -15,6 +18,8 @@ namespace AttackCompilerForm
         #region Fields
 
         List<CCDCAttack> attacks;
+
+        string fileName;
 
         #endregion Fields
 
@@ -29,6 +34,7 @@ namespace AttackCompilerForm
             InitializeComponent();
 
             attacks = new List<CCDCAttack>();
+            fileName = "attacks.json";
         }
 
         /// <summary>
@@ -99,7 +105,14 @@ namespace AttackCompilerForm
         /// <param name="e">This event handler.</param>
         private void saveFileMenuItem_Click(object sender, EventArgs e)
         {
-
+            using (StreamWriter sw = new StreamWriter(fileName))
+            {
+                foreach (CCDCAttack a in attacks)
+                {
+                    string attack = JsonSerializer.Serialize(attacks[0]);
+                    sw.Write(attack);
+                }
+            }
         }
     }
 }
