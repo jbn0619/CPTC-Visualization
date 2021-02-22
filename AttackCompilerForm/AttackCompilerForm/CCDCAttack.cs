@@ -17,6 +17,7 @@ namespace AttackCompilerForm
         private List<int> nodesAffected;
 
         private string attackType;
+        private string startTime;
 
         #endregion Fields
 
@@ -34,6 +35,21 @@ namespace AttackCompilerForm
             set
             {
                 attackType = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the starting-time of this attack.
+        /// </summary>
+        public String StartTime
+        {
+            get
+            {
+                return startTime;
+            }
+            set
+            {
+                startTime = value;
             }
         }
 
@@ -67,11 +83,12 @@ namespace AttackCompilerForm
         /// <param name="a">This attack's type.</param>
         /// <param name="n">The nodes affected by this attack.</param>
         /// <param name="t">The teams affected by this attack.</param>
-        public CCDCAttack(string a, List<int> n, List<int> t)
+        public CCDCAttack(string a, List<int> n, List<int> t, string s)
         {
             attackType = a;
             nodesAffected = n;
             teamsAffected = t;
+            startTime = s;
         }
 
         /// <summary>
@@ -102,6 +119,9 @@ namespace AttackCompilerForm
             }
             result = result.Remove(result.Length - 2, 2);
             result += " }";
+
+            // Add the starting time
+            result += startTime;
 
             return result;
         }

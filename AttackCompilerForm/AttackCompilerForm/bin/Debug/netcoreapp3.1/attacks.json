@@ -1,1 +1,43 @@
-{"AttackType":"Execute Code","TeamsAffected":[4,6,2,1,0],"NodesAffected":[6,8,2,6,2,0]}{"AttackType":"Execute Code","TeamsAffected":[4,6,2,1,0],"NodesAffected":[6,8,2,6,2,0]}
+{
+    "AttackType": "Intrusion",
+    "StartTime": "2021-02-22T15:59:52.86366-05:00",
+    "TeamsAffected": [
+        4,
+        2,
+        7
+    ],
+    "NodesAffected": [
+        1,
+        0,
+        2,
+        87
+    ]
+}{
+    "AttackType": "Intrusion",
+    "StartTime": "2021-02-22T15:59:52.86366-05:00",
+    "TeamsAffected": [
+        4,
+        2,
+        7
+    ],
+    "NodesAffected": [
+        1,
+        0,
+        2,
+        87
+    ]
+}{
+    "AttackType": "Intrusion",
+    "StartTime": "2021-02-22T15:59:52.86366-05:00",
+    "TeamsAffected": [
+        4,
+        2,
+        7
+    ],
+    "NodesAffected": [
+        1,
+        0,
+        2,
+        87
+    ]
+}

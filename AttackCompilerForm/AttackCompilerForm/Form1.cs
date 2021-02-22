@@ -92,7 +92,9 @@ namespace AttackCompilerForm
                 nodeIDs.Add(result);
             }
 
-            CCDCAttack newAttack = new CCDCAttack(attackTypeComboBox.Text, nodeIDs, teamIDs);
+            DateTime currentTime = DateTime.Now;
+            
+            CCDCAttack newAttack = new CCDCAttack(attackTypeComboBox.Text, nodeIDs, teamIDs, currentTime.ToShortTimeString());
             attacks.Add(newAttack);
 
             compiledAttacksListBox.Items.Add(newAttack.ToListBoxString());
@@ -105,6 +107,7 @@ namespace AttackCompilerForm
         /// <param name="e">This event handler.</param>
         private void saveFileMenuItem_Click(object sender, EventArgs e)
         {
+            File.WriteAllText(fileName, string.Empty);
             using (StreamWriter sw = new StreamWriter(fileName))
             {
                 foreach (CCDCAttack a in attacks)
