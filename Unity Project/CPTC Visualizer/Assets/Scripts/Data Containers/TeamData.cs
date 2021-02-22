@@ -6,18 +6,18 @@ public class TeamData: MonoBehaviour
 {
     #region Fields
 
-    private int teamId;
+    protected int teamId;
 
     [SerializeField]
-    private List<AlertData> alerts;
+    protected List<AlertData> alerts;
 
     [SerializeField]
-    private PriorityQueue queue;
+    protected PriorityQueue queue;
 
     [SerializeField]
-    private List<int> discoveredNodeIds;
+    protected List<int> discoveredNodeIds;
 
-    private InfrastructureData infraCopy;
+    protected InfrastructureData infraCopy;
     
     #endregion Fields
     
@@ -109,7 +109,7 @@ public class TeamData: MonoBehaviour
     /// <summary>
     /// Reads the first alert in the alerts list and changes the infrastructure based-on that.
     /// </summary>
-    public void ReadNextAlert()
+    public virtual void ReadNextAlert()
     {
         if (!queue.IsEmpty) // alerts.Count > 0
         {
@@ -190,7 +190,7 @@ public class TeamData: MonoBehaviour
     /// <summary>
     /// Dynamically moves all of this team's infrastructure into the scene.
     /// </summary>
-    public void BuildTeamGraph()
+    public virtual void BuildTeamGraph()
     {
         // Place each network first, then place nodes around them.
         for (int i = 0; i < infraCopy.Networks.Count; i++)
