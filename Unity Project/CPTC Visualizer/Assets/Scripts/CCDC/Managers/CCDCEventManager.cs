@@ -38,12 +38,11 @@ public class CCDCEventManager: EventManager
     /// </summary>
     public override void RunAlerts()
     {
-        foreach (TeamData team in CCDCManager.Instance.TeamManager.Teams)
+        foreach (CCDCTeamData team in CCDCManager.Instance.TeamManager.Teams)
         {
             if (!team.Queue.IsEmpty) // team.Alerts.Count > 0
             {
                 
-
             }
         }
     }
@@ -53,9 +52,20 @@ public class CCDCEventManager: EventManager
     /// </summary>
     public void ReadNodeStateJSON()
     {
-        StreamReader reader = new StreamReader("Assets/Data/data.json");
+        StreamReader reader = new StreamReader("Assets/Data/nodeState.json");
         string input = reader.ReadToEnd();
         reader.Close();
+
+        // THIS IS PSEUDO-CODE MEANT TO OUTLINE WHAT NODE-STATE READING WILL LOOK LIKE
+        /*
+        foreach (CCDCTeamData team in CCDCManager.Instance.TeamManager.Teams)
+        {
+            for (int i = 0; i < payload.Nodes.Count; i++) 
+            {
+                team.UptimeCharts[i].UpdateData(payload.Nodes[i].IsOn);
+            }
+        }
+        */
 
         // READ NODE STATES HERE
         throw new System.Exception("TODO");

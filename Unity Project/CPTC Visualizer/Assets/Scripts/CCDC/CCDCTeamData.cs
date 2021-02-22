@@ -8,6 +8,9 @@ public class CCDCTeamData: TeamData
 
     private List<UptimeChartData> uptimeCharts;
 
+    private List<NotificationButton> notifMarkers;
+    private List<NotificationButton> notifBanners;
+
     #endregion Fields
 
     #region Properties
@@ -20,6 +23,28 @@ public class CCDCTeamData: TeamData
         get
         {
             return uptimeCharts;
+        }
+    }
+
+    /// <summary>
+    /// Gets a list of all the notification markers active for this team.
+    /// </summary>
+    public List<NotificationButton> NotifMarkers
+    {
+        get
+        {
+            return notifMarkers;
+        }
+    }
+
+    /// <summary>
+    /// Gets a list of all the notification banners active for this team.
+    /// </summary>
+    public List<NotificationButton> NotifBanners
+    {
+        get
+        {
+            return notifBanners;
         }
     }
 
