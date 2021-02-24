@@ -12,4 +12,5 @@ E:\justi\Documents\repos\CPTC-Visualization\AttackCompilerForm\AttackCompilerFor
 E:\justi\Documents\repos\CPTC-Visualization\AttackCompilerForm\AttackCompilerForm\obj\Debug\netcoreapp3.1\AttackCompilerForm.dll
 E:\justi\Documents\repos\CPTC-Visualization\AttackCompilerForm\AttackCompilerForm\obj\Debug\netcoreapp3.1\AttackCompilerForm.pdb
 E:\justi\Documents\repos\CPTC-Visualization\AttackCompilerForm\AttackCompilerForm\obj\Debug\netcoreapp3.1\AttackCompilerForm.genruntimeconfig.cache
-E:\justi\Documents\repos\CPTC-Visualization\AttackCompilerForm\AttackCompilerForm\obj\Debug\netcoreapp3.1\AttackCompilerForm.attackCompilerForm.resources
+E:\justi\Documents\repos\CPTC-Visualization\AttackCompilerForm\AttackCompilerForm\obj\Debug\netcoreapp3.1\AttackCompilerForm.FormAttackCompiler.resources
+E:\justi\Documents\repos\CPTC-Visualization\AttackCompilerForm\AttackCompilerForm\obj\Debug\netcoreapp3.1\AttackCompilerForm.FormEditAttack.resources

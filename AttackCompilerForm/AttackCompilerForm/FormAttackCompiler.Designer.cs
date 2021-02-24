@@ -1,7 +1,7 @@
 ﻿
 namespace AttackCompilerForm
 {
-    partial class attackCompilerForm
+    partial class FormAttackCompiler
     {
         /// <summary>
         ///  Required designer variable.
@@ -122,6 +122,7 @@ namespace AttackCompilerForm
             this.nodesTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.nodesTextBox.Size = new System.Drawing.Size(100, 166);
             this.nodesTextBox.TabIndex = 4;
+            this.nodesTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
             // 
             // teamsTextBox
             // 
@@ -131,7 +132,7 @@ namespace AttackCompilerForm
             this.teamsTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.teamsTextBox.Size = new System.Drawing.Size(100, 166);
             this.teamsTextBox.TabIndex = 3;
-            this.teamsTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.teamsTextBox_KeyPress);
+            this.teamsTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
             // 
             // submitAttackButton
             // 
@@ -247,7 +248,7 @@ namespace AttackCompilerForm
             this.duplicateAttackToolStripMenuItem.Text = "Duplicate";
             this.duplicateAttackToolStripMenuItem.Click += new System.EventHandler(this.duplicateAttackToolStripMenuItem_Click);
             // 
-            // attackCompilerForm
+            // FormAttackCompiler
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -255,7 +256,7 @@ namespace AttackCompilerForm
             this.Controls.Add(this.compiledAttacksGroupBox);
             this.Controls.Add(this.attackBuilderGroupBox);
             this.Controls.Add(this.menuStrip1);
-            this.Name = "attackCompilerForm";
+            this.Name = "FormAttackCompiler";
             this.RightToLeftLayout = true;
             this.Text = "Attack Compiler";
             this.attackBuilderGroupBox.ResumeLayout(false);

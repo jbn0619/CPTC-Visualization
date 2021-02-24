@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace AttackCompilerForm
 {
-    class CCDCAttack
+    public class CCDCAttack
     {
         #region Fields
 

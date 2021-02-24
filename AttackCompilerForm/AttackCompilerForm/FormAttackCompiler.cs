@@ -13,7 +13,7 @@ using System.Windows.Forms;
 
 namespace AttackCompilerForm
 {
-    public partial class attackCompilerForm : Form
+    public partial class FormAttackCompiler : Form
     {
         #region Fields
 
@@ -21,15 +21,37 @@ namespace AttackCompilerForm
 
         string fileName;
 
+        FormEditAttack editAttack;
+
         #endregion Fields
 
         #region Properties
 
+        /// <summary>
+        /// Gets a list of all user-generated attacks.
+        /// </summary>
+        public List<CCDCAttack> Attacks
+        {
+            get
+            {
+                return attacks;
+            }
+        }
 
+        /// <summary>
+        /// Gets this form's list box where it stores all attacks as-strings.
+        /// </summary>
+        public ListBox ListBoxAttacks
+        {
+            get
+            {
+                return compiledAttacksListBox;
+            }
+        }
 
         #endregion Properties
 
-        public attackCompilerForm()
+        public FormAttackCompiler()
         {
             InitializeComponent();
 
@@ -42,7 +64,7 @@ namespace AttackCompilerForm
         /// </summary>
         /// <param name="sender">The object calling this method.</param>
         /// <param name="e">The event being sent in.</param>
-        private void teamsTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        private void textBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             // Verify that the new digit is a number or new-line.
             if (!char.IsNumber(e.KeyChar) && !char.IsControl(e.KeyChar))
@@ -147,6 +169,36 @@ namespace AttackCompilerForm
             }
         }
 
+        /// <summary>
+        /// Opens-up a JSON file and reads-in the attacks of that file.
+        /// </summary>
+        /// <param name="sender">The menu item that invoked this method.</param>
+        /// <param name="e">This event handler.</param>
+        private void openFileMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        /// <summary>
+        /// Closes this program.
+        /// </summary>
+        /// <param name="sender">The menu item that invoked this method.</param>
+        /// <param name="e">This event handler.</param>
+        private void closeFileMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        /// <summary>
+        /// Empties-out all the fields and resets this program to its starting-state when this method is invoked.
+        /// </summary>
+        /// <param name="sender">The menu item that invoked this method.</param>
+        /// <param name="e">This event handler.</param>
+        private void newFileMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
         #endregion Menu Strip Methods
 
         #region ListBox-Polish Methods
@@ -208,7 +260,10 @@ namespace AttackCompilerForm
         /// <param name="e">The eventArgs sent with this call.</param>
         private void editAttackToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Edit works!");
+            int index = this.compiledAttacksListBox.SelectedIndex;
+
+            editAttack = new FormEditAttack(this, attacks[index]);
+            editAttack.ShowDialog();
         }
 
         #endregion ListBox-Polish Methods
