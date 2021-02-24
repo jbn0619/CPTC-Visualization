@@ -29,6 +29,7 @@ namespace AttackCompilerForm
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.attackTypeComboBox = new System.Windows.Forms.ComboBox();
             this.attackTypeLabel = new System.Windows.Forms.Label();
             this.attackBuilderGroupBox = new System.Windows.Forms.GroupBox();
@@ -46,9 +47,14 @@ namespace AttackCompilerForm
             this.saveAsFileMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.compiledAttacksGroupBox = new System.Windows.Forms.GroupBox();
             this.compiledAttacksListBox = new System.Windows.Forms.ListBox();
+            this.attacksContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.editAttackToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.deleteAttackToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.duplicateAttackToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.attackBuilderGroupBox.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.compiledAttacksGroupBox.SuspendLayout();
+            this.attacksContextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // attackTypeComboBox
@@ -189,6 +195,7 @@ namespace AttackCompilerForm
             this.saveAsFileMenuItem.Name = "saveAsFileMenuItem";
             this.saveAsFileMenuItem.Size = new System.Drawing.Size(114, 22);
             this.saveAsFileMenuItem.Text = "Save As";
+            this.saveAsFileMenuItem.Click += new System.EventHandler(this.saveAsFileMenuItem_Click);
             // 
             // compiledAttacksGroupBox
             // 
@@ -208,6 +215,37 @@ namespace AttackCompilerForm
             this.compiledAttacksListBox.Name = "compiledAttacksListBox";
             this.compiledAttacksListBox.Size = new System.Drawing.Size(332, 364);
             this.compiledAttacksListBox.TabIndex = 0;
+            this.compiledAttacksListBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.compiledAttacksListBox_MouseDown);
+            // 
+            // attacksContextMenuStrip
+            // 
+            this.attacksContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.editAttackToolStripMenuItem,
+            this.deleteAttackToolStripMenuItem,
+            this.duplicateAttackToolStripMenuItem});
+            this.attacksContextMenuStrip.Name = "attacksContextMenuStrip";
+            this.attacksContextMenuStrip.Size = new System.Drawing.Size(125, 70);
+            // 
+            // editAttackToolStripMenuItem
+            // 
+            this.editAttackToolStripMenuItem.Name = "editAttackToolStripMenuItem";
+            this.editAttackToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.editAttackToolStripMenuItem.Text = "Edit";
+            this.editAttackToolStripMenuItem.Click += new System.EventHandler(this.editAttackToolStripMenuItem_Click);
+            // 
+            // deleteAttackToolStripMenuItem
+            // 
+            this.deleteAttackToolStripMenuItem.Name = "deleteAttackToolStripMenuItem";
+            this.deleteAttackToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.deleteAttackToolStripMenuItem.Text = "Delete";
+            this.deleteAttackToolStripMenuItem.Click += new System.EventHandler(this.deleteAttackToolStripMenuItem_Click);
+            // 
+            // duplicateAttackToolStripMenuItem
+            // 
+            this.duplicateAttackToolStripMenuItem.Name = "duplicateAttackToolStripMenuItem";
+            this.duplicateAttackToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.duplicateAttackToolStripMenuItem.Text = "Duplicate";
+            this.duplicateAttackToolStripMenuItem.Click += new System.EventHandler(this.duplicateAttackToolStripMenuItem_Click);
             // 
             // attackCompilerForm
             // 
@@ -225,6 +263,7 @@ namespace AttackCompilerForm
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.compiledAttacksGroupBox.ResumeLayout(false);
+            this.attacksContextMenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -249,6 +288,10 @@ namespace AttackCompilerForm
         private System.Windows.Forms.ToolStripMenuItem saveAsFileMenuItem;
         private System.Windows.Forms.GroupBox compiledAttacksGroupBox;
         private System.Windows.Forms.ListBox compiledAttacksListBox;
+        private System.Windows.Forms.ContextMenuStrip attacksContextMenuStrip;
+        private System.Windows.Forms.ToolStripMenuItem editAttackToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem deleteAttackToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem duplicateAttackToolStripMenuItem;
     }
 }
 

@@ -100,6 +100,8 @@ namespace AttackCompilerForm
             compiledAttacksListBox.Items.Add(newAttack.ToListBoxString());
         }
 
+        #region Menu Strip Methods
+
         /// <summary>
         /// Takes all the CCDCAttack objects and writes them to a JSON file.
         /// </summary>
@@ -117,5 +119,98 @@ namespace AttackCompilerForm
                 }
             }
         }
+
+        /// <summary>
+        /// Takes all the CCDCAttack objects and writes them to a new JSON file at a user-determined location.
+        /// </summary>
+        /// <param name="sender">The menu item that invoked this method.</param>
+        /// <param name="e">This event handler.</param>
+        private void saveAsFileMenuItem_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+
+            saveFileDialog.Filter = "json files (*.json)|*.json|All files (*.*)|*.*";
+            saveFileDialog.FilterIndex = 1;
+            saveFileDialog.RestoreDirectory = true;
+
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                File.WriteAllText(saveFileDialog.FileName, string.Empty);
+                using (StreamWriter sw = new StreamWriter(saveFileDialog.FileName))
+                {
+                    foreach (CCDCAttack a in attacks)
+                    {
+                        string attack = JsonSerializer.Serialize(attacks[0]);
+                        sw.Write(attack);
+                    }
+                }
+            }
+        }
+
+        #endregion Menu Strip Methods
+
+        #region ListBox-Polish Methods
+
+        /// <summary>
+        /// Checks if a right-click has occured on an item in this list box before making a context menu strip appear.
+        /// </summary>
+        /// <param name="sender">The list box that was clicked.</param>
+        /// <param name="e">Information about the mouse click.</param>
+        private void compiledAttacksListBox_MouseDown(object sender, MouseEventArgs e)
+        {
+            ListBox lb = (ListBox)sender;
+            if (e.Button == MouseButtons.Right)
+            {
+                int index = lb.IndexFromPoint(e.Location);
+                if (index != System.Windows.Forms.ListBox.NoMatches)
+                {
+                    lb.SelectedIndex = index;
+
+                    // Spawn-in the context menu strip.
+                    attacksContextMenuStrip.Show(lb, e.Location);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Deletes the selected-attack when this method is invoked.
+        /// </summary>
+        /// <param name="sender">The menu item that invoked this method.</param>
+        /// <param name="e">The eventArgs sent with this call.</param>
+        private void deleteAttackToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Are you sure you want to delete this attack?", "Delete Attack", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+            {
+                attacks.RemoveAt(this.compiledAttacksListBox.SelectedIndex);
+                this.compiledAttacksListBox.Items.RemoveAt(this.compiledAttacksListBox.SelectedIndex);
+                this.compiledAttacksListBox.SelectedIndex = -1;
+            }
+        }
+
+        /// <summary>
+        /// Duplicates the selected-attack when this method is invoked.
+        /// </summary>
+        /// <param name="sender">The menu item that invoked this method.</param>
+        /// <param name="e">The eventArgs sent with this call.</param>
+        private void duplicateAttackToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int index = this.compiledAttacksListBox.SelectedIndex;
+
+            CCDCAttack duplicateAttack = attacks[index];
+            attacks.Add(duplicateAttack);
+            compiledAttacksListBox.Items.Add(duplicateAttack.ToListBoxString());
+        }
+
+        /// <summary>
+        /// Edits the selected-attack when this method is invoked.
+        /// </summary>
+        /// <param name="sender">The menu item that invoked this method.</param>
+        /// <param name="e">The eventArgs sent with this call.</param>
+        private void editAttackToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Edit works!");
+        }
+
+        #endregion ListBox-Polish Methods
     }
 }
