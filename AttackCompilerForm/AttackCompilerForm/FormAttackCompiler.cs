@@ -262,7 +262,7 @@ namespace AttackCompilerForm
         {
             int index = this.compiledAttacksListBox.SelectedIndex;
 
-            editAttack = new FormEditAttack(this, attacks[index]);
+            editAttack = new FormEditAttack(this, attacks[index], index);
             editAttack.ShowDialog();
         }
 

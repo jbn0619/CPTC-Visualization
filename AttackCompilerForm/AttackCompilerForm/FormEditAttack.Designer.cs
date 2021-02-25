@@ -30,15 +30,15 @@ namespace AttackCompilerForm
         private void InitializeComponent()
         {
             this.attackBuilderGroupBox = new System.Windows.Forms.GroupBox();
+            this.attackTimeLabel = new System.Windows.Forms.Label();
             this.attackDateTimerPicker = new System.Windows.Forms.DateTimePicker();
             this.nodesLabel = new System.Windows.Forms.Label();
             this.teamsLable = new System.Windows.Forms.Label();
             this.nodesTextBox = new System.Windows.Forms.TextBox();
             this.teamsTextBox = new System.Windows.Forms.TextBox();
-            this.submitAttackButton = new System.Windows.Forms.Button();
+            this.editAttackButton = new System.Windows.Forms.Button();
             this.attackTypeComboBox = new System.Windows.Forms.ComboBox();
             this.attackTypeLabel = new System.Windows.Forms.Label();
-            this.attackTimeLabel = new System.Windows.Forms.Label();
             this.attackBuilderGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -50,7 +50,7 @@ namespace AttackCompilerForm
             this.attackBuilderGroupBox.Controls.Add(this.teamsLable);
             this.attackBuilderGroupBox.Controls.Add(this.nodesTextBox);
             this.attackBuilderGroupBox.Controls.Add(this.teamsTextBox);
-            this.attackBuilderGroupBox.Controls.Add(this.submitAttackButton);
+            this.attackBuilderGroupBox.Controls.Add(this.editAttackButton);
             this.attackBuilderGroupBox.Controls.Add(this.attackTypeComboBox);
             this.attackBuilderGroupBox.Controls.Add(this.attackTypeLabel);
             this.attackBuilderGroupBox.Location = new System.Drawing.Point(12, 11);
@@ -59,6 +59,15 @@ namespace AttackCompilerForm
             this.attackBuilderGroupBox.TabIndex = 3;
             this.attackBuilderGroupBox.TabStop = false;
             this.attackBuilderGroupBox.Text = "Attack Builder";
+            // 
+            // attackTimeLabel
+            // 
+            this.attackTimeLabel.AutoSize = true;
+            this.attackTimeLabel.Location = new System.Drawing.Point(297, 132);
+            this.attackTimeLabel.Name = "attackTimeLabel";
+            this.attackTimeLabel.Size = new System.Drawing.Size(116, 15);
+            this.attackTimeLabel.TabIndex = 8;
+            this.attackTimeLabel.Text = "Attack starting-time:";
             // 
             // attackDateTimerPicker
             // 
@@ -104,14 +113,15 @@ namespace AttackCompilerForm
             this.teamsTextBox.Size = new System.Drawing.Size(100, 166);
             this.teamsTextBox.TabIndex = 3;
             // 
-            // submitAttackButton
+            // editAttackButton
             // 
-            this.submitAttackButton.Location = new System.Drawing.Point(297, 204);
-            this.submitAttackButton.Name = "submitAttackButton";
-            this.submitAttackButton.Size = new System.Drawing.Size(105, 23);
-            this.submitAttackButton.TabIndex = 2;
-            this.submitAttackButton.Text = "Edit Attack";
-            this.submitAttackButton.UseVisualStyleBackColor = true;
+            this.editAttackButton.Location = new System.Drawing.Point(297, 204);
+            this.editAttackButton.Name = "editAttackButton";
+            this.editAttackButton.Size = new System.Drawing.Size(105, 23);
+            this.editAttackButton.TabIndex = 2;
+            this.editAttackButton.Text = "Edit Attack";
+            this.editAttackButton.UseVisualStyleBackColor = true;
+            this.editAttackButton.Click += new System.EventHandler(this.submitAttackButton_Click);
             // 
             // attackTypeComboBox
             // 
@@ -136,15 +146,6 @@ namespace AttackCompilerForm
             this.attackTypeLabel.TabIndex = 1;
             this.attackTypeLabel.Text = "Attack type:";
             // 
-            // attackTimeLabel
-            // 
-            this.attackTimeLabel.AutoSize = true;
-            this.attackTimeLabel.Location = new System.Drawing.Point(297, 132);
-            this.attackTimeLabel.Name = "attackTimeLabel";
-            this.attackTimeLabel.Size = new System.Drawing.Size(116, 15);
-            this.attackTimeLabel.TabIndex = 8;
-            this.attackTimeLabel.Text = "Attack starting-time:";
-            // 
             // FormEditAttack
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -166,7 +167,7 @@ namespace AttackCompilerForm
         private System.Windows.Forms.Label teamsLable;
         private System.Windows.Forms.TextBox nodesTextBox;
         private System.Windows.Forms.TextBox teamsTextBox;
-        private System.Windows.Forms.Button submitAttackButton;
+        private System.Windows.Forms.Button editAttackButton;
         private System.Windows.Forms.ComboBox attackTypeComboBox;
         private System.Windows.Forms.Label attackTypeLabel;
         private System.Windows.Forms.DateTimePicker attackDateTimerPicker;
