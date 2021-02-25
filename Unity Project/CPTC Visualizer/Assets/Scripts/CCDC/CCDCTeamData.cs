@@ -50,6 +50,14 @@ public class CCDCTeamData: TeamData
 
     #endregion Properties
 
+    private void Awake()
+    {
+        uptimeCharts = new List<UptimeChartData>();
+
+        notifBanners = new List<NotificationButton>();
+        notifMarkers = new List<NotificationButton>();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
