@@ -1,0 +1,68 @@
+{
+    "attacks": [
+        {
+            "AttackType": "Intrusion",
+            "StartTime": "10:34 AM",
+            "TeamsAffected": [
+                4,
+                7,
+                6,
+                0
+            ],
+            "NodesAffected": [
+                1,
+                2,
+                8,
+                9
+            ]
+        },
+        {
+            "AttackType": "Recon",
+            "StartTime": "10:34 AM",
+            "TeamsAffected": [
+                4,
+                7,
+                6,
+                0
+            ],
+            "NodesAffected": [
+                1,
+                2,
+                8,
+                9
+            ]
+        },
+        {
+            "AttackType": "Cry",
+            "StartTime": "10:34 AM",
+            "TeamsAffected": [
+                4,
+                7,
+                6,
+                0
+            ],
+            "NodesAffected": [
+                1,
+                2,
+                8,
+                9
+            ]
+        },
+        {
+            "AttackType": "Execute Code",
+            "StartTime": "10:34 AM",
+            "TeamsAffected": [
+                4,
+                7,
+                6,
+                0
+            ],
+            "NodesAffected": [
+                1,
+                2,
+                8,
+                9
+            ]
+        }
+    ]
+}

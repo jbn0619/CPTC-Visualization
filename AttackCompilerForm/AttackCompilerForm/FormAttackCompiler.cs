@@ -134,11 +134,8 @@ namespace AttackCompilerForm
             File.WriteAllText(fileName, string.Empty);
             using (StreamWriter sw = new StreamWriter(fileName))
             {
-                foreach (CCDCAttack a in attacks)
-                {
-                    string attack = JsonSerializer.Serialize(attacks[0]);
-                    sw.Write(attack);
-                }
+                string attack = JsonSerializer.Serialize(attacks);
+                sw.Write(attack);
             }
         }
 
@@ -160,11 +157,9 @@ namespace AttackCompilerForm
                 File.WriteAllText(saveFileDialog.FileName, string.Empty);
                 using (StreamWriter sw = new StreamWriter(saveFileDialog.FileName))
                 {
-                    foreach (CCDCAttack a in attacks)
-                    {
-                        string attack = JsonSerializer.Serialize(attacks[0]);
-                        sw.Write(attack);
-                    }
+                    CCDCCompiledAttacks compiledAttacks = new CCDCCompiledAttacks(attacks);
+                    string attack = "{ \"attacks\": " + JsonSerializer.Serialize(attacks) + " }";
+                    sw.Write(attack);
                 }
             }
         }
