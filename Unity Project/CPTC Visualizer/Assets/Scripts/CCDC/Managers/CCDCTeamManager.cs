@@ -73,12 +73,12 @@ public class CCDCTeamManager: TeamManager
         // The case when we wrap from the bottom to the end of the teams list.
         else if (currentTeamView < -1)
         {
-            currentTeamView = teams.Count - 1;
+            currentTeamView = ccdcTeams.Count - 1;
             ccdcTeams[currentTeamView].InfraCopy.gameObject.SetActive(true);
             ccdcTeams[currentTeamView].BuildTeamGraph();
         }
         // The case when we wrap from the end of teams list back to infrastructure.
-        else if (currentTeamView >= teams.Count)
+        else if (currentTeamView >= ccdcTeams.Count)
         {
             currentTeamView = -1;
             CCDCManager.Instance.InfraManager.Infrastructure.gameObject.SetActive(true);

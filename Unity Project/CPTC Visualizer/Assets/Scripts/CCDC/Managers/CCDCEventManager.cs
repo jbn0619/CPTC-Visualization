@@ -31,6 +31,8 @@ public class CCDCEventManager: EventManager
     void Update()
     {
         BaseUpdate();
+
+        if (Input.GetKeyDown(KeyCode.P)) ReadAttacksJSON();
     }
 
     /// <summary>
@@ -69,5 +71,19 @@ public class CCDCEventManager: EventManager
 
         // READ NODE STATES HERE
         throw new System.Exception("TODO");
+    }
+
+    /// <summary>
+    /// Reads-in a json that summarizes all attacks logged by the red team.
+    /// </summary>
+    public void ReadAttacksJSON()
+    {
+        StreamReader reader = new StreamReader("Assets/Data/attacks.json");
+        string input = reader.ReadToEnd();
+        reader.Close();
+
+        Assets.Scripts.CCDCCompiledAttacks payload = JsonUtility.FromJson<Assets.Scripts.CCDCCompiledAttacks>(input);
+
+        Debug.Log(payload);
     }
 }

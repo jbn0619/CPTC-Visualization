@@ -207,5 +207,44 @@ namespace Assets.Scripts
         }
     }
 
+    /// <summary>
+    /// All of the data necessary to represent an attack from the red team during the CCDC event.
+    /// </summary>
+    [Serializable]
+    public class CCDCAttackData
+    {
+        public List<int> TeamsAffected;
+        public List<int> NodesAffected;
+
+        public string AttackType;
+        public string StartTime;
+
+        /// <summary>
+        /// Constructor for the CCDCAttackData class.
+        /// </summary>
+        /// <param name="a">This attack's type.</param>
+        /// <param name="s">This attack's start-time as a string.</param>
+        /// <param name="t">The team IDs affected by this attack.</param>
+        /// <param name="n">The node IDs affected by this attack.</param>
+        public CCDCAttackData(string a, string s, List<int> t, List<int> n)
+        {
+            AttackType = a;
+            StartTime = s;
+            TeamsAffected = t;
+            NodesAffected = n;
+        }
+    }
+
+    [Serializable]
+    public class CCDCCompiledAttacks
+    {
+        public List<CCDCAttackData> attacks;
+
+        public CCDCCompiledAttacks(List<CCDCAttackData> a)
+        {
+            attacks = a;
+        }
+    }
+
     #endregion CCDC-Specific Data Containers
 }

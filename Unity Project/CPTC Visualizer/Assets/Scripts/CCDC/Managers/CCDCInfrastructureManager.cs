@@ -144,9 +144,9 @@ public class CCDCInfrastructureManager : InfrastructureManager
     /// </summary>
     public override void DuplicateInfrastructure()
     {
-        for (int i = 0; i < CCDCManager.Instance.TeamManager.Teams.Count; i++)
+        for (int i = 0; i < CCDCManager.Instance.TeamManager.CCDCTeams.Count; i++)
         {
-            CCDCTeamData team = (CCDCTeamData)CCDCManager.Instance.TeamManager.Teams[i];
+            CCDCTeamData team = CCDCManager.Instance.TeamManager.CCDCTeams[i];
             // Instantiate a copy of the infrastructure, and make it a child of the team's gameObject.
             InfrastructureData newInfra = Instantiate(infrastructure, team.gameObject.transform);
             newInfra.gameObject.transform.position = infrastructure.gameObject.transform.position;
