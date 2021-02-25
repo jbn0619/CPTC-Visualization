@@ -61,7 +61,7 @@ public class CCDCInfrastructureManager : InfrastructureManager
         // Collects the team data first.
         for(int i = 0; i < payload.teams.Count; i++)
         {
-            TeamData newTeam = Instantiate(teamGO, CCDCManager.Instance.TeamManager.gameObject.transform);
+            CCDCTeamData newTeam = Instantiate((CCDCTeamData)teamGO, CCDCManager.Instance.TeamManager.gameObject.transform);
             newTeam.SetupQueue();
             newTeam.TeamId = payload.teams[i].teamId;
             // Move all discovered node-IDs into newTeam.
@@ -88,7 +88,7 @@ public class CCDCInfrastructureManager : InfrastructureManager
                 newTeam.Queue.Push(newAlert); // .Alerts.Add(newAlert);
             }
 
-            CCDCManager.Instance.TeamManager.Teams.Add(newTeam);
+            CCDCManager.Instance.TeamManager.CCDCTeams.Add(newTeam);
         }
 
         // Instantiate our infrastructure and populate it.
@@ -144,15 +144,16 @@ public class CCDCInfrastructureManager : InfrastructureManager
     /// </summary>
     public override void DuplicateInfrastructure()
     {
-        foreach(CCDCTeamData team in CCDCManager.Instance.TeamManager.Teams)
+        for (int i = 0; i < CCDCManager.Instance.TeamManager.Teams.Count; i++)
         {
+            CCDCTeamData team = (CCDCTeamData)CCDCManager.Instance.TeamManager.Teams[i];
             // Instantiate a copy of the infrastructure, and make it a child of the team's gameObject.
             InfrastructureData newInfra = Instantiate(infrastructure, team.gameObject.transform);
             newInfra.gameObject.transform.position = infrastructure.gameObject.transform.position;
             team.InfraCopy = newInfra;
 
             // Copy over the uptime charts.
-            foreach(UptimeChartData chart in uptimeCharts)
+            foreach (UptimeChartData chart in uptimeCharts)
             {
                 team.UptimeCharts.Add(chart);
             }
