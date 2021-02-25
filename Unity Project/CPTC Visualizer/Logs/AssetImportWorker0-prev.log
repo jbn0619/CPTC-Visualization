@@ -1,0 +1,1565 @@
+Using pre-set license
+Built from '2020.2/release' branch; Version is '2020.2.4f1 (becced5a802b) revision 12504301'; Using compiler version '192528614'; Build Type 'Release'
+OS: 'Windows 10 Home; OS build 18363.1379; Version 1909; 64bit' Language: 'en' Physical Memory: 16318 MB
+BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1, IsPro: 0
+
+ COMMAND LINE ARGUMENTS:
+C:\Program Files\Unity\Hub\Editor\2020.2.4f1\Editor\Unity.exe
+-adb2
+-batchMode
+-noUpm
+-name
+AssetImportWorker0
+-projectPath
+C:/Users/klapo/Documents/GitHub/CPTC-Visualization/Unity Project/CPTC Visualizer
+-logFile
+Logs/AssetImportWorker0.log
+-srvPort
+50023
+Successfully changed project path to: C:/Users/klapo/Documents/GitHub/CPTC-Visualization/Unity Project/CPTC Visualizer
+C:/Users/klapo/Documents/GitHub/CPTC-Visualization/Unity Project/CPTC Visualizer
+Using Asset Import Pipeline V2.
+Refreshing native plugins compatible for Editor in 44.56 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Initialize engine version: 2020.2.4f1 (becced5a802b)
+[Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/2020.2.4f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path C:/Users/klapo/Documents/GitHub/CPTC-Visualization/Unity Project/CPTC Visualizer/Assets
+GfxDevice: creating device client; threaded=0
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.1]
+    Renderer: NVIDIA GeForce RTX 2060 (ID=0x1e89)
+    Vendor:   
+    VRAM:     5968 MB
+    Driver:   27.21.14.5751
+Initialize mono
+Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/2020.2.4f1/Editor/Data/Managed'
+Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/2020.2.4f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit'
+Mono config path = 'C:/Program Files/Unity/Hub/Editor/2020.2.4f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56016
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: C:/Program Files/Unity/Hub/Editor/2020.2.4f1/Editor/Data/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll
+Register platform support module: C:/Program Files/Unity/Hub/Editor/2020.2.4f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Registered in 0.001962 seconds.
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 48.91 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+Mono: successfully reloaded assembly
+- Completed reload, in  2.333 seconds
+Platform modules already initialized, skipping
+Registering precompiled user dll's ...
+Registered in 0.001483 seconds.
+Begin MonoManager ReloadAssembly
+Symbol file data-000001BE7A9A7020 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Animation.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BE7573D830 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.InternalAPIEngineBridge.001.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BE7AB87280 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.VSCode.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BE7A910DC0 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.PixelPerfect.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BE7AAAA010 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Tilemap.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA13D1020 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\PsdPlugin.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BE7A770FA0 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.TextMeshPro.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA0C13A20 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.VisualStudio.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA13D1020 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\UnityEngine.TestRunner.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BE7ABCC010 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.Timeline.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA0360020 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.TextMeshPro.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BE7ABCC010 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\UnityEditor.TestRunner.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BE7AB74780 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.Searcher.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BE7AC6B7F0 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.IK.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA030C020 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Sprite.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BE7A7825B0 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Psdimporter.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BE7A7825B0 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Path.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA0F32070 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.ShaderGraph.Utilities.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA03B4020 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.RenderPipelines.Core.Runtime.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BE7A7825B0 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\UnityEditor.UI.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BE7AD73020 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.InputSystem.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA0C13A20 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.Rider.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BE7A7863E0 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.RenderPipelines.Core.ShaderLibrary.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA03C6C30 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\UnityEngine.UI.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BE7A910DC0 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.InternalAPIEditorBridge.001.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BE7AD73020 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.Mathematics.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BE7AC6B7F0 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.IK.Runtime.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BE7AD73020 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.ShaderGraph.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA0E37E20 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Animation.Triangle.Runtime.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA0C13A20 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Animation.Runtime.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BE7A822590 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.PixelPerfect.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BE7A786A10 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BE7A9FB020 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.Timeline.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA13D1020 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.CollabProxy.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA0598830 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.Mathematics.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BE7AF63A60 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Common.Runtime.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA0966A40 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.SpriteShape.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BE7AC6B7F0 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Common.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA0B07010 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.RenderPipelines.Core.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA03DC240 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.SpriteShape.Runtime.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 45.90 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.018 seconds
+Platform modules already initialized, skipping
+========================================================================
+Worker process is ready to serve import requests
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.04 seconds
+Refreshing native plugins compatible for Editor in 0.60 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 2924 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 120.1 MB.
+System memory in use after: 120.2 MB.
+
+Unloading 26 unused Assets to reduce memory usage. Loaded Objects now: 3373.
+Total: 2.370100 ms (FindLiveObjects: 0.261600 ms CreateObjectMapping: 0.123800 ms MarkObjects: 1.829900 ms  DeleteObjects: 0.153700 ms)
+
+========================================================================
+Received Import Request.
+  path: Assets/Scripts/Data Containers/PriorityQueue.cs
+  artifactKey: Guid(61114f4a9298d224fbeb9b87038b38da) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/Data Containers/PriorityQueue.cs using Guid(61114f4a9298d224fbeb9b87038b38da) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd23a383f0eb008a847b931d3bb642127') in 0.023169 seconds
+  Import took 0.027068 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000292 seconds.
+  path: Assets/Scripts/Data Containers/Notification.cs
+  artifactKey: Guid(38b2a824c542b9e4090f63acbead7a3b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/Data Containers/Notification.cs using Guid(38b2a824c542b9e4090f63acbead7a3b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f0119421d95dad335dcbfda25c159d7c') in 0.001602 seconds
+  Import took 0.005437 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 1.707663 seconds.
+  path: Assets/Scripts/CCDC/CCDCInjectNotifManager.cs
+  artifactKey: Guid(8d8cd1a94a5f99343995d495ebdd8444) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/CCDC/CCDCInjectNotifManager.cs using Guid(8d8cd1a94a5f99343995d495ebdd8444) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b2b75a86daecc5cc661efc20f06a0770') in 0.038579 seconds
+  Import took 0.150183 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 103.764544 seconds.
+  path: Assets/Scripts/CCDC/CCDCInjectNotifManager.cs
+  artifactKey: Guid(8d8cd1a94a5f99343995d495ebdd8444) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/CCDC/CCDCInjectNotifManager.cs using Guid(8d8cd1a94a5f99343995d495ebdd8444) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2555c51bee1394fe67ffd3ed17c600f1') in 0.001582 seconds
+  Import took 0.006071 seconds .
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.001855 seconds.
+Begin MonoManager ReloadAssembly
+Symbol file data-000001BE7A9FB020 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Animation.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA35E0D10 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.InternalAPIEngineBridge.001.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA0EE4010 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.VSCode.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA0108A20 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.PixelPerfect.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BE7ACEEE70 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Tilemap.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BE7A89C020 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\PsdPlugin.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA2CF5D60 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.TextMeshPro.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA089C220 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.VisualStudio.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BE7A7AD810 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\UnityEngine.TestRunner.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA2CF5D60 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.Timeline.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA07BD010 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.TextMeshPro.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA2CF5D60 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\UnityEditor.TestRunner.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA089C220 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.Searcher.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA0EE4010 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.IK.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA0B95620 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Sprite.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BE7AB5A030 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Psdimporter.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BE7A89C020 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Path.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA09C8880 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.ShaderGraph.Utilities.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA28BD040 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.RenderPipelines.Core.Runtime.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BE7ABF4220 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\UnityEditor.UI.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA2A0E030 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.InputSystem.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA13D6C20 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.Rider.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BE7ABF69A0 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.RenderPipelines.Core.ShaderLibrary.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA03B4020 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\UnityEngine.UI.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA34F2850 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.InternalAPIEditorBridge.001.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA2A0E030 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.Mathematics.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA0EE4010 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.IK.Runtime.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA2A0E030 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.ShaderGraph.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA0504020 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Animation.Triangle.Runtime.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BE7AB5F240 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Animation.Runtime.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA3453FC0 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.PixelPerfect.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BE7ABFBC20 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA2577040 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.Timeline.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BE7A7AD810 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.CollabProxy.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BE7A7F5080 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.Mathematics.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA2C54210 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Common.Runtime.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BE7B2C2050 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.SpriteShape.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BE7B2CA460 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Common.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA35E6F10 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.RenderPipelines.Core.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA0777E30 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.SpriteShape.Runtime.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 0.44 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+Mono: successfully reloaded assembly
+- Completed reload, in  0.889 seconds
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.44 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 2913 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 119.8 MB.
+System memory in use after: 119.9 MB.
+
+Unloading 13 unused Assets to reduce memory usage. Loaded Objects now: 3376.
+Total: 2.327100 ms (FindLiveObjects: 0.309300 ms CreateObjectMapping: 0.142700 ms MarkObjects: 1.784700 ms  DeleteObjects: 0.089400 ms)
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.001430 seconds.
+Begin MonoManager ReloadAssembly
+Symbol file data-000001BE7A9FB020 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Animation.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA344D140 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.InternalAPIEngineBridge.001.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA14693F0 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.VSCode.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA3924690 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.PixelPerfect.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA0961010 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Tilemap.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA2932020 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\PsdPlugin.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA320ACC0 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.TextMeshPro.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA35D5020 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.VisualStudio.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA3454A60 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\UnityEngine.TestRunner.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA0961010 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.Timeline.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BE7A9A7020 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.TextMeshPro.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA2CF5D60 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\UnityEditor.TestRunner.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA1230070 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.Searcher.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA14693F0 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.IK.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA320ACC0 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Sprite.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA34DB650 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Psdimporter.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA2932020 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Path.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA09C8D50 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.ShaderGraph.Utilities.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA28BD040 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.RenderPipelines.Core.Runtime.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA0CE7020 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\UnityEditor.UI.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA2A0E030 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.InputSystem.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA3441300 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.Rider.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA0CED160 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.RenderPipelines.Core.ShaderLibrary.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BE7ABCC010 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\UnityEngine.UI.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA34F5400 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.InternalAPIEditorBridge.001.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA2A0E030 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.Mathematics.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA1D072F0 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.IK.Runtime.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA2A0E030 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.ShaderGraph.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA2720030 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Animation.Triangle.Runtime.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA063ADB0 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Animation.Runtime.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA335CD70 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.PixelPerfect.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA0CEC500 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BE7AACEF10 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.Timeline.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BE7AA2E430 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.CollabProxy.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA3928ED0 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.Mathematics.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA2D0C930 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Common.Runtime.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA34DB650 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.SpriteShape.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BE757E10F0 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Common.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA2720030 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.RenderPipelines.Core.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA04E0040 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.SpriteShape.Runtime.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 0.48 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+Mono: successfully reloaded assembly
+- Completed reload, in  0.846 seconds
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.43 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 2913 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 119.8 MB.
+System memory in use after: 119.9 MB.
+
+Unloading 13 unused Assets to reduce memory usage. Loaded Objects now: 3379.
+Total: 2.712200 ms (FindLiveObjects: 0.260600 ms CreateObjectMapping: 0.197900 ms MarkObjects: 2.122300 ms  DeleteObjects: 0.130400 ms)
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.001414 seconds.
+Begin MonoManager ReloadAssembly
+Symbol file data-000001BCA3010020 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Animation.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BE7A8A16B0 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.InternalAPIEngineBridge.001.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA20BC030 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.VSCode.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA39B1120 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.PixelPerfect.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA0961010 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Tilemap.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA2932020 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\PsdPlugin.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA1886040 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.TextMeshPro.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA247F050 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.VisualStudio.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA0340030 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\UnityEngine.TestRunner.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA34AB2F0 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.Timeline.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA011C010 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.TextMeshPro.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA0D40020 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\UnityEditor.TestRunner.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA0E5E050 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.Searcher.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA20BC030 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.IK.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA320ACC0 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Sprite.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA3ACBD30 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Psdimporter.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA2932020 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Path.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA09CA090 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.ShaderGraph.Utilities.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA28BD040 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.RenderPipelines.Core.Runtime.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BE7B03B6A0 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\UnityEditor.UI.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA0DAA020 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.InputSystem.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA35D2FD0 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.Rider.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA1F97EF0 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.RenderPipelines.Core.ShaderLibrary.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA3921010 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\UnityEngine.UI.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA34F4570 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.InternalAPIEditorBridge.001.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA0DAA020 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.Mathematics.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA055AE80 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.IK.Runtime.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA0DAA020 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.ShaderGraph.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA03D2060 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Animation.Triangle.Runtime.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BE7ABF6620 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Animation.Runtime.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA199C420 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.PixelPerfect.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BE7B03E240 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BE7AACEF10 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.Timeline.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA0340030 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.CollabProxy.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA39B2330 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.Mathematics.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA156A080 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Common.Runtime.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BE7AB56050 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.SpriteShape.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA35BC030 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Common.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA37CD5A0 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.RenderPipelines.Core.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA1F7E010 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.SpriteShape.Runtime.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 0.42 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+Mono: successfully reloaded assembly
+- Completed reload, in  0.859 seconds
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.42 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 2913 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 119.9 MB.
+System memory in use after: 120.0 MB.
+
+Unloading 13 unused Assets to reduce memory usage. Loaded Objects now: 3382.
+Total: 2.250100 ms (FindLiveObjects: 0.290200 ms CreateObjectMapping: 0.120800 ms MarkObjects: 1.720300 ms  DeleteObjects: 0.118000 ms)
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.001489 seconds.
+Begin MonoManager ReloadAssembly
+Symbol file data-000001BCA01EB020 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Animation.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA1C5F730 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.InternalAPIEngineBridge.001.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA0EE4010 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.VSCode.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BE7AB3C490 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.PixelPerfect.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BE7ACCA010 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Tilemap.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA2932020 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\PsdPlugin.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA320ACC0 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.TextMeshPro.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA247F050 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.VisualStudio.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA32B4970 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\UnityEngine.TestRunner.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA0588050 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.Timeline.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA0865010 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.TextMeshPro.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA0D40020 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\UnityEditor.TestRunner.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BE7B2CA060 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.Searcher.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA0EE4010 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.IK.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA320ACC0 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Sprite.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA34DB650 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Psdimporter.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA2932020 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Path.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA09C7A10 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.ShaderGraph.Utilities.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BE7A770FA0 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.RenderPipelines.Core.Runtime.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA3492EA0 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\UnityEditor.UI.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA0DAA020 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.InputSystem.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA3297210 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.Rider.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA2A88B70 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.RenderPipelines.Core.ShaderLibrary.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA3D3E020 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\UnityEngine.UI.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA34F36E0 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.InternalAPIEditorBridge.001.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA0DAA020 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.Mathematics.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA1E32E90 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.IK.Runtime.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA0DAA020 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.ShaderGraph.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA36B5020 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Animation.Triangle.Runtime.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA25CB020 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Animation.Runtime.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA335CD70 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.PixelPerfect.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA349A060 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA1B71030 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.Timeline.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA32B4970 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.CollabProxy.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BE7AB41EE0 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.Mathematics.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BE7A791BA0 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Common.Runtime.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA34DB650 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.SpriteShape.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA033CE30 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Common.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA36B5020 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.RenderPipelines.Core.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA1F7E010 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.SpriteShape.Runtime.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 0.43 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.001 seconds
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.44 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 2913 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 119.9 MB.
+System memory in use after: 120.0 MB.
+
+Unloading 13 unused Assets to reduce memory usage. Loaded Objects now: 3385.
+Total: 2.883500 ms (FindLiveObjects: 0.370500 ms CreateObjectMapping: 0.282100 ms MarkObjects: 2.102900 ms  DeleteObjects: 0.126700 ms)
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.001556 seconds.
+Begin MonoManager ReloadAssembly
+Symbol file data-000001BCA1E60050 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Animation.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA1C60420 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.InternalAPIEngineBridge.001.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA1DDB030 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.VSCode.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA36B86A0 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.PixelPerfect.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA3D4E030 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Tilemap.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA2932020 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\PsdPlugin.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BE7B04FBC0 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.TextMeshPro.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA3267160 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.VisualStudio.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA2006020 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\UnityEngine.TestRunner.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA3D4E030 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.Timeline.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA1791490 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.TextMeshPro.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA1BDF170 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\UnityEditor.TestRunner.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA289F020 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.Searcher.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BEA032A010 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.IK.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA320ACC0 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Sprite.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BE7AB56050 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Psdimporter.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCAFFE4DB0 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Path.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA09CAA30 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.ShaderGraph.Utilities.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA2F2A010 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.RenderPipelines.Core.Runtime.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA0A890A0 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\UnityEditor.UI.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA05AC020 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.InputSystem.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA3441300 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.Rider.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA0F3BBD0 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.RenderPipelines.Core.ShaderLibrary.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA245F030 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\UnityEngine.UI.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA34F6290 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.InternalAPIEditorBridge.001.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA05AC020 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.Mathematics.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA28B3AA0 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.IK.Runtime.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA05AC020 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.ShaderGraph.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA2056010 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Animation.Triangle.Runtime.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA0E38DB0 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Animation.Runtime.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BE7AB4E5E0 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.PixelPerfect.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA0F40E50 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BEA0282010 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.Timeline.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA2006020 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.CollabProxy.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA36B86A0 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.Mathematics.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA2A90670 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Common.Runtime.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BE7AB56050 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.SpriteShape.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCAFFF8740 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Common.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA37CD5A0 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.RenderPipelines.Core.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA0B6B010 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.SpriteShape.Runtime.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 0.46 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+Mono: successfully reloaded assembly
+- Completed reload, in  0.940 seconds
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.51 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 2913 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 119.9 MB.
+System memory in use after: 120.0 MB.
+
+Unloading 13 unused Assets to reduce memory usage. Loaded Objects now: 3388.
+Total: 2.422800 ms (FindLiveObjects: 0.254300 ms CreateObjectMapping: 0.137800 ms MarkObjects: 1.937000 ms  DeleteObjects: 0.092600 ms)
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.001611 seconds.
+Begin MonoManager ReloadAssembly
+Symbol file data-000001BE7AACEF10 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Animation.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA200D930 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.InternalAPIEngineBridge.001.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA0B45500 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.VSCode.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA10CA080 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.PixelPerfect.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA1A5B030 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Tilemap.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA39B5020 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\PsdPlugin.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BE7B04FBC0 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.TextMeshPro.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA36F1030 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.VisualStudio.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA3520020 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\UnityEngine.TestRunner.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA0588050 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.Timeline.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BEA0685020 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.TextMeshPro.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA1BDF170 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\UnityEditor.TestRunner.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA08A2240 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.Searcher.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA0B45500 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.IK.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA320ACC0 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Sprite.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA0AEC010 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Psdimporter.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA3275190 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Path.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA09C96F0 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.ShaderGraph.Utilities.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA24B7010 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.RenderPipelines.Core.Runtime.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA3CB20A0 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\UnityEditor.UI.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA0DAA020 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.InputSystem.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA3CB20A0 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.Rider.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA18108D0 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.RenderPipelines.Core.ShaderLibrary.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BE7ABCC010 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\UnityEngine.UI.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA34F6290 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.InternalAPIEditorBridge.001.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA0DAA020 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.Mathematics.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BE7A9A7070 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.IK.Runtime.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA0DAA020 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.ShaderGraph.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA2F92020 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Animation.Triangle.Runtime.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BE7A9E3040 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Animation.Runtime.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BE7AB4B7A0 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.PixelPerfect.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA1810CF0 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA0DAA020 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.Timeline.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA15D0440 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.CollabProxy.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA10CFAD0 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.Mathematics.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA2C97060 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Common.Runtime.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA0AEC010 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.SpriteShape.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA0B45500 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Common.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA2F92020 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.RenderPipelines.Core.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA0961010 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.SpriteShape.Runtime.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 0.44 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+Mono: successfully reloaded assembly
+- Completed reload, in  0.928 seconds
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.42 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 2913 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 119.9 MB.
+System memory in use after: 120.0 MB.
+
+Unloading 13 unused Assets to reduce memory usage. Loaded Objects now: 3391.
+Total: 2.270100 ms (FindLiveObjects: 0.230800 ms CreateObjectMapping: 0.123900 ms MarkObjects: 1.795700 ms  DeleteObjects: 0.119000 ms)
+
+========================================================================
+Received Import Request.
+  Time since last request: 310.832334 seconds.
+  path: Assets/Prefabs/UI Items/Inject Card.prefab
+  artifactKey: Guid(9dc102d4d358fe443a62efc6dbf8837a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/UI Items/Inject Card.prefab using Guid(9dc102d4d358fe443a62efc6dbf8837a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ce14be0ac25dadbed19f41901f61d399') in 0.117752 seconds
+  Import took 0.122189 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 5.208576 seconds.
+  path: Assets/Prefabs/UI Items/Inject Card.prefab
+  artifactKey: Guid(9dc102d4d358fe443a62efc6dbf8837a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/UI Items/Inject Card.prefab using Guid(9dc102d4d358fe443a62efc6dbf8837a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '35db538ec0cc00fe4c49a58a69bf91a4') in 0.049061 seconds
+  Import took 0.061891 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 5.712465 seconds.
+  path: Assets/Prefabs/UI Items/Inject Card.prefab
+  artifactKey: Guid(9dc102d4d358fe443a62efc6dbf8837a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/UI Items/Inject Card.prefab using Guid(9dc102d4d358fe443a62efc6dbf8837a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd18f491072ff1f2364e6f2a082b95308') in 0.002971 seconds
+  Import took 0.007201 seconds .
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.001368 seconds.
+Begin MonoManager ReloadAssembly
+Symbol file data-000001BCA011C010 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Animation.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA35DF780 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.InternalAPIEngineBridge.001.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BEA032A010 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.VSCode.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA077C6C0 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.PixelPerfect.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA2873010 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Tilemap.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BE7B2B2020 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\PsdPlugin.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BE7B04FBC0 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.TextMeshPro.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA2330020 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.VisualStudio.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA3520020 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\UnityEngine.TestRunner.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA0390040 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.Timeline.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BEA0685020 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.TextMeshPro.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA1BDF170 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\UnityEditor.TestRunner.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA3BE3040 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.Searcher.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BEA032A010 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.IK.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA320ACC0 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Sprite.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA3ACBD30 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Psdimporter.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BE7B2B2020 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Path.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA09C96F0 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.ShaderGraph.Utilities.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA3B45010 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.RenderPipelines.Core.Runtime.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA3275190 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\UnityEditor.UI.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA2A0E030 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.InputSystem.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA3275190 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.Rider.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA2E22150 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.RenderPipelines.Core.ShaderLibrary.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA245F030 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\UnityEngine.UI.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA34F0B30 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.InternalAPIEditorBridge.001.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA2A0E030 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.Mathematics.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA2371AA0 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.IK.Runtime.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA2A0E030 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.ShaderGraph.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA1B83010 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Animation.Triangle.Runtime.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA3D5F890 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Animation.Runtime.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BE7AB4CEC0 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.PixelPerfect.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA32791D0 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BEA0573010 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.Timeline.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BE7AABA020 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.CollabProxy.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA0779090 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.Mathematics.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA3AF0BD0 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Common.Runtime.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA0AEC010 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.SpriteShape.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA2706020 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Common.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA3030030 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.RenderPipelines.Core.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA1F7E010 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.SpriteShape.Runtime.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 0.42 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+Mono: successfully reloaded assembly
+- Completed reload, in  0.948 seconds
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.43 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 2913 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 120.0 MB.
+System memory in use after: 120.1 MB.
+
+Unloading 14 unused Assets to reduce memory usage. Loaded Objects now: 3396.
+Total: 2.421400 ms (FindLiveObjects: 0.309200 ms CreateObjectMapping: 0.147000 ms MarkObjects: 1.826800 ms  DeleteObjects: 0.137000 ms)
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.001790 seconds.
+Begin MonoManager ReloadAssembly
+Symbol file data-000001BCA011C010 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Animation.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA34500B0 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.InternalAPIEngineBridge.001.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA20BC030 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.VSCode.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA2CFDC20 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.PixelPerfect.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA36C5030 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Tilemap.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA2932020 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\PsdPlugin.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BEA06F8040 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.TextMeshPro.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA2330020 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.VisualStudio.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA3520020 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\UnityEngine.TestRunner.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA36C5030 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.Timeline.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA030C020 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.TextMeshPro.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA1BDF170 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\UnityEditor.TestRunner.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BE7A93FA90 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.Searcher.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA20BC030 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.IK.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA320ACC0 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Sprite.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA3ACBD30 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Psdimporter.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA3275190 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Path.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA09CAA30 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.ShaderGraph.Utilities.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA04B0020 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.RenderPipelines.Core.Runtime.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA32821C0 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\UnityEditor.UI.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA0DAA020 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.InputSystem.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA32821C0 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.Rider.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BEA0767600 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.RenderPipelines.Core.ShaderLibrary.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BE7AD03EA0 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\UnityEngine.UI.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA34F36E0 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.InternalAPIEditorBridge.001.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA0DAA020 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.Mathematics.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA10D58C0 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.IK.Runtime.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA0DAA020 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.ShaderGraph.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA2F92020 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Animation.Triangle.Runtime.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA25CB020 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Animation.Runtime.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BE7AB4CEC0 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.PixelPerfect.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA3286410 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA1931010 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.Timeline.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BEA05C3070 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.CollabProxy.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA2CF5DB0 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.Mathematics.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA32B3900 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Common.Runtime.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA180A160 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.SpriteShape.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA0B45500 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Common.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA2F92020 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.RenderPipelines.Core.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA1F7E010 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.SpriteShape.Runtime.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 0.47 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+Mono: successfully reloaded assembly
+- Completed reload, in  0.909 seconds
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.44 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 2913 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 120.0 MB.
+System memory in use after: 120.1 MB.
+
+Unloading 13 unused Assets to reduce memory usage. Loaded Objects now: 3399.
+Total: 2.850200 ms (FindLiveObjects: 0.241800 ms CreateObjectMapping: 0.126500 ms MarkObjects: 2.377200 ms  DeleteObjects: 0.103400 ms)
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.001474 seconds.
+Begin MonoManager ReloadAssembly
+Symbol file data-000001BE7AACEF10 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Animation.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA1C62F40 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.InternalAPIEngineBridge.001.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BEA032A010 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.VSCode.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BE7ACCE8A0 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.PixelPerfect.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA36C5030 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Tilemap.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BE7B09E010 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\PsdPlugin.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BE7B04FBC0 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.TextMeshPro.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA3AEA890 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.VisualStudio.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA3520020 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\UnityEngine.TestRunner.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA36C5030 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.Timeline.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BEA0685020 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.TextMeshPro.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA1BDF170 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\UnityEditor.TestRunner.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BE7A93FA90 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.Searcher.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BEA032A010 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.IK.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA320ACC0 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Sprite.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA3ACBD30 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Psdimporter.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BE7B09E010 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Path.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA09C8880 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.ShaderGraph.Utilities.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA1ADF020 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.RenderPipelines.Core.Runtime.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BEA06F0030 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\UnityEditor.UI.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA0DAA020 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.InputSystem.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA0FC71C0 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.Rider.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA3493100 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.RenderPipelines.Core.ShaderLibrary.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA245F030 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\UnityEngine.UI.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA34F5400 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.InternalAPIEditorBridge.001.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BEA0914010 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.Mathematics.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA3EEEEE0 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.IK.Runtime.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BEA0914010 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.ShaderGraph.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA2056010 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Animation.Triangle.Runtime.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BEA06B8430 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Animation.Runtime.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BE7AB4FD00 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.PixelPerfect.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA34989B0 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BEA0914010 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.Timeline.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BEA05C3070 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.CollabProxy.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BE7ACCA060 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.Mathematics.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA2C97630 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Common.Runtime.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA0AEC010 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.SpriteShape.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA2706020 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Common.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA3030030 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.RenderPipelines.Core.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA3627F60 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.SpriteShape.Runtime.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 0.44 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.024 seconds
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.48 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 2913 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 120.0 MB.
+System memory in use after: 120.1 MB.
+
+Unloading 13 unused Assets to reduce memory usage. Loaded Objects now: 3402.
+Total: 2.235100 ms (FindLiveObjects: 0.289000 ms CreateObjectMapping: 0.145700 ms MarkObjects: 1.713300 ms  DeleteObjects: 0.085900 ms)
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.001414 seconds.
+Begin MonoManager ReloadAssembly
+Symbol file data-000001BE7AACEF10 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Animation.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA3AF5E10 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.InternalAPIEngineBridge.001.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BEA0B32010 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.VSCode.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA3457700 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.PixelPerfect.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BE7ACCA010 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Tilemap.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA31EF020 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\PsdPlugin.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BE7B04FBC0 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.TextMeshPro.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA180E170 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.VisualStudio.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA3520020 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\UnityEngine.TestRunner.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA0390040 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.Timeline.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA030C020 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.TextMeshPro.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA2A79440 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\UnityEditor.TestRunner.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA1B11010 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.Searcher.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BEA0B32010 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.IK.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA320ACC0 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Sprite.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA3ACBD30 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Psdimporter.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA31EF020 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Path.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA09CAA30 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.ShaderGraph.Utilities.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA3010020 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.RenderPipelines.Core.Runtime.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA2D05D70 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\UnityEditor.UI.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA0DAA020 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.InputSystem.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA2D05D70 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.Rider.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA3241EA0 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.RenderPipelines.Core.ShaderLibrary.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BE7AD03EA0 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\UnityEngine.UI.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA34F6290 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.InternalAPIEditorBridge.001.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA0DAA020 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.Mathematics.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BE7AB6A3D0 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.IK.Runtime.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA0DAA020 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.ShaderGraph.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA36B5020 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Animation.Triangle.Runtime.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA21C3020 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Animation.Runtime.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BE7AB4DA50 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.PixelPerfect.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA323FB90 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA0DAA020 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.Timeline.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA1746020 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.CollabProxy.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA3457700 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.Mathematics.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BE7AAC4550 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Common.Runtime.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA0AEC010 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.SpriteShape.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA1B11010 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Common.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA36B5020 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.RenderPipelines.Core.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA0961010 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.SpriteShape.Runtime.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 0.42 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+Mono: successfully reloaded assembly
+- Completed reload, in  0.850 seconds
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.47 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 2913 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 120.0 MB.
+System memory in use after: 120.1 MB.
+
+Unloading 13 unused Assets to reduce memory usage. Loaded Objects now: 3405.
+Total: 2.270700 ms (FindLiveObjects: 0.244400 ms CreateObjectMapping: 0.120700 ms MarkObjects: 1.784700 ms  DeleteObjects: 0.120100 ms)
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.001461 seconds.
+Begin MonoManager ReloadAssembly
+Symbol file data-000001BE7AACEF10 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Animation.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA2D9C7E0 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.InternalAPIEngineBridge.001.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BE7ABF8630 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.VSCode.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA2885070 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.PixelPerfect.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BE7ACCA010 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Tilemap.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA2932020 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\PsdPlugin.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BE7B04FBC0 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.TextMeshPro.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BE7AB32030 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.VisualStudio.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA3520020 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\UnityEngine.TestRunner.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA0390040 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.Timeline.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA030C020 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.TextMeshPro.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA1CBF020 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\UnityEditor.TestRunner.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA3BE3040 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.Searcher.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BE7ABF8630 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.IK.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA320ACC0 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Sprite.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA3ACBD30 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Psdimporter.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA2932020 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Path.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA09CA090 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.ShaderGraph.Utilities.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA1791490 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.RenderPipelines.Core.Runtime.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA3257140 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\UnityEditor.UI.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA0DAA020 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.InputSystem.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA0FC71C0 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.Rider.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA31494F0 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.RenderPipelines.Core.ShaderLibrary.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA245F030 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\UnityEngine.UI.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA34EFCA0 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.InternalAPIEditorBridge.001.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA0DAA020 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.Mathematics.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA34B6B80 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.IK.Runtime.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA0DAA020 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.ShaderGraph.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA1931010 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Animation.Triangle.Runtime.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA3D5F890 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Animation.Runtime.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BE7AB4E5E0 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.PixelPerfect.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA3149F40 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BEA0B34F40 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.Timeline.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BEA02D20B0 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.CollabProxy.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA288E0F0 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.Mathematics.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA3BDA990 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Common.Runtime.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA0AEC010 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.SpriteShape.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA1CEB170 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Common.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA1931010 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.RenderPipelines.Core.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA34FC930 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.SpriteShape.Runtime.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 0.54 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+Mono: successfully reloaded assembly
+- Completed reload, in  0.853 seconds
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.43 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 2913 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 120.0 MB.
+System memory in use after: 120.1 MB.
+
+Unloading 13 unused Assets to reduce memory usage. Loaded Objects now: 3408.
+Total: 2.463800 ms (FindLiveObjects: 0.275800 ms CreateObjectMapping: 0.132600 ms MarkObjects: 1.951500 ms  DeleteObjects: 0.103000 ms)
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.001517 seconds.
+Begin MonoManager ReloadAssembly
+Symbol file data-000001BE7AACEF10 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Animation.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BE7573D3E0 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.InternalAPIEngineBridge.001.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BE7ABF8630 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.VSCode.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA1F25270 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.PixelPerfect.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA2883020 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Tilemap.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BEA0700040 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\PsdPlugin.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BE7B04FBC0 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.TextMeshPro.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA2FAE050 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.VisualStudio.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA3520020 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\UnityEngine.TestRunner.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA0390040 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.Timeline.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BEA0685020 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.TextMeshPro.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA1E8C1B0 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\UnityEditor.TestRunner.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BE7B2BA060 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.Searcher.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BE7ABF8630 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.IK.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA320ACC0 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Sprite.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA3ACBD30 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Psdimporter.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BEA0700040 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Path.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA09C7EE0 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.ShaderGraph.Utilities.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA23CB020 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.RenderPipelines.Core.Runtime.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA3257140 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\UnityEditor.UI.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA0DAA020 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.InputSystem.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA3AE0970 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.Rider.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA3258210 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.RenderPipelines.Core.ShaderLibrary.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BE7AD03EA0 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\UnityEngine.UI.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA34F5400 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.InternalAPIEditorBridge.001.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA0DAA020 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.Mathematics.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA0099A30 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.IK.Runtime.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA0DAA020 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.ShaderGraph.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA245F030 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Animation.Triangle.Runtime.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA3203060 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Animation.Runtime.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BE7AB4DA50 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.PixelPerfect.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA325BBD0 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA0DAA020 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.Timeline.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA1746020 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.CollabProxy.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA1F2ACC0 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.Mathematics.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BE7A8207C0 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Common.Runtime.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA0AEC010 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.SpriteShape.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA2553080 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Common.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA245F030 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.RenderPipelines.Core.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BEA0ADF570 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.SpriteShape.Runtime.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 0.48 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.024 seconds
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 1.20 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 2913 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 120.0 MB.
+System memory in use after: 120.2 MB.
+
+Unloading 13 unused Assets to reduce memory usage. Loaded Objects now: 3411.
+Total: 2.426100 ms (FindLiveObjects: 0.288700 ms CreateObjectMapping: 0.184200 ms MarkObjects: 1.848800 ms  DeleteObjects: 0.102600 ms)
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.001460 seconds.
+Begin MonoManager ReloadAssembly
+Symbol file data-000001BE7AACEF10 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Animation.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA3AF4880 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.InternalAPIEngineBridge.001.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BEA032A010 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.VSCode.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA03948D0 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.PixelPerfect.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA2798010 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Tilemap.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA1CCF030 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\PsdPlugin.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BE7B04FBC0 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.TextMeshPro.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA0FC91D0 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.VisualStudio.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA3520020 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\UnityEngine.TestRunner.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA2798010 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.Timeline.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BEA0685020 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.TextMeshPro.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA1E8C1B0 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\UnityEditor.TestRunner.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA27D6070 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.Searcher.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BEA032A010 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.IK.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA320ACC0 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Sprite.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA3ACBD30 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Psdimporter.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA1CCF030 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Path.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA09C83B0 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.ShaderGraph.Utilities.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BEA0830030 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.RenderPipelines.Core.Runtime.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA2E1C010 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\UnityEditor.UI.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA0DAA020 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.InputSystem.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA2E1C010 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.Rider.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA325B390 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.RenderPipelines.Core.ShaderLibrary.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BE7AD03EA0 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\UnityEngine.UI.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA34F2850 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.InternalAPIEditorBridge.001.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA0DAA020 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.Mathematics.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA050F8B0 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.IK.Runtime.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA0DAA020 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.ShaderGraph.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA1931010 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Animation.Triangle.Runtime.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA3D5F890 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Animation.Runtime.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BE7AB4FD00 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.PixelPerfect.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA3257DF0 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA0DAA020 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.Timeline.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BEA0CDD010 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.CollabProxy.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA03948D0 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.Mathematics.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA1E4A0A0 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Common.Runtime.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA32C3AE0 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.SpriteShape.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA1C67030 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.Common.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA1931010 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.RenderPipelines.Core.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000001BCA34FC930 doesn't match image C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC Visualizer\Library\ScriptAssemblies\Unity.2D.SpriteShape.Runtime.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 0.44 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+Mono: successfully reloaded assembly
+- Completed reload, in  0.937 seconds
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.42 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 2913 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 120.1 MB.
+System memory in use after: 120.2 MB.
+
+Unloading 13 unused Assets to reduce memory usage. Loaded Objects now: 3414.
+Total: 2.371700 ms (FindLiveObjects: 0.309000 ms CreateObjectMapping: 0.138100 ms MarkObjects: 1.801100 ms  DeleteObjects: 0.122300 ms)
+

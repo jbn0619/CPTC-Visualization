@@ -547,7 +547,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d8cd1a94a5f99343995d495ebdd8444, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  injectCardGO: {fileID: 5181048298246764963, guid: b09565fcc8d6b8e4483a27ab48f1ffce, type: 3}
+  injectCardGO: {fileID: 5135633700078579386, guid: 9dc102d4d358fe443a62efc6dbf8837a, type: 3}
   injectExpireTime: 1
 --- !u!4 &1185017616
 Transform:

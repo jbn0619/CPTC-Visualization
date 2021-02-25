@@ -15,10 +15,10 @@ public class CCDCInjectNotifManager : MonoBehaviour
     protected Inject inject;
 
     [SerializeField]
-    protected List<Inject> waitingInjects;
+    public List<Inject> waitingInjects;
 
     [SerializeField]
-    protected System.DateTime[] activeInjectRemoveTimes;
+    public System.DateTime[] activeInjectRemoveTimes;
 
     protected GameObject[] injectCards;
 
@@ -27,8 +27,8 @@ public class CCDCInjectNotifManager : MonoBehaviour
     [SerializeField]
     protected float injectExpireTime;
 
-
     #endregion Fields
+
 
     #region Properties
 
@@ -40,6 +40,8 @@ public class CCDCInjectNotifManager : MonoBehaviour
         canvas = UIManager.Instance.ActiveCanvas;
 
         waitingInjects = new List<Inject>();
+
+        numActiveInjects = 0;
         
         injectCards = new GameObject[6];
         activeInjectRemoveTimes = new System.DateTime[6];
@@ -87,13 +89,15 @@ public class CCDCInjectNotifManager : MonoBehaviour
         // If the strings match
         if (System.DateTime.Now.ToShortTimeString() == waitingInjects[0].Timestamp)
         {
-            if(numActiveInjects != 6)
+            if(numActiveInjects < 6)
             {
                 ShiftCardsDown();
 
                 GameObject newCard = Instantiate(injectCardGO,
-                    new Vector3(-100.0f, 400.0f, 0),
-                    Quaternion.identity);
+                    new Vector3(-100.0f, 400, 0),
+                    Quaternion.identity,
+                    canvas.transform);
+
                 //newCard.transform.SetParent(canvas.transform);
                 //newInject.TargetPos = new Vector3(230, 0, 0);
 
@@ -102,6 +106,8 @@ public class CCDCInjectNotifManager : MonoBehaviour
 
                 injectCards[0] = newCard;
                 activeInjectRemoveTimes[0] = System.DateTime.Now.AddMinutes(injectExpireTime);
+
+                newCard.GetComponentInChildren<Text>().text = waitingInjects[0].Name + "\n Expires at " + activeInjectRemoveTimes[0].ToShortTimeString();
 
                 numActiveInjects++;
 
@@ -170,9 +176,11 @@ public class CCDCInjectNotifManager : MonoBehaviour
         {
             if(injectCards[i] != null)
             {
-                Vector3 targetPos = new Vector3(230, 400 - (i * 60), 0);
+                Vector3 targetPos = new Vector3(100, 400 - (i * 60), 0);
 
-                injectCards[i].transform.position = Vector3.MoveTowards(injectCards[i].transform.position, targetPos, 1.0f);
+                //injectCards[i].transform.position = Vector3.MoveTowards(injectCards[i].transform.position, targetPos, 1.0f);
+
+                injectCards[i].transform.position = targetPos;
             }
         }
     }
