@@ -13,8 +13,7 @@ namespace AttackCompilerForm
     {
         #region Fields
 
-        private List<int> teamsAffected;
-        private List<int> nodesAffected;
+        private List<string> nodesAffected;
 
         private string attackType;
         private string startTime;
@@ -54,20 +53,9 @@ namespace AttackCompilerForm
         }
 
         /// <summary>
-        /// Gets a list of IDs of teams affected by this attack.
-        /// </summary>
-        public List<int> TeamsAffected
-        {
-            get
-            {
-                return teamsAffected;
-            }
-        }
-
-        /// <summary>
         /// Gets a list of IDs of nodes affected by this attack.
         /// </summary>
-        public List<int> NodesAffected
+        public List<string> NodesAffected
         {
             get
             {
@@ -83,11 +71,10 @@ namespace AttackCompilerForm
         /// <param name="a">This attack's type.</param>
         /// <param name="n">The nodes affected by this attack.</param>
         /// <param name="t">The teams affected by this attack.</param>
-        public CCDCAttack(string a, List<int> n, List<int> t, string s)
+        public CCDCAttack(string a, List<string> n, string s)
         {
             attackType = a;
             nodesAffected = n;
-            teamsAffected = t;
             startTime = s;
         }
 
@@ -102,18 +89,9 @@ namespace AttackCompilerForm
             // Add the attack type
             result += attackType + ", ";
 
-            // Add the affected team IDs
-            result += "{ ";
-            foreach (int i in teamsAffected)
-            {
-                result += i + ", ";
-            }
-            result = result.Remove(result.Length - 2, 2);
-            result += " }, ";
-
             // Add the affected node IDs
             result += "{ ";
-            foreach (int i in nodesAffected)
+            foreach (string i in nodesAffected)
             {
                 result += i + ", ";
             }

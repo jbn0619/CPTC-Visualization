@@ -63,6 +63,7 @@ namespace Assets.Scripts
     public class Node
     {
         public int id;
+        public string ip;
         public string type;
         public string state;
         public List<int> connections;
@@ -213,8 +214,7 @@ namespace Assets.Scripts
     [Serializable]
     public class CCDCAttackData
     {
-        public List<int> TeamsAffected;
-        public List<int> NodesAffected;
+        public List<string> NodesAffected;
 
         public string AttackType;
         public string StartTime;
@@ -225,12 +225,11 @@ namespace Assets.Scripts
         /// <param name="a">This attack's type.</param>
         /// <param name="s">This attack's start-time as a string.</param>
         /// <param name="t">The team IDs affected by this attack.</param>
-        /// <param name="n">The node IDs affected by this attack.</param>
-        public CCDCAttackData(string a, string s, List<int> t, List<int> n)
+        /// <param name="n">The node IP addresses affected by this attack.</param>
+        public CCDCAttackData(string a, string s, List<string> n)
         {
             AttackType = a;
             StartTime = s;
-            TeamsAffected = t;
             NodesAffected = n;
         }
     }
