@@ -96,7 +96,7 @@ namespace AttackCompilerForm
                 result += i + ", ";
             }
             result = result.Remove(result.Length - 2, 2);
-            result += " }";
+            result += " }, ";
 
             // Add the starting time
             result += startTime;

@@ -84,6 +84,9 @@ public class CCDCEventManager: EventManager
 
         Assets.Scripts.CCDCCompiledAttacks payload = JsonUtility.FromJson<Assets.Scripts.CCDCCompiledAttacks>(input);
 
-        Debug.Log(payload);
+        foreach (Assets.Scripts.CCDCAttackData attack in payload.attacks)
+        {
+            Debug.Log(attack);
+        }
     }
 }

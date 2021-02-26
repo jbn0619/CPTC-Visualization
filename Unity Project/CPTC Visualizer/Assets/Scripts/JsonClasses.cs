@@ -232,13 +232,44 @@ namespace Assets.Scripts
             StartTime = s;
             NodesAffected = n;
         }
+
+        /// <summary>
+        /// Converts this attack into a line of string for easier reading and debugging.
+        /// </summary>
+        /// <returns></returns>
+        public override string ToString()
+        {
+            string result = "";
+
+            result += AttackType;
+
+            result += ", { ";
+
+            foreach (string node in NodesAffected)
+            {
+                result += node + ", ";
+            }
+            result = result.Remove(result.Length - 2, 2);
+            result += " }, ";
+
+            result += StartTime;
+
+            return result;
+        }
     }
 
+    /// <summary>
+    /// A container for a list of CCDCAttackData objects.
+    /// </summary>
     [Serializable]
     public class CCDCCompiledAttacks
     {
         public List<CCDCAttackData> attacks;
 
+        /// <summary>
+        /// The constructor for CCDCCOmpiledAttacks.
+        /// </summary>
+        /// <param name="a">A List of CCDCAttackData objects to store.</param>
         public CCDCCompiledAttacks(List<CCDCAttackData> a)
         {
             attacks = a;
