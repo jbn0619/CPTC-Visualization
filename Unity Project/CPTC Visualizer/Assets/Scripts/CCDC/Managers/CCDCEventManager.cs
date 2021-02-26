@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
+using System;
 
 public class CCDCEventManager: EventManager
 {
@@ -86,7 +87,42 @@ public class CCDCEventManager: EventManager
 
         foreach (Assets.Scripts.CCDCAttackData attack in payload.attacks)
         {
-            Debug.Log(attack);
+            // Go-through each node affected and pull-out its address.
+            foreach (string a in attack.NodesAffected)
+            {
+                // Begin by finding-out which team we're attacking.
+                int secondPeriodIndex = 7;
+
+                string teamToAttack = a.Substring(secondPeriodIndex, 3);
+                // If the final character is a period, then truncate it. Otherwise, keep the character.
+                if (teamToAttack[2] == '.')
+                {
+                    teamToAttack = teamToAttack.Substring(0, 2);
+                }
+                teamToAttack = teamToAttack.Substring(1, teamToAttack.Length - 1);
+
+                int.TryParse(teamToAttack, out int recipient);
+
+                CCDCTeamData recievingTeam = CCDCManager.Instance.TeamManager.CCDCTeams[recipient];
+
+                // Next, find the id of the node we're attacking.
+                int nodeIndex = 0;
+                for (int i = 0; i < recievingTeam.InfraCopy.AllNodes.Count; i++)
+                {
+                    if (recievingTeam.InfraCopy.AllNodes[i].Ip == a)
+                    {
+                        nodeIndex = i;
+                        break;
+                    }
+                }
+
+                // Spawn a notification marker in the proper spot.
+                NotificationButton newMarker = Instantiate(markerGO, recievingTeam.InfraCopy.AllNodes[nodeIndex].transform);
+                Enum.TryParse(attack.AttackType, out CCDCAttackType myAttack);
+                newMarker.AttackType = myAttack;
+                newMarker.AffectedNodeID = nodeIndex;
+                newMarker.AffectedTeamID = recipient;
+            }
         }
     }
 }
