@@ -28,36 +28,7 @@ public class CPTCNotificationManager : NotificationManager
     // Update is called once per frame
     void Update()
     {
-        currentTime = Time.time;
-
-        if((int)currentTime % 2 == 0)
-        {
-            if (numActiveNotifs > 0)
-            {
-                RemoveOldNotifications();
-            }
-        }
-
-        if(((int)currentTime - 1) % 2 == 0)
-        {
-            // Adds an alert if there is space in shownAlerts.
-            //      This is timegated to cheaply keep notifications
-            //      from moving improperly.
-            if (numActiveNotifs < 6
-                && alertPriorityQueue.Count > 0
-                && Time.time > lastNotifAdded)
-            {
-                if (numActiveNotifs == 0)
-                {
-                    //notifExpireTimer = Time.time;
-                    lastNotifAdded = Time.time;
-                }
-
-                AddNewNotification();
-
-                lastNotifAdded = Time.time + 1;
-            }
-        }
+        BaseUpdate();
     }
 
     /// <summary>

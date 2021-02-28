@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CCDCEventManager: EventManager
+public class CPTCEventManager : EventManager
 {
     #region Fields
 
@@ -17,13 +17,14 @@ public class CCDCEventManager: EventManager
     // Start is called before the first frame update
     void Start()
     {
-        compType = CompetitionType.CCDC;
+        compType = CompetitionType.CPTC;
+        notificationManager = CPTCManager.Instance.NotifManager;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        BaseUpdate();
     }
 
     /// <summary>
@@ -31,10 +32,11 @@ public class CCDCEventManager: EventManager
     /// </summary>
     public override void RunAlerts()
     {
-        foreach (TeamData team in CCDCManager.Instance.TeamManager.Teams)
+        foreach (TeamData team in CPTCManager.Instance.TeamManager.Teams)
         {
             if (!team.Queue.IsEmpty) // team.Alerts.Count > 0
             {
+                notificationManager.CreateNotification(team.TeamId, ((AlertData)(team.Queue.Peek)).Type); // team.Alerts[0].Type
                 team.ReadNextAlert();
             }
         }

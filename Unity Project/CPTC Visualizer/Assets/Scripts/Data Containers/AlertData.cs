@@ -11,15 +11,15 @@ public class AlertData : MonoBehaviour, IPriorityEvent
 {
     #region Fields
 
-    private CPTCEvents type;
+    protected CPTCEvents type;
 
     [SerializeField]
-    private List<int> affectedNodes;
+    protected List<int> affectedNodes;
 
-    // fields to help the priority queues
-    private int team;
-    private int timestamp;
-    private int priority;
+    protected int team;
+    protected int timestamp;
+    protected int priority;
+
     #endregion Fields
 
     #region Properties

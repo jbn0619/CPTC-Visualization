@@ -1,0 +1,16 @@
+E:\justi\Documents\repos\CPTC-Visualization\AttackCompilerForm\AttackCompilerForm\bin\Debug\netcoreapp3.1\AttackCompilerForm.exe
+E:\justi\Documents\repos\CPTC-Visualization\AttackCompilerForm\AttackCompilerForm\bin\Debug\netcoreapp3.1\AttackCompilerForm.deps.json
+E:\justi\Documents\repos\CPTC-Visualization\AttackCompilerForm\AttackCompilerForm\bin\Debug\netcoreapp3.1\AttackCompilerForm.runtimeconfig.json
+E:\justi\Documents\repos\CPTC-Visualization\AttackCompilerForm\AttackCompilerForm\bin\Debug\netcoreapp3.1\AttackCompilerForm.runtimeconfig.dev.json
+E:\justi\Documents\repos\CPTC-Visualization\AttackCompilerForm\AttackCompilerForm\bin\Debug\netcoreapp3.1\AttackCompilerForm.dll
+E:\justi\Documents\repos\CPTC-Visualization\AttackCompilerForm\AttackCompilerForm\bin\Debug\netcoreapp3.1\AttackCompilerForm.pdb
+E:\justi\Documents\repos\CPTC-Visualization\AttackCompilerForm\AttackCompilerForm\obj\Debug\netcoreapp3.1\AttackCompilerForm.csprojAssemblyReference.cache
+E:\justi\Documents\repos\CPTC-Visualization\AttackCompilerForm\AttackCompilerForm\obj\Debug\netcoreapp3.1\AttackCompilerForm.csproj.GenerateResource.cache
+E:\justi\Documents\repos\CPTC-Visualization\AttackCompilerForm\AttackCompilerForm\obj\Debug\netcoreapp3.1\AttackCompilerForm.AssemblyInfoInputs.cache
+E:\justi\Documents\repos\CPTC-Visualization\AttackCompilerForm\AttackCompilerForm\obj\Debug\netcoreapp3.1\AttackCompilerForm.AssemblyInfo.cs
+E:\justi\Documents\repos\CPTC-Visualization\AttackCompilerForm\AttackCompilerForm\obj\Debug\netcoreapp3.1\AttackCompilerForm.csproj.CoreCompileInputs.cache
+E:\justi\Documents\repos\CPTC-Visualization\AttackCompilerForm\AttackCompilerForm\obj\Debug\netcoreapp3.1\AttackCompilerForm.dll
+E:\justi\Documents\repos\CPTC-Visualization\AttackCompilerForm\AttackCompilerForm\obj\Debug\netcoreapp3.1\AttackCompilerForm.pdb
+E:\justi\Documents\repos\CPTC-Visualization\AttackCompilerForm\AttackCompilerForm\obj\Debug\netcoreapp3.1\AttackCompilerForm.genruntimeconfig.cache
+E:\justi\Documents\repos\CPTC-Visualization\AttackCompilerForm\AttackCompilerForm\obj\Debug\netcoreapp3.1\AttackCompilerForm.FormAttackCompiler.resources
+E:\justi\Documents\repos\CPTC-Visualization\AttackCompilerForm\AttackCompilerForm\obj\Debug\netcoreapp3.1\AttackCompilerForm.FormEditAttack.resources

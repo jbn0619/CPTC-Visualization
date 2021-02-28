@@ -49,9 +49,14 @@ public abstract class NotificationManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        BaseUpdate();
+    }
+
+    protected void BaseUpdate()
+    {
         currentTime = Time.time;
 
-        if((int)currentTime % 2 == 0)
+        if ((int)currentTime % 2 == 0)
         {
             if (numActiveNotifs > 0)
             {
@@ -59,7 +64,7 @@ public abstract class NotificationManager : MonoBehaviour
             }
         }
 
-        if(((int)currentTime - 1) % 2 == 0)
+        if (((int)currentTime - 1) % 2 == 0)
         {
             // Adds an alert if there is space in shownAlerts.
             //      This is timegated to cheaply keep notifications

@@ -16,6 +16,8 @@ public abstract class InfrastructureManager : MonoBehaviour
     protected CompetitionType compType;
     [SerializeField]
     protected bool showConnections;
+    [SerializeField]
+    protected bool showHiddenConnections;
     protected InfrastructureData infrastructure;
 
     [Header("GameObject Prefabs")]
@@ -31,7 +33,6 @@ public abstract class InfrastructureManager : MonoBehaviour
     protected AlertData alertGO;
     [SerializeField]
     protected LineRenderer connectionGO;
-
 
     #endregion Fields
     
@@ -56,7 +57,18 @@ public abstract class InfrastructureManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R)) ReadJson();
+        BaseUpdate();
+    }
+
+    /// <summary>
+    /// The base update for an Infrastructure manager that all child classes will automatically run.
+    /// </summary>
+    protected void BaseUpdate()
+    {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            ReadJson();
+        }
     }
 
     /// <summary>
@@ -157,6 +169,10 @@ public abstract class InfrastructureManager : MonoBehaviour
                 newNode.IsActive = true;
                 Enum.TryParse(payload.infrastructure.networks[i].nodes[k].type, out NodeTypes newType);
                 newNode.Type = newType;
+                Enum.TryParse(payload.infrastructure.networks[i].nodes[k].state, out NodeState newState);
+                newNode.State = newState;
+
+                newNode.IsHidden = payload.infrastructure.networks[i].nodes[k].isHidden;
 
                 // Move all the node's connection-IDs into newNode.
                 foreach (int c in payload.infrastructure.networks[i].nodes[k].connections)
@@ -225,6 +241,26 @@ public abstract class InfrastructureManager : MonoBehaviour
                 // Move the node to another position based-on a radial position.
                 infrastructure.Networks[i].Nodes[j].gameObject.transform.position = infrastructure.Networks[i].gameObject.transform.position + new Vector3(Mathf.Cos(angle) * radius, Mathf.Sin(angle) * radius, 0);
                 infrastructure.Networks[i].Nodes[j].gameObject.transform.localScale = new Vector2(0.15f, 0.15f);
+
+                // Next, check their state to edit their color.
+                switch (infrastructure.Networks[i].Nodes[j].State)
+                {
+                    case NodeState.Off:
+                        infrastructure.Networks[i].Nodes[j].NodeSprite.color = Color.gray;
+                        break;
+                    case NodeState.On:
+                        infrastructure.Networks[i].Nodes[j].NodeSprite.color = Color.cyan;
+                        break;
+                    case NodeState.NotWorking:
+                        infrastructure.Networks[i].Nodes[j].NodeSprite.color = Color.red;
+                        break;
+                }
+
+                // Disable the node's sprite if it is hidden.
+                if (infrastructure.Networks[i].Nodes[j].IsHidden)
+                {
+                    infrastructure.Networks[i].Nodes[j].NodeSprite.gameObject.SetActive(false);
+                }
             }
         }
         GenerateConnections();
@@ -280,6 +316,18 @@ public abstract class InfrastructureManager : MonoBehaviour
                 if (showConnections == false)
                 {
                     newLine.gameObject.SetActive(false);
+                }
+                // Next, check if a connection needs to be hidden because either a node is shut-down or hidden from view.
+                else if (showHiddenConnections == false)
+                {
+                    if (infrastructure.AllNodes[i].IsHidden || infrastructure.AllNodes[i].State == NodeState.Off)
+                    {
+                        newLine.gameObject.SetActive(false);
+                    }
+                    else if (infrastructure.AllNodes[c].IsHidden || infrastructure.AllNodes[c].State == NodeState.Off)
+                    {
+                        newLine.gameObject.SetActive(false);
+                    }
                 }
             }
         }

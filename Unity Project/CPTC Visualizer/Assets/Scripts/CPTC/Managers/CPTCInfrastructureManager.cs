@@ -8,17 +8,18 @@ using UnityEngine.UI;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
-public class CCDCInfrastructureManager : InfrastructureManager
+public class CPTCInfrastructureManager : InfrastructureManager
 {
     #region Fields
 
-    
+    [SerializeField]
+    private CPTCNotificationManager notificationManager;
 
     #endregion Fields
     
     #region Properties
 
-    
+
     
     #endregion Properties
     
@@ -31,7 +32,7 @@ public class CCDCInfrastructureManager : InfrastructureManager
     // Update is called once per frame
     void Update()
     {
-        
+        BaseUpdate();
     }
 
     /// <summary>
@@ -48,17 +49,17 @@ public class CCDCInfrastructureManager : InfrastructureManager
         if (infrastructure != null)
         {
             GameObject.Destroy(infrastructure.gameObject);
-            foreach (TeamData t in CCDCManager.Instance.TeamManager.Teams)
+            foreach (TeamData t in CPTCManager.Instance.TeamManager.Teams)
             {
                 GameObject.Destroy(t.gameObject);
             }
-            CCDCManager.Instance.TeamManager.Teams.Clear();
+            CPTCManager.Instance.TeamManager.Teams.Clear();
         }
         
         // Collects the team data first.
         for(int i = 0; i < payload.teams.Count; i++)
         {
-            TeamData newTeam = Instantiate(teamGO, Vector3.zero, Quaternion.identity);
+            TeamData newTeam = Instantiate(teamGO, CPTCManager.Instance.TeamManager.gameObject.transform);
             newTeam.SetupQueue();
             newTeam.TeamId = payload.teams[i].teamId;
             // Move all discovered node-IDs into newTeam.
@@ -85,7 +86,7 @@ public class CCDCInfrastructureManager : InfrastructureManager
                 newTeam.Queue.Push(newAlert); // .Alerts.Add(newAlert);
             }
 
-            CCDCManager.Instance.TeamManager.Teams.Add(newTeam);
+            CPTCManager.Instance.TeamManager.Teams.Add(newTeam);
         }
 
         // Instantiate our infrastructure and populate it.
@@ -110,6 +111,10 @@ public class CCDCInfrastructureManager : InfrastructureManager
                 newNode.IsActive = true;
                 Enum.TryParse(payload.infrastructure.networks[i].nodes[k].type, out NodeTypes newType);
                 newNode.Type = newType;
+                Enum.TryParse(payload.infrastructure.networks[i].nodes[k].state, out NodeState newState);
+                newNode.State = newState;
+
+                newNode.IsHidden = payload.infrastructure.networks[i].nodes[k].isHidden;
 
                 // Move all the node's connection-IDs into newNode.
                 foreach (int c in payload.infrastructure.networks[i].nodes[k].connections)
@@ -126,6 +131,7 @@ public class CCDCInfrastructureManager : InfrastructureManager
         }
 
         infrastructure.gameObject.transform.position = this.gameObject.transform.position;
+        infrastructure.gameObject.transform.parent = this.gameObject.transform;
 
         GenerateGraph();
 
@@ -137,7 +143,7 @@ public class CCDCInfrastructureManager : InfrastructureManager
     /// </summary>
     public override void DuplicateInfrastructure()
     {
-        foreach(TeamData team in CCDCManager.Instance.TeamManager.Teams)
+        foreach(TeamData team in CPTCManager.Instance.TeamManager.Teams)
         {
             // Instantiate a copy of the infrastructure, and make it a child of the team's gameObject.
             InfrastructureData newInfra = Instantiate(infrastructure, team.gameObject.transform);
@@ -178,9 +184,31 @@ public class CCDCInfrastructureManager : InfrastructureManager
                 // Move the node to another position based-on a radial position.
                 infrastructure.Networks[i].Nodes[j].gameObject.transform.position = infrastructure.Networks[i].gameObject.transform.position + new Vector3(Mathf.Cos(angle) * radius, Mathf.Sin(angle) * radius, 0);
                 infrastructure.Networks[i].Nodes[j].gameObject.transform.localScale = new Vector2(0.15f, 0.15f);
+
+                // Next, check their state to edit their color.
+                switch (infrastructure.Networks[i].Nodes[j].State)
+                {
+                    case NodeState.Off:
+                        infrastructure.Networks[i].Nodes[j].NodeSprite.color = Color.gray;
+                        break;
+                    case NodeState.On:
+                        infrastructure.Networks[i].Nodes[j].NodeSprite.color = Color.cyan;
+                        break;
+                    case NodeState.NotWorking:
+                        infrastructure.Networks[i].Nodes[j].NodeSprite.color = Color.red;
+                        break;
+                }
+
+                // Disable the node's sprite if it is hidden.
+                if (infrastructure.Networks[i].Nodes[j].IsHidden)
+                {
+                    infrastructure.Networks[i].Nodes[j].NodeSprite.gameObject.SetActive(false);
+                }
             }
         }
         GenerateConnections();
+
+        CPTCManager.Instance.TeamManager.GenerateTeamViewButtons();
     }
 
     /// <summary>
@@ -233,6 +261,18 @@ public class CCDCInfrastructureManager : InfrastructureManager
                 if (showConnections == false)
                 {
                     newLine.gameObject.SetActive(false);
+                }
+                // Next, check if a connection needs to be hidden because either a node is shut-down or hidden from view.
+                else if (showHiddenConnections == false)
+                {
+                    if (infrastructure.AllNodes[i].IsHidden || infrastructure.AllNodes[i].State == NodeState.Off)
+                    {
+                        newLine.gameObject.SetActive(false);
+                    }
+                    else if (infrastructure.AllNodes[c].IsHidden || infrastructure.AllNodes[c].State == NodeState.Off)
+                    {
+                        newLine.gameObject.SetActive(false);
+                    }
                 }
             }
         }

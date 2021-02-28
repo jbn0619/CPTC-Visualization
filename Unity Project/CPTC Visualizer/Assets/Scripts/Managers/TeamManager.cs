@@ -48,6 +48,11 @@ public abstract class TeamManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        BaseUpdate();
+    }
+
+    protected void BaseUpdate()
+    {
         // Check for a view-switch input
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {

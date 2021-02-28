@@ -9,19 +9,29 @@ public class CCDCTeamManager: TeamManager
 {
     #region Fields
 
-    
+    protected List<CCDCTeamData> ccdcTeams;
 
     #endregion Fields
 
     #region Properties
 
-    
+    /// <summary>
+    /// Gets a list of this manager's ccdc teams.
+    /// </summary>
+    public List<CCDCTeamData> CCDCTeams
+    {
+        get
+        {
+            return ccdcTeams;
+        }
+    }
 
     #endregion Properties
 
     // Start is called before the first frame update
     void Start()
     {
+        ccdcTeams = new List<CCDCTeamData>();
         teams = new List<TeamData>();
         currentTeamView = -1;
 
@@ -31,15 +41,7 @@ public class CCDCTeamManager: TeamManager
     // Update is called once per frame
     void Update()
     {
-        // Check for a view-switch input
-        if (Input.GetKeyDown(KeyCode.RightArrow))
-        {
-            ChangeTeamView(1);
-        }
-        else if (Input.GetKeyDown(KeyCode.LeftArrow))
-        {
-            ChangeTeamView(-1);
-        }
+        BaseUpdate();
     }
 
     #region Team View Methods
@@ -56,7 +58,7 @@ public class CCDCTeamManager: TeamManager
         }
         else
         {
-            teams[currentTeamView].InfraCopy.gameObject.SetActive(false);
+            ccdcTeams[currentTeamView].InfraCopy.gameObject.SetActive(false);
         }
         // Update the index based-on what key was hit.
         currentTeamView += deltaIndex;
@@ -71,12 +73,12 @@ public class CCDCTeamManager: TeamManager
         // The case when we wrap from the bottom to the end of the teams list.
         else if (currentTeamView < -1)
         {
-            currentTeamView = teams.Count - 1;
-            teams[currentTeamView].InfraCopy.gameObject.SetActive(true);
-            teams[currentTeamView].BuildTeamGraph();
+            currentTeamView = ccdcTeams.Count - 1;
+            ccdcTeams[currentTeamView].InfraCopy.gameObject.SetActive(true);
+            ccdcTeams[currentTeamView].BuildTeamGraph();
         }
         // The case when we wrap from the end of teams list back to infrastructure.
-        else if (currentTeamView >= teams.Count)
+        else if (currentTeamView >= ccdcTeams.Count)
         {
             currentTeamView = -1;
             CCDCManager.Instance.InfraManager.Infrastructure.gameObject.SetActive(true);
@@ -84,7 +86,7 @@ public class CCDCTeamManager: TeamManager
         // The case when we're somewhere within the teams list.
         else
         {
-            teams[currentTeamView].InfraCopy.gameObject.SetActive(true);
+            ccdcTeams[currentTeamView].InfraCopy.gameObject.SetActive(true);
         }
     }
 
@@ -101,7 +103,7 @@ public class CCDCTeamManager: TeamManager
         }
         else
         {
-            teams[currentTeamView].InfraCopy.gameObject.SetActive(false);
+            ccdcTeams[currentTeamView].InfraCopy.gameObject.SetActive(false);
         }
 
         // Next, do a simple check to make sure teamIndex is an acceptable value. If it is, then change currentTeamView to that new index.
@@ -114,7 +116,7 @@ public class CCDCTeamManager: TeamManager
         else if (teamIndex >= 0 && teamIndex < teams.Count)
         {
             currentTeamView = teamIndex;
-            teams[currentTeamView].InfraCopy.gameObject.SetActive(true);
+            ccdcTeams[currentTeamView].InfraCopy.gameObject.SetActive(true);
             teamViewLabel.text = "Team " + teamIndex;
         }
     }

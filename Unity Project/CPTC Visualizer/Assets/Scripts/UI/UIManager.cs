@@ -12,6 +12,8 @@ public class UIManager: Singleton<UIManager>
 
     #endregion Fields
 
+    #region Properties
+
     /// <summary>
     /// Gets what canvas is currently-active in this scene.
     /// </summary>
@@ -22,8 +24,6 @@ public class UIManager: Singleton<UIManager>
             return activeCanvas;
         }
     }
-
-    #region Properties
 
     /// <summary>
     /// Gets a list of all UI canvas objects in this scene.

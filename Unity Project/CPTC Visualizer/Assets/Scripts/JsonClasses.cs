@@ -64,7 +64,9 @@ namespace Assets.Scripts
     {
         public int id;
         public string type;
+        public string state;
         public List<int> connections;
+        public bool isHidden;
 
         /// <summary>
         /// Constructor for the Node class.
@@ -72,11 +74,13 @@ namespace Assets.Scripts
         /// <param name="i">This node's id.</param>
         /// <param name="t">This node's type.</param>
         /// <param name="c">What nodes this one is connected to.</param>
-        public Node(int i, NodeTypes t, List<int> c)
+        public Node(int i, NodeTypes t, NodeState s, List<int> c, bool h = false)
         {
             id = i;
             type = t.ToString();
+            state = s.ToString();
             connections = c;
+            isHidden = h;
         }
     }
 
@@ -153,4 +157,94 @@ namespace Assets.Scripts
             return cptcInfo;
         }
     }
+
+    #region CCDC-Specific Data Containers
+
+    /// <summary>
+    /// All of the data necessary to represent an update in uptimes/downtimes from during the CCDC event.
+    /// </summary>
+    [Serializable]
+    public class CCDCUpdateData
+    {
+        public string type;
+        public string id;
+        public string ip;
+        public int scoreWeight;
+        public string name;
+        public string group;
+        public bool isOn;
+
+        /// <summary>
+        /// Constructor for the CCDC Update Data class.
+        /// </summary>
+        /// <param name="t">This node's type.</param>
+        /// <param name="d">This node's ID.</param>
+        /// <param name="p">This node's IP address.</param>
+        /// <param name="s">The scoring-weight attatched to this node.</param>
+        /// <param name="n">This node's name.</param>
+        /// <param name="g">This node's group.</param>
+        /// <param name="o">If this node is on or off.</param>
+        public CCDCUpdateData(NodeTypes t, string d, string p, int s, string n, string g, bool o)
+        {
+            type = t.ToString();
+            id = d;
+            ip = p;
+            scoreWeight = s;
+            name = n;
+            group = g;
+            isOn = o;
+        }
+
+        /// <summary>
+        /// Converts this CPTCData object and all data within it into a json-formatted string.
+        /// </summary>
+        /// <returns>A large string in a JSON format.</returns>
+        public string ConvertToJSON()
+        {
+            string ccdcData = "";
+            ccdcData = JsonUtility.ToJson(this);
+            return ccdcData;
+        }
+    }
+
+    /// <summary>
+    /// All of the data necessary to represent an attack from the red team during the CCDC event.
+    /// </summary>
+    [Serializable]
+    public class CCDCAttackData
+    {
+        public List<int> TeamsAffected;
+        public List<int> NodesAffected;
+
+        public string AttackType;
+        public string StartTime;
+
+        /// <summary>
+        /// Constructor for the CCDCAttackData class.
+        /// </summary>
+        /// <param name="a">This attack's type.</param>
+        /// <param name="s">This attack's start-time as a string.</param>
+        /// <param name="t">The team IDs affected by this attack.</param>
+        /// <param name="n">The node IDs affected by this attack.</param>
+        public CCDCAttackData(string a, string s, List<int> t, List<int> n)
+        {
+            AttackType = a;
+            StartTime = s;
+            TeamsAffected = t;
+            NodesAffected = n;
+        }
+    }
+
+    [Serializable]
+    public class CCDCCompiledAttacks
+    {
+        public List<CCDCAttackData> attacks;
+
+        public CCDCCompiledAttacks(List<CCDCAttackData> a)
+        {
+            attacks = a;
+        }
+    }
+
+    #endregion CCDC-Specific Data Containers
 }
