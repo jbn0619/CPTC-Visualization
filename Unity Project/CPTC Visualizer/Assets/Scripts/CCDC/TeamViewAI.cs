@@ -122,6 +122,7 @@ public class TeamViewAI: MonoBehaviour
                     string time = "";
                     string name = "";
                     string description = "";
+                    float estTime = 0;
 
                     // loop that reads in all the data
                     while (line != null && line != "")
@@ -145,15 +146,22 @@ public class TeamViewAI: MonoBehaviour
                             description = line;
                             pos++;
                         }
-                        // third, timestamp, then resets the vars
+                        // third, timestamp
                         else if (pos == 2)
                         {
                             time = line;
-                            injects.Add(new Inject(name, description, time));
+                            pos++;
+                        }
+                        // forth, duration, then resets the vars
+                        else if (pos == 3)
+                        {
+                            estTime = float.Parse(line);
+                            injects.Add(new Inject(name, description, time, estTime));
                             Debug.Log("Added new inject: " + name);
                             time = "";
                             name = "";
                             description = "";
+                            estTime = 0;
                             pos = 0;
                         }
                         else
