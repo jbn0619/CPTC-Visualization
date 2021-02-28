@@ -10,7 +10,6 @@ public class TeamViewAI: MonoBehaviour
     #region Fields
     // other references
     private List<Inject> injects; // list of injects for the comp
-    private CCDCTeamManager manager; // manager reference
 
     // team references
     [SerializeField]
@@ -23,7 +22,10 @@ public class TeamViewAI: MonoBehaviour
     #endregion Fields
 
     #region Properties
-
+    public List<Inject> Injects
+    {
+        get { return injects; }
+    }
     #endregion Properties
 
     // Start is called before the first frame update
@@ -33,7 +35,6 @@ public class TeamViewAI: MonoBehaviour
         teamTracker = new int[numOfTeams];
         teamDeltas = new int[numOfTeams];
         previousTeam = -1;
-        manager = CCDCManager.Instance.TeamManager;
 
         // injects
         injects = new List<Inject>();
@@ -51,7 +52,6 @@ public class TeamViewAI: MonoBehaviour
         {
             // temp vars to test if it's time ofr an inject
             bool injectTime = false;
-            int injectIndex = -1;
             
             // loop that goes through injects
             for (int i = 0; i < injects.Count; i++)
@@ -61,7 +61,6 @@ public class TeamViewAI: MonoBehaviour
                 { 
                     // sets temp vars
                     injectTime = true;
-                    injectIndex = i;
                 }
             }
 
@@ -84,7 +83,7 @@ public class TeamViewAI: MonoBehaviour
                 previousTeam = Prioritize();
 
                 // switches to the correct team view
-                manager.SelectTeamView(previousTeam);
+                CCDCManager.Instance.TeamManager.SelectTeamView(previousTeam);
             }
         }
     }
@@ -261,6 +260,7 @@ public class TeamViewAI: MonoBehaviour
 
         }
 
+        Debug.Log("Sending to team " + teamNum);
         teamTracker[teamNum]++;
         return teamNum;
     }
