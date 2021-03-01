@@ -68,8 +68,8 @@ public abstract class TeamManager : MonoBehaviour
         // Generated and read in teams
         if (Input.GetKeyDown(KeyCode.C))
         {
-            GenerateTeamNames();
-            ReadTeams();
+           // GenerateTeamNames();
+           // ReadTeams();
         }
     }
 

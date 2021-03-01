@@ -123,7 +123,6 @@ public class CCDCTeamManager: TeamManager
     }
 
 
-    // Have this return a List<string>
     public override void GenerateTeamNames()
     {
         List<string> potentialNames = new List<string>();
@@ -147,9 +146,7 @@ public class CCDCTeamManager: TeamManager
             potentialNames.RemoveAt(index);
 
             Color color = new Color(Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f));
-            // team[i].color = color
             teamColors.Add("#" + ColorUtility.ToHtmlStringRGBA(color));
-            //Debug.Log("Generated color: " + teamColors[i]);
         }
 
         // Writes the selected team names and colors to a file
@@ -160,17 +157,15 @@ public class CCDCTeamManager: TeamManager
             Debug.Log(teamNames[i] + ":" + teamColors[i]);
         }
         writer.Close();
-
-        //return potentialNames;
     }
 
-    // Have this return a List<string>
+
     public override void ReadTeams()
     {
         List<string> teamNames = new List<string>();
         List<string> teamColors = new List<string>();
 
-        // Reads the team names from the file
+        // Reads the team names and colors from a file
         StreamReader reader = new StreamReader("Assets/Data/teamNames.txt");
         while (reader.Peek() != -1)
         {
@@ -185,6 +180,7 @@ public class CCDCTeamManager: TeamManager
 
         Color readColor;
 
+        // Assign the names and colors to the teams
         for (int i = 0; i < ccdcTeams.Count; i++)
         {
             ColorUtility.TryParseHtmlString(teamColors[i], out readColor);
@@ -193,7 +189,6 @@ public class CCDCTeamManager: TeamManager
             ccdcTeams[i].TeamColor = readColor;
         }
 
-        //return teamNames;
     }
     #endregion Team View Methods
 }

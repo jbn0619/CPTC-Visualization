@@ -81,15 +81,27 @@ public class CCDCManager: Singleton<CCDCManager>
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space))
+        // Master Key. Starts the program in its entirety with one key press
+        if (Input.GetKeyDown(KeyCode.End))
         {
-            //generate infrastructure
+
+        }
+
+        // Starts the simulation
+        if(Input.GetKeyDown(KeyCode.Return))
+        {
+            // Starts simulation. Is this needed?
+        }
+
+        // Create a new Infrastructure and write it to the Json
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
             jsonWriter.GenerateData();
         }
 
+        // Reads in an infrastructure from the Json
         if(Input.GetKeyDown(KeyCode.R))
         {
-            // read json
             infraManager.ReadJson();
         }
 
@@ -104,6 +116,12 @@ public class CCDCManager: Singleton<CCDCManager>
         if(Input.GetKeyDown(KeyCode.I))
         {
             injectNotifManager.CreateTestInject();
+        }
+
+        // Reads attacks json and spawns notifications
+        if(Input.GetKeyDown(KeyCode.P))
+        {
+            eventManager.ReadAttacksJSON();
         }
     }
 }

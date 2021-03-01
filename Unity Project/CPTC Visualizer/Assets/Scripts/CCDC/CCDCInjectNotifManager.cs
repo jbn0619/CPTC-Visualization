@@ -50,14 +50,6 @@ public class CCDCInjectNotifManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //BaseUpdate();
-
-        //if(Input.GetKeyDown(KeyCode.I))
-        //{
-        //    Inject testInject = new Inject("Test Name", "TestDescription", System.DateTime.Now.ToShortTimeString());
-        //    waitingInjects.Add(testInject);
-        //}
-
         if(waitingInjects.Count > 0)
         {
             AddNewCard();
@@ -87,7 +79,7 @@ public class CCDCInjectNotifManager : MonoBehaviour
     /// </summary>
     public void ReadInInjects()
     {
-
+        // Will read a list from Robley's AI
     }
 
     /// <summary>
@@ -107,12 +99,6 @@ public class CCDCInjectNotifManager : MonoBehaviour
                     new Vector3(-100.0f, 400, 0),
                     Quaternion.identity,
                     canvas.transform);
-
-                //newCard.transform.SetParent(canvas.transform);
-                //newInject.TargetPos = new Vector3(230, 0, 0);
-
-                //newInject.NotifText = waitingInjects[0].NotifText;
-                //newInject.Priority = waitingInjects[0].Priority;
 
                 injectCards[0] = newCard;
                 activeInjectRemoveTimes[0] = System.DateTime.Now.AddMinutes(injectExpireTime);
@@ -140,7 +126,6 @@ public class CCDCInjectNotifManager : MonoBehaviour
                 if (injectCards[i] != null
                     && injectCards[i - 1] == null)
                 {
-                    //injectCards[i].TargetPos = new Vector3(0, 60, 0);
                     injectCards[i - 1] = injectCards[i];
                     injectCards[i] = null;
 
@@ -165,7 +150,6 @@ public class CCDCInjectNotifManager : MonoBehaviour
                 if (injectCards[i] != null
                     && injectCards[i + 1] == null)
                 {
-                    //injectCards[i].TargetPos = new Vector3(0, -60, 0);
                     injectCards[i + 1] = injectCards[i];
                     injectCards[i] = null;
 
@@ -187,8 +171,6 @@ public class CCDCInjectNotifManager : MonoBehaviour
             if(injectCards[i] != null)
             {
                 Vector3 targetPos = new Vector3(100, 400 - (i * 60), 0);
-
-                //injectCards[i].transform.position = Vector3.MoveTowards(injectCards[i].transform.position, targetPos, 1.0f);
 
                 injectCards[i].transform.position = targetPos;
             }
