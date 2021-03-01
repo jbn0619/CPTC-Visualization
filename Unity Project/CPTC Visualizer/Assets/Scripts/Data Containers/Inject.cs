@@ -46,7 +46,7 @@ public struct Inject
     }
     #endregion Properties
     
-    // Constructor for injuects
+    // Constructor for injects
     public Inject(string _name, string _description, string _timestamp, float _estTime)
     {
         name = _name;

@@ -19,10 +19,13 @@ public class TeamViewAI: Singleton<TeamViewAI>
     private int[] teamTracker; // keeps track of number of displays
     [SerializeField]
     private int[] teamDeltas; // keeps track of the changes in infra
-    private bool hasStarted;
+    private bool hasStarted; // checks if the AI has started
     #endregion Fields
 
     #region Properties
+    /// <summary>
+    /// List of all the Injects in the competition
+    /// </summary>
     public List<Inject> Injects
     {
         get { return injects; }
@@ -35,23 +38,20 @@ public class TeamViewAI: Singleton<TeamViewAI>
         // starting references
         teamTracker = new int[numOfTeams];
         teamDeltas = new int[numOfTeams];
-        previousTeam = -1;
+        previousTeam = -1; // starting value
 
         // injects
         injects = new List<Inject>();
-        ReadInjects();
+        ReadInjects(); // reads in the injects.txt
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R) && !hasStarted)
-        {
-            hasStarted = true;
-        }
-
+        // checks if the AI has started
         if (hasStarted)
-        {// updates timer
+        {
+            // updates timer
             timeBeforeChange -= Time.deltaTime;
 
             // checks if its time 
@@ -93,6 +93,13 @@ public class TeamViewAI: Singleton<TeamViewAI>
                     CCDCManager.Instance.TeamManager.SelectTeamView(previousTeam);
                 }
             }
+        }
+
+        // checks if it's time to start
+        if (Input.GetKeyDown(KeyCode.R) && !hasStarted)
+        {
+            // starts the AI
+            hasStarted = true;
         }
     }
 
@@ -210,6 +217,7 @@ public class TeamViewAI: Singleton<TeamViewAI>
     /// </summary>
     public void RandomizeDeltas()
     {
+        // loop that spoofs data
         for (int i = 0; i < numOfTeams; i++)
         {
             teamDeltas[i] += UnityEngine.Random.Range(0, 9);
@@ -222,11 +230,13 @@ public class TeamViewAI: Singleton<TeamViewAI>
     /// </summary>
     public void ResetChanges()
     {
+        // resets all of the changes from past switch
         for (int i = 0; i < numOfTeams; i++)
         {
             teamDeltas[i] = 0;
         }
 
+        // resets the timer
         timeBeforeChange = 1f;
     }
 
@@ -247,6 +257,7 @@ public class TeamViewAI: Singleton<TeamViewAI>
                 continue;
             }
 
+            // checks if it's the first time
             if (teamNum == -1)
             {
                 teamNum = i;
@@ -268,6 +279,7 @@ public class TeamViewAI: Singleton<TeamViewAI>
 
         }
 
+        // sets the variables for the tracker
         Debug.Log("Sending to team " + teamNum);
         teamTracker[teamNum]++;
         return teamNum;
