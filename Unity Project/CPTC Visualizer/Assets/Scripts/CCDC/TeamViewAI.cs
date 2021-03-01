@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using System;
 using System.IO;
 
-public class TeamViewAI: MonoBehaviour
+public class TeamViewAI: Singleton<TeamViewAI>
 {
     #region Fields
     // other references
