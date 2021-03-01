@@ -67,7 +67,7 @@ public class JSONWriter: MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            GenerateData();
+            //GenerateData();
         }
     }
 

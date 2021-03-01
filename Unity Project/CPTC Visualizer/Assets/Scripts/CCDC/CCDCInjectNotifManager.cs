@@ -52,11 +52,11 @@ public class CCDCInjectNotifManager : MonoBehaviour
     {
         //BaseUpdate();
 
-        if(Input.GetKeyDown(KeyCode.I))
-        {
-            Inject testInject = new Inject("Test Name", "TestDescription", System.DateTime.Now.ToShortTimeString());
-            waitingInjects.Add(testInject);
-        }
+        //if(Input.GetKeyDown(KeyCode.I))
+        //{
+        //    Inject testInject = new Inject("Test Name", "TestDescription", System.DateTime.Now.ToShortTimeString());
+        //    waitingInjects.Add(testInject);
+        //}
 
         if(waitingInjects.Count > 0)
         {
@@ -68,6 +68,16 @@ public class CCDCInjectNotifManager : MonoBehaviour
             RemoveDeactiveCards();
             MoveToPos();
         }
+    }
+
+    /// <summary>
+    /// Create Test Inject
+    ///     Creates a test inject so the system can create and display a notification for it.
+    /// </summary>
+    public void CreateTestInject()
+    {
+        Inject testInject = new Inject("Test Name", "TestDescription", System.DateTime.Now.ToShortTimeString());
+        waitingInjects.Add(testInject);
     }
 
     /// <summary>

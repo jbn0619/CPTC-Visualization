@@ -10,6 +10,8 @@ public class CCDCManager: Singleton<CCDCManager>
     [SerializeField]
     private CCDCInfrastructureManager infraManager;
     [SerializeField]
+    private JSONWriter jsonWriter;
+    [SerializeField]
     private CCDCTeamManager teamManager;
     [SerializeField]
     private CCDCEventManager eventManager;
@@ -79,6 +81,29 @@ public class CCDCManager: Singleton<CCDCManager>
     // Update is called once per frame
     void Update()
     {
-        
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            //generate infrastructure
+            jsonWriter.GenerateData();
+        }
+
+        if(Input.GetKeyDown(KeyCode.R))
+        {
+            // read json
+            infraManager.ReadJson();
+        }
+
+        // Generates team names and colors
+        if(Input.GetKeyDown(KeyCode.C))
+        {
+            teamManager.GenerateTeamNames();
+            teamManager.ReadTeams();
+        }
+
+        // Create a test inject ot be displayed
+        if(Input.GetKeyDown(KeyCode.I))
+        {
+            injectNotifManager.CreateTestInject();
+        }
     }
 }
