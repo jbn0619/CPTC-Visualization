@@ -19,6 +19,7 @@ public class TeamViewAI: MonoBehaviour
     private int[] teamTracker; // keeps track of number of displays
     [SerializeField]
     private int[] teamDeltas; // keeps track of the changes in infra
+    private bool hasStarted;
     #endregion Fields
 
     #region Properties
@@ -44,46 +45,53 @@ public class TeamViewAI: MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // updates timer
-        timeBeforeChange -= Time.deltaTime;
-        
-        // checks if its time 
-        if (timeBeforeChange <= 0)
+        if (Input.GetKeyDown(KeyCode.R) && !hasStarted)
         {
-            // temp vars to test if it's time ofr an inject
-            bool injectTime = false;
-            
-            // loop that goes through injects
-            for (int i = 0; i < injects.Count; i++)
+            hasStarted = true;
+        }
+
+        if (hasStarted)
+        {// updates timer
+            timeBeforeChange -= Time.deltaTime;
+
+            // checks if its time 
+            if (timeBeforeChange <= 0)
             {
-                // checks each inject
-                if (CheckInjects(injects[i]))
-                { 
-                    // sets temp vars
-                    injectTime = true;
+                // temp vars to test if it's time ofr an inject
+                bool injectTime = false;
+
+                // loop that goes through injects
+                for (int i = 0; i < injects.Count; i++)
+                {
+                    // checks each inject
+                    if (CheckInjects(injects[i]))
+                    {
+                        // sets temp vars
+                        injectTime = true;
+                    }
                 }
-            }
 
-            // resets the deltas
-            ResetChanges();
+                // resets the deltas
+                ResetChanges();
 
-            // checks if it's time
-            if (injectTime)
-            {
-                // show the inject and such
-                Debug.Log("STOP; INJECT TIME");
-            }
-            else
-            {
-                // gives random deltas
-                RandomizeDeltas();
+                // checks if it's time
+                if (injectTime)
+                {
+                    // show the inject and such
+                    Debug.Log("STOP; INJECT TIME");
+                }
+                else
+                {
+                    // gives random deltas
+                    RandomizeDeltas();
 
-                // sets the previous team so that it doesn't
-                // show the same team twice in a row
-                previousTeam = Prioritize();
+                    // sets the previous team so that it doesn't
+                    // show the same team twice in a row
+                    previousTeam = Prioritize();
 
-                // switches to the correct team view
-                CCDCManager.Instance.TeamManager.SelectTeamView(previousTeam);
+                    // switches to the correct team view
+                    CCDCManager.Instance.TeamManager.SelectTeamView(previousTeam);
+                }
             }
         }
     }

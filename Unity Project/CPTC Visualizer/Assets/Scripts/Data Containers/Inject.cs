@@ -13,21 +13,33 @@ public struct Inject
     #endregion Fields
 
     #region Properties
+    /// <summary>
+    /// Name of the inject
+    /// </summary>
     public string Name
     {
         get { return name; }
     }
 
+    /// <summary>
+    /// String description for the inject
+    /// </summary>
     public string Description
     {
         get { return description; }
     }
 
+    /// <summary>
+    /// Time that the inject starts
+    /// </summary>
     public string Timestamp
     {
         get { return timestamp; }
     }
 
+    /// <summary>
+    /// Time that the inject lasts
+    /// </summary>
     public float Duration
     {
         get { return duration; }
