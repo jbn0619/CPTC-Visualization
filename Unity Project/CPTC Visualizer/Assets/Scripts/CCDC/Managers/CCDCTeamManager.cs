@@ -130,11 +130,11 @@ public class CCDCTeamManager: TeamManager
                 else
                 {
                     newButton.NewTeamIndex = i;
-                    newButton.ButtonText.text = "Team " + i;
+                    newButton.ButtonText.text = i.ToString();
                 }
 
                 // Finally, move the button to its proper spot and add it to teamViewButtons.
-                newButton.gameObject.transform.position = new Vector3(95 + (i * 100), Screen.height - 50, 0);
+                newButton.gameObject.transform.position = new Vector3(75 + (i * 150), Screen.height - 75, 0);
                 teamViewButtons.Add(newButton);
             }
         }
