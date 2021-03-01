@@ -1,0 +1,10 @@
+Racoons:#4E95A9FF
+Snow Leopards:#267DBBFF
+Penguins:#A65B9CFF
+Emu:#51A135FF
+Crocodiles:#1C32C5FF
+Hedgehogs:#20BBF1FF
+Cats:#5BE784FF
+Aardvarks:#A2B592FF
+Dolphins:#F63427FF
+Wolves:#E8A4B0FF

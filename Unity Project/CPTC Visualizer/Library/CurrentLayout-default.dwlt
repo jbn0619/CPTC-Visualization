@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1920
     height: 997
   m_ShowMode: 4
-  m_Title: Hierarchy
+  m_Title: Scene
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 542}
   m_MaxSize: {x: 10000, y: 10000}
@@ -119,10 +119,10 @@ MonoBehaviour:
     y: 30
     width: 1920
     height: 947
-  m_MinSize: {x: 677, y: 492}
-  m_MaxSize: {x: 14001, y: 14042}
+  m_MinSize: {x: 678, y: 492}
+  m_MaxSize: {x: 14002, y: 14042}
   vertical: 0
-  controlID: 81
+  controlID: 93
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -147,7 +147,7 @@ MonoBehaviour:
   m_MinSize: {x: 402, y: 492}
   m_MaxSize: {x: 10001, y: 14042}
   vertical: 1
-  controlID: 82
+  controlID: 94
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -172,7 +172,7 @@ MonoBehaviour:
   m_MinSize: {x: 402, y: 221}
   m_MaxSize: {x: 8002, y: 4021}
   vertical: 0
-  controlID: 83
+  controlID: 95
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -423,9 +423,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 64490000
-      m_LastClickedID: 18788
-      m_ExpandedIDs: 32fbffff38fbffff38490000
+      m_SelectedIDs: 
+      m_LastClickedID: 0
+      m_ExpandedIDs: 86e9feff38fbffff38490000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -485,9 +485,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 629.5775, y: 195.26848, z: -49.04295}
+    m_Target: {x: 2.6212258, y: -0.20700914, z: -101.12971}
     speed: 2
-    m_Value: {x: 629.5775, y: 195.26848, z: -49.04295}
+    m_Value: {x: 2.6212258, y: -0.20700914, z: -101.12971}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -538,9 +538,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 493.93738
+    m_Target: 8.136742
     speed: 2
-    m_Value: 493.93738
+    m_Value: 8.136742
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -664,23 +664,23 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scripts/CCDC/Managers
+    - Assets/Videos
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Scripts/CCDC/Managers
+  - Assets/Videos
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\klapo\Documents\GitHub\CPTC-Visualization\Unity Project\CPTC
     Visualizer
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 664f0000
-    m_LastClickedID: 20326
-    m_ExpandedIDs: 00000000c64a0000e04a0000e64a000000ca9a3b
+    scrollPos: {x: 0, y: 69}
+    m_SelectedIDs: da4a0000
+    m_LastClickedID: 19162
+    m_ExpandedIDs: 00000000c44a0000d04a0000d64a0000de4a000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -708,7 +708,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000c64a0000
+    m_ExpandedIDs: 00000000c44a0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 

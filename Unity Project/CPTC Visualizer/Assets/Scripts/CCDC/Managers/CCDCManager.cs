@@ -13,6 +13,8 @@ public class CCDCManager: Singleton<CCDCManager>
     private CCDCTeamManager teamManager;
     [SerializeField]
     private CCDCEventManager eventManager;
+    [SerializeField]
+    private CCDCInjectNotifManager injectNotifManager;
     
     #endregion Fields
     

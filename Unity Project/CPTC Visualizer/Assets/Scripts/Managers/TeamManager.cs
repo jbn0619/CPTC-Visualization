@@ -201,7 +201,7 @@ public abstract class TeamManager : MonoBehaviour
     }
 
     // Have this return a List<string>
-    public void GenerateTeamNames()
+    public virtual void GenerateTeamNames()
     {
         List<string> potentialNames = new List<string>();
         List<string> teamNames = new List<string>();
@@ -242,7 +242,7 @@ public abstract class TeamManager : MonoBehaviour
     }
 
     // Have this return a List<string>
-    public void ReadTeams()
+    public virtual void ReadTeams()
     {
         List<string> teamNames = new List<string>();
         List<string> teamColors = new List<string>();
