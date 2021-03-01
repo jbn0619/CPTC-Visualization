@@ -503,6 +503,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   compType: 1
+  teams: []
   teamViewLabel: {fileID: 1311593172}
 --- !u!4 &939808357
 Transform:
