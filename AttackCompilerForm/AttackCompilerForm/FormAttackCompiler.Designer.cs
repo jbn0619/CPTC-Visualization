@@ -34,9 +34,7 @@ namespace AttackCompilerForm
             this.attackTypeLabel = new System.Windows.Forms.Label();
             this.attackBuilderGroupBox = new System.Windows.Forms.GroupBox();
             this.nodesLabel = new System.Windows.Forms.Label();
-            this.teamsLable = new System.Windows.Forms.Label();
             this.nodesTextBox = new System.Windows.Forms.TextBox();
-            this.teamsTextBox = new System.Windows.Forms.TextBox();
             this.submitAttackButton = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -66,7 +64,7 @@ namespace AttackCompilerForm
             "Intrusion",
             "Execute Code",
             "Cry"});
-            this.attackTypeComboBox.Location = new System.Drawing.Point(281, 61);
+            this.attackTypeComboBox.Location = new System.Drawing.Point(121, 79);
             this.attackTypeComboBox.Name = "attackTypeComboBox";
             this.attackTypeComboBox.Size = new System.Drawing.Size(121, 23);
             this.attackTypeComboBox.TabIndex = 0;
@@ -74,7 +72,7 @@ namespace AttackCompilerForm
             // attackTypeLabel
             // 
             this.attackTypeLabel.AutoSize = true;
-            this.attackTypeLabel.Location = new System.Drawing.Point(297, 43);
+            this.attackTypeLabel.Location = new System.Drawing.Point(137, 61);
             this.attackTypeLabel.Name = "attackTypeLabel";
             this.attackTypeLabel.Size = new System.Drawing.Size(70, 15);
             this.attackTypeLabel.TabIndex = 1;
@@ -83,15 +81,13 @@ namespace AttackCompilerForm
             // attackBuilderGroupBox
             // 
             this.attackBuilderGroupBox.Controls.Add(this.nodesLabel);
-            this.attackBuilderGroupBox.Controls.Add(this.teamsLable);
             this.attackBuilderGroupBox.Controls.Add(this.nodesTextBox);
-            this.attackBuilderGroupBox.Controls.Add(this.teamsTextBox);
             this.attackBuilderGroupBox.Controls.Add(this.submitAttackButton);
             this.attackBuilderGroupBox.Controls.Add(this.attackTypeComboBox);
             this.attackBuilderGroupBox.Controls.Add(this.attackTypeLabel);
             this.attackBuilderGroupBox.Location = new System.Drawing.Point(12, 39);
             this.attackBuilderGroupBox.Name = "attackBuilderGroupBox";
-            this.attackBuilderGroupBox.Size = new System.Drawing.Size(426, 241);
+            this.attackBuilderGroupBox.Size = new System.Drawing.Size(263, 241);
             this.attackBuilderGroupBox.TabIndex = 2;
             this.attackBuilderGroupBox.TabStop = false;
             this.attackBuilderGroupBox.Text = "Attack Builder";
@@ -99,24 +95,15 @@ namespace AttackCompilerForm
             // nodesLabel
             // 
             this.nodesLabel.AutoSize = true;
-            this.nodesLabel.Location = new System.Drawing.Point(159, 43);
+            this.nodesLabel.Location = new System.Drawing.Point(6, 22);
             this.nodesLabel.Name = "nodesLabel";
             this.nodesLabel.Size = new System.Drawing.Size(92, 15);
             this.nodesLabel.TabIndex = 6;
             this.nodesLabel.Text = "Affected Nodes:";
             // 
-            // teamsLable
-            // 
-            this.teamsLable.AutoSize = true;
-            this.teamsLable.Location = new System.Drawing.Point(17, 43);
-            this.teamsLable.Name = "teamsLable";
-            this.teamsLable.Size = new System.Drawing.Size(91, 15);
-            this.teamsLable.TabIndex = 5;
-            this.teamsLable.Text = "Affected Teams:";
-            // 
             // nodesTextBox
             // 
-            this.nodesTextBox.Location = new System.Drawing.Point(159, 61);
+            this.nodesTextBox.Location = new System.Drawing.Point(6, 40);
             this.nodesTextBox.Multiline = true;
             this.nodesTextBox.Name = "nodesTextBox";
             this.nodesTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
@@ -124,19 +111,9 @@ namespace AttackCompilerForm
             this.nodesTextBox.TabIndex = 4;
             this.nodesTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
             // 
-            // teamsTextBox
-            // 
-            this.teamsTextBox.Location = new System.Drawing.Point(17, 61);
-            this.teamsTextBox.Multiline = true;
-            this.teamsTextBox.Name = "teamsTextBox";
-            this.teamsTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.teamsTextBox.Size = new System.Drawing.Size(100, 166);
-            this.teamsTextBox.TabIndex = 3;
-            this.teamsTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
-            // 
             // submitAttackButton
             // 
-            this.submitAttackButton.Location = new System.Drawing.Point(297, 204);
+            this.submitAttackButton.Location = new System.Drawing.Point(137, 183);
             this.submitAttackButton.Name = "submitAttackButton";
             this.submitAttackButton.Size = new System.Drawing.Size(105, 23);
             this.submitAttackButton.TabIndex = 2;
@@ -150,7 +127,7 @@ namespace AttackCompilerForm
             this.fileMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(800, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(641, 24);
             this.menuStrip1.TabIndex = 3;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -201,7 +178,7 @@ namespace AttackCompilerForm
             // compiledAttacksGroupBox
             // 
             this.compiledAttacksGroupBox.Controls.Add(this.compiledAttacksListBox);
-            this.compiledAttacksGroupBox.Location = new System.Drawing.Point(444, 39);
+            this.compiledAttacksGroupBox.Location = new System.Drawing.Point(281, 39);
             this.compiledAttacksGroupBox.Name = "compiledAttacksGroupBox";
             this.compiledAttacksGroupBox.Size = new System.Drawing.Size(344, 399);
             this.compiledAttacksGroupBox.TabIndex = 4;
@@ -252,7 +229,7 @@ namespace AttackCompilerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(641, 450);
             this.Controls.Add(this.compiledAttacksGroupBox);
             this.Controls.Add(this.attackBuilderGroupBox);
             this.Controls.Add(this.menuStrip1);
@@ -277,9 +254,7 @@ namespace AttackCompilerForm
         private System.Windows.Forms.GroupBox attackBuilderGroupBox;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.Button submitAttackButton;
-        private System.Windows.Forms.TextBox teamsTextBox;
         private System.Windows.Forms.TextBox nodesTextBox;
-        private System.Windows.Forms.Label teamsLable;
         private System.Windows.Forms.Label nodesLabel;
         private System.Windows.Forms.ToolStripMenuItem fileMenuItem;
         private System.Windows.Forms.ToolStripMenuItem newFileMenuItem;

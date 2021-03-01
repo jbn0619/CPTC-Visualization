@@ -8,6 +8,7 @@ public class NodeData: MonoBehaviour
     #region Fields
 
     private int id;
+    private string ip;
     private bool isActive;
     private NodeTypes type;
     private NodeState state;
@@ -41,6 +42,21 @@ public class NodeData: MonoBehaviour
             {
                 id = value;
             }
+        }
+    }
+
+    /// <summary>
+    /// Gets or sets this node's ip address.
+    /// </summary>
+    public string Ip
+    {
+        get
+        {
+            return ip;
+        }
+        set
+        {
+            ip = value;
         }
     }
 
