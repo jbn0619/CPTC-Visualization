@@ -97,5 +97,52 @@ public class CCDCTeamManager: TeamManager
         }
     }
 
+    /// <summary>
+    /// Generates enough buttons to switch between every team's view, and the main infrastructure view.
+    /// </summary>
+    public override void GenerateTeamViewButtons()
+    {
+        // Make sure we properly clear-out the previous buttons before making new ones.
+        if (teamViewButtons != null)
+        {
+            foreach (TeamViewButton t in teamViewButtons)
+            {
+                if (t != null) Destroy(t.gameObject);
+            }
+            teamViewButtons.Clear();
+        }
+        else
+        {
+            teamViewButtons = new List<TeamViewButton>();
+        }
+
+        // Create each button, then edit their index and text fields.
+        if (UIManager.Instance.ActiveCanvas != null)
+        {
+            for (int i = 0; i < ccdcTeams.Count + 1; i++)
+            {
+                TeamViewButton newButton = Instantiate(teamViewButGO, UIManager.Instance.ActiveCanvas.transform);
+                if (i == ccdcTeams.Count)
+                {
+                    newButton.NewTeamIndex = -1;
+                    newButton.ButtonText.text = "Main";
+                }
+                else
+                {
+                    newButton.NewTeamIndex = i;
+                    newButton.ButtonText.text = "Team " + i;
+                }
+
+                // Finally, move the button to its proper spot and add it to teamViewButtons.
+                newButton.gameObject.transform.position = new Vector3(95 + (i * 100), Screen.height - 50, 0);
+                teamViewButtons.Add(newButton);
+            }
+        }
+        else
+        {
+            Debug.Log("ERROR: NO ACTIVE CANVAS IN SCENE!");
+        }
+    }
+
     #endregion Team View Methods
 }

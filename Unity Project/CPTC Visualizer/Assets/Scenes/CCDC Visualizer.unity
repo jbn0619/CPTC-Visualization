@@ -501,6 +501,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   compType: 1
   teamViewLabel: {fileID: 1311593172}
+  teamViewButGO: {fileID: 6343373906729853186, guid: d57865530575a6c4198c1281c021f867, type: 3}
 --- !u!4 &939808357
 Transform:
   m_ObjectHideFlags: 0

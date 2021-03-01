@@ -146,6 +146,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2a5ab165558c0c40b6215e7d7be51d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  compType: 1
   newTeamIndex: 0
   button: {fileID: 3998824116543854852}
   buttonText: {fileID: 3998824116863196866}
