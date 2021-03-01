@@ -120,11 +120,17 @@ public class CCDCEventManager: EventManager
                 // Spawn a notification marker in the proper spot.
                 NotificationButton newMarker = Instantiate(markerGO, notificationCanvas.transform);
                 Enum.TryParse(attack.AttackType, out CCDCAttackType myAttack);
+                Vector3 newPos = recievingTeam.InfraCopy.AllNodes[nodeIndex].gameObject.transform.position + new Vector3(0, 0.25f, 0);
+                newMarker.transform.position = newPos;
+                newMarker.transform.localScale = new Vector3(0.25f, 0.25f, 1);
                 newMarker.AttackType = myAttack;
                 newMarker.AffectedNodeID = nodeIndex;
                 newMarker.AffectedTeamID = recipient;
 
                 recievingTeam.NotifMarkers.Add(newMarker);
+
+                // Disable this marker so that it can be properly-revealed later-on.
+                newMarker.gameObject.SetActive(false);
             }
         }
     }

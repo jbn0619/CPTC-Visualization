@@ -68,6 +68,10 @@ public class CCDCTeamManager: TeamManager
         else
         {
             ccdcTeams[currentTeamView].InfraCopy.gameObject.SetActive(false);
+            foreach (NotificationButton button in ccdcTeams[currentTeamView].NotifMarkers)
+            {
+                button.gameObject.SetActive(false);
+            }
         }
 
         // Wrap the team index to make sure it stays in-bounds.
@@ -85,6 +89,10 @@ public class CCDCTeamManager: TeamManager
         {
             currentTeamView = teamIndex;
             ccdcTeams[currentTeamView].InfraCopy.gameObject.SetActive(true);
+            foreach (NotificationButton button in ccdcTeams[currentTeamView].NotifMarkers)
+            {
+                button.gameObject.SetActive(true);
+            }
             teamViewLabel.text = "Team " + teamIndex;
         }
     }

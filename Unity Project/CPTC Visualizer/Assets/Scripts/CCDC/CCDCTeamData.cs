@@ -92,8 +92,9 @@ public class CCDCTeamData: TeamData
                 radius = nodeRadius;
                 angle = j * Mathf.PI * 2f / infraCopy.Networks[i].Nodes.Count;
 
-                infraCopy.Networks[i].Nodes[j].gameObject.transform.position = infraCopy.Networks[i].gameObject.transform.position + new Vector3(Mathf.Cos(angle) * radius, Mathf.Sin(angle) * radius, 0);
-                infraCopy.Networks[i].Nodes[j].gameObject.transform.localScale = new Vector2(0.15f, 0.15f);
+                // Move the node to another position based-on a radial position.
+                infraCopy.Networks[i].Nodes[j].gameObject.transform.position = infraCopy.Networks[i].gameObject.transform.position + new Vector3(Mathf.Cos(angle) * radius, Mathf.Sin(angle) * radius, 0) + new Vector3(-0.15f, 0, 0);
+                infraCopy.Networks[i].Nodes[j].gameObject.transform.localScale = new Vector2(0.5f, 0.5f);
 
                 // If the node gets shut down, then disable it (for now).
                 infraCopy.Networks[i].Nodes[j].gameObject.SetActive(infraCopy.Networks[i].Nodes[j].IsActive);
