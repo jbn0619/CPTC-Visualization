@@ -51,43 +51,7 @@ public class CCDCTeamManager: TeamManager
     /// </summary>
     public override void ChangeTeamView(int deltaIndex)
     {
-        // Check what team is currently-viewed and set it to false (hide it)
-        if (currentTeamView == -1)
-        {
-            CCDCManager.Instance.InfraManager.Infrastructure.gameObject.SetActive(false);
-        }
-        else
-        {
-            ccdcTeams[currentTeamView].InfraCopy.gameObject.SetActive(false);
-        }
-        // Update the index based-on what key was hit.
-        currentTeamView += deltaIndex;
-
-        // Check what index we're at and take the appropriate actions for either wrapping-through the collection in either direction or seeing if we're in teams or infrastructure.
-
-        // The case when we're not looking at teams, but infrastructure.
-        if (currentTeamView == -1)
-        {
-            CCDCManager.Instance.InfraManager.Infrastructure.gameObject.SetActive(true);
-        }
-        // The case when we wrap from the bottom to the end of the teams list.
-        else if (currentTeamView < -1)
-        {
-            currentTeamView = ccdcTeams.Count - 1;
-            ccdcTeams[currentTeamView].InfraCopy.gameObject.SetActive(true);
-            ccdcTeams[currentTeamView].BuildTeamGraph();
-        }
-        // The case when we wrap from the end of teams list back to infrastructure.
-        else if (currentTeamView >= ccdcTeams.Count)
-        {
-            currentTeamView = -1;
-            CCDCManager.Instance.InfraManager.Infrastructure.gameObject.SetActive(true);
-        }
-        // The case when we're somewhere within the teams list.
-        else
-        {
-            ccdcTeams[currentTeamView].InfraCopy.gameObject.SetActive(true);
-        }
+        SelectTeamView(currentTeamView + deltaIndex);
     }
 
     /// <summary>
@@ -106,6 +70,10 @@ public class CCDCTeamManager: TeamManager
             ccdcTeams[currentTeamView].InfraCopy.gameObject.SetActive(false);
         }
 
+        // Wrap the team index to make sure it stays in-bounds.
+        if (teamIndex < -1) teamIndex = ccdcTeams.Count - 1;
+        else if (teamIndex >= ccdcTeams.Count) teamIndex = -1;
+
         // Next, do a simple check to make sure teamIndex is an acceptable value. If it is, then change currentTeamView to that new index.
         if (teamIndex == -1)
         {
@@ -113,7 +81,7 @@ public class CCDCTeamManager: TeamManager
             CCDCManager.Instance.InfraManager.Infrastructure.gameObject.SetActive(true);
             teamViewLabel.text = "Main Infrastructure";
         }
-        else if (teamIndex >= 0 && teamIndex < teams.Count)
+        else if (teamIndex >= 0 && teamIndex < ccdcTeams.Count)
         {
             currentTeamView = teamIndex;
             ccdcTeams[currentTeamView].InfraCopy.gameObject.SetActive(true);

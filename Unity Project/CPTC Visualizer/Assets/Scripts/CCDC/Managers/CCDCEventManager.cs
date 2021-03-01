@@ -1,12 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using System.IO;
 using System;
 
 public class CCDCEventManager: EventManager
 {
     #region Fields
+
+    [SerializeField]
+    int secondPeriodIndex;
+    [SerializeField]
+    Canvas notificationCanvas;
 
     [Header("Game Object Prefabs")]
     [SerializeField]
@@ -33,7 +39,12 @@ public class CCDCEventManager: EventManager
     {
         BaseUpdate();
 
-        if (Input.GetKeyDown(KeyCode.P)) ReadAttacksJSON();
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            ReadAttacksJSON();
+
+            UIManager.Instance.SceneCanvases[2].gameObject.SetActive(true);
+        }
     }
 
     /// <summary>
@@ -91,17 +102,7 @@ public class CCDCEventManager: EventManager
             foreach (string a in attack.NodesAffected)
             {
                 // Begin by finding-out which team we're attacking.
-                int secondPeriodIndex = 7;
-
-                string teamToAttack = a.Substring(secondPeriodIndex, 3);
-                // If the final character is a period, then truncate it. Otherwise, keep the character.
-                if (teamToAttack[2] == '.')
-                {
-                    teamToAttack = teamToAttack.Substring(0, 2);
-                }
-                teamToAttack = teamToAttack.Substring(1, teamToAttack.Length - 1);
-
-                int.TryParse(teamToAttack, out int recipient);
+                int recipient = FindTeamInIP(a);
 
                 CCDCTeamData recievingTeam = CCDCManager.Instance.TeamManager.CCDCTeams[recipient];
 
@@ -117,12 +118,36 @@ public class CCDCEventManager: EventManager
                 }
 
                 // Spawn a notification marker in the proper spot.
-                NotificationButton newMarker = Instantiate(markerGO, recievingTeam.InfraCopy.AllNodes[nodeIndex].transform);
+                NotificationButton newMarker = Instantiate(markerGO, notificationCanvas.transform);
                 Enum.TryParse(attack.AttackType, out CCDCAttackType myAttack);
                 newMarker.AttackType = myAttack;
                 newMarker.AffectedNodeID = nodeIndex;
                 newMarker.AffectedTeamID = recipient;
+
+                recievingTeam.NotifMarkers.Add(newMarker);
             }
         }
+    }
+
+    /// <summary>
+    /// When given an IP address string, parses-out what team that IP address is from.
+    /// </summary>
+    /// <param name="ip">The given IP-address as a string.</param>
+    /// <returns>The IP's team as an int.</returns>
+    private int FindTeamInIP(string ip)
+    {
+        // Cut out the beginning of the string, as it doesn't matter.
+        string teamToAttack = ip.Substring(secondPeriodIndex, 3);
+
+        // If the final character is a period, then truncate it. Otherwise, keep the character.
+        if (teamToAttack[2] == '.')
+        {
+            teamToAttack = teamToAttack.Substring(0, 2);
+        }
+        teamToAttack = teamToAttack.Substring(1, teamToAttack.Length - 1);
+
+        int.TryParse(teamToAttack, out int recipient);
+
+        return recipient;
     }
 }
