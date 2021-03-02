@@ -10,9 +10,13 @@ public class CCDCManager: Singleton<CCDCManager>
     [SerializeField]
     private CCDCInfrastructureManager infraManager;
     [SerializeField]
+    private JSONWriter jsonWriter;
+    [SerializeField]
     private CCDCTeamManager teamManager;
     [SerializeField]
     private CCDCEventManager eventManager;
+    [SerializeField]
+    private CCDCInjectNotifManager injectNotifManager;
     
     #endregion Fields
     
@@ -77,6 +81,47 @@ public class CCDCManager: Singleton<CCDCManager>
     // Update is called once per frame
     void Update()
     {
-        
+        // Master Key. Starts the program in its entirety with one key press
+        if (Input.GetKeyDown(KeyCode.End))
+        {
+
+        }
+
+        // Starts the simulation
+        if(Input.GetKeyDown(KeyCode.Return))
+        {
+            // Starts simulation. Is this needed?
+        }
+
+        // Create a new Infrastructure and write it to the Json
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            jsonWriter.GenerateData();
+        }
+
+        // Reads in an infrastructure from the Json
+        if(Input.GetKeyDown(KeyCode.R))
+        {
+            infraManager.ReadJson();
+        }
+
+        // Generates team names and colors
+        if(Input.GetKeyDown(KeyCode.C))
+        {
+            teamManager.GenerateTeamNames();
+            teamManager.ReadTeams();
+        }
+
+        // Create a test inject ot be displayed
+        if(Input.GetKeyDown(KeyCode.I))
+        {
+            injectNotifManager.CreateTestInject();
+        }
+
+        // Reads attacks json and spawns notifications
+        if(Input.GetKeyDown(KeyCode.P))
+        {
+            eventManager.ReadAttacksJSON();
+        }
     }
 }

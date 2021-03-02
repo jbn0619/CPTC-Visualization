@@ -9,6 +9,11 @@ public class TeamData: MonoBehaviour
     protected int teamId;
 
     [SerializeField]
+    protected string teamName;
+    [SerializeField]
+    protected Color teamColor;
+
+    [SerializeField]
     protected List<AlertData> alerts;
 
     [SerializeField]
@@ -86,7 +91,19 @@ public class TeamData: MonoBehaviour
             infraCopy = value;
         }
     }
-    
+
+    public string TeamName
+    {
+        get { return teamName; }
+        set { teamName = value; }
+    }
+
+    public Color TeamColor
+    {
+        get { return teamColor; }
+        set { teamColor = value; }
+    }
+
     #endregion Properties
     
     // Start is called before the first frame update

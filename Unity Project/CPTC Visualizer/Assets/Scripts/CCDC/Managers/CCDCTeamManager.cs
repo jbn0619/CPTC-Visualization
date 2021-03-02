@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using Assets.Scripts;
+using System.IO;
 
 public class CCDCTeamManager: TeamManager
 {
@@ -144,5 +145,73 @@ public class CCDCTeamManager: TeamManager
         }
     }
 
+
+    public override void GenerateTeamNames()
+    {
+        List<string> potentialNames = new List<string>();
+        List<string> teamNames = new List<string>();
+        List<string> teamColors = new List<string>();
+
+        // Generates a list of potential names from the file
+        StreamReader reader = new StreamReader("Assets/Data/animalNames.txt");
+        while (reader.Peek() != -1)
+        {
+            potentialNames.Add(reader.ReadLine());
+        }
+        reader.Close();
+
+        // Gets a random index, adds it to the team names, and removes it from
+        //      potential names. Then creates a random color for the team.
+        for (int i = 0; i < ccdcTeams.Count; i++)
+        {
+            int index = Random.Range(0, potentialNames.Count);
+            teamNames.Add(potentialNames[index]);
+            potentialNames.RemoveAt(index);
+
+            Color color = new Color(Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f));
+            teamColors.Add("#" + ColorUtility.ToHtmlStringRGBA(color));
+        }
+
+        // Writes the selected team names and colors to a file
+        StreamWriter writer = new StreamWriter("Assets/Data/teamNames.txt");
+        for (int i = 0; i < ccdcTeams.Count; i++)
+        {
+            writer.WriteLine(teamNames[i] + ":" + teamColors[i]);
+            Debug.Log(teamNames[i] + ":" + teamColors[i]);
+        }
+        writer.Close();
+    }
+
+
+    public override void ReadTeams()
+    {
+        List<string> teamNames = new List<string>();
+        List<string> teamColors = new List<string>();
+
+        // Reads the team names and colors from a file
+        StreamReader reader = new StreamReader("Assets/Data/teamNames.txt");
+        while (reader.Peek() != -1)
+        {
+            string[] line = reader.ReadLine().Split(':');
+
+            teamNames.Add(line[0]);
+            Debug.Log(line[0]);
+            teamColors.Add(line[1]);
+            Debug.Log(line[1]);
+        }
+        reader.Close();
+
+        Color readColor;
+
+        // Assign the names and colors to the teams
+        for (int i = 0; i < ccdcTeams.Count; i++)
+        {
+            ColorUtility.TryParseHtmlString(teamColors[i], out readColor);
+
+            ccdcTeams[i].TeamName = teamNames[i];
+            ccdcTeams[i].TeamColor = readColor;
+        }
+
+    }
     #endregion Team View Methods
 }
