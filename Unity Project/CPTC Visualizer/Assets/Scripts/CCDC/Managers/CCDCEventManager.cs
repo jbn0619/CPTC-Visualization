@@ -140,8 +140,9 @@ public class CCDCEventManager: EventManager
                 newBanner.transform.position = currentButton.transform.position + new Vector3(-50 + (recievingTeam.NotifBanners.Count * 15), -75, 0);
                 newBanner.transform.localScale = new Vector3(10, 10, 1);
                 recievingTeam.NotifBanners.Add(newBanner);
-                
 
+                // Pass this banner's reference to the marker for later-destruction.
+                newMarker.CorrespondingBanner = newBanner;
             }
         }
     }
