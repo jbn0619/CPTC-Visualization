@@ -136,8 +136,9 @@ public class CCDCEventManager: EventManager
                 GameObject newBanner = Instantiate(bannerGO);
 
                 TeamViewButton currentButton = CCDCManager.Instance.TeamManager.TeamViewButtons[recipient];
-                newBanner.transform.parent = currentButton.transform;
-                newBanner.transform.position = currentButton.transform.position + new Vector3(recievingTeam.NotifBanners.Count * 50, 50f, 0);
+                newBanner.transform.SetParent(currentButton.transform, true);
+                newBanner.transform.position = currentButton.transform.position + new Vector3(-50 + (recievingTeam.NotifBanners.Count * 15), -75, 0);
+                newBanner.transform.localScale = new Vector3(10, 10, 1);
                 recievingTeam.NotifBanners.Add(newBanner);
                 
 
