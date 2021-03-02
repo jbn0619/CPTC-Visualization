@@ -9,7 +9,7 @@ public class CCDCTeamData: TeamData
     private List<UptimeChartData> uptimeCharts;
 
     private List<NotificationButton> notifMarkers;
-    private List<NotificationButton> notifBanners;
+    private List<GameObject> notifBanners;
 
     #endregion Fields
 
@@ -40,7 +40,7 @@ public class CCDCTeamData: TeamData
     /// <summary>
     /// Gets a list of all the notification banners active for this team.
     /// </summary>
-    public List<NotificationButton> NotifBanners
+    public List<GameObject> NotifBanners
     {
         get
         {
@@ -54,7 +54,7 @@ public class CCDCTeamData: TeamData
     {
         uptimeCharts = new List<UptimeChartData>();
 
-        notifBanners = new List<NotificationButton>();
+        notifBanners = new List<GameObject>();
         notifMarkers = new List<NotificationButton>();
     }
 

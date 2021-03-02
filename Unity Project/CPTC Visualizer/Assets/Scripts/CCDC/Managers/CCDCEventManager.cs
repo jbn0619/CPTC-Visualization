@@ -16,7 +16,7 @@ public class CCDCEventManager: EventManager
 
     [Header("Game Object Prefabs")]
     [SerializeField]
-    private NotificationButton bannerGO;
+    private GameObject bannerGO;
     [SerializeField]
     private NotificationButton markerGO;
 
@@ -131,6 +131,16 @@ public class CCDCEventManager: EventManager
 
                 // Disable this marker so that it can be properly-revealed later-on.
                 newMarker.gameObject.SetActive(false);
+
+                // Spawn-in a notification banner under this team's button.
+                GameObject newBanner = Instantiate(bannerGO);
+
+                TeamViewButton currentButton = CCDCManager.Instance.TeamManager.TeamViewButtons[recipient];
+                newBanner.transform.parent = currentButton.transform;
+                newBanner.transform.position = currentButton.transform.position + new Vector3(recievingTeam.NotifBanners.Count * 50, 50f, 0);
+                recievingTeam.NotifBanners.Add(newBanner);
+                
+
             }
         }
     }

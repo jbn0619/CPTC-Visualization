@@ -37,6 +37,17 @@ public abstract class TeamManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Gets a list of all the team view buttons currently in the scene.
+    /// </summary>
+    public List<TeamViewButton> TeamViewButtons
+    {
+        get
+        {
+            return teamViewButtons;
+        }
+    }
+
     #endregion Properties
 
     // Start is called before the first frame update
