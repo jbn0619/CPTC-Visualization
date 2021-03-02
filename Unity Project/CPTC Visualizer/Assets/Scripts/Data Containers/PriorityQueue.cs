@@ -8,6 +8,7 @@ public class PriorityQueue
     [SerializeField]
     private List<IPriorityEvent> queue;
 
+    private int LatestTime;
     #endregion Fields
 
     #region Properties
@@ -63,20 +64,30 @@ public class PriorityQueue
     /// <param name="_data">New Data</param>
     public void Push(IPriorityEvent _data)
     {
+        // adds to the first spot if empty
         if (Size == 0)
         {
             queue.Add(_data);
+            LatestTime = _data.Timestamp;
+            return;
         }
 
+        // loop that orders based on resultant
         int count = queue.Count;
         for (int i = 0; i < count; i++)
         {
+            // higher resultant means further in queue
             if (_data.Resultant > queue[i].Resultant)
             {
                 queue.Insert(i, _data);
+                LatestTime = _data.Timestamp;
                 return;
             }
         }
+
+        // fallback if it belongs at end
+        queue.Add(_data);
+        LatestTime = _data.Timestamp;
     }
 
     /// <summary>
@@ -84,6 +95,7 @@ public class PriorityQueue
     /// </summary>
     public void Sanitize()
     {
+        // loop that cuts out data that's uneccesary
         for (int i = 0; i < queue.Count; i++)
         {
             // insert delete code here

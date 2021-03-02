@@ -63,6 +63,7 @@ namespace Assets.Scripts
     public class Node
     {
         public int id;
+        public string ip;
         public string type;
         public string state;
         public List<int> connections;
@@ -213,8 +214,7 @@ namespace Assets.Scripts
     [Serializable]
     public class CCDCAttackData
     {
-        public List<int> TeamsAffected;
-        public List<int> NodesAffected;
+        public List<string> NodesAffected;
 
         public string AttackType;
         public string StartTime;
@@ -225,21 +225,51 @@ namespace Assets.Scripts
         /// <param name="a">This attack's type.</param>
         /// <param name="s">This attack's start-time as a string.</param>
         /// <param name="t">The team IDs affected by this attack.</param>
-        /// <param name="n">The node IDs affected by this attack.</param>
-        public CCDCAttackData(string a, string s, List<int> t, List<int> n)
+        /// <param name="n">The node IP addresses affected by this attack.</param>
+        public CCDCAttackData(string a, string s, List<string> n)
         {
             AttackType = a;
             StartTime = s;
-            TeamsAffected = t;
             NodesAffected = n;
+        }
+
+        /// <summary>
+        /// Converts this attack into a line of string for easier reading and debugging.
+        /// </summary>
+        /// <returns></returns>
+        public override string ToString()
+        {
+            string result = "";
+
+            result += AttackType;
+
+            result += ", { ";
+
+            foreach (string node in NodesAffected)
+            {
+                result += node + ", ";
+            }
+            result = result.Remove(result.Length - 2, 2);
+            result += " }, ";
+
+            result += StartTime;
+
+            return result;
         }
     }
 
+    /// <summary>
+    /// A container for a list of CCDCAttackData objects.
+    /// </summary>
     [Serializable]
     public class CCDCCompiledAttacks
     {
         public List<CCDCAttackData> attacks;
 
+        /// <summary>
+        /// The constructor for CCDCCOmpiledAttacks.
+        /// </summary>
+        /// <param name="a">A List of CCDCAttackData objects to store.</param>
         public CCDCCompiledAttacks(List<CCDCAttackData> a)
         {
             attacks = a;

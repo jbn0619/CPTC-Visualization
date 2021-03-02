@@ -6,7 +6,11 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
+<<<<<<< HEAD
       ticks: 637489987119590742
+=======
+      ticks: 637502218151570981
+>>>>>>> main
     m_Hash: 3645381172
   m_LockFileStatus:
     m_FilePath: C:/Users/klapo/Documents/GitHub/CPTC-Visualization/Unity Project/CPTC
@@ -15,7 +19,11 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
+<<<<<<< HEAD
       ticks: 637498736001557057
+=======
+      ticks: 637502295676875702
+>>>>>>> main
     m_Hash: 3452263470
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
@@ -94,11 +102,13 @@ m_PackageAssets:
         - 5.0.1
         - 5.0.2
         - 5.0.3
+        - 5.0.4
         - 6.0.0-pre.1
         - 6.0.0-pre.2
         compatible:
         - 5.0.3
-        verified: 5.0.3
+        - 5.0.4
+        verified: 5.0.4
       dependencies:
       - name: com.unity.2d.common
         version: 4.0.3
@@ -439,6 +449,7 @@ m_PackageAssets:
         - 3.0.12
         - 3.0.13
         - 3.0.14
+        - 3.0.15
         - 4.0.0
         - 4.0.1
         - 4.0.2
@@ -453,11 +464,13 @@ m_PackageAssets:
         - 5.0.1
         - 5.0.2
         - 5.1.0
+        - 5.1.1
         - 6.0.0-pre.1
         - 6.0.0-pre.2
         compatible:
         - 5.1.0
-        verified: 5.1.0
+        - 5.1.1
+        verified: 5.1.1
       dependencies:
       - name: com.unity.mathematics
         version: 1.1.0
@@ -705,6 +718,7 @@ m_PackageAssets:
         - 3.0.1
         - 3.0.2
         - 3.0.3
+        - 3.0.4
         compatible:
         - 1.0.2
         - 1.0.6
@@ -727,6 +741,7 @@ m_PackageAssets:
         - 3.0.1
         - 3.0.2
         - 3.0.3
+        - 3.0.4
         verified: 2.0.7
       dependencies:
       - name: com.unity.test-framework
@@ -795,6 +810,7 @@ m_PackageAssets:
         - 2.0.2
         - 2.0.3
         - 2.0.5
+        - 2.0.7
         compatible:
         - 1.0.2
         - 1.0.3
@@ -807,7 +823,8 @@ m_PackageAssets:
         - 2.0.2
         - 2.0.3
         - 2.0.5
-        verified: 2.0.5
+        - 2.0.7
+        verified: 2.0.7
       dependencies: []
       resolvedDependencies: []
       keywords: []
@@ -949,6 +966,7 @@ m_PackageAssets:
         - 1.0.2
         - 1.1.0-preview.1
         - 1.1.0-preview.2
+        - 1.1.0-preview.3
         compatible:
         - 0.1.2-preview
         - 0.2.0-preview
@@ -976,6 +994,7 @@ m_PackageAssets:
         - 1.0.2
         - 1.1.0-preview.1
         - 1.1.0-preview.2
+        - 1.1.0-preview.3
         verified: 1.0.2
       dependencies: []
       resolvedDependencies: []
@@ -1320,6 +1339,7 @@ m_PackageAssets:
         - 1.5.0
         - 1.5.1
         - 1.5.3
+        - 1.5.4
         - 2.0.0
         - 2.0.1-preview.1
         - 2.0.1
@@ -1338,6 +1358,7 @@ m_PackageAssets:
         - 2.1.0
         - 2.1.1
         - 2.1.3
+        - 2.1.4
         - 3.0.0-preview.1
         - 3.0.0-preview.3
         - 3.0.0-preview.4
@@ -1352,10 +1373,12 @@ m_PackageAssets:
         - 3.0.0
         - 3.0.1
         - 3.0.3
+        - 3.0.4
         compatible:
         - 3.0.1
         - 3.0.3
-        verified: 3.0.3
+        - 3.0.4
+        verified: 3.0.4
       dependencies:
       - name: com.unity.ugui
         version: 1.0.0

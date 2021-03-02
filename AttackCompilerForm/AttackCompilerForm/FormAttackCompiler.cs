@@ -66,8 +66,8 @@ namespace AttackCompilerForm
         /// <param name="e">The event being sent in.</param>
         private void textBox_KeyPress(object sender, KeyPressEventArgs e)
         {
-            // Verify that the new digit is a number or new-line.
-            if (!char.IsNumber(e.KeyChar) && !char.IsControl(e.KeyChar))
+            // Verify that the new digit is a number or new-line
+            if (!char.IsNumber(e.KeyChar) && !char.IsControl(e.KeyChar) && !char.IsPunctuation(e.KeyChar))
             {
                 e.Handled = true;
             }
@@ -80,24 +80,7 @@ namespace AttackCompilerForm
         /// <param name="e">The eventArgs sent with this call.</param>
         private void submitAttackButton_Click(object sender, EventArgs e)
         {
-            // Convert the team IDs into a list of integers.
-            String teamBox = teamsTextBox.Text;
-            String[] teams = teamBox.Split("\n");
-
-            for (int i = 0; i < teams.Length; i++)
-            {
-                teams[i] = teams[i].Replace("\r\n", "").Replace("\r", "").Replace("\n", "");
-            }
-
-            List<int> teamIDs = new List<int>();
-
-            foreach (String s in teams)
-            {
-                Int32.TryParse(s, out int result);
-                teamIDs.Add(result);
-            }
-
-            // Convert the node IDs into a list of integers as-well.
+            // Split-up the textbox string for Nodes into a list of IP addresses as strings.
             String nodeBox = nodesTextBox.Text;
             String[] nodes = nodeBox.Split("\n");
 
@@ -106,17 +89,16 @@ namespace AttackCompilerForm
                 nodes[i] = nodes[i].Replace("\r\n", "").Replace("\r", "").Replace("\n", "");
             }
 
-            List<int> nodeIDs = new List<int>();
+            List<string> nodeIDs = new List<string>();
 
             foreach (String s in nodes)
             {
-                Int32.TryParse(s, out int result);
-                nodeIDs.Add(result);
+                nodeIDs.Add(s);
             }
 
             DateTime currentTime = DateTime.Now;
             
-            CCDCAttack newAttack = new CCDCAttack(attackTypeComboBox.Text, nodeIDs, teamIDs, currentTime.ToShortTimeString());
+            CCDCAttack newAttack = new CCDCAttack(attackTypeComboBox.Text, nodeIDs, currentTime.ToShortTimeString());
             attacks.Add(newAttack);
 
             compiledAttacksListBox.Items.Add(newAttack.ToListBoxString());

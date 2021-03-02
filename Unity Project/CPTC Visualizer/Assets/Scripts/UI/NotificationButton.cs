@@ -84,11 +84,7 @@ public class NotificationButton: MonoBehaviour
     /// </summary>
     public void OnBannerClick()
     {
-        // If neither of these values have been set, then do nothing except destroy this object.
-        if (affectedNodeID == -1 || affectedTeamID == -1)
-        {
-            Destroy(this.gameObject);
-        }
+        
     }
 
     /// <summary>
@@ -96,10 +92,6 @@ public class NotificationButton: MonoBehaviour
     /// </summary>
     public void OnMarkerClick()
     {
-        // If neither of these values have been set, then do nothing except destroy this object.
-        if (affectedNodeID == -1 || affectedTeamID == -1)
-        {
-            Destroy(this.gameObject);
-        }
+        Debug.Log("Click!");
     }
 }

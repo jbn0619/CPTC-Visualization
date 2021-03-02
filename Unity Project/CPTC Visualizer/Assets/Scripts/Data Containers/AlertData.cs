@@ -67,6 +67,7 @@ public class AlertData : MonoBehaviour, IPriorityEvent
     public int Team
     {
         get { return team; }
+        set { team = value; }
     }
 
     public int Timestamp

@@ -52,43 +52,7 @@ public class CCDCTeamManager: TeamManager
     /// </summary>
     public override void ChangeTeamView(int deltaIndex)
     {
-        // Check what team is currently-viewed and set it to false (hide it)
-        if (currentTeamView == -1)
-        {
-            CCDCManager.Instance.InfraManager.Infrastructure.gameObject.SetActive(false);
-        }
-        else
-        {
-            ccdcTeams[currentTeamView].InfraCopy.gameObject.SetActive(false);
-        }
-        // Update the index based-on what key was hit.
-        currentTeamView += deltaIndex;
-
-        // Check what index we're at and take the appropriate actions for either wrapping-through the collection in either direction or seeing if we're in teams or infrastructure.
-
-        // The case when we're not looking at teams, but infrastructure.
-        if (currentTeamView == -1)
-        {
-            CCDCManager.Instance.InfraManager.Infrastructure.gameObject.SetActive(true);
-        }
-        // The case when we wrap from the bottom to the end of the teams list.
-        else if (currentTeamView < -1)
-        {
-            currentTeamView = ccdcTeams.Count - 1;
-            ccdcTeams[currentTeamView].InfraCopy.gameObject.SetActive(true);
-            ccdcTeams[currentTeamView].BuildTeamGraph();
-        }
-        // The case when we wrap from the end of teams list back to infrastructure.
-        else if (currentTeamView >= ccdcTeams.Count)
-        {
-            currentTeamView = -1;
-            CCDCManager.Instance.InfraManager.Infrastructure.gameObject.SetActive(true);
-        }
-        // The case when we're somewhere within the teams list.
-        else
-        {
-            ccdcTeams[currentTeamView].InfraCopy.gameObject.SetActive(true);
-        }
+        SelectTeamView(currentTeamView + deltaIndex);
     }
 
     /// <summary>
@@ -105,7 +69,15 @@ public class CCDCTeamManager: TeamManager
         else
         {
             ccdcTeams[currentTeamView].InfraCopy.gameObject.SetActive(false);
+            foreach (NotificationButton button in ccdcTeams[currentTeamView].NotifMarkers)
+            {
+                button.gameObject.SetActive(false);
+            }
         }
+
+        // Wrap the team index to make sure it stays in-bounds.
+        if (teamIndex < -1) teamIndex = ccdcTeams.Count - 1;
+        else if (teamIndex >= ccdcTeams.Count) teamIndex = -1;
 
         // Next, do a simple check to make sure teamIndex is an acceptable value. If it is, then change currentTeamView to that new index.
         if (teamIndex == -1)
@@ -114,11 +86,62 @@ public class CCDCTeamManager: TeamManager
             CCDCManager.Instance.InfraManager.Infrastructure.gameObject.SetActive(true);
             teamViewLabel.text = "Main Infrastructure";
         }
-        else if (teamIndex >= 0 && teamIndex < teams.Count)
+        else if (teamIndex >= 0 && teamIndex < ccdcTeams.Count)
         {
             currentTeamView = teamIndex;
             ccdcTeams[currentTeamView].InfraCopy.gameObject.SetActive(true);
+            foreach (NotificationButton button in ccdcTeams[currentTeamView].NotifMarkers)
+            {
+                button.gameObject.SetActive(true);
+            }
             teamViewLabel.text = "Team " + teamIndex;
+        }
+    }
+
+    /// <summary>
+    /// Generates enough buttons to switch between every team's view, and the main infrastructure view.
+    /// </summary>
+    public override void GenerateTeamViewButtons()
+    {
+        // Make sure we properly clear-out the previous buttons before making new ones.
+        if (teamViewButtons != null)
+        {
+            foreach (TeamViewButton t in teamViewButtons)
+            {
+                if (t != null) Destroy(t.gameObject);
+            }
+            teamViewButtons.Clear();
+        }
+        else
+        {
+            teamViewButtons = new List<TeamViewButton>();
+        }
+
+        // Create each button, then edit their index and text fields.
+        if (UIManager.Instance.ActiveCanvas != null)
+        {
+            for (int i = 0; i < ccdcTeams.Count + 1; i++)
+            {
+                TeamViewButton newButton = Instantiate(teamViewButGO, UIManager.Instance.ActiveCanvas.transform);
+                if (i == ccdcTeams.Count)
+                {
+                    newButton.NewTeamIndex = -1;
+                    newButton.ButtonText.text = "Main";
+                }
+                else
+                {
+                    newButton.NewTeamIndex = i;
+                    newButton.ButtonText.text = i.ToString();
+                }
+
+                // Finally, move the button to its proper spot and add it to teamViewButtons.
+                newButton.gameObject.transform.position = new Vector3(75 + (i * 150), Screen.height - 75, 0);
+                teamViewButtons.Add(newButton);
+            }
+        }
+        else
+        {
+            Debug.Log("ERROR: NO ACTIVE CANVAS IN SCENE!");
         }
     }
 
