@@ -801,6 +801,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0eee9a6051588b468922424b606a7a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nodeSprites:
+  - {fileID: 21300000, guid: 0bc053d4169e0fe4eb680d652bb75978, type: 3}
+  - {fileID: 21300000, guid: 8ef3b43247cd73b46a7f0138a6ae747f, type: 3}
+  - {fileID: 21300000, guid: f6970712fc699954da739840b7865f1b, type: 3}
+  - {fileID: 21300000, guid: f7dbfd5b63fcddf4bab49f9d6dff434c, type: 3}
+  - {fileID: 21300000, guid: 07430023678179c4e9a295dae67dd7fa, type: 3}
+  - {fileID: 21300000, guid: 2d3da7c94c82edd4ba5bb7b2f97648e7, type: 3}
+  - {fileID: 21300000, guid: 998e7204580af9e4cba7a7f205486272, type: 3}
+  - {fileID: 21300000, guid: 52209022fdf15ee42b403bec5614a613, type: 3}
+  - {fileID: 21300000, guid: 030fc1fd48fc9724fb4b19c3117a5ed1, type: 3}
+  - {fileID: 21300000, guid: e3b9f1bf846bd5749b461746624d31f3, type: 3}
+  - {fileID: 21300000, guid: 5eb826229c2995149b6fc137fb5f5a6f, type: 3}
+  - {fileID: 21300000, guid: aa82c22d2afe3144ebbbe031ab8db570, type: 3}
+  - {fileID: 21300000, guid: 67444db32051b004bba1a201b3e614c6, type: 3}
+  - {fileID: 21300000, guid: d53ec974e17fd4f4c882b37857ef4841, type: 3}
+  - {fileID: 21300000, guid: ba3ea011ee03e7144ae5a45e7f916efa, type: 3}
   netBase: {fileID: 2100000, guid: 1ebf24708837e644dbeeb36a7fe61f18, type: 2}
   netScan: {fileID: 2100000, guid: 46b41e5efd3ecf4469113ba872757645, type: 2}
 --- !u!4 &1772320234

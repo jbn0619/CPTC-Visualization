@@ -102,6 +102,7 @@ public class NodeData: MonoBehaviour
         set
         {
             type = value;
+            ChangeSprite();
         }
     }
 
@@ -167,5 +168,15 @@ public class NodeData: MonoBehaviour
     void Update()
     {
         
+    }
+
+    /// <summary>
+    /// Changes this object's sprite based-on the new NodeType read-in.
+    /// </summary>
+    private void ChangeSprite()
+    {
+        Sprite newSprite = GeneralResources.Instance.NodeSprites[(int)type];
+        nodeSprite.sprite = newSprite;
+        nodeSprite.transform.localScale = new Vector3(.15f, .15f, 1);
     }
 }

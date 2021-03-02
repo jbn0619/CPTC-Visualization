@@ -8,6 +8,9 @@ public class GeneralResources: Singleton<GeneralResources>
 {
     #region Fields
 
+    [SerializeField]
+    private List<Sprite> nodeSprites;
+
     [Header("Materials")]
     [SerializeField]
     private Material netBase;
@@ -17,6 +20,17 @@ public class GeneralResources: Singleton<GeneralResources>
     #endregion Fields
     
     #region Properties
+
+    /// <summary>
+    /// Gets a list of sprites for different node types.
+    /// </summary>
+    public List<Sprite> NodeSprites
+    {
+        get
+        {
+            return nodeSprites;
+        }
+    }
 
     /// <summary>
     /// Gets the material for the network when it's unmodified.
