@@ -14,7 +14,6 @@ public class VideoManager: MonoBehaviour
     private VideoPlayer videoPlayer;
 
     private bool shiftActive;
-    private bool videoPlaying;
 
     Regex regex;
 
@@ -22,11 +21,6 @@ public class VideoManager: MonoBehaviour
     
     #region Properties
     
-    public bool VideoPlaying
-    {
-        get { return videoPlaying; }
-    }
-
     #endregion Properties
     
     // Start is called before the first frame update
@@ -35,7 +29,6 @@ public class VideoManager: MonoBehaviour
         screen.SetActive(false);
         videoPlayer = screen.GetComponent<VideoPlayer>();
         shiftActive = false;
-        videoPlaying = false;
         regex = new Regex("[0-9]+");
     }
 
@@ -157,7 +150,6 @@ public class VideoManager: MonoBehaviour
             videoPlayer.clip = videos[_index];
             screen.SetActive(true);
             Invoke("CloseVideo", (float) videoPlayer.clip.length);
-            videoPlaying = true;
         }
         else
         {
@@ -165,11 +157,8 @@ public class VideoManager: MonoBehaviour
         }
     }
 
-    // Create inject queue and pop off on method
-
     public void CloseVideo()
     {
         screen.SetActive(false);
-        videoPlaying = false;
     }
 }

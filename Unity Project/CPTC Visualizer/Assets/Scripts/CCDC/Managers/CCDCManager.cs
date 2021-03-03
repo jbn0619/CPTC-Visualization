@@ -108,7 +108,7 @@ public class CCDCManager: Singleton<CCDCManager>
             infraManager.ReadJson();
             teamManager.GenerateTeamNames();
             teamManager.ReadTeams();
-            eventManager.ReadAttacksJSON(); 
+            eventManager.ReadAttacksJSON();
         }
 
         // Create a new Infrastructure and write it to the Json
