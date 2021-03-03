@@ -65,27 +65,7 @@ public abstract class TeamManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        BaseUpdate();
-    }
-
-    protected void BaseUpdate()
-    {
-        // Check for a view-switch input
-        if (Input.GetKeyDown(KeyCode.RightArrow))
-        {
-            ChangeTeamView(1);
-        }
-        else if (Input.GetKeyDown(KeyCode.LeftArrow))
-        {
-            ChangeTeamView(-1);
-        }
-
-        // Generated and read in teams
-        if (Input.GetKeyDown(KeyCode.C))
-        {
-           // GenerateTeamNames();
-           // ReadTeams();
-        }
+        
     }
 
     #region Team View Methods

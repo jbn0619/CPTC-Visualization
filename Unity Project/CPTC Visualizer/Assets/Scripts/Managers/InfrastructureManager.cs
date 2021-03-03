@@ -57,18 +57,7 @@ public abstract class InfrastructureManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        BaseUpdate();
-    }
-
-    /// <summary>
-    /// The base update for an Infrastructure manager that all child classes will automatically run.
-    /// </summary>
-    protected void BaseUpdate()
-    {
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            ReadJson();
-        }
+        
     }
 
     /// <summary>

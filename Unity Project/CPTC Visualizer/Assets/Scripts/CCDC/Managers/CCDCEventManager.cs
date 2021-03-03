@@ -37,14 +37,7 @@ public class CCDCEventManager: EventManager
     // Update is called once per frame
     void Update()
     {
-        BaseUpdate();
-
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            ReadAttacksJSON();
-
-            UIManager.Instance.SceneCanvases[2].gameObject.SetActive(true);
-        }
+        
     }
 
     /// <summary>

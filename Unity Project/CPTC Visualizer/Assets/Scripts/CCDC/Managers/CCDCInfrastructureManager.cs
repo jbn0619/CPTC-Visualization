@@ -34,7 +34,7 @@ public class CCDCInfrastructureManager : InfrastructureManager
     // Update is called once per frame
     void Update()
     {
-        BaseUpdate();
+        
     }
 
     /// <summary>
