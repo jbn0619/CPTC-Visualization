@@ -106,7 +106,7 @@ public class NotificationButton: MonoBehaviour
 
         // Play the video.
         VideoManager vidMan = CCDCManager.Instance.VideoManager;
-        vidMan.PlayVideo((int)attackType);
+        vidMan.PlayAttackVideo((int)attackType);
 
         // Remove this marker's reference from the ccdcTeam, then destroy it.
         CCDCManager.Instance.TeamManager.CCDCTeams[affectedNodeID].NotifMarkers.Remove(this);
