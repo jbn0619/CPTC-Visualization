@@ -104,6 +104,11 @@ public class CCDCManager: Singleton<CCDCManager>
         if(Input.GetKeyDown(KeyCode.Return))
         {
             // Starts simulation. Is this needed?
+            jsonWriter.GenerateData();
+            infraManager.ReadJson();
+            teamManager.GenerateTeamNames();
+            teamManager.ReadTeams();
+            eventManager.ReadAttacksJSON();
         }
 
         // Create a new Infrastructure and write it to the Json

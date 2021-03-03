@@ -1,20 +1,10 @@
-Weasels:#D65448FF
-Emu:#B73C99FF
-Capybaras:#FFC701FF
-Llamas:#9BBD5AFF
-Jackals:#04A551FF
-Beatles:#E16C57FF
-Anacondas:#267B8BFF
-Camels:#3891CFFF
-Meerkats:#5DD201FF
-Bison:#47B3E6FF
-Giraffes:#1C1ED5FF
-Goats:#739F67FF
-Penguins:#BEE1AAFF
-Crocodiles:#A0CECCFF
-Spider Monkeys:#CC861BFF
-Deer:#FBFD12FF
-Rabbits:#EE27A2FF
-Gorillas:#ED5DACFF
-Lizards:#9B2C7DFF
-Caribous:#4458BDFF
+Porcupines:#4DD5A9FF
+Sloths:#64D08DFF
+Kangaroos:#401823FF
+Grasshoppers:#7F7C14FF
+Wolves:#2DD30CFF
+Weasels:#AA6222FF
+Aardvarks:#0768A8FF
+Goats:#C58EAAFF
+Jaguars:#41684BFF
+Spider Monkeys:#C260D0FF
