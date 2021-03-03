@@ -104,9 +104,9 @@ public class CCDCManager: Singleton<CCDCManager>
         if(Input.GetKeyDown(KeyCode.Return))
         {
             // Starts simulation. Is this needed?
-            jsonWriter.GenerateData();
+            //jsonWriter.GenerateData();
             infraManager.ReadJson();
-            teamManager.GenerateTeamNames();
+            //teamManager.GenerateTeamNames();
             teamManager.ReadTeams();
             eventManager.ReadAttacksJSON();
         }
