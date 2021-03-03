@@ -47,22 +47,11 @@ public abstract class EventManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        BaseUpdate();
+        
     }
 
     protected void BaseUpdate()
     {
-        //Starts or ends the simulation
-        if (Input.GetKeyDown(KeyCode.Return))
-        {
-            if (simulationStart) simulationStart = false;
-            else
-            {
-                timer = 0;
-                simulationStart = true;
-            }
-        }
-
         // If the simulation is running, then update timer and see if we need to run alerts.
         if (simulationStart)
         {

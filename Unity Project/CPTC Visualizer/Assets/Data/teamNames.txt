@@ -1,10 +1,10 @@
-Porcupines:#4DD5A9FF
-Sloths:#64D08DFF
-Kangaroos:#401823FF
-Grasshoppers:#7F7C14FF
-Wolves:#2DD30CFF
-Weasels:#AA6222FF
-Aardvarks:#0768A8FF
-Goats:#C58EAAFF
-Jaguars:#41684BFF
-Spider Monkeys:#C260D0FF
+Warblers:#4F8833FF
+Sharks:#EFBBC5FF
+Racoons:#3CA9B1FF
+Cheetahs:#92843DFF
+Grasshoppers:#031794FF
+Chipmunks:#46F4C1FF
+Pumas:#E292D8FF
+Badgers:#32A41DFF
+Butterflies:#CBE01AFF
+Lemurs:#884D80FF

@@ -42,7 +42,7 @@ public class CCDCTeamManager: TeamManager
     // Update is called once per frame
     void Update()
     {
-        BaseUpdate();
+        
     }
 
     #region Team View Methods
