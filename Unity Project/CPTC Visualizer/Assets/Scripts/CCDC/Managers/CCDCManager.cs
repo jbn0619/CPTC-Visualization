@@ -109,6 +109,7 @@ public class CCDCManager: Singleton<CCDCManager>
             teamManager.GenerateTeamNames();
             teamManager.ReadTeams();
             eventManager.ReadAttacksJSON();
+            TeamViewAI.Instance.BeginComp();
         }
 
         // Create a new Infrastructure and write it to the Json

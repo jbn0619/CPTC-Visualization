@@ -32,21 +32,8 @@ public class TeamViewAI: Singleton<TeamViewAI>
     }
     #endregion Properties
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        // starting references
-        teamTracker = new int[numOfTeams];
-        teamDeltas = new int[numOfTeams];
-        previousTeam = -1; // starting value
-
-        // injects
-        injects = new List<Inject>();
-        ReadInjects(); // reads in the injects.txt
-    }
-
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
         // checks if the AI has started
         if (hasStarted)
@@ -93,13 +80,6 @@ public class TeamViewAI: Singleton<TeamViewAI>
                     CCDCManager.Instance.TeamManager.SelectTeamView(previousTeam);
                 }
             }
-        }
-
-        // checks if it's time to start
-        if (Input.GetKeyDown(KeyCode.R) && !hasStarted)
-        {
-            // starts the AI
-            hasStarted = true;
         }
     }
 
@@ -222,6 +202,22 @@ public class TeamViewAI: Singleton<TeamViewAI>
         {
             teamDeltas[i] += UnityEngine.Random.Range(0, 9);
         }
+    }
+
+    /// <summary>
+    /// Starts the ai when the competition starts
+    /// </summary>
+    public void BeginComp()
+    {
+        // starting references
+        teamTracker = new int[numOfTeams];
+        teamDeltas = new int[numOfTeams];
+        previousTeam = -1; // starting value
+
+        // injects
+        injects = new List<Inject>();
+        ReadInjects(); // reads in the injects.txt
+        hasStarted = true;
     }
 
     /// <summary>
