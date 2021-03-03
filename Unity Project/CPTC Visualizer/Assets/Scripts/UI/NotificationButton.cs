@@ -100,10 +100,16 @@ public class NotificationButton: MonoBehaviour
     /// </summary>
     public void OnMarkerClick()
     {
-        // Clean-up banner reference.
+        // Clean-up this banner's reference from the ccdcTeam, then destroy it.
         CCDCManager.Instance.TeamManager.CCDCTeams[affectedTeamID].NotifBanners.Remove(correspondingBanner);
         Destroy(correspondingBanner);
 
-        Debug.Log("Click!");
+        // Play the video.
+        VideoManager vidMan = CCDCManager.Instance.VideoManager;
+        vidMan.PlayVideo((int)attackType);
+
+        // Remove this marker's reference from the ccdcTeam, then destroy it.
+        CCDCManager.Instance.TeamManager.CCDCTeams[affectedNodeID].NotifMarkers.Remove(this);
+        Destroy(this.gameObject);
     }
 }

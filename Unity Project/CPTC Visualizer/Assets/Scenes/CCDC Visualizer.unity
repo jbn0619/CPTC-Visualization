@@ -470,6 +470,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4981e6d4588497b4b93df4cc6d8cea7e, type: 3}
+--- !u!114 &607337993 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4795010010054222759, guid: 4981e6d4588497b4b93df4cc6d8cea7e, type: 3}
+  m_PrefabInstance: {fileID: 607337992}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2069386908}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8043ebfd3f049624489d82250bcbb6f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &939808355
 GameObject:
   m_ObjectHideFlags: 0
@@ -501,6 +512,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   compType: 1
+  teams: []
   teamViewLabel: {fileID: 1311593172}
   teamViewButGO: {fileID: 6343373906729853186, guid: d57865530575a6c4198c1281c021f867, type: 3}
 --- !u!4 &939808357
@@ -531,6 +543,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   numOfTeams: 10
   teamDeltas: 
+--- !u!114 &1059452086 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2899488834429760476, guid: 96ab3e4558e76414a9498393e3e8da06, type: 3}
+  m_PrefabInstance: {fileID: 2899488834746074986}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 845185b39946ad24f9771b10d1d8226d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1311593170
 GameObject:
   m_ObjectHideFlags: 0
@@ -863,8 +886,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   infraManager: {fileID: 2069386909}
+  jsonWriter: {fileID: 607337993}
   teamManager: {fileID: 939808356}
   eventManager: {fileID: 5992340}
+  injectNotifManager: {fileID: 0}
+  videoManager: {fileID: 1059452086}
 --- !u!4 &1972424271
 Transform:
   m_ObjectHideFlags: 0
@@ -1062,3 +1088,60 @@ MonoBehaviour:
   alertGO: {fileID: 5410984709795667232, guid: ec4b4fd374482e4498b9b14e33b1c0fe, type: 3}
   connectionGO: {fileID: 6558307667720637234, guid: 33dbeb45e25272a45b81cc111b75d023, type: 3}
   uptimeChartGO: {fileID: 7325014389535617952, guid: b0c5ee22a435eda4e89c5c1b55134082, type: 3}
+--- !u!1001 &2899488834746074986
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2899488834429760477, guid: 96ab3e4558e76414a9498393e3e8da06, type: 3}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2899488834429760477, guid: 96ab3e4558e76414a9498393e3e8da06, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2899488834429760477, guid: 96ab3e4558e76414a9498393e3e8da06, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2899488834429760477, guid: 96ab3e4558e76414a9498393e3e8da06, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2899488834429760477, guid: 96ab3e4558e76414a9498393e3e8da06, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2899488834429760477, guid: 96ab3e4558e76414a9498393e3e8da06, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2899488834429760477, guid: 96ab3e4558e76414a9498393e3e8da06, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2899488834429760477, guid: 96ab3e4558e76414a9498393e3e8da06, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2899488834429760477, guid: 96ab3e4558e76414a9498393e3e8da06, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2899488834429760477, guid: 96ab3e4558e76414a9498393e3e8da06, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2899488834429760477, guid: 96ab3e4558e76414a9498393e3e8da06, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2899488834429760479, guid: 96ab3e4558e76414a9498393e3e8da06, type: 3}
+      propertyPath: m_Name
+      value: Video Manager
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 96ab3e4558e76414a9498393e3e8da06, type: 3}

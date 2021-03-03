@@ -68,7 +68,6 @@ public class CCDCInjectNotifManager : MonoBehaviour
     /// </summary>
     public void CreateTestInject()
     {
-        throw new System.Exception("TODO NOT IMPLEMENTED YET");
         Inject testInject = new Inject("Test Name", "TestDescription", System.DateTime.Now.ToShortTimeString(), 0.0f);
         waitingInjects.Add(testInject);
     }

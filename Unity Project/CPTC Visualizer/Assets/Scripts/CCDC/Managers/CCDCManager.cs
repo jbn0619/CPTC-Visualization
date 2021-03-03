@@ -17,6 +17,8 @@ public class CCDCManager: Singleton<CCDCManager>
     private CCDCEventManager eventManager;
     [SerializeField]
     private CCDCInjectNotifManager injectNotifManager;
+    [SerializeField]
+    private VideoManager videoManager;
     
     #endregion Fields
     
@@ -52,6 +54,17 @@ public class CCDCManager: Singleton<CCDCManager>
         get
         {
             return eventManager;
+        }
+    }
+
+    /// <summary>
+    /// Gets a reference to th is scene's video manager if it exists.
+    /// </summary>
+    public VideoManager VideoManager
+    {
+        get
+        {
+            return videoManager;
         }
     }
 
