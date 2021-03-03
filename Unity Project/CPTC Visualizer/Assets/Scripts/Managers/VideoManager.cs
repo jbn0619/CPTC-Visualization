@@ -15,7 +15,7 @@ public class VideoManager: MonoBehaviour
     public GameObject screen;
     private VideoPlayer videoPlayer;
 
-    private bool shiftActive;
+    //private bool shiftActive;
     private bool isVideoPlaying;
 
     Regex regex;
@@ -36,72 +36,72 @@ public class VideoManager: MonoBehaviour
     {
         screen.SetActive(false);
         videoPlayer = screen.GetComponent<VideoPlayer>();
-        shiftActive = false;
+        //shiftActive = false;
         regex = new Regex("[0-9]+");
         isVideoPlaying = false;
     }
 
-    /// <summary>
-    /// On GUI handles user input for videos.
-    ///     The number key pressed will be parsed and passed in as the index.
-    ///     This code may be irrelevant now.
-    /// </summary>
-    private void OnGUI()
-    {
-        Event e = Event.current;
-        if (e.isKey)
-        {
-            int index = -1;
+    ///// <summary>
+    ///// On GUI handles user input for videos.
+    /////     The number key pressed will be parsed and passed in as the index.
+    /////     This code may be irrelevant now.
+    ///// </summary>
+    //private void OnGUI()
+    //{
+    //    Event e = Event.current;
+    //    if (e.isKey)
+    //    {
+    //        int index = -1;
 
-            if (Input.GetKeyDown(KeyCode.LeftShift))
-            {
-                shiftActive = true;
-            }
+    //        if (Input.GetKeyDown(KeyCode.LeftShift))
+    //        {
+    //            shiftActive = true;
+    //        }
 
-            if (Input.anyKeyDown && !Input.GetKeyDown(KeyCode.LeftShift))
-            {
-                try
-                {
-                    string keyCode = e.keyCode.ToString();
-                    Debug.Log(keyCode);
+    //        if (Input.anyKeyDown && !Input.GetKeyDown(KeyCode.LeftShift))
+    //        {
+    //            try
+    //            {
+    //                string keyCode = e.keyCode.ToString();
+    //                Debug.Log(keyCode);
 
-                    MatchCollection matches = regex.Matches(keyCode);
+    //                MatchCollection matches = regex.Matches(keyCode);
                     
-                    if(matches[0] != null)
-                    {
-                        index = int.Parse(matches[0].Value);
-                    }
+    //                if(matches[0] != null)
+    //                {
+    //                    index = int.Parse(matches[0].Value);
+    //                }
 
-                    //index = int.Parse(keyCode);
+    //                //index = int.Parse(keyCode);
 
 
-                    if (shiftActive)
-                    {
-                        index += 10;
-                    }
-                }
-                catch
-                {
-                    Debug.Log("Cannot parse int from that string.");
-                }
-            }
+    //                if (shiftActive)
+    //                {
+    //                    index += 10;
+    //                }
+    //            }
+    //            catch
+    //            {
+    //                Debug.Log("Cannot parse int from that string.");
+    //            }
+    //        }
 
-            if (index >= 0)
-            {
-                Debug.Log("Trying to access index " + index);
-                PlayAttackVideo(index);
-            }
-            else
-            {
-                Debug.Log(index + " is not a valid index.");
-            }
+    //        if (index >= 0)
+    //        {
+    //            Debug.Log("Trying to access index " + index);
+    //            PlayAttackVideo(index);
+    //        }
+    //        else
+    //        {
+    //            Debug.Log(index + " is not a valid index.");
+    //        }
 
-            if (Input.GetKeyUp(KeyCode.LeftShift))
-            {
-                shiftActive = false;
-            }
-        }
-    }
+    //        if (Input.GetKeyUp(KeyCode.LeftShift))
+    //        {
+    //            shiftActive = false;
+    //        }
+    //    }
+    //}
 
     /// <summary>
     /// Play Attack Video
