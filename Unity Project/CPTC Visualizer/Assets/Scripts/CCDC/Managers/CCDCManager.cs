@@ -103,6 +103,7 @@ public class CCDCManager: Singleton<CCDCManager>
             //teamManager.GenerateTeamNames();
             teamManager.ReadTeams();
             eventManager.ReadAttacksJSON();
+            injectNotifManager.ReadInInjects();
         }
 
         // Create a new Infrastructure and write it to the Json
