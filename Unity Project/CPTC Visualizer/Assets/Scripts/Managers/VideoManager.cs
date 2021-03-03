@@ -14,6 +14,7 @@ public class VideoManager: MonoBehaviour
     private VideoPlayer videoPlayer;
 
     private bool shiftActive;
+    private bool isVideoPlaying;
 
     Regex regex;
 
@@ -21,6 +22,11 @@ public class VideoManager: MonoBehaviour
     
     #region Properties
     
+    public bool IsVideoPlaying
+    {
+        get { return isVideoPlaying; }
+    }
+
     #endregion Properties
     
     // Start is called before the first frame update
@@ -30,6 +36,7 @@ public class VideoManager: MonoBehaviour
         videoPlayer = screen.GetComponent<VideoPlayer>();
         shiftActive = false;
         regex = new Regex("[0-9]+");
+        isVideoPlaying = false;
     }
 
     // Update is called once per frame
@@ -150,6 +157,7 @@ public class VideoManager: MonoBehaviour
             videoPlayer.clip = videos[_index];
             screen.SetActive(true);
             Invoke("CloseVideo", (float) videoPlayer.clip.length);
+            isVideoPlaying = true;
         }
         else
         {
@@ -160,5 +168,6 @@ public class VideoManager: MonoBehaviour
     public void CloseVideo()
     {
         screen.SetActive(false);
+        isVideoPlaying = false;
     }
 }
