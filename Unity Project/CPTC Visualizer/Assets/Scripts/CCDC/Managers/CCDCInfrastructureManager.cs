@@ -234,8 +234,6 @@ public class CCDCInfrastructureManager : InfrastructureManager
             }
         }
         GenerateConnections();
-
-        CCDCManager.Instance.TeamManager.GenerateTeamViewButtons();
     }
 
     /// <summary>
