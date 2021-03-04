@@ -20,6 +20,7 @@ public class TeamViewAI: Singleton<TeamViewAI>
     [SerializeField]
     private int[] teamDeltas; // keeps track of the changes in infra
     private bool hasStarted; // checks if the AI has started
+    private float testTimer;
     #endregion Fields
 
     #region Properties
@@ -40,6 +41,16 @@ public class TeamViewAI: Singleton<TeamViewAI>
         {
             // updates timer
             timeBeforeChange -= Time.deltaTime;
+            testTimer -= Time.deltaTime;
+
+            // randomizes the deltas, only for testing
+            if (testTimer <= 0)
+            {
+                // gives random deltas
+                RandomizeDeltas();
+
+                testTimer = 15f;
+            }
 
             // checks if its time 
             if (timeBeforeChange <= 0)
@@ -51,15 +62,12 @@ public class TeamViewAI: Singleton<TeamViewAI>
                 for (int i = 0; i < injects.Count; i++)
                 {
                     // checks each inject
-                    if (CheckInjects(injects[i]))
+                    if (CheckInject(injects[i]))
                     {
                         // sets temp vars
                         injectTime = true;
                     }
                 }
-
-                // resets the deltas
-                ResetChanges();
 
                 // checks if it's time
                 if (injectTime)
@@ -69,12 +77,12 @@ public class TeamViewAI: Singleton<TeamViewAI>
                 }
                 else
                 {
-                    // gives random deltas
-                    RandomizeDeltas();
-
                     // sets the previous team so that it doesn't
                     // show the same team twice in a row
                     previousTeam = Prioritize();
+                    
+                    // resets the delta of chosen team
+                    ResetChanges();
 
                     // switches to the correct team view
                     CCDCManager.Instance.TeamManager.SelectTeamView(previousTeam);
@@ -87,7 +95,7 @@ public class TeamViewAI: Singleton<TeamViewAI>
     /// Checsk if it's the time to display an inject
     /// </summary>
     /// <returns>true/false</returns>
-    public bool CheckInjects(Inject inject)
+    public bool CheckInject(Inject inject)
     {
         return DateTime.Now.ToShortTimeString() == inject.Timestamp ? true : false;
     }
@@ -186,9 +194,23 @@ public class TeamViewAI: Singleton<TeamViewAI>
     /// Used to update the TeamViewAI's data for
     /// services that have gone up and down
     /// </summary>
-    public void UpdateDeltas()
+    public void UpdateDeltas(int[] array)
     {
+        // throws error if the array is not the same size or null
+        if (array.Length != teamDeltas.Length)
+        {
+            throw new Exception("An error has occured: Given array does not match the size of the number of teams...");
+        }
+        else if (array == null)
+        {
+            throw new Exception("An error has occured: Given array is NULL...");
+        }
 
+        // loop that adds the deltas to the AI's tracking of them
+        for (int i = 0; i < numOfTeams; i++)
+        {
+            teamDeltas[i] += array[i];
+        }
     }
 
     /// <summary>
@@ -200,7 +222,7 @@ public class TeamViewAI: Singleton<TeamViewAI>
         // loop that spoofs data
         for (int i = 0; i < numOfTeams; i++)
         {
-            teamDeltas[i] += UnityEngine.Random.Range(0, 9);
+            teamDeltas[i] += UnityEngine.Random.Range(0, 3);
         }
     }
 
@@ -226,14 +248,11 @@ public class TeamViewAI: Singleton<TeamViewAI>
     /// </summary>
     public void ResetChanges()
     {
-        // resets all of the changes from past switch
-        for (int i = 0; i < numOfTeams; i++)
-        {
-            teamDeltas[i] = 0;
-        }
+        // resets all of the changes from past team
+        teamDeltas[previousTeam] = 0;
 
         // resets the timer
-        timeBeforeChange = 1f;
+        timeBeforeChange = 30f;
     }
 
     /// <summary>
