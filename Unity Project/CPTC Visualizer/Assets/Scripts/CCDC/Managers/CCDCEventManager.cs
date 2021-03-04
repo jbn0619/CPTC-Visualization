@@ -83,6 +83,7 @@ public class CCDCEventManager: EventManager
     /// </summary>
     public void ReadAttacksJSON()
     {
+        notificationCanvas.gameObject.SetActive(true);
         StreamReader reader = new StreamReader("Assets/Data/attacks.json");
         string input = reader.ReadToEnd();
         reader.Close();

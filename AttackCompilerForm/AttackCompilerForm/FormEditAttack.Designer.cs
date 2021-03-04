@@ -106,10 +106,13 @@ namespace AttackCompilerForm
             this.attackTypeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.attackTypeComboBox.FormattingEnabled = true;
             this.attackTypeComboBox.Items.AddRange(new object[] {
-            "Recon",
-            "Intrusion",
-            "Execute Code",
-            "Cry"});
+            "Implant",
+            "EscelatePrivledges",
+            "ResetNode",
+            "ShutDownNode",
+            "EditFirewall",
+            "DenialOfService",
+            "DataSwap"});
             this.attackTypeComboBox.Location = new System.Drawing.Point(138, 70);
             this.attackTypeComboBox.Name = "attackTypeComboBox";
             this.attackTypeComboBox.Size = new System.Drawing.Size(121, 23);

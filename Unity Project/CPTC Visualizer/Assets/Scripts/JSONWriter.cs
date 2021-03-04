@@ -6,9 +6,9 @@ using UnityEngine.UI;
 using System.IO;
 using Assets.Scripts;
 
-public enum CPTCEvents { Exploit, ShutDown, StartUp, Discovery, NetworkScan}
+public enum CPTCEvents { NetworkScan, Discovery, Exploit, ShutDown, StartUp }
 
-public enum CCDCAttackType { Recon, Infiltration, Kill, DataSwap}
+public enum CCDCAttackType { Implant, EscelatePrivledges, ResetNode, ShutDownNode, EditFirewall, DenialOfService, DataSwap }
 
 public enum NodeTypes { Workstation, RootWorkstation, SecureDrop, SecuredServer, VDI, VPN, WWW, AD, Azure, CA, DNS, EDMS, Fileshare, HyperV, MailExchange }
 
