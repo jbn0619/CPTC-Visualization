@@ -131,7 +131,8 @@ public class CCDCTeamManager: TeamManager
                 else
                 {
                     newButton.NewTeamIndex = i;
-                    newButton.ButtonText.text = i.ToString();
+                    newButton.ButtonText.text = ccdcTeams[i].TeamName;
+                    newButton.Button.image.color = ccdcTeams[i].TeamColor;
                 }
 
                 // Finally, move the button to its proper spot and add it to teamViewButtons.
@@ -216,6 +217,8 @@ public class CCDCTeamManager: TeamManager
             ccdcTeams[i].TeamName = teamNames[i];
             ccdcTeams[i].TeamColor = readColor;
         }
+
+        GenerateTeamViewButtons();
     }
     #endregion Team View Methods
 }
