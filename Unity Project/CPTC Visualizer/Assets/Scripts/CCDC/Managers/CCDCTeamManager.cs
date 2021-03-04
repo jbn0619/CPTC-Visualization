@@ -145,8 +145,12 @@ public class CCDCTeamManager: TeamManager
         }
     }
 
-
-    public override void GenerateTeamNames()
+    /// <summary>
+    /// Generate Random Team Names and Colors
+    ///     Will generate random names and colors (with no repeat names) for each team currently
+    ///     in the list. These are saved to a file for reuse.
+    /// </summary>
+    public void GenerateTeamNames()
     {
         List<string> potentialNames = new List<string>();
         List<string> teamNames = new List<string>();
@@ -177,13 +181,16 @@ public class CCDCTeamManager: TeamManager
         for (int i = 0; i < ccdcTeams.Count; i++)
         {
             writer.WriteLine(teamNames[i] + ":" + teamColors[i]);
-            Debug.Log(teamNames[i] + ":" + teamColors[i]);
         }
         writer.Close();
     }
 
-
-    public override void ReadTeams()
+    /// <summary>
+    /// Read Team Names and Colors
+    ///     Reads in the names and colors from the file and assignes them to their corresponding teams
+    ///     in the list.
+    /// </summary>
+    public void ReadTeams()
     {
         List<string> teamNames = new List<string>();
         List<string> teamColors = new List<string>();
@@ -195,9 +202,7 @@ public class CCDCTeamManager: TeamManager
             string[] line = reader.ReadLine().Split(':');
 
             teamNames.Add(line[0]);
-            Debug.Log(line[0]);
             teamColors.Add(line[1]);
-            Debug.Log(line[1]);
         }
         reader.Close();
 
@@ -211,7 +216,6 @@ public class CCDCTeamManager: TeamManager
             ccdcTeams[i].TeamName = teamNames[i];
             ccdcTeams[i].TeamColor = readColor;
         }
-
     }
     #endregion Team View Methods
 }

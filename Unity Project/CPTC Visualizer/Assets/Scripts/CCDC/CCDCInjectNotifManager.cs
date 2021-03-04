@@ -10,8 +10,6 @@ public class CCDCInjectNotifManager : MonoBehaviour
     public GameObject injectCardGO;
     protected Canvas canvas;
 
-
-    [SerializeField]
     protected Inject inject;
 
     [SerializeField]
@@ -23,9 +21,6 @@ public class CCDCInjectNotifManager : MonoBehaviour
     protected GameObject[] injectCards;
 
     protected int numActiveInjects;
-
-    [SerializeField]
-    protected float injectExpireTime;
 
     #endregion Fields
 
@@ -68,7 +63,7 @@ public class CCDCInjectNotifManager : MonoBehaviour
     /// </summary>
     public void CreateTestInject()
     {
-        Inject testInject = new Inject("Test Name", "TestDescription", System.DateTime.Now.ToShortTimeString(), 0.0f);
+        Inject testInject = new Inject("Test Name", "TestDescription", System.DateTime.Now.ToShortTimeString(), 1.0f);
         waitingInjects.Add(testInject);
     }
 
@@ -79,7 +74,7 @@ public class CCDCInjectNotifManager : MonoBehaviour
     /// </summary>
     public void ReadInInjects()
     {
-        // Will read a list from Robley's AI
+        waitingInjects = TeamViewAI.Instance.Injects;
     }
 
     /// <summary>
@@ -101,9 +96,10 @@ public class CCDCInjectNotifManager : MonoBehaviour
                     canvas.transform);
 
                 injectCards[0] = newCard;
-                activeInjectRemoveTimes[0] = System.DateTime.Now.AddMinutes(injectExpireTime);
+                activeInjectRemoveTimes[0] = System.DateTime.Now.AddMinutes(waitingInjects[0].Duration);
 
-                newCard.GetComponentInChildren<Text>().text = waitingInjects[0].Name + "\n Expires at " + activeInjectRemoveTimes[0].ToShortTimeString();
+                newCard.GetComponentInChildren<Text>().text = "Active Inject: " +  waitingInjects[0].Name + "\n Expires at "
+                    + activeInjectRemoveTimes[0].ToShortTimeString();
 
                 numActiveInjects++;
 
@@ -170,7 +166,7 @@ public class CCDCInjectNotifManager : MonoBehaviour
         {
             if(injectCards[i] != null)
             {
-                Vector3 targetPos = new Vector3(100, 400 - (i * 60), 0);
+                Vector3 targetPos = new Vector3(100, 470 - (i * 70), 0);
 
                 injectCards[i].transform.position = targetPos;
             }

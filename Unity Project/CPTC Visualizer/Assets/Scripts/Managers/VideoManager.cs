@@ -8,12 +8,14 @@ public class VideoManager: MonoBehaviour
 {
     #region Fields
     [SerializeField]
-    private List<VideoClip> videos;
+    private List<VideoClip> attackVideos;
+    [SerializeField]
+    private List<VideoClip> injectVideos;
 
     public GameObject screen;
     private VideoPlayer videoPlayer;
 
-    private bool shiftActive;
+    //private bool shiftActive;
     private bool isVideoPlaying;
 
     Regex regex;
@@ -34,127 +36,85 @@ public class VideoManager: MonoBehaviour
     {
         screen.SetActive(false);
         videoPlayer = screen.GetComponent<VideoPlayer>();
-        shiftActive = false;
+        //shiftActive = false;
         regex = new Regex("[0-9]+");
         isVideoPlaying = false;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
+    ///// <summary>
+    ///// On GUI handles user input for videos.
+    /////     The number key pressed will be parsed and passed in as the index.
+    /////     This code may be irrelevant now.
+    ///// </summary>
+    //private void OnGUI()
+    //{
+    //    Event e = Event.current;
+    //    if (e.isKey)
+    //    {
+    //        int index = -1;
 
-    }
+    //        if (Input.GetKeyDown(KeyCode.LeftShift))
+    //        {
+    //            shiftActive = true;
+    //        }
 
-    private void OnGUI()
-    {
-        Event e = Event.current;
-        if (e.isKey)
-        {
-            int index = -1;
+    //        if (Input.anyKeyDown && !Input.GetKeyDown(KeyCode.LeftShift))
+    //        {
+    //            try
+    //            {
+    //                string keyCode = e.keyCode.ToString();
+    //                Debug.Log(keyCode);
 
-            if (Input.GetKeyDown(KeyCode.LeftShift))
-            {
-                shiftActive = true;
-            }
-
-            if (Input.anyKeyDown && !Input.GetKeyDown(KeyCode.LeftShift))
-            {
-                try
-                {
-                    string keyCode = e.keyCode.ToString();
-                    Debug.Log(keyCode);
-
-                    MatchCollection matches = regex.Matches(keyCode);
+    //                MatchCollection matches = regex.Matches(keyCode);
                     
-                    if(matches[0] != null)
-                    {
-                        index = int.Parse(matches[0].Value);
-                    }
+    //                if(matches[0] != null)
+    //                {
+    //                    index = int.Parse(matches[0].Value);
+    //                }
 
-                    //index = int.Parse(keyCode);
+    //                //index = int.Parse(keyCode);
 
 
-                    if (shiftActive)
-                    {
-                        index += 10;
-                    }
-                }
-                catch
-                {
-                    Debug.Log("Cannot parse int from that string.");
-                }
-            }
+    //                if (shiftActive)
+    //                {
+    //                    index += 10;
+    //                }
+    //            }
+    //            catch
+    //            {
+    //                Debug.Log("Cannot parse int from that string.");
+    //            }
+    //        }
 
-            if (index >= 0)
-            {
-                Debug.Log("Trying to access index " + index);
-                PlayVideo(index);
-            }
-            else
-            {
-                Debug.Log(index + " is not a valid index.");
-            }
+    //        if (index >= 0)
+    //        {
+    //            Debug.Log("Trying to access index " + index);
+    //            PlayAttackVideo(index);
+    //        }
+    //        else
+    //        {
+    //            Debug.Log(index + " is not a valid index.");
+    //        }
 
-            if (Input.GetKeyUp(KeyCode.LeftShift))
-            {
-                shiftActive = false;
-            }
-        }
-    }
+    //        if (Input.GetKeyUp(KeyCode.LeftShift))
+    //        {
+    //            shiftActive = false;
+    //        }
+    //    }
+    //}
 
-    public void GetInput()
-    {
-        int index = -1;
-
-        Event e = Event.current;
-        if(e.isKey)
-        {
-            Debug.Log(e.keyCode);
-
-            if (Input.GetKeyDown(KeyCode.LeftShift))
-            {
-                if (e.keyCode != KeyCode.LeftShift)
-                {
-                    index = int.Parse(e.keyCode.ToString());
-                    index += 10;
-                }
-            }
-            else
-            {
-                if (e.keyCode != KeyCode.LeftShift)
-                {
-                    try
-                    {
-                        //Debug.Log("we in boys");
-                        Debug.Log(e.keyCode);
-                        //index = int.Parse(e.keyCode);
-                    }
-                    catch
-                    {
-                        return;
-                    }
-                }
-            }
-        }
-
-        if(index >= 0)
-        {
-            Debug.Log(index);
-            //PlayVideo(index);
-        }
-        else
-        {
-            Debug.Log(index + " is not a valid index.");
-        }
-    }
-
-    public void PlayVideo(int _index)
+    /// <summary>
+    /// Play Attack Video
+    ///     Plays the attack video with the passed in index.
+    /// </summary>
+    /// <param name="_index"></param>
+    public void PlayAttackVideo(int _index)
     {
         // Check if the index is valid
-        if(_index < videos.Count
+        if(_index < attackVideos.Count
             && _index >= 0)
         {
-            videoPlayer.clip = videos[_index];
+            videoPlayer.clip = attackVideos[_index];
             screen.SetActive(true);
             Invoke("CloseVideo", (float) videoPlayer.clip.length);
             isVideoPlaying = true;
@@ -165,6 +125,22 @@ public class VideoManager: MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Play Inject Video
+    ///     Plays the video at the top of the InjectVideos list and
+    ///     pops it from the list.
+    /// </summary>
+    public void PlayInjectVideo()
+    {
+        videoPlayer.clip = injectVideos[0];
+        screen.SetActive(true);
+        Invoke("CloseVideo", (float) videoPlayer.clip.length);
+        injectVideos.RemoveAt(0);
+    }
+    /// <summary>
+    /// Invoke this method using the videoPlayer.clip.length as its time.
+    ///     This will hide the screen as soon as the video ends.
+    /// </summary>
     public void CloseVideo()
     {
         screen.SetActive(false);

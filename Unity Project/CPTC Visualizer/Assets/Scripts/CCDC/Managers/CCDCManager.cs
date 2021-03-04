@@ -95,21 +95,16 @@ public class CCDCManager: Singleton<CCDCManager>
     void Update()
     {
         // Master Key. Starts the program in its entirety with one key press
-        if (Input.GetKeyDown(KeyCode.End))
-        {
-
-        }
-
-        // Starts the simulation
-        if(Input.GetKeyDown(KeyCode.Return))
+        if (Input.GetKeyDown(KeyCode.Return))
         {
             // Starts simulation. Is this needed?
-            jsonWriter.GenerateData();
+            //jsonWriter.GenerateData();
             infraManager.ReadJson();
-            teamManager.GenerateTeamNames();
+            //teamManager.GenerateTeamNames();
             teamManager.ReadTeams();
             eventManager.ReadAttacksJSON();
             TeamViewAI.Instance.BeginComp();
+            injectNotifManager.ReadInInjects();
         }
 
         // Create a new Infrastructure and write it to the Json
