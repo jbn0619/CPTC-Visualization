@@ -1,10 +1,10 @@
-Emu:#241B84FF
-Llamas:#6A17D2FF
-Rabbits:#C596DBFF
-Gorillas:#099767FF
-Warblers:#FC6A44FF
-Giraffes:#9416F4FF
-Dogs:#462667FF
-Hornets:#DBAE10FF
-Rattlesnakes:#819138FF
-Caribous:#7069F0FF
+Baboons:#08FF00FF
+Grasshoppers:#FF008AFF
+Jackals:#FF00FAFF
+Camels:#FF008AFF
+Wasps:#00FF66FF
+Komodo Dragons:#FF3600FF
+Crocodiles:#08FF00FF
+Hornets:#B2FF00FF
+Elks:#FF00C2FF
+Wolves:#08FF00FF

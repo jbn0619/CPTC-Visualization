@@ -60,6 +60,7 @@ public abstract class TeamManager : MonoBehaviour
         currentTeamView = -1;
 
         SceneManager.sceneLoaded += CleanOnSceneChange;
+
     }
 
     // Update is called once per frame
