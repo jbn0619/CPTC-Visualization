@@ -222,8 +222,8 @@ public class CCDCDataFormatter: Singleton<CCDCDataFormatter>
 /// </summary>
 public class HostData
 {
-    private string IP;
-    private bool state; // up = true
+    public string IP;
+    public bool state; // up = true
 
     public HostData(string _IP, bool _state)
     {
@@ -238,7 +238,7 @@ public class HostData
 /// </summary>
 public class HostDataContainer
 {
-    private List<HostData> Hosts;
+    public List<HostData> Hosts;
 
     public HostDataContainer()
     {
