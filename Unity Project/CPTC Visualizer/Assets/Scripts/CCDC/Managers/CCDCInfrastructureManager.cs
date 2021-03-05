@@ -194,7 +194,8 @@ public class CCDCInfrastructureManager : InfrastructureManager
             float angle = i * Mathf.PI * 2f / infrastructure.Networks.Count;
 
             // Move the network to another position based-on a..radial position?
-            infrastructure.Networks[i].gameObject.transform.position = infrastructure.gameObject.transform.position + new Vector3(Mathf.Cos(angle) * radius, Mathf.Sin(angle) * radius, 0);
+            //infrastructure.Networks[i].gameObject.transform.position = infrastructure.gameObject.transform.position + new Vector3(Mathf.Cos(angle) * radius, Mathf.Sin(angle) * radius, 0);
+            infrastructure.Networks[i].gameObject.transform.position = infrastructure.gameObject.transform.position + new Vector3((-4) + 3 * i, 0, 0);
             infrastructure.Networks[i].gameObject.transform.localScale = new Vector2(0.5f, 0.5f);
 
             // Edit the network's lineRenderer to re-size it to encompase the node sprites.
@@ -209,7 +210,6 @@ public class CCDCInfrastructureManager : InfrastructureManager
 
                 // Move the node to another position based-on a radial position.
                 infrastructure.Networks[i].Nodes[j].gameObject.transform.position = infrastructure.Networks[i].gameObject.transform.position + new Vector3(Mathf.Cos(angle) * radius, Mathf.Sin(angle) * radius, 0) + new Vector3(-0.15f, 0, 0);
-                infrastructure.Networks[i].Nodes[j].gameObject.transform.localScale = new Vector2(0.5f, 0.5f);
 
                 // Next, place an uptime chart that corresponds to this node.
                 UptimeChartData newChart = Instantiate(uptimeChartGO, UIManager.Instance.SceneCanvases[1].gameObject.transform);

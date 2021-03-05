@@ -1,10 +1,10 @@
-Baboons:#08FF00FF
-Grasshoppers:#FF008AFF
-Jackals:#FF00FAFF
-Camels:#FF008AFF
-Wasps:#00FF66FF
-Komodo Dragons:#FF3600FF
-Crocodiles:#08FF00FF
-Hornets:#B2FF00FF
-Elks:#FF00C2FF
-Wolves:#08FF00FF
+Sloths:#FF00FAFF
+Capybaras:#00FF66FF
+Crocodiles:#B2FF00FF
+Sharks:#00F0FFFF
+Penguins:#00FF9CFF
+Monkeys:#00FFD4FF
+Weasels:#08FF00FF
+Bison:#FF00C2FF
+Baboons:#FFA600FF
+Coyotes:#1F61F7FF

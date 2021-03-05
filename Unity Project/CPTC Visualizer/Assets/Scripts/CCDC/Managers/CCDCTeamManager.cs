@@ -218,7 +218,7 @@ public class CCDCTeamManager: TeamManager
 
             int colorIndex = Random.Range(0, curatedModified.Count);
             Color color = curatedModified[colorIndex];
-            //curatedModified.RemoveAt(colorIndex);
+            curatedModified.RemoveAt(colorIndex);
 
             //Color color = new Color(Random.Range(0.5f, 1.0f), Random.Range(0.5f, 1.0f), Random.Range(0.5f, 1.0f));
             teamColors.Add("#" + ColorUtility.ToHtmlStringRGBA(color));
