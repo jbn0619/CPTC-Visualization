@@ -162,53 +162,6 @@ namespace Assets.Scripts
     #region CCDC-Specific Data Containers
 
     /// <summary>
-    /// All of the data necessary to represent an update in uptimes/downtimes from during the CCDC event.
-    /// </summary>
-    [Serializable]
-    public class CCDCUpdateData
-    {
-        public string type;
-        public string id;
-        public string ip;
-        public int scoreWeight;
-        public string name;
-        public string group;
-        public bool isOn;
-
-        /// <summary>
-        /// Constructor for the CCDC Update Data class.
-        /// </summary>
-        /// <param name="t">This node's type.</param>
-        /// <param name="d">This node's ID.</param>
-        /// <param name="p">This node's IP address.</param>
-        /// <param name="s">The scoring-weight attatched to this node.</param>
-        /// <param name="n">This node's name.</param>
-        /// <param name="g">This node's group.</param>
-        /// <param name="o">If this node is on or off.</param>
-        public CCDCUpdateData(NodeTypes t, string d, string p, int s, string n, string g, bool o)
-        {
-            type = t.ToString();
-            id = d;
-            ip = p;
-            scoreWeight = s;
-            name = n;
-            group = g;
-            isOn = o;
-        }
-
-        /// <summary>
-        /// Converts this CPTCData object and all data within it into a json-formatted string.
-        /// </summary>
-        /// <returns>A large string in a JSON format.</returns>
-        public string ConvertToJSON()
-        {
-            string ccdcData = "";
-            ccdcData = JsonUtility.ToJson(this);
-            return ccdcData;
-        }
-    }
-
-    /// <summary>
     /// All of the data necessary to represent an attack from the red team during the CCDC event.
     /// </summary>
     [Serializable]
