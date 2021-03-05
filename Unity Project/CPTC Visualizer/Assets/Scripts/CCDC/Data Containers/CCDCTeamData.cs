@@ -6,8 +6,6 @@ public class CCDCTeamData: TeamData
 {
     #region Fields
 
-    private List<UptimeChartData> uptimeCharts;
-
     private List<NotificationButton> notifMarkers;
     private List<GameObject> notifBanners;
 
@@ -15,16 +13,7 @@ public class CCDCTeamData: TeamData
 
     #region Properties
 
-    /// <summary>
-    /// Gets a list of all the uptime charts in this scene.
-    /// </summary>
-    public List<UptimeChartData> UptimeCharts
-    {
-        get
-        {
-            return uptimeCharts;
-        }
-    }
+    
 
     /// <summary>
     /// Gets a list of all the notification markers active for this team.
@@ -52,7 +41,6 @@ public class CCDCTeamData: TeamData
 
     private void Awake()
     {
-        uptimeCharts = new List<UptimeChartData>();
 
         notifBanners = new List<GameObject>();
         notifMarkers = new List<NotificationButton>();

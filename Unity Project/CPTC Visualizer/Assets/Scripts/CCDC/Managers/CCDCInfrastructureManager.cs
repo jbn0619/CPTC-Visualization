@@ -14,6 +14,8 @@ public class CCDCInfrastructureManager : InfrastructureManager
 
     [SerializeField]
     private UptimeChartData uptimeChartGO;
+    [SerializeField]
+    private CCDCNodeData ccdcNodeGO;
 
     private List<UptimeChartData> uptimeCharts;
 
@@ -108,7 +110,7 @@ public class CCDCInfrastructureManager : InfrastructureManager
             // Move all the nodes into this network.
             for (int k = 0; k < payload.infrastructure.networks[i].nodes.Count; k++)
             {
-                NodeData newNode = Instantiate(nodeGO, newNet.transform);
+                CCDCNodeData newNode = Instantiate(ccdcNodeGO, newNet.transform);
                 newNode.Id = payload.infrastructure.networks[i].nodes[k].id;
                 newNode.IsActive = true;
                 Enum.TryParse(payload.infrastructure.networks[i].nodes[k].type, out NodeTypes newType);
@@ -153,9 +155,13 @@ public class CCDCInfrastructureManager : InfrastructureManager
             team.InfraCopy = newInfra;
 
             // Copy over the uptime charts.
-            foreach (UptimeChartData chart in uptimeCharts)
+            for (int j = 0; j < uptimeCharts.Count; j++)
             {
-                team.UptimeCharts.Add(chart);
+                if (team.InfraCopy.AllNodes[j] is CCDCNodeData)
+                {
+                    CCDCNodeData cNode = (CCDCNodeData)team.InfraCopy.AllNodes[j];
+                    cNode.UptimeChart = uptimeCharts[j];
+                }
             }
 
             // Create the team's graph, then hide it for later.
