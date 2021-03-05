@@ -7,21 +7,21 @@ public class NodeData: MonoBehaviour
 {
     #region Fields
 
-    private int id;
-    private string ip;
-    private bool isActive;
-    private NodeTypes type;
-    private NodeState state;
-    private bool isHidden;
+    protected int id;
+    protected string ip;
+    protected bool isActive;
+    protected NodeTypes type;
+    protected NodeState state;
+    protected bool isHidden;
 
     [SerializeField]
-    private List<int> connections;
+    protected List<int> connections;
 
     [SerializeField]
-    private List<LineRenderer> connectionGOS;
+    protected List<LineRenderer> connectionGOS;
 
     [SerializeField]
-    private SpriteRenderer nodeSprite;
+    protected SpriteRenderer nodeSprite;
     
     #endregion Fields
     
