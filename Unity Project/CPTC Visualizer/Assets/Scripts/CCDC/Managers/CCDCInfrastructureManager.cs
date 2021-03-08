@@ -186,12 +186,31 @@ public class CCDCInfrastructureManager : InfrastructureManager
                 Debug.Log(ip);
                 string teamNum = (i + 1).ToString();
                 int xIndex = ip.IndexOf('X');
-                string part1 = ip.Substring(0, xIndex);
-                string part2 = teamNum;
-                string part3 = ip.Substring(xIndex + 1, ip.Length - (xIndex + 1));
-                string result = part1 + part2 + part3;
-                Debug.Log(result);
-                currentNode.Ip = result;
+
+                // Check if we meet the conditions to change the number behind the X-character (if one exists).
+                if (i == 9 && ip[xIndex - 1] != '.')
+                {
+                    char previousNum = ip[xIndex - 1];
+                    string oldNum = previousNum.ToString() + "0";
+                    int.TryParse(oldNum, out int num);
+                    int totalNum = i + 1 + num;
+
+                    string part1 = ip.Substring(0, xIndex - 1);
+                    string part2 = totalNum.ToString();
+                    string part3 = ip.Substring(xIndex + 1, ip.Length - (xIndex + 1));
+                    string result = part1 + part2 + part3;
+
+                    currentNode.Ip = result;
+                }
+                else
+                {
+                    string part1 = ip.Substring(0, xIndex);
+                    string part2 = teamNum;
+                    string part3 = ip.Substring(xIndex + 1, ip.Length - (xIndex + 1));
+                    string result = part1 + part2 + part3;
+
+                    currentNode.Ip = result;
+                }
             }
 
             team.InfraCopy = newInfra;
