@@ -55,13 +55,13 @@ public class TeamViewAI: Singleton<TeamViewAI>
             testTimer -= Time.deltaTime;
 
             // randomizes the deltas, only for testing
-            if (testTimer <= 0)
-            {
-                // gives random deltas
-                RandomizeDeltas();
-
-                testTimer = 15f;
-            }
+            //if (testTimer <= 0)
+            //{
+            //    // gives random deltas
+            //    RandomizeDeltas();
+            //
+            //    testTimer = 15f;
+            //}
 
             // checks if its time 
             if (timeBeforeChange <= 0)

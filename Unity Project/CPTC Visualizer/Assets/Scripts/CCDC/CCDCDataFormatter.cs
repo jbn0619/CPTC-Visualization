@@ -13,6 +13,7 @@ public class CCDCDataFormatter: Singleton<CCDCDataFormatter>
     private DateTime lastGrab;
     private DateTime lastPull;
     private HostDataContainer dataContainer;
+    private Dictionary<int, HostData> hosts;
 
     // timing variables
     [SerializeField]
@@ -45,13 +46,101 @@ public class CCDCDataFormatter: Singleton<CCDCDataFormatter>
         get { return delay; }
         set { delay = value; }
     }
+
+    public bool HasStart
+    {
+        set { hasStarted = value; }
+    }
     #endregion Properties
     
     // Start is called before the first frame update
     void Start()
     {
+        saveLocation = "Assets\\Data\\TestData";
         lastGrab = DateTime.Now;
         lastPull = DateTime.Now;
+
+        hosts = new Dictionary<int, HostData>();
+
+        // team 1
+        hosts.Add(0, new HostData("172.17.1.1", true));
+        hosts.Add(1, new HostData("172.17.1.2", true));
+        hosts.Add(2, new HostData("172.17.1.3", true));
+        hosts.Add(3, new HostData("172.16.1.4", true));
+        hosts.Add(4, new HostData("172.16.1.5", true));
+        hosts.Add(5, new HostData("172.16.1.6", true));
+
+        // team 2
+        hosts.Add(6, new HostData("172.17.2.1", true));
+        hosts.Add(7, new HostData("172.17.2.2", true));
+        hosts.Add(8, new HostData("172.17.2.3", true));
+        hosts.Add(9, new HostData("172.16.2.4", true));
+        hosts.Add(10, new HostData("172.16.2.5", true));
+        hosts.Add(11, new HostData("172.16.2.6", true));
+
+        // team 3
+        hosts.Add(12, new HostData("172.17.3.1", true));
+        hosts.Add(13, new HostData("172.17.3.2", true));
+        hosts.Add(14, new HostData("172.17.3.3", true));
+        hosts.Add(15, new HostData("172.16.3.4", true));
+        hosts.Add(16, new HostData("172.16.3.5", true));
+        hosts.Add(17, new HostData("172.16.3.6", true));
+
+        // team 4
+        hosts.Add(18, new HostData("172.17.4.1", true));
+        hosts.Add(19, new HostData("172.17.4.2", true));
+        hosts.Add(20, new HostData("172.17.4.3", true));
+        hosts.Add(21, new HostData("172.16.4.4", true));
+        hosts.Add(22, new HostData("172.16.4.5", true));
+        hosts.Add(23, new HostData("172.16.4.6", true));
+
+        // team 5
+        hosts.Add(24, new HostData("172.17.5.1", true));
+        hosts.Add(25, new HostData("172.17.5.2", true));
+        hosts.Add(26, new HostData("172.17.5.3", true));
+        hosts.Add(27, new HostData("172.16.5.4", true));
+        hosts.Add(28, new HostData("172.16.5.5", true));
+        hosts.Add(29, new HostData("172.16.5.6", true));
+
+        // team 6
+        hosts.Add(30, new HostData("172.17.6.1", true));
+        hosts.Add(31, new HostData("172.17.6.2", true));
+        hosts.Add(32, new HostData("172.17.6.3", true));
+        hosts.Add(33, new HostData("172.16.6.4", true));
+        hosts.Add(34, new HostData("172.16.6.5", true));
+        hosts.Add(35, new HostData("172.16.6.6", true));
+
+        // team 7
+        hosts.Add(36, new HostData("172.17.7.1", true));
+        hosts.Add(37, new HostData("172.17.7.2", true));
+        hosts.Add(38, new HostData("172.17.7.3", true));
+        hosts.Add(39, new HostData("172.16.7.4", true));
+        hosts.Add(40, new HostData("172.16.7.5", true));
+        hosts.Add(41, new HostData("172.16.7.6", true));
+
+        // team 8
+        hosts.Add(42, new HostData("172.17.8.1", true));
+        hosts.Add(43, new HostData("172.17.8.2", true));
+        hosts.Add(44, new HostData("172.17.8.3", true));
+        hosts.Add(45, new HostData("172.16.8.4", true));
+        hosts.Add(46, new HostData("172.16.8.5", true));
+        hosts.Add(47, new HostData("172.16.8.6", true));
+
+        // team 9
+        hosts.Add(48, new HostData("172.17.9.1", true));
+        hosts.Add(49, new HostData("172.17.9.2", true));
+        hosts.Add(50, new HostData("172.17.9.3", true));
+        hosts.Add(51, new HostData("172.16.9.4", true));
+        hosts.Add(52, new HostData("172.16.9.5", true));
+        hosts.Add(53, new HostData("172.16.9.6", true));
+
+        // team 10
+        hosts.Add(54, new HostData("172.17.10.1", true));
+        hosts.Add(55, new HostData("172.17.10.2", true));
+        hosts.Add(56, new HostData("172.17.10.3", true));
+        hosts.Add(57, new HostData("172.16.10.4", true));
+        hosts.Add(58, new HostData("172.16.10.5", true));
+        hosts.Add(59, new HostData("172.16.10.6", true));
     }
 
     // Update is called once per frame
@@ -70,8 +159,8 @@ public class CCDCDataFormatter: Singleton<CCDCDataFormatter>
                 pullTimer = timeBeforePulls;
 
                 // gets, formats, then saves the data
-                FormatData(PullData());
-                SaveData();
+                //FormatData(PullData());
+                SaveData(PullData());
             }
         }
     }
@@ -141,6 +230,42 @@ public class CCDCDataFormatter: Singleton<CCDCDataFormatter>
         }
     }
 
+    private void SaveData(string JSON)
+    {
+        try
+        {
+            // temp var so I don't need to keep calling DateTime.Now
+            DateTime target = DateTime.Now;
+
+            // checks if it's a new minute from last pull
+            if (target.Minute == lastPull.Minute)
+            {
+                pMinuteIndex++;
+            }
+            else
+            {
+                pMinuteIndex = 0;
+            }
+
+            // sets now to the previous
+            lastPull = target;
+
+            // defines the path to save the data to
+            string path = saveLocation + "\\" + target.Day + "-" + target.Hour + "-" + target.Minute + "-" + pMinuteIndex + ".txt";
+
+            // writes the data into a json and saves it at the location
+            using (StreamWriter writer = File.CreateText(path))
+            {
+                writer.WriteLine(JSON);
+            }
+        }
+        catch (Exception e)
+        {
+            Debug.LogError(e.Message);
+            throw e;
+        }
+    }
+
     /// <summary>
     /// Pulls data from the API that should
     /// give all of the data needed to determine
@@ -153,7 +278,21 @@ public class CCDCDataFormatter: Singleton<CCDCDataFormatter>
         {
             string response = "";
 
+            HostDataContainer container = new HostDataContainer();
 
+            for (int i = 0; i < hosts.Count; i++)
+            {
+                float roll = UnityEngine.Random.Range(0, 1.0f);
+
+                if (roll <= .01)
+                {
+                    hosts[i].state = !hosts[i].state;
+                }
+
+                container.AddHost(hosts[i]);
+            }
+
+            response = container.ToJSON();
 
             return response;
             

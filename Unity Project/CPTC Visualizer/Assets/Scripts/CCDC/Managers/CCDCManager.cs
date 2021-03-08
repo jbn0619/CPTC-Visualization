@@ -107,6 +107,7 @@ public class CCDCManager: Singleton<CCDCManager>
             teamManager.ReadTeams();
             eventManager.ReadAttacksJSON();
             TeamViewAI.Instance.BeginComp();
+            CCDCDataFormatter.Instance.HasStart = true;
             //injectNotifManager.ReadInInjects();
         }
 
