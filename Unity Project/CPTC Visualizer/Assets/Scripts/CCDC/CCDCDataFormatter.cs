@@ -56,6 +56,8 @@ public class CCDCDataFormatter: Singleton<CCDCDataFormatter>
     // Start is called before the first frame update
     void Start()
     {
+        pMinuteIndex = -1;
+        rMinuteIndex = -1;
         saveLocation = "Assets\\Data\\TestData";
         lastGrab = DateTime.Now;
         lastPull = DateTime.Now;

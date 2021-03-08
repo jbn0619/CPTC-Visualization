@@ -62,11 +62,12 @@ public class CCDCEventManager: EventManager
         string payload = CCDCDataFormatter.Instance.GrabData();
 
         HostDataContainer newBatch = JsonUtility.FromJson<HostDataContainer>(payload);
-        
+        int[] deltas = new int[10];
+
         foreach (HostData h in newBatch.Hosts)
         {
             // Find the proper node by its IP address.
-            foreach (CCDCTeamData team in CCDCManager.Instance.TeamManager.Teams)
+            foreach (CCDCTeamData team in CCDCManager.Instance.TeamManager.CCDCTeams)
             {
                 foreach (CCDCNodeData n in team.InfraCopy.AllNodes)
                 {
@@ -74,13 +75,22 @@ public class CCDCEventManager: EventManager
                     if (n.Ip == h.IP)
                     {
                         n.UptimeChart.UpdateData(h.state);
-                        int[] deltas = new int[10];
-                        deltas[team.TeamId] = 1;
-                        TeamViewAI.Instance.UpdateDeltas(deltas);
+
+                        if (h.state != n.IsActive)
+                        { 
+                            deltas[team.TeamId] += 1;
+                            if (!n.IsActive)
+                                n.NodeSprite.color = Color.red;
+                            else
+                                n.NodeSprite.color = Color.cyan;
+                            n.IsActive = h.state;
+                        }
                     }
                 }
             }
         }
+
+        TeamViewAI.Instance.UpdateDeltas(deltas);
     }
 
     /// <summary>

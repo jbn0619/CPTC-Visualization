@@ -507,6 +507,7 @@ GameObject:
   - component: {fileID: 939808357}
   - component: {fileID: 939808356}
   - component: {fileID: 939808358}
+  - component: {fileID: 939808359}
   m_Layer: 0
   m_Name: Team Manager
   m_TagString: Untagged
@@ -558,6 +559,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   numOfTeams: 10
   teamDeltas: 
+--- !u!114 &939808359
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 939808355}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28d7a6546caa7b84394ae5f79748addc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeBeforePulls: 10
 --- !u!114 &1059452086 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2899488834429760476, guid: 96ab3e4558e76414a9498393e3e8da06, type: 3}
@@ -907,7 +921,7 @@ MonoBehaviour:
   injectNotifManager: {fileID: 490887815}
   videoManager: {fileID: 1059452086}
   timeDelay: 0
-  stateCheckTime: 15
+  stateCheckTime: 11
 --- !u!4 &1972424271
 Transform:
   m_ObjectHideFlags: 0
