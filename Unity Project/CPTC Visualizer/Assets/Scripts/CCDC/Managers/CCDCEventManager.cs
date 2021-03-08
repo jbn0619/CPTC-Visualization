@@ -61,19 +61,23 @@ public class CCDCEventManager: EventManager
     {
         string payload = CCDCDataFormatter.Instance.GrabData();
 
-        // THIS IS PSEUDO-CODE MEANT TO OUTLINE WHAT NODE-STATE READING WILL LOOK LIKE
-        /*
-        foreach (CCDCTeamData team in CCDCManager.Instance.TeamManager.Teams)
+        HostDataContainer newBatch = JsonUtility.FromJson<HostDataContainer>(payload);
+        
+        foreach (HostData h in newBatch.Hosts)
         {
-            for (int i = 0; i < payload.Nodes.Count; i++) 
+            // Find the proper node by its IP address.
+            foreach (CCDCTeamData team in CCDCManager.Instance.TeamManager.Teams)
             {
-                team.UptimeCharts[i].UpdateData(payload.Nodes[i].IsOn);
+                foreach (CCDCNodeData n in team.InfraCopy.AllNodes)
+                {
+                    // If the IP addresses match, then update the uptime chart.
+                    if (n.Ip == h.IP)
+                    {
+                        n.UptimeChart.UpdateData(h.state);
+                    }
+                }
             }
         }
-        */
-
-        // READ NODE STATES HERE
-        throw new System.Exception("TODO");
     }
 
     /// <summary>
