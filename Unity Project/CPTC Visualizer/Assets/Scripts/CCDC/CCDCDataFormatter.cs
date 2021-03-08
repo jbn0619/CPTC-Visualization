@@ -151,8 +151,14 @@ public class CCDCDataFormatter: Singleton<CCDCDataFormatter>
     {
         try
         {
-            // temp var to hold the response
             string response = "";
+
+
+
+            return response;
+            
+            // temp var to hold the response
+            string respons = "";
 
             // gets the data from the API
             using (WebClient client = new WebClient())
@@ -220,6 +226,7 @@ public class CCDCDataFormatter: Singleton<CCDCDataFormatter>
 /// <summary>
 /// Holds the host's ip and up state
 /// </summary>
+[Serializable]
 public class HostData
 {
     public string IP;
@@ -236,6 +243,7 @@ public class HostData
 /// Container used to send to a JSON for
 /// the host data pulled
 /// </summary>
+[Serializable]
 public class HostDataContainer
 {
     public List<HostData> Hosts;

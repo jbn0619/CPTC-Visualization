@@ -112,6 +112,7 @@ public class CCDCInfrastructureManager : InfrastructureManager
             {
                 CCDCNodeData newNode = Instantiate(ccdcNodeGO, newNet.transform);
                 newNode.Id = payload.infrastructure.networks[i].nodes[k].id;
+                newNode.Ip = payload.infrastructure.networks[i].nodes[k].ip;
                 newNode.IsActive = true;
                 Enum.TryParse(payload.infrastructure.networks[i].nodes[k].type, out NodeTypes newType);
                 newNode.Type = newType;
@@ -150,8 +151,68 @@ public class CCDCInfrastructureManager : InfrastructureManager
         {
             CCDCTeamData team = CCDCManager.Instance.TeamManager.CCDCTeams[i];
             // Instantiate a copy of the infrastructure, and make it a child of the team's gameObject.
-            InfrastructureData newInfra = Instantiate(infrastructure, team.gameObject.transform);
+            InfrastructureData newInfra = Instantiate(infrastructure);
+            newInfra.transform.parent = team.gameObject.transform;
             newInfra.gameObject.transform.position = infrastructure.gameObject.transform.position;
+
+            // Make sure the data of individual nodes is properly-copied.
+            for (int k = 0; k < newInfra.AllNodes.Count; k++)
+            {
+                NodeData currentNode = newInfra.AllNodes[k];
+                NodeData oldNode = infrastructure.AllNodes[k];
+                currentNode.Ip = oldNode.Ip;
+                currentNode.Id = oldNode.Id;
+                currentNode.IsHidden = oldNode.IsHidden;
+                currentNode.Type = oldNode.Type;
+                currentNode.State = oldNode.State;
+                foreach (int c in oldNode.Connections)
+                {
+                    currentNode.Connections.Add(c);
+                }
+                foreach (LineRenderer c in oldNode.ConnectionGOS)
+                {
+                    LineRenderer copy = Instantiate(c, currentNode.gameObject.transform);
+                    currentNode.ConnectionGOS.Add(copy);
+                }
+                //SpriteRenderer sprite = Instantiate(oldNode.NodeSprite, currentNode.gameObject.transform);
+                //currentNode.NodeSprite = sprite;
+            }
+
+            // Update the node IPs with this team's number.
+            for (int k = 0; k < newInfra.AllNodes.Count; k++)
+            {
+                NodeData currentNode = newInfra.AllNodes[k];
+                string ip = currentNode.Ip;
+                Debug.Log(ip);
+                string teamNum = (i + 1).ToString();
+                int xIndex = ip.IndexOf('X');
+
+                // Check if we meet the conditions to change the number behind the X-character (if one exists).
+                if (i == 9 && ip[xIndex - 1] != '.')
+                {
+                    char previousNum = ip[xIndex - 1];
+                    string oldNum = previousNum.ToString() + "0";
+                    int.TryParse(oldNum, out int num);
+                    int totalNum = i + 1 + num;
+
+                    string part1 = ip.Substring(0, xIndex - 1);
+                    string part2 = totalNum.ToString();
+                    string part3 = ip.Substring(xIndex + 1, ip.Length - (xIndex + 1));
+                    string result = part1 + part2 + part3;
+
+                    currentNode.Ip = result;
+                }
+                else
+                {
+                    string part1 = ip.Substring(0, xIndex);
+                    string part2 = teamNum;
+                    string part3 = ip.Substring(xIndex + 1, ip.Length - (xIndex + 1));
+                    string result = part1 + part2 + part3;
+
+                    currentNode.Ip = result;
+                }
+            }
+
             team.InfraCopy = newInfra;
 
             // Copy over the uptime charts.

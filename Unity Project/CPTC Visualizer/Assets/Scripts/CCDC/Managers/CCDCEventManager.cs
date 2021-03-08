@@ -59,9 +59,7 @@ public class CCDCEventManager: EventManager
     /// </summary>
     public void ReadNodeStateJSON()
     {
-        StreamReader reader = new StreamReader("Assets/Data/nodeState.json");
-        string input = reader.ReadToEnd();
-        reader.Close();
+        string payload = CCDCDataFormatter.Instance.GrabData();
 
         // THIS IS PSEUDO-CODE MEANT TO OUTLINE WHAT NODE-STATE READING WILL LOOK LIKE
         /*

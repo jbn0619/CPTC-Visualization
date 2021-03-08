@@ -20,7 +20,8 @@ public class TeamViewAI: Singleton<TeamViewAI>
     [SerializeField]
     private int[] teamDeltas; // keeps track of the changes in infra
     private bool hasStarted; // checks if the AI has started
-    private float testTimer;
+    private float testTimer; // testing for something
+    private double delay; // delay in minutes
     #endregion Fields
 
     #region Properties
@@ -30,6 +31,16 @@ public class TeamViewAI: Singleton<TeamViewAI>
     public List<Inject> Injects
     {
         get { return injects; }
+    }
+
+    /// <summary>
+    /// Sets the delay of the comp based to the number
+    /// of minutes given
+    /// </summary>
+    public double Delay
+    {
+        get { return delay; }
+        set { delay = value; }
     }
     #endregion Properties
 
@@ -72,8 +83,12 @@ public class TeamViewAI: Singleton<TeamViewAI>
                 // checks if it's time
                 if (injectTime)
                 {
-                    // show the inject and such
-                    Debug.Log("STOP; INJECT TIME");
+                    if (!CCDCManager.Instance.VideoManager.IsVideoPlaying)
+                    {
+                        // show the inject and such
+                        Debug.Log("STOP; INJECT TIME");
+                        CCDCManager.Instance.VideoManager.PlayInjectVideo();
+                    }
                 }
                 else
                 {
@@ -97,7 +112,7 @@ public class TeamViewAI: Singleton<TeamViewAI>
     /// <returns>true/false</returns>
     public bool CheckInject(Inject inject)
     {
-        return DateTime.Now.ToShortTimeString() == inject.Timestamp ? true : false;
+        return DateTime.Now.AddMinutes(-delay).ToShortTimeString() == inject.Timestamp ? true : false;
     }
 
     /// <summary>

@@ -120,13 +120,32 @@ public class CCDCTeamManager: TeamManager
         if (teamIndex == -1)
         {
             currentTeamView = -1;
-            CCDCManager.Instance.InfraManager.Infrastructure.gameObject.SetActive(true);
+            InfrastructureData mainInfra = CCDCManager.Instance.InfraManager.Infrastructure;
+            mainInfra.gameObject.SetActive(true);
+            foreach(NodeData n in mainInfra.AllNodes)
+            {
+                n.gameObject.SetActive(true);
+            }
+            foreach(NetworkData n in mainInfra.Networks)
+            {
+                n.gameObject.SetActive(true);
+            }
+            
             teamViewLabel.text = "Main Infrastructure";
         }
         else if (teamIndex >= 0 && teamIndex < ccdcTeams.Count)
         {
             currentTeamView = teamIndex;
-            ccdcTeams[currentTeamView].InfraCopy.gameObject.SetActive(true);
+            InfrastructureData teamInfra = ccdcTeams[currentTeamView].InfraCopy;
+            teamInfra.gameObject.SetActive(true);
+            foreach (NodeData n in teamInfra.AllNodes)
+            {
+                n.gameObject.SetActive(true);
+            }
+            foreach (NetworkData n in teamInfra.Networks)
+            {
+                n.gameObject.SetActive(true);
+            }
             foreach (NotificationButton button in ccdcTeams[currentTeamView].NotifMarkers)
             {
                 button.gameObject.SetActive(true);

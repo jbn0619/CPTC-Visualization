@@ -144,13 +144,17 @@ public class NodeData: MonoBehaviour
     }
 
     /// <summary>
-    /// Gets this node's sprite renderer.
+    /// Gets or sets this node's sprite renderer.
     /// </summary>
     public SpriteRenderer NodeSprite
     {
         get
         {
             return nodeSprite;
+        }
+        set
+        {
+            nodeSprite = value;
         }
     }
     
@@ -178,5 +182,22 @@ public class NodeData: MonoBehaviour
         Sprite newSprite = GeneralResources.Instance.NodeSprites[(int)type];
         nodeSprite.sprite = newSprite;
         nodeSprite.transform.localScale = new Vector3(.15f, .15f, 1);
+    }
+
+
+    public virtual NodeData Clone()
+    {
+        NodeData newNode = new NodeData();
+        newNode.id = this.id;
+        newNode.ip = this.ip;
+        newNode.isActive = this.isActive;
+        newNode.type = this.type;
+        newNode.state = this.state;
+        newNode.isHidden = this.isHidden;
+        newNode.connections = this.connections;
+        newNode.connectionGOS = this.connectionGOS;
+        newNode.nodeSprite = this.nodeSprite;
+
+        return newNode;
     }
 }
