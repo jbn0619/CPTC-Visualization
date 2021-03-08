@@ -91,7 +91,7 @@ public class CCDCInjectNotifManager : MonoBehaviour
                 ShiftCardsDown();
 
                 GameObject newCard = Instantiate(injectCardGO,
-                    new Vector3(-100.0f, 400, 0),
+                    new Vector3(0, 0, 0),
                     Quaternion.identity,
                     canvas.transform);
 
@@ -166,7 +166,7 @@ public class CCDCInjectNotifManager : MonoBehaviour
         {
             if(injectCards[i] != null)
             {
-                Vector3 targetPos = new Vector3(100, 470 - (i * 70), 0);
+                Vector3 targetPos = new Vector3(canvas.transform.position.x - 750, 800 - (i * 120), 0);
 
                 injectCards[i].transform.position = targetPos;
             }
