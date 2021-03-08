@@ -12,6 +12,9 @@ public class CCDCTeamManager: TeamManager
 
     protected List<CCDCTeamData> ccdcTeams;
 
+    protected List<Color> curatedColors;
+    protected List<Color> curatedModified;
+
     #endregion Fields
 
     #region Properties
@@ -29,14 +32,48 @@ public class CCDCTeamManager: TeamManager
 
     #endregion Properties
 
+
+    private void Awake()
+    {
+        
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         ccdcTeams = new List<CCDCTeamData>();
         teams = new List<TeamData>();
+        curatedColors = new List<Color>();
         currentTeamView = -1;
 
         SceneManager.sceneLoaded += CleanOnSceneChange;
+
+        //curatedColors.Add(new Color(1, 0, 0));
+        curatedColors.Add(new Color(1, 0.21f, 0));
+        curatedColors.Add(new Color(1, 0.43f, 0));
+        curatedColors.Add(new Color(1, 0.65f, 0));
+        curatedColors.Add(new Color(1, 0.86f, 0));
+        curatedColors.Add(new Color(0.91f, 1, 0));
+        curatedColors.Add(new Color(0.7f, 1, 0));
+        curatedColors.Add(new Color(0.48f, 1, 0));
+        curatedColors.Add(new Color(0.26f, 1, 0));
+        curatedColors.Add(new Color(0.03f, 1, 0));
+        curatedColors.Add(new Color(0, 1, 0.18f));
+        curatedColors.Add(new Color(0, 1, 0.4f));
+        curatedColors.Add(new Color(0, 1, 0.61f));
+        curatedColors.Add(new Color(0, 1, 0.83f));
+        curatedColors.Add(new Color(0, 0.94f, 1));
+        curatedColors.Add(new Color(0, 0.73f, 1));
+        curatedColors.Add(new Color(0, 0.51f, 1));
+        curatedColors.Add(new Color(0.12f, 0.38f, 0.97f));
+        //curatedColors.Add(new Color(0.37f, 0.41f, 0.94f));
+        //curatedColors.Add(new Color(0.38f, 0.28f, 0.95f));
+        //curatedColors.Add(new Color(0.39f, 0.05f, 0.99f));
+        //curatedColors.Add(new Color(0.58f, 0, 1));
+        //curatedColors.Add(new Color(0.8f, 0, 1));
+        curatedColors.Add(new Color(1, 0, 0.98f));
+        curatedColors.Add(new Color(1, 0, 0.76f));
+        curatedColors.Add(new Color(1, 0, 0.54f));
     }
 
     // Update is called once per frame
@@ -175,6 +212,12 @@ public class CCDCTeamManager: TeamManager
         List<string> potentialNames = new List<string>();
         List<string> teamNames = new List<string>();
         List<string> teamColors = new List<string>();
+        curatedModified = new List<Color>();
+
+        for(int i = 0; i < curatedColors.Count; i++)
+        {
+            curatedModified.Add(curatedColors[i]);
+        }
 
         // Generates a list of potential names from the file
         StreamReader reader = new StreamReader("Assets/Data/animalNames.txt");
@@ -192,7 +235,11 @@ public class CCDCTeamManager: TeamManager
             teamNames.Add(potentialNames[index]);
             potentialNames.RemoveAt(index);
 
-            Color color = new Color(Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f));
+            int colorIndex = Random.Range(0, curatedModified.Count);
+            Color color = curatedModified[colorIndex];
+            curatedModified.RemoveAt(colorIndex);
+
+            //Color color = new Color(Random.Range(0.5f, 1.0f), Random.Range(0.5f, 1.0f), Random.Range(0.5f, 1.0f));
             teamColors.Add("#" + ColorUtility.ToHtmlStringRGBA(color));
         }
 

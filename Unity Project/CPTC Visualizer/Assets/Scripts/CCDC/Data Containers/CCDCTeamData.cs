@@ -69,7 +69,8 @@ public class CCDCTeamData: TeamData
             float radius = infraCopy.Networks.Count / 1.5f;
             float angle = i * Mathf.PI * 2f / infraCopy.Networks.Count;
 
-            infraCopy.Networks[i].gameObject.transform.position = infraCopy.gameObject.transform.position + new Vector3(Mathf.Cos(angle) * radius, Mathf.Sin(angle) * radius, 0);
+            // infraCopy.Networks[i].gameObject.transform.position = infraCopy.gameObject.transform.position + new Vector3(Mathf.Cos(angle) * radius, Mathf.Sin(angle) * radius, 0);
+            infraCopy.Networks[i].gameObject.transform.position = infraCopy.gameObject.transform.position + new Vector3((-4) + 3 * i, 0, 0);
             infraCopy.Networks[i].gameObject.transform.localScale = new Vector2(0.5f, 0.5f);
 
             float nodeRadius = infraCopy.Networks.Count / (radius * 2);
