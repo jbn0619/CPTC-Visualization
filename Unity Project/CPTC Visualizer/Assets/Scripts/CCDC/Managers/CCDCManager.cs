@@ -19,6 +19,9 @@ public class CCDCManager: Singleton<CCDCManager>
     private CCDCInjectNotifManager injectNotifManager;
     [SerializeField]
     private VideoManager videoManager;
+
+    [SerializeField]
+    private double timeDelay;
     
     #endregion Fields
     
@@ -88,7 +91,7 @@ public class CCDCManager: Singleton<CCDCManager>
     // Start is called before the first frame update
     void Start()
     {
-        
+        timeDelay = 30;
     }
 
     // Update is called once per frame
@@ -104,7 +107,7 @@ public class CCDCManager: Singleton<CCDCManager>
             teamManager.ReadTeams();
             eventManager.ReadAttacksJSON();
             TeamViewAI.Instance.BeginComp();
-            injectNotifManager.ReadInInjects();
+            //injectNotifManager.ReadInInjects();
         }
 
         // Create a new Infrastructure and write it to the Json

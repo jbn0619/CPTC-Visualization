@@ -135,6 +135,7 @@ public class VideoManager: MonoBehaviour
         videoPlayer.clip = injectVideos[0];
         screen.SetActive(true);
         Invoke("CloseVideo", (float) videoPlayer.clip.length);
+        isVideoPlaying = true;
         injectVideos.RemoveAt(0);
     }
     /// <summary>
