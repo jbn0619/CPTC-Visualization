@@ -75,9 +75,10 @@ namespace Assets.Scripts
         /// <param name="i">This node's id.</param>
         /// <param name="t">This node's type.</param>
         /// <param name="c">What nodes this one is connected to.</param>
-        public Node(int i, NodeTypes t, NodeState s, List<int> c, bool h = false)
+        public Node(int d, string p, NodeTypes t, NodeState s, List<int> c, bool h = false)
         {
-            id = i;
+            id = d;
+            ip = p;
             type = t.ToString();
             state = s.ToString();
             connections = c;

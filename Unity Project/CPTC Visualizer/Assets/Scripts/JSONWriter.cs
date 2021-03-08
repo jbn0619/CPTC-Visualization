@@ -161,13 +161,13 @@ public class JSONWriter: MonoBehaviour
         // Generates an infrastructure of 4 networks, each wtih 5 to 7 nodes.
 
         // Generate the core network.
-        Node n0 = new Node(0, NodeTypes.Workstation, NodeState.On, null);
-        Node n1 = new Node(1, NodeTypes.Workstation, NodeState.On, null);
-        Node n2 = new Node(2, NodeTypes.Workstation, NodeState.On, null);
-        Node n3 = new Node(3, NodeTypes.Workstation, NodeState.On, null);
-        Node n4 = new Node(4, NodeTypes.Workstation, NodeState.On, null);
-        Node n5 = new Node(5, NodeTypes.Workstation, NodeState.On, null);
-        List<Node> coreNodes = new List<Node>();
+        Node n0 = new Node(0, "172.17.X.1", NodeTypes.DNS, NodeState.On, null);
+        Node n1 = new Node(1, "172.17.X.2", NodeTypes.AD, NodeState.On, null);
+        Node n2 = new Node(2, "172.17.X.3/DHCP", NodeTypes.VPN, NodeState.On, null);
+        Node n3 = new Node(3, "172.16.X.4", NodeTypes.EDMS, NodeState.On, null);
+        Node n4 = new Node(4, "172.16.X.5", NodeTypes.HyperV, NodeState.On, null);
+        Node n5 = new Node(5, "172.16.X.6", NodeTypes.CA, NodeState.On, null);
+        List <Node> coreNodes = new List<Node>();
         coreNodes.Add(n0);
         coreNodes.Add(n1);
         coreNodes.Add(n2);
@@ -177,14 +177,14 @@ public class JSONWriter: MonoBehaviour
         Assets.Scripts.Network core = new Assets.Scripts.Network(0, coreNodes, null);
 
         // Generate the Genovia network.
-        Node n6 = new Node(6, NodeTypes.Workstation, NodeState.On, null);
-        Node n7 = new Node(7, NodeTypes.Workstation, NodeState.On, null);
-        Node n8 = new Node(8, NodeTypes.Workstation, NodeState.On, null);
-        Node n9 = new Node(9, NodeTypes.Workstation, NodeState.On, null);
-        Node n10 = new Node(10, NodeTypes.Workstation, NodeState.On, null);
-        Node n11 = new Node(11, NodeTypes.Workstation, NodeState.On, null);
-        Node n12 = new Node(12, NodeTypes.Workstation, NodeState.On, null);
-        List<Node> genoviaNodes = new List<Node>();
+        Node n6 = new Node(6, "172.17.2X.1", NodeTypes.MailExchange, NodeState.On, null);
+        Node n7 = new Node(7, "172.17.2X.2", NodeTypes.Fileshare, NodeState.On, null);
+        Node n8 = new Node(8, "172.17.2X.3", NodeTypes.SecureDrop, NodeState.On, null);
+        Node n9 = new Node(9, "172.17.2X.4", NodeTypes.SecureDrop, NodeState.On, null);
+        Node n10 = new Node(10, "172.17.2X.10", NodeTypes.Workstation, NodeState.On, null);
+        Node n11 = new Node(11, "172.17.2X.11", NodeTypes.Workstation, NodeState.On, null);
+        Node n12 = new Node(12, "172.17.2X.12", NodeTypes.RootWorkstation, NodeState.On, null);
+        List <Node> genoviaNodes = new List<Node>();
         genoviaNodes.Add(n6);
         genoviaNodes.Add(n7);
         genoviaNodes.Add(n8);
@@ -196,12 +196,12 @@ public class JSONWriter: MonoBehaviour
 
         // Generate the ShangriLa network.
         
-        Node n13 = new Node(13, NodeTypes.Workstation, NodeState.On, null);
-        Node n14 = new Node(14, NodeTypes.Workstation, NodeState.On, null);
-        Node n15 = new Node(15, NodeTypes.Workstation, NodeState.On, null);
-        Node n16 = new Node(16, NodeTypes.Workstation, NodeState.On, null);
-        Node n17 = new Node(17, NodeTypes.Workstation, NodeState.On, null);
-        List<Node> shangNodes = new List<Node>();
+        Node n13 = new Node(13, "172.17.4X.1", NodeTypes.MailExchange, NodeState.On, null);
+        Node n14 = new Node(14, "172.17.4X.2", NodeTypes.Fileshare, NodeState.On, null);
+        Node n15 = new Node(15, "172.17.4X.10", NodeTypes.Workstation, NodeState.On, null);
+        Node n16 = new Node(16, "172.17.4X.11", NodeTypes.Workstation, NodeState.On, null);
+        Node n17 = new Node(17, "172.17.4X.12", NodeTypes.RootWorkstation, NodeState.On, null);
+        List <Node> shangNodes = new List<Node>();
         shangNodes.Add(n13);
         shangNodes.Add(n14);
         shangNodes.Add(n15);
@@ -210,13 +210,13 @@ public class JSONWriter: MonoBehaviour
         Assets.Scripts.Network shangriLa = new Assets.Scripts.Network(0, shangNodes, null);
 
         // Generate the Gildead network.
-        Node n18 = new Node(18, NodeTypes.Workstation, NodeState.On, null);
-        Node n19 = new Node(19, NodeTypes.Workstation, NodeState.On, null);
-        Node n20 = new Node(20, NodeTypes.Workstation, NodeState.On, null);
-        Node n21 = new Node(21, NodeTypes.Workstation, NodeState.On, null);
-        Node n22 = new Node(22, NodeTypes.Workstation, NodeState.On, null);
-        Node n23 = new Node(23, NodeTypes.Workstation, NodeState.On, null);
-        List<Node> gileadNodes = new List<Node>();
+        Node n18 = new Node(18, "172.17.6X.1", NodeTypes.MailExchange, NodeState.On, null);
+        Node n19 = new Node(19, "172.17.6X.2", NodeTypes.Fileshare, NodeState.On, null);
+        Node n20 = new Node(20, "172.17.6X.10", NodeTypes.Workstation, NodeState.On, null);
+        Node n21 = new Node(21, "172.17.6X.11", NodeTypes.Workstation, NodeState.On, null);
+        Node n22 = new Node(22, "172.17.6X.12", NodeTypes.RootWorkstation, NodeState.On, null);
+        Node n23 = new Node(23, "172.17.6X.200", NodeTypes.SecuredServer, NodeState.On, null);
+        List <Node> gileadNodes = new List<Node>();
         gileadNodes.Add(n18);
         gileadNodes.Add(n19);
         gileadNodes.Add(n20);
@@ -247,26 +247,26 @@ public class JSONWriter: MonoBehaviour
         nc0.Add(1);
         nc0.Add(3);
         nc0.Add(4);
-        Node n0 = new Node(0, NodeTypes.Workstation, NodeState.On, nc0);
+        Node n0 = new Node(0, "", NodeTypes.Workstation, NodeState.On, nc0);
 
         List<int> nc1 = new List<int>();
         nc1.Add(0);
         nc1.Add(2);
-        Node n1 = new Node(1, NodeTypes.Workstation, NodeState.On, nc1);
+        Node n1 = new Node(1, "", NodeTypes.Workstation, NodeState.On, nc1);
 
         List<int> nc2 = new List<int>();
         nc2.Add(1);
         nc2.Add(3);
-        Node n2 = new Node(2, NodeTypes.Workstation, NodeState.On, nc2);
+        Node n2 = new Node(2, "", NodeTypes.Workstation, NodeState.On, nc2);
 
         List<int> nc3 = new List<int>();
         nc3.Add(0);
         nc3.Add(2);
-        Node n3 = new Node(3, NodeTypes.Workstation, NodeState.On, nc3);
+        Node n3 = new Node(3, "", NodeTypes.Workstation, NodeState.On, nc3);
 
         List<int> nc4 = new List<int>();
         nc4.Add(0);
-        Node n4 = new Node(4, NodeTypes.Workstation, NodeState.On, nc4);
+        Node n4 = new Node(4, "", NodeTypes.Workstation, NodeState.On, nc4);
 
         List<Node> nodes = new List<Node>();
         nodes.Add(n0);
@@ -325,7 +325,7 @@ public class JSONWriter: MonoBehaviour
                 bool hidden = Convert.ToBoolean(UnityEngine.Random.Range(0, 2));
 
                 // Add the new node to nodes.
-                Node n = new Node(id, t, s, nodeConnections, hidden);
+                Node n = new Node(id, "", t, s, nodeConnections, hidden);
                 nodes.Add(n);
             }
 
