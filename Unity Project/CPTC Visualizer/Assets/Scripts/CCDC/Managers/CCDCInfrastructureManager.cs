@@ -174,8 +174,19 @@ public class CCDCInfrastructureManager : InfrastructureManager
                     LineRenderer copy = Instantiate(c, currentNode.gameObject.transform);
                     currentNode.ConnectionGOS.Add(copy);
                 }
-                //SpriteRenderer sprite = Instantiate(oldNode.NodeSprite, currentNode.gameObject.transform);
-                //currentNode.NodeSprite = sprite;
+
+                if (currentNode is CCDCNodeData)
+                {
+                    // Instantiate new uptime charts for each node.
+                    UptimeChartData newChart = Instantiate(uptimeChartGO, UIManager.Instance.SceneCanvases[1].gameObject.transform);
+
+                    ((CCDCNodeData)currentNode).UptimeChart = newChart;
+                    newChart.gameObject.transform.position = newInfra.AllNodes[k].gameObject.transform.position + new Vector3(0.35f, 0, 0);
+                    newChart.gameObject.transform.localScale = new Vector2(0.002f, 0.008f);
+                    newChart.ID = newInfra.AllNodes[k].Id;
+
+                    uptimeCharts.Add(newChart);
+                }
             }
 
             // Update the node IPs with this team's number.
@@ -214,16 +225,6 @@ public class CCDCInfrastructureManager : InfrastructureManager
             }
 
             team.InfraCopy = newInfra;
-
-            // Copy over the uptime charts.
-            for (int j = 0; j < uptimeCharts.Count; j++)
-            {
-                if (team.InfraCopy.AllNodes[j] is CCDCNodeData)
-                {
-                    CCDCNodeData cNode = (CCDCNodeData)team.InfraCopy.AllNodes[j];
-                    cNode.UptimeChart = uptimeCharts[j];
-                }
-            }
 
             // Create the team's graph, then hide it for later.
             team.BuildTeamGraph();
