@@ -74,6 +74,9 @@ public class CCDCEventManager: EventManager
                     if (n.Ip == h.IP)
                     {
                         n.UptimeChart.UpdateData(h.state);
+                        int[] deltas = new int[10];
+                        deltas[team.TeamId] = 1;
+                        TeamViewAI.Instance.UpdateDeltas(deltas);
                     }
                 }
             }

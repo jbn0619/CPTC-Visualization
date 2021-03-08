@@ -22,6 +22,11 @@ public class CCDCManager: Singleton<CCDCManager>
 
     [SerializeField]
     private double timeDelay;
+
+    [SerializeField]
+    private float stateCheckTime;
+
+    private float stateCheckCount;
     
     #endregion Fields
     
@@ -92,11 +97,20 @@ public class CCDCManager: Singleton<CCDCManager>
     void Start()
     {
         timeDelay = 30;
+        stateCheckCount = 0.0f;
     }
 
     // Update is called once per frame
     void Update()
     {
+        stateCheckCount += Time.deltaTime;
+
+        if (stateCheckCount >= stateCheckTime)
+        {
+            stateCheckCount = 0.0f;
+            eventManager.ReadNodeStateJSON();
+        }
+
         // Master Key. Starts the program in its entirety with one key press
         if (Input.GetKeyDown(KeyCode.Return))
         {
