@@ -906,6 +906,8 @@ MonoBehaviour:
   eventManager: {fileID: 5992340}
   injectNotifManager: {fileID: 490887815}
   videoManager: {fileID: 1059452086}
+  timeDelay: 0
+  stateCheckTime: 15
 --- !u!4 &1972424271
 Transform:
   m_ObjectHideFlags: 0
