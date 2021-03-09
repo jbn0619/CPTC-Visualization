@@ -83,29 +83,56 @@ public class CCDCInjectNotifManager : MonoBehaviour
     /// </summary>
     public void AddNewCard()
     {
-        // If the strings match
-        if (System.DateTime.Now.ToShortTimeString() == waitingInjects[0].Timestamp)
+        for(int i = 0; i < waitingInjects.Count; i++)
         {
-            if(numActiveInjects < 6)
+            if(TeamViewAI.Instance.CheckInject(waitingInjects[i]))
             {
-                ShiftCardsDown();
+                if (numActiveInjects < 6)
+                {
+                    ShiftCardsDown();
 
-                GameObject newCard = Instantiate(injectCardGO,
-                    new Vector3(0, 0, 0),
-                    Quaternion.identity,
-                    canvas.transform);
+                    GameObject newCard = Instantiate(injectCardGO,
+                        new Vector3(0, 0, 0),
+                        Quaternion.identity,
+                        canvas.transform);
 
-                injectCards[0] = newCard;
-                activeInjectRemoveTimes[0] = System.DateTime.Now.AddMinutes(waitingInjects[0].Duration);
+                    injectCards[0] = newCard;
+                    activeInjectRemoveTimes[0] = System.DateTime.Now.AddMinutes(waitingInjects[0].Duration);
 
-                newCard.GetComponentInChildren<Text>().text = "Active Inject: " +  waitingInjects[0].Name + "\n Expires at "
-                    + activeInjectRemoveTimes[0].ToShortTimeString();
+                    newCard.GetComponentInChildren<Text>().text = "Active Inject: " + waitingInjects[0].Name + "\n Expires at "
+                        + activeInjectRemoveTimes[0].ToShortTimeString();
 
-                numActiveInjects++;
+                    numActiveInjects++;
 
-                waitingInjects.RemoveAt(0);
+                    waitingInjects.RemoveAt(0);
+                }
             }
         }
+
+
+        // If the strings match
+        //if (System.DateTime.Now.ToShortTimeString() == waitingInjects[0].Timestamp)
+        //{
+        //    if(numActiveInjects < 6)
+        //    {
+        //        ShiftCardsDown();
+
+        //        GameObject newCard = Instantiate(injectCardGO,
+        //            new Vector3(0, 0, 0),
+        //            Quaternion.identity,
+        //            canvas.transform);
+
+        //        injectCards[0] = newCard;
+        //        activeInjectRemoveTimes[0] = System.DateTime.Now.AddMinutes(waitingInjects[0].Duration);
+
+        //        newCard.GetComponentInChildren<Text>().text = "Active Inject: " +  waitingInjects[0].Name + "\n Expires at "
+        //            + activeInjectRemoveTimes[0].ToShortTimeString();
+
+        //        numActiveInjects++;
+
+        //        waitingInjects.RemoveAt(0);
+        //    }
+        //}
     }
 
     /// <summary>
@@ -190,10 +217,10 @@ public class CCDCInjectNotifManager : MonoBehaviour
                     Destroy(injectCards[i]);
 
                     activeInjectRemoveTimes[i] = default(System.DateTime);
-
-                    ShiftCardsUp();
                 }
             }
+
+            ShiftCardsUp();
         }
     }
 }

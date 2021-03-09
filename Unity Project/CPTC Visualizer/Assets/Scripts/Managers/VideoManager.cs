@@ -14,6 +14,7 @@ public class VideoManager: MonoBehaviour
 
     public GameObject screen;
     private VideoPlayer videoPlayer;
+    private Canvas canvas;
 
     //private bool shiftActive;
     private bool isVideoPlaying;
@@ -34,6 +35,7 @@ public class VideoManager: MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        canvas = UIManager.Instance.ActiveCanvas;
         screen.SetActive(false);
         videoPlayer = screen.GetComponent<VideoPlayer>();
         //shiftActive = false;
@@ -114,9 +116,15 @@ public class VideoManager: MonoBehaviour
         if(_index < attackVideos.Count
             && _index >= 0)
         {
+            canvas = UIManager.Instance.ActiveCanvas;
+            Debug.Log("Playing attack video...");
+
+            canvas.gameObject.SetActive(false);
+
             videoPlayer.clip = attackVideos[_index];
             screen.SetActive(true);
-            Invoke("CloseVideo", (float) videoPlayer.clip.length);
+            //Invoke("CloseVideo", (float) videoPlayer.clip.length);
+            Invoke("CloseVideo", 90);
             isVideoPlaying = true;
         }
         else
@@ -132,8 +140,14 @@ public class VideoManager: MonoBehaviour
     /// </summary>
     public void PlayInjectVideo()
     {
+        canvas = UIManager.Instance.ActiveCanvas;
+        Debug.Log("Playing inject video...");
+
+        canvas.gameObject.SetActive(false);
+
         videoPlayer.clip = injectVideos[0];
         screen.SetActive(true);
+        
         Invoke("CloseVideo", (float) videoPlayer.clip.length);
         isVideoPlaying = true;
         injectVideos.RemoveAt(0);
@@ -146,5 +160,6 @@ public class VideoManager: MonoBehaviour
     {
         screen.SetActive(false);
         isVideoPlaying = false;
+        canvas.gameObject.SetActive(true);
     }
 }
