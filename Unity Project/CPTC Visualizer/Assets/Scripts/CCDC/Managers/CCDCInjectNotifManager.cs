@@ -63,7 +63,7 @@ public class CCDCInjectNotifManager : MonoBehaviour
     /// </summary>
     public void CreateTestInject()
     {
-        Inject testInject = new Inject("Test Name", "TestDescription", System.DateTime.Now.ToShortTimeString(), 1.0f);
+        Inject testInject = new Inject("Test Name", "TestDescription", System.DateTime.Now.ToShortTimeString(), 1.0f, System.DateTime.Now.ToShortDateString());
         waitingInjects.Add(testInject);
     }
 

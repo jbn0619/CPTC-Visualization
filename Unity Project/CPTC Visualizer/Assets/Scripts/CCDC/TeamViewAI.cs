@@ -20,8 +20,10 @@ public class TeamViewAI: Singleton<TeamViewAI>
     [SerializeField]
     private int[] teamDeltas; // keeps track of the changes in infra
     private bool hasStarted; // checks if the AI has started
-    private float testTimer; // testing for something
+    //private float testTimer; // testing for something
     private double delay; // delay in minutes
+    private bool injectTime;
+    private bool wasPlayingVid;
     #endregion Fields
 
     #region Properties
@@ -52,7 +54,7 @@ public class TeamViewAI: Singleton<TeamViewAI>
         {
             // updates timer
             timeBeforeChange -= Time.deltaTime;
-            testTimer -= Time.deltaTime;
+            //testTimer -= Time.deltaTime;
 
             // randomizes the deltas, only for testing
             //if (testTimer <= 0)
@@ -62,40 +64,43 @@ public class TeamViewAI: Singleton<TeamViewAI>
             //
             //    testTimer = 15f;
             //}
-
-            // checks if its time 
-            if (timeBeforeChange <= 0)
+            if (injectTime)
             {
-                // temp vars to test if it's time ofr an inject
-                bool injectTime = false;
-
-                // loop that goes through injects
+                if (!CCDCManager.Instance.VideoManager.IsVideoPlaying && !wasPlayingVid)
+                {
+                    // show the inject and such
+                    Debug.Log("STOP; INJECT TIME");
+                    CCDCManager.Instance.VideoManager.PlayInjectVideo();
+                    wasPlayingVid = true;
+                }
+                else if (!CCDCManager.Instance.VideoManager.IsVideoPlaying && wasPlayingVid)
+                {
+                    injectTime = false;
+                    wasPlayingVid = false;
+                }
+            }
+            else
+            {
                 for (int i = 0; i < injects.Count; i++)
                 {
                     // checks each inject
                     if (CheckInject(injects[i]))
                     {
+                        // inject should be set to true
+                        injects[i].BeginInject();
+
                         // sets temp vars
                         injectTime = true;
                     }
                 }
 
-                // checks if it's time
-                if (injectTime)
-                {
-                    if (!CCDCManager.Instance.VideoManager.IsVideoPlaying)
-                    {
-                        // show the inject and such
-                        Debug.Log("STOP; INJECT TIME");
-                        CCDCManager.Instance.VideoManager.PlayInjectVideo();
-                    }
-                }
-                else
+                // checks if its time 
+                if (timeBeforeChange <= 0)
                 {
                     // sets the previous team so that it doesn't
                     // show the same team twice in a row
                     previousTeam = Prioritize();
-                    
+
                     // resets the delta of chosen team
                     ResetChanges();
 
@@ -112,7 +117,10 @@ public class TeamViewAI: Singleton<TeamViewAI>
     /// <returns>true/false</returns>
     public bool CheckInject(Inject inject)
     {
-        return DateTime.Now.AddMinutes(-delay).ToShortTimeString() == inject.Timestamp ? true : false;
+        return DateTime.Now.AddMinutes(-delay).ToShortTimeString() == inject.Timestamp // checks time
+            && inject.Date == DateTime.Now.ToShortDateString() // checks date
+            && !inject.Played // checks if already played
+            ? true : false; // returns value
     }
 
     /// <summary>
@@ -140,6 +148,7 @@ public class TeamViewAI: Singleton<TeamViewAI>
                     string name = "";
                     string description = "";
                     float estTime = 0;
+                    string date = "";
 
                     // loop that reads in all the data
                     while (line != null && line != "")
@@ -163,21 +172,28 @@ public class TeamViewAI: Singleton<TeamViewAI>
                             description = line;
                             pos++;
                         }
-                        // third, timestamp
+                        // third, reads in date of the comp
                         else if (pos == 2)
+                        {
+                            date = line;
+                            pos++;
+                        }
+                        // fourth, timestamp
+                        else if (pos == 3)
                         {
                             time = line;
                             pos++;
                         }
-                        // forth, duration, then resets the vars
-                        else if (pos == 3)
+                        // fifth, duration, then resets the vars
+                        else if (pos == 4)
                         {
                             estTime = float.Parse(line);
-                            injects.Add(new Inject(name, description, time, estTime));
+                            injects.Add(new Inject(name, description, time, estTime, date));
                             Debug.Log("Added new inject: " + name);
                             time = "";
                             name = "";
                             description = "";
+                            date = "";
                             estTime = 0;
                             pos = 0;
                         }
