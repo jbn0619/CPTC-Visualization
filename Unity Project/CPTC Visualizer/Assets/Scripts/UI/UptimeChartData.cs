@@ -11,7 +11,9 @@ public class UptimeChartData: MonoBehaviour
     private int downTicks;
 
     [SerializeField]
-    private int id;
+    private int nodeID;
+    [SerializeField]
+    private int teamID;
 
     [SerializeField]
     private Slider blueSlider;
@@ -23,17 +25,32 @@ public class UptimeChartData: MonoBehaviour
     #region Properties
 
     /// <summary>
-    /// Gets this chart's id, which will correspond to a node's id.
+    /// Gets or sets this chart's nodeID.
     /// </summary>
-    public int ID
+    public int NodeID
     {
         get
         {
-            return id;
+            return nodeID;
         }
         set
         {
-            if (value >= 0) id = value;
+            if (value >= 0) nodeID = value;
+        }
+    }
+
+    /// <summary>
+    /// Gets or sets this chart's teamID.
+    /// </summary>
+    public int TeamID
+    {
+        get
+        {
+            return teamID;
+        }
+        set
+        {
+            if (value >= -1) teamID = value;
         }
     }
 

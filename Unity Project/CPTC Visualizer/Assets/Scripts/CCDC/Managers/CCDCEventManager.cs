@@ -79,12 +79,13 @@ public class CCDCEventManager: EventManager
                         if (h.state != n.IsActive)
                         { 
                             deltas[team.TeamId] += 1;
-                            if (!n.IsActive)
-                                n.NodeSprite.color = Color.red;
-                            else
-                                n.NodeSprite.color = Color.cyan;
                             n.IsActive = h.state;
                         }
+
+                        if (!n.IsActive)
+                            n.NodeSprite.color = Color.red;
+                        else
+                            n.NodeSprite.color = Color.cyan;
                     }
                 }
             }

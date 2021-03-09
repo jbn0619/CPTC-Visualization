@@ -197,7 +197,8 @@ public class CCDCInfrastructureManager : InfrastructureManager
                     ((CCDCNodeData)currentNode).UptimeChart = newChart;
                     newChart.gameObject.transform.position = newInfra.AllNodes[k].gameObject.transform.position + new Vector3(0.35f, 0, 0);
                     newChart.gameObject.transform.localScale = new Vector2(0.002f, 0.008f);
-                    newChart.ID = newInfra.AllNodes[k].Id;
+                    newChart.NodeID = newInfra.AllNodes[k].Id;
+                    newChart.TeamID = team.TeamId;
 
                     team.UptimeCharts.Add(newChart);
                     newChart.gameObject.SetActive(false);
@@ -297,7 +298,8 @@ public class CCDCInfrastructureManager : InfrastructureManager
                 UptimeChartData newChart = Instantiate(uptimeChartGO, emptyObj.transform);
                 newChart.gameObject.transform.position = infrastructure.Networks[i].Nodes[j].gameObject.transform.position + new Vector3(0.35f, 0, 0);
                 newChart.gameObject.transform.localScale = new Vector2(0.002f, 0.008f);
-                newChart.ID = infrastructure.Networks[i].Nodes[j].Id;
+                newChart.NodeID = infrastructure.Networks[i].Nodes[j].Id;
+                newChart.TeamID = -1;
                 uptimeCharts.Add(newChart);
 
                 // Next, check their state to edit their color.
