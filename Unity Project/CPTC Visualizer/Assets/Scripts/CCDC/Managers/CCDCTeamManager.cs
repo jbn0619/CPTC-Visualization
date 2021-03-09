@@ -102,6 +102,10 @@ public class CCDCTeamManager: TeamManager
         if (currentTeamView == -1)
         {
             CCDCManager.Instance.InfraManager.Infrastructure.gameObject.SetActive(false);
+            foreach (UptimeChartData u in CCDCManager.Instance.InfraManager.UptimeCharts)
+            {
+                u.gameObject.SetActive(false);
+            }
         }
         else
         {
@@ -109,6 +113,10 @@ public class CCDCTeamManager: TeamManager
             foreach (NotificationButton button in ccdcTeams[currentTeamView].NotifMarkers)
             {
                 button.gameObject.SetActive(false);
+            }
+            foreach (UptimeChartData u in ccdcTeams[currentTeamView].UptimeCharts)
+            {
+                u.gameObject.SetActive(false);
             }
         }
 
@@ -130,7 +138,11 @@ public class CCDCTeamManager: TeamManager
             {
                 n.gameObject.SetActive(true);
             }
-            
+            foreach (UptimeChartData u in CCDCManager.Instance.InfraManager.UptimeCharts)
+            {
+                u.gameObject.SetActive(true);
+            }
+
             teamViewLabel.text = "Main Infrastructure";
         }
         else if (teamIndex >= 0 && teamIndex < ccdcTeams.Count)
@@ -149,6 +161,10 @@ public class CCDCTeamManager: TeamManager
             foreach (NotificationButton button in ccdcTeams[currentTeamView].NotifMarkers)
             {
                 button.gameObject.SetActive(true);
+            }
+            foreach (UptimeChartData u in ccdcTeams[currentTeamView].UptimeCharts)
+            {
+                u.gameObject.SetActive(true);
             }
             teamViewLabel.text = "Team " + teamIndex;
         }
