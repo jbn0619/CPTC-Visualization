@@ -136,7 +136,6 @@ public class CCDCEventManager: EventManager
                 newMarker.AttackType = myAttack;
                 newMarker.AffectedNodeID = nodeIndex;
                 newMarker.AffectedTeamID = recipient;
-                Debug.Log(newMarker.AffectedTeamID);
 
                 recievingTeam.NotifMarkers.Add(newMarker);
 
@@ -169,14 +168,14 @@ public class CCDCEventManager: EventManager
         string teamToAttack = ip.Substring(secondPeriodIndex, 3);
 
         // If the final character is a period, then truncate it. Otherwise, keep the character.
-        if (teamToAttack[2] == '.')
+        if (teamToAttack[1] == '.' || teamToAttack[2] == '.')
         {
             teamToAttack = teamToAttack.Substring(0, 2);
         }
-        teamToAttack = teamToAttack.Substring(1, teamToAttack.Length - 1);
+        teamToAttack = teamToAttack.Substring(0, teamToAttack.Length - 1);
 
         int.TryParse(teamToAttack, out int recipient);
 
-        return recipient;
+        return recipient - 1;
     }
 }
