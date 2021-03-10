@@ -165,13 +165,14 @@ public class CCDCInfrastructureManager : InfrastructureManager
             newInfra.gameObject.transform.position = infrastructure.gameObject.transform.position;
 
             // Make an empty gameObject to clean up the uptime charts scene heirarchy.
-            GameObject emptyObj = Instantiate(new GameObject());
+            GameObject emptyObj = new GameObject();
             emptyObj.transform.parent = UIManager.Instance.SceneCanvases[1].gameObject.transform;
             emptyObj.name = "Team " + (i + 1).ToString() + " Uptime Charts";
 
             // Make sure the data of individual nodes is properly-copied.
             for (int k = 0; k < newInfra.AllNodes.Count; k++)
             {
+                // Assign the node's values to a new NodeData object.
                 NodeData currentNode = newInfra.AllNodes[k];
                 NodeData oldNode = infrastructure.AllNodes[k];
                 currentNode.Ip = oldNode.Ip;
@@ -266,7 +267,7 @@ public class CCDCInfrastructureManager : InfrastructureManager
         }
 
         // Make an empty gameObject to clean up the uptime charts scene heirarchy.
-        GameObject emptyObj = Instantiate(new GameObject());
+        GameObject emptyObj = new GameObject(); 
         emptyObj.transform.parent = UIManager.Instance.SceneCanvases[1].gameObject.transform;
         emptyObj.name = "Team Infrastructure Uptime Charts";
 
