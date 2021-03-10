@@ -79,7 +79,7 @@ public class CCDCInjectNotifManager : MonoBehaviour
 
     /// <summary>
     /// Adds New Card
-    ///     Adds a new inject notification card to the side bar
+    ///     Adds a new inject notification card to the side bar and plays its corresponding video
     /// </summary>
     public void AddNewCard()
     {
@@ -110,7 +110,7 @@ public class CCDCInjectNotifManager : MonoBehaviour
 
                         addedIndex = i;
 
-                        //waitingInjects.RemoveAt(0);
+                        CCDCManager.Instance.VideoManager.PlayInjectVideo(i);
                     }
                 }
             }

@@ -138,19 +138,19 @@ public class VideoManager: MonoBehaviour
     ///     Plays the video at the top of the InjectVideos list and
     ///     pops it from the list.
     /// </summary>
-    public void PlayInjectVideo()
+    public void PlayInjectVideo(int _index)
     {
         canvas = UIManager.Instance.ActiveCanvas;
         Debug.Log("Playing inject video...");
 
         canvas.gameObject.SetActive(false);
 
-        videoPlayer.clip = injectVideos[0];
+        videoPlayer.clip = injectVideos[_index];
         screen.SetActive(true);
         
         Invoke("CloseVideo", (float) videoPlayer.clip.length);
         isVideoPlaying = true;
-        injectVideos.RemoveAt(0);
+        injectVideos.RemoveAt(_index);
     }
     /// <summary>
     /// Invoke this method using the videoPlayer.clip.length as its time.
