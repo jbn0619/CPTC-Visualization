@@ -83,30 +83,42 @@ public class CCDCInjectNotifManager : MonoBehaviour
     /// </summary>
     public void AddNewCard()
     {
+        int addedIndex = -1;
+
         for(int i = 0; i < waitingInjects.Count; i++)
         {
-            if(TeamViewAI.Instance.CheckInject(waitingInjects[i]))
+            if(addedIndex == -1)
             {
-                if (numActiveInjects < 6)
+                if (System.DateTime.Now.ToShortTimeString() == waitingInjects[i].Timestamp)
                 {
-                    ShiftCardsDown();
+                    if (numActiveInjects < 6)
+                    {
+                        ShiftCardsDown();
 
-                    GameObject newCard = Instantiate(injectCardGO,
-                        new Vector3(0, 0, 0),
-                        Quaternion.identity,
-                        canvas.transform);
+                        GameObject newCard = Instantiate(injectCardGO,
+                            new Vector3(0, 0, 0),
+                            Quaternion.identity,
+                            canvas.transform);
 
-                    injectCards[0] = newCard;
-                    activeInjectRemoveTimes[0] = System.DateTime.Now.AddMinutes(waitingInjects[0].Duration);
+                        injectCards[0] = newCard;
+                        activeInjectRemoveTimes[0] = System.DateTime.Now.AddMinutes(waitingInjects[0].Duration);
 
-                    newCard.GetComponentInChildren<Text>().text = "Active Inject: " + waitingInjects[0].Name + "\n Expires at "
-                        + activeInjectRemoveTimes[0].ToShortTimeString();
+                        newCard.GetComponentInChildren<Text>().text = "Active Inject: " + waitingInjects[0].Name + "\n Expires at "
+                            + activeInjectRemoveTimes[0].ToShortTimeString();
 
-                    numActiveInjects++;
+                        numActiveInjects++;
 
-                    waitingInjects.RemoveAt(0);
+                        addedIndex = i;
+
+                        //waitingInjects.RemoveAt(0);
+                    }
                 }
             }
+        }
+
+        if(addedIndex != -1)
+        {
+            waitingInjects.RemoveAt(addedIndex);
         }
 
 
