@@ -70,7 +70,7 @@ public class TeamViewAI: Singleton<TeamViewAI>
                 {
                     // show the inject and such
                     Debug.Log("STOP; INJECT TIME");
-                    CCDCManager.Instance.VideoManager.PlayInjectVideo();
+                    //CCDCManager.Instance.VideoManager.PlayInjectVideo(0);
                     wasPlayingVid = true;
                 }
                 else if (!CCDCManager.Instance.VideoManager.IsVideoPlaying && wasPlayingVid)
