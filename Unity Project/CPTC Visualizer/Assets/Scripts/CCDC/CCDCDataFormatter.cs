@@ -5,8 +5,6 @@ using System;
 using System.IO;
 using System.Net;
 using System.Net.Http;
-using Elasticsearch.Net;
-using Nest;
 
 public class CCDCDataFormatter: Singleton<CCDCDataFormatter>
 {
@@ -319,7 +317,7 @@ public class CCDCDataFormatter: Singleton<CCDCDataFormatter>
 
             string creds = "dataviz:Jq7stJ&7zL35sHuxV2zp";
             //client.Headers[HttpRequestHeader.Authorization] = string.Format("Basic {0}", creds);
-            ElasticClient client = new ElasticClient();
+            //ElasticClient client = new ElasticClient();
 
             
 
