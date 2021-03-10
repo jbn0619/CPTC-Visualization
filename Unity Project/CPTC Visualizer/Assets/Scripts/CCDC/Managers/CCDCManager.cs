@@ -123,6 +123,8 @@ public class CCDCManager: Singleton<CCDCManager>
             TeamViewAI.Instance.BeginComp();
             CCDCDataFormatter.Instance.HasStart = true;
             injectNotifManager.ReadInInjects();
+
+            //System.Diagnostics.Process.Start("notepad.exe");
         }
 
         // Create a new Infrastructure and write it to the Json
