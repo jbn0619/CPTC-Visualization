@@ -166,7 +166,7 @@ public class CCDCTeamManager: TeamManager
             {
                 u.gameObject.SetActive(true);
             }
-            teamViewLabel.text = "Team " + teamIndex;
+            teamViewLabel.text = "Team " + ccdcTeams[teamIndex].TeamName + " (" + (teamIndex + 1).ToString() + ")";
         }
     }
 
