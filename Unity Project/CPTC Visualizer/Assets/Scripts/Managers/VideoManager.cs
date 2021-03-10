@@ -65,7 +65,8 @@ public class VideoManager: MonoBehaviour
     //            try
     //            {
     //                string keyCode = e.keyCode.ToString();
-    //                Debug.Log(keyCode);
+    //                
+    //(keyCode);
 
     //                MatchCollection matches = regex.Matches(keyCode);
                     

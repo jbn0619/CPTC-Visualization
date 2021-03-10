@@ -136,6 +136,7 @@ public class CCDCEventManager: EventManager
                 newMarker.AttackType = myAttack;
                 newMarker.AffectedNodeID = nodeIndex;
                 newMarker.AffectedTeamID = recipient;
+                Debug.Log(newMarker.AffectedTeamID);
 
                 recievingTeam.NotifMarkers.Add(newMarker);
 
