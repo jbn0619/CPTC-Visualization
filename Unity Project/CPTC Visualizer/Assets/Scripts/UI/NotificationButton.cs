@@ -31,7 +31,7 @@ public class NotificationButton: MonoBehaviour
         }
         set
         {
-            if (value >= 0) affectedNodeID = value;
+            affectedNodeID = value;
         }
     }
 
@@ -46,7 +46,7 @@ public class NotificationButton: MonoBehaviour
         }
         set
         {
-            if (value >= 0) affectedTeamID = value;
+            affectedTeamID = value;
         }
     }
 
@@ -85,8 +85,8 @@ public class NotificationButton: MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        affectedNodeID = -1;
-        affectedTeamID = -1;
+        //affectedNodeID = -1;
+        //affectedTeamID = -1;
     }
 
     // Update is called once per frame
