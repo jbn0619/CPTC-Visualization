@@ -109,7 +109,7 @@ public class NotificationButton: MonoBehaviour
         vidMan.PlayAttackVideo((int)attackType);
 
         // Remove this marker's reference from the ccdcTeam, then destroy it.
-        CCDCManager.Instance.TeamManager.CCDCTeams[affectedNodeID].NotifMarkers.Remove(this);
+        CCDCManager.Instance.TeamManager.CCDCTeams[affectedTeamID].NotifMarkers.Remove(this);
         Destroy(this.gameObject);
     }
 }
