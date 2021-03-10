@@ -62,8 +62,6 @@ namespace AttackCompilerForm
             this.attackTypeComboBox.Items.AddRange(new object[] {
             "Implant",
             "EscelatePrivledges",
-            "ResetNode",
-            "ShutDownNode",
             "EditFirewall",
             "DenialOfService",
             "DataSwap"});
