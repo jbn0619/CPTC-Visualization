@@ -5,6 +5,8 @@ using System;
 using System.IO;
 using System.Net;
 using System.Net.Http;
+using Elasticsearch.Net;
+using Nest;
 
 public class CCDCDataFormatter: Singleton<CCDCDataFormatter>
 {
@@ -29,6 +31,9 @@ public class CCDCDataFormatter: Singleton<CCDCDataFormatter>
     private int rMinuteIndex;
     private int pMinuteIndex;
     private double delay;
+
+    // credentials
+    //public NetworkCredential creds;
     #endregion Fields
     
     #region Properties
@@ -52,98 +57,100 @@ public class CCDCDataFormatter: Singleton<CCDCDataFormatter>
         set { hasStarted = value; }
     }
     #endregion Properties
-    
+
     // Start is called before the first frame update
     void Start()
     {
         pMinuteIndex = -1;
         rMinuteIndex = -1;
         saveLocation = "Assets\\Data\\TestData";
+        pullLocation = "https://elasticsearch4.newscrier.org/";
         lastGrab = DateTime.Now;
         lastPull = DateTime.Now;
-
-        hosts = new Dictionary<int, HostData>();
-
-        // team 1
-        hosts.Add(0, new HostData("172.17.1.1", true));
-        hosts.Add(1, new HostData("172.17.1.2", true));
-        hosts.Add(2, new HostData("172.17.1.3", true));
-        hosts.Add(3, new HostData("172.16.1.4", true));
-        hosts.Add(4, new HostData("172.16.1.5", true));
-        hosts.Add(5, new HostData("172.16.1.6", true));
-
-        // team 2
-        hosts.Add(6, new HostData("172.17.2.1", true));
-        hosts.Add(7, new HostData("172.17.2.2", true));
-        hosts.Add(8, new HostData("172.17.2.3", true));
-        hosts.Add(9, new HostData("172.16.2.4", true));
-        hosts.Add(10, new HostData("172.16.2.5", true));
-        hosts.Add(11, new HostData("172.16.2.6", true));
-
-        // team 3
-        hosts.Add(12, new HostData("172.17.3.1", true));
-        hosts.Add(13, new HostData("172.17.3.2", true));
-        hosts.Add(14, new HostData("172.17.3.3", true));
-        hosts.Add(15, new HostData("172.16.3.4", true));
-        hosts.Add(16, new HostData("172.16.3.5", true));
-        hosts.Add(17, new HostData("172.16.3.6", true));
-
-        // team 4
-        hosts.Add(18, new HostData("172.17.4.1", true));
-        hosts.Add(19, new HostData("172.17.4.2", true));
-        hosts.Add(20, new HostData("172.17.4.3", true));
-        hosts.Add(21, new HostData("172.16.4.4", true));
-        hosts.Add(22, new HostData("172.16.4.5", true));
-        hosts.Add(23, new HostData("172.16.4.6", true));
-
-        // team 5
-        hosts.Add(24, new HostData("172.17.5.1", true));
-        hosts.Add(25, new HostData("172.17.5.2", true));
-        hosts.Add(26, new HostData("172.17.5.3", true));
-        hosts.Add(27, new HostData("172.16.5.4", true));
-        hosts.Add(28, new HostData("172.16.5.5", true));
-        hosts.Add(29, new HostData("172.16.5.6", true));
-
-        // team 6
-        hosts.Add(30, new HostData("172.17.6.1", true));
-        hosts.Add(31, new HostData("172.17.6.2", true));
-        hosts.Add(32, new HostData("172.17.6.3", true));
-        hosts.Add(33, new HostData("172.16.6.4", true));
-        hosts.Add(34, new HostData("172.16.6.5", true));
-        hosts.Add(35, new HostData("172.16.6.6", true));
-
-        // team 7
-        hosts.Add(36, new HostData("172.17.7.1", true));
-        hosts.Add(37, new HostData("172.17.7.2", true));
-        hosts.Add(38, new HostData("172.17.7.3", true));
-        hosts.Add(39, new HostData("172.16.7.4", true));
-        hosts.Add(40, new HostData("172.16.7.5", true));
-        hosts.Add(41, new HostData("172.16.7.6", true));
-
-        // team 8
-        hosts.Add(42, new HostData("172.17.8.1", true));
-        hosts.Add(43, new HostData("172.17.8.2", true));
-        hosts.Add(44, new HostData("172.17.8.3", true));
-        hosts.Add(45, new HostData("172.16.8.4", true));
-        hosts.Add(46, new HostData("172.16.8.5", true));
-        hosts.Add(47, new HostData("172.16.8.6", true));
-
-        // team 9
-        hosts.Add(48, new HostData("172.17.9.1", true));
-        hosts.Add(49, new HostData("172.17.9.2", true));
-        hosts.Add(50, new HostData("172.17.9.3", true));
-        hosts.Add(51, new HostData("172.16.9.4", true));
-        hosts.Add(52, new HostData("172.16.9.5", true));
-        hosts.Add(53, new HostData("172.16.9.6", true));
-
-        // team 10
-        hosts.Add(54, new HostData("172.17.10.1", true));
-        hosts.Add(55, new HostData("172.17.10.2", true));
-        hosts.Add(56, new HostData("172.17.10.3", true));
-        hosts.Add(57, new HostData("172.16.10.4", true));
-        hosts.Add(58, new HostData("172.16.10.5", true));
-        hosts.Add(59, new HostData("172.16.10.6", true));
+        //creds = new NetworkCredential("dataviz", "Jq7stJ&7zL35sHuxV2zp");
     }
+        //hosts = new Dictionary<int, HostData>();
+        //
+        //// team 1
+        //hosts.Add(0, new HostData("172.17.1.1", true));
+        //hosts.Add(1, new HostData("172.17.1.2", true));
+        //hosts.Add(2, new HostData("172.17.1.3", true));
+        //hosts.Add(3, new HostData("172.16.1.4", true));
+        //hosts.Add(4, new HostData("172.16.1.5", true));
+        //hosts.Add(5, new HostData("172.16.1.6", true));
+        //
+        //// team 2
+        //hosts.Add(6, new HostData("172.17.2.1", true));
+        //hosts.Add(7, new HostData("172.17.2.2", true));
+        //hosts.Add(8, new HostData("172.17.2.3", true));
+        //hosts.Add(9, new HostData("172.16.2.4", true));
+        //hosts.Add(10, new HostData("172.16.2.5", true));
+        //hosts.Add(11, new HostData("172.16.2.6", true));
+        //
+        //// team 3
+        //hosts.Add(12, new HostData("172.17.3.1", true));
+        //hosts.Add(13, new HostData("172.17.3.2", true));
+        //hosts.Add(14, new HostData("172.17.3.3", true));
+        //hosts.Add(15, new HostData("172.16.3.4", true));
+        //hosts.Add(16, new HostData("172.16.3.5", true));
+        //hosts.Add(17, new HostData("172.16.3.6", true));
+        //
+        //// team 4
+        //hosts.Add(18, new HostData("172.17.4.1", true));
+        //hosts.Add(19, new HostData("172.17.4.2", true));
+        //hosts.Add(20, new HostData("172.17.4.3", true));
+        //hosts.Add(21, new HostData("172.16.4.4", true));
+        //hosts.Add(22, new HostData("172.16.4.5", true));
+        //hosts.Add(23, new HostData("172.16.4.6", true));
+        //
+        //// team 5
+        //hosts.Add(24, new HostData("172.17.5.1", true));
+        //hosts.Add(25, new HostData("172.17.5.2", true));
+        //hosts.Add(26, new HostData("172.17.5.3", true));
+        //hosts.Add(27, new HostData("172.16.5.4", true));
+        //hosts.Add(28, new HostData("172.16.5.5", true));
+        //hosts.Add(29, new HostData("172.16.5.6", true));
+        //
+        //// team 6
+        //hosts.Add(30, new HostData("172.17.6.1", true));
+        //hosts.Add(31, new HostData("172.17.6.2", true));
+        //hosts.Add(32, new HostData("172.17.6.3", true));
+        //hosts.Add(33, new HostData("172.16.6.4", true));
+        //hosts.Add(34, new HostData("172.16.6.5", true));
+        //hosts.Add(35, new HostData("172.16.6.6", true));
+        //
+        //// team 7
+        //hosts.Add(36, new HostData("172.17.7.1", true));
+        //hosts.Add(37, new HostData("172.17.7.2", true));
+        //hosts.Add(38, new HostData("172.17.7.3", true));
+        //hosts.Add(39, new HostData("172.16.7.4", true));
+        //hosts.Add(40, new HostData("172.16.7.5", true));
+        //hosts.Add(41, new HostData("172.16.7.6", true));
+        //
+        //// team 8
+        //hosts.Add(42, new HostData("172.17.8.1", true));
+        //hosts.Add(43, new HostData("172.17.8.2", true));
+        //hosts.Add(44, new HostData("172.17.8.3", true));
+        //hosts.Add(45, new HostData("172.16.8.4", true));
+        //hosts.Add(46, new HostData("172.16.8.5", true));
+        //hosts.Add(47, new HostData("172.16.8.6", true));
+        //
+        //// team 9
+        //hosts.Add(48, new HostData("172.17.9.1", true));
+        //hosts.Add(49, new HostData("172.17.9.2", true));
+        //hosts.Add(50, new HostData("172.17.9.3", true));
+        //hosts.Add(51, new HostData("172.16.9.4", true));
+        //hosts.Add(52, new HostData("172.16.9.5", true));
+        //hosts.Add(53, new HostData("172.16.9.6", true));
+        //
+        //// team 10
+        //hosts.Add(54, new HostData("172.17.10.1", true));
+        //hosts.Add(55, new HostData("172.17.10.2", true));
+        //hosts.Add(56, new HostData("172.17.10.3", true));
+        //hosts.Add(57, new HostData("172.16.10.4", true));
+        //hosts.Add(58, new HostData("172.16.10.5", true));
+        //hosts.Add(59, new HostData("172.16.10.6", true));
+        //}
 
     // Update is called once per frame
     void Update()
@@ -152,7 +159,7 @@ public class CCDCDataFormatter: Singleton<CCDCDataFormatter>
         if (hasStarted)
         {
             // ticks down the timer every frame
-            pullTimer -= Time.deltaTime;
+            pullTimer -= UnityEngine.Time.deltaTime;
 
             // checks if it's time to pull data
             if (pullTimer < 0)
@@ -161,8 +168,9 @@ public class CCDCDataFormatter: Singleton<CCDCDataFormatter>
                 pullTimer = timeBeforePulls;
 
                 // gets, formats, then saves the data
+                Debug.Log(PullData());
                 //FormatData(PullData());
-                SaveData(PullData());
+                //SaveData(/*PullData()*/);
             }
         }
     }
@@ -278,35 +286,46 @@ public class CCDCDataFormatter: Singleton<CCDCDataFormatter>
     {
         try
         {
-            string response = "";
-
-            HostDataContainer container = new HostDataContainer();
-
-            for (int i = 0; i < hosts.Count; i++)
-            {
-                float roll = UnityEngine.Random.Range(0, 1.0f);
-
-                if (roll <= .01)
-                {
-                    hosts[i].state = !hosts[i].state;
-                }
-
-                container.AddHost(hosts[i]);
-            }
-
-            response = container.ToJSON();
-
-            return response;
+            //string response = "";
+            //
+            //HostDataContainer container = new HostDataContainer();
+            //
+            //for (int i = 0; i < hosts.Count; i++)
+            //{
+            //    float roll = UnityEngine.Random.Range(0, 1.0f);
+            //
+            //    if (roll <= .01)
+            //    {
+            //        hosts[i].state = !hosts[i].state;
+            //    }
+            //
+            //    container.AddHost(hosts[i]);
+            //}
+            //
+            //response = container.ToJSON();
+            //
+            //return response;
             
             // temp var to hold the response
-            string respons = "";
+            string response = "";
 
             // gets the data from the API
-            using (WebClient client = new WebClient())
-            {
+
+            //ElasticLowLevelClient client = new ElasticLowLevelClient();
+             
+            //client.Credentials = creds;
+                //client.Headers = new WebHeaderCollection();
+                //client.Headers.Add(HttpResponseHeader.WwwAuthenticate, "dataviz:Jq7stJ&7zL35sHuxV2zp");
+
+            string creds = "dataviz:Jq7stJ&7zL35sHuxV2zp";
+            //client.Headers[HttpRequestHeader.Authorization] = string.Format("Basic {0}", creds);
+            ElasticClient client = new ElasticClient();
+
+            
+
                 // no pull location has been given yet
-                response = client.DownloadString(pullLocation);
-            }
+                //response = client.DownloadString(pullLocation);
+            
 
             // returns the JSON response
             return response;
