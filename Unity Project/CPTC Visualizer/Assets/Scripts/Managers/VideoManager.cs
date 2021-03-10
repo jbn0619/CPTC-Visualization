@@ -125,7 +125,7 @@ public class VideoManager: MonoBehaviour
             videoPlayer.clip = attackVideos[_index];
             screen.SetActive(true);
             //Invoke("CloseVideo", (float) videoPlayer.clip.length);
-            Invoke("CloseVideo", 90);
+            Invoke("CloseVideo", 10);
             isVideoPlaying = true;
         }
         else
@@ -148,10 +148,11 @@ public class VideoManager: MonoBehaviour
 
         videoPlayer.clip = injectVideos[_index];
         screen.SetActive(true);
-        
-        Invoke("CloseVideo", (float) videoPlayer.clip.length);
+
+        //Invoke("CloseVideo", (float) videoPlayer.clip.length);
+        Invoke("CloseVideo", 10);
         isVideoPlaying = true;
-        injectVideos.RemoveAt(_index);
+        //injectVideos.RemoveAt(_index);
     }
     /// <summary>
     /// Invoke this method using the videoPlayer.clip.length as its time.

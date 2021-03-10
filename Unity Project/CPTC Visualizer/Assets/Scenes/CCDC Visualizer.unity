@@ -1168,21 +1168,45 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2899488834429760476, guid: 96ab3e4558e76414a9498393e3e8da06, type: 3}
+      propertyPath: attackVideos.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2899488834429760476, guid: 96ab3e4558e76414a9498393e3e8da06, type: 3}
       propertyPath: injectVideos.Array.size
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2899488834429760476, guid: 96ab3e4558e76414a9498393e3e8da06, type: 3}
+      propertyPath: attackVideos.Array.data[0]
+      value: 
+      objectReference: {fileID: 32900000, guid: 9e236bbe47cca4f4ca72fddc5bd9f6a2, type: 3}
+    - target: {fileID: 2899488834429760476, guid: 96ab3e4558e76414a9498393e3e8da06, type: 3}
+      propertyPath: attackVideos.Array.data[1]
+      value: 
+      objectReference: {fileID: 32900000, guid: f25f4bb26d72c414f8a37b0f05960e20, type: 3}
+    - target: {fileID: 2899488834429760476, guid: 96ab3e4558e76414a9498393e3e8da06, type: 3}
+      propertyPath: attackVideos.Array.data[2]
+      value: 
+      objectReference: {fileID: 32900000, guid: 9171cef76334ddf4eadbd948d3d469a9, type: 3}
+    - target: {fileID: 2899488834429760476, guid: 96ab3e4558e76414a9498393e3e8da06, type: 3}
+      propertyPath: attackVideos.Array.data[3]
+      value: 
+      objectReference: {fileID: 32900000, guid: 07f126d6512f42f4abdea0e2aca23cec, type: 3}
+    - target: {fileID: 2899488834429760476, guid: 96ab3e4558e76414a9498393e3e8da06, type: 3}
+      propertyPath: attackVideos.Array.data[4]
+      value: 
+      objectReference: {fileID: 32900000, guid: ed6b87e54ddd10745a1a633e91a76112, type: 3}
+    - target: {fileID: 2899488834429760476, guid: 96ab3e4558e76414a9498393e3e8da06, type: 3}
       propertyPath: injectVideos.Array.data[0]
       value: 
-      objectReference: {fileID: 32900000, guid: 63cead3d4f118ac4cb983fe0abbf6c77, type: 3}
+      objectReference: {fileID: 32900000, guid: c714804ddc2553141956242cc14794f5, type: 3}
     - target: {fileID: 2899488834429760476, guid: 96ab3e4558e76414a9498393e3e8da06, type: 3}
       propertyPath: injectVideos.Array.data[1]
       value: 
-      objectReference: {fileID: 32900000, guid: 3599cf08a55aa2540b3345fef938ce94, type: 3}
+      objectReference: {fileID: 32900000, guid: af468e3e284d5a84d8b9791ac1540dff, type: 3}
     - target: {fileID: 2899488834429760476, guid: 96ab3e4558e76414a9498393e3e8da06, type: 3}
       propertyPath: injectVideos.Array.data[2]
       value: 
-      objectReference: {fileID: 32900000, guid: f5a6c44be42d5d147a6baf4488c98aaa, type: 3}
+      objectReference: {fileID: 32900000, guid: ad3cee3dc5c3852479d74347d50b2282, type: 3}
     - target: {fileID: 2899488834429760477, guid: 96ab3e4558e76414a9498393e3e8da06, type: 3}
       propertyPath: m_RootOrder
       value: 8
