@@ -10,6 +10,8 @@ public struct Inject
     private string name;
     private string description;
     private float duration;
+    private bool played;
+    private string date;
     #endregion Fields
 
     #region Properties
@@ -44,14 +46,31 @@ public struct Inject
     {
         get { return duration; }
     }
+
+    public bool Played
+    {
+        get { return played; }
+    }
+
+    public string Date
+    {
+        get { return date; }
+    }
     #endregion Properties
     
     // Constructor for injects
-    public Inject(string _name, string _description, string _timestamp, float _estTime)
+    public Inject(string _name, string _description, string _timestamp, float _estTime, string _date)
     {
         name = _name;
         description = _description;
         timestamp = _timestamp;
         duration = _estTime;
+        date = _date;
+        played = false;
+    }
+
+    public void BeginInject()
+    {
+        played = true;
     }
 }

@@ -572,6 +572,46 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeBeforePulls: 10
+--- !u!1 &1027383609 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2899488834645115421, guid: 96ab3e4558e76414a9498393e3e8da06, type: 3}
+  m_PrefabInstance: {fileID: 2899488834746074986}
+  m_PrefabAsset: {fileID: 0}
+--- !u!328 &1027383612
+VideoPlayer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1027383609}
+  m_Enabled: 1
+  m_VideoClip: {fileID: 0}
+  m_TargetCameraAlpha: 1
+  m_TargetCamera3DLayout: 0
+  m_TargetCamera: {fileID: 0}
+  m_TargetTexture: {fileID: 0}
+  m_TimeReference: 0
+  m_TargetMaterialRenderer: {fileID: 0}
+  m_TargetMaterialProperty: _MainTex
+  m_RenderMode: 3
+  m_AspectRatio: 2
+  m_DataSource: 0
+  m_PlaybackSpeed: 1
+  m_AudioOutputMode: 2
+  m_TargetAudioSources:
+  - {fileID: 0}
+  m_DirectAudioVolumes:
+  - 1
+  m_Url: 
+  m_EnabledAudioTracks: 01
+  m_DirectAudioMutes: 00
+  m_ControlledAudioTrackCount: 1
+  m_PlayOnAwake: 1
+  m_SkipOnDrop: 1
+  m_Looping: 0
+  m_WaitForFirstFrame: 1
+  m_FrameReadyEventEnabled: 0
+  m_VideoShaders: []
 --- !u!114 &1059452086 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2899488834429760476, guid: 96ab3e4558e76414a9498393e3e8da06, type: 3}
@@ -1127,6 +1167,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2899488834429760476, guid: 96ab3e4558e76414a9498393e3e8da06, type: 3}
+      propertyPath: injectVideos.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2899488834429760476, guid: 96ab3e4558e76414a9498393e3e8da06, type: 3}
+      propertyPath: injectVideos.Array.data[0]
+      value: 
+      objectReference: {fileID: 32900000, guid: 63cead3d4f118ac4cb983fe0abbf6c77, type: 3}
+    - target: {fileID: 2899488834429760476, guid: 96ab3e4558e76414a9498393e3e8da06, type: 3}
+      propertyPath: injectVideos.Array.data[1]
+      value: 
+      objectReference: {fileID: 32900000, guid: 3599cf08a55aa2540b3345fef938ce94, type: 3}
+    - target: {fileID: 2899488834429760476, guid: 96ab3e4558e76414a9498393e3e8da06, type: 3}
+      propertyPath: injectVideos.Array.data[2]
+      value: 
+      objectReference: {fileID: 32900000, guid: f5a6c44be42d5d147a6baf4488c98aaa, type: 3}
     - target: {fileID: 2899488834429760477, guid: 96ab3e4558e76414a9498393e3e8da06, type: 3}
       propertyPath: m_RootOrder
       value: 8

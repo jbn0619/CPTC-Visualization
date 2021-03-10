@@ -122,7 +122,7 @@ public class CCDCManager: Singleton<CCDCManager>
             eventManager.ReadAttacksJSON();
             TeamViewAI.Instance.BeginComp();
             CCDCDataFormatter.Instance.HasStart = true;
-            //injectNotifManager.ReadInInjects();
+            injectNotifManager.ReadInInjects();
         }
 
         // Create a new Infrastructure and write it to the Json
