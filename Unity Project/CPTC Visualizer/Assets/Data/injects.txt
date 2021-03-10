@@ -17,19 +17,19 @@
 Example Inject
 This is an inject that is going to be used to show how to add injects
 3/9/2021
-9:48 AM
+2:42 PM
 45
 #
 # Example 2:
 Inject 2
 This is the second inject in the competition
 3/9/2021
-9:49 AM
+2:43 PM
 30
 #
 # Example 2:
 Inject 3
 This is the third inject in the competition
 3/9/2021
-9:50 AM
+2:44 PM
 10

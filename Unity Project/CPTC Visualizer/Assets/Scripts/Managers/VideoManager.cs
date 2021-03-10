@@ -152,7 +152,7 @@ public class VideoManager: MonoBehaviour
         //Invoke("CloseVideo", (float) videoPlayer.clip.length);
         Invoke("CloseVideo", 10);
         isVideoPlaying = true;
-        //injectVideos.RemoveAt(_index);
+        injectVideos.RemoveAt(_index);
     }
     /// <summary>
     /// Invoke this method using the videoPlayer.clip.length as its time.
