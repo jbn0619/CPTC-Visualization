@@ -10,6 +10,10 @@ public class GeneralResources: Singleton<GeneralResources>
 
     [SerializeField]
     private List<Sprite> nodeSprites;
+    [SerializeField]
+    private List<Sprite> bannerSprites;
+    [SerializeField]
+    private List<Sprite> markerSprites;
 
     [Header("Materials")]
     [SerializeField]
@@ -29,6 +33,28 @@ public class GeneralResources: Singleton<GeneralResources>
         get
         {
             return nodeSprites;
+        }
+    }
+
+    /// <summary>
+    /// Gets a list of all the different banner sprites.
+    /// </summary>
+    public List<Sprite> BannerSprites
+    {
+        get
+        {
+            return bannerSprites;
+        }
+    }
+
+    /// <summary>
+    /// Gets a list of all the different marker sprites.
+    /// </summary>
+    public List<Sprite> MarkerSprites
+    {
+        get
+        {
+            return markerSprites;
         }
     }
 

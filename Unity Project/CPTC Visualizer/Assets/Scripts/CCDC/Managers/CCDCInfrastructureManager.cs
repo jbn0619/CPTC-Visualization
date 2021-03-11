@@ -211,7 +211,6 @@ public class CCDCInfrastructureManager : InfrastructureManager
             {
                 NodeData currentNode = newInfra.AllNodes[k];
                 string ip = currentNode.Ip;
-                Debug.Log(ip);
                 string teamNum = (i + 1).ToString();
                 int xIndex = ip.IndexOf('X');
 

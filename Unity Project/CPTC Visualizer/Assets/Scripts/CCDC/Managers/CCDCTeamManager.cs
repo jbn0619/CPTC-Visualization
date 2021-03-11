@@ -110,10 +110,15 @@ public class CCDCTeamManager: TeamManager
         else
         {
             ccdcTeams[currentTeamView].InfraCopy.gameObject.SetActive(false);
-            foreach (NotificationButton button in ccdcTeams[currentTeamView].NotifMarkers)
+            
+            if (ccdcTeams[currentTeamView].NotifMarkers.Count > 0)
             {
-                button.gameObject.SetActive(false);
+                foreach (NotificationButton button in ccdcTeams[currentTeamView].NotifMarkers)
+                {
+                    button.gameObject.SetActive(false);
+                }
             }
+            
             foreach (UptimeChartData u in ccdcTeams[currentTeamView].UptimeCharts)
             {
                 u.gameObject.SetActive(false);
@@ -158,10 +163,15 @@ public class CCDCTeamManager: TeamManager
             {
                 n.gameObject.SetActive(true);
             }
-            foreach (NotificationButton button in ccdcTeams[currentTeamView].NotifMarkers)
+
+            if (ccdcTeams[currentTeamView].NotifMarkers.Count > 0)
             {
-                button.gameObject.SetActive(true);
+                foreach (NotificationButton button in ccdcTeams[currentTeamView].NotifMarkers)
+                {
+                    button.gameObject.SetActive(true);
+                }
             }
+            
             foreach (UptimeChartData u in ccdcTeams[currentTeamView].UptimeCharts)
             {
                 u.gameObject.SetActive(true);
