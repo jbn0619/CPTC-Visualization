@@ -130,9 +130,8 @@ public class CCDCEventManager: EventManager
                 // Spawn a notification marker in the proper spot.
                 NotificationButton newMarker = Instantiate(markerGO, notificationCanvas.transform);
                 Enum.TryParse(attack.AttackType, out CCDCAttackType myAttack);
-                Vector3 newPos = recievingTeam.InfraCopy.AllNodes[nodeIndex].gameObject.transform.position + new Vector3(0, 0.25f, 0);
+                Vector3 newPos = recievingTeam.InfraCopy.AllNodes[nodeIndex].gameObject.transform.position + new Vector3(0, .3f, 0);
                 newMarker.transform.position = newPos;
-                newMarker.transform.localScale = new Vector3(0.25f, 0.25f, 1);
                 newMarker.AttackType = myAttack;
                 newMarker.AffectedNodeID = nodeIndex;
                 newMarker.AffectedTeamID = recipient;
@@ -147,8 +146,7 @@ public class CCDCEventManager: EventManager
 
                 TeamViewButton currentButton = CCDCManager.Instance.TeamManager.TeamViewButtons[recipient];
                 newBanner.transform.SetParent(currentButton.transform, true);
-                newBanner.transform.position = currentButton.transform.position + new Vector3(-50 + (recievingTeam.NotifBanners.Count * 15), -75, 0);
-                newBanner.transform.localScale = new Vector3(10, 10, 1);
+                newBanner.transform.position = currentButton.transform.position + new Vector3(-50 + (recievingTeam.NotifBanners.Count * 25), -75, 0);
                 recievingTeam.NotifBanners.Add(newBanner);
 
                 // Pass this banner's reference to the marker for later-destruction.

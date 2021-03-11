@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public enum NotificationType { Banner, Marker}
 
@@ -14,6 +15,10 @@ public class NotificationButton: MonoBehaviour
     private int affectedNodeID;
     private int affectedTeamID;
     private CCDCAttackType attackType;
+
+    [SerializeField]
+    private Image buttonSprite;
+    private Image bannerSprite;
     private GameObject correspondingBanner;
     
     #endregion Fields
@@ -62,6 +67,7 @@ public class NotificationButton: MonoBehaviour
         set
         {
             attackType = value;
+            ChangeMarkerSprite();
         }
     }
 
@@ -77,6 +83,7 @@ public class NotificationButton: MonoBehaviour
         set
         {
             correspondingBanner = value;
+            ChangeBannerSprite();
         }
     }
     
@@ -93,6 +100,24 @@ public class NotificationButton: MonoBehaviour
     void Update()
     {
         
+    }
+
+    /// <summary>
+    /// Changes the sprites of this button and its corresponding banner.
+    /// </summary>
+    public void ChangeMarkerSprite()
+    {
+        Sprite newButton = GeneralResources.Instance.MarkerSprites[(int)attackType];
+        buttonSprite.sprite = newButton;
+        buttonSprite.transform.localScale = new Vector3(.6f, .3f, 1);
+    }
+
+    public void ChangeBannerSprite()
+    {
+        Sprite newBanner = GeneralResources.Instance.BannerSprites[(int)attackType];
+        bannerSprite = correspondingBanner.GetComponent<Image>();
+        bannerSprite.sprite = newBanner;
+        bannerSprite.transform.localScale = new Vector3(50, 15, 1);
     }
 
     /// <summary>
