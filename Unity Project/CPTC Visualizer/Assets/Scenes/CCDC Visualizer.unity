@@ -974,7 +974,7 @@ MonoBehaviour:
   videoManager: {fileID: 1059452086}
   notificationControls: {fileID: 2025612791}
   timeDelay: 0
-  stateCheckTime: 11
+  stateCheckTime: 10.01
 --- !u!4 &1972424271
 Transform:
   m_ObjectHideFlags: 0

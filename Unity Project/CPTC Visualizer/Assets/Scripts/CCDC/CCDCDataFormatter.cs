@@ -28,7 +28,7 @@ public class CCDCDataFormatter: Singleton<CCDCDataFormatter>
     // values to help get/save data properly
     private int rMinuteIndex;
     private int pMinuteIndex;
-    private double delay;
+    private double delay = 1;
 
     // credentials
     //public NetworkCredential creds;
