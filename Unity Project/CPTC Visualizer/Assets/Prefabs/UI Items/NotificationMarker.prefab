@@ -147,4 +147,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   notifType: 1
   buttonSprite: {fileID: 7468072635974463408}
-  bannerSprite: {fileID: 0}

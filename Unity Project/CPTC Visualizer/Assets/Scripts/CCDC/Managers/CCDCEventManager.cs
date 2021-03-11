@@ -130,7 +130,7 @@ public class CCDCEventManager: EventManager
                 // Spawn a notification marker in the proper spot.
                 NotificationButton newMarker = Instantiate(markerGO, notificationCanvas.transform);
                 Enum.TryParse(attack.AttackType, out CCDCAttackType myAttack);
-                Vector3 newPos = recievingTeam.InfraCopy.AllNodes[nodeIndex].gameObject.transform.position + new Vector3(0, .3f, 0);
+                Vector3 newPos = recievingTeam.InfraCopy.AllNodes[nodeIndex].gameObject.transform.position + new Vector3(0, .3f, -3);
                 newMarker.transform.position = newPos;
                 newMarker.AttackType = myAttack;
                 newMarker.AffectedNodeID = nodeIndex;
