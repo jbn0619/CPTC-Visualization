@@ -972,6 +972,7 @@ MonoBehaviour:
   eventManager: {fileID: 5992340}
   injectNotifManager: {fileID: 490887815}
   videoManager: {fileID: 1059452086}
+  notificationControls: {fileID: 2025612791}
   timeDelay: 0
   stateCheckTime: 11
 --- !u!4 &1972424271

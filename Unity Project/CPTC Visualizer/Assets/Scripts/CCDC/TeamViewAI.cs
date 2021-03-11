@@ -44,6 +44,12 @@ public class TeamViewAI: Singleton<TeamViewAI>
         get { return delay; }
         set { delay = value; }
     }
+
+    public bool HasStarted
+    {
+        get { return hasStarted; }
+        set { hasStarted = value; }
+    }
     #endregion Properties
 
     // Update is called once per frame
@@ -270,7 +276,7 @@ public class TeamViewAI: Singleton<TeamViewAI>
         // injects
         injects = new List<Inject>();
         ReadInjects(); // reads in the injects.txt
-        hasStarted = true;
+        hasStarted = false;
     }
 
     /// <summary>
