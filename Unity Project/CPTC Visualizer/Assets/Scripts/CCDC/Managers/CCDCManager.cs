@@ -20,6 +20,8 @@ public class CCDCManager: Singleton<CCDCManager>
     [SerializeField]
     private VideoManager videoManager;
 
+    public GameObject notificationControls;
+
     [SerializeField]
     private double timeDelay;
 
@@ -109,6 +111,17 @@ public class CCDCManager: Singleton<CCDCManager>
         {
             stateCheckCount = 0.0f;
             eventManager.ReadNodeStateJSON();
+        }
+
+        if(Input.GetKeyDown(KeyCode.Pause))
+        {
+            TeamViewAI.Instance.HasStarted = !(TeamViewAI.instance.HasStarted);
+            notificationControls.SetActive(!notificationControls.activeSelf);
+
+            foreach(TeamViewButton button in teamManager.TeamViewButtons)
+            {
+                button.gameObject.SetActive(!button.gameObject.activeSelf);
+            }
         }
 
         // Master Key. Starts the program in its entirety with one key press
