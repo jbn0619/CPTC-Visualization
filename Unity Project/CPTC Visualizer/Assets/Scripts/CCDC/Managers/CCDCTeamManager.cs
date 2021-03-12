@@ -219,7 +219,7 @@ public class CCDCTeamManager: TeamManager
                 }
 
                 // Finally, move the button to its proper spot and add it to teamViewButtons.
-                newButton.gameObject.transform.position = new Vector3(75 + (i * 150), Screen.height - 75, 0);
+                newButton.gameObject.transform.position = new Vector3(105 + (i * 180), Screen.height - 75, 0);
                 teamViewButtons.Add(newButton);
             }
         }
