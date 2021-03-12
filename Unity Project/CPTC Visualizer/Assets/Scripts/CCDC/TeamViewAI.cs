@@ -276,7 +276,7 @@ public class TeamViewAI: Singleton<TeamViewAI>
         // injects
         injects = new List<Inject>();
         ReadInjects(); // reads in the injects.txt
-        hasStarted = false;
+        //hasStarted = true;
     }
 
     /// <summary>
