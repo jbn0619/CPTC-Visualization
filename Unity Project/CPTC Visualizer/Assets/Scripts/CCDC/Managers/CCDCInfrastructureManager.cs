@@ -309,10 +309,10 @@ public class CCDCInfrastructureManager : InfrastructureManager
                         infrastructure.Networks[i].Nodes[j].NodeSprite.color = Color.gray;
                         break;
                     case NodeState.On:
-                        infrastructure.Networks[i].Nodes[j].NodeSprite.color = Color.cyan;
+                        infrastructure.Networks[i].Nodes[j].NodeSprite.color = new Color(0.3137255f, 0.3333333f, 0.9098039f);
                         break;
                     case NodeState.NotWorking:
-                        infrastructure.Networks[i].Nodes[j].NodeSprite.color = Color.red;
+                        infrastructure.Networks[i].Nodes[j].NodeSprite.color = new Color(0.9098039f, 0.3137255f, 0.3137255f);
                         break;
                 }
 

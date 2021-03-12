@@ -101,6 +101,20 @@ public class CCDCTeamData: TeamData
                 // See if we can display the node based-on if this team has discovered it or not.
                 infraCopy.Networks[i].Nodes[j].gameObject.SetActive(discoveredNodeIds.Contains(infraCopy.Networks[i].Nodes[j].Id));
 
+                // Next, check their state to edit their color.
+                switch (infraCopy.Networks[i].Nodes[j].State)
+                {
+                    case NodeState.Off:
+                        infraCopy.Networks[i].Nodes[j].NodeSprite.color = Color.gray;
+                        break;
+                    case NodeState.On:
+                        infraCopy.Networks[i].Nodes[j].NodeSprite.color = new Color(0.3137255f, 0.3333333f, 0.9098039f);
+                        break;
+                    case NodeState.NotWorking:
+                        infraCopy.Networks[i].Nodes[j].NodeSprite.color = new Color(0.9098039f, 0.3137255f, 0.3137255f);
+                        break;
+                }
+
                 // Check what connections need to be turned-off or left on.
                 for (int k = 0; k < infraCopy.Networks[i].Nodes[j].Connections.Count; k++)
                 {

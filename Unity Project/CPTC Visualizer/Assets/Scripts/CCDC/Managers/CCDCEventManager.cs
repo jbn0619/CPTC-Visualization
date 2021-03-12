@@ -85,9 +85,9 @@ public class CCDCEventManager: EventManager
                         }
 
                         if (!n.IsActive)
-                            n.NodeSprite.color = Color.red;
+                            n.NodeSprite.color = new Color(0.3137255f, 0.3333333f, 0.9098039f);
                         else
-                            n.NodeSprite.color = Color.cyan;
+                            n.NodeSprite.color = new Color(0.9098039f, 0.3137255f, 0.3137255f);
                     }
                 }
             }
