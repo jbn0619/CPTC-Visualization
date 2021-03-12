@@ -207,8 +207,9 @@ public class CCDCTeamManager: TeamManager
                 TeamViewButton newButton = Instantiate(teamViewButGO, UIManager.Instance.ActiveCanvas.transform);
                 if (i == ccdcTeams.Count)
                 {
-                    newButton.NewTeamIndex = -1;
-                    newButton.ButtonText.text = "Main";
+                    //newButton.NewTeamIndex = -1;
+                    //newButton.ButtonText.text = "Main";
+                    Destroy(newButton.gameObject);
                 }
                 else
                 {
