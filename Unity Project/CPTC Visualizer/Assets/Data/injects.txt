@@ -27,9 +27,73 @@ This is the second inject in the competition
 3:21 PM
 30
 #
-# Example 2:
+# Example 3:
 Inject 3
 This is the third inject in the competition
 3/9/2021
 3:22 PM
 10
+# REAL INJECTS
+#
+# Prelim - R01
+Preliminary Assessment
+Preform initial network and host inventory and provide proper documentation
+3/19/2021
+6:00 PM
+30
+#
+# Build SIEM - R0?
+Build a SIEM
+Build, protect, and maintain a System Incident and Event Monitoring system of choice showing the dashboard and alerts
+3/20/2021
+6:00 AM
+60
+#
+# Linux audit - R0? 
+Linux Account Audit
+Audit Linux server(s) and provide recommendations
+3/20/2021
+6:05 AM
+45
+#
+# Faud Pay - R0?
+Fraudulent Payment Challenge
+Find the files which use a fraudulent payment account
+3/20/2021
+6:10 AM
+120
+# 
+# PII - R0?
+Redacted PII Challenge
+Find the file which still contain Personally Identifiable Information after redacting efforts have been made
+3/20/2021
+6:15 AM
+120
+#
+# New DC in Azure - R0?a
+Build a new DC in Azure
+Build and join an active directory domain controller in Azure (not AADDS)
+3/20/2021
+6:20 AM
+90
+#
+# Deploy AD Connect - R0?b
+Deploy Azure AD Connect
+Make Azure AD Connect start synchronizing identity information from the on-premises AD to the Azure AD
+3/20/2021
+6:25 AM
+60
+#
+# Update AD - R0?c
+Updating AD Resources
+Update the on-premises AD resources and make sure the synchronization is working through testing the functions
+3/20/2021
+6:30 AM
+30
+#
+# Decom AD - R0?d
+Decommission on-prem AD
+Demote on-premises AD domain controller leaving only the domain controller VM running in Azure
+3/20/2021
+6:35 AM
+45
