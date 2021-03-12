@@ -7,8 +7,8 @@ public class UptimeChartData: MonoBehaviour
 {
     #region Fields
 
-    private int upTicks;
-    private int downTicks;
+    private float upTicks;
+    private float downTicks;
 
     [SerializeField]
     private int nodeID;
@@ -57,7 +57,7 @@ public class UptimeChartData: MonoBehaviour
     /// <summary>
     /// Gets or sets how-many ticks this chart's node has been on for.
     /// </summary>
-    public int UpTicks
+    public float UpTicks
     {
         get
         {
@@ -72,7 +72,7 @@ public class UptimeChartData: MonoBehaviour
     /// <summary>
     /// Gets or sets how-many ticks this chart's node has been off for.
     /// </summary>
-    public int DownTicks
+    public float DownTicks
     {
         get
         {
@@ -128,12 +128,19 @@ public class UptimeChartData: MonoBehaviour
         else downTicks++;
 
         // Next, recalculate ratios and change the slider values.
-        int totalTicks = upTicks + downTicks;
+        float totalTicks = upTicks + downTicks;
 
         float upRatio = upTicks / totalTicks;
         float downRatio = downTicks / totalTicks;
 
         blueSlider.value = upRatio;
         redSlider.value = downRatio;
+    }
+
+    public void StateChanged()
+    {
+        Debug.Log("Total Ticks: " + (upTicks + downTicks));
+        Debug.Log("Red ratio: " + redSlider.value);
+        Debug.Log("Blue ratio: " + blueSlider.value);
     }
 }
