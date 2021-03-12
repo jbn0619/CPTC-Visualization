@@ -571,7 +571,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28d7a6546caa7b84394ae5f79748addc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeBeforePulls: 10
+  timeBeforePulls: 5
 --- !u!1 &1027383609 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2899488834645115421, guid: 96ab3e4558e76414a9498393e3e8da06, type: 3}
@@ -693,7 +693,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Main Infrastructure
+  m_Text: 
 --- !u!222 &1311593173
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -974,7 +974,7 @@ MonoBehaviour:
   videoManager: {fileID: 1059452086}
   notificationControls: {fileID: 2025612791}
   timeDelay: 0
-  stateCheckTime: 10.01
+  stateCheckTime: 10
 --- !u!4 &1972424271
 Transform:
   m_ObjectHideFlags: 0

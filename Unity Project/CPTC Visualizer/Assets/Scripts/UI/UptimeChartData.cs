@@ -130,7 +130,10 @@ public class UptimeChartData: MonoBehaviour
         // Next, recalculate ratios and change the slider values.
         int totalTicks = upTicks + downTicks;
 
-        blueSlider.value = upTicks / totalTicks;
-        redSlider.value = downTicks / totalTicks;
+        float upRatio = upTicks / totalTicks;
+        float downRatio = downTicks / totalTicks;
+
+        blueSlider.value = upRatio;
+        redSlider.value = downRatio;
     }
 }

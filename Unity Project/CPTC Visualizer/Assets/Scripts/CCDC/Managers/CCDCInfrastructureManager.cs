@@ -424,4 +424,19 @@ public class CCDCInfrastructureManager : InfrastructureManager
             }
         }
     }
+
+    /// <summary>
+    /// Disables the main infrastructure (and its dependencies), then switches to the first team.
+    /// </summary>
+    public void DisableMainView()
+    {
+        // Hide the main infrastructure, then change the view to the first team.
+        infrastructure.gameObject.SetActive(false);
+        foreach (UptimeChartData u in uptimeCharts)
+        {
+            u.gameObject.SetActive(false);
+        }
+
+        CCDCManager.Instance.TeamManager.SelectTeamView(0);
+    }
 }
