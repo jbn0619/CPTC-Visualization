@@ -29,6 +29,8 @@ public class CCDCManager: Singleton<CCDCManager>
     private float stateCheckTime;
 
     private float stateCheckCount;
+
+    private bool readDateStarted;
     
     #endregion Fields
     
@@ -98,7 +100,8 @@ public class CCDCManager: Singleton<CCDCManager>
     // Start is called before the first frame update
     void Start()
     {
-        timeDelay = 30;
+        readDateStarted = false;
+        timeDelay = 0;
         stateCheckCount = 0.0f;
     }
 
@@ -107,7 +110,8 @@ public class CCDCManager: Singleton<CCDCManager>
     {
         stateCheckCount += Time.deltaTime;
 
-        if (stateCheckCount >= stateCheckTime)
+        if (stateCheckCount >= stateCheckTime
+            && readDateStarted)
         {
             stateCheckCount = 0.0f;
             eventManager.ReadNodeStateJSON();
@@ -127,31 +131,36 @@ public class CCDCManager: Singleton<CCDCManager>
         // Master Key. Starts the program in its entirety with one key press
         if (Input.GetKeyDown(KeyCode.Return))
         {
-            // Starts simulation. Is this needed?
-            //jsonWriter.GenerateData();
+            timeDelay = System.DateTime.Now.Minute;
+
             infraManager.ReadJson();
-            //teamManager.GenerateTeamNames();
             teamManager.ReadTeams();
-            eventManager.ReadAttacksJSON();
             infraManager.DisableMainView();
-            TeamViewAI.Instance.BeginComp();
             CCDCDataFormatter.Instance.HasStart = true;
-            injectNotifManager.ReadInInjects();
 
             //System.Diagnostics.Process.Start("notepad.exe");
         }
 
-        // Create a new Infrastructure and write it to the Json
-        if (Input.GetKeyDown(KeyCode.Space))
+        if(Input.GetKeyDown(KeyCode.Space))
         {
-            jsonWriter.GenerateData();
+            CCDCDataFormatter.Instance.Delay = (System.DateTime.Now.Minute - timeDelay);
+            readDateStarted = true;
+            eventManager.ReadAttacksJSON();
+            TeamViewAI.Instance.BeginComp();
+            injectNotifManager.ReadInInjects();
         }
 
+        // Create a new Infrastructure and write it to the Json
+        //if (Input.GetKeyDown(KeyCode.Space))
+        //{
+        //    jsonWriter.GenerateData();
+        //}
+
         // Reads in an infrastructure from the Json
-        if(Input.GetKeyDown(KeyCode.R))
-        {
-            infraManager.ReadJson();
-        }
+        //if(Input.GetKeyDown(KeyCode.R))
+        //{
+        //    infraManager.ReadJson();
+        //}
 
         // Generates team names and colors
         if(Input.GetKeyDown(KeyCode.C))
@@ -161,15 +170,15 @@ public class CCDCManager: Singleton<CCDCManager>
         }
 
         // Create a test inject ot be displayed
-        if(Input.GetKeyDown(KeyCode.I))
-        {
-            injectNotifManager.CreateTestInject();
-        }
+        //if(Input.GetKeyDown(KeyCode.I))
+        //{
+        //    injectNotifManager.CreateTestInject();
+        //}
 
         // Reads attacks json and spawns notifications
-        if(Input.GetKeyDown(KeyCode.P))
-        {
-            eventManager.ReadAttacksJSON();
-        }
+        //if(Input.GetKeyDown(KeyCode.P))
+        //{
+        //    eventManager.ReadAttacksJSON();
+        //}
     }
 }
