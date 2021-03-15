@@ -60,18 +60,11 @@ public class TeamViewAI: Singleton<TeamViewAI>
         {
             // updates timer
             timeBeforeChange -= Time.deltaTime;
-            //testTimer -= Time.deltaTime;
-
-            // randomizes the deltas, only for testing
-            //if (testTimer <= 0)
-            //{
-            //    // gives random deltas
-            //    RandomizeDeltas();
-            //
-            //    testTimer = 15f;
-            //}
+            
+            // checks if the previous frame had an inject
             if (injectTime)
             {
+                // checks if a video was playing
                 if (!CCDCManager.Instance.VideoManager.IsVideoPlaying && !wasPlayingVid)
                 {
                     // show the inject and such
@@ -79,6 +72,7 @@ public class TeamViewAI: Singleton<TeamViewAI>
                     //CCDCManager.Instance.VideoManager.PlayInjectVideo(0);
                     wasPlayingVid = true;
                 }
+                // checks if the video has finished
                 else if (!CCDCManager.Instance.VideoManager.IsVideoPlaying && wasPlayingVid)
                 {
                     injectTime = false;
@@ -87,6 +81,7 @@ public class TeamViewAI: Singleton<TeamViewAI>
             }
             else
             {
+                // loops to check all of the injects
                 for (int i = 0; i < injects.Count; i++)
                 {
                     // checks each inject
