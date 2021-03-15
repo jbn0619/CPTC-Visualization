@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "AttackCompilerForm": {
+      "commandName": "Executable",
+      "executablePath": "E:\\justi\\Documents\\repos\\CPTC-Visualization\\AttackCompilerForm\\AttackCompilerForm\\bin\\Release\\netcoreapp3.1\\AttackCompilerForm.exe"
+    }
+  }
+}

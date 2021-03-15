@@ -22,13 +22,18 @@ public class CCDCManager: Singleton<CCDCManager>
 
     public GameObject notificationControls;
 
+    [Header("Time fields")]
+
     [SerializeField]
     private double timeDelay;
 
     [SerializeField]
     private float stateCheckTime;
-
     private float stateCheckCount;
+
+    [SerializeField]
+    private float attackCheckTime;
+    private float attackCheckCount;
 
     private bool readDateStarted;
     
@@ -103,18 +108,27 @@ public class CCDCManager: Singleton<CCDCManager>
         readDateStarted = false;
         timeDelay = 0;
         stateCheckCount = 0.0f;
+        attackCheckCount = 0.0f;
     }
 
     // Update is called once per frame
     void Update()
     {
+        // Check if we need to read node states.
         stateCheckCount += Time.deltaTime;
-
         if (stateCheckCount >= stateCheckTime
             && readDateStarted)
         {
             stateCheckCount = 0.0f;
             eventManager.ReadNodeStateJSON();
+        }
+
+        // Check if we need to read attacks.
+        attackCheckCount += Time.deltaTime;
+        if (attackCheckCount >= attackCheckTime)
+        {
+            attackCheckCount = 0.0f;
+            eventManager.SpawnAttack();
         }
 
         if(Input.GetKeyDown(KeyCode.Pause))
