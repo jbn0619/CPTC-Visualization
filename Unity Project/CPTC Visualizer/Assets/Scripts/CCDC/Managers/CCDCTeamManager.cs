@@ -49,31 +49,42 @@ public class CCDCTeamManager: TeamManager
         SceneManager.sceneLoaded += CleanOnSceneChange;
 
         //curatedColors.Add(new Color(1, 0, 0));
-        curatedColors.Add(new Color(1, 0.21f, 0));
-        curatedColors.Add(new Color(1, 0.43f, 0));
-        curatedColors.Add(new Color(1, 0.65f, 0));
-        curatedColors.Add(new Color(1, 0.86f, 0));
-        curatedColors.Add(new Color(0.91f, 1, 0));
-        curatedColors.Add(new Color(0.7f, 1, 0));
-        curatedColors.Add(new Color(0.48f, 1, 0));
-        curatedColors.Add(new Color(0.26f, 1, 0));
-        curatedColors.Add(new Color(0.03f, 1, 0));
-        curatedColors.Add(new Color(0, 1, 0.18f));
-        curatedColors.Add(new Color(0, 1, 0.4f));
-        curatedColors.Add(new Color(0, 1, 0.61f));
-        curatedColors.Add(new Color(0, 1, 0.83f));
-        curatedColors.Add(new Color(0, 0.94f, 1));
-        curatedColors.Add(new Color(0, 0.73f, 1));
-        curatedColors.Add(new Color(0, 0.51f, 1));
-        curatedColors.Add(new Color(0.12f, 0.38f, 0.97f));
-        //curatedColors.Add(new Color(0.37f, 0.41f, 0.94f));
-        //curatedColors.Add(new Color(0.38f, 0.28f, 0.95f));
-        //curatedColors.Add(new Color(0.39f, 0.05f, 0.99f));
-        //curatedColors.Add(new Color(0.58f, 0, 1));
-        //curatedColors.Add(new Color(0.8f, 0, 1));
-        curatedColors.Add(new Color(1, 0, 0.98f));
-        curatedColors.Add(new Color(1, 0, 0.76f));
-        curatedColors.Add(new Color(1, 0, 0.54f));
+        //curatedColors.Add(new Color(1, 0.21f, 0));
+        //curatedColors.Add(new Color(1, 0.43f, 0));
+        //curatedColors.Add(new Color(1, 0.65f, 0));
+        //curatedColors.Add(new Color(1, 0.86f, 0));
+        //curatedColors.Add(new Color(0.91f, 1, 0));
+        //curatedColors.Add(new Color(0.7f, 1, 0));
+        //curatedColors.Add(new Color(0.48f, 1, 0));
+        //curatedColors.Add(new Color(0.26f, 1, 0));
+        //curatedColors.Add(new Color(0.03f, 1, 0));
+        //curatedColors.Add(new Color(0, 1, 0.18f));
+        //curatedColors.Add(new Color(0, 1, 0.4f));
+        //curatedColors.Add(new Color(0, 1, 0.61f));
+        //curatedColors.Add(new Color(0, 1, 0.83f));
+        //curatedColors.Add(new Color(0, 0.94f, 1));
+        //curatedColors.Add(new Color(0, 0.73f, 1));
+        //curatedColors.Add(new Color(0, 0.51f, 1));
+        //curatedColors.Add(new Color(0.12f, 0.38f, 0.97f));
+        ////curatedColors.Add(new Color(0.37f, 0.41f, 0.94f));
+        ////curatedColors.Add(new Color(0.38f, 0.28f, 0.95f));
+        ////curatedColors.Add(new Color(0.39f, 0.05f, 0.99f));
+        ////curatedColors.Add(new Color(0.58f, 0, 1));
+        ////curatedColors.Add(new Color(0.8f, 0, 1));
+        //curatedColors.Add(new Color(1, 0, 0.98f));
+        //curatedColors.Add(new Color(1, 0, 0.76f));
+        //curatedColors.Add(new Color(1, 0, 0.54f));
+
+        curatedColors.Add(new Color(0.76f, 0.5f, 0.18f));
+        curatedColors.Add(new Color(0.76f, 0.72f, 0.21f));
+        curatedColors.Add(new Color(0.29f, 0.66f, 0.13f));
+        curatedColors.Add(new Color(0.17f, 0.68f, 0.45f));
+        curatedColors.Add(new Color(0.12f, 0.36f, 0.62f));
+        curatedColors.Add(new Color(0.19f, 0.09f, 0.64f));
+        curatedColors.Add(new Color(0.39f, 0.07f, 0.6f));
+        curatedColors.Add(new Color(0.53f, 0.06f, 0.52f));
+        curatedColors.Add(new Color(0.45f, 0.05f, 0.26f));
+        curatedColors.Add(new Color(0.55f, 0.1f, 0.1f));
     }
 
     // Update is called once per frame
@@ -219,7 +230,7 @@ public class CCDCTeamManager: TeamManager
                 }
 
                 // Finally, move the button to its proper spot and add it to teamViewButtons.
-                newButton.gameObject.transform.position = new Vector3(75 + (i * 150), Screen.height - 75, 0);
+                newButton.gameObject.transform.position = new Vector3(105 + (i * 180), Screen.height - 75, 0);
                 teamViewButtons.Add(newButton);
             }
         }

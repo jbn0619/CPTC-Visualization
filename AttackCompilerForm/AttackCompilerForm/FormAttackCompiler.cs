@@ -67,7 +67,7 @@ namespace AttackCompilerForm
         private void textBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             // Verify that the new digit is a number or new-line
-            if (!char.IsNumber(e.KeyChar) && !char.IsControl(e.KeyChar) && !char.IsPunctuation(e.KeyChar))
+            if (!char.IsNumber(e.KeyChar) && !char.IsControl(e.KeyChar) && !char.IsPunctuation(e.KeyChar) && !char.IsLetter(e.KeyChar))
             {
                 e.Handled = true;
             }

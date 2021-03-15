@@ -277,12 +277,12 @@ public class CCDCInfrastructureManager : InfrastructureManager
             float angle = i * Mathf.PI * 2f / infrastructure.Networks.Count;
 
             // Move the network to another position based-on a..radial position?
-            //infrastructure.Networks[i].gameObject.transform.position = infrastructure.gameObject.transform.position + new Vector3(Mathf.Cos(angle) * radius, Mathf.Sin(angle) * radius, 0);
-            infrastructure.Networks[i].gameObject.transform.position = infrastructure.gameObject.transform.position + new Vector3((-4) + 3 * i, 0, 0);
+            infrastructure.Networks[i].gameObject.transform.position = infrastructure.gameObject.transform.position + new Vector3(Mathf.Cos(angle + 48.06f) * radius, Mathf.Sin(angle + 48.06f) * radius, 0);
+            //infrastructure.Networks[i].gameObject.transform.position = infrastructure.gameObject.transform.position + new Vector3((-4) + 3 * i, 0, 0);
             infrastructure.Networks[i].gameObject.transform.localScale = new Vector2(0.5f, 0.5f);
 
             // Edit the network's lineRenderer to re-size it to encompase the node sprites.
-            float nodeRadius = infrastructure.Networks.Count / (radius * 2);
+            float nodeRadius = infrastructure.Networks.Count / (radius * 1.5f);
             GenerateNetworkOutline(infrastructure.Networks[i], nodeRadius + 0.5f);
 
             // Place each of the netowrk's nodes around in a circle.
@@ -296,7 +296,7 @@ public class CCDCInfrastructureManager : InfrastructureManager
 
                 // Next, place an uptime chart that corresponds to this node.
                 UptimeChartData newChart = Instantiate(uptimeChartGO, emptyObj.transform);
-                newChart.gameObject.transform.position = infrastructure.Networks[i].Nodes[j].gameObject.transform.position + new Vector3(0.35f, 0, 0);
+                newChart.gameObject.transform.position = infrastructure.Networks[i].Nodes[j].gameObject.transform.position + new Vector3(.35f, 0, 0);
                 newChart.gameObject.transform.localScale = new Vector2(0.002f, 0.008f);
                 newChart.NodeID = infrastructure.Networks[i].Nodes[j].Id;
                 newChart.TeamID = -1;
@@ -309,10 +309,10 @@ public class CCDCInfrastructureManager : InfrastructureManager
                         infrastructure.Networks[i].Nodes[j].NodeSprite.color = Color.gray;
                         break;
                     case NodeState.On:
-                        infrastructure.Networks[i].Nodes[j].NodeSprite.color = Color.cyan;
+                        infrastructure.Networks[i].Nodes[j].NodeSprite.color = new Color(0.3137255f, 0.3333333f, 0.9098039f);
                         break;
                     case NodeState.NotWorking:
-                        infrastructure.Networks[i].Nodes[j].NodeSprite.color = Color.red;
+                        infrastructure.Networks[i].Nodes[j].NodeSprite.color = new Color(0.9098039f, 0.3137255f, 0.3137255f);
                         break;
                 }
 

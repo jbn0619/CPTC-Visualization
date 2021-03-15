@@ -65,7 +65,7 @@ public class CCDCTeamData: TeamData
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     /// <summary>
@@ -79,11 +79,11 @@ public class CCDCTeamData: TeamData
             float radius = infraCopy.Networks.Count / 1.5f;
             float angle = i * Mathf.PI * 2f / infraCopy.Networks.Count;
 
-            // infraCopy.Networks[i].gameObject.transform.position = infraCopy.gameObject.transform.position + new Vector3(Mathf.Cos(angle) * radius, Mathf.Sin(angle) * radius, 0);
-            infraCopy.Networks[i].gameObject.transform.position = infraCopy.gameObject.transform.position + new Vector3((-4) + 3 * i, 0, 0);
+            infraCopy.Networks[i].gameObject.transform.position = infraCopy.gameObject.transform.position + new Vector3(Mathf.Cos(angle + 48.06f) * radius, Mathf.Sin(angle + 48.06f) * radius, 0);
+            //infraCopy.Networks[i].gameObject.transform.position = infraCopy.gameObject.transform.position + new Vector3((-4) + 3 * i, 0, 0);
             infraCopy.Networks[i].gameObject.transform.localScale = new Vector2(0.5f, 0.5f);
 
-            float nodeRadius = infraCopy.Networks.Count / (radius * 2);
+            float nodeRadius = infraCopy.Networks.Count / (radius * 1.5f);
 
             // Place each of the netowrk's nodes around in a circle.
             for (int j = 0; j < infraCopy.Networks[i].Nodes.Count; j++)
@@ -93,13 +93,27 @@ public class CCDCTeamData: TeamData
 
                 // Move the node to another position based-on a radial position.
                 infraCopy.Networks[i].Nodes[j].gameObject.transform.position = infraCopy.Networks[i].gameObject.transform.position + new Vector3(Mathf.Cos(angle) * radius, Mathf.Sin(angle) * radius, 0) + new Vector3(-0.15f, 0, 0);
-                infraCopy.Networks[i].Nodes[j].gameObject.transform.localScale = new Vector2(0.5f, 0.5f);
+                infraCopy.Networks[i].Nodes[j].gameObject.transform.localScale = new Vector2(.5f, .5f);
 
                 // If the node gets shut down, then disable it (for now).
                 infraCopy.Networks[i].Nodes[j].gameObject.SetActive(infraCopy.Networks[i].Nodes[j].IsActive);
 
                 // See if we can display the node based-on if this team has discovered it or not.
                 infraCopy.Networks[i].Nodes[j].gameObject.SetActive(discoveredNodeIds.Contains(infraCopy.Networks[i].Nodes[j].Id));
+
+                // Next, check their state to edit their color.
+                switch (infraCopy.Networks[i].Nodes[j].State)
+                {
+                    case NodeState.Off:
+                        infraCopy.Networks[i].Nodes[j].NodeSprite.color = Color.gray;
+                        break;
+                    case NodeState.On:
+                        infraCopy.Networks[i].Nodes[j].NodeSprite.color = new Color(0.3137255f, 0.3333333f, 0.9098039f);
+                        break;
+                    case NodeState.NotWorking:
+                        infraCopy.Networks[i].Nodes[j].NodeSprite.color = new Color(0.9098039f, 0.3137255f, 0.3137255f);
+                        break;
+                }
 
                 // Check what connections need to be turned-off or left on.
                 for (int k = 0; k < infraCopy.Networks[i].Nodes[j].Connections.Count; k++)
