@@ -25,6 +25,10 @@ public class CCDCManager: Singleton<CCDCManager>
     [Header("Time fields")]
 
     [SerializeField]
+    private System.DateTime startOfComp;
+    [SerializeField]
+    private System.DateTime startOfVisualizer;
+    [SerializeField]
     private double timeDelay;
 
     [SerializeField]
@@ -106,7 +110,6 @@ public class CCDCManager: Singleton<CCDCManager>
     void Start()
     {
         readDateStarted = false;
-        timeDelay = 0;
         stateCheckCount = 0.0f;
         attackCheckCount = 0.0f;
     }
@@ -145,7 +148,8 @@ public class CCDCManager: Singleton<CCDCManager>
         // Master Key. Starts the program in its entirety with one key press
         if (Input.GetKeyDown(KeyCode.Return))
         {
-            timeDelay = System.DateTime.Now.Minute;
+            startOfComp = System.DateTime.Now;
+            Debug.Log(System.DateTime.Now.ToString());
 
             infraManager.ReadJson();
             teamManager.ReadTeams();
@@ -157,7 +161,10 @@ public class CCDCManager: Singleton<CCDCManager>
 
         if(Input.GetKeyDown(KeyCode.Space))
         {
-            CCDCDataFormatter.Instance.Delay = (System.DateTime.Now.Minute - timeDelay);
+            startOfVisualizer = System.DateTime.Now;
+            timeDelay = startOfVisualizer.Subtract(startOfComp).TotalMinutes;
+
+            CCDCDataFormatter.Instance.Delay = timeDelay;
             readDateStarted = true;
             eventManager.ReadAttacksJSON();
             TeamViewAI.Instance.BeginComp();
