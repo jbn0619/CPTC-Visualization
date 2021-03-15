@@ -159,6 +159,7 @@ MonoBehaviour:
   showConnections: 0
   secondPeriodIndex: 7
   notificationCanvas: {fileID: 2025612795}
+  attackDelay: 2
   bannerGO: {fileID: 9007376514311686812, guid: fe3dc780c40307641bce6f37a0177a2c, type: 3}
   markerGO: {fileID: 339091818209590209, guid: 185f20017618360488fc26d38202c963, type: 3}
 --- !u!4 &5992341
@@ -1151,6 +1152,7 @@ MonoBehaviour:
   notificationControls: {fileID: 2025612791}
   timeDelay: 0
   stateCheckTime: 10
+  attackCheckTime: 60
 --- !u!4 &1972424271
 Transform:
   m_ObjectHideFlags: 0
