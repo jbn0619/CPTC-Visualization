@@ -16,6 +16,9 @@ public class CCDCEventManager: EventManager
 
     private List<Assets.Scripts.CCDCAttackData> attacks;
 
+    [SerializeField]
+    private double attackDelay;
+
     [Header("Game Object Prefabs")]
     [SerializeField]
     private GameObject bannerGO;
@@ -26,7 +29,20 @@ public class CCDCEventManager: EventManager
 
     #region Properties
 
-    
+    /// <summary>
+    /// Gets or sets the delay given to attacks' times.
+    /// </summary>
+    public double AttackDelay
+    {
+        get
+        {
+            return attackDelay;
+        }
+        set
+        {
+            attackDelay = value;
+        }
+    }
 
     #endregion Properties
 
@@ -83,7 +99,6 @@ public class CCDCEventManager: EventManager
                         { 
                             deltas[team.TeamId] += 1;
                             n.IsActive = h.state;
-                            Debug.Log("State changed!");
                             //n.UptimeChart.StateChanged();
                         }
 
@@ -106,13 +121,16 @@ public class CCDCEventManager: EventManager
     {
         foreach(Assets.Scripts.CCDCAttackData attack in attacks)
         {
-            if (attack.StartTime == DateTime.Now.ToShortTimeString())
+            DateTime delayedTime = DateTime.Now.AddMinutes(-1 * attackDelay);
+            if (attack.StartTime == delayedTime.ToShortTimeString())
             {
                 // Go-through each node affected and pull-out its address.
                 foreach (string a in attack.NodesAffected)
                 {
                     // Begin by finding-out which team we're attacking.
                     int recipient = FindTeamInIP(a);
+
+                    if (recipient == -1) break;
 
                     CCDCTeamData recievingTeam = CCDCManager.Instance.TeamManager.CCDCTeams[recipient];
 
@@ -181,18 +199,22 @@ public class CCDCEventManager: EventManager
     /// <returns>The IP's team as an int.</returns>
     private int FindTeamInIP(string ip)
     {
-        // Cut out the beginning of the string, as it doesn't matter.
-        string teamToAttack = ip.Substring(secondPeriodIndex, 3);
-
-        // If the final character is a period, then truncate it. Otherwise, keep the character.
-        if (teamToAttack[1] == '.' || teamToAttack[2] == '.')
+        if (ip.Length > 0)
         {
-            teamToAttack = teamToAttack.Substring(0, 2);
+            // Cut out the beginning of the string, as it doesn't matter.
+            string teamToAttack = ip.Substring(secondPeriodIndex, 3);
+
+            // If the final character is a period, then truncate it. Otherwise, keep the character.
+            if (teamToAttack[1] == '.' || teamToAttack[2] == '.')
+            {
+                teamToAttack = teamToAttack.Substring(0, 2);
+            }
+            teamToAttack = teamToAttack.Substring(0, teamToAttack.Length - 1);
+
+            int.TryParse(teamToAttack, out int recipient);
+
+            return recipient - 1;
         }
-        teamToAttack = teamToAttack.Substring(0, teamToAttack.Length - 1);
-
-        int.TryParse(teamToAttack, out int recipient);
-
-        return recipient - 1;
+        return -1;
     }
 }
