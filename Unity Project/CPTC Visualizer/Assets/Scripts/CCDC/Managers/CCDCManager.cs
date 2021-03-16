@@ -92,29 +92,12 @@ public class CCDCManager: Singleton<CCDCManager>
 
     #endregion Properties
 
-    /// <summary>
-    /// Change how this singleton works so that it doesn't leave this scene.
-    /// </summary>
-    public override void Awake()
-    {
-        if (instance == null)
-        {
-            instance = this as CCDCManager;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
-
     // Start is called before the first frame update
     void Start()
     {
         readDateStarted = false;
         stateCheckCount = 0.0f;
         attackCheckCount = 0.0f;
-
-        
     }
 
     // Update is called once per frame

@@ -943,6 +943,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a474294e8a1a36f42943fd37649bc24a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stayInScene: 1
   numOfTeams: 10
   teamDeltas: 
 --- !u!114 &939808359
@@ -957,6 +958,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28d7a6546caa7b84394ae5f79748addc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stayInScene: 1
   timeBeforePulls: 5
 --- !u!1 &1027383609 stripped
 GameObject:
@@ -1279,6 +1281,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0eee9a6051588b468922424b606a7a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stayInScene: 0
   nodeSprites:
   - {fileID: 21300000, guid: 0bc053d4169e0fe4eb680d652bb75978, type: 3}
   - {fileID: 21300000, guid: 8ef3b43247cd73b46a7f0138a6ae747f, type: 3}
@@ -1352,6 +1355,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a95aca795a5f3b48886f438a34457c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stayInScene: 1
   infraManager: {fileID: 2069386909}
   jsonWriter: {fileID: 607337993}
   teamManager: {fileID: 939808356}
