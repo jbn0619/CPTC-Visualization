@@ -151,7 +151,7 @@ public class TeamViewAI: Singleton<TeamViewAI>
     public void ReadInjects()
     {
         // path of injects file
-        string path = "Assets\\Data\\injects.txt";
+        string path = "C:\\ProgramData\\CSEC Visualizer\\injects.txt";
 
         // checks if the file exists
         if (File.Exists(path))

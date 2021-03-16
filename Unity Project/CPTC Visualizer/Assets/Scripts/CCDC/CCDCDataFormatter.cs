@@ -61,7 +61,7 @@ public class CCDCDataFormatter: Singleton<CCDCDataFormatter>
     {
         pMinuteIndex = -1;
         rMinuteIndex = -1;
-        saveLocation = "Assets\\Data\\TestData";
+        saveLocation = "C:\\ProgramData\\CSEC Visualizer\\TestData";
         pullLocation = "https://elasticsearch4.newscrier.org/";
         lastGrab = DateTime.Now;
         lastPull = DateTime.Now;
@@ -222,6 +222,12 @@ public class CCDCDataFormatter: Singleton<CCDCDataFormatter>
             // sets now to the previous
             lastPull = target;
 
+            // First check if the directory exists, or if we need to make it.
+            if (Directory.Exists(saveLocation) == false)
+            {
+                Directory.CreateDirectory(saveLocation);
+            }
+
             // defines the path to save the data to
             string path = saveLocation + "\\" + target.Day + "-" + target.Hour + "-" + target.Minute + "-" + pMinuteIndex + ".txt";
 
@@ -257,6 +263,12 @@ public class CCDCDataFormatter: Singleton<CCDCDataFormatter>
 
             // sets now to the previous
             lastPull = target;
+
+            // First check if the directory exists, or if we need to make it.
+            if (Directory.Exists(saveLocation) == false)
+            {
+                Directory.CreateDirectory(saveLocation);
+            }
 
             // defines the path to save the data to
             string path = saveLocation + "\\" + target.Day + "-" + target.Hour + "-" + target.Minute + "-" + pMinuteIndex + ".txt";
@@ -364,6 +376,12 @@ public class CCDCDataFormatter: Singleton<CCDCDataFormatter>
 
             // temp string to hold the data
             string data = "";
+
+            // First check if the directory exists, or if we need to make it.
+            if (Directory.Exists(saveLocation) == false)
+            {
+                Directory.CreateDirectory(saveLocation);
+            }
 
             // opens and gets all of the data
             using (StreamReader r = File.OpenText(saveLocation + "\\" + target.Day + "-" + target.Hour + "-" + target.Minute + "-" + rMinuteIndex + ".txt"))

@@ -257,8 +257,16 @@ public class CCDCTeamManager: TeamManager
             curatedModified.Add(curatedColors[i]);
         }
 
+        string directoryPath = "C:\\ProgramData\\CSEC Visualizer";
+
+        // First check if the directory exists, or if we need to make it.
+        if (Directory.Exists(directoryPath) == false)
+        {
+            Directory.CreateDirectory(directoryPath);
+        }
+
         // Generates a list of potential names from the file
-        StreamReader reader = new StreamReader("Assets/Data/animalNames.txt");
+        StreamReader reader = new StreamReader(directoryPath + "\\animalNames.txt");
         while (reader.Peek() != -1)
         {
             potentialNames.Add(reader.ReadLine());
@@ -282,7 +290,7 @@ public class CCDCTeamManager: TeamManager
         }
 
         // Writes the selected team names and colors to a file
-        StreamWriter writer = new StreamWriter("Assets/Data/teamNames.txt");
+        StreamWriter writer = new StreamWriter(directoryPath + "\\teamNames.txt");
         for (int i = 0; i < ccdcTeams.Count; i++)
         {
             writer.WriteLine(teamNames[i] + ":" + teamColors[i]);
@@ -300,16 +308,22 @@ public class CCDCTeamManager: TeamManager
         List<string> teamNames = new List<string>();
         List<string> teamColors = new List<string>();
 
-        // Reads the team names and colors from a file
-        StreamReader reader = new StreamReader("Assets/Data/teamNames.txt");
-        while (reader.Peek() != -1)
-        {
-            string[] line = reader.ReadLine().Split(':');
+        string filePath = "C:\\ProgramData\\CSEC Visualizer\\teamNames.txt";
 
-            teamNames.Add(line[0]);
-            teamColors.Add(line[1]);
+        // Reads the team names and colors from a file
+        if (File.Exists(filePath))
+        {
+            StreamReader reader = new StreamReader("Assets/Data/teamNames.txt");
+            while (reader.Peek() != -1)
+            {
+                string[] line = reader.ReadLine().Split(':');
+
+                teamNames.Add(line[0]);
+                teamColors.Add(line[1]);
+            }
+            reader.Close();
         }
-        reader.Close();
+        
 
         Color readColor;
 

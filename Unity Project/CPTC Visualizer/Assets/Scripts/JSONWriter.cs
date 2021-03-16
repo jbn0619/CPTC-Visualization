@@ -357,7 +357,13 @@ public class JSONWriter: MonoBehaviour
     /// </summary>
     private void SaveToJson(CPTCData data)
     {
-        string filePath = "Assets/Data/" + fileName;
+        string filePath = "C:\\ProgramData\\CSEC Visualizer\\" + fileName;
+
+        // First check if the directory exists, or if we need to make it.
+        if (Directory.Exists("C:\\ProgramData\\CSEC Visualizer\\") == false)
+        {
+            Directory.CreateDirectory("C:\\ProgramData\\CSEC Visualizer\\");
+        }
 
         try
         {

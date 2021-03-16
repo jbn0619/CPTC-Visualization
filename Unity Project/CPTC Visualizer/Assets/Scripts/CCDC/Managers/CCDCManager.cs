@@ -158,10 +158,10 @@ public class CCDCManager: Singleton<CCDCManager>
         }
 
         // Create a new Infrastructure and write it to the Json
-        //if (Input.GetKeyDown(KeyCode.Space))
-        //{
-        //    jsonWriter.GenerateData();
-        //}
+        if (Input.GetKeyDown(KeyCode.Period))
+        {
+            jsonWriter.GenerateData();
+        }
 
         // Reads in an infrastructure from the Json
         //if(Input.GetKeyDown(KeyCode.R))

@@ -53,7 +53,7 @@ public class CCDCInfrastructureManager : InfrastructureManager
     /// </summary>
     public override void ReadJson()
     {
-        StreamReader reader = new StreamReader("Assets/Data/data.json");
+        StreamReader reader = new StreamReader("C:\\ProgramData\\CSEC Visualizer\\data.json");
         string input = reader.ReadToEnd();
         reader.Close();
         CPTCData payload = JsonUtility.FromJson<CPTCData>(input);
