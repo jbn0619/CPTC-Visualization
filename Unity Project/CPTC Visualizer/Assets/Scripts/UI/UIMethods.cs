@@ -62,6 +62,14 @@ public class UIMethods: MonoBehaviour
         SceneManager.LoadScene("Data Generator");
     }
 
+    /// <summary>
+    /// When invoked, quits out of the application.
+    /// </summary>
+    public void QuitApplication()
+    {
+        Application.Quit();
+    }
+
     #endregion Main Menu Button Methods
 
     #region Returning to Main Menu Methods
