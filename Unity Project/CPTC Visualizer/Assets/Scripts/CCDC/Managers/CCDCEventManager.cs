@@ -84,7 +84,7 @@ public class CCDCEventManager: EventManager
                             deltas[team.TeamId] += 1;
                             n.IsActive = h.state;
                             Debug.Log("State changed!");
-                            n.UptimeChart.StateChanged();
+                            //n.UptimeChart.StateChanged();
                         }
 
                         if (!n.IsActive)
