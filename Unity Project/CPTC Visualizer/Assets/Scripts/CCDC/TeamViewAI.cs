@@ -52,6 +52,21 @@ public class TeamViewAI: Singleton<TeamViewAI>
     }
     #endregion Properties
 
+    /// <summary>
+    /// Change how this singleton works so that it doesn't leave this scene.
+    /// </summary>
+    public override void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this as TeamViewAI;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
     // Update is called once per frame
     void LateUpdate()
     {

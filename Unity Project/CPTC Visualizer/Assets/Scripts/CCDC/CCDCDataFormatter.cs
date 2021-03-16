@@ -56,6 +56,21 @@ public class CCDCDataFormatter: Singleton<CCDCDataFormatter>
     }
     #endregion Properties
 
+    /// <summary>
+    /// Change how this singleton works so that it doesn't leave this scene.
+    /// </summary>
+    public override void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this as CCDCDataFormatter;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {

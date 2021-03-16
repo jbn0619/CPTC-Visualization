@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CCDCManager: Singleton<CCDCManager>
 {
@@ -112,6 +113,8 @@ public class CCDCManager: Singleton<CCDCManager>
         readDateStarted = false;
         stateCheckCount = 0.0f;
         attackCheckCount = 0.0f;
+
+        
     }
 
     // Update is called once per frame
