@@ -179,7 +179,8 @@ public class NodeData: MonoBehaviour
     /// </summary>
     private void ChangeSprite()
     {
-        Sprite newSprite = GeneralResources.Instance.NodeSprites[(int)type];
+        //Sprite newSprite = GeneralResources.Instance.NodeSprites[(int)type];
+        Sprite newSprite = Resources.Load<Sprite>(type.ToString() + "_Icon");
         nodeSprite.sprite = newSprite;
         nodeSprite.transform.localScale = new Vector3(.15f, .15f, 1);
     }

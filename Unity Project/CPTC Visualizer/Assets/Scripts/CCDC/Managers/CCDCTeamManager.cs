@@ -313,7 +313,7 @@ public class CCDCTeamManager: TeamManager
         // Reads the team names and colors from a file
         if (File.Exists(filePath))
         {
-            StreamReader reader = new StreamReader("Assets/Data/teamNames.txt");
+            StreamReader reader = new StreamReader("C:\\ProgramData\\CSEC Visualizer\\teamNames.txt");
             while (reader.Peek() != -1)
             {
                 string[] line = reader.ReadLine().Split(':');
