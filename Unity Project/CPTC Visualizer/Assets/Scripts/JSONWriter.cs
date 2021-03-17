@@ -200,7 +200,6 @@ public class JSONWriter: MonoBehaviour
         Assets.Scripts.Network genovia = new Assets.Scripts.Network(0, genoviaNodes, null);
 
         // Generate the ShangriLa network.
-
         Node n14 = new Node(13, "No", NodeTypes.HyperV, NodeState.On, null);
         Node n15 = new Node(14, "Yes", NodeTypes.EDMS, NodeState.On, null);
         Node n16 = new Node(15, "Maybe", NodeTypes.DNS, NodeState.On, null);
@@ -266,8 +265,7 @@ public class JSONWriter: MonoBehaviour
         genoviaNodes.Add(n13);
         Assets.Scripts.Network genovia = new Assets.Scripts.Network(0, genoviaNodes, null);
 
-        // Generate the ShangriLa network.
-        
+        // Generate the ShangriLa network. 
         Node n14 = new Node(13, "172.17.4X.1", NodeTypes.MailExchange, NodeState.On, null);
         Node n15 = new Node(14, "172.17.4X.2", NodeTypes.Fileshare, NodeState.On, null);
         Node n16 = new Node(15, "172.17.4X.10", NodeTypes.Workstation, NodeState.On, null);
