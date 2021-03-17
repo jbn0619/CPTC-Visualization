@@ -91,7 +91,7 @@ public class CCDCTeamData: TeamData
 
                 // Move the node to another position based-on a radial position.
                 infraCopy.Networks[i].Nodes[j].gameObject.transform.position = infraCopy.Networks[i].gameObject.transform.position + new Vector3(Mathf.Cos(angle) * radius, Mathf.Sin(angle) * radius, 0) + new Vector3(0, 0, 0);
-                infraCopy.Networks[i].Nodes[j].gameObject.transform.localScale = new Vector2(.5f, .5f);
+                infraCopy.Networks[i].Nodes[j].gameObject.transform.localScale = new Vector2(.75f, .75f);
 
                 // If the node gets shut down, then disable it (for now).
                 infraCopy.Networks[i].Nodes[j].gameObject.SetActive(infraCopy.Networks[i].Nodes[j].IsActive);
