@@ -52,7 +52,16 @@ public class JSONWriter: MonoBehaviour
     
     #region Properties
 
-
+    /// <summary>
+    /// Gets the currently-selected generator type.
+    /// </summary>
+    public InfraGenType GenType
+    {
+        get
+        {
+            return genType;
+        }
+    }
     
     #endregion Properties
     
