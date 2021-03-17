@@ -79,20 +79,18 @@ public class CCDCTeamData: TeamData
             float radius = infraCopy.Networks.Count / 1.5f;
             float angle = i * Mathf.PI * 2f / infraCopy.Networks.Count;
 
-            infraCopy.Networks[i].gameObject.transform.position = infraCopy.gameObject.transform.position + new Vector3(Mathf.Cos(angle + 48.06f) * radius, Mathf.Sin(angle + 48.06f) * radius, 0);
-            //infraCopy.Networks[i].gameObject.transform.position = infraCopy.gameObject.transform.position + new Vector3((-4) + 3 * i, 0, 0);
             infraCopy.Networks[i].gameObject.transform.localScale = new Vector2(0.5f, 0.5f);
 
-            float nodeRadius = infraCopy.Networks.Count / (radius * 1.5f);
+            float nodeRadius = infraCopy.Networks[i].Nodes.Count / (radius * 1.5f);
 
             // Place each of the netowrk's nodes around in a circle.
             for (int j = 0; j < infraCopy.Networks[i].Nodes.Count; j++)
             {
-                radius = nodeRadius;
+                radius = nodeRadius - (0.05f * infraCopy.Networks[i].Nodes.Count);
                 angle = j * Mathf.PI * 2f / infraCopy.Networks[i].Nodes.Count;
 
                 // Move the node to another position based-on a radial position.
-                infraCopy.Networks[i].Nodes[j].gameObject.transform.position = infraCopy.Networks[i].gameObject.transform.position + new Vector3(Mathf.Cos(angle) * radius, Mathf.Sin(angle) * radius, 0) + new Vector3(-0.15f, 0, 0);
+                infraCopy.Networks[i].Nodes[j].gameObject.transform.position = infraCopy.Networks[i].gameObject.transform.position + new Vector3(Mathf.Cos(angle) * radius, Mathf.Sin(angle) * radius, 0) + new Vector3(0, 0, 0);
                 infraCopy.Networks[i].Nodes[j].gameObject.transform.localScale = new Vector2(.5f, .5f);
 
                 // If the node gets shut down, then disable it (for now).

@@ -283,7 +283,7 @@ public class CCDCInfrastructureManager : InfrastructureManager
 
             // Edit the network's lineRenderer to re-size it to encompase the node sprites.
             float nodeRadius = infrastructure.Networks[i].Nodes.Count / (radius * 1.5f);
-            GenerateNetworkOutline(infrastructure.Networks[i], nodeRadius + 0.5f);
+            GenerateNetworkOutline(infrastructure.Networks[i], nodeRadius + 0.75f);
 
             // Place each of the netowrk's nodes around in a circle.
             for (int j = 0; j < infrastructure.Networks[i].Nodes.Count; j++)
@@ -292,7 +292,7 @@ public class CCDCInfrastructureManager : InfrastructureManager
                 angle = j * Mathf.PI * 2f / infrastructure.Networks[i].Nodes.Count;
 
                 // Move the node to another position based-on a radial position.
-                infrastructure.Networks[i].Nodes[j].gameObject.transform.position = infrastructure.Networks[i].gameObject.transform.position + new Vector3(Mathf.Cos(angle) * radius, Mathf.Sin(angle) * radius, 0) + new Vector3(-0.15f, 0, 0);
+                infrastructure.Networks[i].Nodes[j].gameObject.transform.position = infrastructure.Networks[i].gameObject.transform.position + new Vector3(Mathf.Cos(angle) * radius, Mathf.Sin(angle) * radius, 0) + new Vector3(0, 0, 0);
 
                 // Next, place an uptime chart that corresponds to this node.
                 UptimeChartData newChart = Instantiate(uptimeChartGO, emptyObj.transform);
