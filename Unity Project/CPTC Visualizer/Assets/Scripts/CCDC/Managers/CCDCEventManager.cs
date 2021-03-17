@@ -180,7 +180,7 @@ public class CCDCEventManager: EventManager
     public void ReadAttacksJSON()
     {
         notificationCanvas.gameObject.SetActive(true);
-        StreamReader reader = new StreamReader("C:\\ProgramData\\CSEC Visualizer\\TestData\\attacks.json");
+        StreamReader reader = new StreamReader("C:\\ProgramData\\CSEC Visualizer\\attacks.json");
         string input = reader.ReadToEnd();
         reader.Close();
 
