@@ -127,7 +127,10 @@ public class CCDCManager: Singleton<CCDCManager>
 
             foreach(TeamViewButton button in teamManager.TeamViewButtons)
             {
-                button.gameObject.SetActive(!button.gameObject.activeSelf);
+                if (button != null)
+                {
+                    button.gameObject.SetActive(!button.gameObject.activeSelf);
+                }
             }
         }
 
