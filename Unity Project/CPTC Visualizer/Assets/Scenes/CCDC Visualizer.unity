@@ -192,7 +192,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &204079911
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -980,7 +980,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &768112509
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1140,7 +1140,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &942982950
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1514,7 +1514,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &1716076596
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1890,6 +1890,7 @@ MonoBehaviour:
   teamGO: {fileID: -2306607069526090344, guid: ae1f0d3db058a7745a2ae8f752147724, type: 3}
   alertGO: {fileID: 5410984709795667232, guid: ec4b4fd374482e4498b9b14e33b1c0fe, type: 3}
   connectionGO: {fileID: 6558307667720637234, guid: 33dbeb45e25272a45b81cc111b75d023, type: 3}
+  writer: {fileID: 607337993}
   uptimeChartGO: {fileID: 7325014389535617952, guid: b0c5ee22a435eda4e89c5c1b55134082, type: 3}
   ccdcNodeGO: {fileID: 4955158801280841044, guid: af7f754801312eb41880f040fdc16821, type: 3}
 --- !u!1001 &2899488834746074986

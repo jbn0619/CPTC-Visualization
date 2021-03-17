@@ -13,6 +13,9 @@ public class CCDCInfrastructureManager : InfrastructureManager
     #region Fields
 
     [SerializeField]
+    private JSONWriter writer;
+
+    [SerializeField]
     private UptimeChartData uptimeChartGO;
     [SerializeField]
     private CCDCNodeData ccdcNodeGO;
@@ -273,7 +276,15 @@ public class CCDCInfrastructureManager : InfrastructureManager
         // Place each network first, then place nodes around them.
         for (int i = 0; i < infrastructure.Networks.Count; i++)
         {
-            float radius = infrastructure.Networks.Count / 1.15f;
+            float radius = 0;
+            if (writer.GenType == InfraGenType.BillStackpole)
+            {
+                radius = 3;
+            }
+            else
+            {
+                radius = infrastructure.Networks.Count / 1.15f;
+            }
             float angle = i * Mathf.PI * 2f / infrastructure.Networks.Count;
 
             // Move the network to another position based-on a..radial position?
