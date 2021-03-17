@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CCDCManager: Singleton<CCDCManager>
 {
@@ -91,21 +92,6 @@ public class CCDCManager: Singleton<CCDCManager>
 
     #endregion Properties
 
-    /// <summary>
-    /// Change how this singleton works so that it doesn't leave this scene.
-    /// </summary>
-    public override void Awake()
-    {
-        if (instance == null)
-        {
-            instance = this as CCDCManager;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
-
     // Start is called before the first frame update
     void Start()
     {
@@ -172,10 +158,10 @@ public class CCDCManager: Singleton<CCDCManager>
         }
 
         // Create a new Infrastructure and write it to the Json
-        //if (Input.GetKeyDown(KeyCode.Space))
-        //{
-        //    jsonWriter.GenerateData();
-        //}
+        if (Input.GetKeyDown(KeyCode.Period))
+        {
+            jsonWriter.GenerateData();
+        }
 
         // Reads in an infrastructure from the Json
         //if(Input.GetKeyDown(KeyCode.R))

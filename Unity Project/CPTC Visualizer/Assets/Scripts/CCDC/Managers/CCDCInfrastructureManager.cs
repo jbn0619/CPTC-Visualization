@@ -53,7 +53,7 @@ public class CCDCInfrastructureManager : InfrastructureManager
     /// </summary>
     public override void ReadJson()
     {
-        StreamReader reader = new StreamReader("Assets/Data/data.json");
+        StreamReader reader = new StreamReader("C:\\ProgramData\\CSEC Visualizer\\data.json");
         string input = reader.ReadToEnd();
         reader.Close();
         CPTCData payload = JsonUtility.FromJson<CPTCData>(input);
@@ -196,7 +196,7 @@ public class CCDCInfrastructureManager : InfrastructureManager
                     UptimeChartData newChart = Instantiate(uptimeChartGO, emptyObj.transform);
 
                     ((CCDCNodeData)currentNode).UptimeChart = newChart;
-                    newChart.gameObject.transform.position = newInfra.AllNodes[k].gameObject.transform.position + new Vector3(0.35f, 0, 0);
+                    newChart.gameObject.transform.position = newInfra.AllNodes[k].gameObject.transform.position + new Vector3(0.5f, 0, 0);
                     newChart.gameObject.transform.localScale = new Vector2(0.002f, 0.008f);
                     newChart.NodeID = newInfra.AllNodes[k].Id;
                     newChart.TeamID = team.TeamId;
@@ -273,17 +273,17 @@ public class CCDCInfrastructureManager : InfrastructureManager
         // Place each network first, then place nodes around them.
         for (int i = 0; i < infrastructure.Networks.Count; i++)
         {
-            float radius = infrastructure.Networks.Count / 1.5f;
+            float radius = infrastructure.Networks.Count / 1.15f;
             float angle = i * Mathf.PI * 2f / infrastructure.Networks.Count;
 
             // Move the network to another position based-on a..radial position?
             infrastructure.Networks[i].gameObject.transform.position = infrastructure.gameObject.transform.position + new Vector3(Mathf.Cos(angle + 48.06f) * radius, Mathf.Sin(angle + 48.06f) * radius, 0);
             //infrastructure.Networks[i].gameObject.transform.position = infrastructure.gameObject.transform.position + new Vector3((-4) + 3 * i, 0, 0);
-            infrastructure.Networks[i].gameObject.transform.localScale = new Vector2(0.5f, 0.5f);
+            infrastructure.Networks[i].gameObject.transform.localScale = new Vector2(.75f, .75f);
 
             // Edit the network's lineRenderer to re-size it to encompase the node sprites.
-            float nodeRadius = infrastructure.Networks.Count / (radius * 1.5f);
-            GenerateNetworkOutline(infrastructure.Networks[i], nodeRadius + 0.5f);
+            float nodeRadius = infrastructure.Networks[i].Nodes.Count / (radius * 1.5f);
+            GenerateNetworkOutline(infrastructure.Networks[i], nodeRadius + 0.75f);
 
             // Place each of the netowrk's nodes around in a circle.
             for (int j = 0; j < infrastructure.Networks[i].Nodes.Count; j++)
@@ -292,12 +292,12 @@ public class CCDCInfrastructureManager : InfrastructureManager
                 angle = j * Mathf.PI * 2f / infrastructure.Networks[i].Nodes.Count;
 
                 // Move the node to another position based-on a radial position.
-                infrastructure.Networks[i].Nodes[j].gameObject.transform.position = infrastructure.Networks[i].gameObject.transform.position + new Vector3(Mathf.Cos(angle) * radius, Mathf.Sin(angle) * radius, 0) + new Vector3(-0.15f, 0, 0);
+                infrastructure.Networks[i].Nodes[j].gameObject.transform.position = infrastructure.Networks[i].gameObject.transform.position + new Vector3(Mathf.Cos(angle) * radius, Mathf.Sin(angle) * radius, 0) + new Vector3(0, 0, 0);
 
                 // Next, place an uptime chart that corresponds to this node.
                 UptimeChartData newChart = Instantiate(uptimeChartGO, emptyObj.transform);
-                newChart.gameObject.transform.position = infrastructure.Networks[i].Nodes[j].gameObject.transform.position + new Vector3(.35f, 0, 0);
-                newChart.gameObject.transform.localScale = new Vector2(0.002f, 0.008f);
+                newChart.gameObject.transform.position = infrastructure.Networks[i].Nodes[j].gameObject.transform.position + new Vector3(.75f, 0, 0);
+                newChart.gameObject.transform.localScale = new Vector2(0.004f, 0.016f);
                 newChart.NodeID = infrastructure.Networks[i].Nodes[j].Id;
                 newChart.TeamID = -1;
                 uptimeCharts.Add(newChart);

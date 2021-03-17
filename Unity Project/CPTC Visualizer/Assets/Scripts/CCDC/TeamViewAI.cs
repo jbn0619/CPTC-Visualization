@@ -52,6 +52,21 @@ public class TeamViewAI: Singleton<TeamViewAI>
     }
     #endregion Properties
 
+    /// <summary>
+    /// Change how this singleton works so that it doesn't leave this scene.
+    /// </summary>
+    public override void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this as TeamViewAI;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
     // Update is called once per frame
     void LateUpdate()
     {
@@ -131,7 +146,7 @@ public class TeamViewAI: Singleton<TeamViewAI>
     public void ReadInjects()
     {
         // path of injects file
-        string path = "Assets\\Data\\injects.txt";
+        string path = "C:\\ProgramData\\CSEC Visualizer\\injects.txt";
 
         // checks if the file exists
         if (File.Exists(path))

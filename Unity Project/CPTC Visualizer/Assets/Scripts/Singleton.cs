@@ -11,6 +11,9 @@ public class Singleton<T>: MonoBehaviour where T : Component
     #region Fields
 
     protected static T instance;
+
+    [SerializeField]
+    private bool stayInScene;
     
     #endregion Fields
     
@@ -48,14 +51,28 @@ public class Singleton<T>: MonoBehaviour where T : Component
     /// </summary>
     public virtual void Awake()
     {
-        if (instance == null)
+        if (stayInScene)
         {
-            instance = this as T;
-            DontDestroyOnLoad(this.gameObject);
+            if (instance == null)
+            {
+                instance = this as T;
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
         }
         else
         {
-            Destroy(gameObject);
+            if (instance == null)
+            {
+                instance = this as T;
+                DontDestroyOnLoad(this.gameObject);
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
         }
     }
 }
