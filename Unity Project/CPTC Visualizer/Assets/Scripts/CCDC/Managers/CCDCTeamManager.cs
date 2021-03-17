@@ -213,6 +213,7 @@ public class CCDCTeamManager: TeamManager
         // Create each button, then edit their index and text fields.
         if (UIManager.Instance.ActiveCanvas != null)
         {
+            Debug.Log(ccdcTeams.Count);
             for (int i = 0; i < ccdcTeams.Count + 1; i++)
             {
                 TeamViewButton newButton = Instantiate(teamViewButGO, UIManager.Instance.ActiveCanvas.transform);
