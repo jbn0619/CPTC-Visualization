@@ -214,9 +214,22 @@ public class CCDCInfrastructureManager : InfrastructureManager
             {
                 NodeData currentNode = newInfra.AllNodes[k];
                 string ip = currentNode.Ip;
+                ip = "dns-dc-corp-teamX";
                 string teamNum = (i + 1).ToString();
-                int xIndex = ip.IndexOf('X');
+                int xIndex = ip.Length - 1;
 
+                string part1 = ip.Substring(0, xIndex);
+                string part2 = teamNum;
+                if (teamNum.Length == 1) part2 = "0" + teamNum;
+                string result = part1 + part2;
+
+                team.InfraCopy = newInfra;
+
+                // Create the team's graph, then hide it for later.
+                team.BuildTeamGraph();
+                team.InfraCopy.gameObject.SetActive(false);
+
+                /*
                 // Check if we meet the conditions to change the number behind the X-character (if one exists).
                 if (i == 9 && ip[xIndex - 1] != '.')
                 {
@@ -241,13 +254,8 @@ public class CCDCInfrastructureManager : InfrastructureManager
 
                     currentNode.Ip = result;
                 }
+                */
             }
-
-            team.InfraCopy = newInfra;
-
-            // Create the team's graph, then hide it for later.
-            team.BuildTeamGraph();
-            team.InfraCopy.gameObject.SetActive(false);
         }
     }
 

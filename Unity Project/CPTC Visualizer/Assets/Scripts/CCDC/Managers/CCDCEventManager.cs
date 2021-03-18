@@ -201,6 +201,12 @@ public class CCDCEventManager: EventManager
     {
         if (ip.Length > 0)
         {
+            string teamToAttack = ip.Substring(ip.Length - 3, 2);
+            int.TryParse(teamToAttack, out int recipient);
+
+            return recipient - 1;
+
+            /*
             // Cut out the beginning of the string, as it doesn't matter.
             string teamToAttack = ip.Substring(secondPeriodIndex, 3);
 
@@ -214,6 +220,7 @@ public class CCDCEventManager: EventManager
             int.TryParse(teamToAttack, out int recipient);
 
             return recipient - 1;
+            */
         }
         return -1;
     }
