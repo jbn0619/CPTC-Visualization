@@ -19,6 +19,8 @@ public abstract class TeamManager : MonoBehaviour
     [SerializeField]
     protected Text teamViewLabel;
     [SerializeField]
+    protected Image teamViewNameplate;
+    [SerializeField]
     protected TeamViewButton teamViewButGO;
     protected List<TeamViewButton> teamViewButtons;
 
