@@ -248,6 +248,7 @@ public class JSONWriter: MonoBehaviour
         Node n6 = new Node(6, "172.16.X.8", NodeTypes.SecureDrop, NodeState.On, null);
         Node n7 = new Node(7, "172.16.X.9", NodeTypes.SecureDrop, NodeState.On, null);
         Node n8 = new Node(8, "172.16.X.11", NodeTypes.SecureDrop, NodeState.On, null);
+        Node n9 = new Node(9, "172.30.X.4", NodeTypes.WWW, NodeState.On, null);
         List <Node> coreNodes = new List<Node>();
         coreNodes.Add(n0);
         coreNodes.Add(n1);
@@ -258,50 +259,51 @@ public class JSONWriter: MonoBehaviour
         coreNodes.Add(n6);
         coreNodes.Add(n7);
         coreNodes.Add(n8);
+        coreNodes.Add(n9);
         Assets.Scripts.Network core = new Assets.Scripts.Network(0, coreNodes, null);
 
         // Generate the Genovia network.
-        Node n9 = new Node(6, "172.17.2X.2", NodeTypes.MailExchange, NodeState.On, null);
-        Node n10 = new Node(7, "172.17.2X.3", NodeTypes.Fileshare, NodeState.On, null);
-        Node n11 = new Node(8, "172.17.2X.10", NodeTypes.Workstation, NodeState.On, null);
-        Node n12 = new Node(9, "172.17.2X.11", NodeTypes.Workstation, NodeState.On, null);
-        Node n13 = new Node(10, "172.17.2X.12", NodeTypes.RootWorkstation, NodeState.On, null);
+        Node n10 = new Node(10, "172.17.2X.2", NodeTypes.MailExchange, NodeState.On, null);
+        Node n11 = new Node(11, "172.17.2X.3", NodeTypes.Fileshare, NodeState.On, null);
+        Node n12 = new Node(12, "172.17.2X.10", NodeTypes.Workstation, NodeState.On, null);
+        Node n13 = new Node(13, "172.17.2X.11", NodeTypes.Workstation, NodeState.On, null);
+        Node n14 = new Node(14, "172.17.2X.12", NodeTypes.RootWorkstation, NodeState.On, null);
         List <Node> genoviaNodes = new List<Node>();
-        genoviaNodes.Add(n9);
         genoviaNodes.Add(n10);
         genoviaNodes.Add(n11);
         genoviaNodes.Add(n12);
         genoviaNodes.Add(n13);
+        genoviaNodes.Add(n14);
         Assets.Scripts.Network genovia = new Assets.Scripts.Network(0, genoviaNodes, null);
 
         // Generate the ShangriLa network. 
-        Node n14 = new Node(13, "172.17.4X.1", NodeTypes.MailExchange, NodeState.On, null);
-        Node n15 = new Node(14, "172.17.4X.2", NodeTypes.Fileshare, NodeState.On, null);
-        Node n16 = new Node(15, "172.17.4X.10", NodeTypes.Workstation, NodeState.On, null);
-        Node n17 = new Node(16, "172.17.4X.11", NodeTypes.Workstation, NodeState.On, null);
-        Node n18 = new Node(17, "172.17.4X.12", NodeTypes.RootWorkstation, NodeState.On, null);
+        Node n15 = new Node(15, "172.17.4X.1", NodeTypes.MailExchange, NodeState.On, null);
+        Node n16 = new Node(16, "172.17.4X.2", NodeTypes.Fileshare, NodeState.On, null);
+        Node n17 = new Node(17, "172.17.4X.10", NodeTypes.Workstation, NodeState.On, null);
+        Node n18 = new Node(18, "172.17.4X.11", NodeTypes.Workstation, NodeState.On, null);
+        Node n19 = new Node(19, "172.17.4X.12", NodeTypes.RootWorkstation, NodeState.On, null);
         List <Node> shangNodes = new List<Node>();
-        shangNodes.Add(n14);
         shangNodes.Add(n15);
         shangNodes.Add(n16);
         shangNodes.Add(n17);
         shangNodes.Add(n18);
+        shangNodes.Add(n19);
         Assets.Scripts.Network shangriLa = new Assets.Scripts.Network(0, shangNodes, null);
 
         // Generate the Gildead network.
-        Node n19 = new Node(18, "172.17.6X.1", NodeTypes.MailExchange, NodeState.On, null);
-        Node n20 = new Node(19, "172.17.6X.2", NodeTypes.Fileshare, NodeState.On, null);
-        Node n21 = new Node(20, "172.17.6X.10", NodeTypes.Workstation, NodeState.On, null);
-        Node n22 = new Node(21, "172.17.6X.11", NodeTypes.Workstation, NodeState.On, null);
-        Node n23 = new Node(22, "172.17.6X.12", NodeTypes.RootWorkstation, NodeState.On, null);
-        Node n24 = new Node(23, "172.17.6X.200", NodeTypes.SecuredServer, NodeState.On, null);
+        Node n20 = new Node(20, "172.17.6X.1", NodeTypes.MailExchange, NodeState.On, null);
+        Node n21 = new Node(21, "172.17.6X.2", NodeTypes.Fileshare, NodeState.On, null);
+        Node n22 = new Node(22, "172.17.6X.10", NodeTypes.Workstation, NodeState.On, null);
+        Node n23 = new Node(23, "172.17.6X.11", NodeTypes.Workstation, NodeState.On, null);
+        Node n24 = new Node(24, "172.17.6X.12", NodeTypes.RootWorkstation, NodeState.On, null);
+        Node n25 = new Node(25, "172.17.6X.200", NodeTypes.SecuredServer, NodeState.On, null);
         List <Node> gileadNodes = new List<Node>();
-        gileadNodes.Add(n19);
         gileadNodes.Add(n20);
         gileadNodes.Add(n21);
         gileadNodes.Add(n22);
         gileadNodes.Add(n23);
         gileadNodes.Add(n24);
+        gileadNodes.Add(n25);
         Assets.Scripts.Network gilead = new Assets.Scripts.Network(0, gileadNodes, null);
 
         List<Assets.Scripts.Network> networks = new List<Assets.Scripts.Network>();

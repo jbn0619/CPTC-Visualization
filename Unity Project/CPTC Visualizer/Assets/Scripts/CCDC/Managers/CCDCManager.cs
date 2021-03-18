@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class CCDCManager: Singleton<CCDCManager>
 {
@@ -20,6 +21,19 @@ public class CCDCManager: Singleton<CCDCManager>
     private CCDCInjectNotifManager injectNotifManager;
     [SerializeField]
     private VideoManager videoManager;
+    
+    [Header("Public Facing Timers")]
+    [SerializeField]
+    private GameObject showTimerBanner;
+    [SerializeField]
+    private float timeUntilShow;
+    [SerializeField]
+    private Text timeUntilShowText;
+    [SerializeField]
+    private float elapsedTime;
+    [SerializeField]
+    private Text elapsedTimeText;
+
 
     public GameObject notificationControls;
 
@@ -98,6 +112,8 @@ public class CCDCManager: Singleton<CCDCManager>
         readDateStarted = false;
         stateCheckCount = 0.0f;
         attackCheckCount = 0.0f;
+        elapsedTime = 0.0f;
+        timeUntilShow = 0.0f;
     }
 
     // Update is called once per frame
@@ -105,11 +121,19 @@ public class CCDCManager: Singleton<CCDCManager>
     {
         // Check if we need to read node states.
         stateCheckCount += Time.deltaTime;
-        if (stateCheckCount >= stateCheckTime
-            && readDateStarted)
+
+        if(readDateStarted)
         {
-            stateCheckCount = 0.0f;
-            eventManager.ReadNodeStateJSON();
+            // Timer stuff
+            elapsedTime += Time.deltaTime;
+            elapsedTimeText.text = "Elapsed Time: " + Mathf.FloorToInt(elapsedTime /3600) + ":" + Mathf.FloorToInt(elapsedTime / 60 % 60) + ":" + Mathf.FloorToInt(elapsedTime % 60);
+
+            // Update nodes
+            if (stateCheckCount >= stateCheckTime)
+            {
+                stateCheckCount = 0.0f;
+                eventManager.ReadNodeStateJSON();
+            }
         }
 
         // Check if we need to read attacks.
