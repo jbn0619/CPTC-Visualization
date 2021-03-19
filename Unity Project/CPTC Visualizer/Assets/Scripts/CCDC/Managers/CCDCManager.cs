@@ -223,7 +223,7 @@ public class CCDCManager: Singleton<CCDCManager>
             if(!showTimerStarted)
             {
                 showTimerStarted = true;
-                timeUntilShow = 15 * 60;
+                timeUntilShow = 30 * 60;
                 showNotifBanner.gameObject.SetActive(true);
             }
             else

@@ -89,7 +89,8 @@ public class CCDCInjectNotifManager : MonoBehaviour
         {
             if(addedIndex == -1)
             {
-                if (System.DateTime.Now.ToShortTimeString() == waitingInjects[i].Timestamp)
+                //System.DateTime.Now.ToShortTimeString() == waitingInjects[i].Timestamp)
+                if (TeamViewAI.Instance.CheckInject(waitingInjects[i]))
                 {
                     if (numActiveInjects < 6)
                     {
