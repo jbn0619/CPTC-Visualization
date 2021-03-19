@@ -215,8 +215,16 @@ public class CCDCTeamManager: TeamManager
         // Create each button, then edit their index and text fields.
         if (UIManager.Instance.ActiveCanvas != null)
         {
+            // Generate a list of possible locations
+            List<int> possibleLocs = new List<int>();
+            for (int i = 0; i < ccdcTeams.Count; i++)
+            {
+                possibleLocs.Add((Screen.width / ccdcTeams.Count / 2) + ((Screen.width / ccdcTeams.Count) * i));
+                //Debug.Log(possibleLocs[i]);
+            }
+
             Debug.Log(ccdcTeams.Count);
-            for (int i = 0; i < ccdcTeams.Count + 1; i++)
+            for (int i = 0; i < ccdcTeams.Count; i++)
             {
                 TeamViewButton newButton = Instantiate(teamViewButGO, UIManager.Instance.ActiveCanvas.transform);
                 if (i == ccdcTeams.Count)
@@ -233,7 +241,10 @@ public class CCDCTeamManager: TeamManager
                 }
 
                 // Finally, move the button to its proper spot and add it to teamViewButtons.
-                newButton.gameObject.transform.position = new Vector3(105 + (i * 180), Screen.height - 75, 0);
+                //newButton.gameObject.transform.position = new Vector3(105 + (i * 180), Screen.height - 75, 0);
+                int index = Random.Range(0, possibleLocs.Count);
+                newButton.gameObject.transform.position = new Vector3(possibleLocs[index], Screen.height - 75, 0);
+                possibleLocs.RemoveAt(index);
                 teamViewButtons.Add(newButton);
             }
         }
