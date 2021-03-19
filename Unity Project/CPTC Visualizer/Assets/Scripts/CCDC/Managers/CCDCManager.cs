@@ -233,29 +233,11 @@ public class CCDCManager: Singleton<CCDCManager>
             }
         }
 
-        // Reads in an infrastructure from the Json
-        //if(Input.GetKeyDown(KeyCode.R))
-        //{
-        //    infraManager.ReadJson();
-        //}
-
         // Generates team names and colors
         //if(Input.GetKeyDown(KeyCode.C))
         //{
         //    teamManager.GenerateTeamNames();
         //    teamManager.ReadTeams();
-        //}
-
-        // Create a test inject ot be displayed
-        //if(Input.GetKeyDown(KeyCode.I))
-        //{
-        //    injectNotifManager.CreateTestInject();
-        //}
-
-        // Reads attacks json and spawns notifications
-        //if(Input.GetKeyDown(KeyCode.P))
-        //{
-        //    eventManager.ReadAttacksJSON();
         //}
     }
 }

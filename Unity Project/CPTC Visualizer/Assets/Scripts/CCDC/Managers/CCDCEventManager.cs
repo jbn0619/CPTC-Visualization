@@ -91,7 +91,7 @@ public class CCDCEventManager: EventManager
                 foreach (CCDCNodeData n in team.InfraCopy.AllNodes)
                 {
                     // If the IP addresses match, then update the uptime chart.
-                    if (n.Ip == h.IP)
+                    if (n.Ip == h.name)
                     {
                         n.UptimeChart.UpdateData(h.state);
 
