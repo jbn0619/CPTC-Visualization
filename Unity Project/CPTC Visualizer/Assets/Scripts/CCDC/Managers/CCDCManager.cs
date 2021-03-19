@@ -30,6 +30,9 @@ public class CCDCManager: Singleton<CCDCManager>
     [SerializeField]
     private Text timeUntilShowText;
     [SerializeField]
+    private GameObject showNotifBanner;
+    private bool showTimerStarted;
+    [SerializeField]
     private float elapsedTime;
     [SerializeField]
     private Text elapsedTimeText;
@@ -112,6 +115,7 @@ public class CCDCManager: Singleton<CCDCManager>
     {
         readDateStarted = false;
         compStarted = false;
+        showTimerStarted = false;
         stateCheckCount = 0.0f;
         attackCheckCount = 0.0f;
         elapsedTime = 0.0f;
@@ -128,7 +132,27 @@ public class CCDCManager: Singleton<CCDCManager>
         {
             // Timer stuff
             elapsedTime += Time.deltaTime;
-            elapsedTimeText.text = "Elapsed Time: " + Mathf.FloorToInt(elapsedTime /3600) + ":" + Mathf.FloorToInt(elapsedTime / 60 % 60) + ":" + Mathf.FloorToInt(elapsedTime % 60);
+            elapsedTimeText.text = "Elapsed Time: " + string.Format("{00}:{1:00}:{2:00}",
+                Mathf.FloorToInt(elapsedTime / 3600),
+                Mathf.FloorToInt(elapsedTime / 60 % 60),
+                Mathf.FloorToInt(elapsedTime % 60));
+
+            // Show Starting Timer
+            if (showTimerStarted)
+            {
+                if(timeUntilShow > 0)
+                {
+                    timeUntilShow -= Time.deltaTime;
+                    timeUntilShowText.text = "Show starting in aproximately " + string.Format("{00}:{1:00}",
+                        Mathf.FloorToInt(timeUntilShow / 60 % 60),
+                        Mathf.FloorToInt(timeUntilShow % 60));
+                }
+                else
+                {
+                    timeUntilShowText.text = "Show starting soon!";
+                }
+
+            }
 
             // Update nodes
             if (stateCheckCount >= stateCheckTime)
@@ -191,6 +215,22 @@ public class CCDCManager: Singleton<CCDCManager>
         if (Input.GetKeyDown(KeyCode.Period))
         {
             jsonWriter.GenerateData();
+        }
+
+        // Starts or stops the Time Until Show notification
+        if(Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            if(!showTimerStarted)
+            {
+                showTimerStarted = true;
+                timeUntilShow = 15 * 60;
+                showNotifBanner.gameObject.SetActive(true);
+            }
+            else
+            {
+                showTimerStarted = false;
+                showNotifBanner.gameObject.SetActive(false);
+            }
         }
 
         // Reads in an infrastructure from the Json
