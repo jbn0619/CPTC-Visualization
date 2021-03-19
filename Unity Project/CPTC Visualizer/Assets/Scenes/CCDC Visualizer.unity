@@ -294,7 +294,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0.012562}
-  m_SizeDelta: {x: 1080, y: 1920}
+  m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &283902560
 MonoBehaviour:
@@ -2305,7 +2305,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2899488834429760476, guid: 96ab3e4558e76414a9498393e3e8da06, type: 3}
       propertyPath: injectVideos.Array.size
-      value: 3
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 2899488834429760476, guid: 96ab3e4558e76414a9498393e3e8da06, type: 3}
       propertyPath: attackVideos.Array.data[0]
@@ -2330,15 +2330,51 @@ PrefabInstance:
     - target: {fileID: 2899488834429760476, guid: 96ab3e4558e76414a9498393e3e8da06, type: 3}
       propertyPath: injectVideos.Array.data[0]
       value: 
-      objectReference: {fileID: 32900000, guid: c714804ddc2553141956242cc14794f5, type: 3}
+      objectReference: {fileID: 32900000, guid: e5bc54dddef68604f9ac147a716e9f27, type: 3}
     - target: {fileID: 2899488834429760476, guid: 96ab3e4558e76414a9498393e3e8da06, type: 3}
       propertyPath: injectVideos.Array.data[1]
       value: 
-      objectReference: {fileID: 32900000, guid: af468e3e284d5a84d8b9791ac1540dff, type: 3}
+      objectReference: {fileID: 32900000, guid: 7b83e837bf244df408533f2d1d08a012, type: 3}
     - target: {fileID: 2899488834429760476, guid: 96ab3e4558e76414a9498393e3e8da06, type: 3}
       propertyPath: injectVideos.Array.data[2]
       value: 
-      objectReference: {fileID: 32900000, guid: ad3cee3dc5c3852479d74347d50b2282, type: 3}
+      objectReference: {fileID: 32900000, guid: d6452d6b9e9b3a241bb910f488c59e64, type: 3}
+    - target: {fileID: 2899488834429760476, guid: 96ab3e4558e76414a9498393e3e8da06, type: 3}
+      propertyPath: injectVideos.Array.data[3]
+      value: 
+      objectReference: {fileID: 32900000, guid: 9457ffbd1035ec94db2f4a9f5bf1bac5, type: 3}
+    - target: {fileID: 2899488834429760476, guid: 96ab3e4558e76414a9498393e3e8da06, type: 3}
+      propertyPath: injectVideos.Array.data[4]
+      value: 
+      objectReference: {fileID: 32900000, guid: 600704f24b7c06e43b0a2f52b78b85b1, type: 3}
+    - target: {fileID: 2899488834429760476, guid: 96ab3e4558e76414a9498393e3e8da06, type: 3}
+      propertyPath: injectVideos.Array.data[5]
+      value: 
+      objectReference: {fileID: 32900000, guid: 18e8bfbcf7332f04883a907484c5d657, type: 3}
+    - target: {fileID: 2899488834429760476, guid: 96ab3e4558e76414a9498393e3e8da06, type: 3}
+      propertyPath: injectVideos.Array.data[6]
+      value: 
+      objectReference: {fileID: 32900000, guid: 84eee423afd4bb8459a1bf89fe78c6a6, type: 3}
+    - target: {fileID: 2899488834429760476, guid: 96ab3e4558e76414a9498393e3e8da06, type: 3}
+      propertyPath: injectVideos.Array.data[7]
+      value: 
+      objectReference: {fileID: 32900000, guid: fb71002594eb5aa46b07b64f59cd1a09, type: 3}
+    - target: {fileID: 2899488834429760476, guid: 96ab3e4558e76414a9498393e3e8da06, type: 3}
+      propertyPath: injectVideos.Array.data[8]
+      value: 
+      objectReference: {fileID: 32900000, guid: efb8591490f28ad43858e66da136851d, type: 3}
+    - target: {fileID: 2899488834429760476, guid: 96ab3e4558e76414a9498393e3e8da06, type: 3}
+      propertyPath: injectVideos.Array.data[9]
+      value: 
+      objectReference: {fileID: 32900000, guid: 33a69a710bda3d540b6c9883e03879fa, type: 3}
+    - target: {fileID: 2899488834429760476, guid: 96ab3e4558e76414a9498393e3e8da06, type: 3}
+      propertyPath: injectVideos.Array.data[10]
+      value: 
+      objectReference: {fileID: 32900000, guid: 234e15333f438f64c9494a78dade9689, type: 3}
+    - target: {fileID: 2899488834429760476, guid: 96ab3e4558e76414a9498393e3e8da06, type: 3}
+      propertyPath: injectVideos.Array.data[11]
+      value: 
+      objectReference: {fileID: 32900000, guid: f79484b2c5142e742a0c9743ec529e28, type: 3}
     - target: {fileID: 2899488834429760477, guid: 96ab3e4558e76414a9498393e3e8da06, type: 3}
       propertyPath: m_RootOrder
       value: 8
