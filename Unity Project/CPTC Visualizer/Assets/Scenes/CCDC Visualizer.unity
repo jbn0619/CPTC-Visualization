@@ -546,7 +546,7 @@ MonoBehaviour:
   right: 100
   faster: 304
   cam: {fileID: 384930812}
-  moveSpeed: 0.01
+  moveSpeed: 1
 --- !u!1 &418235608
 GameObject:
   m_ObjectHideFlags: 0

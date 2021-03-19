@@ -185,11 +185,15 @@ public class CCDCDataFormatter: Singleton<CCDCDataFormatter>
         {
             // makes a new daat container so the old don't interfere
             dataContainer = new HostDataContainer();
-            string[] formatData = data.Split('\n');
+            data = data.Replace('\n', ' ');
+            data = data.Trim();
+            string[] formatData = data.Split('\r');
             
             for (int i = 0; i < formatData.Length; i++)
             {
                 string[] lineData = formatData[i].Split(':');
+                lineData[0] = lineData[0].Trim();
+
                 dataContainer.AddHost(new HostData(lineData[0], bool.Parse(lineData[1])));
             }
 

@@ -84,7 +84,7 @@ public class CCDCEventManager: EventManager
         int[] deltas = new int[10];
 
         foreach (HostData h in newBatch.Hosts)
-        {
+        {            
             // Find the proper node by its IP address.
             foreach (CCDCTeamData team in CCDCManager.Instance.TeamManager.CCDCTeams)
             {

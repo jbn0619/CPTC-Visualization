@@ -209,39 +209,61 @@ public class CCDCInfrastructureManager : InfrastructureManager
                 }
             }
 
-            // Update the node IPs with this team's number.
+            // appends the teams at the end of the names
             for (int k = 0; k < newInfra.AllNodes.Count; k++)
             {
-                NodeData currentNode = newInfra.AllNodes[k];
-                string ip = currentNode.Ip;
-                string teamNum = (i + 1).ToString();
-                int xIndex = ip.IndexOf('X');
-
-                // Check if we meet the conditions to change the number behind the X-character (if one exists).
-                if (i == 9 && ip[xIndex - 1] != '.')
+                NodeData current = newInfra.AllNodes[k];
+                string name = current.Ip;
+                string append = "";
+                
+                if (i < 9)
                 {
-                    char previousNum = ip[xIndex - 1];
-                    string oldNum = previousNum.ToString() + "0";
-                    int.TryParse(oldNum, out int num);
-                    int totalNum = i + 1 + num;
-
-                    string part1 = ip.Substring(0, xIndex - 1);
-                    string part2 = totalNum.ToString();
-                    string part3 = ip.Substring(xIndex + 1, ip.Length - (xIndex + 1));
-                    string result = part1 + part2 + part3;
-
-                    currentNode.Ip = result;
+                    append = "-team0" + (i + 1);
                 }
                 else
                 {
-                    string part1 = ip.Substring(0, xIndex);
-                    string part2 = teamNum;
-                    string part3 = ip.Substring(xIndex + 1, ip.Length - (xIndex + 1));
-                    string result = part1 + part2 + part3;
-
-                    currentNode.Ip = result;
+                    append = "-team" + (i + 1);
                 }
+
+                current.Ip = name + append;
             }
+
+            /// <summary>
+            /// OLD LOOP FOR TEAMS WITH IPS
+            /// Update the node IPs with this team's number.
+            ///for (int k = 0; k < newInfra.AllNodes.Count; k++)
+            ///{
+            ///    NodeData currentNode = newInfra.AllNodes[k];
+            ///    string ip = currentNode.Ip;
+            ///    string teamNum = (i + 1).ToString();
+            ///    int xIndex = ip.IndexOf('X');
+            ///
+            ///    // Check if we meet the conditions to change the number behind the X-character (if one exists).
+            ///    if (i == 9 && ip[xIndex - 1] != '.')
+            ///    {
+            ///        char previousNum = ip[xIndex - 1];
+            ///        string oldNum = previousNum.ToString() + "0";
+            ///        int.TryParse(oldNum, out int num);
+            ///        int totalNum = i + 1 + num;
+            ///
+            ///        string part1 = ip.Substring(0, xIndex - 1);
+            ///        string part2 = totalNum.ToString();
+            ///        string part3 = ip.Substring(xIndex + 1, ip.Length - (xIndex + 1));
+            ///        string result = part1 + part2 + part3;
+            ///
+            ///        currentNode.Ip = result;
+            ///    }
+            ///    else
+            ///    {
+            ///        string part1 = ip.Substring(0, xIndex);
+            ///        string part2 = teamNum;
+            ///        string part3 = ip.Substring(xIndex + 1, ip.Length - (xIndex + 1));
+            ///        string result = part1 + part2 + part3;
+            ///
+            ///        currentNode.Ip = result;
+            ///    }
+            ///}
+            /// </summary>
 
             team.InfraCopy = newInfra;
 
