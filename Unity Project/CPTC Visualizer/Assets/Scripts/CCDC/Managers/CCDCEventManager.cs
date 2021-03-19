@@ -102,7 +102,7 @@ public class CCDCEventManager: EventManager
                             //n.UptimeChart.StateChanged();
                         }
 
-                        if (!n.IsActive)
+                        if (n.IsActive)
                             n.NodeSprite.color = new Color(0.3137255f, 0.3333333f, 0.9098039f);
                         else
                             n.NodeSprite.color = new Color(0.9098039f, 0.3137255f, 0.3137255f);
