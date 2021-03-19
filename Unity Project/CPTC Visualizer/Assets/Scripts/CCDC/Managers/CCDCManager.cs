@@ -55,6 +55,7 @@ public class CCDCManager: Singleton<CCDCManager>
     private float attackCheckCount;
 
     private bool readDateStarted;
+    private bool compStarted;
     
     #endregion Fields
     
@@ -110,6 +111,7 @@ public class CCDCManager: Singleton<CCDCManager>
     void Start()
     {
         readDateStarted = false;
+        compStarted = false;
         stateCheckCount = 0.0f;
         attackCheckCount = 0.0f;
         elapsedTime = 0.0f;
@@ -159,7 +161,7 @@ public class CCDCManager: Singleton<CCDCManager>
         }
 
         // Master Key. Starts the program in its entirety with one key press
-        if (Input.GetKeyDown(KeyCode.Return))
+        if (Input.GetKeyDown(KeyCode.Return) && !compStarted)
         {
             startOfComp = System.DateTime.Now;
             Debug.Log(System.DateTime.Now.ToString());
@@ -168,11 +170,12 @@ public class CCDCManager: Singleton<CCDCManager>
             teamManager.ReadTeams();
             infraManager.DisableMainView();
             CCDCDataFormatter.Instance.HasStart = true;
+            compStarted = true;
 
             //System.Diagnostics.Process.Start("notepad.exe");
         }
 
-        if(Input.GetKeyDown(KeyCode.Space))
+        if(Input.GetKeyDown(KeyCode.Space) && !readDateStarted)
         {
             startOfVisualizer = System.DateTime.Now;
             timeDelay = startOfVisualizer.Subtract(startOfComp).TotalMinutes;
@@ -197,11 +200,11 @@ public class CCDCManager: Singleton<CCDCManager>
         //}
 
         // Generates team names and colors
-        if(Input.GetKeyDown(KeyCode.C))
-        {
-            teamManager.GenerateTeamNames();
-            teamManager.ReadTeams();
-        }
+        //if(Input.GetKeyDown(KeyCode.C))
+        //{
+        //    teamManager.GenerateTeamNames();
+        //    teamManager.ReadTeams();
+        //}
 
         // Create a test inject ot be displayed
         //if(Input.GetKeyDown(KeyCode.I))
