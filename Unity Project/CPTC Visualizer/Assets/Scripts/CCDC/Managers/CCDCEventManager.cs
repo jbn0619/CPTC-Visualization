@@ -84,14 +84,14 @@ public class CCDCEventManager: EventManager
         int[] deltas = new int[10];
 
         foreach (HostData h in newBatch.Hosts)
-        {
+        {            
             // Find the proper node by its IP address.
             foreach (CCDCTeamData team in CCDCManager.Instance.TeamManager.CCDCTeams)
             {
                 foreach (CCDCNodeData n in team.InfraCopy.AllNodes)
                 {
                     // If the IP addresses match, then update the uptime chart.
-                    if (n.Ip == h.IP)
+                    if (n.Ip == h.name)
                     {
                         n.UptimeChart.UpdateData(h.state);
 

@@ -239,71 +239,71 @@ public class JSONWriter: MonoBehaviour
         // Generates an infrastructure of 4 networks, each wtih 5 to 7 nodes.
 
         // Generate the core network.
-        Node n0 = new Node(0, "172.17.X.2", NodeTypes.DNS, NodeState.On, null);
-        Node n1 = new Node(1, "172.17.X.3", NodeTypes.AD, NodeState.On, null);
-        Node n2 = new Node(2, "172.17.X.4/DHCP", NodeTypes.VPN, NodeState.On, null);
-        Node n3 = new Node(3, "172.16.X.5", NodeTypes.EDMS, NodeState.On, null);
-        Node n4 = new Node(4, "172.16.X.6", NodeTypes.HyperV, NodeState.On, null);
-        Node n5 = new Node(5, "172.16.X.7", NodeTypes.CA, NodeState.On, null);
-        Node n6 = new Node(6, "172.16.X.8", NodeTypes.SecureDrop, NodeState.On, null);
-        Node n7 = new Node(7, "172.16.X.9", NodeTypes.SecureDrop, NodeState.On, null);
-        Node n8 = new Node(8, "172.16.X.11", NodeTypes.SecureDrop, NodeState.On, null);
-        Node n9 = new Node(9, "172.30.X.4", NodeTypes.WWW, NodeState.On, null);
+        Node n0 = new Node(0, "ssh-genovia-dns", NodeTypes.DNS, NodeState.On, null);
+        Node n1 = new Node(1, "ldap-dc-corp", NodeTypes.AD, NodeState.On, null);
+        Node n2 = new Node(2, "ssh-genovia-openvpn", NodeTypes.VPN, NodeState.On, null);
+        Node n3 = new Node(3, "ssh-genovia-eedms", NodeTypes.EDMS, NodeState.On, null);
+        //Node n4 = new Node(4, "172.16.X.6", NodeTypes.HyperV, NodeState.On, null);
+        Node n5 = new Node(5, "ssh-certificate-authority", NodeTypes.CA, NodeState.On, null);
+        Node n6 = new Node(6, "https_tor-sdapp-corp", NodeTypes.SecureDrop, NodeState.On, null);
+        Node n7 = new Node(7, "ssh-genovia-sdm", NodeTypes.SecureDrop, NodeState.On, null);
+        //Node n8 = new Node(8, "172.16.X.11", NodeTypes.SecureDrop, NodeState.On, null);
+        Node n9 = new Node(9, "https_tor-www-genovia-cloud", NodeTypes.WWW, NodeState.On, null);
         List <Node> coreNodes = new List<Node>();
         coreNodes.Add(n0);
         coreNodes.Add(n1);
         coreNodes.Add(n2);
         coreNodes.Add(n3);
-        coreNodes.Add(n4);
+        //coreNodes.Add(n4);
         coreNodes.Add(n5);
         coreNodes.Add(n6);
         coreNodes.Add(n7);
-        coreNodes.Add(n8);
+        //coreNodes.Add(n8);
         coreNodes.Add(n9);
         Assets.Scripts.Network core = new Assets.Scripts.Network(0, coreNodes, null);
 
         // Generate the Genovia network.
-        Node n10 = new Node(10, "172.17.2X.2", NodeTypes.MailExchange, NodeState.On, null);
-        Node n11 = new Node(11, "172.17.2X.3", NodeTypes.Fileshare, NodeState.On, null);
-        Node n12 = new Node(12, "172.17.2X.10", NodeTypes.Workstation, NodeState.On, null);
-        Node n13 = new Node(13, "172.17.2X.11", NodeTypes.Workstation, NodeState.On, null);
-        Node n14 = new Node(14, "172.17.2X.12", NodeTypes.RootWorkstation, NodeState.On, null);
+        Node n10 = new Node(10, "ssh-genovia-corp-mail", NodeTypes.MailExchange, NodeState.On, null);
+        Node n11 = new Node(11, "winrm-fs-genovia-corp", NodeTypes.Fileshare, NodeState.On, null);
+        Node n12 = new Node(12, "rdp-ws1-genovia-corp", NodeTypes.Workstation, NodeState.On, null);
+        //Node n13 = new Node(13, "172.17.2X.11", NodeTypes.Workstation, NodeState.On, null);
+        Node n14 = new Node(14, "ssh-genovia-corp-wsit", NodeTypes.RootWorkstation, NodeState.On, null);
         List <Node> genoviaNodes = new List<Node>();
         genoviaNodes.Add(n10);
         genoviaNodes.Add(n11);
         genoviaNodes.Add(n12);
-        genoviaNodes.Add(n13);
+        //genoviaNodes.Add(n13);
         genoviaNodes.Add(n14);
         Assets.Scripts.Network genovia = new Assets.Scripts.Network(0, genoviaNodes, null);
 
         // Generate the ShangriLa network. 
-        Node n15 = new Node(15, "172.17.4X.1", NodeTypes.MailExchange, NodeState.On, null);
-        Node n16 = new Node(16, "172.17.4X.2", NodeTypes.Fileshare, NodeState.On, null);
-        Node n17 = new Node(17, "172.17.4X.10", NodeTypes.Workstation, NodeState.On, null);
-        Node n18 = new Node(18, "172.17.4X.11", NodeTypes.Workstation, NodeState.On, null);
-        Node n19 = new Node(19, "172.17.4X.12", NodeTypes.RootWorkstation, NodeState.On, null);
+        Node n15 = new Node(15, "smtp-shangri-la-corp", NodeTypes.MailExchange, NodeState.On, null);
+        Node n16 = new Node(16, "winrm-fs-shangri-la-corp", NodeTypes.Fileshare, NodeState.On, null);
+        Node n17 = new Node(17, "winrm-ws1-shangri-la-corp", NodeTypes.Workstation, NodeState.On, null);
+        Node n18 = new Node(18, "winrm-ws2-shangri-la-corp", NodeTypes.Workstation, NodeState.On, null);
+        //Node n19 = new Node(19, "172.17.4X.12", NodeTypes.RootWorkstation, NodeState.On, null);
         List <Node> shangNodes = new List<Node>();
         shangNodes.Add(n15);
         shangNodes.Add(n16);
         shangNodes.Add(n17);
         shangNodes.Add(n18);
-        shangNodes.Add(n19);
+        //shangNodes.Add(n19);
         Assets.Scripts.Network shangriLa = new Assets.Scripts.Network(0, shangNodes, null);
 
         // Generate the Gildead network.
-        Node n20 = new Node(20, "172.17.6X.1", NodeTypes.MailExchange, NodeState.On, null);
-        Node n21 = new Node(21, "172.17.6X.2", NodeTypes.Fileshare, NodeState.On, null);
-        Node n22 = new Node(22, "172.17.6X.10", NodeTypes.Workstation, NodeState.On, null);
-        Node n23 = new Node(23, "172.17.6X.11", NodeTypes.Workstation, NodeState.On, null);
-        Node n24 = new Node(24, "172.17.6X.12", NodeTypes.RootWorkstation, NodeState.On, null);
-        Node n25 = new Node(25, "172.17.6X.200", NodeTypes.SecuredServer, NodeState.On, null);
+        Node n20 = new Node(20, "smtp-gilead-corp", NodeTypes.MailExchange, NodeState.On, null);
+        Node n21 = new Node(21, "winrm-fs-gilead-corp", NodeTypes.Fileshare, NodeState.On, null);
+        Node n22 = new Node(22, "winrm-ws1-gilead-corp", NodeTypes.Workstation, NodeState.On, null);
+        Node n23 = new Node(23, "winrm-ws2-gilead-corp", NodeTypes.Workstation, NodeState.On, null);
+        Node n24 = new Node(24, "ssh-gilead-corp-wsit", NodeTypes.RootWorkstation, NodeState.On, null);
+        //Node n25 = new Node(25, "172.17.6X.200", NodeTypes.SecuredServer, NodeState.On, null);
         List <Node> gileadNodes = new List<Node>();
         gileadNodes.Add(n20);
         gileadNodes.Add(n21);
         gileadNodes.Add(n22);
         gileadNodes.Add(n23);
         gileadNodes.Add(n24);
-        gileadNodes.Add(n25);
+        //gileadNodes.Add(n25);
         Assets.Scripts.Network gilead = new Assets.Scripts.Network(0, gileadNodes, null);
 
         List<Assets.Scripts.Network> networks = new List<Assets.Scripts.Network>();
