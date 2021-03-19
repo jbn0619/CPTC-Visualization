@@ -30,6 +30,9 @@ public class CCDCManager: Singleton<CCDCManager>
     [SerializeField]
     private Text timeUntilShowText;
     [SerializeField]
+    private GameObject showNotifBanner;
+    private bool showTimerStarted;
+    [SerializeField]
     private float elapsedTime;
     [SerializeField]
     private Text elapsedTimeText;
@@ -55,6 +58,7 @@ public class CCDCManager: Singleton<CCDCManager>
     private float attackCheckCount;
 
     private bool readDateStarted;
+    private bool compStarted;
     
     #endregion Fields
     
@@ -110,6 +114,8 @@ public class CCDCManager: Singleton<CCDCManager>
     void Start()
     {
         readDateStarted = false;
+        compStarted = false;
+        showTimerStarted = false;
         stateCheckCount = 0.0f;
         attackCheckCount = 0.0f;
         elapsedTime = 0.0f;
@@ -126,7 +132,27 @@ public class CCDCManager: Singleton<CCDCManager>
         {
             // Timer stuff
             elapsedTime += Time.deltaTime;
-            elapsedTimeText.text = "Elapsed Time: " + Mathf.FloorToInt(elapsedTime /3600) + ":" + Mathf.FloorToInt(elapsedTime / 60 % 60) + ":" + Mathf.FloorToInt(elapsedTime % 60);
+            elapsedTimeText.text = "Elapsed Time: " + string.Format("{00}:{1:00}:{2:00}",
+                Mathf.FloorToInt(elapsedTime / 3600),
+                Mathf.FloorToInt(elapsedTime / 60 % 60),
+                Mathf.FloorToInt(elapsedTime % 60));
+
+            // Show Starting Timer
+            if (showTimerStarted)
+            {
+                if(timeUntilShow > 0)
+                {
+                    timeUntilShow -= Time.deltaTime;
+                    timeUntilShowText.text = "Show starting in aproximately " + string.Format("{00}:{1:00}",
+                        Mathf.FloorToInt(timeUntilShow / 60 % 60),
+                        Mathf.FloorToInt(timeUntilShow % 60));
+                }
+                else
+                {
+                    timeUntilShowText.text = "Show starting soon!";
+                }
+
+            }
 
             // Update nodes
             if (stateCheckCount >= stateCheckTime)
@@ -159,7 +185,7 @@ public class CCDCManager: Singleton<CCDCManager>
         }
 
         // Master Key. Starts the program in its entirety with one key press
-        if (Input.GetKeyDown(KeyCode.Return))
+        if (Input.GetKeyDown(KeyCode.Return) && !compStarted)
         {
             startOfComp = System.DateTime.Now;
             Debug.Log(System.DateTime.Now.ToString());
@@ -168,11 +194,12 @@ public class CCDCManager: Singleton<CCDCManager>
             teamManager.ReadTeams();
             infraManager.DisableMainView();
             CCDCDataFormatter.Instance.HasStart = true;
+            compStarted = true;
 
             //System.Diagnostics.Process.Start("notepad.exe");
         }
 
-        if(Input.GetKeyDown(KeyCode.Space))
+        if(Input.GetKeyDown(KeyCode.Space) && !readDateStarted)
         {
             startOfVisualizer = System.DateTime.Now;
             timeDelay = startOfVisualizer.Subtract(startOfComp).TotalMinutes;
@@ -190,6 +217,22 @@ public class CCDCManager: Singleton<CCDCManager>
             jsonWriter.GenerateData();
         }
 
+        // Starts or stops the Time Until Show notification
+        if(Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            if(!showTimerStarted)
+            {
+                showTimerStarted = true;
+                timeUntilShow = 15 * 60;
+                showNotifBanner.gameObject.SetActive(true);
+            }
+            else
+            {
+                showTimerStarted = false;
+                showNotifBanner.gameObject.SetActive(false);
+            }
+        }
+
         // Reads in an infrastructure from the Json
         //if(Input.GetKeyDown(KeyCode.R))
         //{
@@ -197,11 +240,11 @@ public class CCDCManager: Singleton<CCDCManager>
         //}
 
         // Generates team names and colors
-        if(Input.GetKeyDown(KeyCode.C))
-        {
-            teamManager.GenerateTeamNames();
-            teamManager.ReadTeams();
-        }
+        //if(Input.GetKeyDown(KeyCode.C))
+        //{
+        //    teamManager.GenerateTeamNames();
+        //    teamManager.ReadTeams();
+        //}
 
         // Create a test inject ot be displayed
         //if(Input.GetKeyDown(KeyCode.I))
