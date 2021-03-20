@@ -104,7 +104,7 @@ public class CCDCInjectNotifManager : MonoBehaviour
                         injectCards[0] = newCard;
                         activeInjectRemoveTimes[0] = System.DateTime.Now.AddMinutes(waitingInjects[0].Duration);
 
-                        newCard.GetComponentInChildren<Text>().text = "Active Inject: " + waitingInjects[0].Name + "\n Expires at "
+                        newCard.GetComponentInChildren<Text>().text = waitingInjects[0].Name + "\nExpires at "
                             + activeInjectRemoveTimes[0].ToShortTimeString();
 
                         numActiveInjects++;
@@ -206,7 +206,7 @@ public class CCDCInjectNotifManager : MonoBehaviour
         {
             if(injectCards[i] != null)
             {
-                Vector3 targetPos = new Vector3(canvas.transform.position.x - 750, 800 - (i * 120), 0);
+                Vector3 targetPos = new Vector3(canvas.transform.position.x - 725, 800 - (i * 120), 0);
 
                 injectCards[i].transform.position = targetPos;
             }
