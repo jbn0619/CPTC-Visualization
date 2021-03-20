@@ -236,8 +236,9 @@ public class CCDCManager: Singleton<CCDCManager>
         // Generates team names and colors
         //if(Input.GetKeyDown(KeyCode.C))
         //{
-        //    teamManager.GenerateTeamNames();
-        //    teamManager.ReadTeams();
+        //    //teamManager.GenerateTeamNames();
+        //    //teamManager.ReadTeams();
+        //    //injectNotifManager.CreateTestInject();
         //}
     }
 }
