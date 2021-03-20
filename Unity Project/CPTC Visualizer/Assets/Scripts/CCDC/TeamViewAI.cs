@@ -103,10 +103,10 @@ public class TeamViewAI: Singleton<TeamViewAI>
                     if (CheckInject(injects[i]))
                     {
                         // inject should be set to true
-                        injects[i].BeginInject();
+                        //injects[i].BeginInject();
 
                         // sets temp vars
-                        injectTime = true;
+                        //injectTime = true;
                     }
                 }
 

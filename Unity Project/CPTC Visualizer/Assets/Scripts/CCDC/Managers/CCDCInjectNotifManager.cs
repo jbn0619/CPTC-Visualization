@@ -47,7 +47,7 @@ public class CCDCInjectNotifManager : MonoBehaviour
     {
         if(waitingInjects.Count > 0)
         {
-            AddNewCard();
+            //AddNewCard();
         }
 
         if(numActiveInjects > 0)
@@ -111,7 +111,7 @@ public class CCDCInjectNotifManager : MonoBehaviour
 
                         addedIndex = i;
 
-                        CCDCManager.Instance.VideoManager.PlayInjectVideo(i);
+                        //CCDCManager.Instance.VideoManager.PlayInjectVideo(i);
                     }
                 }
             }

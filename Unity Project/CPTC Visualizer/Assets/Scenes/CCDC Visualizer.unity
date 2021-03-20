@@ -546,7 +546,7 @@ MonoBehaviour:
   right: 100
   faster: 304
   cam: {fileID: 384930812}
-  moveSpeed: 1
+  moveSpeed: 0.1
 --- !u!1 &418235608
 GameObject:
   m_ObjectHideFlags: 0
@@ -2301,11 +2301,11 @@ PrefabInstance:
       objectReference: {fileID: 283902558}
     - target: {fileID: 2899488834429760476, guid: 96ab3e4558e76414a9498393e3e8da06, type: 3}
       propertyPath: attackVideos.Array.size
-      value: 5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2899488834429760476, guid: 96ab3e4558e76414a9498393e3e8da06, type: 3}
       propertyPath: injectVideos.Array.size
-      value: 21
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2899488834429760476, guid: 96ab3e4558e76414a9498393e3e8da06, type: 3}
       propertyPath: attackVideos.Array.data[0]

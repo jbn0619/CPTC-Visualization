@@ -202,11 +202,11 @@ public class CCDCManager: Singleton<CCDCManager>
         if(Input.GetKeyDown(KeyCode.Space) && !readDateStarted)
         {
             startOfVisualizer = System.DateTime.Now;
-            timeDelay = startOfVisualizer.Subtract(startOfComp).TotalMinutes;
+            timeDelay = Mathf.Abs((int)startOfVisualizer.Subtract(startOfComp).TotalMinutes);
 
             CCDCDataFormatter.Instance.Delay = timeDelay;
             readDateStarted = true;
-            eventManager.ReadAttacksJSON();
+            //eventManager.ReadAttacksJSON();
             TeamViewAI.Instance.BeginComp();
             injectNotifManager.ReadInInjects();
         }
