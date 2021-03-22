@@ -66,89 +66,250 @@ public class CCDCDataFormatter: Singleton<CCDCDataFormatter>
         lastGrab = DateTime.Now;
         lastPull = DateTime.Now;
         //creds = new NetworkCredential("dataviz", "Jq7stJ&7zL35sHuxV2zp");
+    
+        hosts = new Dictionary<int, HostData>();
+        int index = 0;
+        
+        // team 1
+        hosts.Add(index++, new HostData("ssh-genovia-dns-team01", true));//
+        hosts.Add(index++, new HostData("ldap-dc-corp-team01", true));//
+        hosts.Add(index++, new HostData("ssh-genovia-openvpn-team01", true));//
+        hosts.Add(index++, new HostData("ssh-genovia-eedms-team01", true));//
+        hosts.Add(index++, new HostData("ssh-certificate-authority-team01", true));//
+        hosts.Add(index++, new HostData("https_tor-sdapp-corp-team01", true));//
+        hosts.Add(index++, new HostData("ssh-genovia-sdm-team01", true));//
+        hosts.Add(index++, new HostData("https_tor-www-genovia-cloud-team01", true));//
+        hosts.Add(index++, new HostData("ssh-genovia-corp-mail-team01", true));//
+        hosts.Add(index++, new HostData("winrm-fs-genovia-corp-team01", true));//
+        hosts.Add(index++, new HostData("rdp-ws1-genovia-corp-team01", true));//
+        hosts.Add(index++, new HostData("ssh-genovia-corp-wsit-team01", true));//
+
+        hosts.Add(index++, new HostData("smtp-shangri-la-corp-team01", true));//
+        hosts.Add(index++, new HostData("winrm-fs-shangri-la-corp-team01", true));//
+        hosts.Add(index++, new HostData("winrm-ws1-shangri-la-corp-team01", true));//
+        hosts.Add(index++, new HostData("winrm-ws2-shangri-la-corp-team01", true));//
+        hosts.Add(index++, new HostData("smtp-gilead-corp-team01", true));//
+        hosts.Add(index++, new HostData("winrm-fs-gilead-corp-team01", true));//
+        hosts.Add(index++, new HostData("winrm-ws1-gilead-corp-team01", true));//
+        hosts.Add(index++, new HostData("winrm-ws2-gilead-corp-team01", true));//
+        hosts.Add(index++, new HostData("ssh-gilead-corp-wsit-team01", true));//
+
+        // team 2
+        hosts.Add(index++, new HostData("ssh-genovia-dns-team02", true));//
+        hosts.Add(index++, new HostData("ldap-dc-corp-team02", true));//
+        hosts.Add(index++, new HostData("ssh-genovia-openvpn-team02", true));//
+        hosts.Add(index++, new HostData("ssh-genovia-eedms-team02", true));//
+        hosts.Add(index++, new HostData("ssh-certificate-authority-team02", true));//
+        hosts.Add(index++, new HostData("https_tor-sdapp-corp-team02", true));//
+        hosts.Add(index++, new HostData("ssh-genovia-sdm-team02", true));//
+        hosts.Add(index++, new HostData("https_tor-www-genovia-cloud-team02", true));//
+        hosts.Add(index++, new HostData("ssh-genovia-corp-mail-team02", true));//
+        hosts.Add(index++, new HostData("winrm-fs-genovia-corp-team02", true));//
+        hosts.Add(index++, new HostData("rdp-ws1-genovia-corp-team02", true));//
+        hosts.Add(index++, new HostData("ssh-genovia-corp-wsit-team02", true));//
+
+        hosts.Add(index++, new HostData("smtp-shangri-la-corp-team02", true));//
+        hosts.Add(index++, new HostData("winrm-fs-shangri-la-corp-team02", true));//
+        hosts.Add(index++, new HostData("winrm-ws1-shangri-la-corp-team02", true));//
+        hosts.Add(index++, new HostData("winrm-ws2-shangri-la-corp-team02", true));//
+        hosts.Add(index++, new HostData("smtp-gilead-corp-team02", true));//
+        hosts.Add(index++, new HostData("winrm-fs-gilead-corp-team02", true));//
+        hosts.Add(index++, new HostData("winrm-ws1-gilead-corp-team02", true));//
+        hosts.Add(index++, new HostData("winrm-ws2-gilead-corp-team02", true));//
+        hosts.Add(index++, new HostData("ssh-gilead-corp-wsit-team02", true));//
+
+        // team 3
+        hosts.Add(index++, new HostData("ssh-genovia-dns-team03", true));//
+        hosts.Add(index++, new HostData("ldap-dc-corp-team03", true));//
+        hosts.Add(index++, new HostData("ssh-genovia-openvpn-team03", true));//
+        hosts.Add(index++, new HostData("ssh-genovia-eedms-team03", true));//
+        hosts.Add(index++, new HostData("ssh-certificate-authority-team03", true));//
+        hosts.Add(index++, new HostData("https_tor-sdapp-corp-team03", true));//
+        hosts.Add(index++, new HostData("ssh-genovia-sdm-team03", true));//
+        hosts.Add(index++, new HostData("https_tor-www-genovia-cloud-team03", true));//
+        hosts.Add(index++, new HostData("ssh-genovia-corp-mail-team03", true));//
+        hosts.Add(index++, new HostData("winrm-fs-genovia-corp-team03", true));//
+        hosts.Add(index++, new HostData("rdp-ws1-genovia-corp-team03", true));//
+        hosts.Add(index++, new HostData("ssh-genovia-corp-wsit-team03", true));//
+
+        hosts.Add(index++, new HostData("smtp-shangri-la-corp-team03", true));//
+        hosts.Add(index++, new HostData("winrm-fs-shangri-la-corp-team03", true));//
+        hosts.Add(index++, new HostData("winrm-ws1-shangri-la-corp-team03", true));//
+        hosts.Add(index++, new HostData("winrm-ws2-shangri-la-corp-team03", true));//
+        hosts.Add(index++, new HostData("smtp-gilead-corp-team03", true));//
+        hosts.Add(index++, new HostData("winrm-fs-gilead-corp-team03", true));//
+        hosts.Add(index++, new HostData("winrm-ws1-gilead-corp-team03", true));//
+        hosts.Add(index++, new HostData("winrm-ws2-gilead-corp-team03", true));//
+        hosts.Add(index++, new HostData("ssh-gilead-corp-wsit-team03", true));//
+
+        // team 4
+        hosts.Add(index++, new HostData("ssh-genovia-dns-team04", true));//
+        hosts.Add(index++, new HostData("ldap-dc-corp-team04", true));//
+        hosts.Add(index++, new HostData("ssh-genovia-openvpn-team04", true));//
+        hosts.Add(index++, new HostData("ssh-genovia-eedms-team04", true));//
+        hosts.Add(index++, new HostData("ssh-certificate-authority-team04", true));//
+        hosts.Add(index++, new HostData("https_tor-sdapp-corp-team04", true));//
+        hosts.Add(index++, new HostData("ssh-genovia-sdm-team04", true));//
+        hosts.Add(index++, new HostData("https_tor-www-genovia-cloud-team04", true));//
+        hosts.Add(index++, new HostData("ssh-genovia-corp-mail-team04", true));//
+        hosts.Add(index++, new HostData("winrm-fs-genovia-corp-team04", true));//
+        hosts.Add(index++, new HostData("rdp-ws1-genovia-corp-team04", true));//
+        hosts.Add(index++, new HostData("ssh-genovia-corp-wsit-team04", true));//
+
+        hosts.Add(index++, new HostData("smtp-shangri-la-corp-team04", true));//
+        hosts.Add(index++, new HostData("winrm-fs-shangri-la-corp-team04", true));//
+        hosts.Add(index++, new HostData("winrm-ws1-shangri-la-corp-team04", true));//
+        hosts.Add(index++, new HostData("winrm-ws2-shangri-la-corp-team04", true));//
+        hosts.Add(index++, new HostData("smtp-gilead-corp-team04", true));//
+        hosts.Add(index++, new HostData("winrm-fs-gilead-corp-team04", true));//
+        hosts.Add(index++, new HostData("winrm-ws1-gilead-corp-team04", true));//
+        hosts.Add(index++, new HostData("winrm-ws2-gilead-corp-team04", true));//
+        hosts.Add(index++, new HostData("ssh-gilead-corp-wsit-team04", true));//
+
+        // team 5
+        hosts.Add(index++, new HostData("ssh-genovia-dns-team05", true));//
+        hosts.Add(index++, new HostData("ldap-dc-corp-team05", true));//
+        hosts.Add(index++, new HostData("ssh-genovia-openvpn-team05", true));//
+        hosts.Add(index++, new HostData("ssh-genovia-eedms-team05", true));//
+        hosts.Add(index++, new HostData("ssh-certificate-authority-team05", true));//
+        hosts.Add(index++, new HostData("https_tor-sdapp-corp-team05", true));//
+        hosts.Add(index++, new HostData("ssh-genovia-sdm-team05", true));//
+        hosts.Add(index++, new HostData("https_tor-www-genovia-cloud-team05", true));//
+        hosts.Add(index++, new HostData("ssh-genovia-corp-mail-team05", true));//
+        hosts.Add(index++, new HostData("winrm-fs-genovia-corp-team05", true));//
+        hosts.Add(index++, new HostData("rdp-ws1-genovia-corp-team05", true));//
+        hosts.Add(index++, new HostData("ssh-genovia-corp-wsit-team05", true));//
+
+        hosts.Add(index++, new HostData("smtp-shangri-la-corp-team05", true));//
+        hosts.Add(index++, new HostData("winrm-fs-shangri-la-corp-team05", true));//
+        hosts.Add(index++, new HostData("winrm-ws1-shangri-la-corp-team05", true));//
+        hosts.Add(index++, new HostData("winrm-ws2-shangri-la-corp-team05", true));//
+        hosts.Add(index++, new HostData("smtp-gilead-corp-team05", true));//
+        hosts.Add(index++, new HostData("winrm-fs-gilead-corp-team05", true));//
+        hosts.Add(index++, new HostData("winrm-ws1-gilead-corp-team05", true));//
+        hosts.Add(index++, new HostData("winrm-ws2-gilead-corp-team05", true));//
+        hosts.Add(index++, new HostData("ssh-gilead-corp-wsit-team05", true));//
+
+        // team 6
+        hosts.Add(index++, new HostData("ssh-genovia-dns-team06", true));//
+        hosts.Add(index++, new HostData("ldap-dc-corp-team06", true));//
+        hosts.Add(index++, new HostData("ssh-genovia-openvpn-team06", true));//
+        hosts.Add(index++, new HostData("ssh-genovia-eedms-team06", true));//
+        hosts.Add(index++, new HostData("ssh-certificate-authority-team06", true));//
+        hosts.Add(index++, new HostData("https_tor-sdapp-corp-team06", true));//
+        hosts.Add(index++, new HostData("ssh-genovia-sdm-team06", true));//
+        hosts.Add(index++, new HostData("https_tor-www-genovia-cloud-team06", true));//
+        hosts.Add(index++, new HostData("ssh-genovia-corp-mail-team06", true));//
+        hosts.Add(index++, new HostData("winrm-fs-genovia-corp-team06", true));//
+        hosts.Add(index++, new HostData("rdp-ws1-genovia-corp-team06", true));//
+        hosts.Add(index++, new HostData("ssh-genovia-corp-wsit-team06", true));//
+
+        hosts.Add(index++, new HostData("smtp-shangri-la-corp-team06", true));//
+        hosts.Add(index++, new HostData("winrm-fs-shangri-la-corp-team06", true));//
+        hosts.Add(index++, new HostData("winrm-ws1-shangri-la-corp-team06", true));//
+        hosts.Add(index++, new HostData("winrm-ws2-shangri-la-corp-team06", true));//
+        hosts.Add(index++, new HostData("smtp-gilead-corp-team06", true));//
+        hosts.Add(index++, new HostData("winrm-fs-gilead-corp-team06", true));//
+        hosts.Add(index++, new HostData("winrm-ws1-gilead-corp-team06", true));//
+        hosts.Add(index++, new HostData("winrm-ws2-gilead-corp-team06", true));//
+        hosts.Add(index++, new HostData("ssh-gilead-corp-wsit-team06", true));//
+
+        // team 7
+        hosts.Add(index++, new HostData("ssh-genovia-dns-team07", true));//
+        hosts.Add(index++, new HostData("ldap-dc-corp-team07", true));//
+        hosts.Add(index++, new HostData("ssh-genovia-openvpn-team07", true));//
+        hosts.Add(index++, new HostData("ssh-genovia-eedms-team07", true));//
+        hosts.Add(index++, new HostData("ssh-certificate-authority-team07", true));//
+        hosts.Add(index++, new HostData("https_tor-sdapp-corp-team07", true));//
+        hosts.Add(index++, new HostData("ssh-genovia-sdm-team07", true));//
+        hosts.Add(index++, new HostData("https_tor-www-genovia-cloud-team07", true));//
+        hosts.Add(index++, new HostData("ssh-genovia-corp-mail-team07", true));//
+        hosts.Add(index++, new HostData("winrm-fs-genovia-corp-team07", true));//
+        hosts.Add(index++, new HostData("rdp-ws1-genovia-corp-team07", true));//
+        hosts.Add(index++, new HostData("ssh-genovia-corp-wsit-team07", true));//
+
+        hosts.Add(index++, new HostData("smtp-shangri-la-corp-team07", true));//
+        hosts.Add(index++, new HostData("winrm-fs-shangri-la-corp-team07", true));//
+        hosts.Add(index++, new HostData("winrm-ws1-shangri-la-corp-team07", true));//
+        hosts.Add(index++, new HostData("winrm-ws2-shangri-la-corp-team07", true));//
+        hosts.Add(index++, new HostData("smtp-gilead-corp-team07", true));//
+        hosts.Add(index++, new HostData("winrm-fs-gilead-corp-team07", true));//
+        hosts.Add(index++, new HostData("winrm-ws1-gilead-corp-team07", true));//
+        hosts.Add(index++, new HostData("winrm-ws2-gilead-corp-team07", true));//
+        hosts.Add(index++, new HostData("ssh-gilead-corp-wsit-team07", true));//
+
+        // team 1
+        hosts.Add(index++, new HostData("ssh-genovia-dns-team08", true));//
+        hosts.Add(index++, new HostData("ldap-dc-corp-team08", true));//
+        hosts.Add(index++, new HostData("ssh-genovia-openvpn-team08", true));//
+        hosts.Add(index++, new HostData("ssh-genovia-eedms-team08", true));//
+        hosts.Add(index++, new HostData("ssh-certificate-authority-team08", true));//
+        hosts.Add(index++, new HostData("https_tor-sdapp-corp-team08", true));//
+        hosts.Add(index++, new HostData("ssh-genovia-sdm-team08", true));//
+        hosts.Add(index++, new HostData("https_tor-www-genovia-cloud-team08", true));//
+        hosts.Add(index++, new HostData("ssh-genovia-corp-mail-team08", true));//
+        hosts.Add(index++, new HostData("winrm-fs-genovia-corp-team08", true));//
+        hosts.Add(index++, new HostData("rdp-ws1-genovia-corp-team08", true));//
+        hosts.Add(index++, new HostData("ssh-genovia-corp-wsit-team08", true));//
+
+        hosts.Add(index++, new HostData("smtp-shangri-la-corp-team08", true));//
+        hosts.Add(index++, new HostData("winrm-fs-shangri-la-corp-team08", true));//
+        hosts.Add(index++, new HostData("winrm-ws1-shangri-la-corp-team08", true));//
+        hosts.Add(index++, new HostData("winrm-ws2-shangri-la-corp-team08", true));//
+        hosts.Add(index++, new HostData("smtp-gilead-corp-team08", true));//
+        hosts.Add(index++, new HostData("winrm-fs-gilead-corp-team08", true));//
+        hosts.Add(index++, new HostData("winrm-ws1-gilead-corp-team08", true));//
+        hosts.Add(index++, new HostData("winrm-ws2-gilead-corp-team08", true));//
+        hosts.Add(index++, new HostData("ssh-gilead-corp-wsit-team08", true));//
+
+        // team 9
+        hosts.Add(index++, new HostData("ssh-genovia-dns-team09", true));//
+        hosts.Add(index++, new HostData("ldap-dc-corp-team09", true));//
+        hosts.Add(index++, new HostData("ssh-genovia-openvpn-team09", true));//
+        hosts.Add(index++, new HostData("ssh-genovia-eedms-team09", true));//
+        hosts.Add(index++, new HostData("ssh-certificate-authority-team09", true));//
+        hosts.Add(index++, new HostData("https_tor-sdapp-corp-team09", true));//
+        hosts.Add(index++, new HostData("ssh-genovia-sdm-team09", true));//
+        hosts.Add(index++, new HostData("https_tor-www-genovia-cloud-team09", true));//
+        hosts.Add(index++, new HostData("ssh-genovia-corp-mail-team09", true));//
+        hosts.Add(index++, new HostData("winrm-fs-genovia-corp-team09", true));//
+        hosts.Add(index++, new HostData("rdp-ws1-genovia-corp-team09", true));//
+        hosts.Add(index++, new HostData("ssh-genovia-corp-wsit-team09", true));//
+
+        hosts.Add(index++, new HostData("smtp-shangri-la-corp-team09", true));//
+        hosts.Add(index++, new HostData("winrm-fs-shangri-la-corp-team09", true));//
+        hosts.Add(index++, new HostData("winrm-ws1-shangri-la-corp-team09", true));//
+        hosts.Add(index++, new HostData("winrm-ws2-shangri-la-corp-team09", true));//
+        hosts.Add(index++, new HostData("smtp-gilead-corp-team09", true));//
+        hosts.Add(index++, new HostData("winrm-fs-gilead-corp-team09", true));//
+        hosts.Add(index++, new HostData("winrm-ws1-gilead-corp-team09", true));//
+        hosts.Add(index++, new HostData("winrm-ws2-gilead-corp-team09", true));//
+        hosts.Add(index++, new HostData("ssh-gilead-corp-wsit-team09", true));//
+
+        // team 10
+        hosts.Add(index++, new HostData("ssh-genovia-dns-team10", true));//
+        hosts.Add(index++, new HostData("ldap-dc-corp-team10", true));//
+        hosts.Add(index++, new HostData("ssh-genovia-openvpn-team10", true));//
+        hosts.Add(index++, new HostData("ssh-genovia-eedms-team10", true));//
+        hosts.Add(index++, new HostData("ssh-certificate-authority-team10", true));//
+        hosts.Add(index++, new HostData("https_tor-sdapp-corp-team10", true));//
+        hosts.Add(index++, new HostData("ssh-genovia-sdm-team10", true));//
+        hosts.Add(index++, new HostData("https_tor-www-genovia-cloud-team10", true));//
+        hosts.Add(index++, new HostData("ssh-genovia-corp-mail-team10", true));//
+        hosts.Add(index++, new HostData("winrm-fs-genovia-corp-team10", true));//
+        hosts.Add(index++, new HostData("rdp-ws1-genovia-corp-team10", true));//
+        hosts.Add(index++, new HostData("ssh-genovia-corp-wsit-team10", true));//
+
+        hosts.Add(index++, new HostData("smtp-shangri-la-corp-team10", true));//
+        hosts.Add(index++, new HostData("winrm-fs-shangri-la-corp-team10", true));//
+        hosts.Add(index++, new HostData("winrm-ws1-shangri-la-corp-team10", true));//
+        hosts.Add(index++, new HostData("winrm-ws2-shangri-la-corp-team10", true));//
+        hosts.Add(index++, new HostData("smtp-gilead-corp-team10", true));//
+        hosts.Add(index++, new HostData("winrm-fs-gilead-corp-team10", true));//
+        hosts.Add(index++, new HostData("winrm-ws1-gilead-corp-team10", true));//
+        hosts.Add(index++, new HostData("winrm-ws2-gilead-corp-team10", true));//
+        hosts.Add(index++, new HostData("ssh-gilead-corp-wsit-team10", true));//
     }
-        //hosts = new Dictionary<int, HostData>();
-        //
-        //// team 1
-        //hosts.Add(0, new HostData("172.17.1.1", true));
-        //hosts.Add(1, new HostData("172.17.1.2", true));
-        //hosts.Add(2, new HostData("172.17.1.3", true));
-        //hosts.Add(3, new HostData("172.16.1.4", true));
-        //hosts.Add(4, new HostData("172.16.1.5", true));
-        //hosts.Add(5, new HostData("172.16.1.6", true));
-        //
-        //// team 2
-        //hosts.Add(6, new HostData("172.17.2.1", true));
-        //hosts.Add(7, new HostData("172.17.2.2", true));
-        //hosts.Add(8, new HostData("172.17.2.3", true));
-        //hosts.Add(9, new HostData("172.16.2.4", true));
-        //hosts.Add(10, new HostData("172.16.2.5", true));
-        //hosts.Add(11, new HostData("172.16.2.6", true));
-        //
-        //// team 3
-        //hosts.Add(12, new HostData("172.17.3.1", true));
-        //hosts.Add(13, new HostData("172.17.3.2", true));
-        //hosts.Add(14, new HostData("172.17.3.3", true));
-        //hosts.Add(15, new HostData("172.16.3.4", true));
-        //hosts.Add(16, new HostData("172.16.3.5", true));
-        //hosts.Add(17, new HostData("172.16.3.6", true));
-        //
-        //// team 4
-        //hosts.Add(18, new HostData("172.17.4.1", true));
-        //hosts.Add(19, new HostData("172.17.4.2", true));
-        //hosts.Add(20, new HostData("172.17.4.3", true));
-        //hosts.Add(21, new HostData("172.16.4.4", true));
-        //hosts.Add(22, new HostData("172.16.4.5", true));
-        //hosts.Add(23, new HostData("172.16.4.6", true));
-        //
-        //// team 5
-        //hosts.Add(24, new HostData("172.17.5.1", true));
-        //hosts.Add(25, new HostData("172.17.5.2", true));
-        //hosts.Add(26, new HostData("172.17.5.3", true));
-        //hosts.Add(27, new HostData("172.16.5.4", true));
-        //hosts.Add(28, new HostData("172.16.5.5", true));
-        //hosts.Add(29, new HostData("172.16.5.6", true));
-        //
-        //// team 6
-        //hosts.Add(30, new HostData("172.17.6.1", true));
-        //hosts.Add(31, new HostData("172.17.6.2", true));
-        //hosts.Add(32, new HostData("172.17.6.3", true));
-        //hosts.Add(33, new HostData("172.16.6.4", true));
-        //hosts.Add(34, new HostData("172.16.6.5", true));
-        //hosts.Add(35, new HostData("172.16.6.6", true));
-        //
-        //// team 7
-        //hosts.Add(36, new HostData("172.17.7.1", true));
-        //hosts.Add(37, new HostData("172.17.7.2", true));
-        //hosts.Add(38, new HostData("172.17.7.3", true));
-        //hosts.Add(39, new HostData("172.16.7.4", true));
-        //hosts.Add(40, new HostData("172.16.7.5", true));
-        //hosts.Add(41, new HostData("172.16.7.6", true));
-        //
-        //// team 8
-        //hosts.Add(42, new HostData("172.17.8.1", true));
-        //hosts.Add(43, new HostData("172.17.8.2", true));
-        //hosts.Add(44, new HostData("172.17.8.3", true));
-        //hosts.Add(45, new HostData("172.16.8.4", true));
-        //hosts.Add(46, new HostData("172.16.8.5", true));
-        //hosts.Add(47, new HostData("172.16.8.6", true));
-        //
-        //// team 9
-        //hosts.Add(48, new HostData("172.17.9.1", true));
-        //hosts.Add(49, new HostData("172.17.9.2", true));
-        //hosts.Add(50, new HostData("172.17.9.3", true));
-        //hosts.Add(51, new HostData("172.16.9.4", true));
-        //hosts.Add(52, new HostData("172.16.9.5", true));
-        //hosts.Add(53, new HostData("172.16.9.6", true));
-        //
-        //// team 10
-        //hosts.Add(54, new HostData("172.17.10.1", true));
-        //hosts.Add(55, new HostData("172.17.10.2", true));
-        //hosts.Add(56, new HostData("172.17.10.3", true));
-        //hosts.Add(57, new HostData("172.16.10.4", true));
-        //hosts.Add(58, new HostData("172.16.10.5", true));
-        //hosts.Add(59, new HostData("172.16.10.6", true));
-    //}
 
     // Update is called once per frame
     void Update()
@@ -159,6 +320,14 @@ public class CCDCDataFormatter: Singleton<CCDCDataFormatter>
             // ticks down the timer every frame
             pullTimer -= UnityEngine.Time.deltaTime;
 
+            for (int i = 0; i < hosts.Count; i++)
+            {
+                if (UnityEngine.Random.Range(0.0f, 100.0f) < .001)
+                {
+                    hosts[i].state = !hosts[i].state;
+                }
+            }
+
             // checks if it's time to pull data
             if (pullTimer < 0)
             {
@@ -166,8 +335,8 @@ public class CCDCDataFormatter: Singleton<CCDCDataFormatter>
                 pullTimer = timeBeforePulls;
 
                 // gets, formats, then saves the data
-                Debug.Log(PullData());
-                FormatData(PullData());
+                Debug.Log(PullData(true));
+                FormatData(PullData(true));
                 SaveData();
             }
         }
@@ -324,6 +493,21 @@ public class CCDCDataFormatter: Singleton<CCDCDataFormatter>
             Debug.LogError(e.Message);
             throw e;
         }
+    }
+
+    private string PullData(bool spoofed)
+    {
+        string response = "";
+
+        for (int i = 0; i < hosts.Count; i++)
+        {
+            if (i != hosts.Count - 1)
+                response += hosts[i].name + ":" + hosts[i].state + "\n\r";
+            else
+                response += hosts[i].name + ":" + hosts[i].state;
+        }
+
+        return response;
     }
 
     /// <summary>
