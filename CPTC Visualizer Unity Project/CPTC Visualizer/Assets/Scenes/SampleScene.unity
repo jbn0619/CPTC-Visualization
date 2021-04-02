@@ -118,6 +118,8 @@ NavMeshSettings:
     manualTileSize: 0
     tileSize: 256
     accuratePlacement: 0
+    maxJobWorkers: 0
+    preserveTilesOutsideBounds: 0
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
@@ -204,3 +206,130 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1881299451
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1881299453}
+  - component: {fileID: 1881299452}
+  - component: {fileID: 1881299457}
+  - component: {fileID: 1881299456}
+  - component: {fileID: 1881299455}
+  - component: {fileID: 1881299454}
+  m_Layer: 0
+  m_Name: CPTC Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1881299452
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1881299451}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fccd9afc9095314095c9ea427c4d22e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stayInScene: 0
+  infraManager: {fileID: 1881299457}
+  teamManager: {fileID: 1881299455}
+  eventManager: {fileID: 1881299456}
+  notifManager: {fileID: 1881299454}
+--- !u!4 &1881299453
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1881299451}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.14724942, y: -0.7691846, z: -0.2818623}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1881299454
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1881299451}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3d031cf68287134582c7f66f3c32c4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  compType: 0
+  notification: {fileID: 0}
+  alertPriorityQueue: []
+  activeNotifs: []
+  notifEpireTimers: []
+  numActiveNotifs: 0
+  currentTime: 0
+--- !u!114 &1881299455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1881299451}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37265aac8af0d784d844add4027775fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  compType: 0
+  teams: []
+  teamViewLabel: {fileID: 0}
+  teamViewNameplate: {fileID: 0}
+  teamViewButGO: {fileID: 0}
+--- !u!114 &1881299456
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1881299451}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce970b4a688be6742b3175326450b04d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  compType: 0
+  timeBetweenAlerts: 5
+  timer: 0
+  simulationStart: 0
+  showConnections: 0
+--- !u!114 &1881299457
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1881299451}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f61b1c727f73f347a15c1363de16d70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  compType: 0
+  showConnections: 0
+  showHiddenConnections: 0
+  nodeGO: {fileID: 0}
+  networkGO: {fileID: 0}
+  infraGO: {fileID: 0}
+  teamGO: {fileID: 0}
+  alertGO: {fileID: 0}
+  connectionGO: {fileID: 0}
+  notificationManager: {fileID: 0}
