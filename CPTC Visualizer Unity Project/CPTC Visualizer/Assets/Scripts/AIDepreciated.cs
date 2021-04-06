@@ -15,7 +15,6 @@ public class OldAI: MonoBehaviour
 
     // object references
     private GameObject infraManager;
-    private InfrastructureManager imScript;
     
     // timers for tracking when things need to happen
     private float pullTimer;
@@ -30,7 +29,6 @@ public class OldAI: MonoBehaviour
     {
         // sets up the fields
         infraManager = GameObject.Find("Infrastructure Manager");
-        imScript = infraManager.GetComponent<InfrastructureManager>();
         //teamCount = imScript.Teams.Count;
         //teams = imScript.Teams;
         numSent = new int[teamCount];

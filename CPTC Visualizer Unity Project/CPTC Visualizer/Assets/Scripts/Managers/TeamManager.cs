@@ -123,11 +123,7 @@ public class TeamManager : MonoBehaviour
         // First, disable the currently-active infrastructure.
         if (currentTeamView == -1)
         {
-            GameManager.Instance.InfraManager.Infrastructure.gameObject.SetActive(false);
-            foreach (UptimeChartData u in GameManager.Instance.InfraManager.UptimeCharts)
-            {
-                u.gameObject.SetActive(false);
-            }
+            GameManager.Instance.MainInfra.gameObject.SetActive(false);
         }
         else
         {
@@ -155,7 +151,7 @@ public class TeamManager : MonoBehaviour
         if (teamIndex == -1)
         {
             currentTeamView = -1;
-            InfrastructureData mainInfra = GameManager.Instance.InfraManager.Infrastructure;
+            InfrastructureData mainInfra = GameManager.Instance.MainInfra;
             mainInfra.gameObject.SetActive(true);
             foreach(NodeData n in mainInfra.AllNodes)
             {
@@ -164,10 +160,6 @@ public class TeamManager : MonoBehaviour
             foreach(NetworkData n in mainInfra.Networks)
             {
                 n.gameObject.SetActive(true);
-            }
-            foreach (UptimeChartData u in GameManager.Instance.InfraManager.UptimeCharts)
-            {
-                u.gameObject.SetActive(true);
             }
 
             teamViewLabel.text = "Main Infrastructure";

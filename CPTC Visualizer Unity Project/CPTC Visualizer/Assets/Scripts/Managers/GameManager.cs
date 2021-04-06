@@ -8,9 +8,10 @@ public class GameManager: Singleton<GameManager>
 {
     #region Fields
 
-    [Header("Manager GameObjects")]
     [SerializeField]
-    private InfrastructureManager infraManager;
+    private InfrastructureData mainInfra;
+
+    [Header("Manager GameObjects")]
     [SerializeField]
     private JSONWriter jsonWriter;
     [SerializeField]
@@ -65,17 +66,6 @@ public class GameManager: Singleton<GameManager>
     #region Properties
 
     /// <summary>
-    /// Gets a reference to this scene's infrastructure manager if it exists.
-    /// </summary>
-    public InfrastructureManager InfraManager
-    {
-        get
-        {
-            return infraManager;
-        }
-    }
-
-    /// <summary>
     /// Gets a reference to this scene's team manager if it exists.
     /// </summary>
     public TeamManager TeamManager
@@ -108,6 +98,14 @@ public class GameManager: Singleton<GameManager>
         }
     }
 
+    public InfrastructureData MainInfra
+    {
+        get
+        {
+            return mainInfra;
+        }
+    }
+
     #endregion Properties
 
     // Start is called before the first frame update
@@ -120,6 +118,7 @@ public class GameManager: Singleton<GameManager>
         attackCheckCount = 0.0f;
         elapsedTime = 0.0f;
         timeUntilShow = 0.0f;
+        test.Run();
     }
 
     // Update is called once per frame
@@ -190,9 +189,7 @@ public class GameManager: Singleton<GameManager>
             startOfComp = System.DateTime.Now;
             Debug.Log(System.DateTime.Now.ToString());
 
-            infraManager.ReadJson();
             teamManager.ReadTeams();
-            infraManager.DisableMainView();
             DataFormatter.Instance.HasStart = true;
             compStarted = true;
 
@@ -241,4 +238,88 @@ public class GameManager: Singleton<GameManager>
         //    //injectNotifManager.CreateTestInject();
         //}
     }
+
+    /*
+    /// <summary>
+    /// Takes this script's infrastructure and duplicates it. It then sends those copies to each team so each team can edit their own infrastructures with their alerts and whatnot.
+    /// </summary>
+    public void DuplicateInfrastructure()
+    {
+        for (int i = 0; i < GameManager.Instance.TeamManager.CCDCTeams.Count; i++)
+        {
+            TeamData team = GameManager.Instance.TeamManager.CCDCTeams[i];
+            // Instantiate a copy of the infrastructure, and make it a child of the team's gameObject.
+            InfrastructureData newInfra = Instantiate(infrastructure);
+            newInfra.transform.parent = team.gameObject.transform;
+            newInfra.gameObject.transform.position = infrastructure.gameObject.transform.position;
+
+            // Make an empty gameObject to clean up the uptime charts scene heirarchy.
+            GameObject emptyObj = new GameObject();
+            emptyObj.transform.parent = UIManager.Instance.SceneCanvases[1].gameObject.transform;
+            emptyObj.name = "Team " + (i + 1).ToString() + " Uptime Charts";
+
+            // Make sure the data of individual nodes is properly-copied.
+            for (int k = 0; k < newInfra.AllNodes.Count; k++)
+            {
+                // Assign the node's values to a new NodeData object.
+                NodeData currentNode = newInfra.AllNodes[k];
+                NodeData oldNode = infrastructure.AllNodes[k];
+                currentNode.Ip = oldNode.Ip;
+                currentNode.Id = oldNode.Id;
+                currentNode.IsHidden = oldNode.IsHidden;
+                currentNode.Type = oldNode.Type;
+                currentNode.State = oldNode.State;
+                foreach (int c in oldNode.Connections)
+                {
+                    currentNode.Connections.Add(c);
+                }
+                foreach (LineRenderer c in oldNode.ConnectionGOS)
+                {
+                    LineRenderer copy = Instantiate(c, currentNode.gameObject.transform);
+                    currentNode.ConnectionGOS.Add(copy);
+                }
+
+                if (currentNode is NodeData)
+                {
+                    // Instantiate new uptime charts for each node.
+                    UptimeChartData newChart = Instantiate(uptimeChartGO, emptyObj.transform);
+
+                    ((NodeData)currentNode).UptimeChart = newChart;
+                    newChart.gameObject.transform.position = newInfra.AllNodes[k].gameObject.transform.position + new Vector3(0.5f, 0, 0);
+                    newChart.gameObject.transform.localScale = new Vector2(0.002f, 0.008f);
+                    newChart.NodeID = newInfra.AllNodes[k].Id;
+                    newChart.TeamID = team.TeamId;
+
+                    team.UptimeCharts.Add(newChart);
+                    newChart.gameObject.SetActive(false);
+                }
+            }
+
+            // appends the teams at the end of the names
+            for (int k = 0; k < newInfra.AllNodes.Count; k++)
+            {
+                NodeData current = newInfra.AllNodes[k];
+                string name = current.Ip;
+                string append = "";
+
+                if (i < 9)
+                {
+                    append = "-team0" + (i + 1);
+                }
+                else
+                {
+                    append = "-team" + (i + 1);
+                }
+
+                current.Ip = name + append;
+            }
+
+            team.InfraCopy = newInfra;
+
+            // Create the team's graph, then hide it for later.
+            team.BuildTeamGraph();
+            team.InfraCopy.gameObject.SetActive(false);
+        }
+    }
+    */
 }
