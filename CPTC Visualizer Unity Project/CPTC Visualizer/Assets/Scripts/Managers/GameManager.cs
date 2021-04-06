@@ -4,21 +4,21 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class CCDCManager: Singleton<CCDCManager>
+public class GameManager: Singleton<GameManager>
 {
     #region Fields
 
     [Header("Manager GameObjects")]
     [SerializeField]
-    private CCDCInfrastructureManager infraManager;
+    private InfrastructureManager infraManager;
     [SerializeField]
     private JSONWriter jsonWriter;
     [SerializeField]
-    private CCDCTeamManager teamManager;
+    private TeamManager teamManager;
     [SerializeField]
-    private CCDCEventManager eventManager;
+    private EventManager eventManager;
     [SerializeField]
-    private CCDCInjectNotifManager injectNotifManager;
+    private InjectNotifManager injectNotifManager;
     [SerializeField]
     private VideoManager videoManager;
     
@@ -67,7 +67,7 @@ public class CCDCManager: Singleton<CCDCManager>
     /// <summary>
     /// Gets a reference to this scene's infrastructure manager if it exists.
     /// </summary>
-    public CCDCInfrastructureManager InfraManager
+    public InfrastructureManager InfraManager
     {
         get
         {
@@ -78,7 +78,7 @@ public class CCDCManager: Singleton<CCDCManager>
     /// <summary>
     /// Gets a reference to this scene's team manager if it exists.
     /// </summary>
-    public CCDCTeamManager TeamManager
+    public TeamManager TeamManager
     {
         get
         {
@@ -89,7 +89,7 @@ public class CCDCManager: Singleton<CCDCManager>
     /// <summary>
     /// Gets a reference to this scene's event manager if it exists.
     /// </summary>
-    public CCDCEventManager EventManager
+    public EventManager EventManager
     {
         get
         {
@@ -193,7 +193,7 @@ public class CCDCManager: Singleton<CCDCManager>
             infraManager.ReadJson();
             teamManager.ReadTeams();
             infraManager.DisableMainView();
-            CCDCDataFormatter.Instance.HasStart = true;
+            DataFormatter.Instance.HasStart = true;
             compStarted = true;
 
             //System.Diagnostics.Process.Start("notepad.exe");
@@ -204,7 +204,7 @@ public class CCDCManager: Singleton<CCDCManager>
             startOfVisualizer = System.DateTime.Now;
             timeDelay = Mathf.Abs((int)startOfVisualizer.Subtract(startOfComp).TotalMinutes);
 
-            CCDCDataFormatter.Instance.Delay = timeDelay;
+            DataFormatter.Instance.Delay = timeDelay;
             readDateStarted = true;
             //eventManager.ReadAttacksJSON();
             TeamViewAI.Instance.BeginComp();

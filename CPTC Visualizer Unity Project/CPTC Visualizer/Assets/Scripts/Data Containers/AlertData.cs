@@ -3,11 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-/// <summary>
-/// Used to contain data from the alerts read in
-/// Uses an interface that allows the data to be stored into the priority queues
-/// </summary>
-public class AlertData : MonoBehaviour, IPriorityEvent
+public class AlertData: MonoBehaviour, IPriorityEvent
 {
     #region Fields
 
@@ -19,6 +15,9 @@ public class AlertData : MonoBehaviour, IPriorityEvent
     protected int team;
     protected int timestamp;
     protected int priority;
+
+    private CCDCAttackType attackType;
+    private DateTime startTime;
 
     #endregion Fields
 
@@ -76,18 +75,47 @@ public class AlertData : MonoBehaviour, IPriorityEvent
         set { timestamp = value; }
     }
 
-    #endregion Properties
+    /// <summary>
+    /// Gets or sets what kind of CCDC attack this alert represents.
+    /// </summary>
+    public CCDCAttackType AttackType
+    {
+        get
+        {
+            return attackType;
+        }
+        set
+        {
+            attackType = value;
+        }
+    }
 
+    /// <summary>
+    /// Gets or sets this attack's startTime.
+    /// </summary>
+    public DateTime StartTime
+    {
+        get
+        {
+            return startTime;
+        }
+        set
+        {
+            startTime = value;
+        }
+    }
+    
+    #endregion Properties
+    
     // Start is called before the first frame update
     void Start()
     {
-        // How to convert from string to enum:
-        //Enum.TryParse(string, out CPTCEvents newEvent);
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        
     }
 }

@@ -240,10 +240,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stayInScene: 0
-  infraManager: {fileID: 1881299457}
-  teamManager: {fileID: 1881299455}
-  eventManager: {fileID: 1881299456}
-  notifManager: {fileID: 1881299454}
+  infraManager: {fileID: 0}
+  teamManager: {fileID: 0}
+  eventManager: {fileID: 0}
+  notifManager: {fileID: 0}
 --- !u!4 &1881299453
 Transform:
   m_ObjectHideFlags: 0

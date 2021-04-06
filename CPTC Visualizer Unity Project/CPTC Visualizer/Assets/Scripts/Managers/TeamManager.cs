@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 using Assets.Scripts;
 using System.IO;
 
-public abstract class TeamManager : MonoBehaviour
+public class TeamManager : MonoBehaviour
 {
     #region Fields
 
@@ -25,6 +25,11 @@ public abstract class TeamManager : MonoBehaviour
     protected List<TeamViewButton> teamViewButtons;
 
     protected int currentTeamView;
+
+    protected List<TeamData> ccdcTeams;
+
+    protected List<Color> curatedColors;
+    protected List<Color> curatedModified;
 
     #endregion Fields
 
@@ -52,17 +57,45 @@ public abstract class TeamManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Gets a list of this manager's ccdc teams.
+    /// </summary>
+    public List<TeamData> CCDCTeams
+    {
+        get
+        {
+            return ccdcTeams;
+        }
+    }
+
     #endregion Properties
+
+
+    private void Awake()
+    {
+        
+    }
 
     // Start is called before the first frame update
     void Start()
     {
+        ccdcTeams = new List<TeamData>();
         teams = new List<TeamData>();
-        teamViewButtons = new List<TeamViewButton>();
+        curatedColors = new List<Color>();
         currentTeamView = -1;
 
         SceneManager.sceneLoaded += CleanOnSceneChange;
 
+        curatedColors.Add(new Color(0.76f, 0.5f, 0.18f));
+        curatedColors.Add(new Color(0.76f, 0.72f, 0.21f));
+        curatedColors.Add(new Color(0.29f, 0.66f, 0.13f));
+        curatedColors.Add(new Color(0.17f, 0.68f, 0.45f));
+        curatedColors.Add(new Color(0.12f, 0.36f, 0.62f));
+        curatedColors.Add(new Color(0.19f, 0.09f, 0.64f));
+        curatedColors.Add(new Color(0.39f, 0.07f, 0.6f));
+        curatedColors.Add(new Color(0.53f, 0.06f, 0.52f));
+        curatedColors.Add(new Color(0.45f, 0.05f, 0.26f));
+        curatedColors.Add(new Color(0.55f, 0.1f, 0.1f));
     }
 
     // Update is called once per frame
@@ -76,122 +109,105 @@ public abstract class TeamManager : MonoBehaviour
     /// <summary>
     /// Changes what infrastructure is currently-displayed in the scene.
     /// </summary>
-    public virtual void ChangeTeamView(int deltaIndex)
+    public void ChangeTeamView(int deltaIndex)
     {
-        // Check what team is currently-viewed and set it to false (hide it)
-        if (currentTeamView == -1)
-        {
-            switch (compType)
-            {
-                case CompetitionType.CCDC:
-                    CCDCManager.Instance.InfraManager.Infrastructure.gameObject.SetActive(false);
-                    break;
-                case CompetitionType.CPTC:
-                    CPTCManager.Instance.InfraManager.Infrastructure.gameObject.SetActive(false);
-                    break;
-            }
-        }
-        else
-        {
-            teams[currentTeamView].InfraCopy.gameObject.SetActive(false);
-        }
-        // Update the index based-on what key was hit.
-        currentTeamView += deltaIndex;
-
-        // Check what index we're at and take the appropriate actions for either wrapping-through the collection in either direction or seeing if we're in teams or infrastructure.
-
-        // The case when we're not looking at teams, but infrastructure.
-        if (currentTeamView == -1)
-        {
-            switch (compType)
-            {
-                case CompetitionType.CCDC:
-                    CCDCManager.Instance.InfraManager.Infrastructure.gameObject.SetActive(true);
-                    break;
-                case CompetitionType.CPTC:
-                    CPTCManager.Instance.InfraManager.Infrastructure.gameObject.SetActive(true);
-                    break;
-            }
-        }
-        // The case when we wrap from the bottom to the end of the teams list.
-        else if (currentTeamView < -1)
-        {
-            currentTeamView = teams.Count - 1;
-            teams[currentTeamView].InfraCopy.gameObject.SetActive(true);
-            teams[currentTeamView].BuildTeamGraph();
-        }
-        // The case when we wrap from the end of teams list back to infrastructure.
-        else if (currentTeamView >= teams.Count)
-        {
-            currentTeamView = -1;
-            switch (compType)
-            {
-                case CompetitionType.CCDC:
-                    CCDCManager.Instance.InfraManager.Infrastructure.gameObject.SetActive(true);
-                    break;
-                case CompetitionType.CPTC:
-                    CPTCManager.Instance.InfraManager.Infrastructure.gameObject.SetActive(true);
-                    break;
-            }
-        }
-        // The case when we're somewhere within the teams list.
-        else
-        {
-            teams[currentTeamView].InfraCopy.gameObject.SetActive(true);
-        }
+        SelectTeamView(currentTeamView + deltaIndex);
     }
 
     /// <summary>
     /// This method is called by a button to change the currently-viewed infrastructure to a team at a specific index.
     /// </summary>
     /// <param name="teamIndex">The id of the team to display.</param>
-    public virtual void SelectTeamView(int teamIndex)
+    public void SelectTeamView(int teamIndex)
     {
         // First, disable the currently-active infrastructure.
         if (currentTeamView == -1)
         {
-            switch (compType)
+            GameManager.Instance.InfraManager.Infrastructure.gameObject.SetActive(false);
+            foreach (UptimeChartData u in GameManager.Instance.InfraManager.UptimeCharts)
             {
-                case CompetitionType.CCDC:
-                    CCDCManager.Instance.InfraManager.Infrastructure.gameObject.SetActive(false);
-                    break;
-                case CompetitionType.CPTC:
-                    CPTCManager.Instance.InfraManager.Infrastructure.gameObject.SetActive(false);
-                    break;
+                u.gameObject.SetActive(false);
             }
         }
         else
         {
-            teams[currentTeamView].InfraCopy.gameObject.SetActive(false);
+            ccdcTeams[currentTeamView].InfraCopy.gameObject.SetActive(false);
+            
+            if (ccdcTeams[currentTeamView].NotifMarkers.Count > 0)
+            {
+                foreach (NotificationButton button in ccdcTeams[currentTeamView].NotifMarkers)
+                {
+                    button.gameObject.SetActive(false);
+                }
+            }
+            
+            foreach (UptimeChartData u in ccdcTeams[currentTeamView].UptimeCharts)
+            {
+                u.gameObject.SetActive(false);
+            }
         }
+
+        // Wrap the team index to make sure it stays in-bounds.
+        if (teamIndex < -1) teamIndex = ccdcTeams.Count - 1;
+        else if (teamIndex >= ccdcTeams.Count) teamIndex = -1;
 
         // Next, do a simple check to make sure teamIndex is an acceptable value. If it is, then change currentTeamView to that new index.
         if (teamIndex == -1)
         {
             currentTeamView = -1;
-            switch (compType)
+            InfrastructureData mainInfra = GameManager.Instance.InfraManager.Infrastructure;
+            mainInfra.gameObject.SetActive(true);
+            foreach(NodeData n in mainInfra.AllNodes)
             {
-                case CompetitionType.CCDC:
-                    CCDCManager.Instance.InfraManager.Infrastructure.gameObject.SetActive(true);
-                    break;
-                case CompetitionType.CPTC:
-                    CPTCManager.Instance.InfraManager.Infrastructure.gameObject.SetActive(true);
-                    break;
+                n.gameObject.SetActive(true);
             }
+            foreach(NetworkData n in mainInfra.Networks)
+            {
+                n.gameObject.SetActive(true);
+            }
+            foreach (UptimeChartData u in GameManager.Instance.InfraManager.UptimeCharts)
+            {
+                u.gameObject.SetActive(true);
+            }
+
             teamViewLabel.text = "Main Infrastructure";
         }
-        else if (teamIndex >= 0 && teamIndex < teams.Count)
+        else if (teamIndex >= 0 && teamIndex < ccdcTeams.Count)
         {
             currentTeamView = teamIndex;
-            teams[currentTeamView].InfraCopy.gameObject.SetActive(true);
-            teamViewLabel.text = "Team " + teamIndex;
+            InfrastructureData teamInfra = ccdcTeams[currentTeamView].InfraCopy;
+            teamInfra.gameObject.SetActive(true);
+            foreach (NodeData n in teamInfra.AllNodes)
+            {
+                n.gameObject.SetActive(true);
+            }
+            foreach (NetworkData n in teamInfra.Networks)
+            {
+                n.gameObject.SetActive(true);
+            }
+
+            if (ccdcTeams[currentTeamView].NotifMarkers.Count > 0)
+            {
+                foreach (NotificationButton button in ccdcTeams[currentTeamView].NotifMarkers)
+                {
+                    button.gameObject.SetActive(true);
+                }
+            }
+            
+            foreach (UptimeChartData u in ccdcTeams[currentTeamView].UptimeCharts)
+            {
+                u.gameObject.SetActive(true);
+            }
+
+            teamViewLabel.text = "Team " + ccdcTeams[teamIndex].TeamName;
+            teamViewNameplate.color = ccdcTeams[teamIndex].TeamColor;
         }
     }
 
     /// <summary>
     /// Generates enough buttons to switch between every team's view, and the main infrastructure view.
     /// </summary>
-    public virtual void GenerateTeamViewButtons()
+    public void GenerateTeamViewButtons()
     {
         // Make sure we properly clear-out the previous buttons before making new ones.
         if (teamViewButtons != null)
@@ -210,22 +226,36 @@ public abstract class TeamManager : MonoBehaviour
         // Create each button, then edit their index and text fields.
         if (UIManager.Instance.ActiveCanvas != null)
         {
-            for (int i = 0; i < teams.Count + 1; i++)
+            // Generate a list of possible locations
+            List<int> possibleLocs = new List<int>();
+            for (int i = 0; i < ccdcTeams.Count; i++)
+            {
+                possibleLocs.Add((Screen.width / ccdcTeams.Count / 2) + ((Screen.width / ccdcTeams.Count) * i));
+                //Debug.Log(possibleLocs[i]);
+            }
+
+            Debug.Log(ccdcTeams.Count);
+            for (int i = 0; i < ccdcTeams.Count; i++)
             {
                 TeamViewButton newButton = Instantiate(teamViewButGO, UIManager.Instance.ActiveCanvas.transform);
-                if (i == teams.Count)
+                if (i == ccdcTeams.Count)
                 {
-                    newButton.NewTeamIndex = -1;
-                    newButton.ButtonText.text = "Main";
+                    //newButton.NewTeamIndex = -1;
+                    //newButton.ButtonText.text = "Main";
+                    Destroy(newButton.gameObject);
                 }
                 else
                 {
                     newButton.NewTeamIndex = i;
-                    newButton.ButtonText.text = "Team " + i;
+                    newButton.ButtonText.text = ccdcTeams[i].TeamName;
+                    newButton.Button.image.color = ccdcTeams[i].TeamColor;
                 }
 
                 // Finally, move the button to its proper spot and add it to teamViewButtons.
-                newButton.gameObject.transform.position = new Vector3(95 + (i * 100), Screen.height - 50, 0);
+                //newButton.gameObject.transform.position = new Vector3(105 + (i * 180), Screen.height - 75, 0);
+                int index = Random.Range(0, possibleLocs.Count);
+                newButton.gameObject.transform.position = new Vector3(possibleLocs[index], Screen.height - 75, 0);
+                possibleLocs.RemoveAt(index);
                 teamViewButtons.Add(newButton);
             }
         }
@@ -233,6 +263,105 @@ public abstract class TeamManager : MonoBehaviour
         {
             Debug.Log("ERROR: NO ACTIVE CANVAS IN SCENE!");
         }
+    }
+
+    /// <summary>
+    /// Generate Random Team Names and Colors
+    ///     Will generate random names and colors (with no repeat names) for each team currently
+    ///     in the list. These are saved to a file for reuse.
+    /// </summary>
+    public void GenerateTeamNames()
+    {
+        List<string> potentialNames = new List<string>();
+        List<string> teamNames = new List<string>();
+        List<string> teamColors = new List<string>();
+        curatedModified = new List<Color>();
+
+        for(int i = 0; i < curatedColors.Count; i++)
+        {
+            curatedModified.Add(curatedColors[i]);
+        }
+
+        string directoryPath = "C:\\ProgramData\\CSEC Visualizer";
+
+        // First check if the directory exists, or if we need to make it.
+        if (Directory.Exists(directoryPath) == false)
+        {
+            Directory.CreateDirectory(directoryPath);
+        }
+
+        // Generates a list of potential names from the file
+        StreamReader reader = new StreamReader(directoryPath + "\\animalNames.txt");
+        while (reader.Peek() != -1)
+        {
+            potentialNames.Add(reader.ReadLine());
+        }
+        reader.Close();
+
+        // Gets a random index, adds it to the team names, and removes it from
+        //      potential names. Then creates a random color for the team.
+        for (int i = 0; i < ccdcTeams.Count; i++)
+        {
+            int index = Random.Range(0, potentialNames.Count);
+            teamNames.Add(potentialNames[index]);
+            potentialNames.RemoveAt(index);
+
+            int colorIndex = Random.Range(0, curatedModified.Count);
+            Color color = curatedModified[colorIndex];
+            curatedModified.RemoveAt(colorIndex);
+
+            //Color color = new Color(Random.Range(0.5f, 1.0f), Random.Range(0.5f, 1.0f), Random.Range(0.5f, 1.0f));
+            teamColors.Add("#" + ColorUtility.ToHtmlStringRGBA(color));
+        }
+
+        // Writes the selected team names and colors to a file
+        StreamWriter writer = new StreamWriter(directoryPath + "\\teamNames.txt");
+        for (int i = 0; i < ccdcTeams.Count; i++)
+        {
+            writer.WriteLine(teamNames[i] + ":" + teamColors[i]);
+        }
+        writer.Close();
+    }
+
+    /// <summary>
+    /// Read Team Names and Colors
+    ///     Reads in the names and colors from the file and assignes them to their corresponding teams
+    ///     in the list.
+    /// </summary>
+    public void ReadTeams()
+    {
+        List<string> teamNames = new List<string>();
+        List<string> teamColors = new List<string>();
+
+        string filePath = "C:\\ProgramData\\CSEC Visualizer\\teamNames.txt";
+
+        // Reads the team names and colors from a file
+        if (File.Exists(filePath))
+        {
+            StreamReader reader = new StreamReader("C:\\ProgramData\\CSEC Visualizer\\teamNames.txt");
+            while (reader.Peek() != -1)
+            {
+                string[] line = reader.ReadLine().Split(':');
+
+                teamNames.Add(line[0]);
+                teamColors.Add(line[1]);
+            }
+            reader.Close();
+        }
+        
+
+        Color readColor;
+
+        // Assign the names and colors to the teams
+        for (int i = 0; i < ccdcTeams.Count; i++)
+        {
+            ColorUtility.TryParseHtmlString(teamColors[i], out readColor);
+
+            ccdcTeams[i].TeamName = teamNames[i];
+            ccdcTeams[i].TeamColor = readColor;
+        }
+
+        GenerateTeamViewButtons();
     }
 
     #endregion Team View Methods

@@ -92,15 +92,6 @@ public class TeamViewButton: MonoBehaviour
     /// </summary>
     public void SetTeamView()
     {
-        switch (compType)
-        {
-            case CompetitionType.CCDC:
-                CCDCManager.Instance.TeamManager.SelectTeamView(newTeamIndex);
-                break;
-            case CompetitionType.CPTC:
-                CPTCManager.Instance.TeamManager.SelectTeamView(newTeamIndex);
-                break;
-        }
-        
+        GameManager.Instance.TeamManager.SelectTeamView(newTeamIndex);
     }
 }

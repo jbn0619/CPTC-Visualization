@@ -80,7 +80,7 @@ public class TeamViewAI: Singleton<TeamViewAI>
             if (injectTime)
             {
                 // checks if a video was playing
-                if (!CCDCManager.Instance.VideoManager.IsVideoPlaying && !wasPlayingVid)
+                if (!GameManager.Instance.VideoManager.IsVideoPlaying && !wasPlayingVid)
                 {
                     // show the inject and such
                     Debug.Log("STOP; INJECT TIME");
@@ -88,7 +88,7 @@ public class TeamViewAI: Singleton<TeamViewAI>
                     wasPlayingVid = true;
                 }
                 // checks if the video has finished
-                else if (!CCDCManager.Instance.VideoManager.IsVideoPlaying && wasPlayingVid)
+                else if (!GameManager.Instance.VideoManager.IsVideoPlaying && wasPlayingVid)
                 {
                     injectTime = false;
                     wasPlayingVid = false;
@@ -121,7 +121,7 @@ public class TeamViewAI: Singleton<TeamViewAI>
                     ResetChanges();
 
                     // switches to the correct team view
-                    CCDCManager.Instance.TeamManager.SelectTeamView(previousTeam);
+                    GameManager.Instance.TeamManager.SelectTeamView(previousTeam);
                 }
             }
         }

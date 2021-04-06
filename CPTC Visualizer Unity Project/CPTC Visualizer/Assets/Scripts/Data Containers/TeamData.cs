@@ -23,9 +23,13 @@ public class TeamData: MonoBehaviour
     protected List<int> discoveredNodeIds;
 
     protected InfrastructureData infraCopy;
-    
+
+    private List<UptimeChartData> uptimeCharts;
+    private List<NotificationButton> notifMarkers;
+    private List<GameObject> notifBanners;
+
     #endregion Fields
-    
+
     #region Properties
 
     /// <summary>
@@ -104,12 +108,52 @@ public class TeamData: MonoBehaviour
         set { teamColor = value; }
     }
 
+    /// <summary>
+    /// Gets a list of all the uptime charts in this team's infrastructure.
+    /// </summary>
+    public List<UptimeChartData> UptimeCharts
+    {
+        get
+        {
+            return uptimeCharts;
+        }
+    }
+
+    /// <summary>
+    /// Gets a list of all the notification markers active for this team.
+    /// </summary>
+    public List<NotificationButton> NotifMarkers
+    {
+        get
+        {
+            return notifMarkers;
+        }
+    }
+
+    /// <summary>
+    /// Gets a list of all the notification banners active for this team.
+    /// </summary>
+    public List<GameObject> NotifBanners
+    {
+        get
+        {
+            return notifBanners;
+        }
+    }
+
     #endregion Properties
-    
+
+    private void Awake()
+    {
+        uptimeCharts = new List<UptimeChartData>();
+        notifBanners = new List<GameObject>();
+        notifMarkers = new List<NotificationButton>();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-        // queue = new PriorityQueue();
+        
     }
 
     public void SetupQueue()
@@ -120,94 +164,13 @@ public class TeamData: MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-    }
 
-    /// <summary>
-    /// Reads the first alert in the alerts list and changes the infrastructure based-on that.
-    /// </summary>
-    public virtual void ReadNextAlert()
-    {
-        if (!queue.IsEmpty) // alerts.Count > 0
-        {
-            AlertData newAlert = (AlertData)queue.Pop(); // alerts[0];
-            //alerts.RemoveAt(0);
-
-            switch (newAlert.Type)
-            {
-                // This is a low-priority event.
-                case CPTCEvents.Discovery:
-                    // Grab a random discovered-node, then "discover" one of its connections.
-                    int baseNode = discoveredNodeIds[Random.Range(0, discoveredNodeIds.Count)];
-                    if (infraCopy.AllNodes[baseNode].Connections.Count == 0)
-                    {
-                        break;
-                    }
-
-                    // Determine what node will be discovered, and activate the corresponding connection gameObject.
-                    int randIndex = Random.Range(0, infraCopy.AllNodes[baseNode].Connections.Count);
-                    int newNode = infraCopy.AllNodes[baseNode].Connections[randIndex];
-                    infraCopy.AllNodes[baseNode].ConnectionGOS[randIndex].gameObject.SetActive(true);
-
-                    discoveredNodeIds.Add(newNode);
-                    break;
-                // This is a high-priority event.
-                case CPTCEvents.Exploit:
-                    int randNodeIndex = Random.Range(0, discoveredNodeIds.Count);
-                    int randNodeID = discoveredNodeIds[randNodeIndex];
-
-                    infraCopy.AllNodes[randNodeID].NodeSprite.color = Color.magenta;
-                    break;
-                // This is a high-priority event.
-                case CPTCEvents.ShutDown:
-                    foreach (int n in newAlert.AffectedNodes)
-                    {
-                        // Make sure we're not shutting-down a node that's already been shut down.
-                        if (infraCopy.ShutDownNodes.Contains(n) == false)
-                        {
-                            // Disable the node's gameObject, then add its ID to shutDownNodes.
-                            infraCopy.ShutDownNodes.Add(n);
-                            //infraCopy.AllNodes[n].gameObject.SetActive(false);
-                            infraCopy.AllNodes[n].NodeSprite.enabled = false;
-                        }
-                    }
-                    break;
-                // This is a low-priority event.
-                case CPTCEvents.StartUp:
-                    // Grab a random node that has been shut down, and start it up again.
-                    if (infraCopy.ShutDownNodes.Count > 0)
-                    {
-                        int startUpIndex = Random.Range(0, infraCopy.ShutDownNodes.Count);
-                        startUpIndex = infraCopy.ShutDownNodes[startUpIndex];
-                        //infraCopy.AllNodes[startUpIndex].gameObject.SetActive(true);
-                        infraCopy.AllNodes[startUpIndex].NodeSprite.enabled = true;
-                        infraCopy.ShutDownNodes.Remove(startUpIndex);
-                    }
-                    break;
-                case CPTCEvents.NetworkScan:
-                    // Get a random network to scan.
-                    int netIndex = Random.Range(0, infraCopy.Networks.Count);
-                    infraCopy.Networks[netIndex].ScanActive = true;
-                    break;
-                default:
-                    break;
-            }
-
-            Debug.Log("ALERT: Team " + teamId + " attempted " + newAlert.Type);
-        }
-        else
-        {
-            Debug.Log("Team " + teamId + " has done NOTHING");
-        }
-
-        // After changes have been made, update the team's visual graph.
-        BuildTeamGraph();
     }
 
     /// <summary>
     /// Dynamically moves all of this team's infrastructure into the scene.
     /// </summary>
-    public virtual void BuildTeamGraph()
+    public void BuildTeamGraph()
     {
         // Place each network first, then place nodes around them.
         for (int i = 0; i < infraCopy.Networks.Count; i++)
@@ -215,25 +178,39 @@ public class TeamData: MonoBehaviour
             float radius = infraCopy.Networks.Count / 1.5f;
             float angle = i * Mathf.PI * 2f / infraCopy.Networks.Count;
 
-            infraCopy.Networks[i].gameObject.transform.position = infraCopy.gameObject.transform.position + new Vector3(Mathf.Cos(angle) * radius, Mathf.Sin(angle) * radius, 0);
             infraCopy.Networks[i].gameObject.transform.localScale = new Vector2(0.5f, 0.5f);
 
-            float nodeRadius = infraCopy.Networks.Count / (radius * 2);
+            float nodeRadius = infraCopy.Networks[i].Nodes.Count / (radius * 1.5f);
 
             // Place each of the netowrk's nodes around in a circle.
             for (int j = 0; j < infraCopy.Networks[i].Nodes.Count; j++)
             {
-                radius = nodeRadius;
+                radius = nodeRadius - (0.05f * infraCopy.Networks[i].Nodes.Count);
                 angle = j * Mathf.PI * 2f / infraCopy.Networks[i].Nodes.Count;
 
-                infraCopy.Networks[i].Nodes[j].gameObject.transform.position = infraCopy.Networks[i].gameObject.transform.position + new Vector3(Mathf.Cos(angle) * radius, Mathf.Sin(angle) * radius, 0);
-                infraCopy.Networks[i].Nodes[j].gameObject.transform.localScale = new Vector2(0.15f, 0.15f);
+                // Move the node to another position based-on a radial position.
+                infraCopy.Networks[i].Nodes[j].gameObject.transform.position = infraCopy.Networks[i].gameObject.transform.position + new Vector3(Mathf.Cos(angle) * radius, Mathf.Sin(angle) * radius, 0) + new Vector3(0, 0, 0);
+                infraCopy.Networks[i].Nodes[j].gameObject.transform.localScale = new Vector2(.75f, .75f);
 
                 // If the node gets shut down, then disable it (for now).
                 infraCopy.Networks[i].Nodes[j].gameObject.SetActive(infraCopy.Networks[i].Nodes[j].IsActive);
 
                 // See if we can display the node based-on if this team has discovered it or not.
                 infraCopy.Networks[i].Nodes[j].gameObject.SetActive(discoveredNodeIds.Contains(infraCopy.Networks[i].Nodes[j].Id));
+
+                // Next, check their state to edit their color.
+                switch (infraCopy.Networks[i].Nodes[j].State)
+                {
+                    case NodeState.Off:
+                        infraCopy.Networks[i].Nodes[j].NodeSprite.color = Color.gray;
+                        break;
+                    case NodeState.On:
+                        infraCopy.Networks[i].Nodes[j].NodeSprite.color = new Color(0.3137255f, 0.3333333f, 0.9098039f);
+                        break;
+                    case NodeState.NotWorking:
+                        infraCopy.Networks[i].Nodes[j].NodeSprite.color = new Color(0.9098039f, 0.3137255f, 0.3137255f);
+                        break;
+                }
 
                 // Check what connections need to be turned-off or left on.
                 for (int k = 0; k < infraCopy.Networks[i].Nodes[j].Connections.Count; k++)

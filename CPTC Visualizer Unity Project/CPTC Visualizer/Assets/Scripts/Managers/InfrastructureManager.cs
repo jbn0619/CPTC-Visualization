@@ -8,7 +8,7 @@ using UnityEngine.UI;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
-public abstract class InfrastructureManager : MonoBehaviour
+public class InfrastructureManager: MonoBehaviour
 {
     #region Fields
 
@@ -34,8 +34,16 @@ public abstract class InfrastructureManager : MonoBehaviour
     [SerializeField]
     protected LineRenderer connectionGO;
 
+    [SerializeField]
+    private JSONWriter writer;
+
+    [SerializeField]
+    private UptimeChartData uptimeChartGO;
+
+    private List<UptimeChartData> uptimeCharts;
+
     #endregion Fields
-    
+
     #region Properties
 
     public InfrastructureData Infrastructure
@@ -43,6 +51,17 @@ public abstract class InfrastructureManager : MonoBehaviour
         get
         {
             return infrastructure;
+        }
+    }
+
+    /// <summary>
+    /// Gets a list of the main infrastructure's uptime charts.
+    /// </summary>
+    public List<UptimeChartData> UptimeCharts
+    {
+        get
+        {
+            return uptimeCharts;
         }
     }
     
@@ -63,9 +82,9 @@ public abstract class InfrastructureManager : MonoBehaviour
     /// <summary>
     /// Read in data from a JSON file and convert it into Data containers split-up into gameObjects.
     /// </summary>
-    public virtual void ReadJson()
+    public void ReadJson()
     {
-        StreamReader reader = new StreamReader("Assets/Data/data.json");
+        StreamReader reader = new StreamReader("C:\\ProgramData\\CSEC Visualizer\\data.json");
         string input = reader.ReadToEnd();
         reader.Close();
         CPTCData payload = JsonUtility.FromJson<CPTCData>(input);
@@ -74,30 +93,17 @@ public abstract class InfrastructureManager : MonoBehaviour
         if (infrastructure != null)
         {
             GameObject.Destroy(infrastructure.gameObject);
-            switch (compType)
+            foreach (TeamData t in GameManager.Instance.TeamManager.Teams)
             {
-                case CompetitionType.CCDC:
-                    foreach (TeamData t in CCDCManager.Instance.TeamManager.Teams)
-                    {
-                        GameObject.Destroy(t.gameObject);
-                    }
-                    CCDCManager.Instance.TeamManager.Teams.Clear();
-                    break;
-                case CompetitionType.CPTC:
-                    foreach (TeamData t in CPTCManager.Instance.TeamManager.Teams)
-                    {
-                        GameObject.Destroy(t.gameObject);
-                    }
-                    CPTCManager.Instance.TeamManager.Teams.Clear();
-                    break;
+                GameObject.Destroy(t.gameObject);
             }
-            
+            GameManager.Instance.TeamManager.Teams.Clear();
         }
         
         // Collects the team data first.
         for(int i = 0; i < payload.teams.Count; i++)
         {
-            TeamData newTeam = Instantiate(teamGO, Vector3.zero, Quaternion.identity);
+            TeamData newTeam = Instantiate((TeamData)teamGO, GameManager.Instance.TeamManager.gameObject.transform);
             newTeam.SetupQueue();
             newTeam.TeamId = payload.teams[i].teamId;
             // Move all discovered node-IDs into newTeam.
@@ -124,16 +130,7 @@ public abstract class InfrastructureManager : MonoBehaviour
                 newTeam.Queue.Push(newAlert); // .Alerts.Add(newAlert);
             }
 
-            switch (compType)
-            {
-                case CompetitionType.CCDC:
-                    CCDCManager.Instance.TeamManager.Teams.Add(newTeam);
-                    break;
-                case CompetitionType.CPTC:
-                    CPTCManager.Instance.TeamManager.Teams.Add(newTeam);
-                    break;
-            }
-            
+            GameManager.Instance.TeamManager.CCDCTeams.Add(newTeam);
         }
 
         // Instantiate our infrastructure and populate it.
@@ -155,6 +152,7 @@ public abstract class InfrastructureManager : MonoBehaviour
             {
                 NodeData newNode = Instantiate(nodeGO, newNet.transform);
                 newNode.Id = payload.infrastructure.networks[i].nodes[k].id;
+                newNode.Ip = payload.infrastructure.networks[i].nodes[k].ip;
                 newNode.IsActive = true;
                 Enum.TryParse(payload.infrastructure.networks[i].nodes[k].type, out NodeTypes newType);
                 newNode.Type = newType;
@@ -187,13 +185,114 @@ public abstract class InfrastructureManager : MonoBehaviour
     /// <summary>
     /// Takes this script's infrastructure and duplicates it. It then sends those copies to each team so each team can edit their own infrastructures with their alerts and whatnot.
     /// </summary>
-    public virtual void DuplicateInfrastructure()
+    public void DuplicateInfrastructure()
     {
-        foreach(TeamData team in CCDCManager.Instance.TeamManager.Teams)
+        for (int i = 0; i < GameManager.Instance.TeamManager.CCDCTeams.Count; i++)
         {
+            TeamData team = GameManager.Instance.TeamManager.CCDCTeams[i];
             // Instantiate a copy of the infrastructure, and make it a child of the team's gameObject.
-            InfrastructureData newInfra = Instantiate(infrastructure, team.gameObject.transform);
+            InfrastructureData newInfra = Instantiate(infrastructure);
+            newInfra.transform.parent = team.gameObject.transform;
             newInfra.gameObject.transform.position = infrastructure.gameObject.transform.position;
+
+            // Make an empty gameObject to clean up the uptime charts scene heirarchy.
+            GameObject emptyObj = new GameObject();
+            emptyObj.transform.parent = UIManager.Instance.SceneCanvases[1].gameObject.transform;
+            emptyObj.name = "Team " + (i + 1).ToString() + " Uptime Charts";
+
+            // Make sure the data of individual nodes is properly-copied.
+            for (int k = 0; k < newInfra.AllNodes.Count; k++)
+            {
+                // Assign the node's values to a new NodeData object.
+                NodeData currentNode = newInfra.AllNodes[k];
+                NodeData oldNode = infrastructure.AllNodes[k];
+                currentNode.Ip = oldNode.Ip;
+                currentNode.Id = oldNode.Id;
+                currentNode.IsHidden = oldNode.IsHidden;
+                currentNode.Type = oldNode.Type;
+                currentNode.State = oldNode.State;
+                foreach (int c in oldNode.Connections)
+                {
+                    currentNode.Connections.Add(c);
+                }
+                foreach (LineRenderer c in oldNode.ConnectionGOS)
+                {
+                    LineRenderer copy = Instantiate(c, currentNode.gameObject.transform);
+                    currentNode.ConnectionGOS.Add(copy);
+                }
+
+                if (currentNode is NodeData)
+                {
+                    // Instantiate new uptime charts for each node.
+                    UptimeChartData newChart = Instantiate(uptimeChartGO, emptyObj.transform);
+
+                    ((NodeData)currentNode).UptimeChart = newChart;
+                    newChart.gameObject.transform.position = newInfra.AllNodes[k].gameObject.transform.position + new Vector3(0.5f, 0, 0);
+                    newChart.gameObject.transform.localScale = new Vector2(0.002f, 0.008f);
+                    newChart.NodeID = newInfra.AllNodes[k].Id;
+                    newChart.TeamID = team.TeamId;
+
+                    team.UptimeCharts.Add(newChart);
+                    newChart.gameObject.SetActive(false);
+                }
+            }
+
+            // appends the teams at the end of the names
+            for (int k = 0; k < newInfra.AllNodes.Count; k++)
+            {
+                NodeData current = newInfra.AllNodes[k];
+                string name = current.Ip;
+                string append = "";
+                
+                if (i < 9)
+                {
+                    append = "-team0" + (i + 1);
+                }
+                else
+                {
+                    append = "-team" + (i + 1);
+                }
+
+                current.Ip = name + append;
+            }
+
+            /// <summary>
+            /// OLD LOOP FOR TEAMS WITH IPS
+            /// Update the node IPs with this team's number.
+            ///for (int k = 0; k < newInfra.AllNodes.Count; k++)
+            ///{
+            ///    NodeData currentNode = newInfra.AllNodes[k];
+            ///    string ip = currentNode.Ip;
+            ///    string teamNum = (i + 1).ToString();
+            ///    int xIndex = ip.IndexOf('X');
+            ///
+            ///    // Check if we meet the conditions to change the number behind the X-character (if one exists).
+            ///    if (i == 9 && ip[xIndex - 1] != '.')
+            ///    {
+            ///        char previousNum = ip[xIndex - 1];
+            ///        string oldNum = previousNum.ToString() + "0";
+            ///        int.TryParse(oldNum, out int num);
+            ///        int totalNum = i + 1 + num;
+            ///
+            ///        string part1 = ip.Substring(0, xIndex - 1);
+            ///        string part2 = totalNum.ToString();
+            ///        string part3 = ip.Substring(xIndex + 1, ip.Length - (xIndex + 1));
+            ///        string result = part1 + part2 + part3;
+            ///
+            ///        currentNode.Ip = result;
+            ///    }
+            ///    else
+            ///    {
+            ///        string part1 = ip.Substring(0, xIndex);
+            ///        string part2 = teamNum;
+            ///        string part3 = ip.Substring(xIndex + 1, ip.Length - (xIndex + 1));
+            ///        string result = part1 + part2 + part3;
+            ///
+            ///        currentNode.Ip = result;
+            ///    }
+            ///}
+            /// </summary>
+
             team.InfraCopy = newInfra;
 
             // Create the team's graph, then hide it for later.
@@ -205,31 +304,64 @@ public abstract class InfrastructureManager : MonoBehaviour
     /// <summary>
     /// Generates the graph and connects nodes. Builds an outward circular graph of networks and nodes.
     /// </summary>
-    public virtual void GenerateGraph()
+    public void GenerateGraph()
     {
-        // Place each network first, then place nodes around them.
-        for(int i = 0; i < infrastructure.Networks.Count; i++)
+        // Open-up the uptime chart canvas and add charts to it.
+        UIManager.Instance.SceneCanvases[1].gameObject.SetActive(true);
+        
+        if (uptimeCharts == null)
         {
-            float radius = infrastructure.Networks.Count / 1.5f;
+            uptimeCharts = new List<UptimeChartData>();
+        }
+        else
+        {
+            uptimeCharts.Clear();
+        }
+
+        // Make an empty gameObject to clean up the uptime charts scene heirarchy.
+        GameObject emptyObj = new GameObject(); 
+        emptyObj.transform.parent = UIManager.Instance.SceneCanvases[1].gameObject.transform;
+        emptyObj.name = "Team Infrastructure Uptime Charts";
+
+        // Place each network first, then place nodes around them.
+        for (int i = 0; i < infrastructure.Networks.Count; i++)
+        {
+            float radius = 0;
+            if (writer.GenType == InfraGenType.BillStackpole)
+            {
+                radius = 3;
+            }
+            else
+            {
+                radius = infrastructure.Networks.Count / 1.15f;
+            }
             float angle = i * Mathf.PI * 2f / infrastructure.Networks.Count;
 
             // Move the network to another position based-on a..radial position?
-            infrastructure.Networks[i].gameObject.transform.position = infrastructure.gameObject.transform.position + new Vector3(Mathf.Cos(angle) * radius, Mathf.Sin(angle) * radius, 0);
-            infrastructure.Networks[i].gameObject.transform.localScale = new Vector2(0.5f, 0.5f);
+            infrastructure.Networks[i].gameObject.transform.position = infrastructure.gameObject.transform.position + new Vector3(Mathf.Cos(angle + 48.06f) * radius, Mathf.Sin(angle + 48.06f) * radius, 0);
+            //infrastructure.Networks[i].gameObject.transform.position = infrastructure.gameObject.transform.position + new Vector3((-4) + 3 * i, 0, 0);
+            infrastructure.Networks[i].gameObject.transform.localScale = new Vector2(.75f, .75f);
 
             // Edit the network's lineRenderer to re-size it to encompase the node sprites.
-            float nodeRadius = infrastructure.Networks.Count / (radius * 2);
-            GenerateNetworkOutline(infrastructure.Networks[i], nodeRadius + 0.5f);
+            float nodeRadius = infrastructure.Networks[i].Nodes.Count / (radius * 1.5f);
+            GenerateNetworkOutline(infrastructure.Networks[i], nodeRadius + 0.75f);
 
             // Place each of the netowrk's nodes around in a circle.
-            for(int j = 0; j < infrastructure.Networks[i].Nodes.Count; j++)
+            for (int j = 0; j < infrastructure.Networks[i].Nodes.Count; j++)
             {
                 radius = nodeRadius;
                 angle = j * Mathf.PI * 2f / infrastructure.Networks[i].Nodes.Count;
 
                 // Move the node to another position based-on a radial position.
-                infrastructure.Networks[i].Nodes[j].gameObject.transform.position = infrastructure.Networks[i].gameObject.transform.position + new Vector3(Mathf.Cos(angle) * radius, Mathf.Sin(angle) * radius, 0);
-                infrastructure.Networks[i].Nodes[j].gameObject.transform.localScale = new Vector2(0.15f, 0.15f);
+                infrastructure.Networks[i].Nodes[j].gameObject.transform.position = infrastructure.Networks[i].gameObject.transform.position + new Vector3(Mathf.Cos(angle) * radius, Mathf.Sin(angle) * radius, 0) + new Vector3(0, 0, 0);
+
+                // Next, place an uptime chart that corresponds to this node.
+                UptimeChartData newChart = Instantiate(uptimeChartGO, emptyObj.transform);
+                newChart.gameObject.transform.position = infrastructure.Networks[i].Nodes[j].gameObject.transform.position + new Vector3(.75f, 0, 0);
+                newChart.gameObject.transform.localScale = new Vector2(0.004f, 0.016f);
+                newChart.NodeID = infrastructure.Networks[i].Nodes[j].Id;
+                newChart.TeamID = -1;
+                uptimeCharts.Add(newChart);
 
                 // Next, check their state to edit their color.
                 switch (infrastructure.Networks[i].Nodes[j].State)
@@ -238,10 +370,10 @@ public abstract class InfrastructureManager : MonoBehaviour
                         infrastructure.Networks[i].Nodes[j].NodeSprite.color = Color.gray;
                         break;
                     case NodeState.On:
-                        infrastructure.Networks[i].Nodes[j].NodeSprite.color = Color.cyan;
+                        infrastructure.Networks[i].Nodes[j].NodeSprite.color = new Color(0.3137255f, 0.3333333f, 0.9098039f);
                         break;
                     case NodeState.NotWorking:
-                        infrastructure.Networks[i].Nodes[j].NodeSprite.color = Color.red;
+                        infrastructure.Networks[i].Nodes[j].NodeSprite.color = new Color(0.9098039f, 0.3137255f, 0.3137255f);
                         break;
                 }
 
@@ -260,7 +392,7 @@ public abstract class InfrastructureManager : MonoBehaviour
     /// </summary>
     /// <param name="network">The network we need to visualize here.</param>
     /// <param name="radius">How large the network must be in-order to encapsulate all its nodes.</param>
-    public virtual void GenerateNetworkOutline(NetworkData network, float radius)
+    public void GenerateNetworkOutline(NetworkData network, float radius)
     {
         // infrastructure.Networks[i].gameObject.transform.position = new Vector3(Mathf.Cos(angle) * radius, Mathf.Sin(angle) * radius, 0);
         Vector3[] newPositions = new Vector3[(network.Nodes.Count * 2) + 2];
@@ -282,7 +414,7 @@ public abstract class InfrastructureManager : MonoBehaviour
     /// <summary>
     /// Generate conneciton gameObjects to display as part of the graph.
     /// </summary>
-    public virtual void GenerateConnections()
+    public void GenerateConnections()
     {
         // Display node connecitons.
         for (int i = 0; i < infrastructure.AllNodes.Count; i++)
@@ -352,5 +484,20 @@ public abstract class InfrastructureManager : MonoBehaviour
                 }
             }
         }
+    }
+
+    /// <summary>
+    /// Disables the main infrastructure (and its dependencies), then switches to the first team.
+    /// </summary>
+    public void DisableMainView()
+    {
+        // Hide the main infrastructure, then change the view to the first team.
+        infrastructure.gameObject.SetActive(false);
+        foreach (UptimeChartData u in uptimeCharts)
+        {
+            u.gameObject.SetActive(false);
+        }
+
+        GameManager.Instance.TeamManager.SelectTeamView(0);
     }
 }

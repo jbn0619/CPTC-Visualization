@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
 
 public class NodeData: MonoBehaviour
 {
@@ -22,9 +21,11 @@ public class NodeData: MonoBehaviour
 
     [SerializeField]
     protected SpriteRenderer nodeSprite;
-    
+
+    private UptimeChartData uptimeChart;
+
     #endregion Fields
-    
+
     #region Properties
 
     /// <summary>
@@ -157,14 +158,27 @@ public class NodeData: MonoBehaviour
             nodeSprite = value;
         }
     }
+
+    /// <summary>
+    /// Gets or sets this node's uptime chart.
+    /// </summary>
+    public UptimeChartData UptimeChart
+    {
+        get
+        {
+            return uptimeChart;
+        }
+        set
+        {
+            uptimeChart = value;
+        }
+    }
     
     #endregion Properties
     
     // Start is called before the first frame update
     void Start()
     {
-        // How to convert from string to enum:
-        //Enum.TryParse(string, out NodeTypes newType);
         
     }
 
@@ -185,8 +199,7 @@ public class NodeData: MonoBehaviour
         nodeSprite.transform.localScale = new Vector3(.15f, .15f, 1);
     }
 
-
-    public virtual NodeData Clone()
+    public NodeData Clone()
     {
         NodeData newNode = new NodeData();
         newNode.id = this.id;

@@ -1,47 +1,55 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using System.IO;
+using System;
 
-public abstract class EventManager : MonoBehaviour
+public class EventManager: MonoBehaviour
 {
     #region Fields
 
     [SerializeField]
-    protected CompetitionType compType;
+    int secondPeriodIndex;
+    [SerializeField]
+    Canvas notificationCanvas;
 
-    [Header("Simulation Fields")]
+    private List<Assets.Scripts.CCDCAttackData> attacks;
+
     [SerializeField]
-    protected int timeBetweenAlerts = 5;
+    private double attackDelay;
+
+    [Header("Game Object Prefabs")]
     [SerializeField]
-    protected float timer;
+    private GameObject bannerGO;
     [SerializeField]
-    protected bool simulationStart = false;
-    [SerializeField]
-    protected bool showConnections;
+    private NotificationButton markerGO;
 
     #endregion Fields
 
     #region Properties
 
     /// <summary>
-    /// Returns what-kind of competition this is.
+    /// Gets or sets the delay given to attacks' times.
     /// </summary>
-    public CompetitionType CompType
+    public double AttackDelay
     {
         get
         {
-            return compType;
+            return attackDelay;
+        }
+        set
+        {
+            attackDelay = value;
         }
     }
-
-    protected NotificationManager notificationManager;
 
     #endregion Properties
 
     // Start is called before the first frame update
     void Start()
     {
-
+        attacks = new List<Assets.Scripts.CCDCAttackData>();
     }
 
     // Update is called once per frame
@@ -50,49 +58,162 @@ public abstract class EventManager : MonoBehaviour
         
     }
 
-    protected void BaseUpdate()
+    /// <summary>
+    /// Reads out alerts from each team
+    /// </summary>
+    public void RunAlerts()
     {
-        // If the simulation is running, then update timer and see if we need to run alerts.
-        if (simulationStart)
+        foreach (TeamData team in GameManager.Instance.TeamManager.Teams)
         {
-            timer += Time.deltaTime;
-
-            // If enough time has passed, run alerts and reset the timer.
-            if (timer >= timeBetweenAlerts)
+            if (!team.Queue.IsEmpty) // team.Alerts.Count > 0
             {
-                timer = 0;
-                RunAlerts();
+                
             }
         }
     }
 
     /// <summary>
-    /// Reads out alerts from each team
+    /// Reads a JSON of uptime-data for ever node and changes node colors/uptime charts accordingly.
     /// </summary>
-    public virtual void RunAlerts()
+    public void ReadNodeStateJSON()
     {
-        switch (compType)
-        {
-            case CompetitionType.CCDC:
-                foreach (TeamData team in CCDCManager.Instance.TeamManager.Teams)
+        string payload = DataFormatter.Instance.GrabData();
+
+        HostDataContainer newBatch = JsonUtility.FromJson<HostDataContainer>(payload);
+        int[] deltas = new int[10];
+
+        foreach (HostData h in newBatch.Hosts)
+        {            
+            // Find the proper node by its IP address.
+            foreach (TeamData team in GameManager.Instance.TeamManager.CCDCTeams)
+            {
+                foreach (NodeData n in team.InfraCopy.AllNodes)
                 {
-                    if (!team.Queue.IsEmpty) // team.Alerts.Count > 0
+                    // If the IP addresses match, then update the uptime chart.
+                    if (n.Ip == h.name)
                     {
-                        notificationManager.CreateNotification(team.TeamId, ((AlertData)(team.Queue.Peek)).Type); // team.Alerts[0].Type
-                        team.ReadNextAlert();
+                        n.UptimeChart.UpdateData(h.state);
+
+                        if (h.state != n.IsActive)
+                        { 
+                            deltas[team.TeamId] += 1;
+                            n.IsActive = h.state;
+                            //n.UptimeChart.StateChanged();
+                        }
+
+                        if (n.IsActive)
+                            n.NodeSprite.color = new Color(0.3137255f, 0.3333333f, 0.9098039f);
+                        else
+                            n.NodeSprite.color = new Color(0.9098039f, 0.3137255f, 0.3137255f);
                     }
                 }
-                break;
-            case CompetitionType.CPTC:
-                foreach (TeamData team in CPTCManager.Instance.TeamManager.Teams)
-                {
-                    if (!team.Queue.IsEmpty) // team.Alerts.Count > 0
-                    {
-                        notificationManager.CreateNotification(team.TeamId, ((AlertData)(team.Queue.Peek)).Type); // team.Alerts[0].Type
-                        team.ReadNextAlert();
-                    }
-                }
-                break;
+            }
         }
+
+        TeamViewAI.Instance.UpdateDeltas(deltas);
+    }
+
+    /// <summary>
+    /// Spawns an attack button into the world when called (if the times match-up).
+    /// </summary>
+    public void SpawnAttack()
+    {
+        foreach(Assets.Scripts.CCDCAttackData attack in attacks)
+        {
+            DateTime delayedTime = DateTime.Now.AddMinutes(-1 * attackDelay);
+            if (attack.StartTime == delayedTime.ToShortTimeString())
+            {
+                // Go-through each node affected and pull-out its address.
+                foreach (string a in attack.NodesAffected)
+                {
+                    // Begin by finding-out which team we're attacking.
+                    int recipient = FindTeamInIP(a);
+
+                    if (recipient == -1) break;
+
+                    TeamData recievingTeam = GameManager.Instance.TeamManager.CCDCTeams[recipient];
+
+                    // Next, find the id of the node we're attacking.
+                    int nodeIndex = 0;
+                    for (int i = 0; i < recievingTeam.InfraCopy.AllNodes.Count; i++)
+                    {
+                        if (recievingTeam.InfraCopy.AllNodes[i].Ip == a)
+                        {
+                            nodeIndex = i;
+                            break;
+                        }
+                    }
+
+                    // Spawn a notification marker in the proper spot.
+                    NotificationButton newMarker = Instantiate(markerGO, notificationCanvas.transform);
+                    Enum.TryParse(attack.AttackType, out CCDCAttackType myAttack);
+                    Vector3 newPos = recievingTeam.InfraCopy.AllNodes[nodeIndex].gameObject.transform.position + new Vector3(0, .3f, -3);
+                    newMarker.transform.position = newPos;
+                    newMarker.AttackType = myAttack;
+                    newMarker.AffectedNodeID = nodeIndex;
+                    newMarker.AffectedTeamID = recipient;
+
+                    recievingTeam.NotifMarkers.Add(newMarker);
+
+                    // Disable this marker so that it can be properly-revealed later-on.
+                    newMarker.gameObject.SetActive(false);
+
+                    // Spawn-in a notification banner under this team's button.
+                    GameObject newBanner = Instantiate(bannerGO);
+
+                    TeamViewButton currentButton = GameManager.Instance.TeamManager.TeamViewButtons[recipient];
+                    newBanner.transform.SetParent(currentButton.transform, true);
+                    newBanner.transform.position = currentButton.transform.position + new Vector3(-50 + (recievingTeam.NotifBanners.Count * 25), -75, 0);
+                    recievingTeam.NotifBanners.Add(newBanner);
+
+                    // Pass this banner's reference to the marker for later-destruction.
+                    newMarker.CorrespondingBanner = newBanner;
+                }
+            }
+        }
+    }
+
+    /// <summary>
+    /// Reads-in a json that summarizes all attacks logged by the red team.
+    /// </summary>
+    public void ReadAttacksJSON()
+    {
+        notificationCanvas.gameObject.SetActive(true);
+        StreamReader reader = new StreamReader("C:\\ProgramData\\CSEC Visualizer\\attacks.json");
+        string input = reader.ReadToEnd();
+        reader.Close();
+
+        Assets.Scripts.CCDCCompiledAttacks payload = JsonUtility.FromJson<Assets.Scripts.CCDCCompiledAttacks>(input);
+
+        foreach (Assets.Scripts.CCDCAttackData attack in payload.attacks)
+        {
+            attacks.Add(attack);
+        }
+    }
+
+    /// <summary>
+    /// When given an IP address string, parses-out what team that IP address is from.
+    /// </summary>
+    /// <param name="ip">The given IP-address as a string.</param>
+    /// <returns>The IP's team as an int.</returns>
+    private int FindTeamInIP(string ip)
+    {
+        if (ip.Length > 0)
+        {
+            // Cut out the beginning of the string, as it doesn't matter.
+            string teamToAttack = ip.Substring(secondPeriodIndex, 3);
+
+            // If the final character is a period, then truncate it. Otherwise, keep the character.
+            if (teamToAttack[1] == '.' || teamToAttack[2] == '.')
+            {
+                teamToAttack = teamToAttack.Substring(0, 2);
+            }
+            teamToAttack = teamToAttack.Substring(0, teamToAttack.Length - 1);
+
+            int.TryParse(teamToAttack, out int recipient);
+
+            return recipient - 1;
+        }
+        return -1;
     }
 }

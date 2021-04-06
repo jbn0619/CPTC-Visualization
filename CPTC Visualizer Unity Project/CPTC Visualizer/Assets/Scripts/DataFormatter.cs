@@ -6,7 +6,7 @@ using System.IO;
 using System.Net;
 using System.Net.Http;
 
-public class CCDCDataFormatter: Singleton<CCDCDataFormatter>
+public class DataFormatter: Singleton<DataFormatter>
 {
     #region Fields
     // containers
