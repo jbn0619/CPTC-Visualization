@@ -19,8 +19,6 @@ public class GameManager: Singleton<GameManager>
     [SerializeField]
     private EventManager eventManager;
     [SerializeField]
-    private InjectNotifManager injectNotifManager;
-    [SerializeField]
     private VideoManager videoManager;
     
     [Header("Public Facing Timers")]
@@ -118,7 +116,6 @@ public class GameManager: Singleton<GameManager>
         attackCheckCount = 0.0f;
         elapsedTime = 0.0f;
         timeUntilShow = 0.0f;
-        test.Run();
     }
 
     // Update is called once per frame
@@ -205,7 +202,6 @@ public class GameManager: Singleton<GameManager>
             readDateStarted = true;
             //eventManager.ReadAttacksJSON();
             TeamViewAI.Instance.BeginComp();
-            injectNotifManager.ReadInInjects();
         }
 
         // Create a new Infrastructure and write it to the Json
