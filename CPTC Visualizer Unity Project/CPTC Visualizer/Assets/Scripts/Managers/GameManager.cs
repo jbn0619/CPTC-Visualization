@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -9,11 +10,15 @@ public class GameManager: Singleton<GameManager>
     #region Fields
 
     [SerializeField]
+    private Camera mainCam;
+    [SerializeField]
     private InfrastructureData mainInfra;
 
     [Header("Manager GameObjects")]
     [SerializeField]
-    private JSONWriter jsonWriter;
+    private InputManager inputManager;
+    [SerializeField]
+    private AIManager aiManager;
     [SerializeField]
     private TeamManager teamManager;
     [SerializeField]
@@ -21,22 +26,6 @@ public class GameManager: Singleton<GameManager>
     [SerializeField]
     private VideoManager videoManager;
     
-    [Header("Public Facing Timers")]
-    [SerializeField]
-    private GameObject showTimerBanner;
-    [SerializeField]
-    private float timeUntilShow;
-    [SerializeField]
-    private Text timeUntilShowText;
-    [SerializeField]
-    private GameObject showNotifBanner;
-    private bool showTimerStarted;
-    [SerializeField]
-    private float elapsedTime;
-    [SerializeField]
-    private Text elapsedTimeText;
-
-
     public GameObject notificationControls;
 
     [Header("Time fields")]
@@ -61,7 +50,7 @@ public class GameManager: Singleton<GameManager>
     
     #endregion Fields
     
-    #region Properties
+    #region Manager Properties
 
     /// <summary>
     /// Gets a reference to this scene's team manager if it exists.
@@ -96,6 +85,9 @@ public class GameManager: Singleton<GameManager>
         }
     }
 
+    /// <summary>
+    /// Gets the template infrastructure, to be passed-into the teams.
+    /// </summary>
     public InfrastructureData MainInfra
     {
         get
@@ -104,18 +96,43 @@ public class GameManager: Singleton<GameManager>
         }
     }
 
-    #endregion Properties
+    #endregion Manager Properties
+
+    #region Competition Properties
+
+    /// <summary>
+    /// Gets the main camera of this scene.
+    /// </summary>
+    public Camera MainCam
+    {
+        get
+        {
+            return mainCam;
+        }
+    }
+
+    /// <summary>
+    /// Gets if the reading date has started yet.
+    /// </summary>
+    public bool ReadDateStarted { get; set; }
+
+    public bool CompStarted { get; set; }
+
+    public DateTime StartOfComp { get; set; }
+
+    public DateTime StartOfVisualizer { get; set; }
+
+    public double TimeDelay { get; set; }
+
+    #endregion Competition Properties
 
     // Start is called before the first frame update
     void Start()
     {
         readDateStarted = false;
         compStarted = false;
-        showTimerStarted = false;
         stateCheckCount = 0.0f;
         attackCheckCount = 0.0f;
-        elapsedTime = 0.0f;
-        timeUntilShow = 0.0f;
     }
 
     // Update is called once per frame
@@ -126,30 +143,6 @@ public class GameManager: Singleton<GameManager>
 
         if(readDateStarted)
         {
-            // Timer stuff
-            elapsedTime += Time.deltaTime;
-            elapsedTimeText.text = "Elapsed Time: " + string.Format("{00}:{1:00}:{2:00}",
-                Mathf.FloorToInt(elapsedTime / 3600),
-                Mathf.FloorToInt(elapsedTime / 60 % 60),
-                Mathf.FloorToInt(elapsedTime % 60));
-
-            // Show Starting Timer
-            if (showTimerStarted)
-            {
-                if(timeUntilShow > 0)
-                {
-                    timeUntilShow -= Time.deltaTime;
-                    timeUntilShowText.text = "Show starting in aproximately " + string.Format("{00}:{1:00}",
-                        Mathf.FloorToInt(timeUntilShow / 60 % 60),
-                        Mathf.FloorToInt(timeUntilShow % 60));
-                }
-                else
-                {
-                    timeUntilShowText.text = "Show starting soon!";
-                }
-
-            }
-
             // Update nodes
             if (stateCheckCount >= stateCheckTime)
             {
@@ -179,53 +172,6 @@ public class GameManager: Singleton<GameManager>
                 }
             }
         }
-
-        // Master Key. Starts the program in its entirety with one key press
-        if (Input.GetKeyDown(KeyCode.Return) && !compStarted)
-        {
-            startOfComp = System.DateTime.Now;
-            Debug.Log(System.DateTime.Now.ToString());
-
-            teamManager.ReadTeams();
-            DataFormatter.Instance.HasStart = true;
-            compStarted = true;
-
-            //System.Diagnostics.Process.Start("notepad.exe");
-        }
-
-        if(Input.GetKeyDown(KeyCode.Space) && !readDateStarted)
-        {
-            startOfVisualizer = System.DateTime.Now;
-            timeDelay = Mathf.Abs((int)startOfVisualizer.Subtract(startOfComp).TotalMinutes);
-
-            DataFormatter.Instance.Delay = timeDelay;
-            readDateStarted = true;
-            //eventManager.ReadAttacksJSON();
-            TeamViewAI.Instance.BeginComp();
-        }
-
-        // Create a new Infrastructure and write it to the Json
-        if (Input.GetKeyDown(KeyCode.Period))
-        {
-            jsonWriter.GenerateData();
-        }
-
-        // Starts or stops the Time Until Show notification
-        if(Input.GetKeyDown(KeyCode.LeftShift))
-        {
-            if(!showTimerStarted)
-            {
-                showTimerStarted = true;
-                timeUntilShow = 30 * 60;
-                showNotifBanner.gameObject.SetActive(true);
-            }
-            else
-            {
-                showTimerStarted = false;
-                showNotifBanner.gameObject.SetActive(false);
-            }
-        }
-
         // Generates team names and colors
         //if(Input.GetKeyDown(KeyCode.C))
         //{

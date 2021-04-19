@@ -70,7 +70,6 @@ public class TeamManager : MonoBehaviour
 
     #endregion Properties
 
-
     private void Awake()
     {
         
@@ -216,7 +215,7 @@ public class TeamManager : MonoBehaviour
         }
 
         // Create each button, then edit their index and text fields.
-        if (UIManager.Instance.ActiveCanvas != null)
+        if (UIManager.Instance.SceneCanvas != null)
         {
             // Generate a list of possible locations
             List<int> possibleLocs = new List<int>();
@@ -229,7 +228,7 @@ public class TeamManager : MonoBehaviour
             Debug.Log(ccdcTeams.Count);
             for (int i = 0; i < ccdcTeams.Count; i++)
             {
-                TeamViewButton newButton = Instantiate(teamViewButGO, UIManager.Instance.ActiveCanvas.transform);
+                TeamViewButton newButton = Instantiate(teamViewButGO, UIManager.Instance.SceneCanvas.transform);
                 if (i == ccdcTeams.Count)
                 {
                     //newButton.NewTeamIndex = -1;

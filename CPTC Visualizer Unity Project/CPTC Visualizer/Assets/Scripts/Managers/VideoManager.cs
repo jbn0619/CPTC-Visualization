@@ -35,7 +35,7 @@ public class VideoManager: MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        canvas = UIManager.Instance.ActiveCanvas;
+        canvas = UIManager.Instance.SceneCanvas;
         screen.SetActive(false);
         videoPlayer = screen.GetComponent<VideoPlayer>();
         //shiftActive = false;
@@ -117,7 +117,7 @@ public class VideoManager: MonoBehaviour
         if(_index < attackVideos.Count
             && _index >= 0)
         {
-            canvas = UIManager.Instance.ActiveCanvas;
+            canvas = UIManager.Instance.SceneCanvas;
             Debug.Log("Playing attack video...");
 
             canvas.gameObject.SetActive(false);
@@ -141,7 +141,7 @@ public class VideoManager: MonoBehaviour
     /// </summary>
     public void PlayInjectVideo(int _index)
     {
-        canvas = UIManager.Instance.ActiveCanvas;
+        canvas = UIManager.Instance.SceneCanvas;
         Debug.Log("Playing inject video...");
 
         canvas.gameObject.SetActive(false);

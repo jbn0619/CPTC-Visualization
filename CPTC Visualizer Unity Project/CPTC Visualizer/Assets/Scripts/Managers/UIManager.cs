@@ -2,37 +2,42 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class UIManager: Singleton<UIManager>
 {
     #region Fields
 
-    private List<Canvas> sceneCanvases;
-    private Canvas activeCanvas;
+    [SerializeField]
+    private Canvas sceneCanvas;
+
+    [Header("Public Facing Timers")]
+    [SerializeField]
+    private GameObject showTimerBanner;
+    [SerializeField]
+    private float timeUntilShow;
+    [SerializeField]
+    private Text timeUntilShowText;
+    [SerializeField]
+    private GameObject showNotifBanner;
+    private bool showTimerStarted;
+    [SerializeField]
+    private float elapsedTime;
+    [SerializeField]
+    private Text elapsedTimeText;
 
     #endregion Fields
 
     #region Properties
 
     /// <summary>
-    /// Gets what canvas is currently-active in this scene.
+    /// Gets this scene's canvas.
     /// </summary>
-    public Canvas ActiveCanvas
+    public Canvas SceneCanvas
     {
         get
         {
-            return activeCanvas;
-        }
-    }
-
-    /// <summary>
-    /// Gets a list of all UI canvas objects in this scene.
-    /// </summary>
-    public List<Canvas> SceneCanvases
-    {
-        get
-        {
-            return sceneCanvases;
+            return sceneCanvas;
         }
     }
     
@@ -41,57 +46,54 @@ public class UIManager: Singleton<UIManager>
     // Start is called before the first frame update
     void Start()
     {
-        sceneCanvases = new List<Canvas>();
-        SceneManager.sceneLoaded += OnSceneLoaded;
-        GatherNewCanvases();
+        showTimerStarted = false;
+        elapsedTime = 0.0f;
+        timeUntilShow = 0.0f;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
-    }
-
-    /// <summary>
-    /// Dumps any currently-loaded canvases and loads-up the new ones.
-    /// </summary>
-    /// <param name="scene">The new scene that was loaded.</param>
-    /// <param name="mode">How this scene was loaded.</param>
-    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
-        GatherNewCanvases();
-    }
-
-    /// <summary>
-    /// Gathers all new canvases in this scene, and dumps the old ones.
-    /// </summary>
-    void GatherNewCanvases()
-    {
-        sceneCanvases.Clear();
-
-        // Check to see if there is a canvas collection in this scene.
-        GameObject canvasCollector = GameObject.FindGameObjectWithTag("CanvasCollection");
-        if (canvasCollector != null)
+        if (GameManager.Instance.ReadDateStarted)
         {
-            // Transfer canvas references into this script for storage/management.
-            Canvas[] newCanvases = canvasCollector.GetComponentsInChildren<Canvas>();
-            foreach (Canvas c in newCanvases)
-            {
-                sceneCanvases.Add(c);
-            }
+            // Timer stuff
+            elapsedTime += Time.deltaTime;
+            elapsedTimeText.text = "Elapsed Time: " + string.Format("{00}:{1:00}:{2:00}",
+                Mathf.FloorToInt(elapsedTime / 3600),
+                Mathf.FloorToInt(elapsedTime / 60 % 60),
+                Mathf.FloorToInt(elapsedTime % 60));
 
-            // Disable all canvases except the first one
-            for (int i = 0; i < sceneCanvases.Count; i++)
+            // Show Starting Timer
+            if (showTimerStarted)
             {
-                if (i > 0)
+                if (timeUntilShow > 0)
                 {
-                    sceneCanvases[i].gameObject.SetActive(false);
+                    timeUntilShow -= Time.deltaTime;
+                    timeUntilShowText.text = "Show starting in aproximately " + string.Format("{00}:{1:00}",
+                        Mathf.FloorToInt(timeUntilShow / 60 % 60),
+                        Mathf.FloorToInt(timeUntilShow % 60));
                 }
                 else
                 {
-                    activeCanvas = sceneCanvases[0];
+                    timeUntilShowText.text = "Show starting soon!";
                 }
             }
+        }
+        
+    }
+
+    public void ToggleNotifBanner()
+    {
+        if (!showTimerStarted)
+        {
+            showTimerStarted = true;
+            timeUntilShow = 30 * 60;
+            showNotifBanner.gameObject.SetActive(true);
+        }
+        else
+        {
+            showTimerStarted = false;
+            showNotifBanner.gameObject.SetActive(false);
         }
     }
 }
