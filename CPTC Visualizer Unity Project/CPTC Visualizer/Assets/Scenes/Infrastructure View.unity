@@ -163,10 +163,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 183641909}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b0ca1f80e80bb4b49b1d84585292cee4, type: 3}
+  m_Script: {fileID: 11500000, guid: 773f8ef1ae4c99143beccc9350fe512e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  exitMenu: 27
   camMoveSpeed: 0.02
   fasterCam: 304
   camUp: 119
@@ -176,8 +175,6 @@ MonoBehaviour:
   toggleNotif: 306
   startProgram: 13
   startVisualizing: 32
-  leaderTest: 8
-  writeInfraToJSON: 46
 --- !u!1 &261663840
 GameObject:
   m_ObjectHideFlags: 0
@@ -472,7 +469,7 @@ MonoBehaviour:
   stayInScene: 1
   mainCam: {fileID: 2075817724}
   mainInfra: {fileID: 807570440}
-  inputManager: {fileID: 183641911}
+  inputManager: {fileID: 0}
   aiManager: {fileID: 1974606503}
   teamManager: {fileID: 1371010132}
   eventManager: {fileID: 1452424210}
@@ -691,14 +688,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1371010130}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ede27d25a264db743bcd8c6ef2d500b8, type: 3}
+  m_Script: {fileID: 11500000, guid: dbc3cd40a1cef24489390df0e4ad715e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   compType: 0
   teams: []
   teamViewLabel: {fileID: 0}
   teamViewNameplate: {fileID: 0}
-  teamViewButGO: {fileID: 0}
+  teamViewButGO: {fileID: 6343373906729853186, guid: a4dd16835927f7f4c8cb5cec319850c2, type: 3}
 --- !u!1 &1452424208
 GameObject:
   m_ObjectHideFlags: 0
@@ -739,7 +736,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1452424208}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2271fa2a1ee57464b93b5f99c292d3dd, type: 3}
+  m_Script: {fileID: 11500000, guid: 8135173377d9da744954110d774b2745, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   secondPeriodIndex: 0
