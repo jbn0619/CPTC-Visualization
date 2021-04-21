@@ -22,9 +22,6 @@ public class NetworkData: MonoBehaviour
     [SerializeField]
     private List<LineRenderer> connectionGOS;
 
-    [SerializeField]
-    private LineRenderer outline;
-
     #endregion Fields
 
     #region Properties
@@ -96,17 +93,6 @@ public class NetworkData: MonoBehaviour
     }
 
     /// <summary>
-    /// Gets a lineRenderer object that represents the borders of this network.
-    /// </summary>
-    public LineRenderer Outline
-    {
-        get
-        {
-            return outline;
-        }
-    }
-
-    /// <summary>
     /// Gets or set if this network is being scanned or not.
     /// </summary>
     public bool ScanActive
@@ -133,6 +119,7 @@ public class NetworkData: MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        /*
         // Check what material we need to look-at.
         if (scanActive)
         {
@@ -148,5 +135,6 @@ public class NetworkData: MonoBehaviour
         {
             outline.material = GeneralResources.Instance.NetBase;
         }
+        */
     }
 }
