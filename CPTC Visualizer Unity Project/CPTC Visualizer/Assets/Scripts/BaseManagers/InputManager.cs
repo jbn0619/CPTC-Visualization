@@ -54,6 +54,9 @@ public class InputManager: MonoBehaviour
         CheckInputs();
     }
 
+    /// <summary>
+    /// Checks for user inputs every frame.
+    /// </summary>
     public virtual void CheckInputs()
     {
         CheckCameraInputs();

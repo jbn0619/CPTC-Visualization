@@ -34,6 +34,9 @@ public class InfraInputManager: InputManager
         CheckInputs();
     }
 
+    /// <summary>
+    /// Checks for user inputs every frame.
+    /// </summary>
     public override void CheckInputs()
     {
         CheckCameraInputs();
