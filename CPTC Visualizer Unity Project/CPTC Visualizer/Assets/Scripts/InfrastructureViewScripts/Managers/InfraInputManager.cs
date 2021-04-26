@@ -70,6 +70,12 @@ public class InfraInputManager: InputManager
             GameManager.Instance.ReadDateStarted = true;
             //eventManager.ReadAttacksJSON();
             TeamViewAI.Instance.BeginComp();
+
+            // Create teams.
+            GameManager.Instance.TeamManager.CreateTeams();
+
+            // Copy example infrastructure to all teams.
+
         }
     }
 }
