@@ -6,11 +6,16 @@ public class NodeData: MonoBehaviour
 {
     #region Fields
 
+    [Header("Node Fields")]
+    [SerializeField]
     protected int id;
+    [SerializeField]
     protected string ip;
     protected bool isActive;
+    [SerializeField]
     protected NodeTypes type;
     protected NodeState state;
+    [SerializeField]
     protected bool isHidden;
 
     [SerializeField]
