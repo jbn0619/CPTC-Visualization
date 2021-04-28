@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,6 +14,7 @@ public class UpdateDataPacket : MonoBehaviour
     private int nodeID;
     private int teamID;
     private CPTCEvents type;
+    private DateTime startTime;
 
     #endregion Fields
 
@@ -27,6 +29,8 @@ public class UpdateDataPacket : MonoBehaviour
     public int TeamID { get; set; }
 
     public CPTCEvents Type { get; set; }
+
+    public DateTime StartTime { get; set; }
     
     #endregion Properties
     

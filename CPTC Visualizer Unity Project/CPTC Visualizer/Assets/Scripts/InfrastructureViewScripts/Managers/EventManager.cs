@@ -14,7 +14,7 @@ public class EventManager: MonoBehaviour
     [SerializeField]
     Canvas notificationCanvas;
 
-    private List<Assets.Scripts.CCDCAttackData> attacks;
+    private List<UpdateDataPacket> events;
 
     [SerializeField]
     private double attackDelay;
@@ -49,7 +49,7 @@ public class EventManager: MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        attacks = new List<Assets.Scripts.CCDCAttackData>();
+        events = new List<UpdateDataPacket>();
     }
 
     // Update is called once per frame
@@ -114,17 +114,45 @@ public class EventManager: MonoBehaviour
     }
 
     /// <summary>
+    /// Reads the information in the most recent event and changes the correspodning infrastructure as-needed.
+    /// </summary>
+    public void ReadEvent()
+    {
+        // Parse-out the event's information to figure-out where it happened.
+        UpdateDataPacket packet = events[0];
+        TeamData affectedTeam = GameManager.Instance.TeamManager.Teams[packet.TeamID];
+        NodeData affectedNode = affectedTeam.InfraCopy.AllNodes[packet.NodeID];
+
+        // Make changes to the scene based-on what happens in the event.
+        ProcessEvent(affectedTeam, affectedNode);
+
+        // At the very end, delete the used packet from the list of events.
+        events.RemoveAt(0);
+    }
+
+    /// <summary>
+    /// Changes the team's infrastructure according to what happens in the event.
+    /// </summary>
+    /// <param name="team">The affected team.</param>
+    /// <param name="node">The node where this event occured.</param>
+    public void ProcessEvent(TeamData team, NodeData node)
+    {
+
+    }
+
+    /*
+    /// <summary>
     /// Spawns an attack button into the world when called (if the times match-up).
     /// </summary>
     public void SpawnAttack()
     {
-        foreach(Assets.Scripts.CCDCAttackData attack in attacks)
+        foreach(UpdateDataPacket packet in events)
         {
             DateTime delayedTime = DateTime.Now.AddMinutes(-1 * attackDelay);
-            if (attack.StartTime == delayedTime.ToShortTimeString())
+            if (packet.StartTime == delayedTime)
             {
                 // Go-through each node affected and pull-out its address.
-                foreach (string a in attack.NodesAffected)
+                foreach (char a in packet.HostName)
                 {
                     // Begin by finding-out which team we're attacking.
                     int recipient = FindTeamInIP(a);
@@ -172,6 +200,7 @@ public class EventManager: MonoBehaviour
             }
         }
     }
+    */
 
     /// <summary>
     /// Reads-in a json that summarizes all attacks logged by the red team.
@@ -183,11 +212,11 @@ public class EventManager: MonoBehaviour
         string input = reader.ReadToEnd();
         reader.Close();
 
-        Assets.Scripts.CCDCCompiledAttacks payload = JsonUtility.FromJson<Assets.Scripts.CCDCCompiledAttacks>(input);
+        List<UpdateDataPacket> payload = JsonUtility.FromJson<List<UpdateDataPacket>>(input);
 
-        foreach (Assets.Scripts.CCDCAttackData attack in payload.attacks)
+        foreach (UpdateDataPacket packet in payload)
         {
-            attacks.Add(attack);
+            events.Add(packet);
         }
     }
 

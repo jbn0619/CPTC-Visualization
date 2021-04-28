@@ -150,7 +150,7 @@ public class GameManager: Singleton<GameManager>
         if (attackCheckCount >= attackCheckTime)
         {
             attackCheckCount = 0.0f;
-            eventManager.SpawnAttack();
+            eventManager.ReadEvent();
         }
 
         if(Input.GetKeyDown(KeyCode.Pause))
