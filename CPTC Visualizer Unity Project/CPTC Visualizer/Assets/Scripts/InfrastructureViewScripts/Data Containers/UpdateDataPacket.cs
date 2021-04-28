@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum CPTCEvents { NetworkScan, Discovery, Exploit, ShutDown, StartUp }
+
 public class UpdateDataPacket : MonoBehaviour
 {
     #region Fields
