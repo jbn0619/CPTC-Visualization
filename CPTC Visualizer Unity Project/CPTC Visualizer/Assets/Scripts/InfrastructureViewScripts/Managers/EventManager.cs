@@ -124,7 +124,7 @@ public class EventManager: MonoBehaviour
         NodeData affectedNode = affectedTeam.InfraCopy.AllNodes[packet.NodeID];
 
         // Make changes to the scene based-on what happens in the event.
-        ProcessEvent(affectedTeam, affectedNode);
+        ProcessEvent(affectedTeam, affectedNode, packet.Type);
 
         // At the very end, delete the used packet from the list of events.
         events.RemoveAt(0);
@@ -135,72 +135,24 @@ public class EventManager: MonoBehaviour
     /// </summary>
     /// <param name="team">The affected team.</param>
     /// <param name="node">The node where this event occured.</param>
-    public void ProcessEvent(TeamData team, NodeData node)
+    public void ProcessEvent(TeamData team, NodeData node, CPTCEvents type)
     {
-
-    }
-
-    /*
-    /// <summary>
-    /// Spawns an attack button into the world when called (if the times match-up).
-    /// </summary>
-    public void SpawnAttack()
-    {
-        foreach(UpdateDataPacket packet in events)
+        switch (type)
         {
-            DateTime delayedTime = DateTime.Now.AddMinutes(-1 * attackDelay);
-            if (packet.StartTime == delayedTime)
-            {
-                // Go-through each node affected and pull-out its address.
-                foreach (char a in packet.HostName)
-                {
-                    // Begin by finding-out which team we're attacking.
-                    int recipient = FindTeamInIP(a);
-
-                    if (recipient == -1) break;
-
-                    TeamData recievingTeam = GameManager.Instance.TeamManager.CCDCTeams[recipient];
-
-                    // Next, find the id of the node we're attacking.
-                    int nodeIndex = 0;
-                    for (int i = 0; i < recievingTeam.InfraCopy.AllNodes.Count; i++)
-                    {
-                        if (recievingTeam.InfraCopy.AllNodes[i].Ip == a)
-                        {
-                            nodeIndex = i;
-                            break;
-                        }
-                    }
-
-                    // Spawn a notification marker in the proper spot.
-                    NotificationButton newMarker = Instantiate(markerGO, notificationCanvas.transform);
-                    Enum.TryParse(attack.AttackType, out CCDCAttackType myAttack);
-                    Vector3 newPos = recievingTeam.InfraCopy.AllNodes[nodeIndex].gameObject.transform.position + new Vector3(0, .3f, -3);
-                    newMarker.transform.position = newPos;
-                    newMarker.AttackType = myAttack;
-                    newMarker.AffectedNodeID = nodeIndex;
-                    newMarker.AffectedTeamID = recipient;
-
-                    recievingTeam.NotifMarkers.Add(newMarker);
-
-                    // Disable this marker so that it can be properly-revealed later-on.
-                    newMarker.gameObject.SetActive(false);
-
-                    // Spawn-in a notification banner under this team's button.
-                    GameObject newBanner = Instantiate(bannerGO);
-
-                    TeamViewButton currentButton = GameManager.Instance.TeamManager.TeamViewButtons[recipient];
-                    newBanner.transform.SetParent(currentButton.transform, true);
-                    newBanner.transform.position = currentButton.transform.position + new Vector3(-50 + (recievingTeam.NotifBanners.Count * 25), -75, 0);
-                    recievingTeam.NotifBanners.Add(newBanner);
-
-                    // Pass this banner's reference to the marker for later-destruction.
-                    newMarker.CorrespondingBanner = newBanner;
-                }
-            }
+            case CPTCEvents.Discovery:
+                break;
+            case CPTCEvents.Exploit:
+                break;
+            case CPTCEvents.NetworkScan:
+                break;
+            case CPTCEvents.ShutDown:
+                break;
+            case CPTCEvents.StartUp:
+                break;
+            default:
+                break;
         }
     }
-    */
 
     /// <summary>
     /// Reads-in a json that summarizes all attacks logged by the red team.

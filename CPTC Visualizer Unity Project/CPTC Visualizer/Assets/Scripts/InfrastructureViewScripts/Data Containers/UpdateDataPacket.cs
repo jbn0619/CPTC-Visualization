@@ -5,7 +5,8 @@ using UnityEngine;
 
 public enum CPTCEvents { NetworkScan, Discovery, Exploit, ShutDown, StartUp }
 
-public class UpdateDataPacket : MonoBehaviour
+[Serializable]
+public class UpdateDataPacket
 {
     #region Fields
 
@@ -14,7 +15,7 @@ public class UpdateDataPacket : MonoBehaviour
     private int nodeID;
     private int teamID;
     private CPTCEvents type;
-    private DateTime startTime;
+    private string startTime;
 
     #endregion Fields
 
@@ -30,19 +31,15 @@ public class UpdateDataPacket : MonoBehaviour
 
     public CPTCEvents Type { get; set; }
 
-    public DateTime StartTime { get; set; }
+    public string StartTime { get; set; }
     
     #endregion Properties
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
+    /// <summary>
+    /// Constructor for this object.
+    /// </summary>
+    public UpdateDataPacket()
     {
-        
+
     }
 }
