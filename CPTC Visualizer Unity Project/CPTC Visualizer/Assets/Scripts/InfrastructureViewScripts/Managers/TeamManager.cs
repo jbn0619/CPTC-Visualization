@@ -11,9 +11,9 @@ public class TeamManager : MonoBehaviour
     #region Fields
 
     [SerializeField]
-    protected CompetitionType compType;
-    [SerializeField]
     protected List<TeamData> teams;
+    [SerializeField]
+    private TeamData teamGO;
 
     [Header("Team View Fields")]
     [SerializeField]
@@ -363,6 +363,34 @@ public class TeamManager : MonoBehaviour
     public virtual void CleanOnSceneChange(Scene scene, LoadSceneMode mode)
     {
         teamViewButtons.Clear();
+    }
+
+    /// <summary>
+    /// Generates a given-amount of teams for the visualizer to display.
+    /// </summary>
+    public void CreateTeams()
+    {
+        // First, read-in the teams and see how many we have.
+        ReadTeams();
+
+        // Next, duplicate the infrastructure for each team.
+        foreach (TeamData t in teams)
+        {
+            DuplicateInfrastructure(t);
+        }
+
+        // Finally, generate the team view buttons for the scene.
+        GenerateTeamViewButtons();
+    }
+
+    /// <summary>
+    /// Duplicates the main infrastructure and gives those copies to each team.
+    /// </summary>
+    private void DuplicateInfrastructure(TeamData recievingTeam)
+    {
+        // Copy the main infrastructure gameObject, and transfer the copy to the recieving team.
+        InfrastructureData newInfra = Instantiate(GameManager.Instance.MainInfra);
+        newInfra.gameObject.transform.parent = recievingTeam.gameObject.transform;
     }
 
     //// Have this return a List<string>
