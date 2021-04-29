@@ -42,4 +42,15 @@ public class UpdateDataPacket
     {
 
     }
+
+    /// <summary>
+    /// Converts this UpdateDataPacket object and all data within it into a json-formatted string.
+    /// </summary>
+    /// <returns>A large string in a JSON format.</returns>
+    public string ConvertToJSON()
+    {
+        string cptcInfo = "";
+        cptcInfo = JsonUtility.ToJson(this);
+        return cptcInfo;
+    }
 }

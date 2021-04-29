@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 public class TestDataWriter: MonoBehaviour
@@ -59,7 +60,11 @@ public class TestDataWriter: MonoBehaviour
             newPacket.StartTime = currentTime.ToShortTimeString();
 
             // Set this packet's event type.
+            int eIndex = UnityEngine.Random.Range(0, Enum.GetNames(typeof(CPTCEvents)).Length);
+            CPTCEvents e = (CPTCEvents)eIndex;
+            newPacket.Type = e;
 
+            
         }
     }
 
@@ -69,5 +74,36 @@ public class TestDataWriter: MonoBehaviour
     public void WriteTeamData()
     {
 
+    }
+
+    /// <summary>
+    /// Writes update data packets to a json format.
+    /// </summary>
+    /// <param name="fileName">The new file's name.</param>
+    /// <param name="data">The data to convert to json format.</param>
+    private void SaveToJSON(string fileName, List<UpdateDataPacket> data)
+    {
+         string filePath = "C:\\ProgramData\\CSEC Visualizer\\" + fileName;
+
+        // First check if the directory exists, or if we need to make it.
+        if (Directory.Exists("C:\\ProgramData\\CSEC Visualizer\\") == false)
+        {
+            Directory.CreateDirectory("C:\\ProgramData\\CSEC Visualizer\\");
+        }
+
+        try
+        {
+            using (StreamWriter sw = File.CreateText(filePath))
+            {
+                foreach (UpdateDataPacket packet in data)
+                {
+                    sw.WriteLine(packet.ConvertToJSON());
+                }
+            }
+        }
+        catch (Exception e)
+        {
+            Debug.Log(e.Message);
+        }
     }
 }
