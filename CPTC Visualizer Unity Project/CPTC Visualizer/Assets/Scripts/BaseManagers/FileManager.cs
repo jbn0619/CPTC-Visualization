@@ -53,6 +53,7 @@ public class FileManager: MonoBehaviour
     }
     /// <summary>
     /// Reads a file with the name _fileName at _filePathExtension. Returns the fileData as an array.
+    ///     Lines starting with '#' are ignored.
     /// </summary>
     /// <param name="_fileName"></param>
     /// <param name="_fileData"></param>
@@ -65,17 +66,16 @@ public class FileManager: MonoBehaviour
 
         try
         {
+            // Reads the file and adds aplicable lines to fileData.
             using (StreamReader reader = new StreamReader(filePath))
             {
                 while (reader.Peek() > -1)
                 {
-                    if(reader.ReadLine().ToCharArray()[0] != '#')
+                    string line = reader.ReadLine();
+
+                    if(line[0] != '#')
                     {
-                        fileData.Add(reader.ReadLine());
-                    }
-                    else
-                    {
-                        reader.ReadLine();
+                        fileData.Add(line);
                     }
                 }
             }
