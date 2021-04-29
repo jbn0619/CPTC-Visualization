@@ -9,9 +9,10 @@ public class DataLog: MonoBehaviour
     [SerializeField]
     Text textLog;
     [SerializeField]
-    int bottomLinePos;
+    float bottomLinePos;
     [SerializeField]
     RectTransform contentTransform;
+    Vector3 logPos;
 
     [SerializeField]
     bool autoScroll;
@@ -40,15 +41,23 @@ public class DataLog: MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Space))
         {
-            Print("Here's some test data. This one is particularly long and will test the string's ability to wrap.");
+            Print("Here's some test data. This is used to text a long string. This one is also used to test a veeeery long string.");
         }
     }
 
     public void Print(string _input)
     {
-        string nextLine = "> [" + System.DateTime.Now + "] " + _input + "\n";
+        string nextLine = "> [" + System.DateTime.Now + "] " + _input + "\n\n";
+        Debug.Log(nextLine.Length);
+
+        float disntanceToMove = ((nextLine.Length / 55) + 2) * (textLog.fontSize + textLog.lineSpacing + 0.2f);
 
         textLog.text += nextLine;
-        //contentTransform.position += new Vector3(0, bottomLinePos, 0);
+        Debug.Log("Distance to move line: " + disntanceToMove);
+        float xPos = contentTransform.position.x;
+        float zPos = contentTransform.position.z;
+
+        contentTransform.position += new Vector3(0, disntanceToMove, 0);
+        bottomLinePos = contentTransform.position.y;
     }
 }
