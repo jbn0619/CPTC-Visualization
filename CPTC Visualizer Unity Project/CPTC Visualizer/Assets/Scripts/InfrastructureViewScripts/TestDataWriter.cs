@@ -41,9 +41,10 @@ public class TestDataWriter: MonoBehaviour
     public void WriteEventData()
     {
         // First, figure out how many teams we have and how many nodes are in an infrastructure (total).
-        uint teamCount = (uint)GameManager.Instance.TeamManager.Teams.Count;
+        //uint teamCount = (uint)GameManager.Instance.TeamManager.Teams.Count;
+        uint teamCount = 10;
         uint nodeCount = (uint)GameManager.Instance.MainInfra.AllNodes.Count;
-
+        List<UpdateDataPacket> packets = new List<UpdateDataPacket>();
 
         for (int i = 0; i < eventCount; i++)
         {
@@ -59,13 +60,19 @@ public class TestDataWriter: MonoBehaviour
             DateTime currentTime = DateTime.Now;
             newPacket.StartTime = currentTime.ToShortTimeString();
 
+            // Set a dummy IP address and Host Name
+            newPacket.HostName = "Host " + (i + 1);
+            newPacket.IpAddress = "192.67." + (i + 1) + ".31";
+
             // Set this packet's event type.
             int eIndex = UnityEngine.Random.Range(0, Enum.GetNames(typeof(CPTCEvents)).Length);
             CPTCEvents e = (CPTCEvents)eIndex;
-            newPacket.Type = e;
+            newPacket.Type = e.ToString();
 
-            
+            packets.Add(newPacket);
         }
+
+        SaveToJSON("events.json", packets);
     }
 
     /// <summary>

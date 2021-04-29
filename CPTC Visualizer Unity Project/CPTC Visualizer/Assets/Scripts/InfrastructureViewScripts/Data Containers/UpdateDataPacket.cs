@@ -10,28 +10,88 @@ public class UpdateDataPacket
 {
     #region Fields
 
-    private string hostName;
-    private string ipAddress;
-    private int nodeID;
-    private int teamID;
-    private CPTCEvents type;
-    private string startTime;
+    public string hostName;
+    public string ipAddress;
+    public int nodeID;
+    public int teamID;
+    public string type;
+    public string startTime;
 
     #endregion Fields
 
     #region Properties
 
-    public string HostName {get; set;}
+    public string HostName 
+    {
+        get
+        {
+            return hostName;
+        }
+        set
+        {
+            hostName = value;
+        }
+    }
 
-    public string IpAddress { get; set; }
+    public string IpAddress 
+    {
+        get
+        {
+            return ipAddress;
+        }
+        set
+        {
+            ipAddress = value;
+        }
+    }
 
-    public int NodeID { get; set; }
+    public int NodeID 
+    {
+        get
+        {
+            return nodeID;
+        }
+        set
+        {
+            nodeID = value;
+        }
+    }
 
-    public int TeamID { get; set; }
+    public int TeamID 
+    {
+        get
+        {
+            return teamID;
+        }
+        set
+        {
+            teamID = value;
+        }
+    }
 
-    public CPTCEvents Type { get; set; }
+    public String Type 
+    {
+        get
+        {
+            return type;
+        }
+        set
+        {
+            type = value;
+        }
+    }
 
-    public string StartTime { get; set; }
+    public string StartTime 
+    {
+        get
+        {
+            return startTime;
+        }
+        set
+        {
+            startTime = value;
+        }
+    }
     
     #endregion Properties
 
@@ -51,6 +111,7 @@ public class UpdateDataPacket
     {
         string cptcInfo = "";
         cptcInfo = JsonUtility.ToJson(this);
+        Debug.Log(cptcInfo);
         return cptcInfo;
     }
 }

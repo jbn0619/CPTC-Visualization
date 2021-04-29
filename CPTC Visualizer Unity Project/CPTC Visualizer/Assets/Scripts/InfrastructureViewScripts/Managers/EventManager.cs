@@ -135,9 +135,10 @@ public class EventManager: MonoBehaviour
     /// </summary>
     /// <param name="team">The affected team.</param>
     /// <param name="node">The node where this event occured.</param>
-    public void ProcessEvent(TeamData team, NodeData node, CPTCEvents type)
+    public void ProcessEvent(TeamData team, NodeData node, String type)
     {
-        switch (type)
+        Enum.TryParse(type, out CPTCEvents eventType);
+        switch (eventType)
         {
             case CPTCEvents.Discovery:
                 break;
