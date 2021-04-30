@@ -33,6 +33,7 @@ public class TestDataWriter: MonoBehaviour
     void Update()
     {
         if (Input.GetKeyDown(writeEvents)) WriteEventData();
+        if (Input.GetKeyDown(writeTeams)) WriteTeamData();
     }
 
     /// <summary>
