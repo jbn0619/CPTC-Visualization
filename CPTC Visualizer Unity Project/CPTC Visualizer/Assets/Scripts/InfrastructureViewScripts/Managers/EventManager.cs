@@ -59,58 +59,11 @@ public class EventManager: MonoBehaviour
     }
 
     /// <summary>
-    /// Reads out alerts from each team
+    /// Loads the events from events.json (if it exists), then deletes the file.
     /// </summary>
-    public void RunAlerts()
+    public void LoadEventsFromJSON()
     {
-        foreach (TeamData team in GameManager.Instance.TeamManager.Teams)
-        {
-            if (!team.Queue.IsEmpty) // team.Alerts.Count > 0
-            {
-                
-            }
-        }
-    }
 
-    /// <summary>
-    /// Reads a JSON of uptime-data for ever node and changes node colors/uptime charts accordingly.
-    /// </summary>
-    public void ReadNodeStateJSON()
-    {
-        string payload = DataFormatter.Instance.GrabData();
-
-        HostDataContainer newBatch = JsonUtility.FromJson<HostDataContainer>(payload);
-        int[] deltas = new int[10];
-
-        foreach (HostData h in newBatch.Hosts)
-        {            
-            // Find the proper node by its IP address.
-            foreach (TeamData team in GameManager.Instance.TeamManager.CCDCTeams)
-            {
-                foreach (NodeData n in team.InfraCopy.AllNodes)
-                {
-                    // If the IP addresses match, then update the uptime chart.
-                    if (n.Ip == h.name)
-                    {
-                        n.UptimeChart.UpdateData(h.state);
-
-                        if (h.state != n.IsActive)
-                        { 
-                            deltas[team.TeamId] += 1;
-                            n.IsActive = h.state;
-                            //n.UptimeChart.StateChanged();
-                        }
-
-                        if (n.IsActive)
-                            n.NodeSprite.color = new Color(0.3137255f, 0.3333333f, 0.9098039f);
-                        else
-                            n.NodeSprite.color = new Color(0.9098039f, 0.3137255f, 0.3137255f);
-                    }
-                }
-            }
-        }
-
-        TeamViewAI.Instance.UpdateDeltas(deltas);
     }
 
     /// <summary>
@@ -155,6 +108,22 @@ public class EventManager: MonoBehaviour
         }
     }
 
+    // DEPRECATED METHODS
+    /*
+    /// <summary>
+    /// Reads out alerts from each team
+    /// </summary>
+    public void RunAlerts()
+    {
+        foreach (TeamData team in GameManager.Instance.TeamManager.Teams)
+        {
+            if (!team.Queue.IsEmpty) // team.Alerts.Count > 0
+            {
+
+            }
+        }
+    }
+
     /// <summary>
     /// Reads-in a json that summarizes all attacks logged by the red team.
     /// </summary>
@@ -171,6 +140,47 @@ public class EventManager: MonoBehaviour
         {
             events.Add(packet);
         }
+    }
+
+    /// <summary>
+    /// Reads a JSON of uptime-data for ever node and changes node colors/uptime charts accordingly.
+    /// </summary>
+    public void ReadNodeStateJSON()
+    {
+        string payload = DataFormatter.Instance.GrabData();
+
+        HostDataContainer newBatch = JsonUtility.FromJson<HostDataContainer>(payload);
+        int[] deltas = new int[10];
+
+        foreach (HostData h in newBatch.Hosts)
+        {
+            // Find the proper node by its IP address.
+            foreach (TeamData team in GameManager.Instance.TeamManager.CCDCTeams)
+            {
+                foreach (NodeData n in team.InfraCopy.AllNodes)
+                {
+                    // If the IP addresses match, then update the uptime chart.
+                    if (n.Ip == h.name)
+                    {
+                        n.UptimeChart.UpdateData(h.state);
+
+                        if (h.state != n.IsActive)
+                        {
+                            deltas[team.TeamId] += 1;
+                            n.IsActive = h.state;
+                            //n.UptimeChart.StateChanged();
+                        }
+
+                        if (n.IsActive)
+                            n.NodeSprite.color = new Color(0.3137255f, 0.3333333f, 0.9098039f);
+                        else
+                            n.NodeSprite.color = new Color(0.9098039f, 0.3137255f, 0.3137255f);
+                    }
+                }
+            }
+        }
+
+        TeamViewAI.Instance.UpdateDeltas(deltas);
     }
 
     /// <summary>
@@ -198,4 +208,5 @@ public class EventManager: MonoBehaviour
         }
         return -1;
     }
+    */
 }

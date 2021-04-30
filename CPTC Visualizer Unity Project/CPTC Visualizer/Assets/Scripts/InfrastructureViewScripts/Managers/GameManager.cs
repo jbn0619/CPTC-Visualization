@@ -141,7 +141,7 @@ public class GameManager: Singleton<GameManager>
             if (stateCheckCount >= stateCheckTime)
             {
                 stateCheckCount = 0.0f;
-                eventManager.ReadNodeStateJSON();
+                //eventManager.ReadNodeStateJSON();
             }
         }
 
