@@ -19,7 +19,7 @@ public class FileManager: MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        rootFilePath = "C:\\ProgramData\\CSEC Visualizer";
+        rootFilePath = "C:\\ProgramData\\CSEC Visualizer\\";
         //directoryInfo = new DirectoryInfo(rootFilePath);
         //Directory.CreateDirectory(rootFilePath + "\\Test Folder");
     }
@@ -36,14 +36,14 @@ public class FileManager: MonoBehaviour
             fileData.Add("Line two. Some other data.");
             fileData.Add("Line three. Here is a really long line of data that takes up almost half of my screen.");
 
-            WriteFile("Test File", fileData, "\\Test Folder\\");
+            WriteFile("Test File", fileData, "Test Folder\\");
         }
 
         if(Input.GetKeyDown(KeyCode.R))
         {
             List<string> fileData = new List<string>();
 
-            fileData = ReadFile("Test File", "\\Test Folder\\");
+            fileData = ReadFile("Test File", "Test Folder\\");
 
             for(int i = 0; i < fileData.Count; i++)
             {
