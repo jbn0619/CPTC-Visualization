@@ -1710,10 +1710,14 @@ MonoBehaviour:
   teamManager: {fileID: 1371010132}
   eventManager: {fileID: 1452424210}
   videoManager: {fileID: 1909959175}
+  fileManager: {fileID: 261663842}
   notificationControls: {fileID: 0}
   timeDelay: 0
   stateCheckTime: 0
   attackCheckTime: 0
+  configUpdateCount: 0
+  configUpdateTime: 0
+  dataReadInterval: 0
 --- !u!4 &940955789
 Transform:
   m_ObjectHideFlags: 0

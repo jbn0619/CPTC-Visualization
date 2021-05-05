@@ -25,6 +25,8 @@ public class GameManager: Singleton<GameManager>
     private EventManager eventManager;
     [SerializeField]
     private VideoManager videoManager;
+    [SerializeField]
+    private FileManager fileManager;
     
     public GameObject notificationControls;
 
@@ -47,6 +49,14 @@ public class GameManager: Singleton<GameManager>
 
     private bool readDateStarted;
     private bool compStarted;
+
+    [Header("Config File Test Vars")]
+    [SerializeField]
+    private float configUpdateCount;
+    [SerializeField]
+    private float configUpdateTime;
+    [SerializeField]
+    private float dataReadInterval;
     
     #endregion Fields
     
@@ -127,11 +137,24 @@ public class GameManager: Singleton<GameManager>
         compStarted = false;
         stateCheckCount = 0.0f;
         attackCheckCount = 0.0f;
+        configUpdateCount = 0.0f;
+        configUpdateTime = 5;
     }
 
     // Update is called once per frame
     void Update()
     {
+        // Check if we need to check for a config update
+        configUpdateCount += Time.deltaTime;
+        if(configUpdateCount >= configUpdateTime)
+        {
+            configUpdateCount = 0.0f;
+
+            UpdateConfigFile();
+
+            Debug.Log("DataReadInterval now set to: " + dataReadInterval);
+        }
+
         // Check if we need to read node states.
         stateCheckCount += Time.deltaTime;
 
@@ -173,6 +196,17 @@ public class GameManager: Singleton<GameManager>
         //    //teamManager.ReadTeams();
         //    //injectNotifManager.CreateTestInject();
         //}
+    }
+
+    private void UpdateConfigFile()
+    {
+        List<string> fileData = fileManager.ReadFile("Config_Infrastructure.txt", "Infrastructure\\");
+
+        fileData[1] = fileData[1].Remove(0, 18);
+
+        dataReadInterval = int.Parse(fileData[1]);
+
+        Debug.Log("Infrastructure Config file successfully updated.");
     }
 
     /*

@@ -91,12 +91,12 @@ public class TestDataWriter: MonoBehaviour
     /// <param name="data">The data to convert to json format.</param>
     private void SaveToJSON(string fileName, List<UpdateDataPacket> data)
     {
-         string filePath = "C:\\ProgramData\\CSEC Visualizer\\" + fileName;
+         string filePath = "C:\\ProgramData\\CSEC Visualizer\\Infrastructure\\Database\\" + fileName;
 
         // First check if the directory exists, or if we need to make it.
-        if (Directory.Exists("C:\\ProgramData\\CSEC Visualizer\\") == false)
+        if (Directory.Exists("C:\\ProgramData\\CSEC Visualizer\\Infrastructure\\Database\\") == false)
         {
-            Directory.CreateDirectory("C:\\ProgramData\\CSEC Visualizer\\");
+            Directory.CreateDirectory("C:\\ProgramData\\CSEC Visualizer\\Infrastructure\\Database\\");
         }
 
         try
