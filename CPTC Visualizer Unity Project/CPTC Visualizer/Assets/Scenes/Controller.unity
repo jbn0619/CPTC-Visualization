@@ -1276,8 +1276,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fileManager: {fileID: 1144901408}
+  testDataWriter: {fileID: 1144901411}
   dataPullInterval: 0
   dataReadInterval: 0
+  generateTestDataCount: 0
+  generateTestDataTime: 0
 --- !u!114 &1144901411
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1293,7 +1296,7 @@ MonoBehaviour:
   writeEvents: 91
   writeTeams: 93
   fileManager: {fileID: 1144901408}
-  eventCount: 5
+  eventCount: 1
 --- !u!1 &1169672338
 GameObject:
   m_ObjectHideFlags: 0
