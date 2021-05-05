@@ -24,6 +24,8 @@ public class EventManager: MonoBehaviour
     private GameObject bannerGO;
     [SerializeField]
     private NotificationButton markerGO;
+    [SerializeField]
+    private FileManager fileManager;
 
     #endregion Fields
 
@@ -55,7 +57,10 @@ public class EventManager: MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(Input.GetKeyDown(KeyCode.F))
+        {
+            LoadEventsFromJSON();
+        }
     }
 
     /// <summary>
@@ -63,7 +68,9 @@ public class EventManager: MonoBehaviour
     /// </summary>
     public void LoadEventsFromJSON()
     {
+        UpdateDataPacket updateData = fileManager.CreateDataFromJSON("events.json", "\\Infrastructure\\Database\\");
 
+        Debug.Log("Data packet succesfully retrieved.");
     }
 
     /// <summary>

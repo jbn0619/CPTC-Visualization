@@ -3031,6 +3031,7 @@ MonoBehaviour:
   attackDelay: 0
   bannerGO: {fileID: 0}
   markerGO: {fileID: 0}
+  fileManager: {fileID: 261663842}
 --- !u!1 &1486934064
 GameObject:
   m_ObjectHideFlags: 0
@@ -3062,6 +3063,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   writeEvents: 91
   writeTeams: 93
+  fileManager: {fileID: 261663842}
   eventCount: 5
 --- !u!4 &1486934066
 Transform:
