@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
+using System;
 
 public class FileManager: MonoBehaviour
 {
@@ -93,6 +94,31 @@ public class FileManager: MonoBehaviour
     }
 
     /// <summary>
+    /// Returns the UpdateDataPacket from a JSON file.
+    /// </summary>
+    /// <param name="_fileName"></param>
+    /// <param name="_filePathExtension"></param>
+    /// <returns></returns>
+    public UpdateDataPacket CreateDataFromJSON(string _fileName, string _filePathExtension)
+    {
+        string filePath = rootFilePath + _filePathExtension + _fileName;
+        Debug.Log("JSON File Path: " + filePath);
+
+        string JSONString = null;
+
+        foreach(string line in ReadFile(_fileName, _filePathExtension))
+        {
+            JSONString += line;
+        }
+
+        UpdateDataPacket dataPacket = JsonUtility.FromJson<UpdateDataPacket>(JSONString);
+
+        Debug.Log("Data packet successfully created from JSON.");
+
+        return dataPacket;
+    }
+
+    /// <summary>
     /// Writes a file with the name _fileName and content _fileData to a file at _filePathExtension
     /// </summary>
     /// <param name="_fileName"></param>
@@ -112,6 +138,37 @@ public class FileManager: MonoBehaviour
         }
 
         Debug.Log("File " + _fileName + " successfully saved.");
+    }
+
+    /// <summary>
+    /// Writes update data packets to a json format.
+    /// </summary>
+    /// <param name="fileName">The new file's name.</param>
+    /// <param name="data">The data to convert to json format.</param>
+    public void SaveToJSON(string fileName, List<UpdateDataPacket> data)
+    {
+        string filePath = "C:\\ProgramData\\CSEC Visualizer\\Infrastructure\\Database\\" + fileName;
+
+        // First check if the directory exists, or if we need to make it.
+        if (Directory.Exists("C:\\ProgramData\\CSEC Visualizer\\Infrastructure\\Database\\") == false)
+        {
+            Directory.CreateDirectory("C:\\ProgramData\\CSEC Visualizer\\Infrastructure\\Database\\");
+        }
+
+        try
+        {
+            using (StreamWriter sw = File.CreateText(filePath))
+            {
+                foreach (UpdateDataPacket packet in data)
+                {
+                    sw.WriteLine(packet.ConvertToJSON());
+                }
+            }
+        }
+        catch (Exception e)
+        {
+            Debug.Log(e.Message);
+        }
     }
 
     public void GenerateDatabase()

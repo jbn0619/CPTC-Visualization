@@ -13,9 +13,12 @@ public class TestDataWriter: MonoBehaviour
     private KeyCode writeEvents = KeyCode.LeftBracket;
     [SerializeField] KeyCode writeTeams = KeyCode.RightBracket;
 
+    [SerializeField]
+    private FileManager fileManager;
+
     [Header("Event Data Params")]
     [SerializeField]
-    private uint eventCount = 5;
+    private uint eventCount = 1;
     
     #endregion Fields
     
@@ -44,7 +47,8 @@ public class TestDataWriter: MonoBehaviour
         // First, figure out how many teams we have and how many nodes are in an infrastructure (total).
         //uint teamCount = (uint)GameManager.Instance.TeamManager.Teams.Count;
         uint teamCount = 10;
-        uint nodeCount = (uint)GameManager.Instance.MainInfra.AllNodes.Count;
+        //uint nodeCount = (uint)GameManager.Instance.MainInfra.AllNodes.Count;
+        uint nodeCount = 10;
         List<UpdateDataPacket> packets = new List<UpdateDataPacket>();
 
         for (int i = 0; i < eventCount; i++)
@@ -73,7 +77,7 @@ public class TestDataWriter: MonoBehaviour
             packets.Add(newPacket);
         }
 
-        SaveToJSON("events.json", packets);
+        fileManager.SaveToJSON("events.json", packets);
     }
 
     /// <summary>

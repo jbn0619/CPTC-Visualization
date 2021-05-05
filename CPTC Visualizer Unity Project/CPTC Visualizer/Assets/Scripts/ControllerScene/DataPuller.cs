@@ -31,4 +31,9 @@ public class DataPuller: MonoBehaviour
     {
         
     }
+
+    public void GenerateTestData()
+    {
+
+    }
 }
