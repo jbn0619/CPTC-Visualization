@@ -54,7 +54,7 @@ public class InfraInputManager: InputManager
             Debug.Log(System.DateTime.Now.ToString());
 
             GameManager.Instance.TeamManager.ReadTeams();
-            DataFormatter.Instance.HasStart = true;
+            //DataFormatter.Instance.HasStart = true;
             GameManager.Instance.CompStarted = true;
 
             //System.Diagnostics.Process.Start("notepad.exe");
@@ -66,10 +66,10 @@ public class InfraInputManager: InputManager
             GameManager.Instance.StartOfVisualizer = System.DateTime.Now;
             GameManager.Instance.TimeDelay = Mathf.Abs((int)GameManager.Instance.StartOfVisualizer.Subtract(GameManager.Instance.StartOfComp).TotalMinutes);
 
-            DataFormatter.Instance.Delay = GameManager.Instance.TimeDelay;
+            //DataFormatter.Instance.Delay = GameManager.Instance.TimeDelay;
             GameManager.Instance.ReadDateStarted = true;
             //eventManager.ReadAttacksJSON();
-            TeamViewAI.Instance.BeginComp();
+            //TeamViewAI.Instance.BeginComp();
 
             // Create teams.
             GameManager.Instance.TeamManager.CreateTeams();

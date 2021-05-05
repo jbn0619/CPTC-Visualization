@@ -3064,7 +3064,7 @@ MonoBehaviour:
   writeEvents: 91
   writeTeams: 93
   fileManager: {fileID: 261663842}
-  eventCount: 5
+  eventCount: 1
 --- !u!4 &1486934066
 Transform:
   m_ObjectHideFlags: 0
