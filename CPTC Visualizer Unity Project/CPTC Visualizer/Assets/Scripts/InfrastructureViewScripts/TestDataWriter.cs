@@ -36,6 +36,7 @@ public class TestDataWriter: MonoBehaviour
     void Update()
     {
         if (Input.GetKeyDown(writeEvents)) WriteEventData();
+        if (Input.GetKeyDown(writeTeams)) WriteTeamData();
     }
 
     /// <summary>
@@ -84,7 +85,7 @@ public class TestDataWriter: MonoBehaviour
     /// </summary>
     public void WriteTeamData()
     {
-
+        // TODO STUFF HERE
     }
 
     /// <summary>

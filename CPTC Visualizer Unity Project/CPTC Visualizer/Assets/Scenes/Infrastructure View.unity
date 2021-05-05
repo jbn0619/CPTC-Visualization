@@ -1789,7 +1789,7 @@ MonoBehaviour:
   fileManager: {fileID: 261663842}
   notificationControls: {fileID: 0}
   timeDelay: 0
-  stateCheckTime: 0
+  stateCheckTime: 5
   attackCheckTime: 0
   configUpdateCount: 0
   configUpdateTime: 0
@@ -3064,7 +3064,7 @@ MonoBehaviour:
   writeEvents: 91
   writeTeams: 93
   fileManager: {fileID: 261663842}
-  eventCount: 5
+  eventCount: 1
 --- !u!4 &1486934066
 Transform:
   m_ObjectHideFlags: 0
