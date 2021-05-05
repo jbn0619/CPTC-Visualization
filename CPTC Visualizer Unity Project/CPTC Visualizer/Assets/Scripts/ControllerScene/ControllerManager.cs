@@ -10,6 +10,8 @@ public class ControllerManager: MonoBehaviour
     private FileManager fileManager;
     [SerializeField]
     private TestDataWriter testDataWriter;
+    [SerializeField]
+    private DataLog dataLog;
 
     [SerializeField]
     private float dataPullInterval;
@@ -61,7 +63,7 @@ public class ControllerManager: MonoBehaviour
 
             testDataWriter.WriteEventData();
 
-            Debug.Log("Test Data generated.");
+            dataLog.Print("Test Data generated.");
         }
     }
 
