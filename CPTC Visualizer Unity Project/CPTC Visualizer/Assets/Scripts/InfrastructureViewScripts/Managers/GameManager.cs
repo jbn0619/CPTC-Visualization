@@ -131,7 +131,17 @@ public class GameManager: Singleton<GameManager>
     /// <summary>
     /// Gets if the reading date has started yet.
     /// </summary>
-    public bool ReadDateStarted { get; set; }
+    public bool ReadDateStarted
+    {
+        get
+        {
+            return readDateStarted;
+        }
+        set
+        {
+            readDateStarted = value;
+        }
+    }
 
     public bool CompStarted { get; set; }
 

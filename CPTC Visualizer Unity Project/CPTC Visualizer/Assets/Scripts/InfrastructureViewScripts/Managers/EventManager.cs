@@ -71,6 +71,9 @@ public class EventManager: MonoBehaviour
         UpdateDataPacket updateData = fileManager.CreateDataFromJSON("events.json", "\\Infrastructure\\Database\\");
 
         Debug.Log("Data packet succesfully retrieved.");
+
+        events.Add(updateData);
+        ReadEvent();
     }
 
     /// <summary>
@@ -80,11 +83,11 @@ public class EventManager: MonoBehaviour
     {
         // Parse-out the event's information to figure-out where it happened.
         UpdateDataPacket packet = events[0];
-        TeamData affectedTeam = GameManager.Instance.TeamManager.Teams[packet.TeamID];
-        NodeData affectedNode = affectedTeam.InfraCopy.AllNodes[packet.NodeID];
+        //TeamData affectedTeam = GameManager.Instance.TeamManager.Teams[packet.TeamID];
+        //NodeData affectedNode = affectedTeam.InfraCopy.AllNodes[packet.NodeID];
 
         // Make changes to the scene based-on what happens in the event.
-        ProcessEvent(affectedTeam, affectedNode, packet.Type);
+        ProcessEvent(packet.TeamID, packet.NodeID, packet.Type);
 
         // At the very end, delete the used packet from the list of events.
         events.RemoveAt(0);
@@ -95,7 +98,7 @@ public class EventManager: MonoBehaviour
     /// </summary>
     /// <param name="team">The affected team.</param>
     /// <param name="node">The node where this event occured.</param>
-    public void ProcessEvent(TeamData team, NodeData node, String type)
+    public void ProcessEvent(int teamID, int nodeID, String type)
     {
         Enum.TryParse(type, out CPTCEvents eventType);
         switch (eventType)
@@ -107,12 +110,24 @@ public class EventManager: MonoBehaviour
             case CPTCEvents.NetworkScan:
                 break;
             case CPTCEvents.ShutDown:
+                ShutDownNode(nodeID);
                 break;
             case CPTCEvents.StartUp:
+                StartUpNode(nodeID);
                 break;
             default:
                 break;
         }
+    }
+
+    public void ShutDownNode(int nodeID)
+    {
+        GameManager.Instance.MainInfra.AllNodes[nodeID].NodeSprite.color = Color.red;
+    }
+
+    public void StartUpNode(int nodeID)
+    {
+        GameManager.Instance.MainInfra.AllNodes[nodeID].NodeSprite.color = Color.cyan;
     }
 
     // DEPRECATED METHODS
