@@ -57,6 +57,8 @@ public class GameManager: Singleton<GameManager>
     private float configUpdateTime;
     [SerializeField]
     private float dataReadInterval;
+    [SerializeField]
+    private Text dataText;
     
     #endregion Fields
     
@@ -205,6 +207,8 @@ public class GameManager: Singleton<GameManager>
         fileData[1] = fileData[1].Remove(0, 18);
 
         dataReadInterval = int.Parse(fileData[1]);
+
+        dataText.text = ("Data Read Interval : " + dataReadInterval);
 
         Debug.Log("Infrastructure Config file successfully updated.");
     }
