@@ -96,6 +96,17 @@ public class GameManager: Singleton<GameManager>
     }
 
     /// <summary>
+    /// Gets a reference to this scene's file manager if it exists.
+    /// </summary>
+    public FileManager FileManager
+    {
+        get
+        {
+            return fileManager;
+        }
+    }
+
+    /// <summary>
     /// Gets the template infrastructure, to be passed-into the teams.
     /// </summary>
     public InfrastructureData MainInfra
@@ -164,7 +175,7 @@ public class GameManager: Singleton<GameManager>
             if (stateCheckCount >= stateCheckTime)
             {
                 stateCheckCount = 0.0f;
-                //eventManager.ReadNodeStateJSON();
+                eventManager.LoadEventsFromJSON();
             }
         }
 

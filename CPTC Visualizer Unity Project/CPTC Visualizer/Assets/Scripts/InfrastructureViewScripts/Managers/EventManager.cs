@@ -63,7 +63,7 @@ public class EventManager: MonoBehaviour
     /// </summary>
     public void LoadEventsFromJSON()
     {
-
+        
     }
 
     /// <summary>
