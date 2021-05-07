@@ -5,6 +5,10 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+/// <summary>
+/// Author: Justin Neft & Kevin Laporte
+/// Function: Controls the entire infrastructure scene, and contains references to all components within. This class is a singleton, so it can be freely referenced anywhere with GameManager.Instance.
+/// </summary>
 public class GameManager: Singleton<GameManager>
 {
     #region Fields

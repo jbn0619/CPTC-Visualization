@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
+/// <summary>
+/// Author: Justin Neft
+/// Function: Used in CCDC, this data container represents an alert that has happened in the competition.
+/// </summary>
 public class AlertData: MonoBehaviour, IPriorityEvent
 {
     #region Fields

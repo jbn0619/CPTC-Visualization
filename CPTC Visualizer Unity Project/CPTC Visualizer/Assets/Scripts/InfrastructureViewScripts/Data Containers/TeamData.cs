@@ -2,6 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Author: Justin Neft
+/// Function: Data container that is tied to a game object. Represents a competing team in the CPTC competition, and contains team-specific information as well as a copy of the infrastructure for them to modify.
+/// </summary>
 public class TeamData: MonoBehaviour
 {
     #region Fields

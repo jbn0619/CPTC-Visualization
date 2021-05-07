@@ -6,6 +6,10 @@ using UnityEngine.SceneManagement;
 using Assets.Scripts;
 using System.IO;
 
+/// <summary>
+/// Author: Justin Neft
+/// Function: Keeps track of all teams in the infrastructure scnene, and modifies them as-needed.
+/// </summary>
 public class TeamManager : MonoBehaviour
 {
     #region Fields

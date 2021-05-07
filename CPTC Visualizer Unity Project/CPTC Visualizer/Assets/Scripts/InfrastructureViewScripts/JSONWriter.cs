@@ -14,6 +14,11 @@ public enum NodeState { Off, On, NotWorking}
 
 public enum InfraGenType { Random, CCDC, CPTC, BillStackpole}
 
+/// <summary>
+/// Author: Justin Neft
+/// DEPRECATED
+/// Function: Writes phony data to a JSON file format for testing. Was used when making data for NECCDC.
+/// </summary>
 public class JSONWriter: MonoBehaviour
 {
     #region Fields

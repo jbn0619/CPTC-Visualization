@@ -4,6 +4,10 @@ using UnityEngine;
 
 public enum CompetitionType { CPTC, CCDC }
 
+/// <summary>
+/// Author: Justin Neft
+/// Function: General resources that can be accessed anywhere as-needed. Is a singleton.
+/// </summary>
 public class GeneralResources: Singleton<GeneralResources>
 {
     #region Fields

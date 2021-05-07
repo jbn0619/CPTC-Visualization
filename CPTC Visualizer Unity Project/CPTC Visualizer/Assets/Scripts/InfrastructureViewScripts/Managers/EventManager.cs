@@ -5,6 +5,10 @@ using UnityEngine.UI;
 using System.IO;
 using System;
 
+/// <summary>
+/// Author: Justin Neft
+/// Function: Reads events from a JSON file, then changes the corresponding infrastructures accordingly.
+/// </summary>
 public class EventManager: MonoBehaviour
 {
     #region Fields

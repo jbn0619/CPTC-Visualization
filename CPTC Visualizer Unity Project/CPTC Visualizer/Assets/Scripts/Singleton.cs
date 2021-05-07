@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// The code used here was gathered from this online tutorial: http://www.unitygeek.com/unity_c_singleton/
+/// Author: The code used here was gathered from this online tutorial: http://www.unitygeek.com/unity_c_singleton/
+/// Function: Allows any script that inherits from this one to be referenced anywhere within the scene without actually holding a refernece. Also allows singleton objects to persist between scenes.
 /// </summary>
 /// <typeparam name="T">The type this instance of the singleton is made from.</typeparam>
 public class Singleton<T>: MonoBehaviour where T : Component

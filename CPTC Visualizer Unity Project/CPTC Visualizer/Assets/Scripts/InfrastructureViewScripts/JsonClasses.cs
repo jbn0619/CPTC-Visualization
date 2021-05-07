@@ -5,6 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
+/// <summary>
+/// Author: Justin Neft
+/// Function: Old classes that were used to read/write data to JSON files for the CCDC competition.
+/// </summary>
 namespace Assets.Scripts
 {
     /// <summary>

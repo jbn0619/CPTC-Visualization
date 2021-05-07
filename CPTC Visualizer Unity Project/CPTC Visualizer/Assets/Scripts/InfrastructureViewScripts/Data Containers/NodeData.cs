@@ -2,6 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Author: Justin Neft
+/// Function: A data container that is tied to a game object in the unity scene. Contains information for a single "node" within an infrastructure.
+/// </summary>
 public class NodeData: MonoBehaviour
 {
     #region Fields

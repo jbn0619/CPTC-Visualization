@@ -2,6 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Author: Justin Neft
+/// Function: A data container that is tied to a game object. Represents a network within the infrastructure, which is a grouping of node objects.
+/// </summary>
 public class NetworkData: MonoBehaviour
 {
     #region Fields

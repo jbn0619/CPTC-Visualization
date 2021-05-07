@@ -4,6 +4,10 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
+/// <summary>
+/// Author: Justin Neft
+/// Function: Generates phony event and team data to be used for testing. Can easily be slotted into any scene and used on its own.
+/// </summary>
 public class TestDataWriter: MonoBehaviour
 {
     #region Fields

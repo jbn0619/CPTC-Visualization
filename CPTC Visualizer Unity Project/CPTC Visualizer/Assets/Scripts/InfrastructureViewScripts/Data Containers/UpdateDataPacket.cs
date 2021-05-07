@@ -5,6 +5,10 @@ using UnityEngine;
 
 public enum CPTCEvents { NetworkScan, Discovery, Exploit, ShutDown, StartUp }
 
+/// <summary>
+/// Author: Justin Neft
+/// Function: A data container that represents the important information of an "event", or something happening. Is read by the event Manager.
+/// </summary>
 [Serializable]
 public class UpdateDataPacket
 {

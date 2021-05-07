@@ -4,6 +4,10 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+/// <summary>
+/// Author: Justin Neft
+/// Function: Keeps track of all UI elements in the scene, and modifies them as-needed.
+/// </summary>
 public class UIManager: Singleton<UIManager>
 {
     #region Fields

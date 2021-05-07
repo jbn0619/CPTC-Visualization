@@ -4,6 +4,10 @@ using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/// <summary>
+/// Author: Justin Neft
+/// Function: Keeps track of all inputs in the infrastructure scene. This is so that all inputs are in a unified place.
+/// </summary>
 public class InfraInputManager: InputManager
 {
     #region Fields

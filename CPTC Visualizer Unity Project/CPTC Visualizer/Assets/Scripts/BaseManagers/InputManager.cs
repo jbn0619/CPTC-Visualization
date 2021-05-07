@@ -4,6 +4,10 @@ using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/// <summary>
+/// Author: Justin Neft
+/// Function: The base input manager which keeps track of basic inputs that are likely to be shared between all scenes.
+/// </summary>
 public class InputManager: MonoBehaviour
 {
     #region Fields
