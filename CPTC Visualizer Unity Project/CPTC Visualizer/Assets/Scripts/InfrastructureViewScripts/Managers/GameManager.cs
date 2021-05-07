@@ -178,6 +178,7 @@ public class GameManager: Singleton<GameManager>
             configUpdateCount = 0.0f;
 
             UpdateConfigFile();
+            eventManager.LoadEventsFromJSON();
 
             Debug.Log("DataReadInterval now set to: " + dataReadInterval);
         }

@@ -8,6 +8,10 @@ public class ControllerManager: MonoBehaviour
     #region Fields
     [SerializeField]
     private FileManager fileManager;
+    [SerializeField]
+    private TestDataWriter testDataWriter;
+    [SerializeField]
+    private DataLog dataLog;
 
     [SerializeField]
     private float dataPullInterval;
@@ -16,10 +20,16 @@ public class ControllerManager: MonoBehaviour
     private float dataReadInterval;
 
 
+    [SerializeField]
+    private float generateTestDataCount;
+    [SerializeField]
+    private float generateTestDataTime;
+
+
     #endregion Fields
-    
+
     #region Properties
-    
+
     public float DataPullInterval
     {
         get { return dataPullInterval;}
@@ -38,12 +48,23 @@ public class ControllerManager: MonoBehaviour
     void Start()
     {
         dataReadInterval = 5;
+        generateTestDataCount = 0.0f;
+        generateTestDataTime = 5;
     }
 
     // Update is called once per frame
     void Update()
     {
+        // Check if we need to check for a config update
+        generateTestDataCount += Time.deltaTime;
+        if (generateTestDataCount >= generateTestDataTime)
+        {
+            generateTestDataCount = 0.0f;
 
+            testDataWriter.WriteEventData();
+
+            dataLog.Print("Test Data generated.");
+        }
     }
 
     /// <summary>
