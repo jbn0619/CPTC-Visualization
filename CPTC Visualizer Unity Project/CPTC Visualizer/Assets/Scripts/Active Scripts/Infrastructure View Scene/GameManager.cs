@@ -21,8 +21,8 @@ public class GameManager: Singleton<GameManager>
     [Header("Manager GameObjects")]
     [SerializeField]
     private InputManager inputManager;
-    [SerializeField]
-    private AIManager aiManager;
+    // [SerializeField]
+    // private AIManager aiManager;
     [SerializeField]
     private TeamManager teamManager;
     [SerializeField]
