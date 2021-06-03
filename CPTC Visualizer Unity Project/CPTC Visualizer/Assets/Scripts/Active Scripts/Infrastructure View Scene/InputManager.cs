@@ -25,7 +25,10 @@ public class InputManager: MonoBehaviour
     private KeyCode camLeft = KeyCode.A;
     [SerializeField]
     private KeyCode camRight = KeyCode.D;
-
+    [SerializeField]
+    private int zoomMin = 2;
+    [SerializeField]
+    private int zoomMax = 10;
     /*
     [Header("Controller Inputs")]
     [SerializeField]
@@ -97,6 +100,18 @@ public class InputManager: MonoBehaviour
         if (Input.GetKey(camRight))
         {
             mainCam.transform.position += new Vector3(newMoveSpeed, 0, 0);
+        }
+
+        // On scroll down, zoom out if there is the room to
+        if(mainCam.orthographicSize < zoomMax && Input.mouseScrollDelta.y < 0)
+        {
+            mainCam.orthographicSize -= Input.mouseScrollDelta.y;
+        }
+
+        // On scroll up, zoom in as long as it doesn't go too small
+        if(mainCam.orthographicSize > zoomMin && Input.mouseScrollDelta.y > 0)
+        {
+            mainCam.orthographicSize -= Input.mouseScrollDelta.y;
         }
     }
 }
