@@ -15,7 +15,6 @@ public class NodeData: MonoBehaviour
     protected int id;
     [SerializeField]
     protected string ip;
-    protected bool isActive;
     [SerializeField]
     protected NodeTypes type;
     protected NodeState state;
@@ -71,21 +70,6 @@ public class NodeData: MonoBehaviour
     }
 
     /// <summary>
-    /// Gets or sets if this node has been shut down or not.
-    /// </summary>
-    public bool IsActive
-    {
-        get
-        {
-            return isActive;
-        }
-        set
-        {
-            isActive = value;
-        }
-    }
-
-    /// <summary>
     /// Gets or sets if this node is hidden from view or not.
     /// </summary>
     public bool IsHidden
@@ -117,7 +101,7 @@ public class NodeData: MonoBehaviour
     }
 
     /// <summary>
-    /// Gets or sets what this node's state is.
+    /// Gets or sets what this node's state is. This will probably be called once per Tick. Make sure calls are only referencing the nodes you need.
     /// </summary>
     public NodeState State
     {
@@ -132,13 +116,17 @@ public class NodeData: MonoBehaviour
     }
 
     /// <summary>
-    /// Gets a list of node ids this node has connections to.
+    /// Get and sets a list of node ids this node has connections to.
     /// </summary>
     public List<int> Connections
     {
         get
         {
             return connections;
+        }
+        set
+        {
+            connections = value;
         }
     }
 
@@ -150,6 +138,10 @@ public class NodeData: MonoBehaviour
         get
         {
             return connectionGOS;
+        }
+        set
+        {
+            connectionGOS = value;
         }
     }
 
@@ -182,6 +174,7 @@ public class NodeData: MonoBehaviour
             uptimeChart = value;
         }
     }
+
     
     #endregion Properties
     
@@ -206,14 +199,43 @@ public class NodeData: MonoBehaviour
         Sprite newSprite = Resources.Load<Sprite>(type.ToString() + "_Icon");
         nodeSprite.sprite = newSprite;
         nodeSprite.transform.localScale = new Vector3(.15f, .15f, 1);
-    }
+    }    
 
+    /// <summary>
+    /// Set all variables within the node with data from the server admins
+    /// </summary>
+    /// <param name="_ID"></param>
+    /// <param name="_IP"></param>
+    /// <param name="_IsActive"></param>
+    /// <param name="_IsHidden"></param>
+    /// <param name="_Type"></param>
+    /// <param name="_State"></param>
+    /// <param name="_Connections"></param>
+    /// <param name="_ConnectionGOS"></param>
+    /// <param name="_NodeSprite"></param>
+    public void SetData(int _ID, string _IP, bool _IsHidden, NodeTypes _Type, 
+        NodeState _State, List<int> _Connections, List<LineRenderer> _ConnectionGOS)
+    {
+        this.id             = _ID;
+        this.ip             = _IP;
+        this.type           = _Type;
+        this.state          = _State;
+        this.isHidden       = _IsHidden;
+        this.connections    = _Connections;
+        this.connectionGOS  = _ConnectionGOS;
+        /* Example Call of SetNode
+         * This would proably be in a Start() or loading method, only called once in the 
+        foreach (NodeData n in allNodes)
+        {
+            n.SetData(index, PARSED_DATA.ip, true, false, PARSED_DATA.type, PARSED DATA.state, PARSED_DATA.connections, PARSED_DATA.lineConnections)
+        }
+         */
+    }
     public NodeData Clone()
     {
         NodeData newNode = new NodeData();
         newNode.id = this.id;
         newNode.ip = this.ip;
-        newNode.isActive = this.isActive;
         newNode.type = this.type;
         newNode.state = this.state;
         newNode.isHidden = this.isHidden;
