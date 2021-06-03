@@ -160,7 +160,7 @@ public class GameManager: Singleton<GameManager>
     // Start is called before the first frame update
     void Start()
     {
-        MainCam = Camera.main;
+        mainCam = Camera.main;
         readDateStarted = false;
         compStarted = false;
         stateCheckCount = 0.0f;
