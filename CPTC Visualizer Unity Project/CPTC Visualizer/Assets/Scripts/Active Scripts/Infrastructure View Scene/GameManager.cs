@@ -130,7 +130,13 @@ public class GameManager: Singleton<GameManager>
     /// <summary>
     /// Gets the main camera of this scene.
     /// </summary>
-    public Camera MainCam { get; set; }
+    public Camera MainCam 
+    { 
+        get 
+        {
+            return mainCam;
+        } 
+    }
 
     /// <summary>
     /// Gets if the reading date has started yet.
