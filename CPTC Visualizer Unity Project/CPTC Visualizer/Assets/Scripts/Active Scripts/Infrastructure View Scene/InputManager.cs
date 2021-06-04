@@ -29,6 +29,8 @@ public class InputManager: MonoBehaviour
     private int zoomMin = 2;
     [SerializeField]
     private int zoomMax = 10;
+    [SerializeField]
+    private float zoomSensitivity = 1.0f/3.0f;
     /*
     [Header("Controller Inputs")]
     [SerializeField]
@@ -103,15 +105,16 @@ public class InputManager: MonoBehaviour
         }
 
         // On scroll down, zoom out if there is the room to
-        if(mainCam.orthographicSize < zoomMax && Input.mouseScrollDelta.y < 0)
+        if(mainCam.orthographicSize < zoomMax-zoomSensitivity && Input.mouseScrollDelta.y < 0)
         {
-            mainCam.orthographicSize -= Input.mouseScrollDelta.y;
+            mainCam.orthographicSize += 1 * zoomSensitivity;
         }
 
         // On scroll up, zoom in as long as it doesn't go too small
-        if(mainCam.orthographicSize > zoomMin && Input.mouseScrollDelta.y > 0)
+        if(mainCam.orthographicSize > zoomMin+zoomSensitivity && Input.mouseScrollDelta.y > 0)
         {
-            mainCam.orthographicSize -= Input.mouseScrollDelta.y;
+            Debug.Log(Input.mouseScrollDelta.y);
+            mainCam.orthographicSize -= 1 * zoomSensitivity;
         }
     }
 }
