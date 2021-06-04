@@ -4,6 +4,7 @@ using UnityEngine;
 
 /// <summary>
 /// Author: Justin Neft
+///     Ben Wetzel - Summer 2021
 /// Function: A data container that is tied to a game object in the unity scene. Contains information for a single "node" within an infrastructure.
 /// </summary>
 public class NodeData: MonoBehaviour
@@ -29,6 +30,9 @@ public class NodeData: MonoBehaviour
 
     [SerializeField]
     protected SpriteRenderer nodeSprite;
+
+    [SerializeField]
+    protected List<int> teamIDs; // Tracks the teams with current access to this node
 
     private UptimeChartData uptimeChart;
 
@@ -131,6 +135,21 @@ public class NodeData: MonoBehaviour
     }
 
     /// <summary>
+    /// Gets and sets a list of team IDs currently accessing this node
+    /// </summary>
+    public List<int> TeamIDs
+    {
+        get
+        {
+            return teamIDs;
+        }
+        set
+        {
+            teamIDs = value;
+        }
+    }
+
+    /// <summary>
     /// Gets a list of gameObjects that represent this node's connections.
     /// </summary>
     public List<LineRenderer> ConnectionGOS
@@ -212,7 +231,6 @@ public class NodeData: MonoBehaviour
     /// <param name="_State"></param>
     /// <param name="_Connections"></param>
     /// <param name="_ConnectionGOS"></param>
-    /// <param name="_NodeSprite"></param>
     public void SetData(int _ID, string _IP, bool _IsHidden, NodeTypes _Type, 
         NodeState _State, List<int> _Connections, List<LineRenderer> _ConnectionGOS)
     {
