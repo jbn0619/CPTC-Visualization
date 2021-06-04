@@ -107,14 +107,30 @@ public class InputManager: MonoBehaviour
         // On scroll down, zoom out if there is the room to
         if(mainCam.orthographicSize < zoomMax-zoomSensitivity && Input.mouseScrollDelta.y < 0)
         {
+            // Change the orthographic size of the camera
             mainCam.orthographicSize += 1 * zoomSensitivity;
+
+            // Transform the camera to keep the background in a similar scale to the zoom
+            // 5 is the arbitrary conversion between orthographic scale and the local scale of the camera (Can be tinkered with to find a more exact rate)
+            Vector3 tempScale = mainCam.transform.localScale;
+            tempScale.x += zoomSensitivity / 5;
+            tempScale.y += zoomSensitivity / 5;
+            mainCam.transform.localScale = tempScale;
         }
 
         // On scroll up, zoom in as long as it doesn't go too small
         if(mainCam.orthographicSize > zoomMin+zoomSensitivity && Input.mouseScrollDelta.y > 0)
         {
-            Debug.Log(Input.mouseScrollDelta.y);
+            // Change the orthographic size of the camera
             mainCam.orthographicSize -= 1 * zoomSensitivity;
+
+            // Transform the camera to keep the background in a similar scale to the zoom
+            // 5 is the arbitrary conversion between orthographic scale and the local scale of the camera (Can be tinkered with to find a more exact rate)
+            Vector3 tempScale = mainCam.transform.localScale;
+            tempScale.x -= zoomSensitivity / 5;
+            tempScale.y -= zoomSensitivity / 5;
+            mainCam.transform.localScale = tempScale;
+            
         }
     }
 }
