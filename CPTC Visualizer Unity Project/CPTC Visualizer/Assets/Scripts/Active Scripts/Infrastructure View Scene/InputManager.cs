@@ -108,13 +108,21 @@ public class InputManager: MonoBehaviour
         if(mainCam.orthographicSize < zoomMax-zoomSensitivity && Input.mouseScrollDelta.y < 0)
         {
             mainCam.orthographicSize += 1 * zoomSensitivity;
+            Vector3 tempScale = mainCam.transform.localScale;
+            tempScale.x += zoomSensitivity / 5;
+            tempScale.y += zoomSensitivity / 5;
+            mainCam.transform.localScale = tempScale;
         }
 
         // On scroll up, zoom in as long as it doesn't go too small
         if(mainCam.orthographicSize > zoomMin+zoomSensitivity && Input.mouseScrollDelta.y > 0)
         {
-            Debug.Log(Input.mouseScrollDelta.y);
             mainCam.orthographicSize -= 1 * zoomSensitivity;
+            Vector3 tempScale = mainCam.transform.localScale;
+            tempScale.x -= zoomSensitivity / 5;
+            tempScale.y -= zoomSensitivity / 5;
+            mainCam.transform.localScale = tempScale;
+            
         }
     }
 }
