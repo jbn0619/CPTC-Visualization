@@ -29,7 +29,7 @@ public class InfraInputManager: InputManager
     // Start is called before the first frame update
     void Start()
     {
-        // this is a test comment
+        
     }
 
     // Update is called once per frame
