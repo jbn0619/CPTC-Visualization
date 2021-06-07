@@ -119,6 +119,58 @@ public class FileManager: MonoBehaviour
     }
 
     /// <summary>
+    /// Create list of all system nodes from JSON file
+    /// </summary>
+    /// <param name="_fileName">name of the file with the data</param>
+    /// <param name="_filePathExtension">name of the directory within the root directory</param>
+    /// <returns></returns>
+    public List<NodeData> CreateNodesFromJSON(string _fileName, string _filePathExtension)
+    {
+        // Log the filepath to the Debug
+        string filePath = rootFilePath + _filePathExtension + _fileName;
+        Debug.Log("JSON File Path: " + filePath);
+
+        List<NodeData> nodes = new List<NodeData>();
+
+        // create list of nodes. Each line of the JSON is a new node in the list. 
+        foreach (string line in ReadFile(_fileName, _filePathExtension))
+        {
+            nodes.Add(JsonUtility.FromJson<NodeData>(line));
+        }
+
+        Debug.Log($"{nodes.Count} system nodes successfully loaded from {filePath}");
+        return nodes;
+    }
+
+    /// <summary>
+    /// Compares the Nodes taken from last Tick and updates the ones that have changed
+    /// </summary>
+    /// <param name="_fileName">name of the file with the data</param>
+    /// <param name="_filePathExtension">name of the directory within the root directory</param>
+    public void UpdateNodes(string _fileName, string _filePathExtension)
+    {
+        // get new node data
+        List<NodeData> newNodes = CreateNodesFromJSON( _fileName, _filePathExtension);
+
+        // get old node data
+        List<NodeData> currentNodes = GameManager.Instance.MainInfra.AllNodes;
+
+        // for each node, check if it needs to be updated
+        for(int i = 0; i < currentNodes.Count; i++)
+        {
+            // If the new version of the Node Data is different than the old verion, update the old Node to the value of the new version
+            if(newNodes[i].Type != currentNodes[i].Type)
+            {
+                GameManager.Instance.MainInfra.AllNodes[i].Type = newNodes[i].Type;
+            }
+            if (newNodes[i].Teams != currentNodes[i].Teams)
+            {
+                GameManager.Instance.MainInfra.AllNodes[i].Teams = newNodes[i].Teams;
+            }
+        }
+    }
+
+    /// <summary>
     /// Writes a file with the name _fileName and content _fileData to a file at _filePathExtension
     /// </summary>
     /// <param name="_fileName"></param>

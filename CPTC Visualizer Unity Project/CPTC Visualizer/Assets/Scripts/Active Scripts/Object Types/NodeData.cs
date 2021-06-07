@@ -32,7 +32,7 @@ public class NodeData: MonoBehaviour
     protected SpriteRenderer nodeSprite;
 
     [SerializeField]
-    protected List<int> teamIDs; // Tracks the teams with current access to this node
+    protected List<TeamData> teams; // Tracks the teams with current access to this node
 
     private UptimeChartData uptimeChart;
 
@@ -137,15 +137,15 @@ public class NodeData: MonoBehaviour
     /// <summary>
     /// Gets and sets a list of team IDs currently accessing this node
     /// </summary>
-    public List<int> TeamIDs
+    public List<TeamData> Teams
     {
         get
         {
-            return teamIDs;
+            return teams;
         }
         set
         {
-            teamIDs = value;
+            teams = value;
         }
     }
 
@@ -242,7 +242,7 @@ public class NodeData: MonoBehaviour
         this.connections    = _Connections;
         this.connectionGOS  = _ConnectionGOS;
         /* Example Call of SetNode
-         * This would proably be in a Start() or loading method, only called once in the 
+         * This would proably be in a Start() or loading method, called to set up the node objects.
         foreach (NodeData n in allNodes)
         {
             n.SetData(index, PARSED_DATA.ip, true, false, PARSED_DATA.type, PARSED DATA.state, PARSED_DATA.connections, PARSED_DATA.lineConnections)

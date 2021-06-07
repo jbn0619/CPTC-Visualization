@@ -22,9 +22,9 @@ public class InfrastructureData: MonoBehaviour
 
     [Header("JSON Access Path")]
     [SerializeField]
-    private string nodeFilename;
+    private string nodesFilename;
     [SerializeField]
-    private string nodeFileExtension;
+    private string nodesFilePathExtension;
 
     #endregion Fields
 
@@ -53,7 +53,7 @@ public class InfrastructureData: MonoBehaviour
     }
 
     /// <summary>
-    /// Gets a list of IDs of shut-down nodes.
+    /// Gets a list of IDs of inactive nodes.
     /// </summary>
     public List<int> ShutDownNodes
     {
@@ -69,28 +69,30 @@ public class InfrastructureData: MonoBehaviour
     void Start()
     {
         // set up the filepath for the access to node data
-        nodeFilename = "nodes.JSON";
-        nodeFileExtension = "\\Infrastructure\\Database\\";
-        // call the FileManager's List<NodeData>CreateNodesFromJSON(filename, filePathExtension) and return a list of all Nodes in the network
+        nodesFilename = "nodes.JSON";
+        nodesFilePathExtension = "\\Infrastructure\\Database\\";
+        this.allNodes = GameManager.Instance.FileManager.CreateNodesFromJSON(nodesFilename, nodesFilePathExtension);
+        
         // Determine initial positions of allNodes and set their transforms accordingly. 
-        // draw raycasts between network and node connections
+        // draw initial raycasts between network and node connections
     }
 
     // Update is called once per frame
     void Update()
     {
-        // call FileManager's List<int> UpdatedNodes(filename, filePathExtension) 
-            // to get updated states and teams that have accessed the nodes.
-            // This method would access this object's AllNodes and edit it with the incoming data. 
-            // That way we don't need to create new nodes every update
-            // It will return a list of the nodes which need to be updates
-
-        // List<int> updatedNodes = GameManager.Instance.FileManager.UpdateNodes(nodeFilename, nodeFileExtension)
-
-        // foreach Node in allNodes, update the sprite to represent the teams which have accessed them
+        // to get updated states and teams that have accessed the nodes.
+        GameManager.Instance.FileManager.UpdateNodes(nodesFilename, nodesFilePathExtension);
+        
+        //update node graphics
+        foreach(NodeData n in this.allNodes)
+        {
+            n.SplitSprite();
+        }
+        // Do we want to draw the raycasts every tick? would we be changing the positions of the nodes?
     }
 
-    /// <summary>
+    /*Phased out because this would require expensive searches every tick in order to get a list of updated nodes.
+     * /// <summary>
     /// This updates the node at the given index within the allnodes list. 
     /// </summary>
     /// <param name="_index">Index of the node within the InfrastructureData's allNodes list</param>
@@ -103,4 +105,5 @@ public class InfrastructureData: MonoBehaviour
         this.allNodes[_index].State = _state;
         this.allNodes[_index].TeamIDs = _teamIDs;
     }
+    */
 }
