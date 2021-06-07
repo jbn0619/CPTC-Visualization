@@ -81,7 +81,7 @@ public class InfrastructureData: MonoBehaviour
     void Update()
     {
         // to get updated states and teams that have accessed the nodes.
-        this.allNodes = GameManager.Instance.FileManager.CreateNodesFromJSON(nodesFilename, nodesFilePathExtension);
+        GameManager.Instance.FileManager.UpdateNodes(nodesFilename, nodesFilePathExtension);
         
         //update node graphics
         foreach(NodeData n in this.allNodes)
