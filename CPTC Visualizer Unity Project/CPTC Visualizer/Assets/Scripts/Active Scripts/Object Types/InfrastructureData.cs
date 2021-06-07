@@ -71,10 +71,21 @@ public class InfrastructureData: MonoBehaviour
         // set up the filepath for the access to node data
         nodesFilename = "nodes.JSON";
         nodesFilePathExtension = "\\Infrastructure\\Database\\";
+
+        // set the allNodes list to data collected from JSON file
         this.allNodes = GameManager.Instance.FileManager.CreateNodesFromJSON(nodesFilename, nodesFilePathExtension);
-        
-        // Determine initial positions of allNodes and set their transforms accordingly. 
-        // draw initial raycasts between network and node connections
+
+        // create gameObjects for all the nodes
+        foreach(NodeData n in this.allNodes)
+        {
+            // Determine initial position of nodes.
+
+            // Instantiate using the InfrastructureData's tranform as a base. 
+            Instantiate(GameManager.Instance.NodePrefab, this.transform.position, this.transform.rotation);
+
+        }
+        // draw initial raycasts between network and node connections. 
+        // Will need to loop in such a way as to avoid duplicating raycasts of the same conecitons
     }
 
     // Update is called once per frame

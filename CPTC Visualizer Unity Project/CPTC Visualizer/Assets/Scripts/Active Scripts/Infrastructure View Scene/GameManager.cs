@@ -125,6 +125,17 @@ public class GameManager: Singleton<GameManager>
         }
     }
 
+    /// <summary>
+    /// A prefab Game Object used to create Node objects
+    /// </summary>
+    public GameObject NodePrefab
+    {
+        get
+        {
+            return this.prefabNode;
+        }
+    }
+
     #endregion Manager Properties
 
     #region Competition Properties
