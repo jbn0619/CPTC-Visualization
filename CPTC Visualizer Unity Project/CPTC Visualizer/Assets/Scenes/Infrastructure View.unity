@@ -176,6 +176,7 @@ MonoBehaviour:
   connections: 
   connectionGOS: []
   nodeSprite: {fileID: 809323384}
+  teams: []
 --- !u!114 &16954478
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -267,6 +268,7 @@ MonoBehaviour:
   connections: 
   connectionGOS: []
   nodeSprite: {fileID: 1393012210}
+  teams: []
 --- !u!61 &78851619
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -440,6 +442,7 @@ MonoBehaviour:
   connections: 
   connectionGOS: []
   nodeSprite: {fileID: 1596620146}
+  teams: []
 --- !u!114 &172020600
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -587,6 +590,7 @@ MonoBehaviour:
   connections: 
   connectionGOS: []
   nodeSprite: {fileID: 102176202}
+  teams: []
 --- !u!61 &190460375
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -803,6 +807,7 @@ MonoBehaviour:
   connections: 
   connectionGOS: []
   nodeSprite: {fileID: 1894888262}
+  teams: []
 --- !u!61 &304287821
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -976,6 +981,7 @@ MonoBehaviour:
   connections: 
   connectionGOS: []
   nodeSprite: {fileID: 1410336735}
+  teams: []
 --- !u!61 &380662265
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1067,6 +1073,7 @@ MonoBehaviour:
   connections: 
   connectionGOS: []
   nodeSprite: {fileID: 1288588826}
+  teams: []
 --- !u!61 &396696156
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1158,6 +1165,7 @@ MonoBehaviour:
   connections: 
   connectionGOS: []
   nodeSprite: {fileID: 682035148}
+  teams: []
 --- !u!61 &402186482
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1331,6 +1339,7 @@ MonoBehaviour:
   connections: 
   connectionGOS: []
   nodeSprite: {fileID: 1146558622}
+  teams: []
 --- !u!61 &631457341
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1854,7 +1863,10 @@ MonoBehaviour:
   - {fileID: 2092072914}
   - {fileID: 1674982574}
   - {fileID: 304287820}
+  allNodeObjects: []
   shutDownNodes: 
+  nodesFilename: 
+  nodesFilePathExtension: 
 --- !u!4 &807570441
 Transform:
   m_ObjectHideFlags: 0
@@ -2145,6 +2157,7 @@ MonoBehaviour:
   stayInScene: 1
   mainCam: {fileID: 2075817724}
   mainInfra: {fileID: 807570440}
+  prefabNode: {fileID: 5933303019270466831, guid: ca33bf85e528455499a1638c62582ea4, type: 3}
   inputManager: {fileID: 183641911}
   teamManager: {fileID: 1371010132}
   eventManager: {fileID: 1452424210}
@@ -2596,6 +2609,7 @@ MonoBehaviour:
   connections: 
   connectionGOS: []
   nodeSprite: {fileID: 832853586}
+  teams: []
 --- !u!114 &1031760233
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2687,6 +2701,7 @@ MonoBehaviour:
   connections: 
   connectionGOS: []
   nodeSprite: {fileID: 805747868}
+  teams: []
 --- !u!61 &1141330892
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3205,6 +3220,7 @@ MonoBehaviour:
   connections: 
   connectionGOS: []
   nodeSprite: {fileID: 2027661858}
+  teams: []
 --- !u!61 &1393734962
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3378,6 +3394,7 @@ MonoBehaviour:
   connections: 
   connectionGOS: []
   nodeSprite: {fileID: 2041945094}
+  teams: []
 --- !u!61 &1420891501
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3469,6 +3486,7 @@ MonoBehaviour:
   connections: 
   connectionGOS: []
   nodeSprite: {fileID: 331203088}
+  teams: []
 --- !u!61 &1433291189
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4202,6 +4220,7 @@ MonoBehaviour:
   connections: 
   connectionGOS: []
   nodeSprite: {fileID: 197731797}
+  teams: []
 --- !u!4 &1582256218
 Transform:
   m_ObjectHideFlags: 0
@@ -4390,6 +4409,7 @@ MonoBehaviour:
   connections: 
   connectionGOS: []
   nodeSprite: {fileID: 1928503358}
+  teams: []
 --- !u!61 &1611356391
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4763,6 +4783,7 @@ MonoBehaviour:
   connections: 
   connectionGOS: []
   nodeSprite: {fileID: 1806951265}
+  teams: []
 --- !u!61 &1659818527
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4854,6 +4875,7 @@ MonoBehaviour:
   connections: 
   connectionGOS: []
   nodeSprite: {fileID: 473050396}
+  teams: []
 --- !u!61 &1674982575
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5068,6 +5090,7 @@ MonoBehaviour:
   connections: 
   connectionGOS: []
   nodeSprite: {fileID: 941846119}
+  teams: []
 --- !u!61 &1693415339
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5402,6 +5425,7 @@ MonoBehaviour:
   connections: 
   connectionGOS: []
   nodeSprite: {fileID: 1173043970}
+  teams: []
 --- !u!61 &1836674367
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6172,6 +6196,7 @@ MonoBehaviour:
   connections: 
   connectionGOS: []
   nodeSprite: {fileID: 690840024}
+  teams: []
 --- !u!61 &2092072915
 BoxCollider2D:
   m_ObjectHideFlags: 0
