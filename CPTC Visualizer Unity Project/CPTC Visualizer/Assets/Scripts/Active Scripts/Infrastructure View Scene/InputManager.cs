@@ -31,6 +31,8 @@ public class InputManager: MonoBehaviour
     private int zoomMax = 10;
     [SerializeField]
     private float zoomSensitivity = 1.0f/3.0f;
+    [SerializeField]
+    private float orthToLocalScale = 5f;
     /*
     [Header("Controller Inputs")]
     [SerializeField]
@@ -125,10 +127,10 @@ public class InputManager: MonoBehaviour
             mainCam.orthographicSize -= 1 * zoomSensitivity;
 
             // Transform the camera to keep the background in a similar scale to the zoom
-            // 5 is the arbitrary conversion between orthographic scale and the local scale of the camera (Can be tinkered with to find a more exact rate)
+            // OrthToLocalScale has yet to be balanced definitely, best number so far was 5
             Vector3 tempScale = mainCam.transform.localScale;
-            tempScale.x -= zoomSensitivity / 5;
-            tempScale.y -= zoomSensitivity / 5;
+            tempScale.x -= zoomSensitivity / orthToLocalScale;
+            tempScale.y -= zoomSensitivity / orthToLocalScale;
             mainCam.transform.localScale = tempScale;
             
         }
