@@ -17,6 +17,8 @@ public class GameManager: Singleton<GameManager>
     private Camera mainCam;
     [SerializeField]
     private InfrastructureData mainInfra;
+    [SerializeField]
+    private GameObject prefabNode;
 
     [Header("Manager GameObjects")]
     [SerializeField]
