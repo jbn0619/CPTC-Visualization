@@ -26,9 +26,9 @@ public class InputManager: MonoBehaviour
     [SerializeField]
     private KeyCode camRight = KeyCode.D;
     [SerializeField]
-    private int zoomMin = 2;
+    public int zoomMin = 2;
     [SerializeField]
-    private int zoomMax = 10;
+    public int zoomMax = 10;
     [SerializeField]
     private float zoomSensitivity = 1.0f/3.0f;
     [SerializeField]
