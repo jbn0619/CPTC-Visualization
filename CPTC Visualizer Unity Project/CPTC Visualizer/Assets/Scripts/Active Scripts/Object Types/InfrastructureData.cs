@@ -10,9 +10,7 @@ using UnityEngine;
 public class InfrastructureData: MonoBehaviour
 {
     #region Fields
-    [SerializeField]
-    private GameObject prefabNode;
-
+    
     [SerializeField]
     private List<NetworkData> networks;
 

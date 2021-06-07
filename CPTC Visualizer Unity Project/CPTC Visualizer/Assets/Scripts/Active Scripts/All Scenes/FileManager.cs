@@ -10,7 +10,8 @@ public class FileManager: MonoBehaviour
     string rootFilePath;
     //DirectoryInfo directoryInfo;
 
-
+    [SerializeField]
+    private GameObject prefabNode;
     #endregion Fields
 
     #region Properties
