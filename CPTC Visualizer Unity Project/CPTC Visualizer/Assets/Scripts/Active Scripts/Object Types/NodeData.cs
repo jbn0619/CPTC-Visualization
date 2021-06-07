@@ -4,7 +4,7 @@ using UnityEngine;
 
 /// <summary>
 /// Author: Justin Neft
-///     Ben Wetzel - Summer 2021
+///     Ben Wetzel & Garrett Paradis - Summer 2021
 /// Function: A data container that is tied to a game object in the unity scene. Contains information for a single "node" within an infrastructure.
 /// </summary>
 public class NodeData: MonoBehaviour
@@ -223,24 +223,23 @@ public class NodeData: MonoBehaviour
     /// <summary>
     /// Set all variables within the node with data from the server admins
     /// </summary>
-    /// <param name="_ID"></param>
-    /// <param name="_IP"></param>
-    /// <param name="_IsActive"></param>
-    /// <param name="_IsHidden"></param>
-    /// <param name="_Type"></param>
-    /// <param name="_State"></param>
-    /// <param name="_Connections"></param>
-    /// <param name="_ConnectionGOS"></param>
-    public void SetData(int _ID, string _IP, bool _IsHidden, NodeTypes _Type, 
-        NodeState _State, List<int> _Connections, List<LineRenderer> _ConnectionGOS)
+    /// <param name="_id"></param>
+    /// <param name="_ip"></param>
+    /// <param name="_isHidden"></param>
+    /// <param name="_type"></param>
+    /// <param name="_state"></param>
+    /// <param name="_connections"></param>
+    /// <param name="_connectionGOS"></param>
+    public void SetData(int _id, string _ip, bool _isHidden, NodeTypes _type, 
+        NodeState _state, List<int> _connections, List<LineRenderer> _connectionGOS)
     {
-        this.id             = _ID;
-        this.ip             = _IP;
-        this.type           = _Type;
-        this.state          = _State;
-        this.isHidden       = _IsHidden;
-        this.connections    = _Connections;
-        this.connectionGOS  = _ConnectionGOS;
+        this.id             = _id;
+        this.ip             = _ip;
+        this.type           = _type;
+        this.state          = _state;
+        this.isHidden       = _isHidden;
+        this.connections    = _connections;
+        this.connectionGOS  = _connectionGOS;
         /* Example Call of SetNode
          * This would proably be in a Start() or loading method, called to set up the node objects.
         foreach (NodeData n in allNodes)

@@ -16,6 +16,8 @@ public class InfrastructureData: MonoBehaviour
 
     [SerializeField]
     private List<NodeData> allNodes;
+    [SerializeField]
+    private List<GameObject> allNodeObjects;
 
     [SerializeField]
     private List<int> shutDownNodes;
@@ -53,6 +55,17 @@ public class InfrastructureData: MonoBehaviour
     }
 
     /// <summary>
+    /// Gets a list of all the instanced Node Objects in the scene
+    /// </summary>
+    public List<GameObject> AllNodeObjects
+    {
+        get
+        {
+            return allNodeObjects;
+        }
+    }
+
+    /// <summary>
     /// Gets a list of IDs of inactive nodes.
     /// </summary>
     public List<int> ShutDownNodes
@@ -78,14 +91,24 @@ public class InfrastructureData: MonoBehaviour
         // create gameObjects for all the nodes
         foreach(NodeData n in this.allNodes)
         {
-            // Determine initial position of nodes.
+            // TODO: Determine initial position of nodes.
 
             // Instantiate using the InfrastructureData's tranform as a base. 
-            Instantiate(GameManager.Instance.NodePrefab, this.transform.position, this.transform.rotation);
-
+            allNodeObjects.Add(Instantiate(GameManager.Instance.NodePrefab, this.transform.position, this.transform.rotation));
+            
+            // set the new game object's NodeData variables to the new set of variables
+            allNodeObjects[allNodeObjects.Count].GetComponent<NodeData>().SetData(n.Id, n.Ip, n.IsHidden, 
+                n.Type, n.State, n.Connections, n.ConnectionGOS);
         }
         // draw initial raycasts between network and node connections. 
         // Will need to loop in such a way as to avoid duplicating raycasts of the same conecitons
+
+        // set the allNodes indecies to reference the node components of the GameObjects, rather than the original list
+        // this may be redundant, I'm not sure. - Ben
+        for(int i = 0; i < allNodes.Count; i++)
+        {
+            allNodes[i] = allNodeObjects[i].GetComponent<NodeData>();
+        }
     }
 
     // Update is called once per frame
@@ -95,26 +118,10 @@ public class InfrastructureData: MonoBehaviour
         GameManager.Instance.FileManager.UpdateNodes(nodesFilename, nodesFilePathExtension);
         
         //update node graphics
-        foreach(NodeData n in this.allNodes)
+        foreach(GameObject n in this.allNodeObjects)
         {
-            n.SplitSprite();
+            n.GetComponent<NodeData>().SplitSprite();
         }
         // Do we want to draw the raycasts every tick? would we be changing the positions of the nodes?
     }
-
-    /// <summary>
-    /// This updates the node at the given index within the allnodes list. 
-    /// </summary>
-    /// <param name="_index">Index of the node within the InfrastructureData's allNodes list</param>
-    /// <param name="_teams">List of the teams which are currently accessing the node</param>
-    /// <param name="_state">The current state of the node</param>
-    // This implemented here rather than in NodeData.cs because this is where the list of all Nodes is kept, and where the index will be usefu
-    // This is necessary to maintain the integrity of the allNodes list as a private variable.
-    public void UpdateNodeData(int _index, List<TeamData> _teams, NodeState _state)
-    {
-        this.allNodes[_index].State = _state;
-        this.allNodes[_index].Teams = _teams;
-    }
-
-    
 }

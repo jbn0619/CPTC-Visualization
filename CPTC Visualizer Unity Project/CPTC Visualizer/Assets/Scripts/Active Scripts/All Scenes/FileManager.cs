@@ -9,8 +9,6 @@ public class FileManager: MonoBehaviour
     #region Fields
     string rootFilePath;
     //DirectoryInfo directoryInfo;
-
-  
     #endregion Fields
 
     #region Properties
@@ -129,10 +127,9 @@ public class FileManager: MonoBehaviour
         // Log the filepath to the Debug
         string filePath = rootFilePath + _filePathExtension + _fileName;
         Debug.Log("JSON File Path: " + filePath);
-
-        List<NodeData> nodes = new List<NodeData>();
-
+        
         // create list of nodes. Each line of the JSON is a new node in the list. 
+        List<NodeData> nodes = new List<NodeData>();
         foreach (string line in ReadFile(_fileName, _filePathExtension))
         {
             nodes.Add(JsonUtility.FromJson<NodeData>(line));
