@@ -265,7 +265,7 @@ public class NodeData: MonoBehaviour
 
     public void SplitSprite()
     {
-        // number of teams accessing = teamIDS
+        // number of teams accessing = teams.Count
         List<double> spriteColors = new List<double>();
 
         /*
