@@ -10,6 +10,8 @@ using UnityEngine;
 public class InfrastructureData: MonoBehaviour
 {
     #region Fields
+    [SerializeField]
+    private GameObject prefabNode;
 
     [SerializeField]
     private List<NetworkData> networks;
@@ -91,19 +93,19 @@ public class InfrastructureData: MonoBehaviour
         // Do we want to draw the raycasts every tick? would we be changing the positions of the nodes?
     }
 
-    /*Phased out because this would require expensive searches every tick in order to get a list of updated nodes.
-     * /// <summary>
+    /// <summary>
     /// This updates the node at the given index within the allnodes list. 
     /// </summary>
     /// <param name="_index">Index of the node within the InfrastructureData's allNodes list</param>
-    /// <param name="_teamIDs">List of IDs of the teams which are currently accessing the node</param>
+    /// <param name="_teams">List of the teams which are currently accessing the node</param>
     /// <param name="_state">The current state of the node</param>
     // This implemented here rather than in NodeData.cs because this is where the list of all Nodes is kept, and where the index will be usefu
     // This is necessary to maintain the integrity of the allNodes list as a private variable.
-    public void UpdateNodeData(int _index, List<int> _teamIDs, NodeState _state)
+    public void UpdateNodeData(int _index, List<TeamData> _teams, NodeState _state)
     {
         this.allNodes[_index].State = _state;
-        this.allNodes[_index].TeamIDs = _teamIDs;
+        this.allNodes[_index].Teams = _teams;
     }
-    */
+
+    
 }
