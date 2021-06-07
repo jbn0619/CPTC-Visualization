@@ -119,6 +119,30 @@ public class FileManager: MonoBehaviour
     }
 
     /// <summary>
+    /// Create list of all system nodes from JSON file
+    /// </summary>
+    /// <param name="_fileName">name of the file with the data</param>
+    /// <param name="_filePathExtension">name of the directory within the root directory</param>
+    /// <returns></returns>
+    public List<NodeData> CreateNodesFromJSON(string _fileName, string _filePathExtension)
+    {
+        // Log the filepath to the Debug
+        string filePath = rootFilePath + _filePathExtension + _fileName;
+        Debug.Log("JSON File Path: " + filePath);
+
+        List<NodeData> nodes = new List<NodeData>();
+
+        // create list of nodes. Each line of the JSON is a new node in the list. 
+        foreach (string line in ReadFile(_fileName, _filePathExtension))
+        {
+            nodes.Add(JsonUtility.FromJson<NodeData>(line));
+        }
+
+        Debug.Log($"{nodes.Count} system nodes successfully loaded from {filePath}");
+        return nodes;
+    }
+
+    /// <summary>
     /// Writes a file with the name _fileName and content _fileData to a file at _filePathExtension
     /// </summary>
     /// <param name="_fileName"></param>
