@@ -242,7 +242,7 @@ public class NodeData: MonoBehaviour
         this.connections    = _Connections;
         this.connectionGOS  = _ConnectionGOS;
         /* Example Call of SetNode
-         * This would proably be in a Start() or loading method, only called once in the 
+         * This would proably be in a Start() or loading method, called to set up the node objects.
         foreach (NodeData n in allNodes)
         {
             n.SetData(index, PARSED_DATA.ip, true, false, PARSED_DATA.type, PARSED DATA.state, PARSED_DATA.connections, PARSED_DATA.lineConnections)
