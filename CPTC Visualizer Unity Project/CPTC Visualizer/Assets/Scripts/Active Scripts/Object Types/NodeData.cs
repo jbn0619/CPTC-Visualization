@@ -263,4 +263,23 @@ public class NodeData: MonoBehaviour
 
         return newNode;
     }
+
+    public void SplitSprite()
+    {
+        int numOfDivisions = 1;
+        List<double> spriteColors = new List<double>();
+
+        /*
+         * for (int i = 0; i < *insert number of teams*; i++)
+         * {
+         *      if (Team is accessing node)
+         *      {
+         *          numOfDivisions++;
+         *          spriteColors.Add(*hexidecimal of team's color*);
+         *      }
+         * }
+         * 
+         * ** Add the change to the sprite with the divisions and colors **
+         */
+    }
 }
