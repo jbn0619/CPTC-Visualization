@@ -116,6 +116,11 @@ public class InfrastructureData: MonoBehaviour
         // Do we want to draw the raycasts every tick? would we be changing the positions of the nodes?
     }
 
+    /// <summary>
+    /// Search the infrastructure's allNodeObjects list and return the node object with the correct ID
+    /// </summary>
+    /// <param name="searchID"></param>
+    /// <returns></returns>
     public GameObject FindNodeByID(int searchID)
     {
         foreach(GameObject obj in this.allNodeObjects)
@@ -136,6 +141,9 @@ public class InfrastructureData: MonoBehaviour
         return dataString;
     }
     
+    /// <summary>
+    /// Draw connections between all nodes and networks
+    /// </summary>
     public void DrawAllConnections()
     {
         GL.LoadOrtho();

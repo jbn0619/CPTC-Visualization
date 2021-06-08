@@ -126,7 +126,7 @@ public class FileManager: MonoBehaviour
     {
         // Log the filepath to the Debug
         string filePath = rootFilePath + _filePathExtension + _fileName;
-        Debug.Log("JSON File Path: " + filePath);
+        Debug.Log("...Loading New Node Data ...");
 
         // create list of nodes from the Infra stored in the JSON 
         List<NodeData> nodes = CreateInfraFromJSON(_fileName, _filePathExtension).AllNodes;
@@ -170,7 +170,7 @@ public class FileManager: MonoBehaviour
     {
         // Log the filepath to the Debug
         string filePath = rootFilePath + _filePathExtension + _fileName;
-        Debug.Log("Infrastructure JSON File Path: " + filePath);
+        Debug.Log("... Loading New Infrastructure Data ...");
 
         string JSONString = null;
 
@@ -182,7 +182,7 @@ public class FileManager: MonoBehaviour
         InfrastructureData infrastructure = new InfrastructureData();
         JsonUtility.FromJsonOverwrite(JSONString, infrastructure);
 
-        Debug.Log("Infrastructure successfully created from JSON.");
+        Debug.Log($"Infrastructure successfully created from {filePath}");
 
         return infrastructure;
     }

@@ -221,7 +221,7 @@ public class NodeData: MonoBehaviour
     }    
 
     /// <summary>
-    /// Set all variables within the node with data from the server admins
+    /// Set all variables within the node with data passed from the server
     /// </summary>
     /// <param name="_id">An integer Id for the node</param>
     /// <param name="_ip"> the IP address of the node</param>
@@ -240,6 +240,10 @@ public class NodeData: MonoBehaviour
         this.connections    = _connections;
     }
 
+    /// <summary>
+    /// Create a new NodeData with all of the data from this node
+    /// </summary>
+    /// <returns></returns>
     public NodeData Clone()
     {
         NodeData newNode = new NodeData();
@@ -255,6 +259,9 @@ public class NodeData: MonoBehaviour
         return newNode;
     }
 
+    /// <summary>
+    /// Divide the sprite into colored pieces based on the number of teams at the node, and color those pieces to the designated colors of the corresponding teams.
+    /// </summary>
     public void SplitSprite()
     {
         // ** Some sort of variable to hold the sprite and its segments **
