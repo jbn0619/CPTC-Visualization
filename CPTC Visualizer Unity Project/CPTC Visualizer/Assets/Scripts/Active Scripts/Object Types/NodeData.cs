@@ -265,19 +265,14 @@ public class NodeData: MonoBehaviour
 
     public void SplitSprite()
     {
-        // number of teams accessing = teams.Count
-        List<double> spriteColors = new List<double>();
+        // ** Some sort of variable to hold the sprite and its segments **
 
         /*
-         * for (int i = 0; i < teamIDS; i++)
+         * for (int i = 0; i < teams.count; i++)
          * {
-         *      if (Team is accessing node)
-         *      {
-         *          spriteColors.Add(*hexidecimal of team's color*);
-         *      }
+         *       ** Adds teams[i].teamColor to the sprite Segment **
          * }
          * 
-         * ** Add the change to the sprite with the divisions and colors **
          */
     }
 }
