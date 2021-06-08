@@ -25,7 +25,6 @@ public class NetworkData: MonoBehaviour
     private bool scanActive;
     private float scanCount;
 
-    // Not serialized because JSON cannot store unity objects natively. easier to store the data and just load the unit objects in later
     [SerializeField]
     protected List<GameObject> nodeObjects;
     [SerializeField]
