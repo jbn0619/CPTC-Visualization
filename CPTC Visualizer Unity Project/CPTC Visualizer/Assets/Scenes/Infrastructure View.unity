@@ -172,10 +172,11 @@ MonoBehaviour:
   id: 1
   ip: 
   type: 0
+  state: 0
   isHidden: 0
   connections: 0000000002000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c0000000d0000000e0000000f0000001000000011000000120000001300000014000000
   connectionGOS: []
-  nodeSprite: {fileID: 809323384}
+  nodeSprite: {fileID: 0}
   teams: []
 --- !u!114 &16954478
 MonoBehaviour:
@@ -264,10 +265,11 @@ MonoBehaviour:
   id: 12
   ip: 
   type: 0
+  state: 0
   isHidden: 0
   connections: 000000000100000002000000030000000400000005000000060000000700000008000000090000000a0000000b0000000d0000000e0000000f0000001000000011000000120000001300000014000000
   connectionGOS: []
-  nodeSprite: {fileID: 1393012210}
+  nodeSprite: {fileID: 0}
   teams: []
 --- !u!61 &78851619
 BoxCollider2D:
@@ -438,10 +440,11 @@ MonoBehaviour:
   id: 3
   ip: 
   type: 0
+  state: 0
   isHidden: 0
   connections: 0000000001000000020000000400000005000000060000000700000008000000090000000a0000000b0000000c0000000d0000000e0000000f0000001000000011000000120000001300000014000000
   connectionGOS: []
-  nodeSprite: {fileID: 1596620146}
+  nodeSprite: {fileID: 0}
   teams: []
 --- !u!114 &172020600
 MonoBehaviour:
@@ -586,10 +589,11 @@ MonoBehaviour:
   id: 10
   ip: 
   type: 0
+  state: 0
   isHidden: 0
   connections: 000000000100000002000000030000000400000005000000060000000700000008000000090000000b0000000c0000000d0000000e0000000f0000001000000011000000120000001300000014000000
   connectionGOS: []
-  nodeSprite: {fileID: 102176202}
+  nodeSprite: {fileID: 0}
   teams: []
 --- !u!61 &190460375
 BoxCollider2D:
@@ -803,10 +807,11 @@ MonoBehaviour:
   id: 20
   ip: 
   type: 0
+  state: 0
   isHidden: 0
   connections: 000000000100000002000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c0000000d0000000e0000000f00000010000000110000001200000013000000
   connectionGOS: []
-  nodeSprite: {fileID: 1894888262}
+  nodeSprite: {fileID: 0}
   teams: []
 --- !u!61 &304287821
 BoxCollider2D:
@@ -977,10 +982,11 @@ MonoBehaviour:
   id: 7
   ip: 
   type: 0
+  state: 0
   isHidden: 0
   connections: 0000000001000000020000000300000004000000050000000600000008000000090000000a0000000b0000000c0000000d0000000e0000000f0000001000000011000000120000001300000014000000
   connectionGOS: []
-  nodeSprite: {fileID: 1410336735}
+  nodeSprite: {fileID: 0}
   teams: []
 --- !u!61 &380662265
 BoxCollider2D:
@@ -1069,10 +1075,11 @@ MonoBehaviour:
   id: 17
   ip: 
   type: 0
+  state: 0
   isHidden: 0
   connections: 000000000100000002000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c0000000d0000000e0000000f00000010000000120000001300000014000000
   connectionGOS: []
-  nodeSprite: {fileID: 1288588826}
+  nodeSprite: {fileID: 0}
   teams: []
 --- !u!61 &396696156
 BoxCollider2D:
@@ -1161,10 +1168,11 @@ MonoBehaviour:
   id: 16
   ip: 
   type: 0
+  state: 0
   isHidden: 0
   connections: 000000000100000002000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c0000000d0000000e0000000f00000011000000120000001300000014000000
   connectionGOS: []
-  nodeSprite: {fileID: 682035148}
+  nodeSprite: {fileID: 0}
   teams: []
 --- !u!61 &402186482
 BoxCollider2D:
@@ -1335,10 +1343,11 @@ MonoBehaviour:
   id: 14
   ip: 
   type: 0
+  state: 0
   isHidden: 0
   connections: 000000000100000002000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c0000000d0000000f0000001000000011000000120000001300000014000000
   connectionGOS: []
-  nodeSprite: {fileID: 1146558622}
+  nodeSprite: {fileID: 0}
   teams: []
 --- !u!61 &631457341
 BoxCollider2D:
@@ -1863,11 +1872,36 @@ MonoBehaviour:
   - {fileID: 2092072914}
   - {fileID: 1674982574}
   - {fileID: 304287820}
-  allNodeObjects: []
-  networkObjects: []
-  shutDownNodes: 
+  allNodeObjects:
+  - {fileID: 1582256216}
+  - {fileID: 16954475}
+  - {fileID: 1433291186}
+  - {fileID: 172020597}
+  - {fileID: 1659818524}
+  - {fileID: 1031760230}
+  - {fileID: 1611356388}
+  - {fileID: 380662262}
+  - {fileID: 1836674364}
+  - {fileID: 1141330889}
+  - {fileID: 190460372}
+  - {fileID: 1693415336}
+  - {fileID: 78851616}
+  - {fileID: 1420891498}
+  - {fileID: 631457338}
+  - {fileID: 1393734959}
+  - {fileID: 402186479}
+  - {fileID: 396696153}
+  - {fileID: 2092072912}
+  - {fileID: 1674982572}
+  - {fileID: 304287818}
+  networkObjects:
+  - {fileID: 1018051400}
+  - {fileID: 1658641634}
+  - {fileID: 1445645154}
+  - {fileID: 1519847454}
   infraFilename: 
   infraFilePathExtension: 
+  connectionsById: []
 --- !u!4 &807570441
 Transform:
   m_ObjectHideFlags: 0
@@ -2332,8 +2366,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68a1de687a3cda1439996235c35956e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scanTime: 0
-  nodeObjects: []
+  id: 1
   nodes:
   - {fileID: 0}
   - {fileID: 0}
@@ -2342,6 +2375,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   connections: 
+  nodeObjects: []
   connectionGOS: []
 --- !u!120 &1018051403
 LineRenderer:
@@ -2609,10 +2643,11 @@ MonoBehaviour:
   id: 5
   ip: 
   type: 0
+  state: 0
   isHidden: 0
   connections: 0000000001000000020000000300000004000000060000000700000008000000090000000a0000000b0000000c0000000d0000000e0000000f0000001000000011000000120000001300000014000000
   connectionGOS: []
-  nodeSprite: {fileID: 832853586}
+  nodeSprite: {fileID: 0}
   teams: []
 --- !u!114 &1031760233
 MonoBehaviour:
@@ -2701,10 +2736,11 @@ MonoBehaviour:
   id: 9
   ip: 
   type: 0
+  state: 0
   isHidden: 0
   connections: 0000000001000000020000000300000004000000050000000600000007000000080000000a0000000b0000000c0000000d0000000e0000000f0000001000000011000000120000001300000014000000
   connectionGOS: []
-  nodeSprite: {fileID: 805747868}
+  nodeSprite: {fileID: 0}
   teams: []
 --- !u!61 &1141330892
 BoxCollider2D:
@@ -3220,10 +3256,11 @@ MonoBehaviour:
   id: 15
   ip: 
   type: 0
+  state: 0
   isHidden: 0
   connections: 000000000100000002000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c0000000d0000000e0000001000000011000000120000001300000014000000
   connectionGOS: []
-  nodeSprite: {fileID: 2027661858}
+  nodeSprite: {fileID: 0}
   teams: []
 --- !u!61 &1393734962
 BoxCollider2D:
@@ -3394,10 +3431,11 @@ MonoBehaviour:
   id: 13
   ip: 
   type: 0
+  state: 0
   isHidden: 0
   connections: 000000000100000002000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c0000000e0000000f0000001000000011000000120000001300000014000000
   connectionGOS: []
-  nodeSprite: {fileID: 2041945094}
+  nodeSprite: {fileID: 0}
   teams: []
 --- !u!61 &1420891501
 BoxCollider2D:
@@ -3486,10 +3524,11 @@ MonoBehaviour:
   id: 2
   ip: 
   type: 0
+  state: 0
   isHidden: 0
   connections: 0000000001000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c0000000d0000000e0000000f0000001000000011000000120000001300000014000000
   connectionGOS: []
-  nodeSprite: {fileID: 331203088}
+  nodeSprite: {fileID: 0}
   teams: []
 --- !u!61 &1433291189
 BoxCollider2D:
@@ -3684,8 +3723,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68a1de687a3cda1439996235c35956e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scanTime: 0
-  nodeObjects: []
+  id: 3
   nodes:
   - {fileID: 0}
   - {fileID: 0}
@@ -3694,6 +3732,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   connections: 
+  nodeObjects: []
   connectionGOS: []
 --- !u!61 &1445645158
 BoxCollider2D:
@@ -4062,8 +4101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68a1de687a3cda1439996235c35956e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scanTime: 0
-  nodeObjects: []
+  id: 4
   nodes:
   - {fileID: 0}
   - {fileID: 0}
@@ -4072,6 +4110,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   connections: 
+  nodeObjects: []
   connectionGOS: []
 --- !u!61 &1519847458
 BoxCollider2D:
@@ -4223,10 +4262,11 @@ MonoBehaviour:
   id: 0
   ip: 
   type: 0
+  state: 0
   isHidden: 0
   connections: 0100000002000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c0000000d0000000e0000000f0000001000000011000000120000001300000014000000
   connectionGOS: []
-  nodeSprite: {fileID: 197731797}
+  nodeSprite: {fileID: 0}
   teams: []
 --- !u!4 &1582256218
 Transform:
@@ -4412,10 +4452,11 @@ MonoBehaviour:
   id: 6
   ip: 
   type: 0
+  state: 0
   isHidden: 0
   connections: 0000000001000000020000000300000004000000050000000700000008000000090000000a0000000b0000000c0000000d0000000e0000000f0000001000000011000000120000001300000014000000
   connectionGOS: []
-  nodeSprite: {fileID: 1928503358}
+  nodeSprite: {fileID: 0}
   teams: []
 --- !u!61 &1611356391
 BoxCollider2D:
@@ -4611,8 +4652,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68a1de687a3cda1439996235c35956e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scanTime: 0
-  nodeObjects: []
+  id: 2
   nodes:
   - {fileID: 0}
   - {fileID: 0}
@@ -4621,6 +4661,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   connections: 
+  nodeObjects: []
   connectionGOS: []
 --- !u!61 &1658641638
 BoxCollider2D:
@@ -4787,10 +4828,11 @@ MonoBehaviour:
   id: 4
   ip: 
   type: 0
+  state: 0
   isHidden: 0
   connections: 0000000001000000020000000300000005000000060000000700000008000000090000000a0000000b0000000c0000000d0000000e0000000f0000001000000011000000120000001300000014000000
   connectionGOS: []
-  nodeSprite: {fileID: 1806951265}
+  nodeSprite: {fileID: 0}
   teams: []
 --- !u!61 &1659818527
 BoxCollider2D:
@@ -4879,10 +4921,11 @@ MonoBehaviour:
   id: 19
   ip: 
   type: 0
+  state: 0
   isHidden: 0
   connections: 000000000100000002000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c0000000d0000000e0000000f00000010000000110000001200000014000000
   connectionGOS: []
-  nodeSprite: {fileID: 473050396}
+  nodeSprite: {fileID: 0}
   teams: []
 --- !u!61 &1674982575
 BoxCollider2D:
@@ -5094,10 +5137,11 @@ MonoBehaviour:
   id: 11
   ip: 
   type: 0
+  state: 0
   isHidden: 0
   connections: 000000000100000002000000030000000400000005000000060000000700000008000000090000000a0000000c0000000d0000000e0000000f0000001000000011000000120000001300000014000000
   connectionGOS: []
-  nodeSprite: {fileID: 941846119}
+  nodeSprite: {fileID: 0}
   teams: []
 --- !u!61 &1693415339
 BoxCollider2D:
@@ -5429,10 +5473,11 @@ MonoBehaviour:
   id: 8
   ip: 
   type: 0
+  state: 0
   isHidden: 0
   connections: 0000000001000000020000000300000004000000050000000600000007000000090000000a0000000b0000000c0000000d0000000e0000000f0000001000000011000000120000001300000014000000
   connectionGOS: []
-  nodeSprite: {fileID: 1173043970}
+  nodeSprite: {fileID: 0}
   teams: []
 --- !u!61 &1836674367
 BoxCollider2D:
@@ -6200,10 +6245,11 @@ MonoBehaviour:
   id: 18
   ip: 
   type: 0
+  state: 0
   isHidden: 0
   connections: 000000000100000002000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c0000000d0000000e0000000f00000010000000110000001300000014000000
   connectionGOS: []
-  nodeSprite: {fileID: 690840024}
+  nodeSprite: {fileID: 0}
   teams: []
 --- !u!61 &2092072915
 BoxCollider2D:

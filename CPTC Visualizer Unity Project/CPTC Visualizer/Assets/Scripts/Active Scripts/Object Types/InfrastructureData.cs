@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,30 +8,30 @@ using UnityEngine;
 ///     Ben Wetzel - Summer 2021
 /// Purpose: Track infiltration information for the system infrastructure of the network for penetration testing 
 /// </summary>
+[Serializable]
 public class InfrastructureData: MonoBehaviour
 {
     #region Fields
-    
+    [Header("Loaded from JSON")]
     [SerializeField]
     private List<NetworkData> networks;
-
     [SerializeField]
     private List<NodeData> allNodes;
+
+    [Header("GameObject References")]
     [SerializeField]
     private List<GameObject> allNodeObjects;
     [SerializeField]
     private List<GameObject> networkObjects;
-
-    [SerializeField]
     private List<int> shutDownNodes;
 
     [Header("JSON Access Path")]
     [SerializeField]
     private string infraFilename;
     [SerializeField]
-    private string nodesFilePathExtension;
-    private List<Vector2> connectionsById;
     private string infraFilePathExtension;
+    [SerializeField]
+    private List<Vector2> connectionsById;
 
     #endregion Fields
 
@@ -122,7 +123,7 @@ public class InfrastructureData: MonoBehaviour
 
             // set the new game object's NodeData variables to the new set of variables
             allNodeObjects[allNodeObjects.Count - 1].GetComponent<NodeData>().SetData(n.Id, n.Ip, n.IsHidden, n.Type, 
-        n.State, n.Connections, n.ConnectionGOS);
+        n.State, n.Connections);
         }
 
         // create gameObjects for all the networks
@@ -132,7 +133,7 @@ public class InfrastructureData: MonoBehaviour
 
             networkObjects.Add(Instantiate(GameManager.Instance.NodePrefab, this.transform.position, this.transform.rotation));
 
-            networkObjects[networkObjects.Count - 1].GetComponent<NetworkData>().SetData(n.Id, n.Nodes, n.Connections, n.ConnectionGOS);
+            networkObjects[networkObjects.Count - 1].GetComponent<NetworkData>().SetData(n.Id, n.Nodes, n.Connections);
         }
         // draw initial raycasts between network and node connections. 
         // Will need to loop in such a way as to avoid duplicating raycasts of the same conecitons
@@ -159,13 +160,14 @@ public class InfrastructureData: MonoBehaviour
     void Update()
     {
         // to get updated states and teams that have accessed the nodes.
-        GameManager.Instance.FileManager.UpdateNodes(infraFilename, infraFilePathExtension);
+        // Uncomment later once the file location has been made and is formatted.
+        // GameManager.Instance.FileManager.UpdateNodes(infraFilename, infraFilePathExtension);
         
         //update node graphics
-        foreach(GameObject n in this.allNodeObjects)
-        {
-            n.GetComponent<NodeData>().SplitSprite();
-        }
+        // foreach(GameObject n in this.allNodeObjects)
+        // {
+        //     n.GetComponent<NodeData>().SplitSprite();
+        // }
         // Do we want to draw the raycasts every tick? would we be changing the positions of the nodes?
     }
 
@@ -183,10 +185,10 @@ public class InfrastructureData: MonoBehaviour
 
     public string ConvertToJSON()
     {
-        string cptcInfo = "";
-        cptcInfo = JsonUtility.ToJson(this);
-        Debug.Log(cptcInfo);
-        return cptcInfo;
+        string dataString = "";
+        dataString = JsonUtility.ToJson(this);
+        Debug.Log(dataString);
+        return dataString;
     }
     
     public void DrawAllConnections()

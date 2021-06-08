@@ -79,7 +79,7 @@ public class FileManager: MonoBehaviour
                 }
             }
 
-            Debug.Log("File read successfully!");
+            Debug.Log($"{filePath} was Read Successfully!");
             return fileData;
         }
         catch(FileNotFoundException e)
@@ -148,8 +148,9 @@ public class FileManager: MonoBehaviour
         // get old node data
         List<NodeData> currentNodes = GameManager.Instance.MainInfra.AllNodes;
 
+        int i = 0;
         // for each node, check if it needs to be updated
-        for(int i = 0; i < currentNodes.Count; i++)
+        for(i = 0; i < currentNodes.Count; i++)
         {
             // If the new version of the Node Data is different than the old verion, update the old Node to the value of the new version
             if(newNodes[i].Type != currentNodes[i].Type)
@@ -161,6 +162,8 @@ public class FileManager: MonoBehaviour
                 GameManager.Instance.MainInfra.AllNodes[i].Teams = newNodes[i].Teams;
             }
         }
+
+        Debug.Log($" {i} / {currentNodes.Count} Nodes successfully updated. ");
     }
 
     public InfrastructureData CreateInfraFromJSON(string _fileName, string _filePathExtension)
@@ -176,7 +179,8 @@ public class FileManager: MonoBehaviour
             JSONString += line;
         }
 
-        InfrastructureData infrastructure = JsonUtility.FromJson<InfrastructureData>(JSONString);
+        InfrastructureData infrastructure = new InfrastructureData();
+        JsonUtility.FromJsonOverwrite(JSONString, infrastructure);
 
         Debug.Log("Infrastructure successfully created from JSON.");
 

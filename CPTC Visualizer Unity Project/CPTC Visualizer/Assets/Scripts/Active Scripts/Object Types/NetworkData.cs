@@ -1,33 +1,35 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
 /// Author: Justin Neft
+///     Ben Wetzel - Summer 2021
 /// Function: A data container that is tied to a game object. Represents a network within the infrastructure, which is a grouping of node objects.
 /// </summary>
+[Serializable]
 public class NetworkData: MonoBehaviour
 {
     #region Fields
 
     [SerializeField]
     private int id;
-    private bool isActive;
-    private bool scanActive;
-    [SerializeField]
-    private float scanTime;
-    private float scanCount;
-
-    [SerializeField]
-    private List<GameObject> nodeObjects;
     [SerializeField]
     private List<NodeData> nodes;
-
     [SerializeField]
     private List<int> connections;
 
+    private bool isActive;
+    private float scanTime;
+    private bool scanActive;
+    private float scanCount;
+
+    // Not serialized because JSON cannot store unity objects natively. easier to store the data and just load the unit objects in later
     [SerializeField]
-    private List<LineRenderer> connectionGOS;
+    protected List<GameObject> nodeObjects;
+    [SerializeField]
+    protected List<LineRenderer> connectionGOS;
 
     #endregion Fields
 
@@ -156,7 +158,7 @@ public class NetworkData: MonoBehaviour
         */
     }
 
-    public void SetData(int _id, List<NodeData> _nodes, List<int> _connections, List<LineRenderer> _connectionGOS)
+    public void SetData(int _id, List<NodeData> _nodes, List<int> _connections)
     {
         this.id = _id;
         this.nodes = _nodes;
@@ -166,6 +168,5 @@ public class NetworkData: MonoBehaviour
            nodeObjects.Add(GameManager.Instance.MainInfra.FindNodeByID(node.Id));
         }
         this.connections = _connections;
-        this.connectionGOS = _connectionGOS;
     }
 }
