@@ -111,7 +111,8 @@ public class InfrastructureData: MonoBehaviour
             allNodeObjects.Add(Instantiate(GameManager.Instance.NetworkPrefab, this.transform.position, this.transform.rotation));
 
             // set the new game object's NodeData variables to the new set of variables
-            NetworkObjects[NetworkObjects.Count].GetComponent<NetworkData>().;
+            allNodeObjects[allNodeObjects.Count - 1].GetComponent<NodeData>().SetData(n.Id, n.Ip, n.IsHidden, n.Type, 
+        n.State, n.Connections, n.ConnectionGOS);
         }
 
         // create gameObjects for all the networks
@@ -119,12 +120,9 @@ public class InfrastructureData: MonoBehaviour
         {
             // TODO: Determine initial position of nodes.
 
-            // Instantiate using the InfrastructureData's tranform as a base. 
-            allNodeObjects.Add(Instantiate(GameManager.Instance.NodePrefab, this.transform.position, this.transform.rotation));
+            networkObjects.Add(Instantiate(GameManager.Instance.NodePrefab, this.transform.position, this.transform.rotation));
 
-            // set the new game object's NodeData variables to the new set of variables
-            allNodeObjects[allNodeObjects.Count].GetComponent<NodeData>().SetData(n.Id, n.Ip, n.IsHidden,
-                n.Type, n.State, n.Connections, n.ConnectionGOS);
+            networkObjects[networkObjects.Count - 1].GetComponent<NetworkData>().SetData(n.Id, n.Nodes, n.Connections, n.ConnectionGOS);
         }
         // draw initial raycasts between network and node connections. 
         // Will need to loop in such a way as to avoid duplicating raycasts of the same conecitons
@@ -156,7 +154,7 @@ public class InfrastructureData: MonoBehaviour
         // Do we want to draw the raycasts every tick? would we be changing the positions of the nodes?
     }
 
-    public GameObject findNodeByID(int searchID)
+    public GameObject FindNodeByID(int searchID)
     {
         foreach(GameObject obj in this.allNodeObjects)
         {
