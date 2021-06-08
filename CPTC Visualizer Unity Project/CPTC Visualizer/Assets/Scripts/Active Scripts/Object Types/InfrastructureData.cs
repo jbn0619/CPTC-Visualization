@@ -156,4 +156,16 @@ public class InfrastructureData: MonoBehaviour
         // Do we want to draw the raycasts every tick? would we be changing the positions of the nodes?
     }
 
+    public GameObject findNodeByID(int searchID)
+    {
+        foreach(GameObject obj in this.allNodeObjects)
+        {
+            if(obj.GetComponent<NodeData>().Id == searchID)
+            {
+                return obj;
+            }
+        }
+        return null;
+    }
+
 }
