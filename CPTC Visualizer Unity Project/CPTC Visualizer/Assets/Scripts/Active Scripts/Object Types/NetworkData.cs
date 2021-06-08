@@ -21,6 +21,9 @@ public class NetworkData: MonoBehaviour
     private List<NodeData> nodes;
 
     [SerializeField]
+    private List<GameObject> nodeObjects;
+
+    [SerializeField]
     private List<int> connections;
 
     [SerializeField]
@@ -71,6 +74,17 @@ public class NetworkData: MonoBehaviour
         get
         {
             return nodes;
+        }
+    }
+
+    /// <summary>
+    /// Gets a list of node objects within this network.
+    /// </summary>
+    public List<GameObject> NodeObjects
+    {
+        get
+        {
+            return nodeObjects;
         }
     }
 

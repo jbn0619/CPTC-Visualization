@@ -18,6 +18,8 @@ public class InfrastructureData: MonoBehaviour
     private List<NodeData> allNodes;
     [SerializeField]
     private List<GameObject> allNodeObjects;
+    [SerializeField]
+    private List<GameObject> networkObjects;
 
     [SerializeField]
     private List<int> shutDownNodes;
@@ -40,6 +42,17 @@ public class InfrastructureData: MonoBehaviour
         get
         {
             return networks;
+        }
+    }
+
+    /// <summary>
+    /// Gets a list of all network objects within this infrastructure.
+    /// </summary>
+    public List<GameObject> NetworkObjects
+    {
+        get
+        {
+            return networkObjects;
         }
     }
 
@@ -84,6 +97,8 @@ public class InfrastructureData: MonoBehaviour
         // set up the filepath for the access to node data
         nodesFilename = "nodes.JSON";
         nodesFilePathExtension = "\\Infrastructure\\Database\\";
+
+        // set up the networks from the JSON
 
         // set the allNodes list to data collected from JSON file
         this.allNodes = GameManager.Instance.FileManager.CreateNodesFromJSON(nodesFilename, nodesFilePathExtension);
