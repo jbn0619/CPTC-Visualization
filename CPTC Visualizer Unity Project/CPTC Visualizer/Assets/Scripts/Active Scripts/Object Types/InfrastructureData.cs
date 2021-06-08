@@ -26,10 +26,11 @@ public class InfrastructureData: MonoBehaviour
 
     [Header("JSON Access Path")]
     [SerializeField]
-    private string nodesFilename;
+    private string infraFilename;
     [SerializeField]
     private string nodesFilePathExtension;
     private List<Vector2> connectionsById;
+    private string infraFilePathExtension;
 
     #endregion Fields
 
@@ -104,32 +105,41 @@ public class InfrastructureData: MonoBehaviour
     void Start()
     {
         // set up the filepath for the access to node data
-        nodesFilename = "nodes.JSON";
-        nodesFilePathExtension = "\\Infrastructure\\Database\\";
+        infraFilename = "infraDraft.JSON";
+        infraFilePathExtension = "\\Infrastructure\\Database\\";
 
         // set up the infrastructure's data values from the JSON
-
-        // set the allNodes list to data collected from JSON file
-        this.allNodes = GameManager.Instance.FileManager.CreateNodesFromJSON(nodesFilename, nodesFilePathExtension);
+        this.allNodes = GameManager.Instance.FileManager.CreateInfraFromJSON(infraFilename, infraFilePathExtension).AllNodes;
+        this.networks = GameManager.Instance.FileManager.CreateInfraFromJSON(infraFilename, infraFilePathExtension).Networks;
 
         // create gameObjects for all the nodes
-        foreach(NodeData n in this.allNodes)
+        foreach (NodeData n in this.allNodes)
+        {
+            // TODO: Determine initial position of networks.
+
+            // Instantiate using the InfrastructureData's tranform as a base. 
+            allNodeObjects.Add(Instantiate(GameManager.Instance.NetworkPrefab, this.transform.position, this.transform.rotation));
+
+            // set the new game object's NodeData variables to the new set of variables
+            allNodeObjects[allNodeObjects.Count - 1].GetComponent<NodeData>().SetData(n.Id, n.Ip, n.IsHidden, n.Type, 
+        n.State, n.Connections, n.ConnectionGOS);
+        }
+
+        // create gameObjects for all the networks
+        foreach (NetworkData n in this.networks)
         {
             // TODO: Determine initial position of nodes.
 
-            // Instantiate using the InfrastructureData's tranform as a base. 
-            allNodeObjects.Add(Instantiate(GameManager.Instance.NodePrefab, this.transform.position, this.transform.rotation));
-            
-            // set the new game object's NodeData variables to the new set of variables
-            allNodeObjects[allNodeObjects.Count].GetComponent<NodeData>().SetData(n.Id, n.Ip, n.IsHidden, 
-                n.Type, n.State, n.Connections, n.ConnectionGOS);
+            networkObjects.Add(Instantiate(GameManager.Instance.NodePrefab, this.transform.position, this.transform.rotation));
+
+            networkObjects[networkObjects.Count - 1].GetComponent<NetworkData>().SetData(n.Id, n.Nodes, n.Connections, n.ConnectionGOS);
         }
         // draw initial raycasts between network and node connections. 
         // Will need to loop in such a way as to avoid duplicating raycasts of the same conecitons
 
         // set the allNodes indecies to reference the node components of the GameObjects, rather than the original list
         // this may be redundant, I'm not sure. - Ben
-        for(int i = 0; i < allNodes.Count; i++)
+        for (int i = 0; i < allNodes.Count; i++)
         {
             allNodes[i] = allNodeObjects[i].GetComponent<NodeData>();
         }
@@ -138,13 +148,18 @@ public class InfrastructureData: MonoBehaviour
 
         Debug.Log("Please Draw");
         DrawAllConnections();
+        // set network references to the network scripts connected to the game Objects
+        for (int i = 0; i < networks.Count; i++)
+        {
+            networks[i] = networkObjects[i].GetComponent<NetworkData>();
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
         // to get updated states and teams that have accessed the nodes.
-        GameManager.Instance.FileManager.UpdateNodes(nodesFilename, nodesFilePathExtension);
+        GameManager.Instance.FileManager.UpdateNodes(infraFilename, infraFilePathExtension);
         
         //update node graphics
         foreach(GameObject n in this.allNodeObjects)

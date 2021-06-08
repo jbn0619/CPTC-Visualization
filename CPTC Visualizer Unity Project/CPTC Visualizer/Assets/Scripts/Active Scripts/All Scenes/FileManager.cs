@@ -127,13 +127,9 @@ public class FileManager: MonoBehaviour
         // Log the filepath to the Debug
         string filePath = rootFilePath + _filePathExtension + _fileName;
         Debug.Log("JSON File Path: " + filePath);
-        
-        // create list of nodes. Each line of the JSON is a new node in the list. 
-        List<NodeData> nodes = new List<NodeData>();
-        foreach (string line in ReadFile(_fileName, _filePathExtension))
-        {
-            nodes.Add(JsonUtility.FromJson<NodeData>(line));
-        }
+
+        // create list of nodes from the Infra stored in the JSON 
+        List<NodeData> nodes = CreateInfraFromJSON(_fileName, _filePathExtension).AllNodes;
 
         Debug.Log($"{nodes.Count} system nodes successfully loaded from {filePath}");
         return nodes;
