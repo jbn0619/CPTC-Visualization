@@ -167,6 +167,26 @@ public class FileManager: MonoBehaviour
         }
     }
 
+    public InfrastructureData CreateInfraFromJSON(string _fileName, string _filePathExtension)
+    {
+        // Log the filepath to the Debug
+        string filePath = rootFilePath + _filePathExtension + _fileName;
+        Debug.Log("Infrastructure JSON File Path: " + filePath);
+
+        string JSONString = null;
+
+        foreach (string line in ReadFile(_fileName, _filePathExtension))
+        {
+            JSONString += line;
+        }
+
+        InfrastructureData infrastructure = JsonUtility.FromJson<InfrastructureData>(JSONString);
+
+        Debug.Log("Infrastructure successfully created from JSON.");
+
+        return infrastructure;
+    }
+
     /// <summary>
     /// Writes a file with the name _fileName and content _fileData to a file at _filePathExtension
     /// </summary>

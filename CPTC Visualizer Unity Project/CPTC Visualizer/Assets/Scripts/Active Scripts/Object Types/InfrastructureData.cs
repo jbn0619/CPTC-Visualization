@@ -98,7 +98,7 @@ public class InfrastructureData: MonoBehaviour
         nodesFilename = "nodes.JSON";
         nodesFilePathExtension = "\\Infrastructure\\Database\\";
 
-        // set up the networks from the JSON
+        // set up the infrastructure's data values from the JSON
 
         // set the allNodes list to data collected from JSON file
         this.allNodes = GameManager.Instance.FileManager.CreateNodesFromJSON(nodesFilename, nodesFilePathExtension);
@@ -139,4 +139,5 @@ public class InfrastructureData: MonoBehaviour
         }
         // Do we want to draw the raycasts every tick? would we be changing the positions of the nodes?
     }
+
 }
