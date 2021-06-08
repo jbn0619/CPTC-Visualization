@@ -1864,6 +1864,7 @@ MonoBehaviour:
   - {fileID: 1674982574}
   - {fileID: 304287820}
   allNodeObjects: []
+  networkObjects: []
   shutDownNodes: 
   nodesFilename: 
   nodesFilePathExtension: 
@@ -2337,6 +2338,7 @@ MonoBehaviour:
   - {fileID: 172020599}
   - {fileID: 1659818526}
   - {fileID: 1031760232}
+  nodeObjects: []
   connections: 
   connectionGOS: []
 --- !u!120 &1018051403
@@ -3688,6 +3690,7 @@ MonoBehaviour:
   - {fileID: 1393734961}
   - {fileID: 0}
   - {fileID: 402186481}
+  nodeObjects: []
   connections: 
   connectionGOS: []
 --- !u!61 &1445645158
@@ -4064,6 +4067,7 @@ MonoBehaviour:
   - {fileID: 304287820}
   - {fileID: 0}
   - {fileID: 0}
+  nodeObjects: []
   connections: 
   connectionGOS: []
 --- !u!61 &1519847458
@@ -4612,6 +4616,7 @@ MonoBehaviour:
   - {fileID: 1141330891}
   - {fileID: 190460374}
   - {fileID: 1693415338}
+  nodeObjects: []
   connections: 
   connectionGOS: []
 --- !u!61 &1658641638
