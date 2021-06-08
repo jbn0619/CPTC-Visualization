@@ -10,6 +10,7 @@ public class NetworkData: MonoBehaviour
 {
     #region Fields
 
+    [SerializeField]
     private int id;
     private bool isActive;
     private bool scanActive;
