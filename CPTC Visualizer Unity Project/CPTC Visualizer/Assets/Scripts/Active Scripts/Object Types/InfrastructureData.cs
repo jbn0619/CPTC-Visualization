@@ -17,6 +17,8 @@ public class InfrastructureData: MonoBehaviour
     private List<NetworkData> networks;
     [SerializeField]
     private List<NodeData> allNodes;
+    [SerializeField]
+    private bool live; // placeholder to deterimine if using instantiated data from JSON or handbuild-infrastructure in Inspector
 
     [Header("GameObject References")]
     [SerializeField]
@@ -24,12 +26,6 @@ public class InfrastructureData: MonoBehaviour
     [SerializeField]
     private List<GameObject> networkObjects;
     private List<int> shutDownNodes;
-
-    [Header("JSON Access Path")]
-    [SerializeField]
-    private string infraFilename;
-    [SerializeField]
-    private string infraFilePathExtension;
     [SerializeField]
     private List<Vector2> connectionsById;
 
@@ -105,69 +101,18 @@ public class InfrastructureData: MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // set up the filepath for the access to node data
-        infraFilename = "infraDraft.JSON";
-        infraFilePathExtension = "\\Infrastructure\\Database\\";
-
-        // set up the infrastructure's data values from the JSON
-        this.allNodes = GameManager.Instance.FileManager.CreateInfraFromJSON(infraFilename, infraFilePathExtension).AllNodes;
-        this.networks = GameManager.Instance.FileManager.CreateInfraFromJSON(infraFilename, infraFilePathExtension).Networks;
-
-        // create gameObjects for all the nodes
-        foreach (NodeData n in this.allNodes)
-        {
-            // TODO: Determine initial position of networks.
-
-            // Instantiate using the InfrastructureData's tranform as a base. 
-            allNodeObjects.Add(Instantiate(GameManager.Instance.NetworkPrefab, this.transform.position, this.transform.rotation));
-
-            // set the new game object's NodeData variables to the new set of variables
-            allNodeObjects[allNodeObjects.Count - 1].GetComponent<NodeData>().SetData(n.Id, n.Ip, n.IsHidden, n.Type, 
-        n.State, n.Connections);
-        }
-
-        // create gameObjects for all the networks
-        foreach (NetworkData n in this.networks)
-        {
-            // TODO: Determine initial position of nodes.
-
-            networkObjects.Add(Instantiate(GameManager.Instance.NodePrefab, this.transform.position, this.transform.rotation));
-
-            networkObjects[networkObjects.Count - 1].GetComponent<NetworkData>().SetData(n.Id, n.Nodes, n.Connections);
-        }
-        // draw initial raycasts between network and node connections. 
-        // Will need to loop in such a way as to avoid duplicating raycasts of the same conecitons
-
-        // set the allNodes indecies to reference the node components of the GameObjects, rather than the original list
-        // this may be redundant, I'm not sure. - Ben
-        for (int i = 0; i < allNodes.Count; i++)
-        {
-            allNodes[i] = allNodeObjects[i].GetComponent<NodeData>();
-        }
-        
         connectionsById = new List<Vector2>();
-
+        
+        // draw initial raycasts between network and node connections. 
         Debug.Log("Please Draw");
         DrawAllConnections();
-        // set network references to the network scripts connected to the game Objects
-        for (int i = 0; i < networks.Count; i++)
-        {
-            networks[i] = networkObjects[i].GetComponent<NetworkData>();
-        }
     }
 
     // Update is called once per frame
     void Update()
     {
         // to get updated states and teams that have accessed the nodes.
-        // Uncomment later once the file location has been made and is formatted.
-        // GameManager.Instance.FileManager.UpdateNodes(infraFilename, infraFilePathExtension);
-        
-        //update node graphics
-        // foreach(GameObject n in this.allNodeObjects)
-        // {
-        //     n.GetComponent<NodeData>().SplitSprite();
-        // }
+        // if(live){ GameManager.Instance.FileManager.UpdateNodes();}
         // Do we want to draw the raycasts every tick? would we be changing the positions of the nodes?
     }
 
@@ -212,4 +157,45 @@ public class InfrastructureData: MonoBehaviour
         Debug.Log("End of drawing");
     }
 
+    /// <summary>
+    /// Set this infrastructure's data to the new values and instantiates the requisite objects within it.
+    /// </summary>
+    /// <param name="_nodes">This is a list of all the nodes contained within the infrastructure</param>
+    /// <param name="_networks">This is a list of all the networks contained within the infrastructure</param>
+    public void SetData(List<NodeData> _nodes, List<NetworkData> _networks)
+    {
+        this.allNodes = _nodes;
+        this.networks = _networks;
+
+        // create gameObjects for all the networks
+        foreach (NetworkData n in this.networks)
+        {
+            networkObjects.Add(Instantiate(GameManager.Instance.NetworkPrefab, this.transform.position, this.transform.rotation));
+            networkObjects[networkObjects.Count - 1].transform.parent = this.transform;
+            networkObjects[networkObjects.Count - 1].GetComponent<NetworkData>().SetData(n.Id, n.Nodes, n.Connections);
+            // instantiate the nodes within this network 
+            List<NodeData> networkNodes = networkObjects[networkObjects.Count - 1].GetComponent<NetworkData>().Nodes;
+            foreach (NodeData o in networkNodes)
+            {
+                // Instantiate using the InfrastructureData's tranform as a base. 
+                allNodeObjects.Add(Instantiate(GameManager.Instance.NetworkPrefab, this.transform.position, this.transform.rotation));
+                networkObjects[networkObjects.Count - 1].GetComponent<NetworkData>().AddNodeObject(allNodeObjects[allNodeObjects.Count - 1]);
+                allNodeObjects[allNodeObjects.Count - 1].transform.parent = networkObjects[networkObjects.Count - 1].transform;
+                // set the new game object's NodeData variables to the new set of variables
+                allNodeObjects[allNodeObjects.Count - 1].GetComponent<NodeData>().SetData(o.Id, o.Ip, o.IsHidden, o.Type,
+                    o.State, o.Connections);
+            }
+        }
+
+        // set network references to the node scripts connected to the game Objects
+        for (int i = 0; i < allNodes.Count; i++)
+        {
+            allNodes[i] = allNodeObjects[i].GetComponent<NodeData>();
+        }
+        // set network references to the network scripts connected to the game Objects
+        for (int i = 0; i < networks.Count; i++)
+        {
+            networks[i] = networkObjects[i].GetComponent<NetworkData>();
+        }
+    }
 }
