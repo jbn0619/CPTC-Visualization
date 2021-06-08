@@ -84,6 +84,11 @@ public class TestDataWriter: MonoBehaviour
         fileManager.SaveToJSON("events.json", packets);
     }
 
+    public void WriteInfrastructure()
+    {
+        fileManager.SaveToJSON("infraDraft.JSON", GameManager.Instance.MainInfra);
+    }
+
     /// <summary>
     /// Writes phony team data for use in testing.
     /// </summary>

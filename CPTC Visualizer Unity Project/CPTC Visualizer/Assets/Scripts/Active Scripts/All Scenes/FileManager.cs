@@ -235,6 +235,28 @@ public class FileManager: MonoBehaviour
             Debug.Log(e.Message);
         }
     }
+    public void SaveToJSON(string _fileName, InfrastructureData _data)
+    {
+        string filePath = "C:\\ProgramData\\CSEC Visualizer\\Infrastructure\\Database\\" + _fileName;
+
+        // First check if the directory exists, or if we need to make it.
+        if (Directory.Exists("C:\\ProgramData\\CSEC Visualizer\\Infrastructure\\Database\\") == false)
+        {
+            Directory.CreateDirectory("C:\\ProgramData\\CSEC Visualizer\\Infrastructure\\Database\\");
+        }
+
+        try
+        {
+            using (StreamWriter sw = File.CreateText(filePath))
+            {
+                    sw.WriteLine(_data.ConvertToJSON());
+            }
+        }
+        catch (Exception e)
+        {
+            Debug.Log(e.Message);
+        }
+    }
 
     public void GenerateDatabase()
     {

@@ -166,4 +166,12 @@ public class InfrastructureData: MonoBehaviour
         return null;
     }
 
+    public string ConvertToJSON()
+    {
+        string cptcInfo = "";
+        cptcInfo = JsonUtility.ToJson(this);
+        Debug.Log(cptcInfo);
+        return cptcInfo;
+    }
+
 }
