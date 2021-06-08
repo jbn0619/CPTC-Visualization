@@ -28,6 +28,8 @@ public class InfrastructureData: MonoBehaviour
     [SerializeField]
     private string infraFilename;
     [SerializeField]
+    private string nodesFilePathExtension;
+    private List<Vector2> connectionsById;
     private string infraFilePathExtension;
 
     #endregion Fields
@@ -88,6 +90,14 @@ public class InfrastructureData: MonoBehaviour
             return shutDownNodes;
         }
     }
+
+    public List<Vector2> ConnectionsById
+    {
+        get
+        {
+            return connectionsById;
+        }
+    }
     
     #endregion Properties
     
@@ -133,6 +143,11 @@ public class InfrastructureData: MonoBehaviour
         {
             allNodes[i] = allNodeObjects[i].GetComponent<NodeData>();
         }
+        
+        connectionsById = new List<Vector2>();
+
+        Debug.Log("Please Draw");
+        DrawAllConnections();
         // set network references to the network scripts connected to the game Objects
         for (int i = 0; i < networks.Count; i++)
         {
@@ -172,6 +187,27 @@ public class InfrastructureData: MonoBehaviour
         cptcInfo = JsonUtility.ToJson(this);
         Debug.Log(cptcInfo);
         return cptcInfo;
+    }
+    
+    public void DrawAllConnections()
+    {
+        GL.LoadOrtho();
+        GL.Begin(GL.LINES);
+        GL.Color(Color.white);
+        foreach(NodeData node in this.allNodes)
+        {
+            foreach(int id in node.Connections)
+            {
+                if(!(connectionsById.Contains(new Vector2(node.Id, id)) || connectionsById.Contains(new Vector2(id, node.Id))))
+                {
+                    connectionsById.Add(new Vector2(id,node.Id));
+                    GL.Vertex(FindNodeByID(node.Id).transform.position);
+                    GL.Vertex(FindNodeByID(id).transform.position);
+                }
+            }
+        }
+        GL.End();
+        Debug.Log("End of drawing");
     }
 
 }
