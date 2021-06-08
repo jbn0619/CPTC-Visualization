@@ -29,6 +29,7 @@ public class InfrastructureData: MonoBehaviour
     private string nodesFilename;
     [SerializeField]
     private string nodesFilePathExtension;
+    private List<Vector2> connectionsById;
 
     #endregion Fields
 
@@ -88,6 +89,14 @@ public class InfrastructureData: MonoBehaviour
             return shutDownNodes;
         }
     }
+
+    public List<Vector2> ConnectionsById
+    {
+        get
+        {
+            return connectionsById;
+        }
+    }
     
     #endregion Properties
     
@@ -124,6 +133,11 @@ public class InfrastructureData: MonoBehaviour
         {
             allNodes[i] = allNodeObjects[i].GetComponent<NodeData>();
         }
+        
+        connectionsById = new List<Vector2>();
+
+        Debug.Log("Please Draw");
+        DrawAllConnections();
     }
 
     // Update is called once per frame
@@ -140,7 +154,7 @@ public class InfrastructureData: MonoBehaviour
         // Do we want to draw the raycasts every tick? would we be changing the positions of the nodes?
     }
 
-    public GameObject findNodeByID(int searchID)
+    public GameObject FindNodeByID(int searchID)
     {
         foreach(GameObject obj in this.allNodeObjects)
         {
@@ -150,6 +164,27 @@ public class InfrastructureData: MonoBehaviour
             }
         }
         return null;
+    }
+
+    public void DrawAllConnections()
+    {
+        GL.LoadOrtho();
+        GL.Begin(GL.LINES);
+        GL.Color(Color.white);
+        foreach(NodeData node in this.allNodes)
+        {
+            foreach(int id in node.Connections)
+            {
+                if(!(connectionsById.Contains(new Vector2(node.Id, id)) || connectionsById.Contains(new Vector2(id, node.Id))))
+                {
+                    connectionsById.Add(new Vector2(id,node.Id));
+                    GL.Vertex(FindNodeByID(node.Id).transform.position);
+                    GL.Vertex(FindNodeByID(id).transform.position);
+                }
+            }
+        }
+        GL.End();
+        Debug.Log("End of drawing");
     }
 
 }
