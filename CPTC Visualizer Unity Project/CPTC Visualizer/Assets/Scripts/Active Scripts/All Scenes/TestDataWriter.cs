@@ -16,6 +16,8 @@ public class TestDataWriter: MonoBehaviour
     [SerializeField]
     private KeyCode writeEvents = KeyCode.LeftBracket;
     [SerializeField] KeyCode writeTeams = KeyCode.RightBracket;
+    [SerializeField]
+    private KeyCode writeInfra = KeyCode.I;
 
     [SerializeField]
     private FileManager fileManager;
@@ -41,6 +43,7 @@ public class TestDataWriter: MonoBehaviour
     {
         if (Input.GetKeyDown(writeEvents)) WriteEventData();
         if (Input.GetKeyDown(writeTeams)) WriteTeamData();
+        if (Input.GetKeyDown(writeInfra)) WriteInfrastructure();
     }
 
     /// <summary>
