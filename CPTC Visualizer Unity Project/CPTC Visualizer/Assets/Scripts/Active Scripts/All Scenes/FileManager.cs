@@ -127,13 +127,9 @@ public class FileManager: MonoBehaviour
         // Log the filepath to the Debug
         string filePath = rootFilePath + _filePathExtension + _fileName;
         Debug.Log("JSON File Path: " + filePath);
-        
-        // create list of nodes. Each line of the JSON is a new node in the list. 
-        List<NodeData> nodes = new List<NodeData>();
-        foreach (string line in ReadFile(_fileName, _filePathExtension))
-        {
-            nodes.Add(JsonUtility.FromJson<NodeData>(line));
-        }
+
+        // create list of nodes from the Infra stored in the JSON 
+        List<NodeData> nodes = CreateInfraFromJSON(_fileName, _filePathExtension).AllNodes;
 
         Debug.Log($"{nodes.Count} system nodes successfully loaded from {filePath}");
         return nodes;
@@ -165,6 +161,26 @@ public class FileManager: MonoBehaviour
                 GameManager.Instance.MainInfra.AllNodes[i].Teams = newNodes[i].Teams;
             }
         }
+    }
+
+    public InfrastructureData CreateInfraFromJSON(string _fileName, string _filePathExtension)
+    {
+        // Log the filepath to the Debug
+        string filePath = rootFilePath + _filePathExtension + _fileName;
+        Debug.Log("Infrastructure JSON File Path: " + filePath);
+
+        string JSONString = null;
+
+        foreach (string line in ReadFile(_fileName, _filePathExtension))
+        {
+            JSONString += line;
+        }
+
+        InfrastructureData infrastructure = JsonUtility.FromJson<InfrastructureData>(JSONString);
+
+        Debug.Log("Infrastructure successfully created from JSON.");
+
+        return infrastructure;
     }
 
     /// <summary>
@@ -212,6 +228,28 @@ public class FileManager: MonoBehaviour
                 {
                     sw.WriteLine(packet.ConvertToJSON());
                 }
+            }
+        }
+        catch (Exception e)
+        {
+            Debug.Log(e.Message);
+        }
+    }
+    public void SaveToJSON(string _fileName, InfrastructureData _data)
+    {
+        string filePath = "C:\\ProgramData\\CSEC Visualizer\\Infrastructure\\Database\\" + _fileName;
+
+        // First check if the directory exists, or if we need to make it.
+        if (Directory.Exists("C:\\ProgramData\\CSEC Visualizer\\Infrastructure\\Database\\") == false)
+        {
+            Directory.CreateDirectory("C:\\ProgramData\\CSEC Visualizer\\Infrastructure\\Database\\");
+        }
+
+        try
+        {
+            using (StreamWriter sw = File.CreateText(filePath))
+            {
+                    sw.WriteLine(_data.ConvertToJSON());
             }
         }
         catch (Exception e)

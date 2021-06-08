@@ -1864,9 +1864,10 @@ MonoBehaviour:
   - {fileID: 1674982574}
   - {fileID: 304287820}
   allNodeObjects: []
+  networkObjects: []
   shutDownNodes: 
-  nodesFilename: 
-  nodesFilePathExtension: 
+  infraFilename: 
+  infraFilePathExtension: 
 --- !u!4 &807570441
 Transform:
   m_ObjectHideFlags: 0
@@ -2157,7 +2158,9 @@ MonoBehaviour:
   stayInScene: 1
   mainCam: {fileID: 2075817724}
   mainInfra: {fileID: 807570440}
-  prefabNode: {fileID: 5933303019270466831, guid: ca33bf85e528455499a1638c62582ea4, type: 3}
+  prefabNode: {fileID: 1217330141730608042, guid: c71bbe5717ea8454fa5ad5bde99919b4, type: 3}
+  prefabNetwork: {fileID: 1997012330732690743, guid: e6b8d870b7b772b4ea2cfbf28c461ea6, type: 3}
+  prefabInfrastructure: {fileID: 4531087110079519839, guid: 1b4bde8715dca1341bb9a0cd68bee61f, type: 3}
   inputManager: {fileID: 183641911}
   teamManager: {fileID: 1371010132}
   eventManager: {fileID: 1452424210}
@@ -2330,13 +2333,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scanTime: 0
+  nodeObjects: []
   nodes:
-  - {fileID: 1582256217}
-  - {fileID: 16954477}
-  - {fileID: 1433291188}
-  - {fileID: 172020599}
-  - {fileID: 1659818526}
-  - {fileID: 1031760232}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   connections: 
   connectionGOS: []
 --- !u!120 &1018051403
@@ -3681,13 +3685,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scanTime: 0
+  nodeObjects: []
   nodes:
-  - {fileID: 78851618}
-  - {fileID: 1420891500}
-  - {fileID: 631457340}
-  - {fileID: 1393734961}
   - {fileID: 0}
-  - {fileID: 402186481}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   connections: 
   connectionGOS: []
 --- !u!61 &1445645158
@@ -3886,6 +3891,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   writeEvents: 91
   writeTeams: 93
+  writeInfra: 105
   fileManager: {fileID: 261663842}
   eventCount: 1
 --- !u!4 &1486934066
@@ -4057,11 +4063,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scanTime: 0
+  nodeObjects: []
   nodes:
-  - {fileID: 396696155}
-  - {fileID: 2092072914}
-  - {fileID: 1674982574}
-  - {fileID: 304287820}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   connections: 
@@ -4605,13 +4612,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scanTime: 0
+  nodeObjects: []
   nodes:
-  - {fileID: 1611356390}
-  - {fileID: 380662264}
-  - {fileID: 1836674366}
-  - {fileID: 1141330891}
-  - {fileID: 190460374}
-  - {fileID: 1693415338}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   connections: 
   connectionGOS: []
 --- !u!61 &1658641638

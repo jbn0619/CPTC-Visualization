@@ -18,6 +18,8 @@ public class NetworkData: MonoBehaviour
     private float scanCount;
 
     [SerializeField]
+    private List<GameObject> nodeObjects;
+    [SerializeField]
     private List<NodeData> nodes;
 
     [SerializeField]
@@ -60,6 +62,17 @@ public class NetworkData: MonoBehaviour
         set
         {
             isActive = value;
+        }
+    }
+
+    /// <summary>
+    /// Gets a list of node objects within this network.
+    /// </summary>
+    public List<GameObject> NodeObjects
+    {
+        get
+        {
+            return nodeObjects;
         }
     }
 
@@ -140,5 +153,18 @@ public class NetworkData: MonoBehaviour
             outline.material = GeneralResources.Instance.NetBase;
         }
         */
+    }
+
+    public void SetData(int _id, List<NodeData> _nodes, List<int> _connections, List<LineRenderer> _connectionGOS)
+    {
+        this.id = _id;
+        this.nodes = _nodes;
+        // grab the actual references to the instanced game objects
+        foreach(NodeData node in _nodes)
+        {
+           nodeObjects.Add(GameManager.Instance.MainInfra.FindNodeByID(node.Id));
+        }
+        this.connections = _connections;
+        this.connectionGOS = _connectionGOS;
     }
 }
