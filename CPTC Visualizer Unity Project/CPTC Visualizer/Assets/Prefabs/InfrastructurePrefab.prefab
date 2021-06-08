@@ -43,33 +43,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b23afa3483414d24da094acc78377028, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  networks:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  allNodes:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  networks: []
+  allNodes: []
   allNodeObjects: []
   networkObjects: []
   shutDownNodes: 

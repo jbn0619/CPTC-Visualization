@@ -21,6 +21,8 @@ public class GameManager: Singleton<GameManager>
     private GameObject prefabNode;
     [SerializeField]
     private GameObject prefabNetwork;
+    [SerializeField]
+    private GameObject prefabInfrastructure;
 
     [Header("Manager GameObjects")]
     [SerializeField]
@@ -146,6 +148,17 @@ public class GameManager: Singleton<GameManager>
         get
         {
             return this.prefabNetwork;
+        }
+    }
+
+    /// <summary>
+    /// A prefab Game Object used to create Infrastructure objects
+    /// </summary>
+    public GameObject InfraPrefab
+    {
+        get
+        {
+            return this.prefabInfrastructure;
         }
     }
 
