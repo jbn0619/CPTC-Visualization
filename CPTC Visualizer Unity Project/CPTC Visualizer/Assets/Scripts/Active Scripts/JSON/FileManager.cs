@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using System;
+using Assets.Scripts;
 
 public class FileManager: MonoBehaviour
 {
@@ -172,11 +173,11 @@ public class FileManager: MonoBehaviour
     }
 
     /// <summary>
-    /// Creates a new InfrastructureData from the system's passed data
+    /// Sets the data of the Game object equal to the data the JSON provides
     /// </summary>
     /// <param name="_fileName"></param>
     /// <param name="_filePathExtension"></param>
-    /// <returns></returns>
+    /// <param name="_infra">Infrastructure GameObject to edit</param>
     public InfrastructureData CreateInfraFromJSON(string _fileName, string _filePathExtension)
     {
         // Log the filepath to the Debug
@@ -189,13 +190,12 @@ public class FileManager: MonoBehaviour
         {
             JSONString += line;
         }
+        Debug.Log($"Infrastructure File: {filePath} found. Reading Data ...");
 
-        InfrastructureData infrastructure = new InfrastructureData();
-        JsonUtility.FromJsonOverwrite(JSONString, infrastructure);
+        InfrastructureData returnInfra = HolderToData(JsonUtility.FromJson<Infrastructure>(JSONString));
 
         Debug.Log($"Infrastructure successfully created from {filePath}");
-
-        return infrastructure;
+        return returnInfra;
     }
 
     /// <summary>
@@ -265,11 +265,13 @@ public class FileManager: MonoBehaviour
             Directory.CreateDirectory("C:\\ProgramData\\CSEC Visualizer\\Infrastructure\\Database\\");
         }
 
+        Infrastructure infra = new Infrastructure(DataToHolder(_data.Networks), DataToHolder(_data.AllNodes));
+
         try
         {
             using (StreamWriter sw = File.CreateText(filePath))
             {
-                    sw.WriteLine(_data.ConvertToJSON());
+                    sw.WriteLine(JsonUtility.ToJson(infra));
             }
         }
         catch (Exception e)
@@ -290,4 +292,152 @@ public class FileManager: MonoBehaviour
 
         return false;
     }
+    #region Helper Methods
+    private NodeTypes StringToNodeType(string _input)
+    {
+        _input.ToLower().Trim();
+        NodeTypes type;
+        switch (_input) {
+            case "rootworkstation":
+                type = NodeTypes.RootWorkstation;
+                break;
+            case "securedrop":
+                type = NodeTypes.SecureDrop;
+                break;
+            case "securedserver":
+                type = NodeTypes.SecuredServer;
+                break;
+            case "vdi":
+                type = NodeTypes.VDI;
+                break;
+            case "vpn":
+                type = NodeTypes.VPN;
+                break;
+            case "www":
+                type = NodeTypes.WWW;
+                break;
+            case "ad":
+                type = NodeTypes.AD;
+                break;
+            case "azure":
+                type = NodeTypes.Azure;
+                break;
+            case "ca":
+                type = NodeTypes.CA;
+                break;
+            case "dns":
+                type = NodeTypes.DNS;
+                break;
+            case "edms":
+                type = NodeTypes.EDMS;
+                break;
+            case "fileshare":
+                type = NodeTypes.Fileshare;
+                break;
+            case "hyperv":
+                type = NodeTypes.HyperV;
+                break;
+            case "mailexchange":
+                type = NodeTypes.MailExchange;
+                break;
+            case "workstation":
+            default:
+                type = NodeTypes.Workstation;
+                break;
+        }
+
+        return type;
+    }
+
+    private NodeState StringToNodeState(string _input)
+    {
+        _input.ToLower().Trim();
+        NodeState state;
+        switch (_input)
+        {
+            case "off":
+                state = NodeState.Off;
+                break;
+            case "notworking":
+                state = NodeState.NotWorking;
+                break; 
+            case "on":
+            default:
+                state = NodeState.On;
+                break;
+        }
+        return state;
+    }
+
+    #region Data Type Conversion
+    private AlertData HolderToData(Alert _alert)
+    {
+        AlertData alert = new AlertData();
+        return alert;
+    }
+    private TeamData HolderToData(Team _team)
+    {
+        TeamData team = new TeamData();
+        team.SetData(_team.id, _team.nodes);
+        return team;
+    }
+    private NodeData HolderToData(Node _node)
+    {
+        NodeData node = new NodeData();
+        node.SetData(_node.id, _node.ip, _node.isHidden, StringToNodeType(_node.type), StringToNodeState(_node.state), _node.connections, HolderToData(_node.teams));
+        return node;
+    }
+
+    private NetworkData HolderToData(SysNetwork _network)
+    {
+        NetworkData network = new NetworkData();
+        network.SetData(_network.networkId, HolderToData(_network.nodes), _network.networkConnections);
+        return network;
+    }
+
+    private InfrastructureData HolderToData(Infrastructure _infra)
+    {
+        InfrastructureData infra = new InfrastructureData();
+        infra.SetData(HolderToData(_infra.networks), HolderToData(_infra.nodes));
+        return infra;
+    }
+    #endregion DataTypeConversion
+
+    #region List Conversion
+    private List<SysNetwork> DataToHolder(List<NetworkData> _networks)
+    {
+        List<SysNetwork> networks = new List<SysNetwork>();
+        return networks;
+    }
+    private List<NodeData> HolderToData(List<Node> _nodes)
+    {
+        List<NodeData> nodes = new List<NodeData>();
+        foreach(Node node in _nodes)
+        {
+            nodes.Add(HolderToData(node));
+        }
+        return nodes;
+    }
+
+    private List<TeamData> HolderToData(List<Team> _teams)
+    {
+        List<TeamData> teams = new List<TeamData>();
+        foreach (Team team in _teams)
+        {
+            teams.Add(HolderToData(team));
+        }
+        return teams;
+    }
+
+    private List<NetworkData> HolderToData(List<SysNetwork> _networks)
+    {
+        List<NetworkData> networks = new List<NetworkData>();
+        foreach(SysNetwork net in _networks)
+        {
+            networks.Add(HolderToData(net));
+        }
+        return networks;
+    }
+    #endregion List Conversion
+    #endregion Helper Methods
 }

@@ -227,8 +227,9 @@ public class NodeData: MonoBehaviour
     /// <param name="_type"> tracks what type of system the node is</param>
     /// <param name="_state"> tracks what state the node is currently experiencing</param>
     /// <param name="_connections"> tracks the interger IDs of adjecent Nodes</param>
+    /// <param name="_teams">list of all teams accessing this node</param>
     public void SetData(int _id, string _ip, bool _isHidden, NodeTypes _type, 
-        NodeState _state, List<int> _connections)
+        NodeState _state, List<int> _connections, List<TeamData> _teams)
     {
         this.id             = _id;
         this.ip             = _ip;
@@ -236,6 +237,7 @@ public class NodeData: MonoBehaviour
         this.state          = _state;
         this.isHidden       = _isHidden;
         this.connections    = _connections;
+        this.teams          = _teams;
     }
 
     /// <summary>

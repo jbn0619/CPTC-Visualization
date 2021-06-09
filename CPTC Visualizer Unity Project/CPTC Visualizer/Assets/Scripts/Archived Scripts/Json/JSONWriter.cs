@@ -195,7 +195,7 @@ public class JSONWriter: MonoBehaviour
         coreNodes.Add(n6);
         coreNodes.Add(n7);
         coreNodes.Add(n8);
-        Assets.Scripts.Network core = new Assets.Scripts.Network(0, coreNodes, null);
+        Assets.Scripts.SysNetwork core = new Assets.Scripts.SysNetwork(0, coreNodes, null);
 
         // Generate the Genovia network.
         Node n9 = new Node(6, "Ugh", NodeTypes.WWW, NodeState.On, null);
@@ -209,7 +209,7 @@ public class JSONWriter: MonoBehaviour
         genoviaNodes.Add(n11);
         genoviaNodes.Add(n12);
         genoviaNodes.Add(n13);
-        Assets.Scripts.Network genovia = new Assets.Scripts.Network(0, genoviaNodes, null);
+        Assets.Scripts.SysNetwork genovia = new Assets.Scripts.SysNetwork(0, genoviaNodes, null);
 
         // Generate the ShangriLa network.
         Node n14 = new Node(13, "No", NodeTypes.HyperV, NodeState.On, null);
@@ -223,9 +223,9 @@ public class JSONWriter: MonoBehaviour
         shangNodes.Add(n16);
         shangNodes.Add(n17);
         shangNodes.Add(n18);
-        Assets.Scripts.Network shangriLa = new Assets.Scripts.Network(0, shangNodes, null);
+        Assets.Scripts.SysNetwork shangriLa = new Assets.Scripts.SysNetwork(0, shangNodes, null);
 
-        List<Assets.Scripts.Network> networks = new List<Assets.Scripts.Network>();
+        List<Assets.Scripts.SysNetwork> networks = new List<Assets.Scripts.SysNetwork>();
         networks.Add(core);
         networks.Add(genovia);
         networks.Add(shangriLa);
@@ -263,7 +263,7 @@ public class JSONWriter: MonoBehaviour
         coreNodes.Add(n7);
         //coreNodes.Add(n8);
         coreNodes.Add(n9);
-        Assets.Scripts.Network core = new Assets.Scripts.Network(0, coreNodes, null);
+        Assets.Scripts.SysNetwork core = new Assets.Scripts.SysNetwork(0, coreNodes, null);
 
         // Generate the Genovia network.
         Node n10 = new Node(10, "ssh-genovia-corp-mail", NodeTypes.MailExchange, NodeState.On, null);
@@ -277,7 +277,7 @@ public class JSONWriter: MonoBehaviour
         genoviaNodes.Add(n12);
         //genoviaNodes.Add(n13);
         genoviaNodes.Add(n14);
-        Assets.Scripts.Network genovia = new Assets.Scripts.Network(0, genoviaNodes, null);
+        Assets.Scripts.SysNetwork genovia = new Assets.Scripts.SysNetwork(0, genoviaNodes, null);
 
         // Generate the ShangriLa network. 
         Node n15 = new Node(15, "smtp-shangri-la-corp", NodeTypes.MailExchange, NodeState.On, null);
@@ -291,7 +291,7 @@ public class JSONWriter: MonoBehaviour
         shangNodes.Add(n17);
         shangNodes.Add(n18);
         //shangNodes.Add(n19);
-        Assets.Scripts.Network shangriLa = new Assets.Scripts.Network(0, shangNodes, null);
+        Assets.Scripts.SysNetwork shangriLa = new Assets.Scripts.SysNetwork(0, shangNodes, null);
 
         // Generate the Gildead network.
         Node n20 = new Node(20, "smtp-gilead-corp", NodeTypes.MailExchange, NodeState.On, null);
@@ -307,9 +307,9 @@ public class JSONWriter: MonoBehaviour
         gileadNodes.Add(n23);
         gileadNodes.Add(n24);
         //gileadNodes.Add(n25);
-        Assets.Scripts.Network gilead = new Assets.Scripts.Network(0, gileadNodes, null);
+        Assets.Scripts.SysNetwork gilead = new Assets.Scripts.SysNetwork(0, gileadNodes, null);
 
-        List<Assets.Scripts.Network> networks = new List<Assets.Scripts.Network>();
+        List<Assets.Scripts.SysNetwork> networks = new List<Assets.Scripts.SysNetwork>();
         networks.Add(core);
         networks.Add(genovia);
         networks.Add(shangriLa);
@@ -360,8 +360,8 @@ public class JSONWriter: MonoBehaviour
         nodes.Add(n4);
 
         List<int> netC0 = new List<int>();
-        Assets.Scripts.Network net1 = new Assets.Scripts.Network(0, nodes, netC0);
-        List<Assets.Scripts.Network> networks = new List<Assets.Scripts.Network>();
+        Assets.Scripts.SysNetwork net1 = new Assets.Scripts.SysNetwork(0, nodes, netC0);
+        List<Assets.Scripts.SysNetwork> networks = new List<Assets.Scripts.SysNetwork>();
         networks.Add(net1);
         Infrastructure newInfra = new Infrastructure(networks);
         return newInfra;
@@ -375,7 +375,7 @@ public class JSONWriter: MonoBehaviour
     {
         // Create each network first before making the full infrastructure object.
         int globalNodeCount = 0;
-        List<Assets.Scripts.Network> networks = new List<Assets.Scripts.Network>();
+        List<Assets.Scripts.SysNetwork> networks = new List<Assets.Scripts.SysNetwork>();
         for (int i = 0; i < networkCount; i++)
         {
             // Create the nodes to be used in this network.
@@ -427,7 +427,7 @@ public class JSONWriter: MonoBehaviour
             }
 
             // Add the new network to networks.
-            Assets.Scripts.Network net = new Assets.Scripts.Network(i, nodes, netCon);
+            Assets.Scripts.SysNetwork net = new Assets.Scripts.SysNetwork(i, nodes, netCon);
             networks.Add(net);
         }
 

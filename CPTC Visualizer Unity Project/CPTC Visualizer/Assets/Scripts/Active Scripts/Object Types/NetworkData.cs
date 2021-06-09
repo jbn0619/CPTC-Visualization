@@ -193,7 +193,8 @@ public class NetworkData: MonoBehaviour
         }
     }
 
-    /// <summary>
+    /* Phased out because we are using an in-between class to transfer data from the fileReader to the JSON files 
+     * /// <summary>
     /// Stores the data of the refernced objects within the Network, rather than the instances of the objects
     /// </summary>
     /// <returns>Sting of JSON formatted data</returns>
@@ -211,5 +212,5 @@ public class NetworkData: MonoBehaviour
         dataString += "]}";
         Debug.Log(dataString);
         return dataString;
-    }
+    }*/
 }

@@ -24,7 +24,7 @@ public class TeamData: MonoBehaviour
     protected PriorityQueue queue;
 
     [SerializeField]
-    protected List<int> discoveredNodeIds;
+    protected List<int> nodes;
 
     protected InfrastructureData infraCopy;
 
@@ -77,11 +77,11 @@ public class TeamData: MonoBehaviour
     /// <summary>
     /// Gets a list of nodes this team has discovered.
     /// </summary>
-    public List<int> DiscoveredNodeIds
+    public List<int> Nodes
     {
         get
         {
-            return discoveredNodeIds;
+            return nodes;
         }
     }
 
@@ -171,11 +171,18 @@ public class TeamData: MonoBehaviour
 
     }
 
-    public string ConvertToJSON()
+    /// <summary>
+    /// Set all variables within the team object with data passed from the server
+    /// </summary>
+    /// <param name="_id">Team's id number</param>
+    /// <param name="_alerts">alerts this team has triggered</param>
+    /// <param name="_nodes">nodes this team is currently visiting</param>
+    public void SetData(int _id, List<int>_nodes)
     {
-        string dataString = "";
-        dataString += JsonUtility.ToJson(this);
-        Debug.Log(dataString);
-        return dataString;
+        // make method to give team a random name
+        // make a method to give the teams a random color
+        this.teamId = _id;
+        // this.alerts = _alerts; // alerts are not currently implemented as a data structure.
+        this.nodes = _nodes;
     }
 }

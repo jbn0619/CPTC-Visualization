@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 /// <summary>
 /// Author: Justin Neft & Kevin Laporte
+///     Ben Wetzel - Summer 2021
 /// Function: Controls the entire infrastructure scene, and contains references to all components within. This class is a singleton, so it can be freely referenced anywhere with GameManager.Instance.
 /// </summary>
 public class GameManager: Singleton<GameManager>
@@ -212,6 +213,8 @@ public class GameManager: Singleton<GameManager>
         attackCheckCount = 0.0f;
         configUpdateCount = 0.0f;
         configUpdateTime = 5;
+
+        BuildInfrastructure();
     }
 
     // Update is called once per frame
@@ -283,6 +286,22 @@ public class GameManager: Singleton<GameManager>
         dataText.text = ("Data Read Interval : " + dataReadInterval);
 
         Debug.Log("Infrastructure Config file successfully updated.");
+    }
+
+    private void BuildInfrastructure()
+    {
+        if(mainInfra == null)
+        {
+            // this is really wonky right now and I just want to get it working before I worry about making it function well. - BW
+            // make the object exist in the scene
+            GameObject mainInfraObject = Instantiate(prefabInfrastructure);
+            // grab a ref to its infra data
+            this.mainInfra = mainInfraObject.GetComponent<InfrastructureData>();
+            // set the object's infra data to the data from the JSON file
+            fileManager.CreateInfraFromJSON("infraDraft.JSON", "\\Infrastructure\\Database\\", mainInfraObject);
+            // instanciate the child objects with the data
+            mainInfra.InstanceChildren();
+        }
     }
 
     /*

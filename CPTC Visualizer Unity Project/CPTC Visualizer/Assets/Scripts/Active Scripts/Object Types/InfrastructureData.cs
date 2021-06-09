@@ -134,29 +134,6 @@ public class InfrastructureData: MonoBehaviour
     }
 
     /// <summary>
-    /// Retrieve the data from the lists of referenced scripts. JSONUtility only returns the instance references natively.
-    /// </summary>
-    /// <returns>String of JSON formatted text</returns>
-    public string ConvertToJSON()
-    {
-        string dataString = "{\"networks\": [";
-        for(int i = 0; i< this.networks.Count;i++)
-        {
-            dataString += $"{this.networks[i].ConvertToJSON()}";
-            if(i < this.networks.Count - 1) { dataString+=",";}
-        }
-        dataString += "], \"allNodes\":[";
-        for (int i = 0; i < this.allNodes.Count; i++)
-        {
-            dataString += $"{JsonUtility.ToJson(this.allNodes[i])}";
-            if (i < this.allNodes.Count - 1) { dataString += ","; }
-        }
-        dataString += "]}";
-        Debug.Log(dataString);
-        return dataString;
-    }
-    
-    /// <summary>
     /// Draw connections between all nodes and networks
     /// </summary>
     public void DrawAllConnections()
@@ -181,15 +158,21 @@ public class InfrastructureData: MonoBehaviour
     }
 
     /// <summary>
+    /// Set all variables within the network with data passed from the server
+    /// </summary>
+    /// <param name="_networks">Networks of nodes within the server</param>
+    /// <param name="_nodes">all nodes within the server</param>
+    public void SetData(List<NetworkData> _networks, List<NodeData> _nodes)
+    {
+        this.networks = _networks;
+        this.allNodes = _nodes;
+    }
+
+    /// <summary>
     /// Set this infrastructure's data to the new values and instantiates the requisite objects within it.
     /// </summary>
-    /// <param name="_nodes">This is a list of all the nodes contained within the infrastructure</param>
-    /// <param name="_networks">This is a list of all the networks contained within the infrastructure</param>
-    public void SetData(List<NodeData> _nodes, List<NetworkData> _networks)
+    public void InstanceChildren()
     {
-        this.allNodes = _nodes;
-        this.networks = _networks;
-
         // create gameObjects for all the networks
         foreach (NetworkData n in this.networks)
         {
@@ -197,8 +180,7 @@ public class InfrastructureData: MonoBehaviour
             networkObjects[networkObjects.Count - 1].transform.parent = this.transform;
             networkObjects[networkObjects.Count - 1].GetComponent<NetworkData>().SetData(n.Id, n.Nodes, n.Connections);
             // instantiate the nodes within this network 
-            List<NodeData> networkNodes = networkObjects[networkObjects.Count - 1].GetComponent<NetworkData>().Nodes;
-            foreach (NodeData o in networkNodes)
+            foreach (NodeData o in networkObjects[networkObjects.Count - 1].GetComponent<NetworkData>().Nodes)
             {
                 // Instantiate using the InfrastructureData's tranform as a base. 
                 allNodeObjects.Add(Instantiate(GameManager.Instance.NetworkPrefab, this.transform.position, this.transform.rotation));
@@ -209,6 +191,9 @@ public class InfrastructureData: MonoBehaviour
                     o.State, o.Connections);
             }
         }
+
+        // create method of determining locations for networks and nodes based on givern parameters
+        //either based on concetration of nodes, setting the networks in a pre-determined order, or some other method.
 
         // set network references to the node scripts connected to the game Objects
         for (int i = 0; i < allNodes.Count; i++)
@@ -221,4 +206,28 @@ public class InfrastructureData: MonoBehaviour
             networks[i] = networkObjects[i].GetComponent<NetworkData>();
         }
     }
+    
+    /* Phased out because we are using in-between classes to move data from the FileReader to the JSON files now. - BW
+     * /// <summary>
+    /// Retrieve the data from the lists of referenced scripts. JSONUtility only returns the instance references natively.
+    /// </summary>
+    /// <returns>String of JSON formatted text</returns>
+    public string ConvertToJSON()
+    {
+        string dataString = "{\"networks\": [";
+        for(int i = 0; i< this.networks.Count;i++)
+        {
+            dataString += $"{this.networks[i].ConvertToJSON()}";
+            if(i < this.networks.Count - 1) { dataString+=",";}
+        }
+        dataString += "], \"allNodes\":[";
+        for (int i = 0; i < this.allNodes.Count; i++)
+        {
+            dataString += $"{JsonUtility.ToJson(this.allNodes[i])}";
+            if (i < this.allNodes.Count - 1) { dataString += ","; }
+        }
+        dataString += "]}";
+        Debug.Log(dataString);
+        return dataString;
+    }*/
 }

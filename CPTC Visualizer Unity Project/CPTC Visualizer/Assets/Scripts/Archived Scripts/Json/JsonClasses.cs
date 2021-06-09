@@ -9,7 +9,7 @@ using UnityEngine;
 /// Author: Justin Neft
 /// Function: Old classes that were used to read/write data to JSON files for the CCDC competition.
 /// </summary>
-namespace Assets.Scripts
+/*namespace Assets.Scripts
 {
     /// <summary>
     /// An alert's data, namely what type of alert they are.
@@ -236,3 +236,4 @@ namespace Assets.Scripts
 
     #endregion CCDC-Specific Data Containers
 }
+*/
