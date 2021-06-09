@@ -145,8 +145,6 @@ public class InfrastructureData: MonoBehaviour
         }
         
         connectionsById = new List<Vector2>();
-
-        Debug.Log("Please Draw");
         DrawAllConnections();
         // set network references to the network scripts connected to the game Objects
         for (int i = 0; i < networks.Count; i++)
@@ -169,6 +167,7 @@ public class InfrastructureData: MonoBehaviour
         // Do we want to draw the raycasts every tick? would we be changing the positions of the nodes?
     }
 
+    // Helper Method: Finds the Node GameObject associated with the id
     public GameObject FindNodeByID(int searchID)
     {
         foreach(GameObject obj in this.allNodeObjects)
