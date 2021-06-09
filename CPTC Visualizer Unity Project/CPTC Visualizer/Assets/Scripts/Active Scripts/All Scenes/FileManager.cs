@@ -9,6 +9,11 @@ public class FileManager: MonoBehaviour
     #region Fields
     string rootFilePath;
     //DirectoryInfo directoryInfo;
+    [SerializeField]
+    private KeyCode saveFileKey = KeyCode.Q;
+    [SerializeField]
+    private KeyCode readFileKey = KeyCode.E;
+
     #endregion Fields
 
     #region Properties
@@ -26,7 +31,7 @@ public class FileManager: MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.W))
+        if(Input.GetKeyDown(saveFileKey))
         {
             //directoryInfo.CreateDirectory("\\Test Folder");
 
@@ -38,7 +43,7 @@ public class FileManager: MonoBehaviour
             WriteFile("Test File", fileData, "Test Folder\\");
         }
 
-        if(Input.GetKeyDown(KeyCode.R))
+        if(Input.GetKeyDown(readFileKey))
         {
             List<string> fileData = new List<string>();
 
