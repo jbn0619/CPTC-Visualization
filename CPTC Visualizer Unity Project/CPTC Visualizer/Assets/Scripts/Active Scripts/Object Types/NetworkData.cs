@@ -192,4 +192,24 @@ public class NetworkData: MonoBehaviour
             //is not a Node object
         }
     }
+
+    /// <summary>
+    /// Stores the data of the refernced objects within the Network, rather than the instances of the objects
+    /// </summary>
+    /// <returns>Sting of JSON formatted data</returns>
+    public string ConvertToJSON()
+    {
+        string dataString = $"{{\"id\":{this.id},";
+        dataString += "\"nodes\":[";
+        for (int i = 0; i < this.nodes.Count; i++)
+        {
+            dataString += $"{JsonUtility.ToJson(this.nodes[i])}";
+            if (i < this.nodes.Count - 1) { dataString += ","; }
+        }
+        dataString += "],\"connections\":[";
+        dataString += JsonUtility.ToJson(this.connections);
+        dataString += "]}";
+        Debug.Log(dataString);
+        return dataString;
+    }
 }

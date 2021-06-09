@@ -133,10 +133,25 @@ public class InfrastructureData: MonoBehaviour
         return null;
     }
 
+    /// <summary>
+    /// Retrieve the data from the lists of referenced scripts. JSONUtility only returns the instance references natively.
+    /// </summary>
+    /// <returns>String of JSON formatted text</returns>
     public string ConvertToJSON()
     {
-        string dataString = "";
-        dataString = JsonUtility.ToJson(this);
+        string dataString = "{\"networks\": [";
+        for(int i = 0; i< this.networks.Count;i++)
+        {
+            dataString += $"{this.networks[i].ConvertToJSON()}";
+            if(i < this.networks.Count - 1) { dataString+=",";}
+        }
+        dataString += "], \"allNodes\":[";
+        for (int i = 0; i < this.allNodes.Count; i++)
+        {
+            dataString += $"{JsonUtility.ToJson(this.allNodes[i])}";
+            if (i < this.allNodes.Count - 1) { dataString += ","; }
+        }
+        dataString += "]}";
         Debug.Log(dataString);
         return dataString;
     }

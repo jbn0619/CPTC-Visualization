@@ -49,10 +49,11 @@ MonoBehaviour:
   id: 0
   ip: 
   type: 0
+  state: 0
   isHidden: 0
   connections: 
   connectionGOS: []
-  nodeSprite: {fileID: 0}
+  nodeSprite: {fileID: 6725634808683633353}
   teams: []
 --- !u!61 &1471689075112016534
 BoxCollider2D:
