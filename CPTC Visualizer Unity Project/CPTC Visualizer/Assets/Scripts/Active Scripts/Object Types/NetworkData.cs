@@ -1,33 +1,34 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
 /// Author: Justin Neft
+///     Ben Wetzel - Summer 2021
 /// Function: A data container that is tied to a game object. Represents a network within the infrastructure, which is a grouping of node objects.
 /// </summary>
+[Serializable]
 public class NetworkData: MonoBehaviour
 {
     #region Fields
 
     [SerializeField]
     private int id;
-    private bool isActive;
-    private bool scanActive;
-    [SerializeField]
-    private float scanTime;
-    private float scanCount;
-
-    [SerializeField]
-    private List<GameObject> nodeObjects;
     [SerializeField]
     private List<NodeData> nodes;
-
     [SerializeField]
     private List<int> connections;
 
+    private bool isActive;
+    private float scanTime;
+    private bool scanActive;
+    private float scanCount;
+
     [SerializeField]
-    private List<LineRenderer> connectionGOS;
+    protected List<GameObject> nodeObjects;
+    [SerializeField]
+    protected List<LineRenderer> connectionGOS;
 
     #endregion Fields
 
@@ -156,16 +157,59 @@ public class NetworkData: MonoBehaviour
         */
     }
 
-    public void SetData(int _id, List<NodeData> _nodes, List<int> _connections, List<LineRenderer> _connectionGOS)
+    /// <summary>
+    /// Sets the basic data of the Network 
+    /// </summary>
+    /// <param name="_id">This network's int ID to determine connections</param>
+    /// <param name="_nodes"> liat of nodes within this network</param>
+    /// <param name="_connections">list of int IDs this network is connected to</param>
+    public void SetData(int _id, List<NodeData> _nodes, List<int> _connections)
     {
         this.id = _id;
         this.nodes = _nodes;
-        // grab the actual references to the instanced game objects
-        foreach(NodeData node in _nodes)
-        {
-           nodeObjects.Add(GameManager.Instance.MainInfra.FindNodeByID(node.Id));
-        }
         this.connections = _connections;
-        this.connectionGOS = _connectionGOS;
+    }
+
+    /// <summary>
+    /// Adds the node object to the network's list of node objects if the passed object has a NodeData with an ID on the network's list
+    /// </summary>
+    /// <param name="_node">node gameObject to be added to network's nodeObjects list</param>
+    public void AddNodeObject(GameObject _node)
+    {
+        if(_node.GetComponent<NodeData>())
+        {
+            int searchID = _node.GetComponent<NodeData>().Id;
+            foreach (NodeData n in this.nodes)
+            {
+                if (n.Id == searchID)
+                {
+                    nodeObjects.Add(_node);
+                }
+            }
+        }
+        else
+        {
+            //is not a Node object
+        }
+    }
+
+    /// <summary>
+    /// Stores the data of the refernced objects within the Network, rather than the instances of the objects
+    /// </summary>
+    /// <returns>Sting of JSON formatted data</returns>
+    public string ConvertToJSON()
+    {
+        string dataString = $"{{\"id\":{this.id},";
+        dataString += "\"nodes\":[";
+        for (int i = 0; i < this.nodes.Count; i++)
+        {
+            dataString += $"{JsonUtility.ToJson(this.nodes[i])}";
+            if (i < this.nodes.Count - 1) { dataString += ","; }
+        }
+        dataString += "],\"connections\":[";
+        dataString += JsonUtility.ToJson(this.connections);
+        dataString += "]}";
+        Debug.Log(dataString);
+        return dataString;
     }
 }

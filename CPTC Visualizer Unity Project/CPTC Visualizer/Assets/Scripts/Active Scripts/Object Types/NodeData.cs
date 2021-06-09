@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,6 +8,7 @@ using UnityEngine;
 ///     Ben Wetzel & Garrett Paradis - Summer 2021
 /// Function: A data container that is tied to a game object in the unity scene. Contains information for a single "node" within an infrastructure.
 /// </summary>
+[Serializable]
 public class NodeData: MonoBehaviour
 {
     #region Fields
@@ -18,19 +20,17 @@ public class NodeData: MonoBehaviour
     protected string ip;
     [SerializeField]
     protected NodeTypes type;
+    [SerializeField]
     protected NodeState state;
     [SerializeField]
     protected bool isHidden;
 
     [SerializeField]
     protected List<int> connections;
-
     [SerializeField]
     protected List<LineRenderer> connectionGOS;
-
     [SerializeField]
     protected SpriteRenderer nodeSprite;
-
     [SerializeField]
     protected List<TeamData> teams; // Tracks the teams with current access to this node
 
@@ -193,20 +193,18 @@ public class NodeData: MonoBehaviour
             uptimeChart = value;
         }
     }
-
-    
     #endregion Properties
     
     // Start is called before the first frame update
     void Start()
     {
-        
+        nodeSprite = this.GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        SplitSprite();
     }
 
     /// <summary>
@@ -221,17 +219,16 @@ public class NodeData: MonoBehaviour
     }    
 
     /// <summary>
-    /// Set all variables within the node with data from the server admins
+    /// Set all variables within the node with data passed from the server
     /// </summary>
-    /// <param name="_id"></param>
-    /// <param name="_ip"></param>
-    /// <param name="_isHidden"></param>
-    /// <param name="_type"></param>
-    /// <param name="_state"></param>
-    /// <param name="_connections"></param>
-    /// <param name="_connectionGOS"></param>
+    /// <param name="_id">An integer Id for the node</param>
+    /// <param name="_ip"> the IP address of the node</param>
+    /// <param name="_isHidden"> determines of the node is visible</param>
+    /// <param name="_type"> tracks what type of system the node is</param>
+    /// <param name="_state"> tracks what state the node is currently experiencing</param>
+    /// <param name="_connections"> tracks the interger IDs of adjecent Nodes</param>
     public void SetData(int _id, string _ip, bool _isHidden, NodeTypes _type, 
-        NodeState _state, List<int> _connections, List<LineRenderer> _connectionGOS)
+        NodeState _state, List<int> _connections)
     {
         this.id             = _id;
         this.ip             = _ip;
@@ -239,15 +236,12 @@ public class NodeData: MonoBehaviour
         this.state          = _state;
         this.isHidden       = _isHidden;
         this.connections    = _connections;
-        this.connectionGOS  = _connectionGOS;
-        /* Example Call of SetNode
-         * This would proably be in a Start() or loading method, called to set up the node objects.
-        foreach (NodeData n in allNodes)
-        {
-            n.SetData(index, PARSED_DATA.ip, true, false, PARSED_DATA.type, PARSED DATA.state, PARSED_DATA.connections, PARSED_DATA.lineConnections)
-        }
-         */
     }
+
+    /// <summary>
+    /// Create a new NodeData with all of the data from this node
+    /// </summary>
+    /// <returns></returns>
     public NodeData Clone()
     {
         NodeData newNode = new NodeData();
@@ -263,6 +257,9 @@ public class NodeData: MonoBehaviour
         return newNode;
     }
 
+    /// <summary>
+    /// Divide the sprite into colored pieces based on the number of teams at the node, and color those pieces to the designated colors of the corresponding teams.
+    /// </summary>
     public void SplitSprite()
     {
         // ** Some sort of variable to hold the sprite and its segments **

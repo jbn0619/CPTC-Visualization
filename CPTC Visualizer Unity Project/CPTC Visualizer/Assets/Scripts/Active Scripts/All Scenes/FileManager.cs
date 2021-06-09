@@ -9,6 +9,11 @@ public class FileManager: MonoBehaviour
     #region Fields
     string rootFilePath;
     //DirectoryInfo directoryInfo;
+    [SerializeField]
+    private KeyCode saveFileKey = KeyCode.Q;
+    [SerializeField]
+    private KeyCode readFileKey = KeyCode.E;
+
     #endregion Fields
 
     #region Properties
@@ -26,7 +31,7 @@ public class FileManager: MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.W))
+        if(Input.GetKeyDown(saveFileKey))
         {
             //directoryInfo.CreateDirectory("\\Test Folder");
 
@@ -38,7 +43,7 @@ public class FileManager: MonoBehaviour
             WriteFile("Test File", fileData, "Test Folder\\");
         }
 
-        if(Input.GetKeyDown(KeyCode.R))
+        if(Input.GetKeyDown(readFileKey))
         {
             List<string> fileData = new List<string>();
 
@@ -79,7 +84,7 @@ public class FileManager: MonoBehaviour
                 }
             }
 
-            Debug.Log("File read successfully!");
+            Debug.Log($"{filePath} was Read Successfully!");
             return fileData;
         }
         catch(FileNotFoundException e)
@@ -126,7 +131,7 @@ public class FileManager: MonoBehaviour
     {
         // Log the filepath to the Debug
         string filePath = rootFilePath + _filePathExtension + _fileName;
-        Debug.Log("JSON File Path: " + filePath);
+        Debug.Log("...Loading New Node Data ...");
 
         // create list of nodes from the Infra stored in the JSON 
         List<NodeData> nodes = CreateInfraFromJSON(_fileName, _filePathExtension).AllNodes;
@@ -148,8 +153,9 @@ public class FileManager: MonoBehaviour
         // get old node data
         List<NodeData> currentNodes = GameManager.Instance.MainInfra.AllNodes;
 
+        int i = 0;
         // for each node, check if it needs to be updated
-        for(int i = 0; i < currentNodes.Count; i++)
+        for(i = 0; i < currentNodes.Count; i++)
         {
             // If the new version of the Node Data is different than the old verion, update the old Node to the value of the new version
             if(newNodes[i].Type != currentNodes[i].Type)
@@ -161,13 +167,21 @@ public class FileManager: MonoBehaviour
                 GameManager.Instance.MainInfra.AllNodes[i].Teams = newNodes[i].Teams;
             }
         }
+
+        Debug.Log($" {i} / {currentNodes.Count} Nodes successfully updated. ");
     }
 
+    /// <summary>
+    /// Creates a new InfrastructureData from the system's passed data
+    /// </summary>
+    /// <param name="_fileName"></param>
+    /// <param name="_filePathExtension"></param>
+    /// <returns></returns>
     public InfrastructureData CreateInfraFromJSON(string _fileName, string _filePathExtension)
     {
         // Log the filepath to the Debug
         string filePath = rootFilePath + _filePathExtension + _fileName;
-        Debug.Log("Infrastructure JSON File Path: " + filePath);
+        Debug.Log("... Loading New Infrastructure Data ...");
 
         string JSONString = null;
 
@@ -176,9 +190,10 @@ public class FileManager: MonoBehaviour
             JSONString += line;
         }
 
-        InfrastructureData infrastructure = JsonUtility.FromJson<InfrastructureData>(JSONString);
+        InfrastructureData infrastructure = new InfrastructureData();
+        JsonUtility.FromJsonOverwrite(JSONString, infrastructure);
 
-        Debug.Log("Infrastructure successfully created from JSON.");
+        Debug.Log($"Infrastructure successfully created from {filePath}");
 
         return infrastructure;
     }
@@ -235,6 +250,11 @@ public class FileManager: MonoBehaviour
             Debug.Log(e.Message);
         }
     }
+    /// <summary>
+    /// Writes an infrastructureData to a JSON file 
+    /// </summary>
+    /// <param name="_fileName">The new file's name.</param>
+    /// <param name="_data">The data to convert to json format.</param>
     public void SaveToJSON(string _fileName, InfrastructureData _data)
     {
         string filePath = "C:\\ProgramData\\CSEC Visualizer\\Infrastructure\\Database\\" + _fileName;

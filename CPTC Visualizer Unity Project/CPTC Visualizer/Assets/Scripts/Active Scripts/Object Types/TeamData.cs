@@ -170,4 +170,12 @@ public class TeamData: MonoBehaviour
     {
 
     }
+
+    public string ConvertToJSON()
+    {
+        string dataString = "";
+        dataString += JsonUtility.ToJson(this);
+        Debug.Log(dataString);
+        return dataString;
+    }
 }
