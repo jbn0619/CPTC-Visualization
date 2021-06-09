@@ -104,7 +104,6 @@ public class InfrastructureData: MonoBehaviour
         connectionsById = new List<Vector2>();
         
         // draw initial raycasts between network and node connections. 
-        Debug.Log("Please Draw");
         DrawAllConnections();
     }
 
