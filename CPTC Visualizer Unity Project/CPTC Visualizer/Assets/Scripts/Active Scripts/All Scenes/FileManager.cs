@@ -166,6 +166,12 @@ public class FileManager: MonoBehaviour
         Debug.Log($" {i} / {currentNodes.Count} Nodes successfully updated. ");
     }
 
+    /// <summary>
+    /// Creates a new InfrastructureData from the system's passed data
+    /// </summary>
+    /// <param name="_fileName"></param>
+    /// <param name="_filePathExtension"></param>
+    /// <returns></returns>
     public InfrastructureData CreateInfraFromJSON(string _fileName, string _filePathExtension)
     {
         // Log the filepath to the Debug
@@ -239,6 +245,11 @@ public class FileManager: MonoBehaviour
             Debug.Log(e.Message);
         }
     }
+    /// <summary>
+    /// Writes an infrastructureData to a JSON file 
+    /// </summary>
+    /// <param name="_fileName">The new file's name.</param>
+    /// <param name="_data">The data to convert to json format.</param>
     public void SaveToJSON(string _fileName, InfrastructureData _data)
     {
         string filePath = "C:\\ProgramData\\CSEC Visualizer\\Infrastructure\\Database\\" + _fileName;
