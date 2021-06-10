@@ -373,6 +373,7 @@ public class FileManager: MonoBehaviour
     private AlertData HolderToData(Alert _alert)
     {
         AlertData alert = new AlertData();
+        // TODO: implement Alerts
         return alert;
     }
     private TeamData HolderToData(Team _team)
@@ -384,31 +385,32 @@ public class FileManager: MonoBehaviour
     private NodeData HolderToData(Node _node)
     {
         NodeData node = new NodeData();
-        node.SetData(_node.id, _node.ip, _node.isHidden, StringToNodeType(_node.type), StringToNodeState(_node.state), _node.connections, HolderToData(_node.teams));
+        node.SetData(_node.id, _node.ip, _node.isHidden, StringToNodeType(_node.type), StringToNodeState(_node.state), _node.connections, _node.teamIDs);
         return node;
     }
-
+    private Node DataToHolder(NodeData _node)
+    {
+        return new Node(_node.Id, _node.Ip, _node.Type, _node.State, _node.Connections, _node.TeamIDs, _node.IsHidden);
+    }
     private NetworkData HolderToData(SysNetwork _network)
     {
         NetworkData network = new NetworkData();
-        network.SetData(_network.networkId, HolderToData(_network.nodes), _network.networkConnections);
+        network.SetData(_network.networkId, _network.nodeIDs, _network.networkConnections);
         return network;
     }
-
+    private SysNetwork DataToHolder(NetworkData _network)
+    {
+        return new SysNetwork(_network.Id, _network.NodeIDs, _network.Connections);
+    }
     private InfrastructureData HolderToData(Infrastructure _infra)
     {
         InfrastructureData infra = new InfrastructureData();
-        infra.SetData(HolderToData(_infra.networks), HolderToData(_infra.nodes));
+        infra.SetData(HolderToData(_infra.networks), HolderToData(_infra.nodes), HolderToData(_infra.teams));
         return infra;
     }
     #endregion DataTypeConversion
 
     #region List Conversion
-    private List<SysNetwork> DataToHolder(List<NetworkData> _networks)
-    {
-        List<SysNetwork> networks = new List<SysNetwork>();
-        return networks;
-    }
     private List<NodeData> HolderToData(List<Node> _nodes)
     {
         List<NodeData> nodes = new List<NodeData>();
@@ -435,6 +437,15 @@ public class FileManager: MonoBehaviour
         foreach(SysNetwork net in _networks)
         {
             networks.Add(HolderToData(net));
+        }
+        return networks;
+    }
+    private List<SysNetwork> DataToHolder(List<NetworkData> _networks)
+    {
+        List<SysNetwork> networks = new List<SysNetwork>();
+        foreach (NetworkData netData in _networks)
+        {
+            networks.Add(DataToHolder(netData));
         }
         return networks;
     }

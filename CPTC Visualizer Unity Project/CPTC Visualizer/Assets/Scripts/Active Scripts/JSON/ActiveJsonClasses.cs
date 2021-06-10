@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 using UnityEngine;
 
 /// <summary>
-/// Author: Justin Neft
-///     Ben Wetzel - Summer 2021
-/// Function: Based on Justin's JsonClasses filce from the Spring Semester, these data structures can be tranfered between the Game Object scripts and the JSON file reader
+/// Author: Ben Wetzel - Summer 2021
+/// Function: Based on Justin's JsonClasses file from the Spring Semester, these data structures can be tranferred between the Game Object scripts and the JSON file reader
 /// </summary>
 namespace Assets.Scripts
 {
@@ -90,12 +89,33 @@ namespace Assets.Scripts
     [Serializable]
     public class Node
     {
+        /// <summary>
+        /// ID number of this simulated node 
+        /// </summary>
         public int id;
+        /// <summary>
+        /// IP addtess of this node within a simulated server
+        /// </summary>
         public string ip;
+        /// <summary>
+        /// The type of simulated computer system this node is
+        /// </summary>
         public string type;
+        /// <summary>
+        /// The current functionality of this node
+        /// </summary>
         public string state;
+        /// <summary>
+        /// A list of ID numbers for adjacent Nodes
+        /// </summary>
         public List<int> connections;
-        public List<Team> teams;
+        /// <summary>
+        /// A list of ID numbers for teams currently accessing this node
+        /// </summary>
+        public List<int> teamIDs;
+        /// <summary>
+        /// A boolean to track if this node is hidden in the system
+        /// </summary>
         public bool isHidden;
 
         /// <summary>
@@ -106,9 +126,9 @@ namespace Assets.Scripts
         /// <param name="_type">The system type of this node</param>
         /// <param name="_state">the current state of this node</param>
         /// <param name="_connections">list of id numbers of adjacent nodes</param>
-        /// <param name="_teams">List of the teams currently accessing this node</param>
+        /// <param name="_teamIDs">List of the id numbers for the teams currently accessing this node</param>
         /// <param name="_isHidden">determines if the node is hidden in the network view</param>
-        public Node(int _id, string _ip, NodeTypes _type, NodeState _state, List<int> _connections, List<Team> _teams, bool _isHidden = false)
+        public Node(int _id, string _ip, NodeTypes _type, NodeState _state, List<int> _connections, List<int> _teamIDs, bool _isHidden = false)
         {
             id = _id;
             ip = _ip;
@@ -116,7 +136,7 @@ namespace Assets.Scripts
             state = _state.ToString();
             connections = _connections;
             isHidden = _isHidden;
-            teams = _teams;
+            teamIDs = _teamIDs;
         }
     }
 
@@ -126,20 +146,29 @@ namespace Assets.Scripts
     [Serializable]
     public class SysNetwork
     {
+        /// <summary>
+        /// ID number of this simulated network
+        /// </summary>
         public int networkId;
-        public List<Node> nodes;
+        /// <summary>
+        /// List of ID numbers for the nodes within this network
+        /// </summary>
+        public List<int> nodeIDs;
+        /// <summary>
+        /// List of ID numbers for adjacent Networks
+        /// </summary>
         public List<int> networkConnections;
 
         /// <summary>
         /// Constructor for Network data holder
         /// </summary>
         /// <param name="_id">ID number of the Network</param>
-        /// <param name="_nodes"></param>
-        /// <param name="_connections"></param>
-        public SysNetwork(int _id, List<Node> _nodes, List<int> _connections)
+        /// <param name="_nodeIDs">List of all ID numbers of nodes within this network</param>
+        /// <param name="_connections">list of ID numbers of adjacent simulated networks</param>
+        public SysNetwork(int _id, List<int> _nodeIDs, List<int> _connections)
         {
             networkId = _id;
-            nodes = _nodes;
+            nodeIDs = _nodeIDs;
             networkConnections = _connections;
         }
     }

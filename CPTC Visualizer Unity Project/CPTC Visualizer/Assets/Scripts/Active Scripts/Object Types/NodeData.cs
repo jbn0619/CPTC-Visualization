@@ -24,6 +24,8 @@ public class NodeData: MonoBehaviour
     protected NodeState state;
     [SerializeField]
     protected bool isHidden;
+    [SerializeField]
+    protected List<int> teamIDs;
 
     [SerializeField]
     protected List<int> connections;
@@ -135,6 +137,21 @@ public class NodeData: MonoBehaviour
     }
 
     /// <summary>
+    /// Gets and Sets a list of id numbers for the teams currently at this node.
+    /// </summary>
+    public List<int> TeamIDs
+    {
+        get
+        {
+            return this.teamIDs;
+        }
+        set
+        {
+            this.teamIDs = value;
+        }
+    }
+
+    /// <summary>
     /// Gets and sets a list of team IDs currently accessing this node
     /// </summary>
     public List<TeamData> Teams
@@ -227,9 +244,9 @@ public class NodeData: MonoBehaviour
     /// <param name="_type"> tracks what type of system the node is</param>
     /// <param name="_state"> tracks what state the node is currently experiencing</param>
     /// <param name="_connections"> tracks the interger IDs of adjecent Nodes</param>
-    /// <param name="_teams">list of all teams accessing this node</param>
+    /// <param name="_teamIDs">list of all teams accessing this node</param>
     public void SetData(int _id, string _ip, bool _isHidden, NodeTypes _type, 
-        NodeState _state, List<int> _connections, List<TeamData> _teams)
+        NodeState _state, List<int> _connections, List<int> _teamIDs)
     {
         this.id             = _id;
         this.ip             = _ip;
@@ -237,7 +254,18 @@ public class NodeData: MonoBehaviour
         this.state          = _state;
         this.isHidden       = _isHidden;
         this.connections    = _connections;
-        this.teams          = _teams;
+        this.teamIDs          = _teamIDs;
+    }
+
+    /// <summary>
+    /// Use the data from the FileReader to add references to newly instanced GameObjects
+    /// </summary>
+    public void InstanceData()
+    {
+        foreach(int teamID in this.teamIDs)
+        {
+            this.teams.Add(GameManager.Instance.MainInfra.FindTeamByID(teamID));
+        }
     }
 
     /// <summary>
