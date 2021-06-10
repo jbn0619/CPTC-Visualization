@@ -265,7 +265,7 @@ public class FileManager: MonoBehaviour
             Directory.CreateDirectory("C:\\ProgramData\\CSEC Visualizer\\Infrastructure\\Database\\");
         }
 
-        Infrastructure infra = new Infrastructure(DataToHolder(_data.Networks), DataToHolder(_data.AllNodes));
+        Infrastructure infra = DataToHolder(_data);
 
         try
         {
@@ -376,11 +376,20 @@ public class FileManager: MonoBehaviour
         // TODO: implement Alerts
         return alert;
     }
+    private Alert DataToHolder(AlertData _alert)
+    {
+        //Implement Alert Class
+        return new Alert();
+    }
     private TeamData HolderToData(Team _team)
     {
         TeamData team = new TeamData();
         team.SetData(_team.id, _team.nodes);
         return team;
+    }
+    private Team DataToHolder(TeamData _team)
+    {
+        return new Team(_team.TeamId, DataToHolder(_team.Alerts), _team.NodeIDs);
     }
     private NodeData HolderToData(Node _node)
     {
@@ -408,9 +417,31 @@ public class FileManager: MonoBehaviour
         infra.SetData(HolderToData(_infra.networks), HolderToData(_infra.nodes), HolderToData(_infra.teams));
         return infra;
     }
+    private Infrastructure DataToHolder(InfrastructureData _infra)
+    {
+        return new Infrastructure(DataToHolder(_infra.Networks), DataToHolder(_infra.AllNodes), DataToHolder(_infra.Teams));
+    }
     #endregion DataTypeConversion
 
     #region List Conversion
+    private List<AlertData> HolderToData(List<Alert> _alerts)
+    {
+        List<AlertData> alerts = new List<AlertData>();
+        foreach(Alert alert in _alerts)
+        {
+            alerts.Add(HolderToData(alert));
+        }
+        return alerts;
+    }
+    private List<Alert> DataToHolder(List<AlertData> _alerts)
+    {
+        List<Alert> alerts = new List<Alert>();
+        foreach (AlertData alert in _alerts)
+        {
+            alerts.Add(DataToHolder(alert));
+        }
+        return alerts;
+    }
     private List<NodeData> HolderToData(List<Node> _nodes)
     {
         List<NodeData> nodes = new List<NodeData>();
@@ -420,7 +451,15 @@ public class FileManager: MonoBehaviour
         }
         return nodes;
     }
-
+    private List<Node> DataToHolder(List<NodeData> _nodes)
+    {
+        List<Node> nodes = new List<Node>();
+        foreach (NodeData node in _nodes)
+        {
+            nodes.Add(DataToHolder(node));
+        }
+        return nodes;
+    }
     private List<TeamData> HolderToData(List<Team> _teams)
     {
         List<TeamData> teams = new List<TeamData>();
@@ -430,7 +469,15 @@ public class FileManager: MonoBehaviour
         }
         return teams;
     }
-
+    private List<Team> DataToHolder(List<TeamData> _teams)
+    {
+        List<Team> teams = new List<Team>();
+        foreach (TeamData team in _teams)
+        {
+            teams.Add(DataToHolder(team));
+        }
+        return teams;
+    }
     private List<NetworkData> HolderToData(List<SysNetwork> _networks)
     {
         List<NetworkData> networks = new List<NetworkData>();

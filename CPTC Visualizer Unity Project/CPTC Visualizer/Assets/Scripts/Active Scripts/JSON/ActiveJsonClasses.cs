@@ -7,7 +7,14 @@ using UnityEngine;
 
 /// <summary>
 /// Author: Ben Wetzel - Summer 2021
-/// Function: Based on Justin's JsonClasses file from the Spring Semester, these data structures can be tranferred between the Game Object scripts and the JSON file reader
+/// Function: Based on Justin's JsonClasses file from the Spring Semester, these data structures can be transferred between the Game Object 
+///     scripts and the JSON file reader. The code is using them as an intermediary. 
+/// NOTES 1: Because the classes in this file are not derived from MonoBehaviour (They can’t be attached to GameObjects as components), they can 
+///     be easily understood by .NET CORE’s JSON Utility class. It would be preferable to use a more in-depth JSON library later, though I have 
+///     had difficulty locating one for the framework (.NET CORE) Unity uses. Most JSON libraries available are developed for the .NET framework.
+/// NOTES 2: In the future, it would be a good idea to implement a JSON Library which can read the key/value pairs from the JSON. This would 
+///     make these classes redundant, as we would be able to set the variables directly to the MonoBehaviours rather than relying on the JSON 
+///     utility to be able to understand which variables our holder classes need. 
 /// </summary>
 namespace Assets.Scripts
 {
@@ -35,6 +42,14 @@ namespace Assets.Scripts
         public int timestamp;
 
         /// <summary>
+        /// Placeholder Constructor, because the AlertData class is not yet implemented
+        /// </summary>
+        public Alert()
+        {
+
+        }
+
+        /// <summary>
         /// Constructor for the Alert class.
         /// </summary>
         /// <param name="_type">This alert's type.</param>
@@ -51,7 +66,7 @@ namespace Assets.Scripts
     }
 
     /// <summary>
-    /// A collection of a team's data, inlcuding ID, alerts they've generated and nodes they've discovered.
+    /// A collection of a team's data, including ID, alerts they've generated and nodes they've discovered.
     /// </summary>
     [Serializable]
     public class Team
@@ -94,7 +109,7 @@ namespace Assets.Scripts
         /// </summary>
         public int id;
         /// <summary>
-        /// IP addtess of this node within a simulated server
+        /// IP address of this node within a simulated server
         /// </summary>
         public string ip;
         /// <summary>
