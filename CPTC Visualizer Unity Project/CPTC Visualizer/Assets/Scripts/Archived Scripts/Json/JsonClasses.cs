@@ -9,9 +9,9 @@ using UnityEngine;
 /// Author: Justin Neft
 /// Function: Old classes that were used to read/write data to JSON files for the CCDC competition.
 /// </summary>
-/*namespace Assets.Scripts
+namespace Assets.Scripts
 {
-    /// <summary>
+    /*/ <summary>
     /// An alert's data, namely what type of alert they are.
     /// </summary>
     [Serializable]
@@ -130,7 +130,7 @@ using UnityEngine;
         {
             networks = n;
         }
-    }
+    }*/
 
     /// <summary>
     /// All of the data necessary to mimick a CPTC competition. Inlcudes a network-infrastructure, teams and events.
@@ -236,4 +236,3 @@ using UnityEngine;
 
     #endregion CCDC-Specific Data Containers
 }
-*/
