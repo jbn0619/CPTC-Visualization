@@ -117,7 +117,7 @@ namespace Assets.Scripts
         /// </summary>
         public string type;
         /// <summary>
-        /// The current functionality of this node
+        /// The current level of functionality of this node
         /// </summary>
         public string state;
         /// <summary>

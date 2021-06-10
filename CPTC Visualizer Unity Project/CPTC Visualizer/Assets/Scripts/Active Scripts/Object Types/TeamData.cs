@@ -10,25 +10,35 @@ using UnityEngine;
 public class TeamData: MonoBehaviour
 {
     #region Fields
-
+    /// <summary>
+    /// Id number of this team
+    /// </summary>
+    [SerializeField]
     protected int teamId;
-
+    /// <summary>
+    /// the name of this team displayed on the screen
+    /// </summary>
     [SerializeField]
     protected string teamName;
+    /// <summary>
+    /// The color used to represent this team on the display
+    /// </summary>
     [SerializeField]
     protected Color teamColor;
-
+    /// <summary>
+    /// A list of alerts the team has caused durning the competition
+    /// </summary>
     [SerializeField]
     protected List<AlertData> alerts;
-
-    [SerializeField]
-    protected PriorityQueue queue;
-
+    /// <summary>
+    /// A list of ID numbers of the nodes this team is currently accessing
+    /// </summary>
     [SerializeField]
     protected List<int> nodeIDs;
 
+    // Legacy Fields
+    protected PriorityQueue queue;
     protected InfrastructureData infraCopy;
-
     private List<UptimeChartData> uptimeCharts;
     private List<NotificationButton> notifMarkers;
     private List<GameObject> notifBanners;

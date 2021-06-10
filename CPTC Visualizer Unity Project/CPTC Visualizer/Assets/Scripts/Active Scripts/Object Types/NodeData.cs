@@ -13,29 +13,61 @@ public class NodeData: MonoBehaviour
 {
     #region Fields
 
-    [Header("Node Fields")]
+    /// <summary>
+    /// the ID number for this node
+    /// </summary>
+    [Header("JSON Data Fields")]
     [SerializeField]
     protected int id;
+    /// <summary>
+    /// The IP address of this node's access to the simulation
+    /// </summary>
     [SerializeField]
     protected string ip;
+    /// <summary>
+    /// The type of simulated computer system this node is
+    /// </summary>
     [SerializeField]
     protected NodeTypes type;
+    /// <summary>
+    /// The current level of functionality of this node
+    /// </summary>
     [SerializeField]
     protected NodeState state;
-    [SerializeField]
-    protected bool isHidden;
+    /// <summary>
+    /// A list of ID numbers for teams currently accessing this node
+    /// </summary>
     [SerializeField]
     protected List<int> teamIDs;
-
+    /// <summary>
+    /// A list of ID numbers for adjacent Nodes
+    /// </summary>
     [SerializeField]
     protected List<int> connections;
+    /// <summary>
+    /// A boolean to track if this node is hidden in the system
+    /// </summary>
+    [SerializeField]
+    protected bool isHidden;
+
+    /// <summary>
+    /// Linerenderers used to draw connections between adjacent Nodes
+    /// </summary>
+    [Header("Script References")]
     [SerializeField]
     protected List<LineRenderer> connectionGOS;
+    /// <summary>
+    /// reference to this object's SpriteRenderer
+    /// </summary>
     [SerializeField]
     protected SpriteRenderer nodeSprite;
+    /// <summary>
+    /// A list of the teams with currently accessing this node
+    /// </summary>
     [SerializeField]
-    protected List<TeamData> teams; // Tracks the teams with current access to this node
+    protected List<TeamData> teams; 
 
+    // Legacy Fields
     private UptimeChartData uptimeChart;
 
     #endregion Fields

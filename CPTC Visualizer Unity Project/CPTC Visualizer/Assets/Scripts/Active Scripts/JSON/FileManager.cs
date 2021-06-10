@@ -154,7 +154,7 @@ public class FileManager: MonoBehaviour
         // get old node data
         List<NodeData> currentNodes = GameManager.Instance.MainInfra.AllNodes;
 
-        int i = 0;
+        int i;
         // for each node, check if it needs to be updated
         for(i = 0; i < currentNodes.Count; i++)
         {
@@ -177,7 +177,6 @@ public class FileManager: MonoBehaviour
     /// </summary>
     /// <param name="_fileName"></param>
     /// <param name="_filePathExtension"></param>
-    /// <param name="_infra">Infrastructure GameObject to edit</param>
     public InfrastructureData CreateInfraFromJSON(string _fileName, string _filePathExtension)
     {
         // Log the filepath to the Debug
@@ -265,6 +264,8 @@ public class FileManager: MonoBehaviour
             Directory.CreateDirectory("C:\\ProgramData\\CSEC Visualizer\\Infrastructure\\Database\\");
         }
 
+        // translate the MonoBehavior data into a holder data structure. This allows the data to be formatted into a 
+        //      JSON using JSON Utility to read the data from the holder class
         Infrastructure infra = DataToHolder(_data);
 
         try

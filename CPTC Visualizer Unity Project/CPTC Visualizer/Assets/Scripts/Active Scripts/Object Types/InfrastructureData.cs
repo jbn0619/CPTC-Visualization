@@ -12,25 +12,42 @@ using UnityEngine;
 public class InfrastructureData: MonoBehaviour
 {
     #region Fields
-    [Header("Loaded from JSON")]
+    /// <summary>
+    /// List of all Networks within the Simulation
+    /// </summary>
+    [Header("JSON Data Fields")]
     [SerializeField]
     private List<NetworkData> networks;
+    /// <summary>
+    /// List of all Nodes within the Simulation
+    /// </summary>
     [SerializeField]
     private List<NodeData> allNodes;
+    /// <summary>
+    /// List of all Teams within the Simulation
+    /// </summary>
     [SerializeField]
     private List<TeamData> teams;
-    [SerializeField]
-    private bool live; // placeholder to deterimine if using instantiated data from JSON or handbuild-infrastructure in Inspector
 
+    /// <summary>
+    /// List of all Node Game Objects in the Unity
+    /// </summary>
     [Header("GameObject References")]
     [SerializeField]
     private List<GameObject> allNodeObjects;
+    /// <summary>
+    /// List of all Network GameObjects in the Unity
+    /// </summary>
     [SerializeField]
     private List<GameObject> networkObjects;
-    private List<int> shutDownNodes;
+    /// <summary>
+    /// List of all drawn connections between Node<-->Node, Node<-->Network, and Network<-->Network
+    /// </summary>
     [SerializeField]
     private List<Vector2> connectionsById;
 
+    // Legacy Fields
+    private List<int> shutDownNodes;
     #endregion Fields
 
     #region Properties
@@ -128,6 +145,7 @@ public class InfrastructureData: MonoBehaviour
         // Do we want to draw the raycasts every tick? would we be changing the positions of the nodes?
     }
 
+    // These mmethods are used to search through the Infrastructure's lists using the ID of a target object
     #region SearchMethods
     /// <summary>
     /// Search the infrastructure's allNodeObjects list and return the node object with the correct ID
