@@ -46,6 +46,9 @@ public class InfrastructureData: MonoBehaviour
     [SerializeField]
     private List<Vector2> connectionsById;
 
+    private List<Color> availableColors;
+    private List<String> availableNames;
+
     // Legacy Fields
     private List<int> shutDownNodes;
     #endregion Fields
@@ -136,6 +139,36 @@ public class InfrastructureData: MonoBehaviour
     {
         connectionsById = new List<Vector2>();
         
+        availableColors = new List<Color>();
+        availableColors.Add(new Color(135,15,133));
+        availableColors.Add(new Color(43,173,115));
+        availableColors.Add(new Color(99,18,153));
+        availableColors.Add(new Color(48,23,163));
+        availableColors.Add(new Color(31,92,158));
+        availableColors.Add(new Color(140,26,26));
+        availableColors.Add(new Color(74,168,33));
+        availableColors.Add(new Color(194,128,46));
+        availableColors.Add(new Color(115,13,66));
+        availableColors.Add(new Color(194,184,54));
+
+        availableNames = new List<String>();
+        availableNames.Add("Rattlesnakes");
+        availableNames.Add("Coyotes");
+        availableNames.Add("Deer");
+        availableNames.Add("Jackals");
+        availableNames.Add("Anaconda");
+        availableNames.Add("Pumas");
+        availableNames.Add("Dragonflies");
+        availableNames.Add("Capybaras");
+        availableNames.Add("Racoons");
+        availableNames.Add("Lizards");
+
+        foreach (TeamData t in teams)
+        {
+            t.TeamName = GetRandomName();
+            t.TeamColor = GetRandomColor();
+        }
+
         // draw initial raycasts between network and node connections. 
         DrawAllConnections();
     }
@@ -147,6 +180,37 @@ public class InfrastructureData: MonoBehaviour
         // if(live){ GameManager.Instance.FileManager.UpdateNodes();}
         // Do we want to draw the raycasts every tick? would we be changing the positions of the nodes?
     }
+
+    private String GetRandomName()
+    {
+        if(availableNames.Count > 0)
+        {
+            int randomIndex = UnityEngine.Random.Range(0,availableNames.Count);
+            String teamName = availableNames[randomIndex];
+            availableNames.RemoveAt(randomIndex);
+            return teamName;
+        }
+        else
+        {
+            return null;
+        }
+    }
+
+    private Color GetRandomColor()
+    {
+        if(availableColors.Count > 0)
+        {
+            int randomIndex = UnityEngine.Random.Range(0,availableNames.Count);
+            Color teamColor = availableColors[randomIndex];
+            availableColors.RemoveAt(randomIndex);
+            return teamColor;
+        }
+        else
+        {
+            return new Color(0,0,0);
+        }
+    }
+
 
     // These mmethods are used to search through the Infrastructure's lists using the ID of a target object
     #region SearchMethods
