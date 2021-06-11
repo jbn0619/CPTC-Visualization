@@ -89,6 +89,7 @@ public class TestDataWriter: MonoBehaviour
 
     public void WriteInfrastructure()
     {
+        Debug.Log("Writing Infrastructure to JSON");
         fileManager.SaveToJSON("infraDraft.JSON", GameManager.Instance.MainInfra);
     }
 

@@ -274,6 +274,7 @@ public class FileManager: MonoBehaviour
             {
                     sw.WriteLine(JsonUtility.ToJson(infra));
             }
+            Debug.Log($"Infrastructure successfully saved to {filePath}");
         }
         catch (Exception e)
         {
