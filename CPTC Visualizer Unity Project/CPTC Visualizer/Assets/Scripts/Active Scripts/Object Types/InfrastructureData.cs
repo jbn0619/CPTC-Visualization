@@ -333,8 +333,8 @@ public class InfrastructureData: MonoBehaviour
                 allNodeObjects[nodeCount].transform.parent = networkObjects[netCount].transform;
 
                 // Handle Data References
-                // grab a reference to the nodeData of the object
-                NodeData nodeData = allNodeObjects[nodeCount].GetComponent<NodeData>();
+                // grab data from the node in allNodes
+                NodeData nodeData = FindNodeDataByID(nodeId);
                 // set the new game object's NodeData component's variables to the values from the data passed by the JSON file
                 allNodeObjects[nodeCount].GetComponent<NodeData>().SetData(nodeData.Id, nodeData.Ip, nodeData.IsHidden, nodeData.Type,
                     nodeData.State, nodeData.Connections, nodeData.TeamIDs);
