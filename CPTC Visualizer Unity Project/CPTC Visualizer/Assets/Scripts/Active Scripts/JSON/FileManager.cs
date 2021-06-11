@@ -295,82 +295,6 @@ public class FileManager: MonoBehaviour
         return false;
     }
     #region Helper Methods
-    private NodeTypes StringToNodeType(string _input)
-    {
-        _input.ToLower().Trim();
-        NodeTypes type;
-        switch (_input) {
-            case "rootworkstation":
-                type = NodeTypes.RootWorkstation;
-                break;
-            case "securedrop":
-                type = NodeTypes.SecureDrop;
-                break;
-            case "securedserver":
-                type = NodeTypes.SecuredServer;
-                break;
-            case "vdi":
-                type = NodeTypes.VDI;
-                break;
-            case "vpn":
-                type = NodeTypes.VPN;
-                break;
-            case "www":
-                type = NodeTypes.WWW;
-                break;
-            case "ad":
-                type = NodeTypes.AD;
-                break;
-            case "azure":
-                type = NodeTypes.Azure;
-                break;
-            case "ca":
-                type = NodeTypes.CA;
-                break;
-            case "dns":
-                type = NodeTypes.DNS;
-                break;
-            case "edms":
-                type = NodeTypes.EDMS;
-                break;
-            case "fileshare":
-                type = NodeTypes.Fileshare;
-                break;
-            case "hyperv":
-                type = NodeTypes.HyperV;
-                break;
-            case "mailexchange":
-                type = NodeTypes.MailExchange;
-                break;
-            case "workstation":
-            default:
-                type = NodeTypes.Workstation;
-                break;
-        }
-
-        return type;
-    }
-
-    private NodeState StringToNodeState(string _input)
-    {
-        _input.ToLower().Trim();
-        NodeState state;
-        switch (_input)
-        {
-            case "off":
-                state = NodeState.Off;
-                break;
-            case "notworking":
-                state = NodeState.NotWorking;
-                break; 
-            case "on":
-            default:
-                state = NodeState.On;
-                break;
-        }
-        return state;
-    }
-
     #region Data Type Conversion
     private AlertData HolderToData(Alert _alert)
     {
@@ -396,7 +320,9 @@ public class FileManager: MonoBehaviour
     private NodeData HolderToData(Node _node)
     {
         NodeData node = new NodeData();
-        node.SetData(_node.id, _node.ip, _node.isHidden, StringToNodeType(_node.type), StringToNodeState(_node.state), _node.connections, _node.teamIDs);
+        Enum.TryParse(_node.type, out NodeTypes type);
+        Enum.TryParse(_node.state, out NodeState state);
+        node.SetData(_node.id, _node.ip, _node.isHidden, type, state, _node.connections, _node.teamIDs);
         return node;
     }
     private Node DataToHolder(NodeData _node)
