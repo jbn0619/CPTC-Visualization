@@ -43,6 +43,7 @@ public class TeamData: MonoBehaviour
     private List<NotificationButton> notifMarkers;
     private List<GameObject> notifBanners;
 
+
     #endregion Fields
 
     #region Properties
@@ -174,7 +175,7 @@ public class TeamData: MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     public void SetupQueue()
@@ -201,5 +202,5 @@ public class TeamData: MonoBehaviour
         this.nodeIDs = _nodeIDs;
     }
 
-    // TODO : make methods to give teams random names and colors from a list of possible combos
+    
 }
