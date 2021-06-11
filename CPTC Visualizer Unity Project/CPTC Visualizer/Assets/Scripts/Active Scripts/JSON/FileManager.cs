@@ -173,7 +173,7 @@ public class FileManager: MonoBehaviour
     }
 
     /// <summary>
-    /// Sets the data of the Game object equal to the data the JSON provides
+    /// Creates a new InfrastructureData from the system's passed data
     /// </summary>
     /// <param name="_fileName"></param>
     /// <param name="_filePathExtension"></param>

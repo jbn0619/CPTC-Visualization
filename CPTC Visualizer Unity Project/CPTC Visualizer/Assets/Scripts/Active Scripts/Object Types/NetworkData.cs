@@ -193,7 +193,7 @@ public class NetworkData: MonoBehaviour
     /// Sets the basic data of the Network 
     /// </summary>
     /// <param name="_id">This network's int ID to determine connections</param>
-    /// <param name="_nodes"> liat of nodes within this network</param>
+    /// <param name="_nodes"> list of nodes within this network</param>
     /// <param name="_connections">list of int IDs this network is connected to</param>
     public void SetData(int _id, List<int> _nodes, List<int> _connections)
     {

@@ -299,7 +299,7 @@ public class GameManager: Singleton<GameManager>
             this.mainInfra = mainInfraObject.GetComponent<InfrastructureData>();
             // set the object's infra data to the data from the JSON file
             fileManager.CreateInfraFromJSON("infraDraft.JSON", "\\Infrastructure\\Database\\");
-            // instanciate the child objects with the data
+            // instantiate the child objects with the data
             mainInfra.InstanceChildren();
         }
     }

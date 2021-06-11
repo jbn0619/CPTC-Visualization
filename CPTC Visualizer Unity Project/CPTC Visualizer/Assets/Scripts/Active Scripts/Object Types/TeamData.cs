@@ -111,12 +111,18 @@ public class TeamData: MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Gets or sets the Team Name
+    /// </summary>
     public string TeamName
     {
         get { return teamName; }
         set { teamName = value; }
     }
 
+    /// <summary>
+    /// Gets or sets the team's color
+    /// </summary>
     public Color TeamColor
     {
         get { return teamColor; }

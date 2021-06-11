@@ -118,6 +118,9 @@ public class InfrastructureData: MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Gets a list of vectors representing the connections between nodes
+    /// </summary>
     public List<Vector2> ConnectionsById
     {
         get
