@@ -12,23 +12,42 @@ using UnityEngine;
 public class InfrastructureData: MonoBehaviour
 {
     #region Fields
-    [Header("Loaded from JSON")]
+    /// <summary>
+    /// List of all Networks within the Simulation
+    /// </summary>
+    [Header("JSON Data Fields")]
     [SerializeField]
     private List<NetworkData> networks;
+    /// <summary>
+    /// List of all Nodes within the Simulation
+    /// </summary>
     [SerializeField]
     private List<NodeData> allNodes;
+    /// <summary>
+    /// List of all Teams within the Simulation
+    /// </summary>
     [SerializeField]
-    private bool live; // placeholder to deterimine if using instantiated data from JSON or handbuild-infrastructure in Inspector
+    private List<TeamData> teams;
 
+    /// <summary>
+    /// List of all Node Game Objects in the Unity
+    /// </summary>
     [Header("GameObject References")]
     [SerializeField]
     private List<GameObject> allNodeObjects;
+    /// <summary>
+    /// List of all Network GameObjects in the Unity
+    /// </summary>
     [SerializeField]
     private List<GameObject> networkObjects;
-    private List<int> shutDownNodes;
+    /// <summary>
+    /// List of all drawn connections between Node<-->Node, Node<-->Network, and Network<-->Network
+    /// </summary>
     [SerializeField]
     private List<Vector2> connectionsById;
 
+    // Legacy Fields
+    private List<int> shutDownNodes;
     #endregion Fields
 
     #region Properties
@@ -67,6 +86,17 @@ public class InfrastructureData: MonoBehaviour
     }
 
     /// <summary>
+    /// Gets a list of All teams operating within the simulation.
+    /// </summary>
+    public List<TeamData> Teams
+    {
+        get
+        {
+            return this.teams;
+        }
+    }
+
+    /// <summary>
     /// Gets a list of all the instanced Node Objects in the scene
     /// </summary>
     public List<GameObject> AllNodeObjects
@@ -88,6 +118,9 @@ public class InfrastructureData: MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Gets a list of vectors representing the connections between nodes
+    /// </summary>
     public List<Vector2> ConnectionsById
     {
         get
@@ -115,22 +148,59 @@ public class InfrastructureData: MonoBehaviour
         // Do we want to draw the raycasts every tick? would we be changing the positions of the nodes?
     }
 
+    // These mmethods are used to search through the Infrastructure's lists using the ID of a target object
+    #region SearchMethods
     /// <summary>
     /// Search the infrastructure's allNodeObjects list and return the node object with the correct ID
     /// </summary>
-    /// <param name="searchID"></param>
+    /// <param name="_searchID"></param>
     /// <returns></returns>
-    public GameObject FindNodeByID(int searchID)
+    public GameObject FindNodeObjectByID(int _searchID)
     {
         foreach(GameObject obj in this.allNodeObjects)
         {
-            if(obj.GetComponent<NodeData>().Id == searchID)
+            if(obj.GetComponent<NodeData>().Id == _searchID)
             {
                 return obj;
             }
         }
         return null;
     }
+
+    /// <summary>
+    /// Search the infrastructures's allNodes list for the node with the passed ID and return it
+    /// </summary>
+    /// <param name="_searchID">ID number of the desired node</param>
+    /// <returns></returns>
+    public NodeData FindNodeDataByID(int _searchID)
+    {
+        foreach (NodeData data in this.allNodes)
+        {
+            if (data.Id == _searchID)
+            {
+                return data;
+            }
+        }
+        return null;
+    }
+
+    /// <summary>
+    /// Search the Infrastructure's team list for the team with the passed ID number and return it.
+    /// </summary>
+    /// <param name="_searchID">ID number of the desired team</param>
+    /// <returns></returns>
+    public TeamData FindTeamByID(int _searchID)
+    {
+        foreach(TeamData team in this.teams)
+        {
+            if(team.TeamId == _searchID)
+            {
+                return team;
+            }
+        }
+        return null;
+    }
+    #endregion SearchMethods
 
     /// <summary>
     /// Draw connections between all nodes and networks
@@ -147,8 +217,8 @@ public class InfrastructureData: MonoBehaviour
                 if(!(connectionsById.Contains(new Vector2(node.Id, id)) || connectionsById.Contains(new Vector2(id, node.Id))))
                 {
                     connectionsById.Add(new Vector2(id,node.Id));
-                    GL.Vertex(FindNodeByID(node.Id).transform.position);
-                    GL.Vertex(FindNodeByID(id).transform.position);
+                    GL.Vertex(FindNodeObjectByID(node.Id).transform.position);
+                    GL.Vertex(FindNodeObjectByID(id).transform.position);
                 }
             }
         }
@@ -161,49 +231,67 @@ public class InfrastructureData: MonoBehaviour
     /// </summary>
     /// <param name="_networks">Networks of nodes within the server</param>
     /// <param name="_nodes">all nodes within the server</param>
-    public void SetData(List<NetworkData> _networks, List<NodeData> _nodes)
+    /// <param name="_teams">all of the teams competing in the competition</param>
+    public void SetData(List<NetworkData> _networks, List<NodeData> _nodes, List<TeamData> _teams)
     {
         this.networks = _networks;
         this.allNodes = _nodes;
+        this.teams = _teams;
     }
 
     /// <summary>
-    /// Set this infrastructure's data to the new values and instantiates the requisite objects within it.
+    /// Instantiate child network and node objects, and set data lists to reference the scripts attetched to the objects
     /// </summary>
     public void InstanceChildren()
     {
+        int netCount = 0;
+        int nodeCount = 0;
         // create gameObjects for all the networks
-        foreach (NetworkData n in this.networks)
+        foreach (NetworkData net in this.networks)
         {
+            // Handle GameObject References
+            // Create new Network Object and add it to the Infrastructure's list of Network Objects
             networkObjects.Add(Instantiate(GameManager.Instance.NetworkPrefab, this.transform.position, this.transform.rotation));
-            networkObjects[networkObjects.Count - 1].transform.parent = this.transform;
-            networkObjects[networkObjects.Count - 1].GetComponent<NetworkData>().SetData(n.Id, n.Nodes, n.Connections);
+            // set the new object to be a child of the Infrastructure Object's
+            networkObjects[netCount].transform.parent = this.transform;
+
+            // Handle Data References
+            // transfer the data from the networkData loaded from the JSON FIle to the nodeData component of the gameObject
+            networkObjects[netCount].GetComponent<NetworkData>().SetData(net.Id, net.NodeIDs, net.Connections);
+
             // instantiate the nodes within this network 
-            foreach (NodeData o in networkObjects[networkObjects.Count - 1].GetComponent<NetworkData>().Nodes)
+            foreach (int nodeId in networkObjects[netCount].GetComponent<NetworkData>().NodeIDs)
             {
+                // Handle GameObject References
                 // Instantiate using the InfrastructureData's tranform as a base. 
                 allNodeObjects.Add(Instantiate(GameManager.Instance.NetworkPrefab, this.transform.position, this.transform.rotation));
-                networkObjects[networkObjects.Count - 1].GetComponent<NetworkData>().AddNodeObject(allNodeObjects[allNodeObjects.Count - 1]);
-                allNodeObjects[allNodeObjects.Count - 1].transform.parent = networkObjects[networkObjects.Count - 1].transform;
-                // set the new game object's NodeData variables to the new set of variables
-                allNodeObjects[allNodeObjects.Count - 1].GetComponent<NodeData>().SetData(o.Id, o.Ip, o.IsHidden, o.Type,
-                    o.State, o.Connections);
+                // set the new node to be a child of the correct network
+                allNodeObjects[nodeCount].transform.parent = networkObjects[netCount].transform;
+
+                // Handle Data References
+                // grab a reference to the nodeData of the object
+                NodeData nodeData = allNodeObjects[nodeCount].GetComponent<NodeData>();
+                // set the new game object's NodeData component's variables to the values from the data passed by the JSON file
+                allNodeObjects[nodeCount].GetComponent<NodeData>().SetData(nodeData.Id, nodeData.Ip, nodeData.IsHidden, nodeData.Type,
+                    nodeData.State, nodeData.Connections, nodeData.TeamIDs);
+                // add the new node gameObject to the network's list of its node objects
+                networkObjects[netCount].GetComponent<NetworkData>().AddNodeObject(allNodeObjects[nodeCount]);
+
+                // set network references to the node scripts connected to the game Objects
+                allNodes[nodeCount] = allNodeObjects[nodeCount].GetComponent<NodeData>();
+                nodeCount++;
             }
+            nodeCount = 0;
+
+            // set networkData's references to the network scripts connected to the game Objects
+            networks[netCount] = networkObjects[netCount].GetComponent<NetworkData>();
+
+            netCount++;
         }
 
         // create method of determining locations for networks and nodes based on givern parameters
         //either based on concetration of nodes, setting the networks in a pre-determined order, or some other method.
 
-        // set network references to the node scripts connected to the game Objects
-        for (int i = 0; i < allNodes.Count; i++)
-        {
-            allNodes[i] = allNodeObjects[i].GetComponent<NodeData>();
-        }
-        // set network references to the network scripts connected to the game Objects
-        for (int i = 0; i < networks.Count; i++)
-        {
-            networks[i] = networkObjects[i].GetComponent<NetworkData>();
-        }
     }
     
     /* Phased out because we are using in-between classes to move data from the FileReader to the JSON files now. - BW

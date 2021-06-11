@@ -6,9 +6,15 @@ using System.Threading.Tasks;
 using UnityEngine;
 
 /// <summary>
-/// Author: Justin Neft
-///     Ben Wetzel - Summer 2021
-/// Function: Based on Justin's JsonClasses filce from the Spring Semester, these data structures can be tranfered between the Game Object scripts and the JSON file reader
+/// Author: Ben Wetzel - Summer 2021
+/// Function: Based on Justin's JsonClasses file from the Spring Semester, these data structures can be transferred between the Game Object 
+///     scripts and the JSON file reader. The code is using them as an intermediary. 
+/// NOTES 1: Because the classes in this file are not derived from MonoBehaviour (They can’t be attached to GameObjects as components), they can 
+///     be easily understood by .NET CORE’s JSON Utility class. It would be preferable to use a more in-depth JSON library later, though I have 
+///     had difficulty locating one for the framework (.NET CORE) Unity uses. Most JSON libraries available are developed for the .NET framework.
+/// NOTES 2: In the future, it would be a good idea to implement a JSON Library which can read the key/value pairs from the JSON. This would 
+///     make these classes redundant, as we would be able to set the variables directly to the MonoBehaviours rather than relying on the JSON 
+///     utility to be able to understand which variables our holder classes need. 
 /// </summary>
 namespace Assets.Scripts
 {
@@ -36,6 +42,14 @@ namespace Assets.Scripts
         public int timestamp;
 
         /// <summary>
+        /// Placeholder Constructor, because the AlertData class is not yet implemented
+        /// </summary>
+        public Alert()
+        {
+
+        }
+
+        /// <summary>
         /// Constructor for the Alert class.
         /// </summary>
         /// <param name="_type">This alert's type.</param>
@@ -52,7 +66,7 @@ namespace Assets.Scripts
     }
 
     /// <summary>
-    /// A collection of a team's data, inlcuding ID, alerts they've generated and nodes they've discovered.
+    /// A collection of a team's data, including ID, alerts they've generated and nodes they've discovered.
     /// </summary>
     [Serializable]
     public class Team
@@ -90,12 +104,33 @@ namespace Assets.Scripts
     [Serializable]
     public class Node
     {
+        /// <summary>
+        /// ID number of this simulated node 
+        /// </summary>
         public int id;
+        /// <summary>
+        /// IP address of this node within a simulated server
+        /// </summary>
         public string ip;
+        /// <summary>
+        /// The type of simulated computer system this node is
+        /// </summary>
         public string type;
+        /// <summary>
+        /// The current level of functionality of this node
+        /// </summary>
         public string state;
+        /// <summary>
+        /// A list of ID numbers for adjacent Nodes
+        /// </summary>
         public List<int> connections;
-        public List<Team> teams;
+        /// <summary>
+        /// A list of ID numbers for teams currently accessing this node
+        /// </summary>
+        public List<int> teamIDs;
+        /// <summary>
+        /// A boolean to track if this node is hidden in the system
+        /// </summary>
         public bool isHidden;
 
         /// <summary>
@@ -106,9 +141,9 @@ namespace Assets.Scripts
         /// <param name="_type">The system type of this node</param>
         /// <param name="_state">the current state of this node</param>
         /// <param name="_connections">list of id numbers of adjacent nodes</param>
-        /// <param name="_teams">List of the teams currently accessing this node</param>
+        /// <param name="_teamIDs">List of the id numbers for the teams currently accessing this node</param>
         /// <param name="_isHidden">determines if the node is hidden in the network view</param>
-        public Node(int _id, string _ip, NodeTypes _type, NodeState _state, List<int> _connections, List<Team> _teams, bool _isHidden = false)
+        public Node(int _id, string _ip, NodeTypes _type, NodeState _state, List<int> _connections, List<int> _teamIDs, bool _isHidden = false)
         {
             id = _id;
             ip = _ip;
@@ -116,7 +151,7 @@ namespace Assets.Scripts
             state = _state.ToString();
             connections = _connections;
             isHidden = _isHidden;
-            teams = _teams;
+            teamIDs = _teamIDs;
         }
     }
 
@@ -126,20 +161,29 @@ namespace Assets.Scripts
     [Serializable]
     public class SysNetwork
     {
+        /// <summary>
+        /// ID number of this simulated network
+        /// </summary>
         public int networkId;
-        public List<Node> nodes;
+        /// <summary>
+        /// List of ID numbers for the nodes within this network
+        /// </summary>
+        public List<int> nodeIDs;
+        /// <summary>
+        /// List of ID numbers for adjacent Networks
+        /// </summary>
         public List<int> networkConnections;
 
         /// <summary>
         /// Constructor for Network data holder
         /// </summary>
         /// <param name="_id">ID number of the Network</param>
-        /// <param name="_nodes"></param>
-        /// <param name="_connections"></param>
-        public SysNetwork(int _id, List<Node> _nodes, List<int> _connections)
+        /// <param name="_nodeIDs">List of all ID numbers of nodes within this network</param>
+        /// <param name="_connections">list of ID numbers of adjacent simulated networks</param>
+        public SysNetwork(int _id, List<int> _nodeIDs, List<int> _connections)
         {
             networkId = _id;
-            nodes = _nodes;
+            nodeIDs = _nodeIDs;
             networkConnections = _connections;
         }
     }

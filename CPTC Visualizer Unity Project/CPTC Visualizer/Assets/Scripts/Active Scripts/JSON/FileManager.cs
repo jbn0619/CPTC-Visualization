@@ -154,7 +154,7 @@ public class FileManager: MonoBehaviour
         // get old node data
         List<NodeData> currentNodes = GameManager.Instance.MainInfra.AllNodes;
 
-        int i = 0;
+        int i;
         // for each node, check if it needs to be updated
         for(i = 0; i < currentNodes.Count; i++)
         {
@@ -173,11 +173,10 @@ public class FileManager: MonoBehaviour
     }
 
     /// <summary>
-    /// Sets the data of the Game object equal to the data the JSON provides
+    /// Creates a new InfrastructureData from the system's passed data
     /// </summary>
     /// <param name="_fileName"></param>
     /// <param name="_filePathExtension"></param>
-    /// <param name="_infra">Infrastructure GameObject to edit</param>
     public InfrastructureData CreateInfraFromJSON(string _fileName, string _filePathExtension)
     {
         // Log the filepath to the Debug
@@ -265,7 +264,9 @@ public class FileManager: MonoBehaviour
             Directory.CreateDirectory("C:\\ProgramData\\CSEC Visualizer\\Infrastructure\\Database\\");
         }
 
-        Infrastructure infra = new Infrastructure(DataToHolder(_data.Networks), DataToHolder(_data.AllNodes));
+        // translate the MonoBehavior data into a holder data structure. This allows the data to be formatted into a 
+        //      JSON using JSON Utility to read the data from the holder class
+        Infrastructure infra = DataToHolder(_data);
 
         try
         {
@@ -373,7 +374,13 @@ public class FileManager: MonoBehaviour
     private AlertData HolderToData(Alert _alert)
     {
         AlertData alert = new AlertData();
+        // TODO: implement Alerts
         return alert;
+    }
+    private Alert DataToHolder(AlertData _alert)
+    {
+        //Implement Alert Class
+        return new Alert();
     }
     private TeamData HolderToData(Team _team)
     {
@@ -381,33 +388,60 @@ public class FileManager: MonoBehaviour
         team.SetData(_team.id, _team.nodes);
         return team;
     }
+    private Team DataToHolder(TeamData _team)
+    {
+        return new Team(_team.TeamId, DataToHolder(_team.Alerts), _team.NodeIDs);
+    }
     private NodeData HolderToData(Node _node)
     {
         NodeData node = new NodeData();
-        node.SetData(_node.id, _node.ip, _node.isHidden, StringToNodeType(_node.type), StringToNodeState(_node.state), _node.connections, HolderToData(_node.teams));
+        node.SetData(_node.id, _node.ip, _node.isHidden, StringToNodeType(_node.type), StringToNodeState(_node.state), _node.connections, _node.teamIDs);
         return node;
     }
-
+    private Node DataToHolder(NodeData _node)
+    {
+        return new Node(_node.Id, _node.Ip, _node.Type, _node.State, _node.Connections, _node.TeamIDs, _node.IsHidden);
+    }
     private NetworkData HolderToData(SysNetwork _network)
     {
         NetworkData network = new NetworkData();
-        network.SetData(_network.networkId, HolderToData(_network.nodes), _network.networkConnections);
+        network.SetData(_network.networkId, _network.nodeIDs, _network.networkConnections);
         return network;
     }
-
+    private SysNetwork DataToHolder(NetworkData _network)
+    {
+        return new SysNetwork(_network.Id, _network.NodeIDs, _network.Connections);
+    }
     private InfrastructureData HolderToData(Infrastructure _infra)
     {
         InfrastructureData infra = new InfrastructureData();
-        infra.SetData(HolderToData(_infra.networks), HolderToData(_infra.nodes));
+        infra.SetData(HolderToData(_infra.networks), HolderToData(_infra.nodes), HolderToData(_infra.teams));
         return infra;
+    }
+    private Infrastructure DataToHolder(InfrastructureData _infra)
+    {
+        return new Infrastructure(DataToHolder(_infra.Networks), DataToHolder(_infra.AllNodes), DataToHolder(_infra.Teams));
     }
     #endregion DataTypeConversion
 
     #region List Conversion
-    private List<SysNetwork> DataToHolder(List<NetworkData> _networks)
+    private List<AlertData> HolderToData(List<Alert> _alerts)
     {
-        List<SysNetwork> networks = new List<SysNetwork>();
-        return networks;
+        List<AlertData> alerts = new List<AlertData>();
+        foreach(Alert alert in _alerts)
+        {
+            alerts.Add(HolderToData(alert));
+        }
+        return alerts;
+    }
+    private List<Alert> DataToHolder(List<AlertData> _alerts)
+    {
+        List<Alert> alerts = new List<Alert>();
+        foreach (AlertData alert in _alerts)
+        {
+            alerts.Add(DataToHolder(alert));
+        }
+        return alerts;
     }
     private List<NodeData> HolderToData(List<Node> _nodes)
     {
@@ -418,7 +452,15 @@ public class FileManager: MonoBehaviour
         }
         return nodes;
     }
-
+    private List<Node> DataToHolder(List<NodeData> _nodes)
+    {
+        List<Node> nodes = new List<Node>();
+        foreach (NodeData node in _nodes)
+        {
+            nodes.Add(DataToHolder(node));
+        }
+        return nodes;
+    }
     private List<TeamData> HolderToData(List<Team> _teams)
     {
         List<TeamData> teams = new List<TeamData>();
@@ -428,13 +470,30 @@ public class FileManager: MonoBehaviour
         }
         return teams;
     }
-
+    private List<Team> DataToHolder(List<TeamData> _teams)
+    {
+        List<Team> teams = new List<Team>();
+        foreach (TeamData team in _teams)
+        {
+            teams.Add(DataToHolder(team));
+        }
+        return teams;
+    }
     private List<NetworkData> HolderToData(List<SysNetwork> _networks)
     {
         List<NetworkData> networks = new List<NetworkData>();
         foreach(SysNetwork net in _networks)
         {
             networks.Add(HolderToData(net));
+        }
+        return networks;
+    }
+    private List<SysNetwork> DataToHolder(List<NetworkData> _networks)
+    {
+        List<SysNetwork> networks = new List<SysNetwork>();
+        foreach (NetworkData netData in _networks)
+        {
+            networks.Add(DataToHolder(netData));
         }
         return networks;
     }

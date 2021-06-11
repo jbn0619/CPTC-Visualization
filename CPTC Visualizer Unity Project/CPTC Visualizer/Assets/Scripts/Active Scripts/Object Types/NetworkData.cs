@@ -12,24 +12,45 @@ using UnityEngine;
 public class NetworkData: MonoBehaviour
 {
     #region Fields
-
+    /// <summary>
+    /// This Network's ID number
+    /// </summary>
+    [Header("JSON Data Fields")]
     [SerializeField]
     private int id;
+    /// <summary>
+    /// List of ID numbers of the nodes within this Network
+    /// </summary>
     [SerializeField]
-    private List<NodeData> nodes;
+    private List<int> nodeIDs;
+    /// <summary>
+    /// List of ID numbers of adjacent Networks
+    /// </summary>
     [SerializeField]
     private List<int> connections;
 
+    /// <summary>
+    /// List of the Node GameObjects childed to this object
+    /// </summary>
+    [Header("Script References")]
+    [SerializeField]
+    protected List<GameObject> nodeObjects;
+    /// <summary>
+    /// List of the NodeData Components of the nodes within this network
+    /// </summary>
+    [SerializeField]
+    protected List<NodeData> nodes;
+    /// <summary>
+    /// List of the Linerenderers used to draw the connections between this network and other networks
+    /// </summary>
+    [SerializeField]
+    protected List<LineRenderer> connectionGOS;
+
+    // Legacy Fields
     private bool isActive;
     private float scanTime;
     private bool scanActive;
     private float scanCount;
-
-    [SerializeField]
-    protected List<GameObject> nodeObjects;
-    [SerializeField]
-    protected List<LineRenderer> connectionGOS;
-
     #endregion Fields
 
     #region Properties
@@ -81,11 +102,11 @@ public class NetworkData: MonoBehaviour
     /// <summary>
     /// Gets a list of nodes within this network.
     /// </summary>
-    public List<NodeData> Nodes
+    public List<int> NodeIDs
     {
         get
         {
-            return nodes;
+            return nodeIDs;
         }
     }
 
@@ -97,6 +118,17 @@ public class NetworkData: MonoBehaviour
         get
         {
             return connections;
+        }
+    }
+
+    /// <summary>
+    /// Get a list of the data of all nodes within the simulated Network
+    /// </summary>
+    public List<NodeData> Nodes
+    {
+        get
+        {
+            return this.nodes;
         }
     }
 
@@ -161,13 +193,21 @@ public class NetworkData: MonoBehaviour
     /// Sets the basic data of the Network 
     /// </summary>
     /// <param name="_id">This network's int ID to determine connections</param>
-    /// <param name="_nodes"> liat of nodes within this network</param>
+    /// <param name="_nodes"> list of nodes within this network</param>
     /// <param name="_connections">list of int IDs this network is connected to</param>
-    public void SetData(int _id, List<NodeData> _nodes, List<int> _connections)
+    public void SetData(int _id, List<int> _nodes, List<int> _connections)
     {
         this.id = _id;
-        this.nodes = _nodes;
+        this.nodeIDs = _nodes;
         this.connections = _connections;
+    }
+
+    public void InstanceData()
+    {
+        foreach(int nodeID in this.nodeIDs)
+        {
+            this.nodes.Add(GameManager.Instance.MainInfra.FindNodeDataByID(nodeID));
+        }
     }
 
     /// <summary>
@@ -179,9 +219,9 @@ public class NetworkData: MonoBehaviour
         if(_node.GetComponent<NodeData>())
         {
             int searchID = _node.GetComponent<NodeData>().Id;
-            foreach (NodeData n in this.nodes)
+            foreach (int nodeID in this.nodeIDs)
             {
-                if (n.Id == searchID)
+                if (nodeID == searchID)
                 {
                     nodeObjects.Add(_node);
                 }

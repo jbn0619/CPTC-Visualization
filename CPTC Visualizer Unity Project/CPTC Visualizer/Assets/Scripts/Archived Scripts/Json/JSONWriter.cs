@@ -80,7 +80,8 @@ public class JSONWriter: MonoBehaviour
         
     }
 
-    /// <summary>
+    /*Commented out because these methods use the archived versions of JSON classes. will need to update these methods if we want to utalize them.
+     * /// <summary>
     /// Generates Json-formatted data based-on the fields for this script.
     /// </summary>
     public void GenerateData()
@@ -435,7 +436,7 @@ public class JSONWriter: MonoBehaviour
         Infrastructure newInfra = new Infrastructure(networks);
         return newInfra;
     }
-
+    */
     /// <summary>
     /// Saves any generated data to a Json file.
     /// </summary>

@@ -4,30 +4,41 @@ using UnityEngine;
 
 /// <summary>
 /// Author: Justin Neft
+///     Ben Wetzel - Summer 2021
 /// Function: Data container that is tied to a game object. Represents a competing team in the CPTC competition, and contains team-specific information as well as a copy of the infrastructure for them to modify.
 /// </summary>
 public class TeamData: MonoBehaviour
 {
     #region Fields
-
+    /// <summary>
+    /// Id number of this team
+    /// </summary>
+    [SerializeField]
     protected int teamId;
-
+    /// <summary>
+    /// the name of this team displayed on the screen
+    /// </summary>
     [SerializeField]
     protected string teamName;
+    /// <summary>
+    /// The color used to represent this team on the display
+    /// </summary>
     [SerializeField]
     protected Color teamColor;
-
+    /// <summary>
+    /// A list of alerts the team has caused durning the competition
+    /// </summary>
     [SerializeField]
     protected List<AlertData> alerts;
-
+    /// <summary>
+    /// A list of ID numbers of the nodes this team is currently accessing
+    /// </summary>
     [SerializeField]
+    protected List<int> nodeIDs;
+
+    // Legacy Fields
     protected PriorityQueue queue;
-
-    [SerializeField]
-    protected List<int> nodes;
-
     protected InfrastructureData infraCopy;
-
     private List<UptimeChartData> uptimeCharts;
     private List<NotificationButton> notifMarkers;
     private List<GameObject> notifBanners;
@@ -75,13 +86,13 @@ public class TeamData: MonoBehaviour
     }
 
     /// <summary>
-    /// Gets a list of nodes this team has discovered.
+    /// Gets a list of ID numbers for nodes this team has discovered.
     /// </summary>
-    public List<int> Nodes
+    public List<int> NodeIDs
     {
         get
         {
-            return nodes;
+            return nodeIDs;
         }
     }
 
@@ -100,12 +111,18 @@ public class TeamData: MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Gets or sets the Team Name
+    /// </summary>
     public string TeamName
     {
         get { return teamName; }
         set { teamName = value; }
     }
 
+    /// <summary>
+    /// Gets or sets the team's color
+    /// </summary>
     public Color TeamColor
     {
         get { return teamColor; }
@@ -176,13 +193,13 @@ public class TeamData: MonoBehaviour
     /// </summary>
     /// <param name="_id">Team's id number</param>
     /// <param name="_alerts">alerts this team has triggered</param>
-    /// <param name="_nodes">nodes this team is currently visiting</param>
-    public void SetData(int _id, List<int>_nodes)
+    /// <param name="_nodeIDs">nodes this team is currently visiting</param>
+    public void SetData(int _id, List<int> _nodeIDs, List<AlertData> _alerts = null)
     {
-        // make method to give team a random name
-        // make a method to give the teams a random color
         this.teamId = _id;
         // this.alerts = _alerts; // alerts are not currently implemented as a data structure.
-        this.nodes = _nodes;
+        this.nodeIDs = _nodeIDs;
     }
+
+    // TODO : make methods to give teams random names and colors from a list of possible combos
 }

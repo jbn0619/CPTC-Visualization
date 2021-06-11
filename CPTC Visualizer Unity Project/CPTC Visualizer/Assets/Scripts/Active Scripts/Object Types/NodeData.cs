@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 /// <summary>
 /// Author: Justin Neft
@@ -13,28 +14,66 @@ public class NodeData: MonoBehaviour
 {
     #region Fields
 
-    [Header("Node Fields")]
+    /// <summary>
+    /// the ID number for this node
+    /// </summary>
+    [Header("JSON Data Fields")]
     [SerializeField]
     protected int id;
+    /// <summary>
+    /// The IP address of this node's access to the simulation
+    /// </summary>
     [SerializeField]
     protected string ip;
+    /// <summary>
+    /// The type of simulated computer system this node is
+    /// </summary>
     [SerializeField]
     protected NodeTypes type;
+    /// <summary>
+    /// The current level of functionality of this node
+    /// </summary>
     [SerializeField]
     protected NodeState state;
+    /// <summary>
+    /// A list of ID numbers for teams currently accessing this node
+    /// </summary>
+    [SerializeField]
+    protected List<int> teamIDs;
+    /// <summary>
+    /// A list of ID numbers for adjacent Nodes
+    /// </summary>
+    [SerializeField]
+    protected List<int> connections;
+    /// <summary>
+    /// A boolean to track if this node is hidden in the system
+    /// </summary>
     [SerializeField]
     protected bool isHidden;
 
-    [SerializeField]
-    protected List<int> connections;
+    /// <summary>
+    /// Linerenderers used to draw connections between adjacent Nodes
+    /// </summary>
+    [Header("Script References")]
     [SerializeField]
     protected List<LineRenderer> connectionGOS;
+    /// <summary>
+    /// reference to this object's SpriteRenderer
+    /// </summary>
     [SerializeField]
     protected SpriteRenderer nodeSprite;
+    /// <summary>
+    /// A list of the teams with currently accessing this node
+    /// </summary>
     [SerializeField]
-    protected List<TeamData> teams; // Tracks the teams with current access to this node
+    protected List<TeamData> teams; 
 
+    // Legacy Fields
     private UptimeChartData uptimeChart;
+
+    public List<float> values;
+    public List<Color> wedgeColors;
+    public Image wedgePrefab;
 
     #endregion Fields
 
@@ -135,6 +174,21 @@ public class NodeData: MonoBehaviour
     }
 
     /// <summary>
+    /// Gets and Sets a list of id numbers for the teams currently at this node.
+    /// </summary>
+    public List<int> TeamIDs
+    {
+        get
+        {
+            return this.teamIDs;
+        }
+        set
+        {
+            this.teamIDs = value;
+        }
+    }
+
+    /// <summary>
     /// Gets and sets a list of team IDs currently accessing this node
     /// </summary>
     public List<TeamData> Teams
@@ -199,12 +253,13 @@ public class NodeData: MonoBehaviour
     void Start()
     {
         nodeSprite = this.GetComponent<SpriteRenderer>();
+        SplitSprite();
     }
 
     // Update is called once per frame
     void Update()
     {
-        SplitSprite();
+        //SplitSprite();
     }
 
     /// <summary>
@@ -227,9 +282,9 @@ public class NodeData: MonoBehaviour
     /// <param name="_type"> tracks what type of system the node is</param>
     /// <param name="_state"> tracks what state the node is currently experiencing</param>
     /// <param name="_connections"> tracks the interger IDs of adjecent Nodes</param>
-    /// <param name="_teams">list of all teams accessing this node</param>
+    /// <param name="_teamIDs">list of all teams accessing this node</param>
     public void SetData(int _id, string _ip, bool _isHidden, NodeTypes _type, 
-        NodeState _state, List<int> _connections, List<TeamData> _teams)
+        NodeState _state, List<int> _connections, List<int> _teamIDs)
     {
         this.id             = _id;
         this.ip             = _ip;
@@ -237,7 +292,18 @@ public class NodeData: MonoBehaviour
         this.state          = _state;
         this.isHidden       = _isHidden;
         this.connections    = _connections;
-        this.teams          = _teams;
+        this.teamIDs          = _teamIDs;
+    }
+
+    /// <summary>
+    /// Use the data from the FileReader to add references to newly instanced GameObjects
+    /// </summary>
+    public void InstanceData()
+    {
+        foreach(int teamID in this.teamIDs)
+        {
+            this.teams.Add(GameManager.Instance.MainInfra.FindTeamByID(teamID));
+        }
     }
 
     /// <summary>
@@ -264,14 +330,43 @@ public class NodeData: MonoBehaviour
     /// </summary>
     public void SplitSprite()
     {
-        // ** Some sort of variable to hold the sprite and its segments **
+        // Used to convert degrees to a decimal between 0 and 1
+        //float degree = 1 / 360;
+        // The segments for the different colors on a circle
+        //float segment = 360 / teamIDs.Count;
 
+        float zRotation = 0f;
         /*
-         * for (int i = 0; i < teams.count; i++)
-         * {
-         *       ** Adds teams[i].teamColor to the sprite Segment **
-         * }
-         * 
-         */
+        // Loops through all the teams accessing the node and makes that many circle segments
+        for (int i = 0; i < teamIDs.Count; i++)
+        {
+            Image newWedge = Instantiate(wedgePrefab) as Image;
+            newWedge.transform.SetParent(transform, false);
+            newWedge.color = teams[i].TeamColor;
+            newWedge.fillAmount = segment * degree;
+            newWedge.transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, zRotation));
+            zRotation -= newWedge.fillAmount * 360f;
+        }*/
+
+        /// <summary>
+        /// Test data for above loop that takes data given in unity interface and converts that to a pie graph
+        /// </summary>
+        float total = 0f;
+        zRotation = 0f;
+
+        for (int i = 0; i < values.Count; i++)
+        {
+            total += values[i];
+        }
+
+        for (int i = 0; i < values.Count; i++)
+        {
+            Image newWedge = Instantiate(wedgePrefab) as Image;
+            newWedge.transform.SetParent(transform, false);
+            newWedge.color = wedgeColors[i];
+            newWedge.fillAmount = values[i] / total;
+            newWedge.transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, zRotation));
+            zRotation -= newWedge.fillAmount * 360f;
+        }
     }
 }
