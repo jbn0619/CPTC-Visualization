@@ -73,13 +73,13 @@ public class FocusableObject : MonoBehaviour
             Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, newPos, t);
 
             // At the first half, zoom out away from the object
-            if(timeElapsed < totalDuration / 2)
+            if(timeElapsed < totalDuration / 2f)
             {
                 // Zoom camera closer to the maximum value using linear interpolation
                 Camera.main.orthographicSize = Mathf.Lerp(Camera.main.orthographicSize, zoomMax, t);
             }
             // During the second half, zoom in towards the object
-            if(timeElapsed > totalDuration / 2)
+            else
             {
                 // Zoom camera closer to the minimum value using linear interpolation
                 Camera.main.orthographicSize = Mathf.Lerp(Camera.main.orthographicSize, zoomMin, t);
