@@ -3880,9 +3880,17 @@ MonoBehaviour:
   connectionGOS: []
   nodeSprite: {fileID: 0}
   teams: []
-  values: []
-  wedgeColors: []
-  wedgePrefab: {fileID: 0}
+  values:
+  - 0.25
+  - 0.25
+  - 0.25
+  - 0.25
+  wedgeColors:
+  - {r: 1, g: 0, b: 0, a: 0}
+  - {r: 0, g: 0.1510973, b: 1, a: 0}
+  - {r: 0, g: 1, b: 0.100815535, a: 0}
+  - {r: 1, g: 0.97662324, b: 0, a: 0}
+  wedgePrefab: {fileID: 1261249942711030587, guid: 783324dbf110c1b4cbed88f515d323a3, type: 3}
 --- !u!4 &1582256218
 Transform:
   m_ObjectHideFlags: 0
