@@ -298,15 +298,11 @@ public class FileManager: MonoBehaviour
     #region Data Type Conversion
     private AlertData HolderToData(Alert _alert)
     {
-        AlertData alert = new AlertData();
-        alert.SetData(_alert);
-        // TODO: implement Alerts
-        return alert;
+        return new AlertData(_alert.type, _alert.nodes, _alert.priority, _alert.timestamp);
     }
     private Alert DataToHolder(AlertData _alert)
     {
-        Alert tempAlert = new Alert(_alert.type,_alert.nodes, _alert.priority, _alert.time);
-        return tempAlert;
+        return new Alert((CPTCEvents)Enum.Parse(typeof(CPTCEvents),_alert.type),_alert.nodes,_alert.priority,_alert.timestamp);
     }
     private TeamData HolderToData(Team _team)
     {

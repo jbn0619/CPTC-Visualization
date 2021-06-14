@@ -1,4 +1,9 @@
-﻿public class AlertData
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class AlertData: MonoBehaviour
 {
     #region Fields
     [Header("JSON Data Fields")]
@@ -18,11 +23,19 @@
         
     }
 
-    public void SetData(Alert alert)
+    public AlertData(string _type, List<int> _nodes, int _priority, int _timestamp)
     {
-        type = alert.type;
-        nodes = alert.nodes;
-        priority = alert.priority;
-        timestamp = alert.timestamp;
+        type = _type;
+        nodes = _nodes;
+        priority = _priority;
+        timestamp = _timestamp;
+    }
+
+    public void SetData(string _type, List<int> _nodes, int _priority, int _timestamp)
+    {
+        type = _type;
+        nodes = _nodes;
+        priority = _priority;
+        timestamp = _timestamp;
     }
 }
