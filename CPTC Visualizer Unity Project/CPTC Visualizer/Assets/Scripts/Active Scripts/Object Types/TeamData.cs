@@ -198,7 +198,7 @@ public class TeamData: MonoBehaviour
     public void SetData(int _id, List<int> _nodeIDs, List<AlertData> _alerts = null)
     {
         this.teamId = _id;
-        // this.alerts = _alerts; // alerts are not currently implemented as a data structure.
+        this.alerts = _alerts;
         this.nodeIDs = _nodeIDs;
     }
 

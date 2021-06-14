@@ -307,7 +307,7 @@ public class FileManager: MonoBehaviour
     private TeamData HolderToData(Team _team)
     {
         TeamData team = new TeamData();
-        team.SetData(_team.id, _team.nodes);
+        team.SetData(_team.id, _team.nodes, HolderToData(_team.alerts));
         return team;
     }
     private Team DataToHolder(TeamData _team)
