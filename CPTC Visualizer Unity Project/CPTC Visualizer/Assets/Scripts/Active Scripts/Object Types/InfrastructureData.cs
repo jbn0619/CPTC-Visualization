@@ -314,7 +314,6 @@ public class InfrastructureData: MonoBehaviour
         // create gameObjects for all the networks
         foreach (NetworkData net in this.networks)
         {
-            Debug.Log($"Generating Network {net.Id} Game Object");
             // Handle GameObject References
             // Create new Network Object and add it to the Infrastructure's list of Network Objects
             networkObjects.Add(Instantiate(GameManager.Instance.NetworkPrefab, this.transform.position, this.transform.rotation));
@@ -331,14 +330,12 @@ public class InfrastructureData: MonoBehaviour
                 // Handle GameObject References
                 // Instantiate using the InfrastructureData's tranform as a base. 
                 allNodeObjects.Add(Instantiate(GameManager.Instance.NodePrefab, transform.position, transform.rotation));
-                Debug.Log($"Generating New Node {nodeId}...");
                 // set the new node to be a child of the correct network
                 allNodeObjects[nodeCount].transform.parent = networkObjects[netCount].transform;
 
                 // Handle Data References
                 // grab data from the node in allNodes, passed from the JSON
                 NodeData nodeData = FindNodeDataByID(nodeId);
-                Debug.Log($"Created Node {nodeData.Id}");
                 // set the new game object's NodeData component's variables to the values from the data passed by the JSON file
                 allNodeObjects[nodeCount].GetComponent<NodeData>().SetData(nodeData.Id, nodeData.Ip, nodeData.IsHidden, nodeData.Type,
                     nodeData.State, nodeData.Connections, nodeData.TeamIDs);
