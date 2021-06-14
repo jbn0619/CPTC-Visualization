@@ -299,13 +299,14 @@ public class FileManager: MonoBehaviour
     private AlertData HolderToData(Alert _alert)
     {
         AlertData alert = new AlertData();
+        alert.SetData(_alert);
         // TODO: implement Alerts
         return alert;
     }
     private Alert DataToHolder(AlertData _alert)
     {
-        //Implement Alert Class
-        return new Alert();
+        Alert tempAlert = new Alert(_alert.type,_alert.nodes, _alert.priority, _alert.time);
+        return tempAlert;
     }
     private TeamData HolderToData(Team _team)
     {
