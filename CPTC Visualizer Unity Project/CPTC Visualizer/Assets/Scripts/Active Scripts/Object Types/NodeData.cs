@@ -300,6 +300,7 @@ public class NodeData: MonoBehaviour
     /// </summary>
     public void InstanceData()
     {
+        name = $"Node {id}";
         foreach(int teamID in this.teamIDs)
         {
             this.teams.Add(GameManager.Instance.MainInfra.FindTeamByID(teamID));

@@ -308,16 +308,18 @@ public class InfrastructureData: MonoBehaviour
     /// </summary>
     public void InstanceChildren()
     {
+        name = "Main Infrastructure";
         int netCount = 0;
         int nodeCount = 0;
         // create gameObjects for all the networks
         foreach (NetworkData net in this.networks)
         {
+            Debug.Log($"Generating Network {net.Id} Game Object");
             // Handle GameObject References
             // Create new Network Object and add it to the Infrastructure's list of Network Objects
             networkObjects.Add(Instantiate(GameManager.Instance.NetworkPrefab, this.transform.position, this.transform.rotation));
             // set the new object to be a child of the Infrastructure Object's
-            networkObjects[netCount].transform.parent = this.transform;
+            networkObjects[netCount].transform.parent = transform;
 
             // Handle Data References
             // transfer the data from the networkData loaded from the JSON FIle to the nodeData component of the gameObject
@@ -328,34 +330,40 @@ public class InfrastructureData: MonoBehaviour
             {
                 // Handle GameObject References
                 // Instantiate using the InfrastructureData's tranform as a base. 
-                allNodeObjects.Add(Instantiate(GameManager.Instance.NetworkPrefab, this.transform.position, this.transform.rotation));
+                allNodeObjects.Add(Instantiate(GameManager.Instance.NodePrefab, transform.position, transform.rotation));
+                Debug.Log($"Generating New Node {nodeId}...");
                 // set the new node to be a child of the correct network
                 allNodeObjects[nodeCount].transform.parent = networkObjects[netCount].transform;
 
                 // Handle Data References
                 // grab data from the node in allNodes, passed from the JSON
                 NodeData nodeData = FindNodeDataByID(nodeId);
+                Debug.Log($"Created Node {nodeData.Id}");
                 // set the new game object's NodeData component's variables to the values from the data passed by the JSON file
                 allNodeObjects[nodeCount].GetComponent<NodeData>().SetData(nodeData.Id, nodeData.Ip, nodeData.IsHidden, nodeData.Type,
                     nodeData.State, nodeData.Connections, nodeData.TeamIDs);
+                allNodeObjects[nodeCount].GetComponent<NodeData>().InstanceData();
                 // add the new node gameObject to the network's list of its node objects
                 networkObjects[netCount].GetComponent<NetworkData>().AddNodeObject(allNodeObjects[nodeCount]);
-
-                // set network references to the node scripts connected to the game Objects
+                // set network refernce of the NodeData to the proper script
+                networkObjects[netCount].GetComponent<NetworkData>().AddNodeData(allNodeObjects[nodeCount].GetComponent<NodeData>());
+                // set infrastructure references to the node scripts connected to the game Objects
                 allNodes[nodeCount] = allNodeObjects[nodeCount].GetComponent<NodeData>();
                 nodeCount++;
             }
-            nodeCount = 0;
-
-            // set networkData's references to the network scripts connected to the game Objects
-            networks[netCount] = networkObjects[netCount].GetComponent<NetworkData>();
-
+            // Set Name of network
+            networkObjects[netCount].name = $"Network {net.Id}";
             netCount++;
+        }
+        for(int i = 0; i < networks.Count; i++)
+        {
+            // set networkData's references to the network scripts connected to the game Objects
+            networks[i] = networkObjects[i].GetComponent<NetworkData>();
         }
 
         // create method of determining locations for networks and nodes based on givern parameters
         //either based on concetration of nodes, setting the networks in a pre-determined order, or some other method.
-
+        // TODO: Make call to draw connections once all objects have been built
     }
     
     /* Phased out because we are using in-between classes to move data from the FileReader to the JSON files now. - BW

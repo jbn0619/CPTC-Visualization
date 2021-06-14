@@ -202,11 +202,16 @@ public class NetworkData: MonoBehaviour
         this.connections = _connections;
     }
 
-    public void InstanceData()
+    public void AddNodeData(NodeData _node)
     {
-        foreach(int nodeID in this.nodeIDs)
+        int searchID = _node.Id;
+        foreach (int nodeID in this.nodeIDs)
         {
-            this.nodes.Add(GameManager.Instance.MainInfra.FindNodeDataByID(nodeID));
+            if (nodeID == searchID)
+            {
+                nodes.Add(_node);
+                break;
+            }
         }
     }
 
@@ -224,6 +229,7 @@ public class NetworkData: MonoBehaviour
                 if (nodeID == searchID)
                 {
                     nodeObjects.Add(_node);
+                    break;
                 }
             }
         }
