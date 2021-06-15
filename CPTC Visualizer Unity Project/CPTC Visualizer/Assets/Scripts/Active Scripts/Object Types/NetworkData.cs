@@ -96,6 +96,9 @@ public class NetworkData: MonoBehaviour
             return this.nodes;
         }
     }
+    /// <summary>
+    /// Gets and Sets the Index of this netwrok object within the Infra's list of networks.
+    /// </summary>
     public int Index
     {
         get { return this.index; }
@@ -229,6 +232,10 @@ public class NetworkData: MonoBehaviour
         {
             //is not a Node object
         }
+    }
+    public void AddNodeData(NodeData _node, int _index)
+    {
+        nodes[_index] = _node;
     }
 
     /// <summary>

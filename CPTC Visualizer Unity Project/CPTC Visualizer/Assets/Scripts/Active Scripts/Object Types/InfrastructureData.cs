@@ -297,8 +297,8 @@ public class InfrastructureData: MonoBehaviour
                 if(!(connectionsById.Contains(new Vector2(node.Index, id)) || connectionsById.Contains(new Vector2(id, node.Index))))
                 {
                     connectionsById.Add(new Vector2(id,node.Index));
-                    GL.Vertex(FindNodeObjectByID(node.Index).transform.position);
-                    GL.Vertex(FindNodeObjectByID(id).transform.position);
+                    GL.Vertex(allNodeObjects[node.Index].transform.position);
+                    GL.Vertex(allNodeObjects[id].transform.position);
                 }
             }
         }
@@ -328,7 +328,7 @@ public class InfrastructureData: MonoBehaviour
         int netCount = 0;
         int nodeCount = 0;
         // create gameObjects for all the networks
-        foreach (NetworkData net in this.networks)
+        foreach (NetworkData net in networks)
         {
             // Handle GameObject References
             // Create new Network Object and add it to the Infrastructure's list of Network Objects
@@ -339,9 +339,11 @@ public class InfrastructureData: MonoBehaviour
             // Handle Data References
             // transfer the data from the networkData loaded from the JSON FIle to the nodeData component of the gameObject
             networkObjects[netCount].GetComponent<NetworkData>().SetData(net.NetworkName, net.Ip, net.Nodes, net.VDI);
+            // set name of network object
+            networkObjects[netCount].name = net.NetworkName;
 
             // instantiate the nodes within this network 
-            foreach (NodeData node in networkObjects[netCount].GetComponent<NetworkData>().Nodes)
+            foreach (NodeData node in networks[netCount].Nodes)
             {
                 // Handle GameObject References
                 // Instantiate using the InfrastructureData's tranform as a base. 
@@ -358,8 +360,7 @@ public class InfrastructureData: MonoBehaviour
                 
                 nodeCount++;
             }
-            // Set Name of network
-            networkObjects[netCount].name = net.NetworkName;
+            
             netCount++;
         }
 
@@ -371,20 +372,24 @@ public class InfrastructureData: MonoBehaviour
         }
         for(int i = 0; i < networks.Count; i++)
         {
-            
+            networkObjects[i].GetComponent<NetworkData>().Index = i;
+
             // set networkData's references to the network scripts connected to the game Objects
             networks[i] = networkObjects[i].GetComponent<NetworkData>();
 
             // set all nodes within this network to be adjacent to each other
-            foreach(NodeData node in networks[i].Nodes)
+            for(int j= 0; j < networks[i].NodeObjects.Count;j++)
             {
-                for(int j = 0; j < networks[i].Nodes.Count; j++)
+                // Set the internal list of NodeData for the network to be equal to the dinished version of the nodeData
+                networks[i].AddNodeData(networks[i].NodeObjects[j].GetComponent<NodeData>(), j);
+
+                for (int k = 0; k < networks[i].Nodes.Count; k++)
                 {
                     // if the node isn't attempting to reference itsels
-                    if(node.Index != networks[i].Nodes[j].Index)
+                    if(networks[i].NodeObjects[j].GetComponent<NodeData>().Index != networkObjects[i].GetComponent<NetworkData>().Nodes[k].Index)
                     {
                         // Add the AllNodes Index of the other node to this node's connections list 
-                        node.Connections.Add(networks[i].Nodes[j].Index);
+                        networks[i].NodeObjects[j].GetComponent<NodeData>().Connections.Add(networkObjects[i].GetComponent<NetworkData>().NodeObjects[k].GetComponent<NodeData>().Index);
                     }
                 }
             }

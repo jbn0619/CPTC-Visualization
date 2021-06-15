@@ -518,6 +518,7 @@ MonoBehaviour:
   prefabNode: {fileID: 1217330141730608042, guid: c71bbe5717ea8454fa5ad5bde99919b4, type: 3}
   prefabNetwork: {fileID: 1997012330732690743, guid: e6b8d870b7b772b4ea2cfbf28c461ea6, type: 3}
   prefabInfrastructure: {fileID: 4531087110079519839, guid: 1b4bde8715dca1341bb9a0cd68bee61f, type: 3}
+  infraFile: cptc_finals_2020_laforge_topo.json
   inputManager: {fileID: 183641911}
   teamManager: {fileID: 1371010132}
   eventManager: {fileID: 1452424210}
