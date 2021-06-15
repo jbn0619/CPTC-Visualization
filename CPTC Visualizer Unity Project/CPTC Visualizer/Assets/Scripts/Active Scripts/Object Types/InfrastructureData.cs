@@ -212,8 +212,24 @@ public class InfrastructureData: MonoBehaviour
     }
 
 
-    // These mmethods are used to search through the Infrastructure's lists using the ID of a target object
+    // These mmethods are used to search through the Infrastructure's lists
     #region SearchMethods
+    /// <summary>
+    /// Find a network within Infrastructure's NetworkObjects using it's name for reference
+    /// </summary>
+    /// <param name="_searchName">Name of the Object you are searching for</param>
+    /// <returns></returns>
+    public GameObject FindNetworkObjectByName(string _searchName)
+    {
+        for(int i = 0; i < networkObjects.Count; i++)
+        {
+            if(networkObjects[i].GetComponent<NetworkData>().NetworkName == _searchName)
+            {
+                return networkObjects[i];
+            }
+        }
+        return null;
+    }
     /// <summary>
     /// Search the infrastructure's allNodeObjects list and return the node object with the correct ID
     /// </summary>
@@ -355,13 +371,37 @@ public class InfrastructureData: MonoBehaviour
         }
         for(int i = 0; i < networks.Count; i++)
         {
+            
             // set networkData's references to the network scripts connected to the game Objects
             networks[i] = networkObjects[i].GetComponent<NetworkData>();
+
+            // set all nodes within this network to be adjacent to each other
+            foreach(NodeData node in networks[i].Nodes)
+            {
+                for(int j = 0; j < networks[i].Nodes.Count; j++)
+                {
+                    // if the node isn't attempting to reference itsels
+                    if(node.Index != networks[i].Nodes[j].Index)
+                    {
+                        // Add the AllNodes Index of the other node to this node's connections list 
+                        node.Connections.Add(networks[i].Nodes[j].Index);
+                    }
+                }
+            }
+
+            // establish connections between networks
+            for(int t = 0; t < networks.Count; t++)
+            {
+                if (t != i && networks[i].IsAdjacentTo(networks[t]))
+                {
+                    networks[i].Connections.Add(t);
+                }
+            }
         }
 
         // create method of determining locations for networks and nodes based on givern parameters
-        //either based on concetration of nodes, setting the networks in a pre-determined order, or some other method.
-        // TODO: Make call to draw connections once all objects have been built
+        //  either based on concetration of nodes, setting the networks in a pre-determined order, or some other method.
+        DrawAllConnections();
     }
     
     /* Phased out because we are using in-between classes to move data from the FileReader to the JSON files now. - BW

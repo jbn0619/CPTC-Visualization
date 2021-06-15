@@ -40,7 +40,11 @@ public class NetworkData: MonoBehaviour
     [SerializeField]
     protected List<GameObject> nodeObjects;
     /// <summary>
-    /// List of Infra.allNodes indecies of adjacent Networks
+    /// Index of this network within the Infra.Networks list
+    /// </summary>
+    private int index;
+    /// <summary>
+    /// List of Infra.Networks Indecies of adjacent Networks
     /// </summary>
     [SerializeField]
     private List<int> connections;
@@ -92,8 +96,13 @@ public class NetworkData: MonoBehaviour
             return this.nodes;
         }
     }
+    public int Index
+    {
+        get { return this.index; }
+        set { this.index = value; }
+    }
     /// <summary>
-    /// Gets a list of the indecies within Infra.networks of networks connected to this network
+    /// Gets a list of the Infra.Networks index of networks connected to this network
     /// </summary>
     public List<int> Connections
     {
@@ -220,6 +229,25 @@ public class NetworkData: MonoBehaviour
         {
             //is not a Node object
         }
+    }
+
+    /// <summary>
+    /// Determine if this node will have a connection with the passed node
+    /// </summary>
+    /// <param name="_net">Node being checked for adjacency with the current node</param>
+    /// <returns></returns>
+    public bool IsAdjacentTo(NetworkData _net)
+    {
+        // If both networks are open to the VDI
+        if(vdi && _net.vdi)
+        {
+            return true;
+        } // If neither network is the VDI network
+        else if(networkName!="vdi" && _net.NetworkName != "vdi")
+        {
+            return true;
+        }
+        return false;
     }
 
     /* Phased out because we are using an in-between class to transfer data from the fileReader to the JSON files 
