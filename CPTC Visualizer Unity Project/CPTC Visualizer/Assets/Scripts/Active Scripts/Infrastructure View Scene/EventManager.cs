@@ -100,11 +100,11 @@ public class EventManager: MonoBehaviour
     /// <summary>
     /// Changes the team's infrastructure according to what happens in the event.
     /// </summary>
-    /// <param name="team">The affected team.</param>
-    /// <param name="node">The node where this event occured.</param>
-    public void ProcessEvent(int teamID, int nodeID, String type)
+    /// <param name="_teamID">The affected team.</param>
+    /// <param name="_nodeID">The node where this event occured.</param>
+    public void ProcessEvent(int _teamID, int _nodeID, String _type)
     {
-        Enum.TryParse(type, out CPTCEvents eventType);
+        Enum.TryParse(_type, out CPTCEvents eventType);
         switch (eventType)
         {
             case CPTCEvents.Discovery:
@@ -114,24 +114,24 @@ public class EventManager: MonoBehaviour
             case CPTCEvents.NetworkScan:
                 break;
             case CPTCEvents.ShutDown:
-                ShutDownNode(nodeID);
+                ShutDownNode(_nodeID);
                 break;
             case CPTCEvents.StartUp:
-                StartUpNode(nodeID);
+                StartUpNode(_nodeID);
                 break;
             default:
                 break;
         }
     }
 
-    public void ShutDownNode(int nodeID)
+    public void ShutDownNode(int _nodeID)
     {
-        GameManager.Instance.MainInfra.AllNodes[nodeID].NodeSprite.color = Color.red;
+        GameManager.Instance.MainInfra.FindNodeDataByID(_nodeID).NodeSprite.color = Color.red;
     }
 
-    public void StartUpNode(int nodeID)
+    public void StartUpNode(int _nodeID)
     {
-        GameManager.Instance.MainInfra.AllNodes[nodeID].NodeSprite.color = Color.cyan;
+        GameManager.Instance.MainInfra.FindNodeDataByID(_nodeID).NodeSprite.color = Color.cyan;
     }
 
     // DEPRECATED METHODS

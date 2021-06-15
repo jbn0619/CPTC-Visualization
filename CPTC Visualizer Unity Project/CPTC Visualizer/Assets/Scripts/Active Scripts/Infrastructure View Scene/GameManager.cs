@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 /// <summary>
 /// Author: Justin Neft & Kevin Laporte
+///     Ben Wetzel - Summer 2021
 /// Function: Controls the entire infrastructure scene, and contains references to all components within. This class is a singleton, so it can be freely referenced anywhere with GameManager.Instance.
 /// </summary>
 public class GameManager: Singleton<GameManager>
@@ -17,6 +18,12 @@ public class GameManager: Singleton<GameManager>
     private Camera mainCam;
     [SerializeField]
     private InfrastructureData mainInfra;
+    [SerializeField]
+    private GameObject prefabNode;
+    [SerializeField]
+    private GameObject prefabNetwork;
+    [SerializeField]
+    private GameObject prefabInfrastructure;
 
     [Header("Manager GameObjects")]
     [SerializeField]
@@ -123,6 +130,39 @@ public class GameManager: Singleton<GameManager>
         }
     }
 
+    /// <summary>
+    /// A prefab Game Object used to create Node objects
+    /// </summary>
+    public GameObject NodePrefab
+    {
+        get
+        {
+            return this.prefabNode;
+        }
+    }
+
+    /// <summary>
+    /// A prefab Game Object used to create Network objects
+    /// </summary>
+    public GameObject NetworkPrefab
+    {
+        get
+        {
+            return this.prefabNetwork;
+        }
+    }
+
+    /// <summary>
+    /// A prefab Game Object used to create Infrastructure objects
+    /// </summary>
+    public GameObject InfraPrefab
+    {
+        get
+        {
+            return this.prefabInfrastructure;
+        }
+    }
+
     #endregion Manager Properties
 
     #region Competition Properties
@@ -173,6 +213,8 @@ public class GameManager: Singleton<GameManager>
         attackCheckCount = 0.0f;
         configUpdateCount = 0.0f;
         configUpdateTime = 5;
+
+        BuildInfrastructure();
     }
 
     // Update is called once per frame
@@ -244,6 +286,23 @@ public class GameManager: Singleton<GameManager>
         dataText.text = ("Data Read Interval : " + dataReadInterval);
 
         Debug.Log("Infrastructure Config file successfully updated.");
+    }
+
+    private void BuildInfrastructure()
+    {
+        if(mainInfra == null)
+        {
+            // this is really wonky right now and I just want to get it working before I worry about making it function well. - BW
+            // make the object exist in the scene
+            GameObject mainInfraObject = Instantiate(prefabInfrastructure);
+            // grab a ref to its infra data
+            this.mainInfra = mainInfraObject.GetComponent<InfrastructureData>();
+            // set the object's infra data to the data from the JSON file
+            InfrastructureData tempInfra = fileManager.CreateInfraFromJSON("infraDraft.JSON", "Infrastructure\\Database\\");
+            mainInfra.SetData(tempInfra.Networks, tempInfra.AllNodes, tempInfra.Teams);
+            // instantiate the child objects with the data
+            mainInfra.InstanceChildren();
+        }
     }
 
     /*

@@ -11,7 +11,7 @@ using UnityEngine;
 /// </summary>
 namespace Assets.Scripts
 {
-    /// <summary>
+    /*/ <summary>
     /// An alert's data, namely what type of alert they are.
     /// </summary>
     [Serializable]
@@ -130,7 +130,7 @@ namespace Assets.Scripts
         {
             networks = n;
         }
-    }
+    }*/
 
     /// <summary>
     /// All of the data necessary to mimick a CPTC competition. Inlcudes a network-infrastructure, teams and events.
