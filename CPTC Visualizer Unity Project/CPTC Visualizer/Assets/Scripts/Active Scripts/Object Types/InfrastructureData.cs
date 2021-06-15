@@ -223,7 +223,7 @@ public class InfrastructureData: MonoBehaviour
     {
         foreach(GameObject obj in this.allNodeObjects)
         {
-            if(obj.GetComponent<NodeData>().Id == _searchID)
+            if(obj.GetComponent<NodeData>().Index == _searchID)
             {
                 return obj;
             }
@@ -240,7 +240,7 @@ public class InfrastructureData: MonoBehaviour
     {
         foreach (NodeData data in this.allNodes)
         {
-            if (data.Id == _searchID)
+            if (data.Index == _searchID)
             {
                 return data;
             }
@@ -278,10 +278,10 @@ public class InfrastructureData: MonoBehaviour
         {
             foreach(int id in node.Connections)
             {
-                if(!(connectionsById.Contains(new Vector2(node.Id, id)) || connectionsById.Contains(new Vector2(id, node.Id))))
+                if(!(connectionsById.Contains(new Vector2(node.Index, id)) || connectionsById.Contains(new Vector2(id, node.Index))))
                 {
-                    connectionsById.Add(new Vector2(id,node.Id));
-                    GL.Vertex(FindNodeObjectByID(node.Id).transform.position);
+                    connectionsById.Add(new Vector2(id,node.Index));
+                    GL.Vertex(FindNodeObjectByID(node.Index).transform.position);
                     GL.Vertex(FindNodeObjectByID(id).transform.position);
                 }
             }
@@ -322,10 +322,10 @@ public class InfrastructureData: MonoBehaviour
 
             // Handle Data References
             // transfer the data from the networkData loaded from the JSON FIle to the nodeData component of the gameObject
-            networkObjects[netCount].GetComponent<NetworkData>().SetData(net.Id, net.NodeIDs, net.Connections);
+            networkObjects[netCount].GetComponent<NetworkData>().SetData(net.NetworkName, net.Ip, net.Nodes, net.VDI);
 
             // instantiate the nodes within this network 
-            foreach (int nodeId in networkObjects[netCount].GetComponent<NetworkData>().NodeIDs)
+            foreach (NodeData node in networkObjects[netCount].GetComponent<NetworkData>().Nodes)
             {
                 // Handle GameObject References
                 // Instantiate using the InfrastructureData's tranform as a base. 
@@ -334,23 +334,24 @@ public class InfrastructureData: MonoBehaviour
                 allNodeObjects[nodeCount].transform.parent = networkObjects[netCount].transform;
 
                 // Handle Data References
-                // grab data from the node in allNodes, passed from the JSON
-                NodeData nodeData = FindNodeDataByID(nodeId);
                 // set the new game object's NodeData component's variables to the values from the data passed by the JSON file
-                allNodeObjects[nodeCount].GetComponent<NodeData>().SetData(nodeData.Id, nodeData.Ip, nodeData.IsHidden, nodeData.Type,
-                    nodeData.State, nodeData.Connections, nodeData.TeamIDs);
-                allNodeObjects[nodeCount].GetComponent<NodeData>().InstanceData();
+                allNodeObjects[nodeCount].GetComponent<NodeData>().SetData(node.Ip, node.HostName, node.HostDescription, node.OS);
+                allNodeObjects[nodeCount].GetComponent<NodeData>().InstanceData(nodeCount);
                 // add the new node gameObject to the network's list of its node objects
                 networkObjects[netCount].GetComponent<NetworkData>().AddNodeObject(allNodeObjects[nodeCount]);
-                // set network refernce of the NodeData to the proper script
-                networkObjects[netCount].GetComponent<NetworkData>().AddNodeData(allNodeObjects[nodeCount].GetComponent<NodeData>());
-                // set infrastructure references to the node scripts connected to the game Objects
-                allNodes[nodeCount] = allNodeObjects[nodeCount].GetComponent<NodeData>();
+                
                 nodeCount++;
             }
             // Set Name of network
-            networkObjects[netCount].name = $"Network {net.Id}";
+            networkObjects[netCount].name = net.NetworkName;
             netCount++;
+        }
+
+
+        for (int i = 0; i < allNodes.Count; i++)
+        {
+            // set infrastructure references to the node scripts connected to the game Objects
+            allNodes[i] = allNodeObjects[i].GetComponent<NodeData>();
         }
         for(int i = 0; i < networks.Count; i++)
         {

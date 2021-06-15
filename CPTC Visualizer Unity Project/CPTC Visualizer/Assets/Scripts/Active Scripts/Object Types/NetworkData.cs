@@ -13,21 +13,25 @@ public class NetworkData: MonoBehaviour
 {
     #region Fields
     /// <summary>
-    /// This Network's ID number
+    /// This Network's name in the system
     /// </summary>
     [Header("JSON Data Fields")]
     [SerializeField]
-    private int id;
+    private string networkName;
     /// <summary>
-    /// List of ID numbers of the nodes within this Network
+    /// This network's IP address on the simulation
+    /// </summary>
+    private string ip;
+    /// <summary>
+    /// List of the NodeData Components of the nodes within this network
     /// </summary>
     [SerializeField]
-    private List<int> nodeIDs;
+    protected List<NodeData> nodes;
     /// <summary>
-    /// List of ID numbers of adjacent Networks
+    /// Determines if this network is connected to the base Node(VDI) or not
     /// </summary>
     [SerializeField]
-    private List<int> connections;
+    protected bool vdi;
 
     /// <summary>
     /// List of the Node GameObjects childed to this object
@@ -36,10 +40,10 @@ public class NetworkData: MonoBehaviour
     [SerializeField]
     protected List<GameObject> nodeObjects;
     /// <summary>
-    /// List of the NodeData Components of the nodes within this network
+    /// List of Infra.allNodes indecies of adjacent Networks
     /// </summary>
     [SerializeField]
-    protected List<NodeData> nodes;
+    private List<int> connections;
     /// <summary>
     /// List of the Linerenderers used to draw the connections between this network and other networks
     /// </summary>
@@ -54,22 +58,48 @@ public class NetworkData: MonoBehaviour
     #endregion Fields
 
     #region Properties
-
     /// <summary>
-    /// Gets or sets this network's id (seperate from node Ids).
+    /// Gets the string passed by the JSON storing the network's name in the system
     /// </summary>
-    public int Id
+    public string NetworkName
     {
         get
         {
-            return id;
+            return this.networkName;
         }
-        set
+    }
+    /// <summary>
+    /// Gets this network's IP address within the simulation
+    /// </summary>
+    public string Ip
+    {
+        get { return this.ip; }
+    }
+    /// <summary>
+    /// Gets if this network has a connection to the VDI Network or not
+    /// </summary>
+    public bool VDI
+    {
+        get { return this.vdi; }
+    }
+    /// <summary>
+    /// Get a list of the data of all nodes within the simulated Network
+    /// </summary>
+    public List<NodeData> Nodes
+    {
+        get
         {
-            if (value >= 0)
-            {
-                id = value;
-            }
+            return this.nodes;
+        }
+    }
+    /// <summary>
+    /// Gets a list of the indecies within Infra.networks of networks connected to this network
+    /// </summary>
+    public List<int> Connections
+    {
+        get
+        {
+            return connections;
         }
     }
 
@@ -87,7 +117,6 @@ public class NetworkData: MonoBehaviour
             isActive = value;
         }
     }
-
     /// <summary>
     /// Gets a list of node objects within this network.
     /// </summary>
@@ -98,40 +127,6 @@ public class NetworkData: MonoBehaviour
             return nodeObjects;
         }
     }
-
-    /// <summary>
-    /// Gets a list of nodes within this network.
-    /// </summary>
-    public List<int> NodeIDs
-    {
-        get
-        {
-            return nodeIDs;
-        }
-    }
-
-    /// <summary>
-    /// Gets a list of connections between this network and other networks.
-    /// </summary>
-    public List<int> Connections
-    {
-        get
-        {
-            return connections;
-        }
-    }
-
-    /// <summary>
-    /// Get a list of the data of all nodes within the simulated Network
-    /// </summary>
-    public List<NodeData> Nodes
-    {
-        get
-        {
-            return this.nodes;
-        }
-    }
-
     /// <summary>
     /// Gets a list of gameObjects that represent this network's connections.
     /// </summary>
@@ -142,7 +137,6 @@ public class NetworkData: MonoBehaviour
             return connectionGOS;
         }
     }
-
     /// <summary>
     /// Gets or set if this network is being scanned or not.
     /// </summary>
@@ -192,41 +186,30 @@ public class NetworkData: MonoBehaviour
     /// <summary>
     /// Sets the basic data of the Network 
     /// </summary>
-    /// <param name="_id">This network's int ID to determine connections</param>
+    /// <param name="_name">This network's name in the simulation</param>
     /// <param name="_nodes"> list of nodes within this network</param>
-    /// <param name="_connections">list of int IDs this network is connected to</param>
-    public void SetData(int _id, List<int> _nodes, List<int> _connections)
+    /// <param name="_visibleToStart">determines if the Network is visible to the VDI network</param>
+    public void SetData(string _name, string _ip, List<NodeData> _nodes, bool _visibleToStart)
     {
-        this.id = _id;
-        this.nodeIDs = _nodes;
-        this.connections = _connections;
+        this.networkName = _name;
+        this.ip = _ip;
+        this.nodes = _nodes;
+        this.vdi = _visibleToStart;
+        // this.connections = _connections;
     }
-
-    public void AddNodeData(NodeData _node)
-    {
-        int searchID = _node.Id;
-        foreach (int nodeID in this.nodeIDs)
-        {
-            if (nodeID == searchID)
-            {
-                nodes.Add(_node);
-                break;
-            }
-        }
-    }
-
+ 
     /// <summary>
-    /// Adds the node object to the network's list of node objects if the passed object has a NodeData with an ID on the network's list
+    /// Adds the node object to the network's list of node objects if the passed object has a NodeData with an hostname on the network's list
     /// </summary>
     /// <param name="_node">node gameObject to be added to network's nodeObjects list</param>
     public void AddNodeObject(GameObject _node)
     {
         if(_node.GetComponent<NodeData>())
         {
-            int searchID = _node.GetComponent<NodeData>().Id;
-            foreach (int nodeID in this.nodeIDs)
+            string searchName = _node.GetComponent<NodeData>().HostName;
+            foreach (NodeData node in this.nodes)
             {
-                if (nodeID == searchID)
+                if (node.HostName == searchName)
                 {
                     nodeObjects.Add(_node);
                     break;

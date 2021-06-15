@@ -195,7 +195,7 @@ public class TeamData: MonoBehaviour
     /// <param name="_id">Team's id number</param>
     /// <param name="_alerts">alerts this team has triggered</param>
     /// <param name="_nodeIDs">nodes this team is currently visiting</param>
-    public void SetData(int _id, List<int> _nodeIDs, List<AlertData> _alerts = null)
+    public void SetData(int _id, List<int> _nodeIDs = null, List<AlertData> _alerts = null)
     {
         this.teamId = _id;
         this.alerts = _alerts;

@@ -187,11 +187,25 @@ public class FileManager: MonoBehaviour
 
         foreach (string line in ReadFile(_fileName, _filePathExtension))
         {
-            JSONString += line;
+            JSONString += line.Replace('\\', ' ').Trim();
         }
         Debug.Log($"Infrastructure File: {filePath} found. Reading Data ...");
 
-        InfrastructureData returnInfra = HolderToData(JsonUtility.FromJson<Infrastructure>(JSONString));
+        // Grab the shell with the list of infrastructures
+        LaforgeShell shell = JsonUtility.FromJson<LaforgeShell>(JSONString);
+        List<Infrastructure> infras = shell.data.environment.EnvironmentToBuild[0].buildToTeam;
+
+        // create rudimentary teams using the number of infrastructures and the team numbers assigned to them
+        List<TeamData> teams = new List<TeamData>();
+        for(int i = 0; i < infras.Count; i++)
+        {
+            TeamData team = new TeamData();
+            team.SetData(infras[i].team_number);
+            teams.Add(team);
+        }
+
+        // build the new OverInfrastructure based on the first infrastructure in the list
+        InfrastructureData returnInfra = HolderToData(infras[0], teams);
 
         Debug.Log($"Infrastructure successfully created from {filePath}");
         return returnInfra;
@@ -266,7 +280,7 @@ public class FileManager: MonoBehaviour
 
         // translate the MonoBehavior data into a holder data structure. This allows the data to be formatted into a 
         //      JSON using JSON Utility to read the data from the holder class
-        Infrastructure infra = DataToHolder(_data);
+        Infrastructure infra = DataToHolder(_data, _data.Teams[0].TeamId);
 
         try
         {
@@ -317,34 +331,41 @@ public class FileManager: MonoBehaviour
     private NodeData HolderToData(ProHost _node)
     {
         NodeData node = new NodeData();
-        Enum.TryParse(_node.type, out NodeTypes type);
-        Enum.TryParse(_node.state, out NodeState state);
-        node.SetData(_node.id, _node.subnet_ip, _node.isHidden, type, state, _node.connections, _node.teamIDs);
+        node.SetData(_node.subnet_ip, _node.ProvisionedHostToHost.hostname, _node.ProvisionedHostToHost.description, _node.ProvisionedHostToHost.OS);
         return node;
     }
     private ProHost DataToHolder(NodeData _node)
     {
-        return new ProHost(_node.Id, _node.Ip, _node.Type, _node.State, _node.Connections, _node.TeamIDs, _node.IsHidden);
+        return new ProHost(_node.Ip, new HostContainer(_node.HostName, _node.HostDescription, _node.OS), new AgentContainer());
     }
     private NetworkData HolderToData(ProNetwork _network)
     {
         NetworkData network = new NetworkData();
-        network.SetData(_network.name, _network.ProvisionedNetworkToProvisionedHost, _network.networkConnections);
+        network.SetData(_network.name, _network.cidr, HolderToData(_network.ProvisionedNetworkToProvisionedHost), _network.ProvisionedNetworkToNetwork.vdi_visible);
         return network;
     }
     private ProNetwork DataToHolder(NetworkData _network)
     {
-        return new ProNetwork(_network.Id, _network.NodeIDs, _network.Connections);
+        return new ProNetwork(_network.NetworkName, _network.Ip, new SubNetworkContainer(_network.VDI), DataToHolder(_network.Nodes));
     }
-    private InfrastructureData HolderToData(Infrastructure _infra)
+    private InfrastructureData HolderToData(Infrastructure _infra, List<TeamData> _teams)
     {
         InfrastructureData infra = new InfrastructureData();
-        infra.SetData(HolderToData(_infra.TeamToProvisionedNetwork), HolderToData(_infra.nodes), HolderToData(_infra.teams));
+        List<NodeData> nodes = new List<NodeData>();
+        foreach(ProNetwork net in _infra.TeamToProvisionedNetwork)
+        {
+            foreach(ProHost node in net.ProvisionedNetworkToProvisionedHost)
+            {
+                nodes.Add(HolderToData(node));
+                nodes[nodes.Count - 1].Index = nodes.Count - 1;
+            }
+        }
+        infra.SetData(HolderToData(_infra.TeamToProvisionedNetwork), nodes, _teams);
         return infra;
     }
-    private Infrastructure DataToHolder(InfrastructureData _infra)
+    private Infrastructure DataToHolder(InfrastructureData _infra, int _teamNum)
     {
-        return new Infrastructure(DataToHolder(_infra.Networks), DataToHolder(_infra.AllNodes), DataToHolder(_infra.Teams));
+        return new Infrastructure(_teamNum, DataToHolder(_infra.Networks));
     }
     #endregion DataTypeConversion
 

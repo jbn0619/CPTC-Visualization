@@ -13,44 +13,37 @@ using UnityEngine.UI;
 public class NodeData: MonoBehaviour
 {
     #region Fields
-
-    /// <summary>
-    /// the ID number for this node
-    /// </summary>
-    [Header("JSON Data Fields")]
-    [SerializeField]
-    protected int id;
     /// <summary>
     /// The IP address of this node's access to the simulation
     /// </summary>
+    [Header("JSON Data Fields")]
     [SerializeField]
     protected string ip;
     /// <summary>
-    /// The type of simulated computer system this node is
+    /// Name of this node's Machine on the Infrastructure
     /// </summary>
     [SerializeField]
-    protected NodeTypes type;
+    protected string hostName;
     /// <summary>
-    /// The current level of functionality of this node
+    /// description of the host's purpose on the Infrastructure
     /// </summary>
     [SerializeField]
-    protected NodeState state;
+    protected string hostDescription;
     /// <summary>
-    /// A list of ID numbers for teams currently accessing this node
+    /// Type of Operating System the node's system uses
     /// </summary>
     [SerializeField]
-    protected List<int> teamIDs;
+    protected string os;
     /// <summary>
-    /// A list of ID numbers for adjacent Nodes
+    /// index of this node within Infra.AllNodes
     /// </summary>
     [SerializeField]
-    protected List<int> connections;
+    protected int index;
     /// <summary>
-    /// A boolean to track if this node is hidden in the system
+    /// A list of Infra.AllNodes indecies for adjacent Nodes
     /// </summary>
     [SerializeField]
-    protected bool isHidden;
-
+    protected List<int> connections; 
     /// <summary>
     /// Linerenderers used to draw connections between adjacent Nodes
     /// </summary>
@@ -66,33 +59,48 @@ public class NodeData: MonoBehaviour
     /// A list of the teams with currently accessing this node
     /// </summary>
     [SerializeField]
-    protected List<TeamData> teams; 
-
-    // Legacy Fields
-    private UptimeChartData uptimeChart;
-
+    protected List<TeamData> teams;
     public List<float> values;
     public List<Color> wedgeColors;
     public Image wedgePrefab;
+    /// <summary>
+    /// A list of ID numbers for teams currently accessing this node
+    /// </summary>
+    [SerializeField]
+    protected List<int> teamIDs;
 
+    // Legacy Fields
+    private UptimeChartData uptimeChart;
+    /// <summary>
+    /// The type of simulated computer system this node is
+    /// </summary>
+    protected NodeTypes type;
+    /// <summary>
+    /// The current level of functionality of this node
+    /// </summary>
+    protected NodeState state;
+    /// <summary>
+    /// A boolean to track if this node is hidden in the system
+    /// </summary>
+    protected bool isHidden;
     #endregion Fields
 
     #region Properties
 
     /// <summary>
-    /// Gets or sets this node's id.
+    /// Gets or sets this node's index within the Infra.AllNodes list
     /// </summary>
-    public int Id
+    public int Index
     {
         get
         {
-            return id;
+            return index;
         }
         set
         {
             if (value >= 0)
             {
-                id = value;
+                index = value;
             }
         }
     }
@@ -110,6 +118,27 @@ public class NodeData: MonoBehaviour
         {
             ip = value;
         }
+    }
+    /// <summary>
+    /// Gets the name of this node's host
+    /// </summary>
+    public string HostName
+    {
+        get { return this.hostName; }
+    }
+    /// <summary>
+    /// Gets a short description of what this node does within the overall system
+    /// </summary>
+    public string HostDescription
+    {
+        get { return this.hostDescription; }
+    }
+    /// <summary>
+    /// Gets this node's Operating System
+    /// </summary>
+    public string OS
+    {
+        get { return this.os; }
     }
 
     /// <summary>
@@ -159,7 +188,7 @@ public class NodeData: MonoBehaviour
     }
 
     /// <summary>
-    /// Get and sets a list of node ids this node has connections to.
+    /// Get and sets a list of node indecies this node has connections to within Infra.AllNodes
     /// </summary>
     public List<int> Connections
     {
@@ -276,45 +305,50 @@ public class NodeData: MonoBehaviour
     /// <summary>
     /// Set all variables within the node with data passed from the server
     /// </summary>
-    /// <param name="_id">An integer Id for the node</param>
     /// <param name="_ip"> the IP address of the node</param>
+    /// <param name="_hostname">The name of this node's Host on the network</param>
+    /// <param name="_hostDescription">A short description of what the host does on the network</param>
+    /// <param name="_os">The Operating System of the node's Host</param>
     /// <param name="_isHidden"> determines of the node is visible</param>
     /// <param name="_type"> tracks what type of system the node is</param>
     /// <param name="_state"> tracks what state the node is currently experiencing</param>
     /// <param name="_connections"> tracks the interger IDs of adjecent Nodes</param>
     /// <param name="_teamIDs">list of all teams accessing this node</param>
-    public void SetData(int _id, string _ip, bool _isHidden, NodeTypes _type, 
-        NodeState _state, List<int> _connections, List<int> _teamIDs)
+    public void SetData(string _ip, string _hostname, string _hostDescription, string _os)
     {
-        this.id             = _id;
         this.ip             = _ip;
-        this.type           = _type;
-        this.state          = _state;
-        this.isHidden       = _isHidden;
-        this.connections    = _connections;
-        this.teamIDs          = _teamIDs;
+        this.hostName = _hostname;
+        this.hostDescription = _hostDescription;
+        this.os = _os;
+        // this.type           = _type;
+        // this.state          = _state;
+        // this.isHidden       = _isHidden;
+        // this.connections    = _connections;
+        // this.teamIDs          = _teamIDs;
     }
 
     /// <summary>
     /// Use the data from the FileReader to add references to newly instanced GameObjects
     /// </summary>
-    public void InstanceData()
+    public void InstanceData(int _index)
     {
-        name = $"Node {id}";
+        name = hostName;
+        index = _index;
         foreach(int teamID in this.teamIDs)
         {
             this.teams.Add(GameManager.Instance.MainInfra.FindTeamByID(teamID));
         }
     }
 
-    /// <summary>
+    /*Redundant code. We Won't be cloning nodes in the forseable future. - Ben 
+     * /// <summary>
     /// Create a new NodeData with all of the data from this node
     /// </summary>
     /// <returns></returns>
     public NodeData Clone()
     {
         NodeData newNode = new NodeData();
-        newNode.id = this.id;
+        newNode.index = this.index;
         newNode.ip = this.ip;
         newNode.type = this.type;
         newNode.state = this.state;
@@ -324,7 +358,7 @@ public class NodeData: MonoBehaviour
         newNode.nodeSprite = this.nodeSprite;
 
         return newNode;
-    }
+    }*/
 
     /// <summary>
     /// Divide the sprite into colored pieces based on the number of teams at the node, and color those pieces to the designated colors of the corresponding teams.

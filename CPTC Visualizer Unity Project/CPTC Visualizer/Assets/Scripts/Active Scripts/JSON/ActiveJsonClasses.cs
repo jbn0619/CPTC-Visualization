@@ -242,10 +242,6 @@ namespace Assets.Scripts
         /// list of all networks within the simulated system
         /// </summary>
         public List<ProNetwork> TeamToProvisionedNetwork;
-        /// <summary>
-        /// list of all nodes within the simulated system
-        /// </summary>
-        public List<ProHost> nodes;
 
         /// <summary>
         /// Constructor for Infrastructure Data Holder
@@ -256,13 +252,6 @@ namespace Assets.Scripts
         {
             team_number = _teamID;
             TeamToProvisionedNetwork = _networks;
-            foreach(ProNetwork net in _networks)
-            {
-                foreach(ProHost node in net.ProvisionedNetworkToProvisionedHost)
-                {
-                    nodes.Add(node);
-                }
-            }
         }
 
     }
@@ -270,7 +259,7 @@ namespace Assets.Scripts
     // These are the exterior parts of the JSON file which we will need to read through in order to access the info we want.
     // To reach the infrastructure we want, we will need to grab LaforgeShell.data.environment.EnvironmentToBuild[0].buildToTeam[0]
     #region CPTC Shell Classes
-
+    [Serializable]
     public class LaforgeShell
     {
         public DataShell data;
@@ -287,6 +276,7 @@ namespace Assets.Scripts
             return dataString;
         }
     }
+    [Serializable]
     public class DataShell
     {
         public EnvironmentShell environment;
@@ -296,6 +286,7 @@ namespace Assets.Scripts
             environment = _shell;
         }
     }
+    [Serializable]
     public class EnvironmentShell
     {
         public List<BuildShell> EnvironmentToBuild;
@@ -305,6 +296,7 @@ namespace Assets.Scripts
             EnvironmentToBuild = _shell;
         }
     }
+    [Serializable]
     public class BuildShell
     {
         public List<Infrastructure> buildToTeam;
