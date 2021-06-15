@@ -48,6 +48,7 @@ public class InfrastructureData: MonoBehaviour
 
     private List<Color> availableColors;
     private List<String> availableNames;
+    private float positioningRadius;
 
     // Legacy Fields
     private List<int> shutDownNodes;
@@ -168,9 +169,6 @@ public class InfrastructureData: MonoBehaviour
             t.TeamName = GetRandomName();
             t.TeamColor = GetRandomColor();
         }
-
-        // draw initial raycasts between network and node connections. 
-        DrawAllConnections();
     }
 
     // Update is called once per frame
@@ -360,6 +358,9 @@ public class InfrastructureData: MonoBehaviour
 
         // create method of determining locations for networks and nodes based on givern parameters
         //either based on concetration of nodes, setting the networks in a pre-determined order, or some other method.
+
+        PositionNetworks();
+        DrawAllConnections();
         // TODO: Make call to draw connections once all objects have been built
     }
     
@@ -386,4 +387,18 @@ public class InfrastructureData: MonoBehaviour
         Debug.Log(dataString);
         return dataString;
     }*/
+
+    private void PositionNetworks()
+    {
+        // Position each network in a circular manner based off of a center point 0,0,0
+        Vector3 center = new Vector3(0,0,0);
+        float degreeOffset = 2*Mathf.PI / networkObjects.Count;
+        float currentAngle = Mathf.PI / 4;
+        positioningRadius = networkObjects.Count + 1;
+        foreach(GameObject network in networkObjects)
+        {
+            network.transform.position = new Vector3(Mathf.Cos(currentAngle) * positioningRadius, Mathf.Sin(currentAngle) * positioningRadius, 0);
+            currentAngle += degreeOffset;
+        }
+    }
 }
