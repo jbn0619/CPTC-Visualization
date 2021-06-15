@@ -24,6 +24,8 @@ public class GameManager: Singleton<GameManager>
     private GameObject prefabNetwork;
     [SerializeField]
     private GameObject prefabInfrastructure;
+    [SerializeField]
+    private string infraFile;
 
     [Header("Manager GameObjects")]
     [SerializeField]
@@ -298,7 +300,7 @@ public class GameManager: Singleton<GameManager>
             // grab a ref to its infra data
             this.mainInfra = mainInfraObject.GetComponent<InfrastructureData>();
             // set the object's infra data to the data from the JSON file
-            InfrastructureData tempInfra = fileManager.CreateInfraFromJSON("infraDraft.JSON", "Infrastructure\\Database\\");
+            InfrastructureData tempInfra = fileManager.CreateInfraFromJSON(infraFile, "Infrastructure\\Database\\");
             mainInfra.SetData(tempInfra.Networks, tempInfra.AllNodes, tempInfra.Teams);
             // instantiate the child objects with the data
             mainInfra.InstanceChildren();

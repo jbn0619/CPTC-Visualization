@@ -314,32 +314,32 @@ public class FileManager: MonoBehaviour
     {
         return new Team(_team.TeamId, DataToHolder(_team.Alerts), _team.NodeIDs);
     }
-    private NodeData HolderToData(Node _node)
+    private NodeData HolderToData(ProHost _node)
     {
         NodeData node = new NodeData();
         Enum.TryParse(_node.type, out NodeTypes type);
         Enum.TryParse(_node.state, out NodeState state);
-        node.SetData(_node.id, _node.ip, _node.isHidden, type, state, _node.connections, _node.teamIDs);
+        node.SetData(_node.id, _node.subnet_ip, _node.isHidden, type, state, _node.connections, _node.teamIDs);
         return node;
     }
-    private Node DataToHolder(NodeData _node)
+    private ProHost DataToHolder(NodeData _node)
     {
-        return new Node(_node.Id, _node.Ip, _node.Type, _node.State, _node.Connections, _node.TeamIDs, _node.IsHidden);
+        return new ProHost(_node.Id, _node.Ip, _node.Type, _node.State, _node.Connections, _node.TeamIDs, _node.IsHidden);
     }
-    private NetworkData HolderToData(SysNetwork _network)
+    private NetworkData HolderToData(ProNetwork _network)
     {
         NetworkData network = new NetworkData();
-        network.SetData(_network.networkId, _network.nodeIDs, _network.networkConnections);
+        network.SetData(_network.name, _network.ProvisionedNetworkToProvisionedHost, _network.networkConnections);
         return network;
     }
-    private SysNetwork DataToHolder(NetworkData _network)
+    private ProNetwork DataToHolder(NetworkData _network)
     {
-        return new SysNetwork(_network.Id, _network.NodeIDs, _network.Connections);
+        return new ProNetwork(_network.Id, _network.NodeIDs, _network.Connections);
     }
     private InfrastructureData HolderToData(Infrastructure _infra)
     {
         InfrastructureData infra = new InfrastructureData();
-        infra.SetData(HolderToData(_infra.networks), HolderToData(_infra.nodes), HolderToData(_infra.teams));
+        infra.SetData(HolderToData(_infra.TeamToProvisionedNetwork), HolderToData(_infra.nodes), HolderToData(_infra.teams));
         return infra;
     }
     private Infrastructure DataToHolder(InfrastructureData _infra)
@@ -367,18 +367,18 @@ public class FileManager: MonoBehaviour
         }
         return alerts;
     }
-    private List<NodeData> HolderToData(List<Node> _nodes)
+    private List<NodeData> HolderToData(List<ProHost> _nodes)
     {
         List<NodeData> nodes = new List<NodeData>();
-        foreach(Node node in _nodes)
+        foreach(ProHost node in _nodes)
         {
             nodes.Add(HolderToData(node));
         }
         return nodes;
     }
-    private List<Node> DataToHolder(List<NodeData> _nodes)
+    private List<ProHost> DataToHolder(List<NodeData> _nodes)
     {
-        List<Node> nodes = new List<Node>();
+        List<ProHost> nodes = new List<ProHost>();
         foreach (NodeData node in _nodes)
         {
             nodes.Add(DataToHolder(node));
@@ -403,18 +403,18 @@ public class FileManager: MonoBehaviour
         }
         return teams;
     }
-    private List<NetworkData> HolderToData(List<SysNetwork> _networks)
+    private List<NetworkData> HolderToData(List<ProNetwork> _networks)
     {
         List<NetworkData> networks = new List<NetworkData>();
-        foreach(SysNetwork net in _networks)
+        foreach(ProNetwork net in _networks)
         {
             networks.Add(HolderToData(net));
         }
         return networks;
     }
-    private List<SysNetwork> DataToHolder(List<NetworkData> _networks)
+    private List<ProNetwork> DataToHolder(List<NetworkData> _networks)
     {
-        List<SysNetwork> networks = new List<SysNetwork>();
+        List<ProNetwork> networks = new List<ProNetwork>();
         foreach (NetworkData netData in _networks)
         {
             networks.Add(DataToHolder(netData));

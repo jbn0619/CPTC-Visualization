@@ -9,6 +9,9 @@ using UnityEngine;
 /// Author: Ben Wetzel - Summer 2021
 /// Function: Based on Justin's JsonClasses file from the Spring Semester, these data structures can be transferred between the Game Object 
 ///     scripts and the JSON file reader. The code is using them as an intermediary. 
+///     
+///     THIS VERSION IS FORMATTED TO TAKE DATA FROM THE LAFORGE TOPOLOGY JSON. TO LOAD DATA FROM THE TEST INFRASTRUCTURE, REVERT TO OLD VERSION OF THIS FILE
+///     
 /// NOTES 1: Because the classes in this file are not derived from MonoBehaviour (They can’t be attached to GameObjects as components), they can 
 ///     be easily understood by .NET CORE’s JSON Utility class. It would be preferable to use a more in-depth JSON library later, though I have 
 ///     had difficulty locating one for the framework (.NET CORE) Unity uses. Most JSON libraries available are developed for the .NET framework.
@@ -99,92 +102,129 @@ namespace Assets.Scripts
     }
 
     /// <summary>
+    /// A collection of a Host System's information
+    /// </summary>
+    [Serializable]
+    public class HostContainer
+    {
+        /// <summary>
+        /// This is the name of the Host System
+        /// </summary>
+        public string hostname;
+        /// <summary>
+        /// This is a short description of the function of this system
+        /// </summary>
+        public string description;
+        /// <summary>
+        /// This is the operating system or base level of this system
+        /// </summary>
+        public string OS;
+
+        /// <summary>
+        /// Constructor for the Provisioned Host to Host communication
+        /// </summary>
+        /// <param name="_hostname">the string name of the Host System</param>
+        /// <param name="_description">A string description of the function of the Host SYstem</param>
+        /// <param name="_os">The string description of the Host's Operating System</param>
+        public HostContainer(string _hostname, string _description, string _os)
+        {
+            this.hostname = _hostname;
+            this.description = _description;
+            this.OS = _os;
+        }
+    }
+    
+    /// <summary>
+    /// A collection of an Agent's passed information
+    /// </summary>
+    public class AgentContainer
+    {
+        // This is currently empty because we don't have an example of the agent's data format yet. - Ben
+        public AgentContainer()
+        {
+
+        }
+    }
+
+    /// <summary>
     /// A collection of a node's data, including node id, node type and what nodes this one is connected to. 
     /// </summary>
     [Serializable]
-    public class Node
+    public class ProHost
     {
-        /// <summary>
-        /// ID number of this simulated node 
-        /// </summary>
-        public int id;
         /// <summary>
         /// IP address of this node within a simulated server
         /// </summary>
-        public string ip;
+        public string subnet_ip;
         /// <summary>
-        /// The type of simulated computer system this node is
+        /// This object stores the basic info about this node such as its name, use, and operating system
         /// </summary>
-        public string type;
+        public HostContainer ProvisionedHostToHost;
         /// <summary>
-        /// The current level of functionality of this node
+        /// Represents the active stream of data from the live server. 
         /// </summary>
-        public string state;
-        /// <summary>
-        /// A list of ID numbers for adjacent Nodes
-        /// </summary>
-        public List<int> connections;
-        /// <summary>
-        /// A list of ID numbers for teams currently accessing this node
-        /// </summary>
-        public List<int> teamIDs;
-        /// <summary>
-        /// A boolean to track if this node is hidden in the system
-        /// </summary>
-        public bool isHidden;
+        public AgentContainer ProvisionalHostToAgentState;
 
-        /// <summary>
-        /// Constructor for the Node Data Holder
-        /// </summary>
-        /// <param name="_id">This Node's id number</param>
-        /// <param name="_ip">This Node's IP address</param>
-        /// <param name="_type">The system type of this node</param>
-        /// <param name="_state">the current state of this node</param>
-        /// <param name="_connections">list of id numbers of adjacent nodes</param>
-        /// <param name="_teamIDs">List of the id numbers for the teams currently accessing this node</param>
-        /// <param name="_isHidden">determines if the node is hidden in the network view</param>
-        public Node(int _id, string _ip, NodeTypes _type, NodeState _state, List<int> _connections, List<int> _teamIDs, bool _isHidden = false)
+        public ProHost(string _ip, HostContainer _host, AgentContainer _agent = null)
         {
-            id = _id;
-            ip = _ip;
-            type = _type.ToString();
-            state = _state.ToString();
-            connections = _connections;
-            isHidden = _isHidden;
-            teamIDs = _teamIDs;
+            subnet_ip = _ip;
+            ProvisionedHostToHost = _host;
+            ProvisionalHostToAgentState = _agent;
         }
     }
+
+    /// <summary>
+    /// ThesubnetworkContainer is a object to represent the communication of the Provisioned Network to the Network
+    /// </summary>
+    [Serializable]
+    public class SubNetworkContainer
+    {
+        public bool vdi_visible;
+
+        public SubNetworkContainer(bool _vdi)
+        {
+            vdi_visible = _vdi;
+        }
+    }
+
 
     /// <summary>
     /// A collection of a network's data, including network id and nodes within it.
     /// </summary>
     [Serializable]
-    public class SysNetwork
+    public class ProNetwork
     {
         /// <summary>
-        /// ID number of this simulated network
+        /// name of this simulated network
         /// </summary>
-        public int networkId;
+        public string name;
         /// <summary>
-        /// List of ID numbers for the nodes within this network
+        /// IP address of the Network 
         /// </summary>
-        public List<int> nodeIDs;
+        public string cidr;
         /// <summary>
-        /// List of ID numbers for adjacent Networks
+        /// Represents communication between the Laforgenetwork and the actual network. Used to determine if this network has a direct connection to this network.
         /// </summary>
-        public List<int> networkConnections;
+        public SubNetworkContainer ProvisionedNetworkToNetwork;
+        /// <summary>
+        /// List of the system hosts (nodes) within this network
+        /// </summary>
+        public List<ProHost> ProvisionedNetworkToProvisionedHost;
+
 
         /// <summary>
         /// Constructor for Network data holder
         /// </summary>
-        /// <param name="_id">ID number of the Network</param>
-        /// <param name="_nodeIDs">List of all ID numbers of nodes within this network</param>
-        /// <param name="_connections">list of ID numbers of adjacent simulated networks</param>
-        public SysNetwork(int _id, List<int> _nodeIDs, List<int> _connections)
+        /// <param name="_name">Name of the Network</param>
+        /// <param name="_ip">the IP address of this network</param>
+        /// <param name="_subNet">Determines if the network is connected to the starting network</param>
+        /// <param name="_nodes">List of all systems (nodes) within this network</param>
+        public ProNetwork(string _name, string _ip, SubNetworkContainer _subNet, List<ProHost> _nodes)
         {
-            networkId = _id;
-            nodeIDs = _nodeIDs;
-            networkConnections = _connections;
+            name = _name;
+            cidr = _ip;
+            ProvisionedNetworkToNetwork = _subNet;
+            ProvisionedNetworkToProvisionedHost = _nodes;
         }
     }
 
@@ -195,29 +235,49 @@ namespace Assets.Scripts
     public class Infrastructure
     {
         /// <summary>
+        /// This is the team the Infrastructure is built for in the System
+        /// </summary>
+        public int team_number;
+        /// <summary>
         /// list of all networks within the simulated system
         /// </summary>
-        public List<SysNetwork> networks;
+        public List<ProNetwork> TeamToProvisionedNetwork;
         /// <summary>
         /// list of all nodes within the simulated system
         /// </summary>
-        public List<Node> nodes;
-        /// <summary>
-        /// list of all the teams within the simulated system
-        /// </summary>
-        public List<Team> teams;
+        public List<ProHost> nodes;
 
         /// <summary>
         /// Constructor for Infrastructure Data Holder
         /// </summary>
         /// <param name="_networks">List of Networks within this Competition </param>
-        /// <param name="_nodes">List of all nodes within this competition</param>
-        /// <param name="_teams">List of all teams in the competition</param>
-        public Infrastructure (List<SysNetwork> _networks, List<Node> _nodes, List<Team> _teams)
+        /// <param name="_teamID">This is the team number this network is attatched to in the Compettion structure</param>
+        public Infrastructure (int _teamID,List<ProNetwork> _networks)
         {
-            networks = _networks;
-            nodes = _nodes;
-            teams = _teams;
+            team_number = _teamID;
+            TeamToProvisionedNetwork = _networks;
+            foreach(ProNetwork net in _networks)
+            {
+                foreach(ProHost node in net.ProvisionedNetworkToProvisionedHost)
+                {
+                    nodes.Add(node);
+                }
+            }
+        }
+
+    }
+
+    // These are the exterior parts of the JSON file which we will need to read through in order to access the info we want.
+    // To reach the infrastructure we want, we will need to grab LaforgeShell.data.environment.EnvironmentToBuild[0].buildToTeam[0]
+    #region CPTC Shell Classes
+
+    public class LaforgeShell
+    {
+        public DataShell data;
+
+        public LaforgeShell(DataShell _shell)
+        {
+            data = _shell;
         }
 
         public string ConvertToJSON()
@@ -227,4 +287,32 @@ namespace Assets.Scripts
             return dataString;
         }
     }
+    public class DataShell
+    {
+        public EnvironmentShell environment;
+
+        public DataShell(EnvironmentShell _shell)
+        {
+            environment = _shell;
+        }
+    }
+    public class EnvironmentShell
+    {
+        public List<BuildShell> EnvironmentToBuild;
+
+        public EnvironmentShell(List<BuildShell> _shell)
+        {
+            EnvironmentToBuild = _shell;
+        }
+    }
+    public class BuildShell
+    {
+        public List<Infrastructure> buildToTeam;
+
+        public BuildShell(List<Infrastructure> _infras)
+        {
+            buildToTeam = _infras;
+        }
+    }
+    #endregion CPTP Shell Classes
 }
