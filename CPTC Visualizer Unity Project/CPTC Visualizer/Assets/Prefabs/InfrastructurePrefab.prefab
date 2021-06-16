@@ -45,8 +45,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   networks: []
   allNodes: []
+  teams: []
   allNodeObjects: []
   networkObjects: []
-  shutDownNodes: 
-  infraFilename: 
-  infraFilePathExtension: 
+  connectionsById: []
+  mat: {fileID: 2100000, guid: 5f02c5ce979543f499c62fd8e6830317, type: 2}
