@@ -438,12 +438,12 @@ public class InfrastructureData: MonoBehaviour
     {
         // Position each network in a circular manner based off of a center point 0,0,0
         Vector3 center = new Vector3(0,0,0);
-        float degreeOffset = 2*Mathf.PI / networkObjects.Count;
+        float degreeOffset = 2 * Mathf.PI / networkObjects.Count;
         float currentAngle = Mathf.PI / 4;
-        positioningRadius = networkObjects.Count + 1;
+        positioningRadius = (networkObjects.Count + 1) * 1.25f;
         foreach(GameObject network in networkObjects)
         {
-            network.transform.position = new Vector3(Mathf.Cos(currentAngle) * positioningRadius, Mathf.Sin(currentAngle) * positioningRadius, 0);
+            network.transform.position = new Vector3(Mathf.Cos(currentAngle) * positioningRadius, Mathf.Sin(currentAngle) * positioningRadius / 1.5f, 0);
             currentAngle += degreeOffset;
         }
     }
