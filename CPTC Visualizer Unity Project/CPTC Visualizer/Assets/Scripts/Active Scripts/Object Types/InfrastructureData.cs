@@ -46,6 +46,9 @@ public class InfrastructureData: MonoBehaviour
     [SerializeField]
     private List<Vector2> connectionsById;
 
+    [SerializeField]
+    private Material mat;
+
     private List<Color> availableColors;
     private List<String> availableNames;
     private float positioningRadius;
@@ -286,6 +289,7 @@ public class InfrastructureData: MonoBehaviour
     public void DrawAllConnections()
     {
         GL.LoadOrtho();
+        mat.SetPass(0);
         GL.Begin(GL.LINES);
         GL.Color(Color.white);
         foreach(NodeData node in this.allNodes)

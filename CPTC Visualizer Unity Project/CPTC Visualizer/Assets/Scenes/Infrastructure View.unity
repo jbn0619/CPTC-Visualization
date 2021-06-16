@@ -169,19 +169,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d99c7bbf54283cf4c87757eb0ca2463d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 1
   ip: 
-  type: 0
-  state: 0
-  teamIDs: 
+  hostName: 
+  hostDescription: 
+  os: 
+  index: 0
   connections: 0000000002000000030000000400000005000000
-  isHidden: 0
   connectionGOS: []
   nodeSprite: {fileID: 0}
   teams: []
   values: []
   wedgeColors: []
   wedgePrefab: {fileID: 0}
+  teamIDs: 
 --- !u!114 &16954478
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -317,19 +317,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d99c7bbf54283cf4c87757eb0ca2463d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 12
   ip: 
-  type: 0
-  state: 0
-  teamIDs: 
+  hostName: 
+  hostDescription: 
+  os: 
+  index: 0
   connections: 0d0000000e0000000f00000010000000
-  isHidden: 0
   connectionGOS: []
   nodeSprite: {fileID: 0}
   teams: []
   values: []
   wedgeColors: []
   wedgePrefab: {fileID: 0}
+  teamIDs: 
 --- !u!61 &78851619
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -465,19 +465,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d99c7bbf54283cf4c87757eb0ca2463d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 3
   ip: 
-  type: 0
-  state: 0
-  teamIDs: 
+  hostName: 
+  hostDescription: 
+  os: 
+  index: 0
   connections: 0000000001000000020000000400000005000000
-  isHidden: 0
   connectionGOS: []
   nodeSprite: {fileID: 0}
   teams: []
   values: []
   wedgeColors: []
   wedgePrefab: {fileID: 0}
+  teamIDs: 
 --- !u!114 &172020600
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -669,19 +669,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d99c7bbf54283cf4c87757eb0ca2463d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 10
   ip: 
-  type: 0
-  state: 0
-  teamIDs: 
+  hostName: 
+  hostDescription: 
+  os: 
+  index: 0
   connections: 060000000700000008000000090000000b000000
-  isHidden: 0
   connectionGOS: []
   nodeSprite: {fileID: 0}
   teams: []
   values: []
   wedgeColors: []
   wedgePrefab: {fileID: 0}
+  teamIDs: 
 --- !u!61 &190460375
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -862,19 +862,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d99c7bbf54283cf4c87757eb0ca2463d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 20
   ip: 
-  type: 0
-  state: 0
-  teamIDs: 
+  hostName: 
+  hostDescription: 
+  os: 
+  index: 0
   connections: 110000001200000013000000
-  isHidden: 0
   connectionGOS: []
   nodeSprite: {fileID: 0}
   teams: []
   values: []
   wedgeColors: []
   wedgePrefab: {fileID: 0}
+  teamIDs: 
 --- !u!61 &304287821
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1010,19 +1010,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d99c7bbf54283cf4c87757eb0ca2463d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 7
   ip: 
-  type: 0
-  state: 0
-  teamIDs: 
+  hostName: 
+  hostDescription: 
+  os: 
+  index: 0
   connections: 0600000008000000090000000a0000000b000000
-  isHidden: 0
   connectionGOS: []
   nodeSprite: {fileID: 0}
   teams: []
   values: []
   wedgeColors: []
   wedgePrefab: {fileID: 0}
+  teamIDs: 
 --- !u!61 &380662265
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1158,19 +1158,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d99c7bbf54283cf4c87757eb0ca2463d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 17
   ip: 
-  type: 0
-  state: 0
-  teamIDs: 
+  hostName: 
+  hostDescription: 
+  os: 
+  index: 0
   connections: 120000001300000014000000
-  isHidden: 0
   connectionGOS: []
   nodeSprite: {fileID: 0}
   teams: []
   values: []
   wedgeColors: []
   wedgePrefab: {fileID: 0}
+  teamIDs: 
 --- !u!61 &396696156
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1306,19 +1306,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d99c7bbf54283cf4c87757eb0ca2463d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 16
   ip: 
-  type: 0
-  state: 0
-  teamIDs: 
+  hostName: 
+  hostDescription: 
+  os: 
+  index: 0
   connections: 0c0000000d0000000e0000000f000000
-  isHidden: 0
   connectionGOS: []
   nodeSprite: {fileID: 0}
   teams: []
   values: []
   wedgeColors: []
   wedgePrefab: {fileID: 0}
+  teamIDs: 
 --- !u!61 &402186482
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1454,19 +1454,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d99c7bbf54283cf4c87757eb0ca2463d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 14
   ip: 
-  type: 0
-  state: 0
-  teamIDs: 
+  hostName: 
+  hostDescription: 
+  os: 
+  index: 0
   connections: 0c0000000d0000000f00000010000000
-  isHidden: 0
   connectionGOS: []
   nodeSprite: {fileID: 0}
   teams: []
   values: []
   wedgeColors: []
   wedgePrefab: {fileID: 0}
+  teamIDs: 
 --- !u!61 &631457341
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1824,6 +1824,7 @@ MonoBehaviour:
   - {fileID: 1445645154}
   - {fileID: 1519847454}
   connectionsById: []
+  mat: {fileID: 2100000, guid: 5f02c5ce979543f499c62fd8e6830317, type: 2}
 --- !u!4 &807570441
 Transform:
   m_ObjectHideFlags: 0
@@ -1953,6 +1954,7 @@ MonoBehaviour:
   prefabNode: {fileID: 1217330141730608042, guid: c71bbe5717ea8454fa5ad5bde99919b4, type: 3}
   prefabNetwork: {fileID: 1997012330732690743, guid: e6b8d870b7b772b4ea2cfbf28c461ea6, type: 3}
   prefabInfrastructure: {fileID: 4531087110079519839, guid: 1b4bde8715dca1341bb9a0cd68bee61f, type: 3}
+  infraFile: 
   inputManager: {fileID: 183641911}
   teamManager: {fileID: 1371010132}
   eventManager: {fileID: 1452424210}
@@ -2042,10 +2044,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68a1de687a3cda1439996235c35956e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 1
-  nodeIDs: 000000000100000002000000030000000400000005000000
-  connections: 020000000300000004000000
-  nodeObjects: []
+  networkName: 
   nodes:
   - {fileID: 1582256217}
   - {fileID: 16954477}
@@ -2053,6 +2052,9 @@ MonoBehaviour:
   - {fileID: 172020599}
   - {fileID: 1659818526}
   - {fileID: 1031760232}
+  vdi: 0
+  nodeObjects: []
+  connections: 020000000300000004000000
   connectionGOS: []
 --- !u!120 &1018051403
 LineRenderer:
@@ -2317,19 +2319,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d99c7bbf54283cf4c87757eb0ca2463d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 5
   ip: 
-  type: 0
-  state: 0
-  teamIDs: 
+  hostName: 
+  hostDescription: 
+  os: 
+  index: 0
   connections: 0000000001000000020000000300000004000000
-  isHidden: 0
   connectionGOS: []
   nodeSprite: {fileID: 0}
   teams: []
   values: []
   wedgeColors: []
   wedgePrefab: {fileID: 0}
+  teamIDs: 
 --- !u!114 &1031760233
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2465,19 +2467,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d99c7bbf54283cf4c87757eb0ca2463d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 9
   ip: 
-  type: 0
-  state: 0
-  teamIDs: 
+  hostName: 
+  hostDescription: 
+  os: 
+  index: 0
   connections: 0600000007000000080000000a0000000b000000
-  isHidden: 0
   connectionGOS: []
   nodeSprite: {fileID: 0}
   teams: []
   values: []
   wedgeColors: []
   wedgePrefab: {fileID: 0}
+  teamIDs: 
 --- !u!61 &1141330892
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2615,13 +2617,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d99c7bbf54283cf4c87757eb0ca2463d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 0
   ip: 
-  type: 0
-  state: 0
-  teamIDs: 
+  hostName: 
+  hostDescription: 
+  os: 
+  index: 0
   connections: 
-  isHidden: 0
   connectionGOS: []
   nodeSprite: {fileID: 0}
   teams: []
@@ -2636,6 +2637,7 @@ MonoBehaviour:
   - {r: 0, g: 1, b: 0.049153566, a: 0}
   - {r: 1, g: 0.9685757, b: 0, a: 0}
   wedgePrefab: {fileID: 1261249942711030587, guid: 783324dbf110c1b4cbed88f515d323a3, type: 3}
+  teamIDs: 
 --- !u!1 &1332407201
 GameObject:
   m_ObjectHideFlags: 0
@@ -2781,19 +2783,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d99c7bbf54283cf4c87757eb0ca2463d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 15
   ip: 
-  type: 0
-  state: 0
-  teamIDs: 
+  hostName: 
+  hostDescription: 
+  os: 
+  index: 0
   connections: 0c0000000d0000000e00000010000000
-  isHidden: 0
   connectionGOS: []
   nodeSprite: {fileID: 0}
   teams: []
   values: []
   wedgeColors: []
   wedgePrefab: {fileID: 0}
+  teamIDs: 
 --- !u!61 &1393734962
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2929,19 +2931,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d99c7bbf54283cf4c87757eb0ca2463d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 13
   ip: 
-  type: 0
-  state: 0
-  teamIDs: 
+  hostName: 
+  hostDescription: 
+  os: 
+  index: 0
   connections: 0c0000000e0000000f00000010000000
-  isHidden: 0
   connectionGOS: []
   nodeSprite: {fileID: 0}
   teams: []
   values: []
   wedgeColors: []
   wedgePrefab: {fileID: 0}
+  teamIDs: 
 --- !u!61 &1420891501
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3077,19 +3079,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d99c7bbf54283cf4c87757eb0ca2463d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 2
   ip: 
-  type: 0
-  state: 0
-  teamIDs: 
+  hostName: 
+  hostDescription: 
+  os: 
+  index: 0
   connections: 0000000001000000030000000400000005000000
-  isHidden: 0
   connectionGOS: []
   nodeSprite: {fileID: 0}
   teams: []
   values: []
   wedgeColors: []
   wedgePrefab: {fileID: 0}
+  teamIDs: 
 --- !u!61 &1433291189
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3334,16 +3336,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68a1de687a3cda1439996235c35956e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 3
-  nodeIDs: 0c0000000d0000000e0000000f00000010000000
-  connections: 010000000200000004000000
-  nodeObjects: []
+  networkName: 
   nodes:
   - {fileID: 78851618}
   - {fileID: 1420891500}
   - {fileID: 631457340}
   - {fileID: 1393734961}
   - {fileID: 402186481}
+  vdi: 0
+  nodeObjects: []
+  connections: 010000000200000004000000
   connectionGOS: []
 --- !u!61 &1445645158
 BoxCollider2D:
@@ -3712,15 +3714,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68a1de687a3cda1439996235c35956e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 4
-  nodeIDs: 11000000120000001300000014000000
-  connections: 010000000200000003000000
-  nodeObjects: []
+  networkName: 
   nodes:
   - {fileID: 396696155}
   - {fileID: 2092072914}
   - {fileID: 1674982574}
   - {fileID: 304287820}
+  vdi: 0
+  nodeObjects: []
+  connections: 010000000200000003000000
   connectionGOS: []
 --- !u!61 &1519847458
 BoxCollider2D:
@@ -3870,13 +3872,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d99c7bbf54283cf4c87757eb0ca2463d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 0
   ip: 
-  type: 0
-  state: 0
-  teamIDs: 
+  hostName: 
+  hostDescription: 
+  os: 
+  index: 0
   connections: 0100000002000000030000000400000005000000
-  isHidden: 0
   connectionGOS: []
   nodeSprite: {fileID: 0}
   teams: []
@@ -3891,6 +3892,7 @@ MonoBehaviour:
   - {r: 0, g: 1, b: 0.100815535, a: 0}
   - {r: 1, g: 0.97662324, b: 0, a: 0}
   wedgePrefab: {fileID: 1261249942711030587, guid: 783324dbf110c1b4cbed88f515d323a3, type: 3}
+  teamIDs: 
 --- !u!4 &1582256218
 Transform:
   m_ObjectHideFlags: 0
@@ -4040,19 +4042,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d99c7bbf54283cf4c87757eb0ca2463d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 6
   ip: 
-  type: 0
-  state: 0
-  teamIDs: 
+  hostName: 
+  hostDescription: 
+  os: 
+  index: 0
   connections: 0700000008000000090000000a0000000b000000
-  isHidden: 0
   connectionGOS: []
   nodeSprite: {fileID: 0}
   teams: []
   values: []
   wedgeColors: []
   wedgePrefab: {fileID: 0}
+  teamIDs: 
 --- !u!61 &1611356391
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4298,10 +4300,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68a1de687a3cda1439996235c35956e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 2
-  nodeIDs: 060000000700000008000000090000000a0000000b000000
-  connections: 010000000300000004000000
-  nodeObjects: []
+  networkName: 
   nodes:
   - {fileID: 1611356390}
   - {fileID: 380662264}
@@ -4309,6 +4308,9 @@ MonoBehaviour:
   - {fileID: 1141330891}
   - {fileID: 190460374}
   - {fileID: 1693415338}
+  vdi: 0
+  nodeObjects: []
+  connections: 010000000300000004000000
   connectionGOS: []
 --- !u!61 &1658641638
 BoxCollider2D:
@@ -4472,19 +4474,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d99c7bbf54283cf4c87757eb0ca2463d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 4
   ip: 
-  type: 0
-  state: 0
-  teamIDs: 
+  hostName: 
+  hostDescription: 
+  os: 
+  index: 0
   connections: 0000000001000000020000000300000005000000
-  isHidden: 0
   connectionGOS: []
   nodeSprite: {fileID: 0}
   teams: []
   values: []
   wedgeColors: []
   wedgePrefab: {fileID: 0}
+  teamIDs: 
 --- !u!61 &1659818527
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4620,19 +4622,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d99c7bbf54283cf4c87757eb0ca2463d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 19
   ip: 
-  type: 0
-  state: 0
-  teamIDs: 
+  hostName: 
+  hostDescription: 
+  os: 
+  index: 0
   connections: 110000001200000014000000
-  isHidden: 0
   connectionGOS: []
   nodeSprite: {fileID: 0}
   teams: []
   values: []
   wedgeColors: []
   wedgePrefab: {fileID: 0}
+  teamIDs: 
 --- !u!61 &1674982575
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4891,19 +4893,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d99c7bbf54283cf4c87757eb0ca2463d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 11
   ip: 
-  type: 0
-  state: 0
-  teamIDs: 
+  hostName: 
+  hostDescription: 
+  os: 
+  index: 0
   connections: 060000000700000008000000090000000a000000
-  isHidden: 0
   connectionGOS: []
   nodeSprite: {fileID: 0}
   teams: []
   values: []
   wedgeColors: []
   wedgePrefab: {fileID: 0}
+  teamIDs: 
 --- !u!61 &1693415339
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5200,19 +5202,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d99c7bbf54283cf4c87757eb0ca2463d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 8
   ip: 
-  type: 0
-  state: 0
-  teamIDs: 
+  hostName: 
+  hostDescription: 
+  os: 
+  index: 0
   connections: 0600000007000000090000000a0000000b000000
-  isHidden: 0
   connectionGOS: []
   nodeSprite: {fileID: 0}
   teams: []
   values: []
   wedgeColors: []
   wedgePrefab: {fileID: 0}
+  teamIDs: 
 --- !u!61 &1836674367
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5700,19 +5702,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d99c7bbf54283cf4c87757eb0ca2463d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 18
   ip: 
-  type: 0
-  state: 0
-  teamIDs: 
+  hostName: 
+  hostDescription: 
+  os: 
+  index: 0
   connections: 110000001300000014000000
-  isHidden: 0
   connectionGOS: []
   nodeSprite: {fileID: 0}
   teams: []
   values: []
   wedgeColors: []
   wedgePrefab: {fileID: 0}
+  teamIDs: 
 --- !u!61 &2092072915
 BoxCollider2D:
   m_ObjectHideFlags: 0
