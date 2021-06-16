@@ -305,6 +305,8 @@ public class GameManager: Singleton<GameManager>
             // instantiate the child objects with the data
             mainInfra.InstanceChildren();
         }
+        mainInfra.PositionNetworks();
+        mainInfra.DrawAllConnections();
     }
 
     /*
