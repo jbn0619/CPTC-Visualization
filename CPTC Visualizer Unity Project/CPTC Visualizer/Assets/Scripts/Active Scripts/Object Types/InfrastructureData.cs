@@ -366,16 +366,16 @@ public class InfrastructureData: MonoBehaviour
             // set networkData's references to the network scripts connected to the game Objects
             networks[i] = networkObjects[i].GetComponent<NetworkData>();
 
-            // set all nodes within this network to be adjacent to each other
-            for(int j= 0; j < networks[i].NodeObjects.Count;j++)
+            for(int j = 0; j < networks[i].NodeObjects.Count;j++)
             {
                 // Set the internal list of NodeData for the network to be equal to the finished version of the nodeData
                 networks[i].AddNodeData(networks[i].NodeObjects[j].GetComponent<NodeData>(), j);
-
+                
+                // set all nodes within this network to be adjacent to each other
                 for (int k = 0; k < networks[i].Nodes.Count; k++)
                 {
                     // if the node isn't attempting to reference itsels
-                    if(networks[i].NodeObjects[j].GetComponent<NodeData>().Index != networkObjects[i].GetComponent<NetworkData>().Nodes[k].Index)
+                    if(networks[i].NodeObjects[j].GetComponent<NodeData>().Index != networks[i].NodeObjects[k].GetComponent<NodeData>().Index)
                     {
                         // Add the AllNodes Index of the other node to this node's connections list 
                         networks[i].NodeObjects[j].GetComponent<NodeData>().Connections.Add(networkObjects[i].GetComponent<NetworkData>().NodeObjects[k].GetComponent<NodeData>().Index);
