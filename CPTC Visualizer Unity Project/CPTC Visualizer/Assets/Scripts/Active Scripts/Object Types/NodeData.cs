@@ -292,17 +292,6 @@ public class NodeData: MonoBehaviour
     }
 
     /// <summary>
-    /// Changes this object's sprite based-on the new NodeType read-in.
-    /// </summary>
-    private void ChangeSprite()
-    {
-        //Sprite newSprite = GeneralResources.Instance.NodeSprites[(int)type];
-        Sprite newSprite = Resources.Load<Sprite>(type.ToString() + "_Icon");
-        nodeSprite.sprite = newSprite;
-        nodeSprite.transform.localScale = new Vector3(.15f, .15f, 1);
-    }    
-
-    /// <summary>
     /// Set all variables within the node with data passed from the server
     /// </summary>
     /// <param name="_ip"> the IP address of the node</param>
@@ -330,6 +319,7 @@ public class NodeData: MonoBehaviour
     /// <summary>
     /// Use the data from the FileReader to add references to newly instanced GameObjects
     /// </summary>
+    /// <param name="_index">Index of the Node within Infra.AllNodes</param>
     public void InstanceData(int _index)
     {
         name = hostName;
@@ -340,25 +330,16 @@ public class NodeData: MonoBehaviour
         }
     }
 
-    /*Redundant code. We Won't be cloning nodes in the forseable future. - Ben 
-     * /// <summary>
-    /// Create a new NodeData with all of the data from this node
+    /// <summary>
+    /// Changes this object's sprite based-on the new NodeType read-in.
     /// </summary>
-    /// <returns></returns>
-    public NodeData Clone()
+    private void ChangeSprite()
     {
-        NodeData newNode = new NodeData();
-        newNode.index = this.index;
-        newNode.ip = this.ip;
-        newNode.type = this.type;
-        newNode.state = this.state;
-        newNode.isHidden = this.isHidden;
-        newNode.connections = this.connections;
-        newNode.connectionGOS = this.connectionGOS;
-        newNode.nodeSprite = this.nodeSprite;
-
-        return newNode;
-    }*/
+        //Sprite newSprite = GeneralResources.Instance.NodeSprites[(int)type];
+        Sprite newSprite = Resources.Load<Sprite>(type.ToString() + "_Icon");
+        nodeSprite.sprite = newSprite;
+        nodeSprite.transform.localScale = new Vector3(.15f, .15f, 1);
+    } 
 
     /// <summary>
     /// Divide the sprite into colored pieces based on the number of teams at the node, and color those pieces to the designated colors of the corresponding teams.
@@ -404,4 +385,23 @@ public class NodeData: MonoBehaviour
             zRotation -= newWedge.fillAmount * 360f;
         }
     }
+    /*Redundant code. We Won't be cloning nodes in the forseable future. - Ben 
+     * /// <summary>
+    /// Create a new NodeData with all of the data from this node
+    /// </summary>
+    /// <returns></returns>
+    public NodeData Clone()
+    {
+        NodeData newNode = new NodeData();
+        newNode.index = this.index;
+        newNode.ip = this.ip;
+        newNode.type = this.type;
+        newNode.state = this.state;
+        newNode.isHidden = this.isHidden;
+        newNode.connections = this.connections;
+        newNode.connectionGOS = this.connectionGOS;
+        newNode.nodeSprite = this.nodeSprite;
+
+        return newNode;
+    }*/
 }

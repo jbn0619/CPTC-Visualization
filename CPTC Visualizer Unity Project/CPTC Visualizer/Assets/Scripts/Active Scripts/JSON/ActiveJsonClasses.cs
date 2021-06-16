@@ -10,7 +10,7 @@ using UnityEngine;
 /// Function: Based on Justin's JsonClasses file from the Spring Semester, these data structures can be transferred between the Game Object 
 ///     scripts and the JSON file reader. The code is using them as an intermediary. 
 ///     
-///     THIS VERSION IS FORMATTED TO TAKE DATA FROM THE LAFORGE TOPOLOGY JSON. TO LOAD DATA FROM THE TEST INFRASTRUCTURE, REVERT TO OLD VERSION OF THIS FILE
+/// THIS VERSION IS FORMATTED TO TAKE DATA FROM THE LAFORGE TOPOLOGY JSON. TO LOAD DATA FROM THE TEST INFRASTRUCTURE, REVERT TO OLD (before June 15, 2021) VERSION OF THIS FILE
 ///     
 /// NOTES 1: Because the classes in this file are not derived from MonoBehaviour (They can’t be attached to GameObjects as components), they can 
 ///     be easily understood by .NET CORE’s JSON Utility class. It would be preferable to use a more in-depth JSON library later, though I have 
@@ -102,7 +102,7 @@ namespace Assets.Scripts
     }
 
     /// <summary>
-    /// A collection of a Host System's information
+    /// A holder class to create an object storing data in the same structure as the provided JSON
     /// </summary>
     [Serializable]
     public class HostContainer
@@ -135,8 +135,9 @@ namespace Assets.Scripts
     }
     
     /// <summary>
-    /// A collection of an Agent's passed information
+    /// A holder class for live data passed by the Laforge JSON
     /// </summary>
+    [Serializable]
     public class AgentContainer
     {
         // This is currently empty because we don't have an example of the agent's data format yet. - Ben
@@ -147,7 +148,7 @@ namespace Assets.Scripts
     }
 
     /// <summary>
-    /// A collection of a node's data, including node id, node type and what nodes this one is connected to. 
+    /// A holder class for the Node level of information provided by the Laforge Topology. Short for Provisioned Host.
     /// </summary>
     [Serializable]
     public class ProHost
@@ -165,6 +166,12 @@ namespace Assets.Scripts
         /// </summary>
         public AgentContainer ProvisionalHostToAgentState;
 
+        /// <summary>
+        /// Constructor for Node-Level information
+        /// </summary>
+        /// <param name="_ip">IP address of this Host within the network</param>
+        /// <param name="_host">Information object containing data about the Host</param>
+        /// <param name="_agent">Information Object containing Live data from Laforge.</param>
         public ProHost(string _ip, HostContainer _host, AgentContainer _agent = null)
         {
             subnet_ip = _ip;
@@ -174,13 +181,20 @@ namespace Assets.Scripts
     }
 
     /// <summary>
-    /// ThesubnetworkContainer is a object to represent the communication of the Provisioned Network to the Network
+    /// A container for data passed within the Provisioned Network
     /// </summary>
     [Serializable]
     public class SubNetworkContainer
     {
+        /// <summary>
+        /// Is the network connected to the team's starting network? True = yes, False = no
+        /// </summary>
         public bool vdi_visible;
 
+        /// <summary>
+        /// Constructor for Info object specific to Network layer
+        /// </summary>
+        /// <param name="_vdi"></param>
         public SubNetworkContainer(bool _vdi)
         {
             vdi_visible = _vdi;
@@ -189,7 +203,7 @@ namespace Assets.Scripts
 
 
     /// <summary>
-    /// A collection of a network's data, including network id and nodes within it.
+    /// A holder class for the Network level information of the Laforge Topology. Short for Provisioned Network
     /// </summary>
     [Serializable]
     public class ProNetwork
@@ -203,7 +217,7 @@ namespace Assets.Scripts
         /// </summary>
         public string cidr;
         /// <summary>
-        /// Represents communication between the Laforgenetwork and the actual network. Used to determine if this network has a direct connection to this network.
+        /// Represents communication between the Laforgenetwork and the actual network. Used to determine if this network has a direct connection to the team's network or blocked by firewalls.
         /// </summary>
         public SubNetworkContainer ProvisionedNetworkToNetwork;
         /// <summary>
@@ -217,7 +231,7 @@ namespace Assets.Scripts
         /// </summary>
         /// <param name="_name">Name of the Network</param>
         /// <param name="_ip">the IP address of this network</param>
-        /// <param name="_subNet">Determines if the network is connected to the starting network</param>
+        /// <param name="_subNet">Determines if the network is connected to the team's starting network or blocked by firewalls</param>
         /// <param name="_nodes">List of all systems (nodes) within this network</param>
         public ProNetwork(string _name, string _ip, SubNetworkContainer _subNet, List<ProHost> _nodes)
         {
@@ -229,13 +243,13 @@ namespace Assets.Scripts
     }
 
     /// <summary>
-    /// A collection of all network and node data compiled into one data structure.
+    /// A holder class of The scope of the network for one team. The Laforge document passes an individual copy of the infrastructure for each team participating in the event.
     /// </summary>
     [Serializable]
     public class Infrastructure
     {
         /// <summary>
-        /// This is the team the Infrastructure is built for in the System
+        /// The team this infrastructure belongs to.
         /// </summary>
         public int team_number;
         /// <summary>
@@ -257,13 +271,21 @@ namespace Assets.Scripts
     }
 
     // These are the exterior parts of the JSON file which we will need to read through in order to access the info we want.
-    // To reach the infrastructure we want, we will need to grab LaforgeShell.data.environment.EnvironmentToBuild[0].buildToTeam[0]
     #region CPTC Shell Classes
+    /// <summary>
+    /// This is the highest level of object within the Laforge JSON document.
+    /// </summary>
     [Serializable]
     public class LaforgeShell
     {
+        /// <summary>
+        /// The data structure beneath the outer layer of the JSON
+        /// </summary>
         public DataShell data;
-
+        /// <summary>
+        /// Constructor for Outer JSON object
+        /// </summary>
+        /// <param name="_shell">The 2nd layer of the data structure</param>
         public LaforgeShell(DataShell _shell)
         {
             data = _shell;
@@ -276,31 +298,59 @@ namespace Assets.Scripts
             return dataString;
         }
     }
+    /// <summary>
+    /// This is just here because there's a data object containing all of the JSON's information.
+    /// </summary>
     [Serializable]
     public class DataShell
     {
+        /// <summary>
+        /// the 3rd layer of the Laforge JSON Object
+        /// </summary>
         public EnvironmentShell environment;
-
+        /// <summary>
+        /// Constructor for the 2rd layer of the Laforge JSON object
+        /// </summary>
+        /// <param name="_shell">The third layer of the Laforge JSON Object</param>
         public DataShell(EnvironmentShell _shell)
         {
             environment = _shell;
         }
     }
+    /// <summary>
+    /// Contains a list of system configurations to use when Laforge instantiates itself in the virtual simulation.
+    /// </summary>
     [Serializable]
     public class EnvironmentShell
     {
+        /// <summary>
+        /// List of configurations for the Laforge Instantiation of the simulated system topology
+        /// </summary>
         public List<BuildShell> EnvironmentToBuild;
-
+        /// <summary>
+        /// Constructor for the 3rd layer of the Laforge JSON Object
+        /// </summary>
+        /// <param name="_shell">The 4th layer of the Laforge JSON object</param>
         public EnvironmentShell(List<BuildShell> _shell)
         {
             EnvironmentToBuild = _shell;
         }
     }
+    /// <summary>
+    /// Contains a list of the Infrastructure copies for each team.
+    /// </summary>
     [Serializable]
     public class BuildShell
     {
+        /// <summary>
+        /// List of Infrastructures Laforge built. Each is identical, except for the team_number assigned to it, and the order of the networks within it's list.
+        /// </summary>
         public List<Infrastructure> buildToTeam;
 
+        /// <summary>
+        /// Constructor for the 4th Layer of the Laforge JSON Object
+        /// </summary>
+        /// <param name="_infras">List of Team copies of the System Topology for the competition</param>
         public BuildShell(List<Infrastructure> _infras)
         {
             buildToTeam = _infras;

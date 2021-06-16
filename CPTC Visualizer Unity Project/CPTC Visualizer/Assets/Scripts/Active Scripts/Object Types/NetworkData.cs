@@ -233,6 +233,11 @@ public class NetworkData: MonoBehaviour
             //is not a Node object
         }
     }
+    /// <summary>
+    /// Replaces the NodeData at the given index
+    /// </summary>
+    /// <param name="_node">NodeData being passed in</param>
+    /// <param name="_index">index of the NetworkData.Nodes list to replace</param>
     public void AddNodeData(NodeData _node, int _index)
     {
         nodes[_index] = _node;
@@ -242,14 +247,14 @@ public class NetworkData: MonoBehaviour
     /// Determine if this node will have a connection with the passed node
     /// </summary>
     /// <param name="_net">Node being checked for adjacency with the current node</param>
-    /// <returns></returns>
+    /// <returns>True = network is connected / False = network not connected</returns>
     public bool IsAdjacentTo(NetworkData _net)
     {
-        // If both networks are open to the VDI
+        // Check If both networks are open to the VDI
         if(vdi && _net.vdi)
         {
             return true;
-        } // If neither network is the VDI network
+        } // Check If neither network is the VDI network
         else if(networkName!="vdi" && _net.NetworkName != "vdi")
         {
             return true;

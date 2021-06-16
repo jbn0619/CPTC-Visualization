@@ -91,6 +91,16 @@ public class InfrastructureData: MonoBehaviour
             return allNodes;
         }
     }
+    /// <summary>
+    /// Gets a list of all the instanced Node Objects in the scene
+    /// </summary>
+    public List<GameObject> AllNodeObjects
+    {
+        get
+        {
+            return allNodeObjects;
+        }
+    }
 
     /// <summary>
     /// Gets a list of All teams operating within the simulation.
@@ -100,17 +110,6 @@ public class InfrastructureData: MonoBehaviour
         get
         {
             return this.teams;
-        }
-    }
-
-    /// <summary>
-    /// Gets a list of all the instanced Node Objects in the scene
-    /// </summary>
-    public List<GameObject> AllNodeObjects
-    {
-        get
-        {
-            return allNodeObjects;
         }
     }
 
@@ -141,8 +140,10 @@ public class InfrastructureData: MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // reset list of connections made between nodes
         connectionsById = new List<Vector2>();
         
+        // Establish list of available team colors
         availableColors = new List<Color>();
         availableColors.Add(new Color(135,15,133));
         availableColors.Add(new Color(43,173,115));
@@ -155,6 +156,7 @@ public class InfrastructureData: MonoBehaviour
         availableColors.Add(new Color(115,13,66));
         availableColors.Add(new Color(194,184,54));
 
+        // Establish list of available team Names
         availableNames = new List<String>();
         availableNames.Add("Rattlesnakes");
         availableNames.Add("Coyotes");
@@ -167,6 +169,7 @@ public class InfrastructureData: MonoBehaviour
         availableNames.Add("Racoons");
         availableNames.Add("Lizards");
 
+        // set team names and colors for each team
         foreach (TeamData t in teams)
         {
             t.TeamName = GetRandomName();
@@ -216,26 +219,10 @@ public class InfrastructureData: MonoBehaviour
     // These mmethods are used to search through the Infrastructure's lists
     #region SearchMethods
     /// <summary>
-    /// Find a network within Infrastructure's NetworkObjects using it's name for reference
-    /// </summary>
-    /// <param name="_searchName">Name of the Object you are searching for</param>
-    /// <returns></returns>
-    public GameObject FindNetworkObjectByName(string _searchName)
-    {
-        for(int i = 0; i < networkObjects.Count; i++)
-        {
-            if(networkObjects[i].GetComponent<NetworkData>().NetworkName == _searchName)
-            {
-                return networkObjects[i];
-            }
-        }
-        return null;
-    }
-    /// <summary>
     /// Search the infrastructure's allNodeObjects list and return the node object with the correct ID
     /// </summary>
-    /// <param name="_searchID"></param>
-    /// <returns></returns>
+    /// <param name="_searchID">ID number of target Node</param>
+    /// <returns>target Node’s Game Object</returns>
     public GameObject FindNodeObjectByID(int _searchID)
     {
         foreach(GameObject obj in this.allNodeObjects)
@@ -252,7 +239,7 @@ public class InfrastructureData: MonoBehaviour
     /// Search the infrastructures's allNodes list for the node with the passed ID and return it
     /// </summary>
     /// <param name="_searchID">ID number of the desired node</param>
-    /// <returns></returns>
+    /// <returns>Target NodeData from allNodes</returns>
     public NodeData FindNodeDataByID(int _searchID)
     {
         foreach (NodeData data in this.allNodes)
@@ -269,7 +256,7 @@ public class InfrastructureData: MonoBehaviour
     /// Search the Infrastructure's team list for the team with the passed ID number and return it.
     /// </summary>
     /// <param name="_searchID">ID number of the desired team</param>
-    /// <returns></returns>
+    /// <returns>Target TeamData from Infra’s.teams</returns>
     public TeamData FindTeamByID(int _searchID)
     {
         foreach(TeamData team in this.teams)
@@ -309,7 +296,7 @@ public class InfrastructureData: MonoBehaviour
     }
 
     /// <summary>
-    /// Set all variables within the network with data passed from the server
+    /// Set all JSON variables within the network with data passed from the server
     /// </summary>
     /// <param name="_networks">Networks of nodes within the server</param>
     /// <param name="_nodes">all nodes within the server</param>
@@ -382,7 +369,7 @@ public class InfrastructureData: MonoBehaviour
             // set all nodes within this network to be adjacent to each other
             for(int j= 0; j < networks[i].NodeObjects.Count;j++)
             {
-                // Set the internal list of NodeData for the network to be equal to the dinished version of the nodeData
+                // Set the internal list of NodeData for the network to be equal to the finished version of the nodeData
                 networks[i].AddNodeData(networks[i].NodeObjects[j].GetComponent<NodeData>(), j);
 
                 for (int k = 0; k < networks[i].Nodes.Count; k++)
@@ -406,12 +393,6 @@ public class InfrastructureData: MonoBehaviour
             }
         }
 
-        // create method of determining locations for networks and nodes based on givern parameters
-        //either based on concetration of nodes, setting the networks in a pre-determined order, or some other method.
-
-        PositionNetworks();
-        DrawAllConnections();
-        // TODO: Make call to draw connections once all objects have been built
     }
     
     /* Phased out because we are using in-between classes to move data from the FileReader to the JSON files now. - BW
@@ -438,16 +419,16 @@ public class InfrastructureData: MonoBehaviour
         return dataString;
     }*/
 
-    private void PositionNetworks()
+    public void PositionNetworks()
     {
         // Position each network in a circular manner based off of a center point 0,0,0
         Vector3 center = new Vector3(0,0,0);
-        float degreeOffset = 2*Mathf.PI / networkObjects.Count;
+        float degreeOffset = 2 * Mathf.PI / networkObjects.Count;
         float currentAngle = Mathf.PI / 4;
-        positioningRadius = networkObjects.Count + 1;
+        positioningRadius = (networkObjects.Count + 1) * 1.25f;
         foreach(GameObject network in networkObjects)
         {
-            network.transform.position = new Vector3(Mathf.Cos(currentAngle) * positioningRadius, Mathf.Sin(currentAngle) * positioningRadius, 0);
+            network.transform.position = new Vector3(Mathf.Cos(currentAngle) * positioningRadius, Mathf.Sin(currentAngle) * positioningRadius / 1.5f, 0);
             currentAngle += degreeOffset;
         }
     }
