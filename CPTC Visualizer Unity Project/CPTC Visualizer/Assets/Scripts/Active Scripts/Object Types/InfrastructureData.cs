@@ -178,8 +178,6 @@ public class InfrastructureData: MonoBehaviour
             t.TeamColor = GetRandomColor();
         }
 
-        // Test drawing canvas representation of teams at node
-        canvasTest.SplitSprite();
     }
 
     // Update is called once per frame

@@ -282,6 +282,7 @@ public class NodeData: MonoBehaviour
     void Start()
     {
         nodeSprite = this.GetComponent<SpriteRenderer>();
+        SplitSprite();
     }
 
     // Update is called once per frame
