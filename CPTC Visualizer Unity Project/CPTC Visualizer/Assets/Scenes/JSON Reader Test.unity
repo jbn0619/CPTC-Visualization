@@ -524,6 +524,7 @@ MonoBehaviour:
   eventManager: {fileID: 1452424210}
   videoManager: {fileID: 1909959175}
   fileManager: {fileID: 261663842}
+  mainCanvas: {fileID: 1917393980}
   notificationControls: {fileID: 0}
   timeDelay: 0
   stateCheckTime: 5

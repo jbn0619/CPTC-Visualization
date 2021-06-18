@@ -40,7 +40,8 @@ public class GameManager: Singleton<GameManager>
     private VideoManager videoManager;
     [SerializeField]
     private FileManager fileManager;
-    
+    [SerializeField]
+    private GameObject mainCanvas;
     public GameObject notificationControls;
 
     [Header("Time fields")]
@@ -297,6 +298,8 @@ public class GameManager: Singleton<GameManager>
             // this is really wonky right now and I just want to get it working before I worry about making it function well. - BW
             // make the object exist in the scene
             GameObject mainInfraObject = Instantiate(prefabInfrastructure);
+            // set canvas as parent of the infrastructure
+            mainInfraObject.transform.SetParent(mainCanvas.transform, false);
             // grab a ref to its infra data
             this.mainInfra = mainInfraObject.GetComponent<InfrastructureData>();
             // set the object's infra data to the data from the JSON file
