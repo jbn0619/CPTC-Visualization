@@ -30,11 +30,6 @@ public class NodeData: MonoBehaviour
     [SerializeField]
     protected string hostDescription;
     /// <summary>
-    /// Type of Operating System the node's system uses
-    /// </summary>
-    [SerializeField]
-    protected string os;
-    /// <summary>
     /// index of this node within Infra.AllNodes
     /// </summary>
     [SerializeField]
@@ -43,7 +38,12 @@ public class NodeData: MonoBehaviour
     /// A list of Infra.AllNodes indecies for adjacent Nodes
     /// </summary>
     [SerializeField]
-    protected List<int> connections; 
+    protected List<int> connections;
+    /// <summary>
+    /// Store enumeration of the node's host Operating System
+    /// </summary>
+    [SerializeField]
+    protected OperatingSystems os;
     /// <summary>
     /// Linerenderers used to draw connections between adjacent Nodes
     /// </summary>
@@ -64,7 +64,7 @@ public class NodeData: MonoBehaviour
     public List<Color> wedgeColors;
     public Image wedgePrefab;
     /// <summary>
-    /// A list of ID numbers for teams currently accessing this node
+    /// A list of Infrastructure.teams indexes for teams currently accessing this node
     /// </summary>
     [SerializeField]
     protected List<int> teamIDs;
@@ -136,7 +136,7 @@ public class NodeData: MonoBehaviour
     /// <summary>
     /// Gets this node's Operating System
     /// </summary>
-    public string OS
+    public OperatingSystems OS
     {
         get { return this.os; }
     }
@@ -303,7 +303,7 @@ public class NodeData: MonoBehaviour
     /// <param name="_state"> tracks what state the node is currently experiencing</param>
     /// <param name="_connections"> tracks the interger IDs of adjecent Nodes</param>
     /// <param name="_teamIDs">list of all teams accessing this node</param>
-    public void SetData(string _ip, string _hostname, string _hostDescription, string _os)
+    public void SetData(string _ip, string _hostname, string _hostDescription, OperatingSystems _os)
     {
         this.ip             = _ip;
         this.hostName = _hostname;
