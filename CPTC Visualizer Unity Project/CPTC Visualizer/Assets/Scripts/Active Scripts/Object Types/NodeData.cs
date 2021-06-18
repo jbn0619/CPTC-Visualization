@@ -282,7 +282,6 @@ public class NodeData: MonoBehaviour
     void Start()
     {
         nodeSprite = this.GetComponent<SpriteRenderer>();
-        SplitSprite();
     }
 
     // Update is called once per frame
@@ -377,11 +376,12 @@ public class NodeData: MonoBehaviour
 
         for (int i = 0; i < values.Count; i++)
         {
-            Image newWedge = Instantiate(wedgePrefab) as Image;
+            Image newWedge = Instantiate(wedgePrefab);
             newWedge.transform.SetParent(transform, false);
             newWedge.color = wedgeColors[i];
             newWedge.fillAmount = values[i] / total;
             newWedge.transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, zRotation));
+            newWedge.name = $"{this.name} Wedge {i}";
             zRotation -= newWedge.fillAmount * 360f;
         }
     }

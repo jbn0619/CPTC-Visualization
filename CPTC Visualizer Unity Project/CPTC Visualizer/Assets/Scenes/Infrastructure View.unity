@@ -1825,6 +1825,7 @@ MonoBehaviour:
   - {fileID: 1519847454}
   connectionsById: []
   mat: {fileID: 2100000, guid: 5f02c5ce979543f499c62fd8e6830317, type: 2}
+  canvasTest: {fileID: 1162678317}
 --- !u!4 &807570441
 Transform:
   m_ObjectHideFlags: 0
@@ -1874,7 +1875,7 @@ RectTransform:
   m_Children:
   - {fileID: 1732265475}
   m_Father: {fileID: 1917393984}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.92, y: 0.06}
   m_AnchorMax: {x: 0.92, y: 0.06}
@@ -2579,6 +2580,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1162678316}
   - component: {fileID: 1162678317}
+  - component: {fileID: 1162678318}
   m_Layer: 5
   m_Name: Pie Graph
   m_TagString: Untagged
@@ -2594,16 +2596,16 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1162678315}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 10}
-  m_LocalScale: {x: 0.023745084, y: 0.023745084, z: 0.023745084}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1917393984}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1162678317
 MonoBehaviour:
@@ -2636,8 +2638,16 @@ MonoBehaviour:
   - {r: 0, g: 0.10293555, b: 1, a: 0}
   - {r: 0, g: 1, b: 0.049153566, a: 0}
   - {r: 1, g: 0.9685757, b: 0, a: 0}
-  wedgePrefab: {fileID: 1261249942711030587, guid: 783324dbf110c1b4cbed88f515d323a3, type: 3}
+  wedgePrefab: {fileID: 1261249942711030565, guid: 783324dbf110c1b4cbed88f515d323a3, type: 3}
   teamIDs: 
+--- !u!222 &1162678318
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1162678315}
+  m_CullTransparentMesh: 1
 --- !u!1 &1332407201
 GameObject:
   m_ObjectHideFlags: 0
@@ -3891,7 +3901,7 @@ MonoBehaviour:
   - {r: 0, g: 0.1510973, b: 1, a: 0}
   - {r: 0, g: 1, b: 0.100815535, a: 0}
   - {r: 1, g: 0.97662324, b: 0, a: 0}
-  wedgePrefab: {fileID: 1261249942711030587, guid: 783324dbf110c1b4cbed88f515d323a3, type: 3}
+  wedgePrefab: {fileID: 0}
   teamIDs: 
 --- !u!4 &1582256218
 Transform:
@@ -5444,8 +5454,8 @@ RectTransform:
   - {fileID: 2046271682}
   - {fileID: 1676149084}
   - {fileID: 677739149}
-  - {fileID: 832347104}
   - {fileID: 1162678316}
+  - {fileID: 832347104}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

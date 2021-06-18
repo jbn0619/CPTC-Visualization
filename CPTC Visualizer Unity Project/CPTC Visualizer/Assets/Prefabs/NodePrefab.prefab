@@ -46,15 +46,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d99c7bbf54283cf4c87757eb0ca2463d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 0
   ip: 
-  type: 0
-  state: 0
-  isHidden: 0
+  hostName: 
+  hostDescription: 
+  os: 
+  index: 0
   connections: 
   connectionGOS: []
   nodeSprite: {fileID: 6725634808683633353}
   teams: []
+  values: []
+  wedgeColors: []
+  wedgePrefab: {fileID: 1261249942711030587, guid: 783324dbf110c1b4cbed88f515d323a3, type: 3}
+  teamIDs: 
 --- !u!61 &1471689075112016534
 BoxCollider2D:
   m_ObjectHideFlags: 0
