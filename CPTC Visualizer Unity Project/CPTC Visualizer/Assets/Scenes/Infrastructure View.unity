@@ -2634,11 +2634,11 @@ MonoBehaviour:
   - 0.25
   - 0.25
   wedgeColors:
-  - {r: 1, g: 0, b: 0, a: 0}
-  - {r: 0, g: 0.10293555, b: 1, a: 0}
-  - {r: 0, g: 1, b: 0.049153566, a: 0}
-  - {r: 1, g: 0.9685757, b: 0, a: 0}
-  wedgePrefab: {fileID: 1261249942711030565, guid: 783324dbf110c1b4cbed88f515d323a3, type: 3}
+  - {r: 1, g: 0, b: 0, a: 1}
+  - {r: 0, g: 0.10293555, b: 1, a: 1}
+  - {r: 0, g: 1, b: 0.049153566, a: 1}
+  - {r: 1, g: 0.9685757, b: 0, a: 1}
+  wedgePrefab: {fileID: 1261249942711030587, guid: 783324dbf110c1b4cbed88f515d323a3, type: 3}
   teamIDs: 
 --- !u!222 &1162678318
 CanvasRenderer:
