@@ -30,6 +30,11 @@ public class NodeData: MonoBehaviour
     [SerializeField]
     protected string hostDescription;
     /// <summary>
+    /// Store enumeration of the node's host Operating System
+    /// </summary>
+    [SerializeField]
+    protected OperatingSystems os;
+    /// <summary>
     /// index of this node within Infra.AllNodes
     /// </summary>
     [SerializeField]
@@ -39,11 +44,6 @@ public class NodeData: MonoBehaviour
     /// </summary>
     [SerializeField]
     protected List<int> connections;
-    /// <summary>
-    /// Store enumeration of the node's host Operating System
-    /// </summary>
-    [SerializeField]
-    protected OperatingSystems os;
     /// <summary>
     /// Linerenderers used to draw connections between adjacent Nodes
     /// </summary>
@@ -324,10 +324,7 @@ public class NodeData: MonoBehaviour
     {
         name = hostName;
         index = _index;
-        foreach(int teamID in this.teamIDs)
-        {
-            this.teams.Add(GameManager.Instance.MainInfra.FindTeamByID(teamID));
-        }
+        ChangeSprite();
     }
 
     /// <summary>
@@ -336,7 +333,7 @@ public class NodeData: MonoBehaviour
     private void ChangeSprite()
     {
         //Sprite newSprite = GeneralResources.Instance.NodeSprites[(int)type];
-        Sprite newSprite = Resources.Load<Sprite>(type.ToString() + "_Icon");
+        Sprite newSprite = GameManager.Instance.OsSprites[(int)os];
         nodeSprite.sprite = newSprite;
         nodeSprite.transform.localScale = new Vector3(.15f, .15f, 1);
     } 

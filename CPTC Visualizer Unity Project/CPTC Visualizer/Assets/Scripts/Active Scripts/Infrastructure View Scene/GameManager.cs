@@ -26,6 +26,8 @@ public class GameManager: Singleton<GameManager>
     private GameObject prefabInfrastructure;
     [SerializeField]
     private string infraFile;
+    [SerializeField]
+    private List<Sprite> osSprites;
 
     [Header("Manager GameObjects")]
     [SerializeField]
@@ -132,7 +134,8 @@ public class GameManager: Singleton<GameManager>
             return mainInfra;
         }
     }
-
+    #endregion Manager Properties
+    #region General Properties
     /// <summary>
     /// A prefab Game Object used to create Node objects
     /// </summary>
@@ -165,8 +168,14 @@ public class GameManager: Singleton<GameManager>
             return this.prefabInfrastructure;
         }
     }
-
-    #endregion Manager Properties
+    /// <summary>
+    /// A list of all sprites used to show the different types of nodes
+    /// </summary>
+    public List<Sprite> OsSprites
+    {
+        get { return osSprites; }
+    }
+    #endregion General Properties
 
     #region Competition Properties
 
