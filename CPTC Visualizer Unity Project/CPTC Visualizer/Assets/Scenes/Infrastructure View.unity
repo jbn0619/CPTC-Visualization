@@ -172,13 +172,12 @@ MonoBehaviour:
   ip: 
   hostName: 
   hostDescription: 
-  os: 
+  os: 0
   index: 0
   connections: 0000000002000000030000000400000005000000
   connectionGOS: []
   nodeSprite: {fileID: 0}
   teams: []
-  values: []
   wedgeColors: []
   wedgePrefab: {fileID: 0}
   teamIDs: 
@@ -320,13 +319,12 @@ MonoBehaviour:
   ip: 
   hostName: 
   hostDescription: 
-  os: 
+  os: 0
   index: 0
   connections: 0d0000000e0000000f00000010000000
   connectionGOS: []
   nodeSprite: {fileID: 0}
   teams: []
-  values: []
   wedgeColors: []
   wedgePrefab: {fileID: 0}
   teamIDs: 
@@ -468,13 +466,12 @@ MonoBehaviour:
   ip: 
   hostName: 
   hostDescription: 
-  os: 
+  os: 0
   index: 0
   connections: 0000000001000000020000000400000005000000
   connectionGOS: []
   nodeSprite: {fileID: 0}
   teams: []
-  values: []
   wedgeColors: []
   wedgePrefab: {fileID: 0}
   teamIDs: 
@@ -672,13 +669,12 @@ MonoBehaviour:
   ip: 
   hostName: 
   hostDescription: 
-  os: 
+  os: 0
   index: 0
   connections: 060000000700000008000000090000000b000000
   connectionGOS: []
   nodeSprite: {fileID: 0}
   teams: []
-  values: []
   wedgeColors: []
   wedgePrefab: {fileID: 0}
   teamIDs: 
@@ -865,13 +861,12 @@ MonoBehaviour:
   ip: 
   hostName: 
   hostDescription: 
-  os: 
+  os: 0
   index: 0
   connections: 110000001200000013000000
   connectionGOS: []
   nodeSprite: {fileID: 0}
   teams: []
-  values: []
   wedgeColors: []
   wedgePrefab: {fileID: 0}
   teamIDs: 
@@ -1013,13 +1008,12 @@ MonoBehaviour:
   ip: 
   hostName: 
   hostDescription: 
-  os: 
+  os: 0
   index: 0
   connections: 0600000008000000090000000a0000000b000000
   connectionGOS: []
   nodeSprite: {fileID: 0}
   teams: []
-  values: []
   wedgeColors: []
   wedgePrefab: {fileID: 0}
   teamIDs: 
@@ -1161,13 +1155,12 @@ MonoBehaviour:
   ip: 
   hostName: 
   hostDescription: 
-  os: 
+  os: 0
   index: 0
   connections: 120000001300000014000000
   connectionGOS: []
   nodeSprite: {fileID: 0}
   teams: []
-  values: []
   wedgeColors: []
   wedgePrefab: {fileID: 0}
   teamIDs: 
@@ -1309,13 +1302,12 @@ MonoBehaviour:
   ip: 
   hostName: 
   hostDescription: 
-  os: 
+  os: 0
   index: 0
   connections: 0c0000000d0000000e0000000f000000
   connectionGOS: []
   nodeSprite: {fileID: 0}
   teams: []
-  values: []
   wedgeColors: []
   wedgePrefab: {fileID: 0}
   teamIDs: 
@@ -1457,13 +1449,12 @@ MonoBehaviour:
   ip: 
   hostName: 
   hostDescription: 
-  os: 
+  os: 0
   index: 0
   connections: 0c0000000d0000000f00000010000000
   connectionGOS: []
   nodeSprite: {fileID: 0}
   teams: []
-  values: []
   wedgeColors: []
   wedgePrefab: {fileID: 0}
   teamIDs: 
@@ -1956,11 +1947,13 @@ MonoBehaviour:
   prefabNetwork: {fileID: 1997012330732690743, guid: e6b8d870b7b772b4ea2cfbf28c461ea6, type: 3}
   prefabInfrastructure: {fileID: 4531087110079519839, guid: 1b4bde8715dca1341bb9a0cd68bee61f, type: 3}
   infraFile: 
+  osSprites: []
   inputManager: {fileID: 183641911}
   teamManager: {fileID: 1371010132}
   eventManager: {fileID: 1452424210}
   videoManager: {fileID: 1909959175}
   fileManager: {fileID: 261663842}
+  mainCanvas: {fileID: 0}
   notificationControls: {fileID: 0}
   timeDelay: 0
   stateCheckTime: 5
@@ -2323,13 +2316,12 @@ MonoBehaviour:
   ip: 
   hostName: 
   hostDescription: 
-  os: 
+  os: 0
   index: 0
   connections: 0000000001000000020000000300000004000000
   connectionGOS: []
   nodeSprite: {fileID: 0}
   teams: []
-  values: []
   wedgeColors: []
   wedgePrefab: {fileID: 0}
   teamIDs: 
@@ -2471,13 +2463,12 @@ MonoBehaviour:
   ip: 
   hostName: 
   hostDescription: 
-  os: 
+  os: 0
   index: 0
   connections: 0600000007000000080000000a0000000b000000
   connectionGOS: []
   nodeSprite: {fileID: 0}
   teams: []
-  values: []
   wedgeColors: []
   wedgePrefab: {fileID: 0}
   teamIDs: 
@@ -2622,17 +2613,12 @@ MonoBehaviour:
   ip: 
   hostName: 
   hostDescription: 
-  os: 
+  os: 0
   index: 0
   connections: 
   connectionGOS: []
   nodeSprite: {fileID: 0}
   teams: []
-  values:
-  - 0.25
-  - 0.25
-  - 0.25
-  - 0.25
   wedgeColors:
   - {r: 1, g: 0, b: 0, a: 1}
   - {r: 0, g: 0.10293555, b: 1, a: 1}
@@ -2796,13 +2782,12 @@ MonoBehaviour:
   ip: 
   hostName: 
   hostDescription: 
-  os: 
+  os: 0
   index: 0
   connections: 0c0000000d0000000e00000010000000
   connectionGOS: []
   nodeSprite: {fileID: 0}
   teams: []
-  values: []
   wedgeColors: []
   wedgePrefab: {fileID: 0}
   teamIDs: 
@@ -2944,13 +2929,12 @@ MonoBehaviour:
   ip: 
   hostName: 
   hostDescription: 
-  os: 
+  os: 0
   index: 0
   connections: 0c0000000e0000000f00000010000000
   connectionGOS: []
   nodeSprite: {fileID: 0}
   teams: []
-  values: []
   wedgeColors: []
   wedgePrefab: {fileID: 0}
   teamIDs: 
@@ -3092,13 +3076,12 @@ MonoBehaviour:
   ip: 
   hostName: 
   hostDescription: 
-  os: 
+  os: 0
   index: 0
   connections: 0000000001000000030000000400000005000000
   connectionGOS: []
   nodeSprite: {fileID: 0}
   teams: []
-  values: []
   wedgeColors: []
   wedgePrefab: {fileID: 0}
   teamIDs: 
@@ -3885,23 +3868,18 @@ MonoBehaviour:
   ip: 
   hostName: 
   hostDescription: 
-  os: 
+  os: 0
   index: 0
   connections: 0100000002000000030000000400000005000000
   connectionGOS: []
   nodeSprite: {fileID: 0}
   teams: []
-  values:
-  - 0.25
-  - 0.25
-  - 0.25
-  - 0.25
   wedgeColors:
   - {r: 1, g: 0, b: 0, a: 0}
   - {r: 0, g: 0.1510973, b: 1, a: 0}
   - {r: 0, g: 1, b: 0.100815535, a: 0}
   - {r: 1, g: 0.97662324, b: 0, a: 0}
-  wedgePrefab: {fileID: 0}
+  wedgePrefab: {fileID: 1261249942711030587, guid: 783324dbf110c1b4cbed88f515d323a3, type: 3}
   teamIDs: 
 --- !u!4 &1582256218
 Transform:
@@ -4055,13 +4033,12 @@ MonoBehaviour:
   ip: 
   hostName: 
   hostDescription: 
-  os: 
+  os: 0
   index: 0
   connections: 0700000008000000090000000a0000000b000000
   connectionGOS: []
   nodeSprite: {fileID: 0}
   teams: []
-  values: []
   wedgeColors: []
   wedgePrefab: {fileID: 0}
   teamIDs: 
@@ -4487,13 +4464,12 @@ MonoBehaviour:
   ip: 
   hostName: 
   hostDescription: 
-  os: 
+  os: 0
   index: 0
   connections: 0000000001000000020000000300000005000000
   connectionGOS: []
   nodeSprite: {fileID: 0}
   teams: []
-  values: []
   wedgeColors: []
   wedgePrefab: {fileID: 0}
   teamIDs: 
@@ -4635,13 +4611,12 @@ MonoBehaviour:
   ip: 
   hostName: 
   hostDescription: 
-  os: 
+  os: 0
   index: 0
   connections: 110000001200000014000000
   connectionGOS: []
   nodeSprite: {fileID: 0}
   teams: []
-  values: []
   wedgeColors: []
   wedgePrefab: {fileID: 0}
   teamIDs: 
@@ -4906,13 +4881,12 @@ MonoBehaviour:
   ip: 
   hostName: 
   hostDescription: 
-  os: 
+  os: 0
   index: 0
   connections: 060000000700000008000000090000000a000000
   connectionGOS: []
   nodeSprite: {fileID: 0}
   teams: []
-  values: []
   wedgeColors: []
   wedgePrefab: {fileID: 0}
   teamIDs: 
@@ -5215,13 +5189,12 @@ MonoBehaviour:
   ip: 
   hostName: 
   hostDescription: 
-  os: 
+  os: 0
   index: 0
   connections: 0600000007000000090000000a0000000b000000
   connectionGOS: []
   nodeSprite: {fileID: 0}
   teams: []
-  values: []
   wedgeColors: []
   wedgePrefab: {fileID: 0}
   teamIDs: 
@@ -5715,13 +5688,12 @@ MonoBehaviour:
   ip: 
   hostName: 
   hostDescription: 
-  os: 
+  os: 0
   index: 0
   connections: 110000001300000014000000
   connectionGOS: []
   nodeSprite: {fileID: 0}
   teams: []
-  values: []
   wedgeColors: []
   wedgePrefab: {fileID: 0}
   teamIDs: 

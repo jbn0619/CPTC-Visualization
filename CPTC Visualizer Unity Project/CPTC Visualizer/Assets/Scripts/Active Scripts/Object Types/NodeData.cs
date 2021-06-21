@@ -60,7 +60,7 @@ public class NodeData: MonoBehaviour
     /// </summary>
     [SerializeField]
     protected List<TeamData> teams;
-    public List<float> values;
+    private float value;
     public List<Color> wedgeColors;
     public Image wedgePrefab;
     /// <summary>
@@ -343,41 +343,37 @@ public class NodeData: MonoBehaviour
     /// </summary>
     public void SplitSprite()
     {
-        // Used to convert degrees to a decimal between 0 and 1
-        //float degree = 1 / 360;
-        // The segments for the different colors on a circle
-        //float segment = 360 / teamIDs.Count;
+        // Size of each segment
+        //float value = 1 / teams.Count;
 
         float zRotation = 0f;
-        /*
-        // Loops through all the teams accessing the node and makes that many circle segments
-        for (int i = 0; i < teamIDs.Count; i++)
+
+        /// <summary>
+        /// Loops through all the teams accessing the node and makes that many circle segments
+        /// ** Will run if data is added to teams list **
+        /// </summary>
+        for (int i = 0; i < teams.Count; i++)
         {
             Image newWedge = Instantiate(wedgePrefab) as Image;
             newWedge.transform.SetParent(transform, false);
             newWedge.color = teams[i].TeamColor;
-            newWedge.fillAmount = segment * degree;
+            newWedge.fillAmount = value;
             newWedge.transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, zRotation));
             zRotation -= newWedge.fillAmount * 360f;
-        }*/
+        }
 
         /// <summary>
         /// Test data for above loop that takes data given in unity interface and converts that to a pie graph
         /// </summary>
-        float total = 0f;
         zRotation = 0f;
+        float testValue = .25f; // for testing the sprite color
 
-        for (int i = 0; i < values.Count; i++)
+        for (int i = 0; i < wedgeColors.Count; i++)
         {
-            total += values[i];
-        }
-
-        for (int i = 0; i < values.Count; i++)
-        {
-            Image newWedge = Instantiate(wedgePrefab);
+            Image newWedge = Instantiate(wedgePrefab) as Image;
             newWedge.transform.SetParent(transform, false);
             newWedge.color = wedgeColors[i];
-            newWedge.fillAmount = values[i] / total;
+            newWedge.fillAmount = testValue;
             newWedge.transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, zRotation));
             newWedge.name = $"{this.name} Wedge {i}";
             zRotation -= newWedge.fillAmount * 360f;
