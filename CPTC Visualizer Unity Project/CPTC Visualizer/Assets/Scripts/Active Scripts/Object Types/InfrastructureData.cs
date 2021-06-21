@@ -440,7 +440,7 @@ public class InfrastructureData: MonoBehaviour
     {
         foreach(GameObject network in networkObjects)
         {
-            List<GameObject> nodes = network.GetChildren();
+            //List<GameObject> nodes = network.GetChildren();
             
         }
     }
