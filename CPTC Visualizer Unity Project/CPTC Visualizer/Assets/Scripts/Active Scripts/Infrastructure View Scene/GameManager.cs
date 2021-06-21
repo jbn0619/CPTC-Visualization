@@ -306,6 +306,7 @@ public class GameManager: Singleton<GameManager>
             mainInfra.InstanceChildren();
         }
         mainInfra.PositionNetworks();
+        mainInfra.PositionNodes();
         mainInfra.DrawAllConnections();
     }
 

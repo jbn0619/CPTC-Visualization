@@ -222,7 +222,7 @@ public class InfrastructureData: MonoBehaviour
     /// Search the infrastructure's allNodeObjects list and return the node object with the correct ID
     /// </summary>
     /// <param name="_searchID">ID number of target Node</param>
-    /// <returns>target Node’s Game Object</returns>
+    /// <returns>target Nodeï¿½s Game Object</returns>
     public GameObject FindNodeObjectByID(int _searchID)
     {
         foreach(GameObject obj in this.allNodeObjects)
@@ -256,7 +256,7 @@ public class InfrastructureData: MonoBehaviour
     /// Search the Infrastructure's team list for the team with the passed ID number and return it.
     /// </summary>
     /// <param name="_searchID">ID number of the desired team</param>
-    /// <returns>Target TeamData from Infra’s.teams</returns>
+    /// <returns>Target TeamData from Infraï¿½s.teams</returns>
     public TeamData FindTeamByID(int _searchID)
     {
         foreach(TeamData team in this.teams)
@@ -428,8 +428,17 @@ public class InfrastructureData: MonoBehaviour
         positioningRadius = (networkObjects.Count + 1) * 1.25f;
         foreach(GameObject network in networkObjects)
         {
-            network.transform.position = new Vector3(Mathf.Cos(currentAngle) * positioningRadius, Mathf.Sin(currentAngle) * positioningRadius / 1.5f, 0);
+            network.transform.position = new Vector3(Mathf.Cos(currentAngle) * positioningRadius, Mathf.Sin(currentAngle) * positioningRadius, 0);
             currentAngle += degreeOffset;
+        }
+    }
+
+    public void PositionNodes()
+    {
+        foreach(GameObject network in networkObjects)
+        {
+            List<GameObject> nodes = network.GetChildren();
+            
         }
     }
 }
