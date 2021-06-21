@@ -30,10 +30,10 @@ public class NodeData: MonoBehaviour
     [SerializeField]
     protected string hostDescription;
     /// <summary>
-    /// Type of Operating System the node's system uses
+    /// Store enumeration of the node's host Operating System
     /// </summary>
     [SerializeField]
-    protected string os;
+    protected OperatingSystems os;
     /// <summary>
     /// index of this node within Infra.AllNodes
     /// </summary>
@@ -43,7 +43,7 @@ public class NodeData: MonoBehaviour
     /// A list of Infra.AllNodes indecies for adjacent Nodes
     /// </summary>
     [SerializeField]
-    protected List<int> connections; 
+    protected List<int> connections;
     /// <summary>
     /// Linerenderers used to draw connections between adjacent Nodes
     /// </summary>
@@ -60,11 +60,11 @@ public class NodeData: MonoBehaviour
     /// </summary>
     [SerializeField]
     protected List<TeamData> teams;
-    public List<float> values;
+    private float value;
     public List<Color> wedgeColors;
     public Image wedgePrefab;
     /// <summary>
-    /// A list of ID numbers for teams currently accessing this node
+    /// A list of Infrastructure.teams indexes for teams currently accessing this node
     /// </summary>
     [SerializeField]
     protected List<int> teamIDs;
@@ -136,7 +136,7 @@ public class NodeData: MonoBehaviour
     /// <summary>
     /// Gets this node's Operating System
     /// </summary>
-    public string OS
+    public OperatingSystems OS
     {
         get { return this.os; }
     }
@@ -303,7 +303,7 @@ public class NodeData: MonoBehaviour
     /// <param name="_state"> tracks what state the node is currently experiencing</param>
     /// <param name="_connections"> tracks the interger IDs of adjecent Nodes</param>
     /// <param name="_teamIDs">list of all teams accessing this node</param>
-    public void SetData(string _ip, string _hostname, string _hostDescription, string _os)
+    public void SetData(string _ip, string _hostname, string _hostDescription, OperatingSystems _os)
     {
         this.ip             = _ip;
         this.hostName = _hostname;
@@ -324,10 +324,7 @@ public class NodeData: MonoBehaviour
     {
         name = hostName;
         index = _index;
-        foreach(int teamID in this.teamIDs)
-        {
-            this.teams.Add(GameManager.Instance.MainInfra.FindTeamByID(teamID));
-        }
+        ChangeSprite();
     }
 
     /// <summary>
@@ -336,7 +333,7 @@ public class NodeData: MonoBehaviour
     private void ChangeSprite()
     {
         //Sprite newSprite = GeneralResources.Instance.NodeSprites[(int)type];
-        Sprite newSprite = Resources.Load<Sprite>(type.ToString() + "_Icon");
+        Sprite newSprite = GameManager.Instance.OsSprites[(int)os];
         nodeSprite.sprite = newSprite;
         nodeSprite.transform.localScale = new Vector3(.15f, .15f, 1);
     } 
@@ -346,42 +343,39 @@ public class NodeData: MonoBehaviour
     /// </summary>
     public void SplitSprite()
     {
-        // Used to convert degrees to a decimal between 0 and 1
-        //float degree = 1 / 360;
-        // The segments for the different colors on a circle
-        //float segment = 360 / teamIDs.Count;
+        // Size of each segment
+        //float value = 1 / teams.Count;
 
         float zRotation = 0f;
-        /*
-        // Loops through all the teams accessing the node and makes that many circle segments
-        for (int i = 0; i < teamIDs.Count; i++)
+
+        /// <summary>
+        /// Loops through all the teams accessing the node and makes that many circle segments
+        /// ** Will run if data is added to teams list **
+        /// </summary>
+        for (int i = 0; i < teams.Count; i++)
         {
             Image newWedge = Instantiate(wedgePrefab) as Image;
             newWedge.transform.SetParent(transform, false);
             newWedge.color = teams[i].TeamColor;
-            newWedge.fillAmount = segment * degree;
+            newWedge.fillAmount = value;
             newWedge.transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, zRotation));
             zRotation -= newWedge.fillAmount * 360f;
-        }*/
+        }
 
         /// <summary>
         /// Test data for above loop that takes data given in unity interface and converts that to a pie graph
         /// </summary>
-        float total = 0f;
         zRotation = 0f;
+        float testValue = .25f; // for testing the sprite color
 
-        for (int i = 0; i < values.Count; i++)
-        {
-            total += values[i];
-        }
-
-        for (int i = 0; i < values.Count; i++)
+        for (int i = 0; i < wedgeColors.Count; i++)
         {
             Image newWedge = Instantiate(wedgePrefab) as Image;
             newWedge.transform.SetParent(transform, false);
             newWedge.color = wedgeColors[i];
-            newWedge.fillAmount = values[i] / total;
+            newWedge.fillAmount = testValue;
             newWedge.transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, zRotation));
+            newWedge.name = $"{this.name} Wedge {i}";
             zRotation -= newWedge.fillAmount * 360f;
         }
     }

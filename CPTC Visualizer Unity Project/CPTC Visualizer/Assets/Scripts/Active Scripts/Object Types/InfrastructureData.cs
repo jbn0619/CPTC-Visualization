@@ -52,6 +52,8 @@ public class InfrastructureData: MonoBehaviour
     private List<Color> availableColors;
     private List<String> availableNames;
     private float positioningRadius;
+    [SerializeField]
+    private NodeData canvasTest;
 
     // Legacy Fields
     private List<int> shutDownNodes;
@@ -175,6 +177,7 @@ public class InfrastructureData: MonoBehaviour
             t.TeamName = GetRandomName();
             t.TeamColor = GetRandomColor();
         }
+
     }
 
     // Update is called once per frame

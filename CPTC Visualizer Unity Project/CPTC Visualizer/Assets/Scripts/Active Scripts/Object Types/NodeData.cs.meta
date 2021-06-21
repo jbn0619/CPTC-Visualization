@@ -3,7 +3,10 @@ guid: d99c7bbf54283cf4c87757eb0ca2463d
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - nodeSprite: {instanceID: 0}
+  - wedgePrefab: {fileID: 1261249942711030565, guid: 783324dbf110c1b4cbed88f515d323a3, type: 3}
+  - canvas: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

@@ -331,12 +331,15 @@ public class FileManager: MonoBehaviour
     private NodeData HolderToData(ProHost _node)
     {
         NodeData node = new NodeData();
-        node.SetData(_node.subnet_ip, _node.ProvisionedHostToHost.hostname, _node.ProvisionedHostToHost.description, _node.ProvisionedHostToHost.OS);
+        OperatingSystems os;
+        string cleanedOS = _node.ProvisionedHostToHost.OS.Replace("-","").Trim();
+        Enum.TryParse(cleanedOS, out os);
+        node.SetData(_node.subnet_ip, _node.ProvisionedHostToHost.hostname, _node.ProvisionedHostToHost.description, os);
         return node;
     }
     private ProHost DataToHolder(NodeData _node)
     {
-        return new ProHost(_node.Ip, new HostContainer(_node.HostName, _node.HostDescription, _node.OS), new AgentContainer());
+        return new ProHost(_node.Ip, new HostContainer(_node.HostName, _node.HostDescription, _node.OS.ToString()), new AgentContainer());
     }
     private NetworkData HolderToData(ProNetwork _network)
     {

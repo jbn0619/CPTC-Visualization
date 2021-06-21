@@ -10,7 +10,7 @@ public enum CCDCAttackType { Implant, EscelatePrivledges, EditFirewall, DenialOf
 
 public enum NodeTypes { Workstation, RootWorkstation, SecureDrop, SecuredServer, VDI, VPN, WWW, AD, Azure, CA, DNS, EDMS, Fileshare, HyperV, MailExchange }
 
-public enum OperatingSystems { w2k16, w2k12 , ubuntu18 , ubuntu20 , cptckali, kali }
+public enum OperatingSystems { w2k16, w2k12, ubuntu18, ubuntu20, cptckali, kali }
 
 public enum NodeState { Off, On, NotWorking}
 
