@@ -438,10 +438,26 @@ public class InfrastructureData: MonoBehaviour
 
     public void PositionNodes()
     {
-        foreach(GameObject network in networkObjects)
+        foreach(NetworkData network in networks)
         {
-            //List<GameObject> nodes = network.GetChildren();
-            
+            List<GameObject> nodes = network.GetComponent<NetworkData>().NodeObjects;
+
+            float angleOffset;
+
+            if(nodes.Count <= 6)
+            {
+                angleOffset = Mathf.PI * 2f / nodes.Count;
+            }
+            else
+            {
+                angleOffset = Mathf.PI * 2f / 6f;
+            }
+
+            for(int i = 0; i < nodes.Count; i++)
+            {
+                nodes[i].transform.localPosition = new Vector3(Mathf.Cos(angleOffset * (i % 6)) * (i / 6 + 1), Mathf.Sin(angleOffset * (i % 6)) * (i / 6  + 1), 0);
+
+            }
         }
     }
 }
