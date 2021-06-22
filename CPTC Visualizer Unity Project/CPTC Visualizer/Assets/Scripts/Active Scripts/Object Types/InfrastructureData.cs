@@ -458,7 +458,7 @@ public class InfrastructureData: MonoBehaviour
             {
                 if ((i >= 6 && i < 12) || i >= 18 && i < 24)
                 {
-                    // If the node is on an even ring of the network, offset it's rotational position by 1/5 radians
+                    // If the node is on an even ring of the network, offset it's rotational position by 1/2 radians
                     nodes[i].transform.localPosition = new Vector3(Mathf.Cos(angleOffset * ((i % 6) + 0.5f)) * (i / 6 + 1), Mathf.Sin(angleOffset * ((i % 6) + 0.5f)) * (i / 6 + 1), 0);
                 }
                 else
