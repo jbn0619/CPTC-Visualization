@@ -230,6 +230,7 @@ public class GameManager: Singleton<GameManager>
         configUpdateTime = 5;
 
         BuildInfrastructure();
+        LoadAlerts(); // move to update once dummy data is being generated live
     }
 
     // Update is called once per frame
@@ -327,9 +328,15 @@ public class GameManager: Singleton<GameManager>
     private void LoadAlerts()
     {
         List<AlertData> newAlerts = fileManager.CreateAlertsFromJSON(alertFile, "Alerts\\");
-        // for each alert in the file, 
-        //      add that alert and the NodeIP to the TeamData in mainInfra's list of teams.
-        //      and add that team to the Node's list of teams
+        foreach(AlertData alert in newAlerts)
+        {
+            // add that alert and the NodeIP to the TeamData in mainInfra's list of teams.
+            MainInfra.Teams[alert.TeamID].Alerts.Add(alert);
+            MainInfra.Teams[alert.TeamID].NodeIPs.Add(alert.NodeIP);
+            // and add that team to the Node's list of teams
+            mainInfra.FindNodeObjectByID;
+        }
+        
     }
 
     /*
