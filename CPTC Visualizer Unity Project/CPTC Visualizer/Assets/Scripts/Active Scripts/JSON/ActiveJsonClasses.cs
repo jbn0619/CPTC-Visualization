@@ -32,39 +32,31 @@ namespace Assets.Scripts
         /// </summary>
         public string type;
         /// <summary>
-        /// list of IDs for the nodes affected by this Alert
+        /// IP address of the node where the alert is triggered
         /// </summary>
-        public List<int> nodes;
+        public string nodeIP;
         /// <summary>
-        /// Weighted priority of the alert
+        /// ID of the team triggering this alert
         /// </summary>
-        public int priority;
+        public int teamID;
         /// <summary>
         /// Time the alert was logged by the system
         /// </summary>
-        public int timestamp;
-
-        /// <summary>
-        /// Placeholder Constructor, because the AlertData class is not yet implemented
-        /// </summary>
-        public Alert()
-        {
-
-        }
+        public DateTime timeStamp;
 
         /// <summary>
         /// Constructor for the Alert class.
         /// </summary>
         /// <param name="_type">This alert's type.</param>
-        /// <param name="_nodes">List of all ID numbers of affected Nodes</param>
-        /// <param name="_priority">The value of the assigned priority of this alert</param>
+        /// <param name="_ip">IP address of the node</param>
+        /// <param name="_teamID">ID number of the team triggering the alert</param>
         /// <param name="_time">The time the alert was triggered</param>
-        public Alert(CPTCEvents _type, List<int> _nodes, int _priority, int _time)
+        public Alert(string _type, string _ip, int _teamID, DateTime _time)
         {
-            type = _type.ToString();
-            nodes = _nodes;
-            priority = _priority;
-            timestamp = _time;
+            type = _type;
+            nodeIP = _ip;
+            teamID = _teamID;
+            timeStamp = _time;
         }
     }
 
@@ -271,7 +263,7 @@ namespace Assets.Scripts
     }
 
     // These are the exterior parts of the JSON file which we will need to read through in order to access the info we want.
-    #region CPTC Shell Classes
+    #region CPTC Laforge Shell Classes
     /// <summary>
     /// This is the highest level of object within the Laforge JSON document.
     /// </summary>
@@ -356,5 +348,34 @@ namespace Assets.Scripts
             buildToTeam = _infras;
         }
     }
-    #endregion CPTP Shell Classes
+    #endregion CPTP Laforge Shell Classes
+    #region CPTC Splunk Shell Classes
+    /// <summary>
+    /// Data read from the JSON file sent by the splunk queries
+    /// </summary>
+    [Serializable]
+    public class SplunkReader
+    {
+        /// <summary>
+        /// List of new alerts detected by Splunk Queries within the last update cycle
+        /// </summary>
+        public List<Alert> alerts;
+
+        /// <summary>
+        /// List of new alerts to be processed
+        /// </summary>
+        /// <param name="_alerts"></param>
+        public SplunkReader (List<Alert> _alerts)
+        {
+            alerts = _alerts;
+        }
+
+        public string ConvertToJSON()
+        {
+            string dataString = "";
+            dataString += JsonUtility.ToJson(this);
+            return dataString;
+        }
+    }
+    #endregion CPTC Splunk Shell Classes
 }

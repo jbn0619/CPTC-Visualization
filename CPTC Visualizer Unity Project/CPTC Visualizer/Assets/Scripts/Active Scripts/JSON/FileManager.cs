@@ -56,6 +56,8 @@ public class FileManager: MonoBehaviour
             }
         }
     }
+    // Methods which directly interface with FileIO
+    #region File Access Methods
     /// <summary>
     /// Reads a file with the name _fileName at _filePathExtension. Returns the fileData as an array.
     ///     Lines starting with '#' are ignored.
@@ -96,7 +98,32 @@ public class FileManager: MonoBehaviour
 
         return null;
     }
+    /// <summary>
+    /// Writes a file with the name _fileName and content _fileData to a file at _filePathExtension
+    /// </summary>
+    /// <param name="_fileName"></param>
+    /// <param name="_fileData"></param>
+    /// <param name="_filePathExtension"></param>
+    public void WriteFile(string _fileName, List<string> _fileData, string _filePathExtension)
+    {
+        string filePath = rootFilePath + _filePathExtension + _fileName;
 
+        // Writes out each index of the array as a line in the file.
+        using (StreamWriter writer = new StreamWriter(filePath))
+        {
+            for(int i = 0; i < _fileData.Count; i++)
+            {
+                writer.WriteLine(_fileData[i]);
+            }
+        }
+
+        Debug.Log("File " + _fileName + " successfully saved.");
+    }
+
+    #endregion File Access Methods
+
+    // Methods which translate JSON strings into Game Objects
+    #region JSON Translation Methods
     /// <summary>
     /// Returns the UpdateDataPacket from a JSON file.
     /// </summary>
@@ -122,6 +149,30 @@ public class FileManager: MonoBehaviour
         return dataPacket;
     }
 
+    public List<AlertData> CreateAlertsFromJSON(string _fileName, string _filePathExtension)
+    {
+        // Log the filepath to the Debug
+        string filePath = rootFilePath + _filePathExtension + _fileName;
+        Debug.Log("... Loading New Splunk Alert Data ...");
+
+        string JSONString = null;
+
+        foreach (string line in ReadFile(_fileName, _filePathExtension))
+        {
+            JSONString += line.Replace("\\", "").Trim();
+        }
+        Debug.Log($"Splunk Alerts File: {filePath} found. Reading Data ...");
+
+        // Grab the shell with the list of alerts
+        SplunkReader shell = JsonUtility.FromJson<SplunkReader>(JSONString);
+        List<Alert> alerts = shell.alerts;
+
+        // build the new OverInfrastructure based on the first infrastructure in the list
+        List<AlertData> returnAlerts = HolderToData(alerts);
+
+        Debug.Log($"Alerts successfully created from {filePath}");
+        return returnAlerts;
+    }
     /// <summary>
     /// Create list of all system nodes from JSON file
     /// </summary>
@@ -139,37 +190,6 @@ public class FileManager: MonoBehaviour
 
         Debug.Log($"{nodes.Count} system nodes successfully loaded from {filePath}");
         return nodes;
-    }
-
-    /// <summary>
-    /// Compares the Nodes taken from last Tick and updates the ones that have changed
-    /// </summary>
-    /// <param name="_fileName">name of the file with the data</param>
-    /// <param name="_filePathExtension">name of the directory within the root directory</param>
-    public void UpdateNodes(string _fileName, string _filePathExtension)
-    {
-        // get new node data
-        List<NodeData> newNodes = CreateNodesFromJSON( _fileName, _filePathExtension);
-
-        // get old node data
-        List<NodeData> currentNodes = GameManager.Instance.MainInfra.AllNodes;
-
-        int i;
-        // for each node, check if it needs to be updated
-        for(i = 0; i < currentNodes.Count; i++)
-        {
-            // If the new version of the Node Data is different than the old verion, update the old Node to the value of the new version
-            if(newNodes[i].Type != currentNodes[i].Type)
-            {
-                GameManager.Instance.MainInfra.AllNodes[i].Type = newNodes[i].Type;
-            }
-            if (newNodes[i].Teams != currentNodes[i].Teams)
-            {
-                GameManager.Instance.MainInfra.AllNodes[i].Teams = newNodes[i].Teams;
-            }
-        }
-
-        Debug.Log($" {i} / {currentNodes.Count} Nodes successfully updated. ");
     }
 
     /// <summary>
@@ -209,28 +229,6 @@ public class FileManager: MonoBehaviour
 
         Debug.Log($"Infrastructure successfully created from {filePath}");
         return returnInfra;
-    }
-
-    /// <summary>
-    /// Writes a file with the name _fileName and content _fileData to a file at _filePathExtension
-    /// </summary>
-    /// <param name="_fileName"></param>
-    /// <param name="_fileData"></param>
-    /// <param name="_filePathExtension"></param>
-    public void WriteFile(string _fileName, List<string> _fileData, string _filePathExtension)
-    {
-        string filePath = rootFilePath + _filePathExtension + _fileName;
-
-        // Writes out each index of the array as a line in the file.
-        using (StreamWriter writer = new StreamWriter(filePath))
-        {
-            for(int i = 0; i < _fileData.Count; i++)
-            {
-                writer.WriteLine(_fileData[i]);
-            }
-        }
-
-        Debug.Log("File " + _fileName + " successfully saved.");
     }
 
     /// <summary>
@@ -295,6 +293,73 @@ public class FileManager: MonoBehaviour
             Debug.Log(e.Message);
         }
     }
+    /// <summary>
+    /// Save a list of Alerts to a JSON file
+    /// </summary>
+    /// <param name="_fileName">name of the File to create</param>
+    /// <param name="_data">list of alerts to store</param>
+    public void SaveToJSON(string _fileName, List<AlertData> _data)
+    {
+        string filePath = "C:\\ProgramData\\CSEC Visualizer\\Alerts\\" + _fileName;
+
+        // First check if the directory exists, or if we need to make it.
+        if (Directory.Exists("C:\\ProgramData\\CSEC Visualizer\\Alerts\\") == false)
+        {
+            Directory.CreateDirectory("C:\\ProgramData\\CSEC Visualizer\\Alerts\\");
+        }
+
+        // translate the MonoBehavior data into a holder data structure. This allows the data to be formatted into a 
+        //      JSON using JSON Utility to read the data from the holder class
+        List<Alert> alerts = DataToHolder(_data);
+
+        try
+        {
+            using (StreamWriter sw = File.CreateText(filePath))
+            {
+                sw.WriteLine(JsonUtility.ToJson(alerts));
+            }
+            Debug.Log($"Alerts successfully saved to {filePath}");
+        }
+        catch (Exception e)
+        {
+            Debug.Log(e.Message);
+        }
+    }
+    #endregion JSON Translation Methods
+    
+
+    /// <summary>
+    /// Compares the Nodes taken from last Tick and updates the ones that have changed
+    /// </summary>
+    /// <param name="_fileName">name of the file with the data</param>
+    /// <param name="_filePathExtension">name of the directory within the root directory</param>
+    public void UpdateNodes(string _fileName, string _filePathExtension)
+    {
+        // get new node data
+        List<NodeData> newNodes = CreateNodesFromJSON( _fileName, _filePathExtension);
+
+        // get old node data
+        List<NodeData> currentNodes = GameManager.Instance.MainInfra.AllNodes;
+
+        int i;
+        // for each node, check if it needs to be updated
+        for(i = 0; i < currentNodes.Count; i++)
+        {
+            // If the new version of the Node Data is different than the old verion, update the old Node to the value of the new version
+            if(newNodes[i].Type != currentNodes[i].Type)
+            {
+                GameManager.Instance.MainInfra.AllNodes[i].Type = newNodes[i].Type;
+            }
+            if (newNodes[i].Teams != currentNodes[i].Teams)
+            {
+                GameManager.Instance.MainInfra.AllNodes[i].Teams = newNodes[i].Teams;
+            }
+        }
+
+        Debug.Log($" {i} / {currentNodes.Count} Nodes successfully updated. ");
+    }
+
+    
 
     public void GenerateDatabase()
     {
@@ -312,11 +377,12 @@ public class FileManager: MonoBehaviour
     #region Data Type Conversion
     private AlertData HolderToData(Alert _alert)
     {
-        return new AlertData(_alert.type, _alert.nodes, _alert.priority, _alert.timestamp);
+        Enum.TryParse(_alert.type, out CPTCEvents type);
+        return new AlertData(type, _alert.nodeIP, _alert.teamID, _alert.timeStamp);
     }
     private Alert DataToHolder(AlertData _alert)
     {
-        return new Alert((CPTCEvents)Enum.Parse(typeof(CPTCEvents),_alert.type),_alert.nodes,_alert.priority,_alert.timestamp);
+        return new Alert(_alert.Type.ToString(),_alert.NodeIP,_alert.TeamID,_alert.TimeStamp);
     }
     private TeamData HolderToData(Team _team)
     {
