@@ -29,9 +29,9 @@ public class TestDataWriter: MonoBehaviour
 
     [Header("Alert Data Params")]
     [SerializeField]
-    private string splunkFileName = "FromSplunk.JSON";
+    private string splunkFileName = "test_FromSplunk.json";
     [SerializeField]
-    private string ControllerToScenesFileName = "ControllerToScene.JSON";
+    private string ControllerToScenesFileName = "test_controllerToInfraScene.json";
     [SerializeField]
     private int membersPerTeam = 6;
     [SerializeField]

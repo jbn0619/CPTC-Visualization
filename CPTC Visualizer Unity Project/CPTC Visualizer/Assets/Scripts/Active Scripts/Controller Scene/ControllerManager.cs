@@ -29,7 +29,7 @@ public class ControllerManager: MonoBehaviour
     [SerializeField]
     private string laforgeJSON_fileName = "cptc_finals_2020_laforge_topo.json";
     [SerializeField]
-    private string splunkJSON_fileName = "FromSplunk.json";
+    private string splunkJSON_fileName = "test_FromSplunk.json";
 
     [Header("Outgoing JSON Files")]
     [SerializeField]
