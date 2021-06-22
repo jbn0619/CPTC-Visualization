@@ -453,11 +453,21 @@ public class InfrastructureData: MonoBehaviour
                 angleOffset = Mathf.PI * 2f / 6f;
             }
 
+            // Set basic positions of the nodes within the network
             for(int i = 0; i < nodes.Count; i++)
             {
-                nodes[i].transform.localPosition = new Vector3(Mathf.Cos(angleOffset * (i % 6)) * (i / 6 + 1), Mathf.Sin(angleOffset * (i % 6)) * (i / 6  + 1), 0);
-
+                if ((i >= 6 && i < 12) || i >= 18 && i < 24)
+                {
+                    // If the node is on an even ring of the network, offset it's rotational position by 1/5 radians
+                    nodes[i].transform.localPosition = new Vector3(Mathf.Cos(angleOffset * ((i % 6) + 0.5f)) * (i / 6 + 1), Mathf.Sin(angleOffset * ((i % 6) + 0.5f)) * (i / 6 + 1), 0);
+                }
+                else
+                {
+                    nodes[i].transform.localPosition = new Vector3(Mathf.Cos(angleOffset * (i % 6)) * (i / 6 + 1), Mathf.Sin(angleOffset * (i % 6)) * (i / 6 + 1), 0);
+                }
             }
+
+                       
         }
     }
 }
