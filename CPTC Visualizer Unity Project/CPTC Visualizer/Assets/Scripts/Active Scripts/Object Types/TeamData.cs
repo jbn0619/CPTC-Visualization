@@ -170,14 +170,21 @@ public class TeamData: MonoBehaviour
         uptimeCharts = new List<UptimeChartData>();
         notifBanners = new List<GameObject>();
         notifMarkers = new List<NotificationButton>();
+        
     }
 
     // Start is called before the first frame update
     void Start()
     {
-
+        
     }
 
+    public TeamData(int _id)
+    {
+        id = _id;
+        alerts = new List<AlertData>();
+        nodeIPs = new List<string>();
+    }
     public void SetupQueue()
     {
         queue = new PriorityQueue();

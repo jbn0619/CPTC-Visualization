@@ -237,8 +237,7 @@ public class FileManager: MonoBehaviour
         List<TeamData> teams = new List<TeamData>();
         for(int i = 0; i < infras.Count; i++)
         {
-            TeamData team = new TeamData();
-            team.ID = infras[i].team_number;
+            TeamData team = new TeamData(infras[i].team_number);
             teams.Add(team);
         }
 
@@ -296,9 +295,14 @@ public class FileManager: MonoBehaviour
 
         // translate the MonoBehavior data into a holder data structure. This allows the data to be formatted into a 
         //      JSON using JSON Utility to read the data from the holder class
-        Infrastructure infra = DataToHolder(_data, _data.Teams[0].ID);
         List<Infrastructure> infras = new List<Infrastructure>();
-        infras.Add(infra);
+        for(int i = 0; i < _data.Teams.Count; i ++)
+        {
+            Infrastructure infra = DataToHolder(
+                _data,
+                _data.FindTeamByID(i).ID); // This organizes the teams into their numerical order
+            infras.Add(infra);
+        }
         List<BuildShell> builds = new List<BuildShell>();
         builds.Add(new BuildShell(infras));
         LaforgeShell shell = new LaforgeShell(new DataShell(new EnvironmentShell(builds)));
@@ -397,8 +401,7 @@ public class FileManager: MonoBehaviour
     }
     private TeamData HolderToData(Team _team)
     {
-        TeamData team = new TeamData();
-        team.ID = _team.id;
+        TeamData team = new TeamData(_team.id);
         return team;
     }
     private Team DataToHolder(TeamData _team)

@@ -331,8 +331,8 @@ public class GameManager: Singleton<GameManager>
         foreach(AlertData alert in newAlerts)
         {
             // add that alert and the NodeIP to the TeamData in mainInfra's list of teams.
-            MainInfra.Teams[alert.TeamID].Alerts.Add(alert);
-            MainInfra.Teams[alert.TeamID].NodeIPs.Add(alert.NodeIP);
+            mainInfra.Teams[alert.TeamID].Alerts.Add(alert);
+            mainInfra.Teams[alert.TeamID].NodeIPs.Add(alert.NodeIP);
             // and add that team and its ID to the Node's list of teams and team IDs
             mainInfra.FindNodeObjectByIP(alert.NodeIP).GetComponent<NodeData>().TeamIDs.Add(alert.TeamID);
             mainInfra.FindNodeObjectByIP(alert.NodeIP).GetComponent<NodeData>().Teams.Add(MainInfra.Teams[alert.TeamID]);
