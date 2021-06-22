@@ -398,7 +398,7 @@ public class FileManager: MonoBehaviour
         CultureInfo cultureInfo = new CultureInfo("en-US");
         try
         {
-            dateTime = DateTime.ParseExact(_timeStamp, "d", cultureInfo);
+            dateTime = DateTime.ParseExact(_timeStamp, "F", cultureInfo);
             return dateTime;
         }
         catch (FormatException)
@@ -422,7 +422,7 @@ public class FileManager: MonoBehaviour
     }
     private Alert DataToHolder(AlertData _alert)
     {
-        return new Alert(_alert.Type.ToString(),_alert.NodeIP,_alert.TeamID,_alert.TimeStamp.ToString("d"));
+        return new Alert(_alert.Type.ToString(),_alert.NodeIP,_alert.TeamID,_alert.TimeStamp.ToString("F"));
     }
     private TeamData HolderToData(Team _team)
     {

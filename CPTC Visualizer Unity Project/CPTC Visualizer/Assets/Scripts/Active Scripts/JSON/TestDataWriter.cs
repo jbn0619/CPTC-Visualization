@@ -125,7 +125,7 @@ public class TestDataWriter: MonoBehaviour
                         (CPTCEvents)UnityEngine.Random.Range(0, numOfTypes),
                         infra.AllNodes[(int)UnityEngine.Random.Range(0, nodeCount)].Ip,
                         team.ID,
-                        DateTime.Now.ToString("d")));
+                        DateTime.Now));
                 }
             }
             // TODO: make the alerts only activate in nodes the teams can accsess
