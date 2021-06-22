@@ -25,7 +25,17 @@ public class ControllerManager: MonoBehaviour
     [SerializeField]
     private float generateTestDataTime;
 
+    [Header("Incoming JSON Files")]
+    [SerializeField]
+    private string laforgeJSON_fileName = "cptc_finals_2020_laforge_topo.json";
+    [SerializeField]
+    private string splunkJSON_fileName = "FromSplunk.json";
 
+    [Header("Outgoing JSON Files")]
+    [SerializeField]
+    private string infraScene_fileName = "test_controllerToInfraScene.JSON";
+    [SerializeField]
+    private string alerts_fileName = "test_controllerToAlertsScene.JSON";
     #endregion Fields
 
     #region Properties
@@ -67,6 +77,16 @@ public class ControllerManager: MonoBehaviour
         }
     }
 
+    public void SendInfrastructureToScene()
+    {
+        fileManager.SaveToJSON(infraScene_fileName, fileManager.CreateInfraFromJSON(laforgeJSON_fileName, "Infrastructure\\Database\\"));
+    }
+
+    public void SendAlertsToScene()
+    {
+        fileManager.SaveToJSON(alerts_fileName, fileManager.CreateInfraFromJSON(splunkJSON_fileName, "Infrastructure\\Database\\"));
+    }
+    #region Config Files
     /// <summary>
     /// TODO: Update to a better method.
     /// 
@@ -144,4 +164,5 @@ public class ControllerManager: MonoBehaviour
                 }
         }
     }
+    #endregion Config Files
 }

@@ -344,40 +344,6 @@ public class FileManager: MonoBehaviour
         }
     }
     #endregion JSON Translation Methods
-    
-
-    /// <summary>
-    /// Compares the Nodes taken from last Tick and updates the ones that have changed
-    /// </summary>
-    /// <param name="_fileName">name of the file with the data</param>
-    /// <param name="_filePathExtension">name of the directory within the root directory</param>
-    public void UpdateNodes(string _fileName, string _filePathExtension)
-    {
-        // get new node data
-        List<NodeData> newNodes = CreateNodesFromJSON( _fileName, _filePathExtension);
-
-        // get old node data
-        List<NodeData> currentNodes = GameManager.Instance.MainInfra.AllNodes;
-
-        int i;
-        // for each node, check if it needs to be updated
-        for(i = 0; i < currentNodes.Count; i++)
-        {
-            // If the new version of the Node Data is different than the old verion, update the old Node to the value of the new version
-            if(newNodes[i].Type != currentNodes[i].Type)
-            {
-                GameManager.Instance.MainInfra.AllNodes[i].Type = newNodes[i].Type;
-            }
-            if (newNodes[i].Teams != currentNodes[i].Teams)
-            {
-                GameManager.Instance.MainInfra.AllNodes[i].Teams = newNodes[i].Teams;
-            }
-        }
-
-        Debug.Log($" {i} / {currentNodes.Count} Nodes successfully updated. ");
-    }
-
-    
 
     public void GenerateDatabase()
     {
@@ -553,4 +519,36 @@ public class FileManager: MonoBehaviour
     }
     #endregion List Conversion
     #endregion Helper Methods
+
+    /*Redundant code because nodes will not be changing during competition event
+     * /// <summary>
+    /// Compares the Nodes taken from last Tick and updates the ones that have changed
+    /// </summary>
+    /// <param name="_fileName">name of the file with the data</param>
+    /// <param name="_filePathExtension">name of the directory within the root directory</param>
+    public void UpdateNodes(string _fileName, string _filePathExtension)
+    {
+        // get new node data
+        List<NodeData> newNodes = CreateNodesFromJSON( _fileName, _filePathExtension);
+
+        // get old node data
+        List<NodeData> currentNodes = GameManager.Instance.MainInfra.AllNodes;
+
+        int i;
+        // for each node, check if it needs to be updated
+        for(i = 0; i < currentNodes.Count; i++)
+        {
+            // If the new version of the Node Data is different than the old verion, update the old Node to the value of the new version
+            if(newNodes[i].Type != currentNodes[i].Type)
+            {
+                GameManager.Instance.MainInfra.AllNodes[i].Type = newNodes[i].Type;
+            }
+            if (newNodes[i].Teams != currentNodes[i].Teams)
+            {
+                GameManager.Instance.MainInfra.AllNodes[i].Teams = newNodes[i].Teams;
+            }
+        }
+
+        Debug.Log($" {i} / {currentNodes.Count} Nodes successfully updated. ");
+    }*/
 }

@@ -1267,6 +1267,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   saveFileKey: 113
   readFileKey: 101
+  delayInterval: 3600
 --- !u!4 &1144901409
 Transform:
   m_ObjectHideFlags: 0
@@ -1313,10 +1314,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   writeEvents: 91
-  writeTeams: 93
+  writeAlerts: 93
   writeInfra: 105
   fileManager: {fileID: 1144901408}
   eventCount: 1
+  splunkFileName: FromSplunk.JSON
+  ControllerToScenesFileName: ControllerToScene.JSON
+  membersPerTeam: 6
+  numberOfAlertTypes: 0
 --- !u!1 &1169672338
 GameObject:
   m_ObjectHideFlags: 0
