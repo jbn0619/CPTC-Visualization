@@ -75,7 +75,6 @@ public class GameManager: Singleton<GameManager>
     private float dataReadInterval;
     [SerializeField]
     private Text dataText;
-    
     #endregion Fields
     
     #region Manager Properties

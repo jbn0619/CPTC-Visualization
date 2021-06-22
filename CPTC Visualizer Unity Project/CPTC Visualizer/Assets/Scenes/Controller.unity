@@ -1265,6 +1265,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 353a01cbffdd03c4a8f0c33f09eb44e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  saveFileKey: 113
+  readFileKey: 101
 --- !u!4 &1144901409
 Transform:
   m_ObjectHideFlags: 0
@@ -1312,6 +1314,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   writeEvents: 91
   writeTeams: 93
+  writeInfra: 105
   fileManager: {fileID: 1144901408}
   eventCount: 1
 --- !u!1 &1169672338

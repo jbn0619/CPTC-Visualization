@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 /// <summary>
 /// Authors: Garret Paradis and Ben Wetzel
 /// Purpose: Alerts are the results of queries made by the Splunk program searching for teams' interactions with the network. They are used to track the teams' progress through the network.
@@ -72,6 +73,7 @@ public class AlertData: MonoBehaviour
         teamID = _teamID;
         timeStamp = _timeStamp;
     }
+
 
     /*This isn't necessary because the constructor already fulfills this purpose
      * public void SetData(string _type, List<int> _nodes, int _priority, int _timestamp)

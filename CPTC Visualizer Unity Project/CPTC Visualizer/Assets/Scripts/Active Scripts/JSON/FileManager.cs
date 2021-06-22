@@ -4,6 +4,7 @@ using UnityEngine;
 using System.IO;
 using System;
 using Assets.Scripts;
+using System.Globalization;
 
 public class FileManager: MonoBehaviour
 {
@@ -14,7 +15,11 @@ public class FileManager: MonoBehaviour
     private KeyCode saveFileKey = KeyCode.Q;
     [SerializeField]
     private KeyCode readFileKey = KeyCode.E;
-
+    /// <summary>
+    /// Delay (in Seconds) to add to DateTime of new Alerts from the Splunk
+    /// </summary>
+    [SerializeField]
+    private double delayInterval;
     #endregion Fields
 
     #region Properties
@@ -149,6 +154,12 @@ public class FileManager: MonoBehaviour
         return dataPacket;
     }
 
+    /// <summary>
+    /// Create a list of all alerts sent from the Splunk JSON
+    /// </summary>
+    /// <param name="_fileName">Name of the JSON file containing the data</param>
+    /// <param name="_filePathExtension">name of the directory containing the file</param>
+    /// <returns></returns>
     public List<AlertData> CreateAlertsFromJSON(string _fileName, string _filePathExtension)
     {
         // Log the filepath to the Debug
@@ -167,8 +178,15 @@ public class FileManager: MonoBehaviour
         SplunkAlertsShell shell = JsonUtility.FromJson<SplunkAlertsShell>(JSONString);
         List<Alert> alerts = shell.alerts;
 
+        bool fromSplunk = false;
+        // if the data is being loaded fresh from the Splunk, add the time delay to the dateTimes
+        if(_fileName == "FromSplunk.JSON")
+        {
+            fromSplunk = true;
+        }
+
         // build the new OverInfrastructure based on the first infrastructure in the list
-        List<AlertData> returnAlerts = HolderToData(alerts);
+        List<AlertData> returnAlerts = HolderToData(alerts, fromSplunk);
 
         Debug.Log($"Alerts successfully created from {filePath}");
         return returnAlerts;
@@ -220,7 +238,7 @@ public class FileManager: MonoBehaviour
         for(int i = 0; i < infras.Count; i++)
         {
             TeamData team = new TeamData();
-            team.SetData(infras[i].team_number);
+            team.ID = infras[i].team_number;
             teams.Add(team);
         }
 
@@ -278,7 +296,7 @@ public class FileManager: MonoBehaviour
 
         // translate the MonoBehavior data into a holder data structure. This allows the data to be formatted into a 
         //      JSON using JSON Utility to read the data from the holder class
-        Infrastructure infra = DataToHolder(_data, _data.Teams[0].TeamId);
+        Infrastructure infra = DataToHolder(_data, _data.Teams[0].ID);
 
         try
         {
@@ -310,13 +328,13 @@ public class FileManager: MonoBehaviour
 
         // translate the MonoBehavior data into a holder data structure. This allows the data to be formatted into a 
         //      JSON using JSON Utility to read the data from the holder class
-        List<Alert> alerts = DataToHolder(_data);
+        SplunkAlertsShell shell = new SplunkAlertsShell(DataToHolder(_data));
 
         try
         {
             using (StreamWriter sw = File.CreateText(filePath))
             {
-                sw.WriteLine(JsonUtility.ToJson(alerts));
+                sw.WriteLine(JsonUtility.ToJson(shell));
             }
             Debug.Log($"Alerts successfully saved to {filePath}");
         }
@@ -374,25 +392,47 @@ public class FileManager: MonoBehaviour
         return false;
     }
     #region Helper Methods
+    public DateTime StringToDateTime(string _timeStamp)
+    {
+        DateTime dateTime;
+        CultureInfo cultureInfo = new CultureInfo("en-US");
+        try
+        {
+            dateTime = DateTime.ParseExact(_timeStamp, "d", cultureInfo);
+            return dateTime;
+        }
+        catch (FormatException)
+        {
+            Console.WriteLine("Unable to parse '{0}'", _timeStamp);
+        }
+
+        dateTime = DateTime.Now;
+        return dateTime;
+    }
     #region Data Type Conversion
-    private AlertData HolderToData(Alert _alert)
+    private AlertData HolderToData(Alert _alert, bool fromSplunk)
     {
         Enum.TryParse(_alert.type, out CPTCEvents type);
-        return new AlertData(type, _alert.nodeIP, _alert.teamID, _alert.timeStamp);
+        DateTime timeStamp = StringToDateTime(_alert.timeStamp);
+        if (fromSplunk)
+        {
+            timeStamp.AddSeconds(delayInterval);
+        }
+        return new AlertData(type, _alert.nodeIP, _alert.teamID, timeStamp);
     }
     private Alert DataToHolder(AlertData _alert)
     {
-        return new Alert(_alert.Type.ToString(),_alert.NodeIP,_alert.TeamID,_alert.TimeStamp);
+        return new Alert(_alert.Type.ToString(),_alert.NodeIP,_alert.TeamID,_alert.TimeStamp.ToString("d"));
     }
     private TeamData HolderToData(Team _team)
     {
         TeamData team = new TeamData();
-        team.SetData(_team.id, _team.nodes, HolderToData(_team.alerts));
+        team.ID = _team.id;
         return team;
     }
     private Team DataToHolder(TeamData _team)
     {
-        return new Team(_team.TeamId, DataToHolder(_team.Alerts), _team.NodeIDs);
+        return new Team(_team.ID, DataToHolder(_team.Alerts));
     }
     private NodeData HolderToData(ProHost _node)
     {
@@ -439,12 +479,12 @@ public class FileManager: MonoBehaviour
     #endregion DataTypeConversion
 
     #region List Conversion
-    private List<AlertData> HolderToData(List<Alert> _alerts)
+    private List<AlertData> HolderToData(List<Alert> _alerts, bool fromSplunk)
     {
         List<AlertData> alerts = new List<AlertData>();
         foreach(Alert alert in _alerts)
         {
-            alerts.Add(HolderToData(alert));
+            alerts.Add(HolderToData(alert, fromSplunk));
         }
         return alerts;
     }

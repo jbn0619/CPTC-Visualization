@@ -441,7 +441,9 @@ public class JSONWriter: MonoBehaviour
         return newInfra;
     }
     */
-    /// <summary>
+    
+    /* This is more fitting within the function of FileManager, but is also being used within the forseable future.
+     * /// <summary>
     /// Saves any generated data to a Json file.
     /// </summary>
     private void SaveToJson(CPTCData data)
@@ -466,6 +468,7 @@ public class JSONWriter: MonoBehaviour
             Debug.Log(e.Message);
         }
     }
+    */
 
     #region UI Methods
 

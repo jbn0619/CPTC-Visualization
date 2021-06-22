@@ -14,7 +14,7 @@ public class TeamData: MonoBehaviour
     /// Id number of this team
     /// </summary>
     [SerializeField]
-    protected int teamId;
+    protected int id;
     /// <summary>
     /// the name of this team displayed on the screen
     /// </summary>
@@ -34,7 +34,7 @@ public class TeamData: MonoBehaviour
     /// A list of ID numbers of the nodes this team is currently accessing
     /// </summary>
     [SerializeField]
-    protected List<int> nodeIDs;
+    protected List<string> nodeIPs;
 
     // Legacy Fields
     protected PriorityQueue queue;
@@ -51,17 +51,17 @@ public class TeamData: MonoBehaviour
     /// <summary>
     /// Gets or sets what this team's id is.
     /// </summary>
-    public int TeamId
+    public int ID
     {
         get
         {
-            return teamId;
+            return id;
         }
         set
         {
             if (value >= 0)
             {
-                teamId = value;
+                id = value;
             }
         }
     }
@@ -89,11 +89,11 @@ public class TeamData: MonoBehaviour
     /// <summary>
     /// Gets a list of ID numbers for nodes this team has discovered.
     /// </summary>
-    public List<int> NodeIDs
+    public List<string> NodeIPs
     {
         get
         {
-            return nodeIDs;
+            return nodeIPs;
         }
     }
 
@@ -195,11 +195,13 @@ public class TeamData: MonoBehaviour
     /// <param name="_id">Team's id number</param>
     /// <param name="_alerts">alerts this team has triggered</param>
     /// <param name="_nodeIDs">nodes this team is currently visiting</param>
-    public void SetData(int _id, List<int> _nodeIDs = null, List<AlertData> _alerts = null)
+    public void SetAlertsData(List<AlertData> _alerts = null)
     {
-        this.teamId = _id;
         this.alerts = _alerts;
-        this.nodeIDs = _nodeIDs;
+        foreach(AlertData alert in alerts)
+        {
+            nodeIPs.Add(alert.NodeIP);
+        }
     }
 
     

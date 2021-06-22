@@ -5,7 +5,7 @@ using UnityEngine;
 
 /// <summary>
 /// Author: unknown
-///     Ben Wetzel - Summer 2021
+///     Ben Wetzel, David "Pat" Smith - Summer 2021
 /// Purpose: Track infiltration information for the system infrastructure of the network for penetration testing 
 /// </summary>
 [Serializable]
@@ -264,7 +264,7 @@ public class InfrastructureData: MonoBehaviour
     {
         foreach(TeamData team in this.teams)
         {
-            if(team.TeamId == _searchID)
+            if(team.ID == _searchID)
             {
                 return team;
             }
