@@ -13,7 +13,13 @@ using UnityEngine.UI;
 public class GameManager: Singleton<GameManager>
 {
     #region Fields
+    [Header("Data from Controller Scene")]
+    [SerializeField]
+    private string infraFile = "test_controllerToInfraScene.JSON";
+    [SerializeField]
+    private string alertFile = "test_controllerToAlertsScene.JSON";
 
+    [Header("Essential GameObjects")]
     [SerializeField]
     private Camera mainCam;
     [SerializeField]
@@ -24,8 +30,6 @@ public class GameManager: Singleton<GameManager>
     private GameObject prefabNetwork;
     [SerializeField]
     private GameObject prefabInfrastructure;
-    [SerializeField]
-    private string infraFile;
     [SerializeField]
     private List<Sprite> osSprites;
 
@@ -245,7 +249,6 @@ public class GameManager: Singleton<GameManager>
 
         // Check if we need to read node states.
         stateCheckCount += Time.deltaTime;
-
         if(readDateStarted)
         {
             // Update nodes
@@ -319,6 +322,14 @@ public class GameManager: Singleton<GameManager>
         mainInfra.PositionNetworks();
         mainInfra.PositionNodes();
         mainInfra.DrawAllConnections();
+    }
+
+    private void LoadAlerts()
+    {
+        List<AlertData> newAlerts = fileManager.CreateAlertsFromJSON(alertFile, "Alerts\\");
+        // for each alert in the file, 
+        //      add that alert and the NodeIP to the TeamData in mainInfra's list of teams.
+        //      and add that team to the Node's list of teams
     }
 
     /*
