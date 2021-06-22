@@ -15,9 +15,9 @@ public class GameManager: Singleton<GameManager>
     #region Fields
     [Header("Data from Controller Scene")]
     [SerializeField]
-    private string infraFile = "test_controllerToInfraScene.JSON";
+    private string infraFile = "test_controllerToInfraScene.json";
     [SerializeField]
-    private string alertFile = "test_controllerToAlertsScene.JSON";
+    private string alertsFile = "test_controllerToAlertsScene.json";
 
     [Header("Essential GameObjects")]
     [SerializeField]
@@ -327,14 +327,15 @@ public class GameManager: Singleton<GameManager>
 
     private void LoadAlerts()
     {
-        List<AlertData> newAlerts = fileManager.CreateAlertsFromJSON(alertFile, "Alerts\\");
+        List<AlertData> newAlerts = fileManager.CreateAlertsFromJSON(alertsFile, "Alerts\\");
         foreach(AlertData alert in newAlerts)
         {
             // add that alert and the NodeIP to the TeamData in mainInfra's list of teams.
             MainInfra.Teams[alert.TeamID].Alerts.Add(alert);
             MainInfra.Teams[alert.TeamID].NodeIPs.Add(alert.NodeIP);
-            // and add that team to the Node's list of teams
-            mainInfra.FindNodeObjectByID;
+            // and add that team and its ID to the Node's list of teams and team IDs
+            mainInfra.FindNodeObjectByIP(alert.NodeIP).GetComponent<NodeData>().TeamIDs.Add(alert.TeamID);
+            mainInfra.FindNodeObjectByIP(alert.NodeIP).GetComponent<NodeData>().Teams.Add(MainInfra.Teams[alert.TeamID]);
         }
         
     }

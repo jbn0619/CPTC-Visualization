@@ -222,6 +222,22 @@ public class InfrastructureData: MonoBehaviour
     // These mmethods are used to search through the Infrastructure's lists
     #region SearchMethods
     /// <summary>
+    /// Search the Infrastructure's allNodeObjects list and return a reference to the node obejct with the provided IP address
+    /// </summary>
+    /// <param name="_searchIP"></param>
+    /// <returns></returns>
+    public GameObject FindNodeObjectByIP(string _searchIP)
+    {
+        foreach(GameObject obj in this.allNodeObjects)
+        {
+            if(obj.GetComponent<NodeData>().Ip == _searchIP)
+            {
+                return obj;
+            }
+        }
+        return null;
+    }
+    /// <summary>
     /// Search the infrastructure's allNodeObjects list and return the node object with the correct ID
     /// </summary>
     /// <param name="_searchID">ID number of target Node</param>

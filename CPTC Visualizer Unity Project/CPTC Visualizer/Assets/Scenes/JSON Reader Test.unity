@@ -514,12 +514,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stayInScene: 1
+  infraFile: test_controllerToInfraScene.json
+  alertsFile: test_controllerToAlertsScene.json
   mainCam: {fileID: 2075817724}
   mainInfra: {fileID: 0}
   prefabNode: {fileID: 1217330141730608042, guid: c71bbe5717ea8454fa5ad5bde99919b4, type: 3}
   prefabNetwork: {fileID: 1997012330732690743, guid: e6b8d870b7b772b4ea2cfbf28c461ea6, type: 3}
   prefabInfrastructure: {fileID: 4531087110079519839, guid: 1b4bde8715dca1341bb9a0cd68bee61f, type: 3}
-  infraFile: '"test_controllerToInfraScene.JSON"'
   osSprites:
   - {fileID: 21300000, guid: dab2fb4c5fb7e434faff9a61412e0d06, type: 3}
   - {fileID: 21300000, guid: fdaa90bff7d034940b22a8a38e881212, type: 3}

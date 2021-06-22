@@ -297,12 +297,17 @@ public class FileManager: MonoBehaviour
         // translate the MonoBehavior data into a holder data structure. This allows the data to be formatted into a 
         //      JSON using JSON Utility to read the data from the holder class
         Infrastructure infra = DataToHolder(_data, _data.Teams[0].ID);
+        List<Infrastructure> infras = new List<Infrastructure>();
+        infras.Add(infra);
+        List<BuildShell> builds = new List<BuildShell>();
+        builds.Add(new BuildShell(infras));
+        LaforgeShell shell = new LaforgeShell(new DataShell(new EnvironmentShell(builds)));
 
         try
         {
             using (StreamWriter sw = File.CreateText(filePath))
             {
-                    sw.WriteLine(JsonUtility.ToJson(infra));
+                    sw.WriteLine(JsonUtility.ToJson(shell));
             }
             Debug.Log($"Infrastructure successfully saved to {filePath}");
         }

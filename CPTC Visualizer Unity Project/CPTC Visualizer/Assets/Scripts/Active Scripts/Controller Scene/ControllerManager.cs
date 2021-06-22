@@ -33,9 +33,9 @@ public class ControllerManager: MonoBehaviour
 
     [Header("Outgoing JSON Files")]
     [SerializeField]
-    private string infraScene_fileName = "test_controllerToInfraScene.JSON";
+    private string infraFileName = "test_controllerToInfraScene.json";
     [SerializeField]
-    private string alerts_fileName = "test_controllerToAlertsScene.JSON";
+    private string alertsFileName = "test_controllerToAlertsScene.json";
     #endregion Fields
 
     #region Properties
@@ -60,6 +60,8 @@ public class ControllerManager: MonoBehaviour
         dataReadInterval = 5;
         generateTestDataCount = 0.0f;
         generateTestDataTime = 5;
+        SendInfrastructureToScene();
+        SendAlertsToScene(); // This will be called from update at intervals once we are able to produce live data
     }
 
     // Update is called once per frame
@@ -79,12 +81,12 @@ public class ControllerManager: MonoBehaviour
 
     public void SendInfrastructureToScene()
     {
-        fileManager.SaveToJSON(infraScene_fileName, fileManager.CreateInfraFromJSON(laforgeJSON_fileName, "Infrastructure\\Database\\"));
+        fileManager.SaveToJSON(infraFileName, fileManager.CreateInfraFromJSON(laforgeJSON_fileName, "Infrastructure\\Database\\"));
     }
 
     public void SendAlertsToScene()
     {
-        fileManager.SaveToJSON(alerts_fileName, fileManager.CreateInfraFromJSON(splunkJSON_fileName, "Infrastructure\\Database\\"));
+        fileManager.SaveToJSON(alertsFileName, fileManager.CreateAlertsFromJSON(splunkJSON_fileName, "Alerts\\"));
     }
     #region Config Files
     /// <summary>
