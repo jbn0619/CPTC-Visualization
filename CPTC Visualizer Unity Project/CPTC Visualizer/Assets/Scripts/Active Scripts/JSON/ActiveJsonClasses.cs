@@ -354,7 +354,7 @@ namespace Assets.Scripts
     /// Data read from the JSON file sent by the splunk queries
     /// </summary>
     [Serializable]
-    public class SplunkReader
+    public class SplunkAlertsShell
     {
         /// <summary>
         /// List of new alerts detected by Splunk Queries within the last update cycle
@@ -365,7 +365,7 @@ namespace Assets.Scripts
         /// List of new alerts to be processed
         /// </summary>
         /// <param name="_alerts"></param>
-        public SplunkReader (List<Alert> _alerts)
+        public SplunkAlertsShell (List<Alert> _alerts)
         {
             alerts = _alerts;
         }

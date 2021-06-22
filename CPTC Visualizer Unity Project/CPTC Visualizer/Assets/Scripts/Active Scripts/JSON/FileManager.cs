@@ -164,7 +164,7 @@ public class FileManager: MonoBehaviour
         Debug.Log($"Splunk Alerts File: {filePath} found. Reading Data ...");
 
         // Grab the shell with the list of alerts
-        SplunkReader shell = JsonUtility.FromJson<SplunkReader>(JSONString);
+        SplunkAlertsShell shell = JsonUtility.FromJson<SplunkAlertsShell>(JSONString);
         List<Alert> alerts = shell.alerts;
 
         // build the new OverInfrastructure based on the first infrastructure in the list

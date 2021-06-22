@@ -8,6 +8,8 @@ using Assets.Scripts;
 
 public enum CCDCAttackType { Implant, EscelatePrivledges, EditFirewall, DenialOfService, DataSwap }
 
+public enum CPTCEvents { NetworkScan, Discovery, Exploit, ShutDown, StartUp }
+
 public enum NodeTypes { Workstation, RootWorkstation, SecureDrop, SecuredServer, VDI, VPN, WWW, AD, Azure, CA, DNS, EDMS, Fileshare, HyperV, MailExchange }
 
 public enum OperatingSystems { w2k16, w2k12, ubuntu18, ubuntu20, cptckali, kali }

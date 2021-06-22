@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum CPTCEvents { NetworkScan, Discovery, Exploit, ShutDown, StartUp }
+
 
 /// <summary>
 /// Author: Justin Neft
