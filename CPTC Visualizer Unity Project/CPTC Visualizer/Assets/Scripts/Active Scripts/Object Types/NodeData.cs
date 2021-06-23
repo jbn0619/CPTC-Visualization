@@ -335,7 +335,10 @@ public class NodeData: MonoBehaviour
         //Sprite newSprite = GeneralResources.Instance.NodeSprites[(int)type];
         Sprite newSprite = GameManager.Instance.OsSprites[(int)os];
         nodeSprite.sprite = newSprite;
-        nodeSprite.transform.localScale = new Vector3(.15f, .15f, 1);
+        Vector3 temp = nodeSprite.transform.localScale;
+        temp.x *= .15f;
+        temp.y *= .15f;
+        nodeSprite.transform.localScale = temp;
     } 
 
     /// <summary>

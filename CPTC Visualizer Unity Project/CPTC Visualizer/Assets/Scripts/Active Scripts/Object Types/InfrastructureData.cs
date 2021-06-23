@@ -350,6 +350,10 @@ public class InfrastructureData: MonoBehaviour
             // set name of network object
             networkObjects[netCount].name = net.NetworkName;
 
+            int scalar = networks[netCount].Nodes.Count / 6;
+            networkObjects[netCount].transform.localScale = new Vector3(1 + scalar / 10f,1 + scalar / 10f, 1f);
+            Debug.Log("Nodes Count: " + networks[netCount].Nodes.Count);
+
             // instantiate the nodes within this network 
             foreach (NodeData node in networks[netCount].Nodes)
             {
@@ -358,6 +362,12 @@ public class InfrastructureData: MonoBehaviour
                 allNodeObjects.Add(Instantiate(GameManager.Instance.NodePrefab, transform.position, transform.rotation));
                 // set the new node to be a child of the correct network
                 allNodeObjects[nodeCount].transform.parent = networkObjects[netCount].transform;
+                
+                // Temporarily create nodes to be in the background of the nodes, for the sake of visibility with the background
+                GameObject background = Instantiate(GameManager.Instance.NodePrefab, transform.position, transform.rotation);
+                background.transform.parent = allNodeObjects[nodeCount].transform;
+                background.transform.localPosition = new Vector3(0, 0, 0.01f);
+                background.transform.localScale = new Vector3(7.5f,7.5f,1);
 
                 // Handle Data References
                 // set the new game object's NodeData component's variables to the values from the data passed by the JSON file
@@ -469,6 +479,8 @@ public class InfrastructureData: MonoBehaviour
                 angleOffset = Mathf.PI * 2f / 6f;
             }
 
+            
+
             // Set basic positions of the nodes within the network
             for(int i = 0; i < nodes.Count; i++)
             {
@@ -481,9 +493,8 @@ public class InfrastructureData: MonoBehaviour
                 {
                     nodes[i].transform.localPosition = new Vector3(Mathf.Cos(angleOffset * (i % 6)) * (i / 6 + 1), Mathf.Sin(angleOffset * (i % 6)) * (i / 6 + 1), 0);
                 }
-            }
-
-                       
+                
+            }                     
         }
     }
 }
