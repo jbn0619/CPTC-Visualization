@@ -14,27 +14,32 @@ public class TeamManager : MonoBehaviour
 {
     #region Fields
 
+    
+    [SerializeField]
+    protected TeamData teamPrefab;
+    [SerializeField]
+    protected TeamViewButton teamViewButtonPrefab;
+    [Header("Tracked Data")]
     [SerializeField]
     protected List<TeamData> teams;
     [SerializeField]
-    private TeamData teamGO;
-
+    protected List<TeamViewButton> teamViewButtonObjects;
+    [SerializeField]
+    protected List<Color> curatedColors;
+    [SerializeField]
+    protected List<string> curatedNames;
     [Header("Team View Fields")]
     [SerializeField]
     protected Text teamViewLabel;
     [SerializeField]
     protected Image teamViewNameplate;
-    [SerializeField]
-    protected TeamViewButton teamViewButGO;
-    protected List<TeamViewButton> teamViewButtons;
-
+    
+    
     protected int currentTeamView;
-
-    protected List<TeamData> ccdcTeams;
-
-    protected List<Color> curatedColors;
     protected List<Color> curatedModified;
 
+    // Legacy Fields
+    // protected List<TeamData> teams;
     #endregion Fields
 
     #region Properties
@@ -57,11 +62,12 @@ public class TeamManager : MonoBehaviour
     {
         get
         {
-            return teamViewButtons;
+            return teamViewButtonObjects;
         }
     }
 
-    /// <summary>
+    /* Not modular enough. this object's Teams will function fine enough
+     * /// <summary>
     /// Gets a list of this manager's ccdc teams.
     /// </summary>
     public List<TeamData> CCDCTeams
@@ -70,7 +76,7 @@ public class TeamManager : MonoBehaviour
         {
             return ccdcTeams;
         }
-    }
+    }*/
 
     #endregion Properties
 
@@ -82,7 +88,7 @@ public class TeamManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        ccdcTeams = new List<TeamData>();
+        // ccdcTeams = new List<TeamData>();
         teams = new List<TeamData>();
         curatedColors = new List<Color>();
         currentTeamView = -1;
@@ -130,25 +136,25 @@ public class TeamManager : MonoBehaviour
         }
         else
         {
-            ccdcTeams[currentTeamView].InfraCopy.gameObject.SetActive(false);
+            teams[currentTeamView].InfraCopy.gameObject.SetActive(false);
             
-            if (ccdcTeams[currentTeamView].NotifMarkers.Count > 0)
+            if (teams[currentTeamView].NotifMarkers.Count > 0)
             {
-                foreach (NotificationButton button in ccdcTeams[currentTeamView].NotifMarkers)
+                foreach (NotificationButton button in teams[currentTeamView].NotifMarkers)
                 {
                     button.gameObject.SetActive(false);
                 }
             }
             
-            foreach (UptimeChartData u in ccdcTeams[currentTeamView].UptimeCharts)
+            foreach (UptimeChartData u in teams[currentTeamView].UptimeCharts)
             {
                 u.gameObject.SetActive(false);
             }
         }
 
         // Wrap the team index to make sure it stays in-bounds.
-        if (teamIndex < -1) teamIndex = ccdcTeams.Count - 1;
-        else if (teamIndex >= ccdcTeams.Count) teamIndex = -1;
+        if (teamIndex < -1) teamIndex = teams.Count - 1;
+        else if (teamIndex >= teams.Count) teamIndex = -1;
 
         // Next, do a simple check to make sure teamIndex is an acceptable value. If it is, then change currentTeamView to that new index.
         if (teamIndex == -1)
@@ -167,10 +173,10 @@ public class TeamManager : MonoBehaviour
 
             teamViewLabel.text = "Main Infrastructure";
         }
-        else if (teamIndex >= 0 && teamIndex < ccdcTeams.Count)
+        else if (teamIndex >= 0 && teamIndex < teams.Count)
         {
             currentTeamView = teamIndex;
-            InfrastructureData teamInfra = ccdcTeams[currentTeamView].InfraCopy;
+            InfrastructureData teamInfra = teams[currentTeamView].InfraCopy;
             teamInfra.gameObject.SetActive(true);
             foreach (NodeData n in teamInfra.AllNodes)
             {
@@ -181,21 +187,21 @@ public class TeamManager : MonoBehaviour
                 n.gameObject.SetActive(true);
             }
 
-            if (ccdcTeams[currentTeamView].NotifMarkers.Count > 0)
+            if (teams[currentTeamView].NotifMarkers.Count > 0)
             {
-                foreach (NotificationButton button in ccdcTeams[currentTeamView].NotifMarkers)
+                foreach (NotificationButton button in teams[currentTeamView].NotifMarkers)
                 {
                     button.gameObject.SetActive(true);
                 }
             }
             
-            foreach (UptimeChartData u in ccdcTeams[currentTeamView].UptimeCharts)
+            foreach (UptimeChartData u in teams[currentTeamView].UptimeCharts)
             {
                 u.gameObject.SetActive(true);
             }
 
-            teamViewLabel.text = "Team " + ccdcTeams[teamIndex].TeamName;
-            teamViewNameplate.color = ccdcTeams[teamIndex].TeamColor;
+            teamViewLabel.text = "Team " + teams[teamIndex].TeamName;
+            teamViewNameplate.color = teams[teamIndex].TeamColor;
         }
     }
 
@@ -205,17 +211,17 @@ public class TeamManager : MonoBehaviour
     public void GenerateTeamViewButtons()
     {
         // Make sure we properly clear-out the previous buttons before making new ones.
-        if (teamViewButtons != null)
+        if (teamViewButtonObjects != null)
         {
-            foreach (TeamViewButton t in teamViewButtons)
+            foreach (TeamViewButton t in teamViewButtonObjects)
             {
                 if (t != null) Destroy(t.gameObject);
             }
-            teamViewButtons.Clear();
+            teamViewButtonObjects.Clear();
         }
         else
         {
-            teamViewButtons = new List<TeamViewButton>();
+            teamViewButtonObjects = new List<TeamViewButton>();
         }
 
         // Create each button, then edit their index and text fields.
@@ -223,17 +229,17 @@ public class TeamManager : MonoBehaviour
         {
             // Generate a list of possible locations
             List<int> possibleLocs = new List<int>();
-            for (int i = 0; i < ccdcTeams.Count; i++)
+            for (int i = 0; i < teams.Count; i++)
             {
-                possibleLocs.Add((Screen.width / ccdcTeams.Count / 2) + ((Screen.width / ccdcTeams.Count) * i));
+                possibleLocs.Add((Screen.width / teams.Count / 2) + ((Screen.width / teams.Count) * i));
                 //Debug.Log(possibleLocs[i]);
             }
 
-            Debug.Log(ccdcTeams.Count);
-            for (int i = 0; i < ccdcTeams.Count; i++)
+            Debug.Log(teams.Count);
+            for (int i = 0; i < teams.Count; i++)
             {
-                TeamViewButton newButton = Instantiate(teamViewButGO, UIManager.Instance.SceneCanvas.transform);
-                if (i == ccdcTeams.Count)
+                TeamViewButton newButton = Instantiate(teamViewButtonPrefab, UIManager.Instance.SceneCanvas.transform);
+                if (i == teams.Count)
                 {
                     //newButton.NewTeamIndex = -1;
                     //newButton.ButtonText.text = "Main";
@@ -242,8 +248,8 @@ public class TeamManager : MonoBehaviour
                 else
                 {
                     newButton.NewTeamIndex = i;
-                    newButton.ButtonText.text = ccdcTeams[i].TeamName;
-                    newButton.Button.image.color = ccdcTeams[i].TeamColor;
+                    newButton.ButtonText.text = teams[i].TeamName;
+                    newButton.Button.image.color = teams[i].TeamColor;
                 }
 
                 // Finally, move the button to its proper spot and add it to teamViewButtons.
@@ -251,7 +257,7 @@ public class TeamManager : MonoBehaviour
                 int index = Random.Range(0, possibleLocs.Count);
                 newButton.gameObject.transform.position = new Vector3(possibleLocs[index], Screen.height - 75, 0);
                 possibleLocs.RemoveAt(index);
-                teamViewButtons.Add(newButton);
+                teamViewButtonObjects.Add(newButton);
             }
         }
         else
@@ -295,7 +301,7 @@ public class TeamManager : MonoBehaviour
 
         // Gets a random index, adds it to the team names, and removes it from
         //      potential names. Then creates a random color for the team.
-        for (int i = 0; i < ccdcTeams.Count; i++)
+        for (int i = 0; i < teams.Count; i++)
         {
             int index = Random.Range(0, potentialNames.Count);
             teamNames.Add(potentialNames[index]);
@@ -311,7 +317,7 @@ public class TeamManager : MonoBehaviour
 
         // Writes the selected team names and colors to a file
         StreamWriter writer = new StreamWriter(directoryPath + "\\teamNames.txt");
-        for (int i = 0; i < ccdcTeams.Count; i++)
+        for (int i = 0; i < teams.Count; i++)
         {
             writer.WriteLine(teamNames[i] + ":" + teamColors[i]);
         }
@@ -348,12 +354,12 @@ public class TeamManager : MonoBehaviour
         Color readColor;
 
         // Assign the names and colors to the teams
-        for (int i = 0; i < ccdcTeams.Count; i++)
+        for (int i = 0; i < teams.Count; i++)
         {
             ColorUtility.TryParseHtmlString(teamColors[i], out readColor);
 
-            ccdcTeams[i].TeamName = teamNames[i];
-            ccdcTeams[i].TeamColor = readColor;
+            teams[i].TeamName = teamNames[i];
+            teams[i].TeamColor = readColor;
         }
 
         GenerateTeamViewButtons();
@@ -366,7 +372,7 @@ public class TeamManager : MonoBehaviour
     /// </summary>
     public virtual void CleanOnSceneChange(Scene scene, LoadSceneMode mode)
     {
-        teamViewButtons.Clear();
+        teamViewButtonObjects.Clear();
     }
 
     /// <summary>

@@ -896,7 +896,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1505967433}
   m_HandleRect: {fileID: 1505967432}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -1381,7 +1381,7 @@ MonoBehaviour:
   dataPullInterval: 0
   dataReadInterval: 0
   passNewDataCount: 0
-  passNewDataTime: 30
+  passNewDataTime: 5
   generateTestDataCount: 0
   generateTestDataTime: 0
   laforgeJSON_fileName: cptc_finals_2020_laforge_topo.json
