@@ -26,6 +26,11 @@ public class ControllerManager: MonoBehaviour
     private float dataReadInterval;
 
     [SerializeField]
+    private float passNewDataCount;
+    [SerializeField]
+    private float passNewDataTime;
+
+    [SerializeField]
     private float generateTestDataCount;
     [SerializeField]
     private float generateTestDataTime;
@@ -35,6 +40,9 @@ public class ControllerManager: MonoBehaviour
     private string laforgeJSON_fileName = "cptc_finals_2020_laforge_topo.json";
     [SerializeField]
     private string splunkJSON_fileName = "test_FromSplunk.json";
+
+    private InfrastructureData oldLaforge;
+    private List<AlertData> oldSplunk;
 
     [Header("Outgoing JSON Files")]
     [SerializeField]
@@ -67,7 +75,7 @@ public class ControllerManager: MonoBehaviour
         generateTestDataTime = 5;
         SendInfrastructureToScene();
         SendAlertsToScene(); // This will be called from update at intervals once we are able to produce live data
-        toJSONTestButton.onClick.AddListener(delegate { SceneManager.LoadScene(sceneName: "JSON Reader Test"); });
+        toJSONTestButton.onClick.AddListener(delegate { GoToJSONTest(); });
     }
 
     // Update is called once per frame
@@ -84,17 +92,35 @@ public class ControllerManager: MonoBehaviour
             dataLog.Print("Test Data generated.");
         }
 
+        // Check if new data has been passed into the system
 
+    }
+    public void GoToJSONTest()
+    {
+        SendInfrastructureToScene();
+        SendAlertsToScene();
+        SceneManager.LoadScene(sceneName: "JSON Reader Test");
     }
 
     public void SendInfrastructureToScene()
     {
-        fileManager.SaveToJSON(infraFileName, fileManager.CreateInfraFromJSON(laforgeJSON_fileName, "Infrastructure\\Database\\"));
+        InfrastructureData newLaforge = fileManager.CreateInfraFromJSON(laforgeJSON_fileName, "Infrastructure\\Database\\");
+        if(oldLaforge == null || newLaforge != oldLaforge)
+        {
+            oldLaforge = newLaforge;
+            fileManager.SaveToJSON(infraFileName, newLaforge);
+        }
     }
 
     public void SendAlertsToScene()
     {
-        fileManager.SaveToJSON(alertsFileName, fileManager.CreateAlertsFromJSON(splunkJSON_fileName, "Alerts\\"));
+        List<AlertData> newSplunk = fileManager.CreateAlertsFromJSON(splunkJSON_fileName, "Alerts\\");
+        if(oldSplunk == null || newSplunk.Count != oldSplunk.Count)
+        {
+            oldSplunk = newSplunk;
+            fileManager.SaveToJSON(alertsFileName, oldSplunk);
+        }
+        
     }
     #region Config Files
     /// <summary>

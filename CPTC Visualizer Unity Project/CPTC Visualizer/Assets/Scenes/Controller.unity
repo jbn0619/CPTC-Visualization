@@ -1380,6 +1380,8 @@ MonoBehaviour:
   toJSONTestButton: {fileID: 2051845297}
   dataPullInterval: 0
   dataReadInterval: 0
+  passNewDataCount: 0
+  passNewDataTime: 0
   generateTestDataCount: 0
   generateTestDataTime: 0
   laforgeJSON_fileName: cptc_finals_2020_laforge_topo.json
@@ -1403,7 +1405,7 @@ MonoBehaviour:
   writeInfra: 105
   fileManager: {fileID: 1144901408}
   eventCount: 1
-  splunkFileName: FromSplunk.JSON
+  splunkFileName: test_FromSplunk.json
   ControllerToScenesFileName: ControllerToScene.JSON
   membersPerTeam: 6
   numberOfAlertTypes: 0

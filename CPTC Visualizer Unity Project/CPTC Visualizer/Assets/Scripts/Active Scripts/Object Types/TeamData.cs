@@ -35,10 +35,10 @@ public class TeamData: MonoBehaviour
     /// </summary>
     [SerializeField]
     protected List<string> nodeIPs;
+    protected InfrastructureData infraCopy;
 
     // Legacy Fields
     protected PriorityQueue queue;
-    protected InfrastructureData infraCopy;
     private List<UptimeChartData> uptimeCharts;
     private List<NotificationButton> notifMarkers;
     private List<GameObject> notifBanners;
@@ -179,11 +179,15 @@ public class TeamData: MonoBehaviour
         
     }
 
-    public TeamData(int _id)
+    public TeamData(int _id, InfrastructureData _infra = null)
     {
         id = _id;
         alerts = new List<AlertData>();
         nodeIPs = new List<string>();
+        if(_infra != null)
+        {
+            infraCopy = _infra;
+        }
     }
     public void SetupQueue()
     {

@@ -36,7 +36,7 @@ public class TestDataWriter: MonoBehaviour
     private int membersPerTeam = 6;
     [SerializeField]
     [Range(1,5)]
-    private int numberOfAlertTypes;
+    private int numberOfAlertTypes = 5;
 
     #endregion Fields
 
@@ -114,7 +114,6 @@ public class TestDataWriter: MonoBehaviour
         {
             InfrastructureData infra = GameManager.Instance.MainInfra;
             int nodeCount = infra.AllNodes.Count;
-            int numOfTypes = 5;
             List<AlertData> alerts = new List<AlertData>();
             // create an alert for every member of each team in the competition
             foreach(TeamData team in infra.Teams)
@@ -122,7 +121,7 @@ public class TestDataWriter: MonoBehaviour
                 for(int i = 0; i < membersPerTeam; i++)
                 {
                     alerts.Add(new AlertData(
-                        (CPTCEvents)UnityEngine.Random.Range(0, numOfTypes),
+                        (CPTCEvents)UnityEngine.Random.Range(0, numberOfAlertTypes),
                         infra.AllNodes[(int)UnityEngine.Random.Range(0, nodeCount)].Ip,
                         team.ID,
                         DateTime.Now));

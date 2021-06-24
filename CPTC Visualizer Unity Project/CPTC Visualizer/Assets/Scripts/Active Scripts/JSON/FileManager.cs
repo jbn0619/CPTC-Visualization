@@ -237,8 +237,13 @@ public class FileManager: MonoBehaviour
         List<TeamData> teams = new List<TeamData>();
         for(int i = 0; i < infras.Count; i++)
         {
-            TeamData team = new TeamData(infras[i].team_number);
+            InfrastructureData teamInfra = HolderToData(infras[i], new List<TeamData>());
+            TeamData team = new TeamData(infras[i].team_number, teamInfra);
             teams.Add(team);
+            if(GameManager.Instance != null)
+            {
+                GameManager.Instance.TeamManager.Teams.Add(team);
+            }
         }
 
         // build the new OverInfrastructure based on the first infrastructure in the list
