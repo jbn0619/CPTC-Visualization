@@ -13,12 +13,11 @@ public class ControllerManager: MonoBehaviour
     [SerializeField]
     private DataLog dataLog;
 
+    [Header("Timer Fielsds")]
     [SerializeField]
     private float dataPullInterval;
-
     [SerializeField]
     private float dataReadInterval;
-
 
     [SerializeField]
     private float generateTestDataCount;
@@ -77,6 +76,8 @@ public class ControllerManager: MonoBehaviour
 
             dataLog.Print("Test Data generated.");
         }
+
+
     }
 
     public void SendInfrastructureToScene()
