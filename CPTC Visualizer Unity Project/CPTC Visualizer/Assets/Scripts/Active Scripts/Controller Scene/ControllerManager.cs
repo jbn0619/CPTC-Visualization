@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
 public enum SceneConfigFiles { Controller, Infrastructure}
 
 public class ControllerManager: MonoBehaviour
@@ -12,6 +15,9 @@ public class ControllerManager: MonoBehaviour
     private TestDataWriter testDataWriter;
     [SerializeField]
     private DataLog dataLog;
+    [Header("UI Objects")]
+    [SerializeField]
+    private Button toJSONTestButton;
 
     [Header("Timer Fielsds")]
     [SerializeField]
@@ -61,6 +67,7 @@ public class ControllerManager: MonoBehaviour
         generateTestDataTime = 5;
         SendInfrastructureToScene();
         SendAlertsToScene(); // This will be called from update at intervals once we are able to produce live data
+        toJSONTestButton.onClick.AddListener(delegate { SceneManager.LoadScene(sceneName: "JSON Reader Test"); });
     }
 
     // Update is called once per frame

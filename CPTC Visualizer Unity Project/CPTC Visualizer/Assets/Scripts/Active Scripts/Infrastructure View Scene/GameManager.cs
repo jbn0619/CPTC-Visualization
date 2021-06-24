@@ -32,6 +32,8 @@ public class GameManager: Singleton<GameManager>
     private GameObject prefabInfrastructure;
     [SerializeField]
     private List<Sprite> osSprites;
+    [SerializeField]
+    private Button toControllerButton;
 
     [Header("Manager GameObjects")]
     [SerializeField]
@@ -51,7 +53,6 @@ public class GameManager: Singleton<GameManager>
     public GameObject notificationControls;
 
     [Header("Time fields")]
-
     [SerializeField]
     private System.DateTime startOfComp;
     [SerializeField]
@@ -179,7 +180,6 @@ public class GameManager: Singleton<GameManager>
         get { return osSprites; }
     }
     #endregion General Properties
-
     #region Competition Properties
 
     /// <summary>
@@ -221,6 +221,7 @@ public class GameManager: Singleton<GameManager>
     // Start is called before the first frame update
     void Start()
     {
+        toControllerButton.onClick.AddListener(delegate { SceneManager.LoadScene(sceneName: "Controller"); });
         mainCam = Camera.main;
         readDateStarted = false;
         compStarted = false;

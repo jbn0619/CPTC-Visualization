@@ -528,6 +528,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 8a21fefe5ca66834baea8374917f11f7, type: 3}
   - {fileID: 21300000, guid: 47a8f8870bba9534397643fbd3ea875f, type: 3}
   - {fileID: 21300000, guid: 5444e32910d3f5c4b9ecf5a193ec6e36, type: 3}
+  toControllerButton: {fileID: 1619502855}
   inputManager: {fileID: 183641911}
   teamManager: {fileID: 1371010132}
   eventManager: {fileID: 1452424210}
