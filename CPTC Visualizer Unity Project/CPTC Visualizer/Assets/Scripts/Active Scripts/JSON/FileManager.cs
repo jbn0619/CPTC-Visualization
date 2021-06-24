@@ -240,7 +240,7 @@ public class FileManager: MonoBehaviour
             InfrastructureData teamInfra = HolderToData(infras[i], new List<TeamData>());
             TeamData team = new TeamData(infras[i].team_number, teamInfra);
             teams.Add(team);
-            if(GameManager.Instance != null)
+            if(GameObject.Find("GameManager") != null)
             {
                 GameManager.Instance.TeamManager.Teams.Add(team);
             }

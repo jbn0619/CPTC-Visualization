@@ -93,7 +93,13 @@ public class ControllerManager: MonoBehaviour
         }
 
         // Check if new data has been passed into the system
-
+        passNewDataCount += Time.deltaTime;
+        if(passNewDataCount >= passNewDataTime)
+        {
+            passNewDataCount = 0.0f;
+            SendAlertsToScene();
+            dataLog.Print("Alerts Sent to Scene.");
+        }
     }
     public void GoToJSONTest()
     {

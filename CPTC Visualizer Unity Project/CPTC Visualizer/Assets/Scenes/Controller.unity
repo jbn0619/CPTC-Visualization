@@ -1381,7 +1381,7 @@ MonoBehaviour:
   dataPullInterval: 0
   dataReadInterval: 0
   passNewDataCount: 0
-  passNewDataTime: 0
+  passNewDataTime: 30
   generateTestDataCount: 0
   generateTestDataTime: 0
   laforgeJSON_fileName: cptc_finals_2020_laforge_topo.json
