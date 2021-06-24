@@ -130,6 +130,7 @@ public class TestDataWriter: MonoBehaviour
             // TODO: make the alerts only activate in nodes the teams can accsess
             // save an alert list to a new JSON file
             fileManager.SaveToJSON(splunkFileName, alerts);
+            Debug.Log($"New Dummy Splunk Data Generated\n   Number Of Alert Types: {numberOfAlertTypes}\n   Number of Teams: {infra.Teams}");
         }
     }
 
