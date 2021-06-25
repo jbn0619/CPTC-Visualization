@@ -284,7 +284,7 @@ public class InfrastructureData: MonoBehaviour
             }
         }
         GL.End();
-        Debug.Log("End of drawing");
+        Debug.Log($"{name} : End of drawing");
     }
 
     /// <summary>

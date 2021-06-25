@@ -31,12 +31,18 @@ public class TeamData: MonoBehaviour
     [SerializeField]
     protected List<AlertData> alerts;
     /// <summary>
-    /// A list of ID numbers of the nodes this team is currently accessing
+    /// A list of ip strings of the nodes this team is currently accessing
     /// </summary>
     [SerializeField]
     protected List<string> nodeIPs;
+    /// <summary>
+    /// This team's Infrastructure gameObject
+    /// </summary>
     [SerializeField]
     protected GameObject infraObject;
+    /// <summary>
+    /// Reference to the Infra object's InfrastructureData
+    /// </summary>
     protected InfrastructureData infra;
 
     // Legacy Fields
@@ -89,13 +95,17 @@ public class TeamData: MonoBehaviour
     }
 
     /// <summary>
-    /// Gets a list of ID numbers for nodes this team has discovered.
+    /// Gets and sets a list of ip strings for nodes this team is accessing.
     /// </summary>
     public List<string> NodeIPs
     {
         get
         {
             return nodeIPs;
+        }
+        set
+        {
+            nodeIPs = value;
         }
     }
 
@@ -113,14 +123,17 @@ public class TeamData: MonoBehaviour
             infra = value;
         }
     }
+
+    /// <summary>
+    /// Gets a reference to this team's Infrastructure Object
+    /// </summary>
     public GameObject InfraObject
     {
         get { return infraObject; }
-        set { infraObject = value; }
     }
 
     /// <summary>
-    /// Gets or sets the Team Name
+    /// Gets the Team Name
     /// </summary>
     public string TeamName
     {
@@ -129,7 +142,7 @@ public class TeamData: MonoBehaviour
     }
 
     /// <summary>
-    /// Gets or sets the team's color
+    /// Gets the team's color
     /// </summary>
     public Color TeamColor
     {
@@ -185,7 +198,18 @@ public class TeamData: MonoBehaviour
     {
         
     }
+    // Update is called once per frame
+    void Update()
+    {
 
+    }
+    /// <summary>
+    /// Transfer data to the Team Component of a team's game object
+    /// </summary>
+    /// <param name="_id">Team's index in the Manager teams list</param>
+    /// <param name="_name">Random name of the team</param>
+    /// <param name="_color">Random color assigned to the team</param>
+    /// <param name="_infraObject">Object Instance of the Team's Infrastructure topology</param>
     public void SetData(int _id, string _name, Color _color, GameObject _infraObject)
     {
         id = _id;
@@ -203,26 +227,4 @@ public class TeamData: MonoBehaviour
         queue = new PriorityQueue();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
-    /// <summary>
-    /// Set all variables within the team object with data passed from the server
-    /// </summary>
-    /// <param name="_id">Team's id number</param>
-    /// <param name="_alerts">alerts this team has triggered</param>
-    /// <param name="_nodeIDs">nodes this team is currently visiting</param>
-    public void SetAlertsData(List<AlertData> _alerts = null)
-    {
-        this.alerts = _alerts;
-        foreach(AlertData alert in alerts)
-        {
-            nodeIPs.Add(alert.NodeIP);
-        }
-    }
-
-    
 }

@@ -242,6 +242,7 @@ public class GameManager: Singleton<GameManager>
     // Update is called once per frame
     void Update()
     {
+        // Check if new alert files should be looked for
         loadDataFromControllerCount += Time.deltaTime;
         if(loadDataFromControllerCount >= loadDataFromControllerTime)
         {
@@ -294,13 +295,6 @@ public class GameManager: Singleton<GameManager>
                 }
             }
         }
-        // Generates team names and colors
-        //if(Input.GetKeyDown(KeyCode.C))
-        //{
-        //    //teamManager.GenerateTeamNames();
-        //    //teamManager.ReadTeams();
-        //    //injectNotifManager.CreateTestInject();
-        //}
     }
 
     private void UpdateConfigFile()
@@ -315,9 +309,14 @@ public class GameManager: Singleton<GameManager>
 
         Debug.Log("Infrastructure Config file successfully updated.");
     }
+    /// <summary>
+    /// Method for the Scene transfer button to execute when it's pressed
+    /// </summary>
     private void GoToControllerScene()
     {
+        // Make new dummy event data
         dataWriter.WriteAlertData();
+        // switch scenes to the Controller Scene
         SceneManager.LoadScene(sceneName: "Controller");
     }
 
@@ -328,7 +327,7 @@ public class GameManager: Singleton<GameManager>
     {
         if(mainInfra == null)
         {
-            // Assign the active infrastructure
+            // Instantiate an Infrastructure prefab for the mainInfra
             GameObject mainInfraObject = Instantiate(prefabInfrastructure);
             // set canvas as parent of the infrastructure
             mainInfraObject.transform.SetParent(mainCanvas.transform, false);
@@ -348,7 +347,7 @@ public class GameManager: Singleton<GameManager>
             emptyHolder.transform.SetParent(mainCanvas.transform, false);
             emptyHolder.name = "Team Infrastructures";
 
-            // Instance the team Infrastructure Objects
+            // Instance the team Infrastructure Objects childed to the empty object and instance all of their children within them
             List<GameObject> infraObjects = new List<GameObject>();
             List<int> teamIds = new List<int>();
             for(int i = 0; i < infras.Count; i++)
@@ -365,10 +364,11 @@ public class GameManager: Singleton<GameManager>
             teamManager.InstanceTeams(teamIds, infraObjects);
         }
 
-        // Set positions of children of all Infrastructures
+        // Set positions of main infrastructure
         mainInfra.PositionNetworks();
         mainInfra.PositionNodes();
         mainInfra.DrawAllConnections();
+        // set positions of all team infrastructures
         foreach(GameObject team in teamManager.TeamObjects)
         {
             team.GetComponent<TeamData>().Infra.PositionNetworks();
@@ -377,14 +377,18 @@ public class GameManager: Singleton<GameManager>
         }
     }
 
+    /// <summary>
+    /// Load all events from the events file passed by the COntroller scene to their teams and nodes
+    /// Will probably need to be moved into Events manager later, and integrete the Priority queue and notifications - BW
+    /// </summary>
     private void LoadAlerts()
     {
         List<AlertData> newAlerts = fileManager.CreateAlertsFromJSON(alertsFile, "Alerts\\");
         foreach(AlertData alert in newAlerts)
         {
-            // add that alert and the NodeIP to the TeamData in mainInfra's list of teams.
-            mainInfra.Teams[alert.TeamID].Alerts.Add(alert);
-            mainInfra.Teams[alert.TeamID].NodeIPs.Add(alert.NodeIP);
+            // add that alert and the NodeIP to the TeamData in team manager's list of teams.
+            teamManager.Teams[alert.TeamID].Alerts.Add(alert);
+            teamManager.Teams[alert.TeamID].NodeIPs.Add(alert.NodeIP);
             // and add that team and its ID to the Node's list of teams and team IDs
             mainInfra.FindNodeObjectByIP(alert.NodeIP).GetComponent<NodeData>().TeamIDs.Add(alert.TeamID);
             mainInfra.FindNodeObjectByIP(alert.NodeIP).GetComponent<NodeData>().Teams.Add(MainInfra.Teams[alert.TeamID]);

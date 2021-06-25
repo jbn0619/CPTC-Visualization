@@ -113,7 +113,7 @@ public class ControllerManager: MonoBehaviour
         List<InfrastructureData> newLaforgeInfras = fileManager.CreateInfrasFromJSON(laforgeJSON_fileName, "Infrastructure\\Database\\");
         for(int i = 0; i < newLaforgeInfras.Count; i++)
         {
-            if(oldLaforgeInfras[i] == null || newLaforgeInfras[i] != oldLaforgeInfras[i])
+            if(oldLaforgeInfras == null || newLaforgeInfras[i] != oldLaforgeInfras[i])
             {
                 oldLaforgeInfras = newLaforgeInfras;
                 fileManager.SaveToJSON(infraFileName, newLaforgeInfras);

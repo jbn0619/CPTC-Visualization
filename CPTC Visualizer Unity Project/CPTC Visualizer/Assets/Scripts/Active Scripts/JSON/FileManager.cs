@@ -235,7 +235,6 @@ public class FileManager: MonoBehaviour
         List<Infrastructure> infras = shell.data.environment.EnvironmentToBuild[0].buildToTeam;
 
         // create rudimentary teams using the number of infrastructures and the team numbers assigned to them
-        List<TeamData> teams = new List<TeamData>();
         List<InfrastructureData> returnInfras = new List<InfrastructureData>();
         for(int i = 0; i < infras.Count; i++)
         {
@@ -388,23 +387,28 @@ public class FileManager: MonoBehaviour
     #endregion JSON Translation Methods
 
     /// <summary>
-    /// Randomly set the name and color of the teams passed in
+    /// Return a list of sorted TeamDatas fully loaded with info and ready to be added to instanced objects
     /// </summary>
-    /// <param name="_teams">Teams needing new names and colors</param>
+    /// <param name="_ids">List of ids representing the indexes the teams should be sorted to</param>
+    /// <param name="_infraObjects">List of each team's Infrastructure object</param>
     /// <param name="_filePathExtension">File's location within the root directory</param>
     /// <param name="_fileName">name of the file</param>
-    /// <returns></returns>
-    public List<TeamData> SetTeamNamesFromFile(List<int> _ids, string _filePathExtension, string _fileName)
+    /// <returns>Return a list of sorted teams</returns>
+    public List<TeamData> SetTeamNamesFromFile(List<int> _ids, List<GameObject> _infraObjects, string _filePathExtension, string _fileName)
     {
-        // create Local Variables
+        // create list of teams to return
         List<TeamData> returnTeams = new List<TeamData>();
         for (int i = 0; i < _ids.Count; i++)
         {
             TeamData returnTeam = new TeamData();
             returnTeams.Add(returnTeam);
         }
+
+        // create a list of strings to track names from the filereader and a list of strings to track colors from the filereader
         List<string> teamNames = new List<string>();
         List<string> teamColors = new List<string>();
+
+        // log the filepath of the text file
         string filePath = rootFilePath + _filePathExtension + _fileName;
         Debug.Log($"Loading Team Names and Colors from : {filePath} ...");
 
@@ -418,19 +422,19 @@ public class FileManager: MonoBehaviour
         }
         Debug.Log($"Names and Colors Successfully Loaded from File.");
 
-        // Parse local variables into return variable
+        // bundle up the data into the return list of TeamDatas
         Color readColor;
         for (int i = 0; i < returnTeams.Count; i++)
         {
-            int index = UnityEngine.Random.Range(0, teamNames.Count);
-            ColorUtility.TryParseHtmlString(teamColors[index], out readColor);
-
-            returnTeams[i].TeamName = teamNames[index];
-            teamNames.RemoveAt(index);
-            returnTeams[i].TeamColor = readColor;
-            teamColors.RemoveAt(index);
+            // int index = UnityEngine.Random.Range(0, teamNames.Count); // We should randomize the text file, rather than the data we're reading it from. That way we have a consistent name bewtween scene loads
+            // translate the color string into a color variable
+            ColorUtility.TryParseHtmlString(teamColors[i], out readColor);
+            // set all data for the team
+            returnTeams[i].SetData(_ids[i], teamNames[i], readColor, _infraObjects[i]);
+            // shove the team into the space where it's ID says it should be
+            returnTeams.Insert(returnTeams[i].ID, returnTeams[i]);
+            returnTeams.RemoveAt(i);
         }
-
         return returnTeams;
     }
 
