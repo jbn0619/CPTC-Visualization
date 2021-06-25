@@ -98,23 +98,9 @@ public class TeamManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // ccdcTeams = new List<TeamData>();
-        // teams = new List<TeamData>();
-        // curatedColors = new List<Color>();
         currentTeamView = -1;
 
         SceneManager.sceneLoaded += CleanOnSceneChange;
-
-        // curatedColors.Add(new Color(0.76f, 0.5f, 0.18f));
-        // curatedColors.Add(new Color(0.76f, 0.72f, 0.21f));
-        // curatedColors.Add(new Color(0.29f, 0.66f, 0.13f));
-        // curatedColors.Add(new Color(0.17f, 0.68f, 0.45f));
-        // curatedColors.Add(new Color(0.12f, 0.36f, 0.62f));
-        // curatedColors.Add(new Color(0.19f, 0.09f, 0.64f));
-        // curatedColors.Add(new Color(0.39f, 0.07f, 0.6f));
-        // curatedColors.Add(new Color(0.53f, 0.06f, 0.52f));
-        // curatedColors.Add(new Color(0.45f, 0.05f, 0.26f));
-        // curatedColors.Add(new Color(0.55f, 0.1f, 0.1f));
     }
 
     // Update is called once per frame
@@ -123,17 +109,24 @@ public class TeamManager : MonoBehaviour
         
     }
 
+    /// <summary>
+    /// Pull Team Colors and Names from text File and create Instances of the team objects
+    /// </summary>
+    /// <param name="_ids"></param>
+    /// <param name="_infraObjects"></param>
     public void InstanceTeams(List<int> _ids, List<GameObject> _infraObjects)
     {
+        // grab name and color data from the text file and reset the TeamManager's team list to the new named teams
         teams = fileManager.SetTeamNamesFromFile(_ids,"",teamNamesFileName);
 
         // Sort the teams into their proper order
         for(int i = 0; i < teams.Count; i ++)
         {
+            // set all data for the team
             teams[i].SetData(_ids[i], teams[i].TeamName, teams[i].TeamColor, _infraObjects[i]);
             // shove the team into the space where it's ID says it should be
             teams.Insert(teams[i].ID, teams[i]);
-            teams.RemoveAt(teams[i+1].ID);
+            teams.RemoveAt(i);
         }
         // Create Team Objects and Add Data to them
         for(int i = 0; i < teams.Count; i++)
@@ -141,8 +134,13 @@ public class TeamManager : MonoBehaviour
             teamObjects.Add(Instantiate(teamPrefab));
             teamObjects[teamObjects.Count - 1].transform.SetParent(transform);
 
+            // set the prefabed object's teamData
             teamObjects[i].GetComponent<TeamData>().SetData(teams[i].ID, teams[i].TeamName, teams[i].TeamColor, teams[i].InfraObject);
             teamObjects[i].name = teams[i].TeamName;
+            // set team list to reference instanced TeamData
+            teams[i] = teamObjects[i].GetComponent<TeamData>();
+            // set the team's infrastructure to include them on its team list
+            // teamObjects[i].GetComponent<TeamData>().Infra.Teams.Add(teams[i]); // Uncomment when the Infrastructures are able to Deep clone. Don't want the mainInfra to have extra teams on it.
             // Add the teams to the Main Infrastructure
             GameManager.Instance.MainInfra.Teams.Add(teamObjects[i].GetComponent<TeamData>());
         }        
@@ -153,6 +151,7 @@ public class TeamManager : MonoBehaviour
     /// <summary>
     /// Changes what infrastructure is currently-displayed in the scene.
     /// </summary>
+    /// <param name="deltaIndex">The number of indexes to skip ahead in the list</param>
     public void ChangeTeamView(int deltaIndex)
     {
         SelectTeamView(currentTeamView + deltaIndex);

@@ -332,6 +332,7 @@ public class GameManager: Singleton<GameManager>
             GameObject mainInfraObject = Instantiate(prefabInfrastructure);
             // set canvas as parent of the infrastructure
             mainInfraObject.transform.SetParent(mainCanvas.transform, false);
+            mainInfraObject.name = "Main Infrastructure View";
             // grab a ref to its prefabed infra data
             mainInfra = mainInfraObject.GetComponent<InfrastructureData>();
 

@@ -192,7 +192,7 @@ public class TeamData: MonoBehaviour
         teamName = _name;
         teamColor = _color;
         infraObject = _infraObject;
-        infraObject.name = $"{_name} TeamInfra";
+        infraObject.name = $"{_name}'s Infrastructure View";
         infra = infraObject.GetComponent<InfrastructureData>();
         alerts = new List<AlertData>();
         nodeIPs = new List<string>();

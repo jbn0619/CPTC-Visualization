@@ -305,7 +305,6 @@ public class InfrastructureData: MonoBehaviour
     /// </summary>
     public void InstanceChildren()
     {
-        name = "Main Infrastructure";
         int netCount = 0;
         int nodeCount = 0;
         // create gameObjects for all the networks
