@@ -321,52 +321,59 @@ public class GameManager: Singleton<GameManager>
         SceneManager.LoadScene(sceneName: "Controller");
     }
 
-    private void BuildInfrastructure()
+    /// <summary>
+    /// Instance all Infrastructure Game Objects if they are not instanced, and assign their children's positions
+    /// </summary>
+    public void BuildInfrastructure()
     {
         if(mainInfra == null)
         {
-            // this is really wonky right now and I just want to get it working before I worry about making it function well. - BW
-            // make the object exist in the scene
+            // Assign the active infrastructure
             GameObject mainInfraObject = Instantiate(prefabInfrastructure);
             // set canvas as parent of the infrastructure
             mainInfraObject.transform.SetParent(mainCanvas.transform, false);
-            // grab a ref to its infra data
+            // grab a ref to its prefabed infra data
             mainInfra = mainInfraObject.GetComponent<InfrastructureData>();
+
             // Grab Data from all Infrastructures
             List<InfrastructureData> infras = fileManager.CreateInfrasFromJSON(infraFile, "Infrastructure\\Database\\");
             // set the object's infra data to the data from the JSON file to the first Infrastructure in the list.
-            InfrastructureData tempInfra = infras[0];
-            mainInfra.SetData(tempInfra.Networks, tempInfra.AllNodes, tempInfra.Teams);
+            mainInfra.SetData(infras[0].Networks, infras[0].AllNodes, infras[0].Teams);
             // instantiate the child objects with the data
             mainInfra.InstanceChildren();
 
+            // Instance an empty to hold all of the team Infrastructure objects in the Heirarchy
             GameObject emptyHolder = new GameObject();
             emptyHolder.transform.SetParent(mainCanvas.transform, false);
             emptyHolder.name = "Team Infrastructures";
 
+            // Instance the team Infrastructure Objects
             List<GameObject> infraObjects = new List<GameObject>();
             List<int> teamIds = new List<int>();
-            // Instance the team Infrastructure Objects
             for(int i = 0; i < infras.Count; i++)
             {
                 infraObjects.Add(Instantiate(prefabInfrastructure));
                 infraObjects[i].transform.SetParent(emptyHolder.transform, false);
                 infraObjects[i].GetComponent<InfrastructureData>().SetData(infras[i].Networks, infras[i].AllNodes, infras[i].Teams);
+                infraObjects[i].GetComponent<InfrastructureData>().InstanceChildren();
                 infraObjects[i].SetActive(false);
                 teamIds.Add(i);
             }
+
             // Instance the Team Objects and pass their data to them
             teamManager.InstanceTeams(teamIds, infraObjects);
-            // set the Main Infra's teams list equal to the teamManager's team list
-            for(int i = 0; i < teamManager.Teams.Count; i++)
-            {
-                mainInfra.Teams.Add(teamManager.TeamObjects[i].GetComponent<TeamData>());
-            }
-            
         }
+
+        // Set positions of children of all Infrastructures
         mainInfra.PositionNetworks();
         mainInfra.PositionNodes();
         mainInfra.DrawAllConnections();
+        foreach(GameObject team in teamManager.TeamObjects)
+        {
+            team.GetComponent<TeamData>().Infra.PositionNetworks();
+            team.GetComponent<TeamData>().Infra.PositionNodes();
+            team.GetComponent<TeamData>().Infra.DrawAllConnections();
+        }
     }
 
     private void LoadAlerts()

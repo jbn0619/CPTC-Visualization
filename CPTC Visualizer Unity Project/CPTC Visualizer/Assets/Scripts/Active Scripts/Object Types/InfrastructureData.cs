@@ -145,7 +145,8 @@ public class InfrastructureData: MonoBehaviour
         // reset list of connections made between nodes
         connectionsById = new List<Vector2>();
         
-        // Establish list of available team colors
+        /* Functionality moved to TeamManager
+         * // Establish list of available team colors
         availableColors = new List<Color>();
         availableColors.Add(new Color(135,15,133));
         availableColors.Add(new Color(43,173,115));
@@ -176,7 +177,7 @@ public class InfrastructureData: MonoBehaviour
         {
             t.TeamName = GetRandomName();
             t.TeamColor = GetRandomColor();
-        }
+        }*/
 
     }
 
@@ -188,35 +189,7 @@ public class InfrastructureData: MonoBehaviour
         // Do we want to draw the raycasts every tick? would we be changing the positions of the nodes?
     }
 
-    private String GetRandomName()
-    {
-        if(availableNames.Count > 0)
-        {
-            int randomIndex = UnityEngine.Random.Range(0,availableNames.Count);
-            String teamName = availableNames[randomIndex];
-            availableNames.RemoveAt(randomIndex);
-            return teamName;
-        }
-        else
-        {
-            return null;
-        }
-    }
-
-    private Color GetRandomColor()
-    {
-        if(availableColors.Count > 0)
-        {
-            int randomIndex = UnityEngine.Random.Range(0,availableNames.Count);
-            Color teamColor = availableColors[randomIndex];
-            availableColors.RemoveAt(randomIndex);
-            return teamColor;
-        }
-        else
-        {
-            return new Color(0,0,0);
-        }
-    }
+    
 
 
     // These mmethods are used to search through the Infrastructure's lists
@@ -424,30 +397,6 @@ public class InfrastructureData: MonoBehaviour
 
     }
     
-    /* Phased out because we are using in-between classes to move data from the FileReader to the JSON files now. - BW
-     * /// <summary>
-    /// Retrieve the data from the lists of referenced scripts. JSONUtility only returns the instance references natively.
-    /// </summary>
-    /// <returns>String of JSON formatted text</returns>
-    public string ConvertToJSON()
-    {
-        string dataString = "{\"networks\": [";
-        for(int i = 0; i< this.networks.Count;i++)
-        {
-            dataString += $"{this.networks[i].ConvertToJSON()}";
-            if(i < this.networks.Count - 1) { dataString+=",";}
-        }
-        dataString += "], \"allNodes\":[";
-        for (int i = 0; i < this.allNodes.Count; i++)
-        {
-            dataString += $"{JsonUtility.ToJson(this.allNodes[i])}";
-            if (i < this.allNodes.Count - 1) { dataString += ","; }
-        }
-        dataString += "]}";
-        Debug.Log(dataString);
-        return dataString;
-    }*/
-
     public void PositionNetworks()
     {
         // Position each network in a circular manner based off of a center point 0,0,0
@@ -497,4 +446,58 @@ public class InfrastructureData: MonoBehaviour
             }                     
         }
     }
+    
+    /*Funtionality moved to FIlemanager. Names and COlors are now being read from a file.
+     * private String GetRandomName()
+    {
+        if(availableNames.Count > 0)
+        {
+            int randomIndex = UnityEngine.Random.Range(0,availableNames.Count);
+            String teamName = availableNames[randomIndex];
+            availableNames.RemoveAt(randomIndex);
+            return teamName;
+        }
+        else
+        {
+            return null;
+        }
+    }
+
+    private Color GetRandomColor()
+    {
+        if(availableColors.Count > 0)
+        {
+            int randomIndex = UnityEngine.Random.Range(0,availableNames.Count);
+            Color teamColor = availableColors[randomIndex];
+            availableColors.RemoveAt(randomIndex);
+            return teamColor;
+        }
+        else
+        {
+            return new Color(0,0,0);
+        }
+    }*/
+    /* Phased out because we are using in-between classes to move data from the FileReader to the JSON files now. - BW
+     * /// <summary>
+    /// Retrieve the data from the lists of referenced scripts. JSONUtility only returns the instance references natively.
+    /// </summary>
+    /// <returns>String of JSON formatted text</returns>
+    public string ConvertToJSON()
+    {
+        string dataString = "{\"networks\": [";
+        for(int i = 0; i< this.networks.Count;i++)
+        {
+            dataString += $"{this.networks[i].ConvertToJSON()}";
+            if(i < this.networks.Count - 1) { dataString+=",";}
+        }
+        dataString += "], \"allNodes\":[";
+        for (int i = 0; i < this.allNodes.Count; i++)
+        {
+            dataString += $"{JsonUtility.ToJson(this.allNodes[i])}";
+            if (i < this.allNodes.Count - 1) { dataString += ","; }
+        }
+        dataString += "]}";
+        Debug.Log(dataString);
+        return dataString;
+    }*/
 }

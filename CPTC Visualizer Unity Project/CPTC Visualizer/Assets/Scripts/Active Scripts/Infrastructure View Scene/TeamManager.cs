@@ -14,7 +14,7 @@ public class TeamManager : MonoBehaviour
 {
     #region Fields
 
-    
+    [Header("Inspector-Loaded Variables")]
     [SerializeField]
     protected GameObject teamPrefab;
     [SerializeField]
@@ -23,6 +23,7 @@ public class TeamManager : MonoBehaviour
     protected string teamNamesFileName = "teamNames.txt";
     [SerializeField]
     protected FileManager fileManager;
+
     [Header("Tracked Data")]
     [SerializeField]
     protected List<TeamData> teams;
@@ -36,8 +37,6 @@ public class TeamManager : MonoBehaviour
     protected Text teamViewLabel;
     [SerializeField]
     protected Image teamViewNameplate;
-    
-    
     protected int currentTeamView;
     protected List<Color> curatedModified;
 
@@ -59,6 +58,9 @@ public class TeamManager : MonoBehaviour
             return teams;
         }
     }
+    /// <summary>
+    /// Gets a list of all team gameObjects in the scene
+    /// </summary>
     public List<GameObject> TeamObjects
     {
         get { return teamObjects; }
@@ -120,38 +122,30 @@ public class TeamManager : MonoBehaviour
     {
         
     }
+
     public void InstanceTeams(List<int> _ids, List<GameObject> _infraObjects)
     {
-        // create empty data shells 
-        List<TeamData> emptyTeams = new List<TeamData>();
-        for(int i = 0; i < _ids.Count; i++)
+        teams = fileManager.SetTeamNamesFromFile(_ids,"",teamNamesFileName);
+
+        // Sort the teams into their proper order
+        for(int i = 0; i < teams.Count; i ++)
         {
-            TeamData tempData = new TeamData();
-            emptyTeams.Add(tempData); 
+            teams[i].SetData(_ids[i], teams[i].TeamName, teams[i].TeamColor, _infraObjects[i]);
+            // shove the team into the space where it's ID says it should be
+            teams.Insert(teams[i].ID, teams[i]);
+            teams.RemoveAt(teams[i+1].ID);
         }
-        // store names and colors in the empty shells
-        List<TeamData> namedTeams = fileManager.SetTeamNamesFromFile(emptyTeams,"",teamNamesFileName);
-        // assign the data from the shells and the passed information to the instantiated object
-        for(int i = 0; i < namedTeams.Count; i++)
+        // Create Team Objects and Add Data to them
+        for(int i = 0; i < teams.Count; i++)
         {
             teamObjects.Add(Instantiate(teamPrefab));
             teamObjects[teamObjects.Count - 1].transform.SetParent(transform);
-            teamObjects[i].GetComponent<TeamData>().SetData(_ids[i], namedTeams[i].TeamName, namedTeams[i].TeamColor, _infraObjects[i]);
-            teamObjects[i].name = namedTeams[i].TeamName;
-            
-        }
-        // Sort the teams into their proper order
-        List<GameObject> unsortedTeamObjects = teamObjects;
-        for(int i = 0; i < unsortedTeamObjects.Count; i ++)
-        {
-            teamObjects.Insert(teamObjects[i].GetComponent<TeamData>().ID, teamObjects[i]);
-            teamObjects.RemoveAt(teamObjects[i+1].GetComponent<TeamData>().ID);
-        }
-        // add the TeamDatas of the sorted list of objects to the TeamData List
-        foreach (GameObject obj in teamObjects)
-        {
-            teams.Add(obj.GetComponent<TeamData>());
-        }
+
+            teamObjects[i].GetComponent<TeamData>().SetData(teams[i].ID, teams[i].TeamName, teams[i].TeamColor, teams[i].InfraObject);
+            teamObjects[i].name = teams[i].TeamName;
+            // Add the teams to the Main Infrastructure
+            GameManager.Instance.MainInfra.Teams.Add(teamObjects[i].GetComponent<TeamData>());
+        }        
     }
 
 
@@ -177,7 +171,7 @@ public class TeamManager : MonoBehaviour
         }
         else
         {
-            teams[currentTeamView].InfraCopy.gameObject.SetActive(false);
+            teams[currentTeamView].Infra.gameObject.SetActive(false);
             
             if (teams[currentTeamView].NotifMarkers.Count > 0)
             {
@@ -217,7 +211,7 @@ public class TeamManager : MonoBehaviour
         else if (teamIndex >= 0 && teamIndex < teams.Count)
         {
             currentTeamView = teamIndex;
-            InfrastructureData teamInfra = teams[currentTeamView].InfraCopy;
+            InfrastructureData teamInfra = teams[currentTeamView].Infra;
             teamInfra.gameObject.SetActive(true);
             foreach (NodeData n in teamInfra.AllNodes)
             {

@@ -57,7 +57,7 @@ public class InfraInputManager: InputManager
             GameManager.Instance.StartOfComp = System.DateTime.Now;
             Debug.Log(System.DateTime.Now.ToString());
 
-            // GameManager.Instance.TeamManager.ReadTeams(); // THis occurs when Infrastructure is built initially and data is loaded in.
+            // GameManager.Instance.TeamManager.ReadTeams(); // This occurs when Infrastructure is built initially and data is loaded in.
             //DataFormatter.Instance.HasStart = true;
             GameManager.Instance.CompStarted = true;
 

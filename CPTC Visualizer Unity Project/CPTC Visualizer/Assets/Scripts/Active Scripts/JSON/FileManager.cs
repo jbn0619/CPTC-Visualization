@@ -394,13 +394,21 @@ public class FileManager: MonoBehaviour
     /// <param name="_filePathExtension">File's location within the root directory</param>
     /// <param name="_fileName">name of the file</param>
     /// <returns></returns>
-    public List<TeamData> SetTeamNamesFromFile(List<TeamData> _teams, string _filePathExtension, string _fileName)
+    public List<TeamData> SetTeamNamesFromFile(List<int> _ids, string _filePathExtension, string _fileName)
     {
+        // create Local Variables
+        List<TeamData> returnTeams = new List<TeamData>();
+        for (int i = 0; i < _ids.Count; i++)
+        {
+            TeamData returnTeam = new TeamData();
+            returnTeams.Add(returnTeam);
+        }
         List<string> teamNames = new List<string>();
         List<string> teamColors = new List<string>();
         string filePath = rootFilePath + _filePathExtension + _fileName;
         Debug.Log($"Loading Team Names and Colors from : {filePath} ...");
 
+        // Load Data from file into Local Variables
         foreach (string line in ReadFile(_fileName, _filePathExtension))
         {
             string[] lines = line.Split(':');
@@ -410,19 +418,20 @@ public class FileManager: MonoBehaviour
         }
         Debug.Log($"Names and Colors Successfully Loaded from File.");
 
+        // Parse local variables into return variable
         Color readColor;
-        for (int i = 0; i < _teams.Count; i++)
+        for (int i = 0; i < returnTeams.Count; i++)
         {
             int index = UnityEngine.Random.Range(0, teamNames.Count);
             ColorUtility.TryParseHtmlString(teamColors[index], out readColor);
 
-            _teams[i].TeamName = teamNames[index];
+            returnTeams[i].TeamName = teamNames[index];
             teamNames.RemoveAt(index);
-            _teams[i].TeamColor = readColor;
+            returnTeams[i].TeamColor = readColor;
             teamColors.RemoveAt(index);
         }
 
-        return _teams;
+        return returnTeams;
     }
 
     public void GenerateDatabase()
