@@ -331,12 +331,38 @@ public class GameManager: Singleton<GameManager>
             // set canvas as parent of the infrastructure
             mainInfraObject.transform.SetParent(mainCanvas.transform, false);
             // grab a ref to its infra data
-            this.mainInfra = mainInfraObject.GetComponent<InfrastructureData>();
-            // set the object's infra data to the data from the JSON file
-            InfrastructureData tempInfra = fileManager.CreateInfraFromJSON(infraFile, "Infrastructure\\Database\\");
+            mainInfra = mainInfraObject.GetComponent<InfrastructureData>();
+            // Grab Data from all Infrastructures
+            List<InfrastructureData> infras = fileManager.CreateInfrasFromJSON(infraFile, "Infrastructure\\Database\\");
+            // set the object's infra data to the data from the JSON file to the first Infrastructure in the list.
+            InfrastructureData tempInfra = infras[0];
             mainInfra.SetData(tempInfra.Networks, tempInfra.AllNodes, tempInfra.Teams);
             // instantiate the child objects with the data
             mainInfra.InstanceChildren();
+
+            GameObject emptyHolder = new GameObject();
+            emptyHolder.transform.SetParent(mainCanvas.transform, false);
+            emptyHolder.name = "Team Infrastructures";
+
+            List<GameObject> infraObjects = new List<GameObject>();
+            List<int> teamIds = new List<int>();
+            // Instance the team Infrastructure Objects
+            for(int i = 0; i < infras.Count; i++)
+            {
+                infraObjects.Add(Instantiate(prefabInfrastructure));
+                infraObjects[i].transform.SetParent(emptyHolder.transform, false);
+                infraObjects[i].GetComponent<InfrastructureData>().SetData(infras[i].Networks, infras[i].AllNodes, infras[i].Teams);
+                infraObjects[i].SetActive(false);
+                teamIds.Add(i);
+            }
+            // Instance the Team Objects and pass their data to them
+            teamManager.InstanceTeams(teamIds, infraObjects);
+            // set the Main Infra's teams list equal to the teamManager's team list
+            for(int i = 0; i < teamManager.Teams.Count; i++)
+            {
+                mainInfra.Teams.Add(teamManager.TeamObjects[i].GetComponent<TeamData>());
+            }
+            
         }
         mainInfra.PositionNetworks();
         mainInfra.PositionNodes();

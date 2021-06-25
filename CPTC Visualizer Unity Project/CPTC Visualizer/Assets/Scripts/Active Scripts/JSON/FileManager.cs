@@ -203,19 +203,20 @@ public class FileManager: MonoBehaviour
         string filePath = rootFilePath + _filePathExtension + _fileName;
         Debug.Log("...Loading New Node Data ...");
 
+        List<InfrastructureData> infras = CreateInfrasFromJSON(_fileName, _filePathExtension);
         // create list of nodes from the Infra stored in the JSON 
-        List<NodeData> nodes = CreateInfraFromJSON(_fileName, _filePathExtension).AllNodes;
+        List<NodeData> nodes = infras[0].AllNodes;
 
         Debug.Log($"{nodes.Count} system nodes successfully loaded from {filePath}");
         return nodes;
     }
 
     /// <summary>
-    /// Creates a new InfrastructureData from the system's passed data
+    /// Creates a list of all InfrastructureDatas passed by the Laforge Topology
     /// </summary>
     /// <param name="_fileName"></param>
     /// <param name="_filePathExtension"></param>
-    public InfrastructureData CreateInfraFromJSON(string _fileName, string _filePathExtension)
+    public List<InfrastructureData> CreateInfrasFromJSON(string _fileName, string _filePathExtension)
     {
         // Log the filepath to the Debug
         string filePath = rootFilePath + _filePathExtension + _fileName;
@@ -235,22 +236,14 @@ public class FileManager: MonoBehaviour
 
         // create rudimentary teams using the number of infrastructures and the team numbers assigned to them
         List<TeamData> teams = new List<TeamData>();
+        List<InfrastructureData> returnInfras = new List<InfrastructureData>();
         for(int i = 0; i < infras.Count; i++)
         {
             InfrastructureData teamInfra = HolderToData(infras[i], new List<TeamData>());
-            TeamData team = new TeamData(infras[i].team_number, teamInfra);
-            teams.Add(team);
-            if(GameObject.Find("GameManager") != null)
-            {
-                GameManager.Instance.TeamManager.Teams.Add(team);
-            }
+            returnInfras.Add(teamInfra);
         }
-
-        // build the new OverInfrastructure based on the first infrastructure in the list
-        InfrastructureData returnInfra = HolderToData(infras[0], teams);
-
-        Debug.Log($"Infrastructure successfully created from {filePath}");
-        return returnInfra;
+        Debug.Log($"Infrastructures successfully created from {filePath}");
+        return returnInfras;
     }
 
     /// <summary>
@@ -325,6 +318,41 @@ public class FileManager: MonoBehaviour
             Debug.Log(e.Message);
         }
     }
+    public void SaveToJSON(string _fileName, List<InfrastructureData> _data)
+    {
+        string filePath = "C:\\ProgramData\\CSEC Visualizer\\Infrastructure\\Database\\" + _fileName;
+
+        // First check if the directory exists, or if we need to make it.
+        if (Directory.Exists("C:\\ProgramData\\CSEC Visualizer\\Infrastructure\\Database\\") == false)
+        {
+            Directory.CreateDirectory("C:\\ProgramData\\CSEC Visualizer\\Infrastructure\\Database\\");
+        }
+
+        // translate the MonoBehavior data into a holder data structure. This allows the data to be formatted into a 
+        //      JSON using JSON Utility to read the data from the holder class
+        List<Infrastructure> infras = new List<Infrastructure>();
+        for (int i = 0; i < _data.Count; i++)
+        {
+            Infrastructure infra = DataToHolder(_data[i], i); 
+            infras.Add(infra);
+        }
+        List<BuildShell> builds = new List<BuildShell>();
+        builds.Add(new BuildShell(infras));
+        LaforgeShell shell = new LaforgeShell(new DataShell(new EnvironmentShell(builds)));
+
+        try
+        {
+            using (StreamWriter sw = File.CreateText(filePath))
+            {
+                sw.WriteLine(JsonUtility.ToJson(shell));
+            }
+            Debug.Log($"Infrastructure successfully saved to {filePath}");
+        }
+        catch (Exception e)
+        {
+            Debug.Log(e.Message);
+        }
+    }
     /// <summary>
     /// Save a list of Alerts to a JSON file
     /// </summary>
@@ -359,6 +387,44 @@ public class FileManager: MonoBehaviour
     }
     #endregion JSON Translation Methods
 
+    /// <summary>
+    /// Randomly set the name and color of the teams passed in
+    /// </summary>
+    /// <param name="_teams">Teams needing new names and colors</param>
+    /// <param name="_filePathExtension">File's location within the root directory</param>
+    /// <param name="_fileName">name of the file</param>
+    /// <returns></returns>
+    public List<TeamData> SetTeamNamesFromFile(List<TeamData> _teams, string _filePathExtension, string _fileName)
+    {
+        List<string> teamNames = new List<string>();
+        List<string> teamColors = new List<string>();
+        string filePath = rootFilePath + _filePathExtension + _fileName;
+        Debug.Log($"Loading Team Names and Colors from : {filePath} ...");
+
+        foreach (string line in ReadFile(_fileName, _filePathExtension))
+        {
+            string[] lines = line.Split(':');
+
+            teamNames.Add(lines[0]);
+            teamColors.Add(lines[1]);
+        }
+        Debug.Log($"Names and Colors Successfully Loaded from File.");
+
+        Color readColor;
+        for (int i = 0; i < _teams.Count; i++)
+        {
+            int index = UnityEngine.Random.Range(0, teamNames.Count);
+            ColorUtility.TryParseHtmlString(teamColors[index], out readColor);
+
+            _teams[i].TeamName = teamNames[index];
+            teamNames.RemoveAt(index);
+            _teams[i].TeamColor = readColor;
+            teamColors.RemoveAt(index);
+        }
+
+        return _teams;
+    }
+
     public void GenerateDatabase()
     {
         List<string> directories = new List<string>();
@@ -389,6 +455,7 @@ public class FileManager: MonoBehaviour
         dateTime = DateTime.Now;
         return dateTime;
     }
+
     #region Data Type Conversion
     private AlertData HolderToData(Alert _alert, bool fromSplunk)
     {
@@ -406,7 +473,8 @@ public class FileManager: MonoBehaviour
     }
     private TeamData HolderToData(Team _team)
     {
-        TeamData team = new TeamData(_team.id);
+        TeamData team = new TeamData(); 
+        team.ID =_team.id;
         return team;
     }
     private Team DataToHolder(TeamData _team)

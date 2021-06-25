@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -16,18 +16,21 @@ public class TeamManager : MonoBehaviour
 
     
     [SerializeField]
-    protected TeamData teamPrefab;
+    protected GameObject teamPrefab;
     [SerializeField]
-    protected TeamViewButton teamViewButtonPrefab;
+    protected GameObject teamViewButtonPrefab;
+    [SerializeField]
+    protected string teamNamesFileName = "teamNames.txt";
+    [SerializeField]
+    protected FileManager fileManager;
     [Header("Tracked Data")]
     [SerializeField]
     protected List<TeamData> teams;
     [SerializeField]
+    protected List<GameObject> teamObjects;
+    [SerializeField]
     protected List<TeamViewButton> teamViewButtonObjects;
-    [SerializeField]
-    protected List<Color> curatedColors;
-    [SerializeField]
-    protected List<string> curatedNames;
+    
     [Header("Team View Fields")]
     [SerializeField]
     protected Text teamViewLabel;
@@ -40,6 +43,8 @@ public class TeamManager : MonoBehaviour
 
     // Legacy Fields
     // protected List<TeamData> teams;
+    // protected List<Color> curatedColors;
+    // protected List<string> curatedNames;
     #endregion Fields
 
     #region Properties
@@ -54,7 +59,10 @@ public class TeamManager : MonoBehaviour
             return teams;
         }
     }
-
+    public List<GameObject> TeamObjects
+    {
+        get { return teamObjects; }
+    }
     /// <summary>
     /// Gets a list of all the team view buttons currently in the scene.
     /// </summary>
@@ -89,22 +97,22 @@ public class TeamManager : MonoBehaviour
     void Start()
     {
         // ccdcTeams = new List<TeamData>();
-        teams = new List<TeamData>();
-        curatedColors = new List<Color>();
+        // teams = new List<TeamData>();
+        // curatedColors = new List<Color>();
         currentTeamView = -1;
 
         SceneManager.sceneLoaded += CleanOnSceneChange;
 
-        curatedColors.Add(new Color(0.76f, 0.5f, 0.18f));
-        curatedColors.Add(new Color(0.76f, 0.72f, 0.21f));
-        curatedColors.Add(new Color(0.29f, 0.66f, 0.13f));
-        curatedColors.Add(new Color(0.17f, 0.68f, 0.45f));
-        curatedColors.Add(new Color(0.12f, 0.36f, 0.62f));
-        curatedColors.Add(new Color(0.19f, 0.09f, 0.64f));
-        curatedColors.Add(new Color(0.39f, 0.07f, 0.6f));
-        curatedColors.Add(new Color(0.53f, 0.06f, 0.52f));
-        curatedColors.Add(new Color(0.45f, 0.05f, 0.26f));
-        curatedColors.Add(new Color(0.55f, 0.1f, 0.1f));
+        // curatedColors.Add(new Color(0.76f, 0.5f, 0.18f));
+        // curatedColors.Add(new Color(0.76f, 0.72f, 0.21f));
+        // curatedColors.Add(new Color(0.29f, 0.66f, 0.13f));
+        // curatedColors.Add(new Color(0.17f, 0.68f, 0.45f));
+        // curatedColors.Add(new Color(0.12f, 0.36f, 0.62f));
+        // curatedColors.Add(new Color(0.19f, 0.09f, 0.64f));
+        // curatedColors.Add(new Color(0.39f, 0.07f, 0.6f));
+        // curatedColors.Add(new Color(0.53f, 0.06f, 0.52f));
+        // curatedColors.Add(new Color(0.45f, 0.05f, 0.26f));
+        // curatedColors.Add(new Color(0.55f, 0.1f, 0.1f));
     }
 
     // Update is called once per frame
@@ -112,9 +120,42 @@ public class TeamManager : MonoBehaviour
     {
         
     }
+    public void InstanceTeams(List<int> _ids, List<GameObject> _infraObjects)
+    {
+        // create empty data shells 
+        List<TeamData> emptyTeams = new List<TeamData>();
+        for(int i = 0; i < _ids.Count; i++)
+        {
+            TeamData tempData = new TeamData();
+            emptyTeams.Add(tempData); 
+        }
+        // store names and colors in the empty shells
+        List<TeamData> namedTeams = fileManager.SetTeamNamesFromFile(emptyTeams,"",teamNamesFileName);
+        // assign the data from the shells and the passed information to the instantiated object
+        for(int i = 0; i < namedTeams.Count; i++)
+        {
+            teamObjects.Add(Instantiate(teamPrefab));
+            teamObjects[teamObjects.Count - 1].transform.SetParent(transform);
+            teamObjects[i].GetComponent<TeamData>().SetData(_ids[i], namedTeams[i].TeamName, namedTeams[i].TeamColor, _infraObjects[i]);
+            teamObjects[i].name = namedTeams[i].TeamName;
+            
+        }
+        // Sort the teams into their proper order
+        List<GameObject> unsortedTeamObjects = teamObjects;
+        for(int i = 0; i < unsortedTeamObjects.Count; i ++)
+        {
+            teamObjects.Insert(teamObjects[i].GetComponent<TeamData>().ID, teamObjects[i]);
+            teamObjects.RemoveAt(teamObjects[i+1].GetComponent<TeamData>().ID);
+        }
+        // add the TeamDatas of the sorted list of objects to the TeamData List
+        foreach (GameObject obj in teamObjects)
+        {
+            teams.Add(obj.GetComponent<TeamData>());
+        }
+    }
+
 
     #region Team View Methods
-
     /// <summary>
     /// Changes what infrastructure is currently-displayed in the scene.
     /// </summary>
@@ -238,7 +279,8 @@ public class TeamManager : MonoBehaviour
             Debug.Log(teams.Count);
             for (int i = 0; i < teams.Count; i++)
             {
-                TeamViewButton newButton = Instantiate(teamViewButtonPrefab, UIManager.Instance.SceneCanvas.transform);
+                GameObject newButtonObject = Instantiate(teamViewButtonPrefab, UIManager.Instance.SceneCanvas.transform);
+                TeamViewButton newButton = newButtonObject.GetComponent<TeamViewButton>();
                 if (i == teams.Count)
                 {
                     //newButton.NewTeamIndex = -1;
@@ -266,7 +308,89 @@ public class TeamManager : MonoBehaviour
         }
     }
 
+    
+
+    #endregion Team View Methods
+
     /// <summary>
+    /// Cleans-up various lists and variables for this script when switching scenes.
+    /// </summary>
+    public virtual void CleanOnSceneChange(Scene scene, LoadSceneMode mode)
+    {
+        teamViewButtonObjects.Clear();
+    }
+
+    /* Teams are now created in SetData
+     * /// <summary>
+    /// Generates a given-amount of teams for the visualizer to display.
+    /// </summary>
+    public void CreateTeams()
+    {
+        // First, read-in the teams and see how many we have.
+        ReadTeams();
+
+        // Next, duplicate the infrastructure for each team.
+        foreach (TeamData t in teams)
+        {
+            DuplicateInfrastructure(t);
+        }
+
+        // Finally, generate the team view buttons for the scene.
+        GenerateTeamViewButtons();
+    }*/
+    /* This functionality has been moved to the FileManager.
+     * /// <summary>
+    /// Read Team Names and Colors
+    ///     Reads in the names and colors from the file and assignes them to their corresponding teams
+    ///     in the list.
+    /// </summary>
+    public void ReadTeams()
+    {
+        List<string> teamNames = new List<string>();
+        List<string> teamColors = new List<string>();
+
+        string filePath = "C:\\ProgramData\\CSEC Visualizer\\teamNames.txt";
+
+        // Reads the team names and colors from a file
+        if (File.Exists(filePath))
+        {
+            StreamReader reader = new StreamReader("C:\\ProgramData\\CSEC Visualizer\\teamNames.txt");
+            while (reader.Peek() != -1)
+            {
+                string[] line = reader.ReadLine().Split(':');
+
+                teamNames.Add(line[0]);
+                teamColors.Add(line[1]);
+            }
+            reader.Close();
+        }
+        
+
+        Color readColor;
+
+        // Assign the names and colors to the teams
+        for (int i = 0; i < teams.Count; i++)
+        {
+            ColorUtility.TryParseHtmlString(teamColors[i], out readColor);
+
+            teams[i].TeamName = teamNames[i];
+            teams[i].TeamColor = readColor;
+        }
+
+        GenerateTeamViewButtons();
+    }*/
+    /*We are given an infrastructure for each team from the CPTC Laforge JSON
+     * /// <summary>
+    /// Duplicates the main infrastructure and gives those copies to each team.
+    /// </summary>
+    private void DuplicateInfrastructure(TeamData recievingTeam)
+    {
+        // Copy the main infrastructure gameObject, and transfer the copy to the recieving team.
+        InfrastructureData newInfra = Instantiate(GameManager.Instance.MainInfra);
+        newInfra.gameObject.transform.parent = recievingTeam.gameObject.transform;
+    }*/
+    /* Functionality moved to FileReader.
+     * /// <summary>
     /// Generate Random Team Names and Colors
     ///     Will generate random names and colors (with no repeat names) for each team currently
     ///     in the list. These are saved to a file for reuse.
@@ -322,87 +446,7 @@ public class TeamManager : MonoBehaviour
             writer.WriteLine(teamNames[i] + ":" + teamColors[i]);
         }
         writer.Close();
-    }
-
-    /// <summary>
-    /// Read Team Names and Colors
-    ///     Reads in the names and colors from the file and assignes them to their corresponding teams
-    ///     in the list.
-    /// </summary>
-    public void ReadTeams()
-    {
-        List<string> teamNames = new List<string>();
-        List<string> teamColors = new List<string>();
-
-        string filePath = "C:\\ProgramData\\CSEC Visualizer\\teamNames.txt";
-
-        // Reads the team names and colors from a file
-        if (File.Exists(filePath))
-        {
-            StreamReader reader = new StreamReader("C:\\ProgramData\\CSEC Visualizer\\teamNames.txt");
-            while (reader.Peek() != -1)
-            {
-                string[] line = reader.ReadLine().Split(':');
-
-                teamNames.Add(line[0]);
-                teamColors.Add(line[1]);
-            }
-            reader.Close();
-        }
-        
-
-        Color readColor;
-
-        // Assign the names and colors to the teams
-        for (int i = 0; i < teams.Count; i++)
-        {
-            ColorUtility.TryParseHtmlString(teamColors[i], out readColor);
-
-            teams[i].TeamName = teamNames[i];
-            teams[i].TeamColor = readColor;
-        }
-
-        GenerateTeamViewButtons();
-    }
-
-    #endregion Team View Methods
-
-    /// <summary>
-    /// Cleans-up various lists and variables for this script when switching scenes.
-    /// </summary>
-    public virtual void CleanOnSceneChange(Scene scene, LoadSceneMode mode)
-    {
-        teamViewButtonObjects.Clear();
-    }
-
-    /// <summary>
-    /// Generates a given-amount of teams for the visualizer to display.
-    /// </summary>
-    public void CreateTeams()
-    {
-        // First, read-in the teams and see how many we have.
-        ReadTeams();
-
-        // Next, duplicate the infrastructure for each team.
-        foreach (TeamData t in teams)
-        {
-            DuplicateInfrastructure(t);
-        }
-
-        // Finally, generate the team view buttons for the scene.
-        GenerateTeamViewButtons();
-    }
-
-    /// <summary>
-    /// Duplicates the main infrastructure and gives those copies to each team.
-    /// </summary>
-    private void DuplicateInfrastructure(TeamData recievingTeam)
-    {
-        // Copy the main infrastructure gameObject, and transfer the copy to the recieving team.
-        InfrastructureData newInfra = Instantiate(GameManager.Instance.MainInfra);
-        newInfra.gameObject.transform.parent = recievingTeam.gameObject.transform;
-    }
-
+    }*/
     //// Have this return a List<string>
     //public virtual void GenerateTeamNames()
     //{

@@ -568,6 +568,36 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1112944018
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1112944019}
+  m_Layer: 0
+  m_Name: Team Infrastructures
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1112944019
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1112944018}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1917393984}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1153041696
 GameObject:
   m_ObjectHideFlags: 0
@@ -741,12 +771,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbc3cd40a1cef24489390df0e4ad715e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  teamPrefab: {fileID: 7580468942988960624, guid: e041ebe08d3857e43a207dea634379a4, type: 3}
-  teamViewButtonPrefab: {fileID: 6343373906729853186, guid: a4dd16835927f7f4c8cb5cec319850c2, type: 3}
+  teamPrefab: {fileID: 7580468942988960627, guid: e041ebe08d3857e43a207dea634379a4, type: 3}
+  teamViewButtonPrefab: {fileID: 3998824116543854858, guid: a4dd16835927f7f4c8cb5cec319850c2, type: 3}
+  teamNamesFileName: teamNames.txt
+  fileManager: {fileID: 261663842}
   teams: []
+  teamObjects: []
   teamViewButtonObjects: []
-  curatedColors: []
-  curatedNames: []
   teamViewLabel: {fileID: 0}
   teamViewNameplate: {fileID: 0}
 --- !u!1 &1452424208
@@ -1398,6 +1429,7 @@ RectTransform:
   - {fileID: 832347104}
   - {fileID: 2018904309}
   - {fileID: 1619502854}
+  - {fileID: 1112944019}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

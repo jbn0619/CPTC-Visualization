@@ -35,6 +35,8 @@ public class TeamData: MonoBehaviour
     /// </summary>
     [SerializeField]
     protected List<string> nodeIPs;
+    [SerializeField]
+    protected GameObject infraObject;
     protected InfrastructureData infraCopy;
 
     // Legacy Fields
@@ -111,6 +113,11 @@ public class TeamData: MonoBehaviour
             infraCopy = value;
         }
     }
+    public GameObject InfraObject
+    {
+        get { return infraObject; }
+        set { infraObject = value; }
+    }
 
     /// <summary>
     /// Gets or sets the Team Name
@@ -179,16 +186,17 @@ public class TeamData: MonoBehaviour
         
     }
 
-    public TeamData(int _id, InfrastructureData _infra = null)
+    public void SetData(int _id, string _name, Color _color, GameObject _infraObject)
     {
         id = _id;
+        teamName = _name;
+        teamColor = _color;
+        infraObject = _infraObject;
+        infraCopy = infraObject.GetComponent<InfrastructureData>();
         alerts = new List<AlertData>();
         nodeIPs = new List<string>();
-        if(_infra != null)
-        {
-            infraCopy = _infra;
-        }
     }
+
     public void SetupQueue()
     {
         queue = new PriorityQueue();

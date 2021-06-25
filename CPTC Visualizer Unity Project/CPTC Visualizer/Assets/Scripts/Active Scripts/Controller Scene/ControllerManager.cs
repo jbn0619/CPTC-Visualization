@@ -41,7 +41,7 @@ public class ControllerManager: MonoBehaviour
     [SerializeField]
     private string splunkJSON_fileName = "test_FromSplunk.json";
 
-    private InfrastructureData oldLaforge;
+    private List<InfrastructureData> oldLaforgeInfras;
     private List<AlertData> oldSplunk;
 
     [Header("Outgoing JSON Files")]
@@ -110,11 +110,14 @@ public class ControllerManager: MonoBehaviour
 
     public void SendInfrastructureToScene()
     {
-        InfrastructureData newLaforge = fileManager.CreateInfraFromJSON(laforgeJSON_fileName, "Infrastructure\\Database\\");
-        if(oldLaforge == null || newLaforge != oldLaforge)
+        List<InfrastructureData> newLaforgeInfras = fileManager.CreateInfrasFromJSON(laforgeJSON_fileName, "Infrastructure\\Database\\");
+        for(int i = 0; i < newLaforgeInfras.Count; i++)
         {
-            oldLaforge = newLaforge;
-            fileManager.SaveToJSON(infraFileName, newLaforge);
+            if(oldLaforgeInfras[i] == null || newLaforgeInfras[i] != oldLaforgeInfras[i])
+            {
+                oldLaforgeInfras = newLaforgeInfras;
+                fileManager.SaveToJSON(infraFileName, newLaforgeInfras);
+            }
         }
     }
 
