@@ -8,7 +8,7 @@ using UnityEngine;
 /// Authors: Garret Paradis and Ben Wetzel
 /// Purpose: Alerts are the results of queries made by the Splunk program searching for teams' interactions with the network. They are used to track the teams' progress through the network.
 /// </summary>
-public class AlertData: MonoBehaviour
+public class AlertData
 {
     #region Fields
     /// <summary>
