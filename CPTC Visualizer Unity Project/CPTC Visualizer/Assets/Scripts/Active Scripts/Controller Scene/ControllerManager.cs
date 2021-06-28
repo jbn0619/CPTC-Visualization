@@ -9,17 +9,33 @@ public enum SceneConfigFiles { Controller, Infrastructure}
 public class ControllerManager: MonoBehaviour
 {
     #region Fields
+    /// <summary>
+    /// Reference to the Filemanager Script
+    /// </summary>
     [SerializeField]
     private FileManager fileManager;
+    /// <summary>
+    /// Reference to the DataWriter Script
+    /// </summary>
     [SerializeField]
     private TestDataWriter testDataWriter;
+    /// <summary>
+    /// Reference to the on-screne data stream in unity
+    /// </summary>
     [SerializeField]
     private DataLog dataLog;
+
+    /// <summary>
+    /// Button to tranfer Scene from Controller Scene to JSON Test Scene
+    /// </summary>
     [Header("UI Objects")]
     [SerializeField]
     private Button toJSONTestButton;
 
-    [Header("Timer Fielsds")]
+    /// <summary>
+    /// 
+    /// </summary>
+    [Header("Timer Fields")]
     [SerializeField]
     private float dataPullInterval;
     [SerializeField]
@@ -35,18 +51,36 @@ public class ControllerManager: MonoBehaviour
     [SerializeField]
     private float generateTestDataTime;
 
+    /// <summary>
+    /// Filename of incoming file from Laforge servers
+    /// </summary>
     [Header("Incoming JSON Files")]
     [SerializeField]
     private string laforgeJSON_fileName = "cptc_finals_2020_laforge_topo.json";
+    /// <summary>
+    /// Incoming data from splunk querry application
+    /// </summary>
     [SerializeField]
     private string splunkJSON_fileName = "test_FromSplunk.json";
 
+    /// <summary>
+    /// old data Laforge server data from the last pull
+    /// </summary>
     private List<InfrastructureData> oldLaforgeInfras;
+    /// <summary>
+    /// old splunk data from the last pull. 
+    /// </summary>
     private List<AlertData> oldSplunk;
 
+    /// <summary>
+    /// File name for laforge data read by the Infrastructure Scene
+    /// </summary>
     [Header("Outgoing JSON Files")]
     [SerializeField]
     private string infraFileName = "test_controllerToInfraScene.json";
+    /// <summary>
+    /// File name for Splunk data read by the Infrastructure Scene
+    /// </summary>
     [SerializeField]
     private string alertsFileName = "test_controllerToAlertsScene.json";
     #endregion Fields
@@ -99,8 +133,14 @@ public class ControllerManager: MonoBehaviour
             passNewDataCount = 0.0f;
             SendAlertsToScene();
             dataLog.Print("Alerts Sent to Scene.");
+            SendInfrastructureToScene();
+            dataLog.Print("Laforge sent to Scene.");
         }
     }
+
+    /// <summary>
+    /// Method called by Scnene transfer button when it is clicked.
+    /// </summary>
     public void GoToJSONTest()
     {
         SendInfrastructureToScene();
@@ -108,28 +148,40 @@ public class ControllerManager: MonoBehaviour
         SceneManager.LoadScene(sceneName: "JSON Reader Test");
     }
 
+    /// <summary>
+    /// Read Infrastructure data from the Laforge JSON thorugh the FileReader and send it to Infrastructure scene
+    /// </summary>
     public void SendInfrastructureToScene()
     {
+        // 
         List<InfrastructureData> newLaforgeInfras = fileManager.CreateInfrasFromJSON(laforgeJSON_fileName, "Infrastructure\\Database\\");
-        for(int i = 0; i < newLaforgeInfras.Count; i++)
+        // if the old data hasn't been pulled from the file yet, or the new data is different from the old data
+        for (int i = 0; i < newLaforgeInfras.Count; i++)
         {
             if(oldLaforgeInfras == null || newLaforgeInfras[i] != oldLaforgeInfras[i])
             {
                 oldLaforgeInfras = newLaforgeInfras;
+                // pass the data along to the Infrastructue Scene's filepath
                 fileManager.SaveToJSON(infraFileName, newLaforgeInfras);
             }
         }
     }
-
+    /// <summary>
+    /// Send Event Data from the Splunk JSON to the Infrastruction Scene
+    /// </summary>
     public void SendAlertsToScene()
     {
         List<AlertData> newSplunk = fileManager.CreateAlertsFromJSON(splunkJSON_fileName, "Alerts\\");
-        if(oldSplunk == null || newSplunk.Count != oldSplunk.Count)
+        // if the old data hasn't been pulled from the file yet, or the new data is different from the old data
+        for (int i = 0; i < newSplunk.Count; i++)
         {
-            oldSplunk = newSplunk;
-            fileManager.SaveToJSON(alertsFileName, oldSplunk);
+            if (oldSplunk == null || newSplunk[i].Type != oldSplunk[i].Type)
+            {
+                oldSplunk = newSplunk;
+                // pass the data along to the Infrastructue Scene's filepath
+                fileManager.SaveToJSON(alertsFileName, oldSplunk);
+            }
         }
-        
     }
     #region Config Files
     /// <summary>
