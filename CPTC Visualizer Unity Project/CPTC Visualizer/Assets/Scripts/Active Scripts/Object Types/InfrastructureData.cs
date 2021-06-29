@@ -144,12 +144,49 @@ public class InfrastructureData: MonoBehaviour
     {
         // reset list of connections made between nodes
         connectionsById = new List<Vector2>();
+        
+        /* Functionality moved to TeamManager
+         * // Establish list of available team colors
+        availableColors = new List<Color>();
+        availableColors.Add(new Color(135,15,133));
+        availableColors.Add(new Color(43,173,115));
+        availableColors.Add(new Color(99,18,153));
+        availableColors.Add(new Color(48,23,163));
+        availableColors.Add(new Color(31,92,158));
+        availableColors.Add(new Color(140,26,26));
+        availableColors.Add(new Color(74,168,33));
+        availableColors.Add(new Color(194,128,46));
+        availableColors.Add(new Color(115,13,66));
+        availableColors.Add(new Color(194,184,54));
+
+        // Establish list of available team Names
+        availableNames = new List<String>();
+        availableNames.Add("Rattlesnakes");
+        availableNames.Add("Coyotes");
+        availableNames.Add("Deer");
+        availableNames.Add("Jackals");
+        availableNames.Add("Anaconda");
+        availableNames.Add("Pumas");
+        availableNames.Add("Dragonflies");
+        availableNames.Add("Capybaras");
+        availableNames.Add("Racoons");
+        availableNames.Add("Lizards");
+
+        // set team names and colors for each team
+        foreach (TeamData t in teams)
+        {
+            t.TeamName = GetRandomName();
+            t.TeamColor = GetRandomColor();
+        }*/
+
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        // to get updated states and teams that have accessed the nodes.
+        // if(live){ GameManager.Instance.FileManager.UpdateNodes();}
+        // Do we want to draw the raycasts every tick? would we be changing the positions of the nodes?
     }
 
     
@@ -285,8 +322,9 @@ public class InfrastructureData: MonoBehaviour
             // set name of network object
             networkObjects[netCount].name = net.NetworkName;
 
-            int scalar = networks[netCount].Nodes.Count / 6;
-            networkObjects[netCount].transform.localScale = new Vector3(1 + scalar / 10f,1 + scalar / 10f, 1f);
+            int scalar = (networks[netCount].Nodes.Count / 6);
+            networkObjects[netCount].transform.localScale = new Vector3(1 + scalar / 9f, 1 + scalar / 9f, 1f);
+            Debug.Log("Nodes Count: " + networks[netCount].Nodes.Count);
 
             // instantiate the nodes within this network 
             foreach (NodeData node in networks[netCount].Nodes)
@@ -297,11 +335,13 @@ public class InfrastructureData: MonoBehaviour
                 // set the new node to be a child of the correct network
                 allNodeObjects[nodeCount].transform.parent = networkObjects[netCount].transform;
                 
-                // Temporarily create nodes to be in the background of the nodes, for the sake of visibility with the background
+                // Create nodes to be in the background of the nodes, for the sake of visibility with the background
+                /* Deprecated, but don't want to remove in case it is needed again.
                 GameObject background = Instantiate(GameManager.Instance.NodePrefab, transform.position, transform.rotation);
                 background.transform.parent = allNodeObjects[nodeCount].transform;
                 background.transform.localPosition = new Vector3(0, 0, 0.01f);
                 background.transform.localScale = new Vector3(7.5f,7.5f,1);
+                */
 
                 // Handle Data References
                 // set the new game object's NodeData component's variables to the values from the data passed by the JSON file
@@ -355,6 +395,7 @@ public class InfrastructureData: MonoBehaviour
                 }
             }
         }
+
     }
     
     public void PositionNetworks()
@@ -373,10 +414,8 @@ public class InfrastructureData: MonoBehaviour
 
     public void PositionNodes()
     {
-        string debug = $"Position Nodes() :\n INFRASTRUCTURE {name}: \n";
-        foreach (NetworkData network in networks) 
+        foreach(NetworkData network in networks)
         {
-            debug += $" - NETWORK {network.name}:\n";
             List<GameObject> nodes = network.GetComponent<NetworkData>().NodeObjects;
 
             float angleOffset;
@@ -393,22 +432,23 @@ public class InfrastructureData: MonoBehaviour
             
 
             // Set basic positions of the nodes within the network
+            // Each ring is made up of up to 6 nodes, and makes a new ring when it exceeds that amount
             for(int i = 0; i < nodes.Count; i++)
             {
-                float radius = 0.9f;
-                if ((i >= 6 && i < 12) || i >= 18 && i < 24)
+                float radiusOffset = 0.95f;
+                radiusOffset -= 0.2f * (nodes.Count / 6);
+                if ((i / 6) % 2 == 1)
                 {
                     // If the node is on an even ring of the network, offset it's rotational position by 1/2 radians
-                    nodes[i].transform.localPosition = new Vector3(Mathf.Cos(angleOffset * ((i % 6) * radius + 0.5f)) * (i / 6 + 1), Mathf.Sin(angleOffset * ((i % 6) + 0.5f)) * (i / 6 + 1) * radius, 0);
+                    nodes[i].transform.localPosition = new Vector3(Mathf.Cos(angleOffset * ((i % 6) + 0.5f)) * (i / 6 + 1) * radiusOffset, Mathf.Sin(angleOffset * ((i % 6) + 0.5f)) * (i / 6 + 1) * radiusOffset, 0);
                 }
                 else
                 {
-                    nodes[i].transform.localPosition = new Vector3(Mathf.Cos(angleOffset * (i % 6)) * (i / 6 + 1) * radius, Mathf.Sin(angleOffset * (i % 6)) * (i / 6 + 1) * radius, 0);
+                    nodes[i].transform.localPosition = new Vector3(Mathf.Cos(angleOffset * (i % 6)) * (i / 6 + 1) * radiusOffset, Mathf.Sin(angleOffset * (i % 6)) * (i / 6 + 1) * radiusOffset, 0);
                 }
-                debug += $" -- NODE : {nodes[i].name} : {nodes[i].transform.position} : {nodes[i].transform.localPosition}\n";
+                
             }                     
         }
-        Debug.Log(debug);
     }
     
     /*Funtionality moved to FIlemanager. Names and COlors are now being read from a file.
