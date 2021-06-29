@@ -176,9 +176,11 @@ MonoBehaviour:
   zoomMax: 9
   zoomSensitivity: 0.33333334
   orthToLocalScale: 5
+  eventManager: {fileID: 1452424210}
   toggleNotif: 306
   startProgram: 13
   startVisualizing: 32
+  readAlerts: 102
 --- !u!1 &261663840
 GameObject:
   m_ObjectHideFlags: 0
@@ -794,12 +796,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   secondPeriodIndex: 0
-  notificationCanvas: {fileID: 0}
+  mainCanvas: {fileID: 1917393983}
   displayedEvents: []
-  bannerGO: {fileID: 0}
-  markerGO: {fileID: 0}
+  notifications: {fileID: 0}
+  bannerPrefab: {fileID: 0}
+  markerPrefab: {fileID: 7292289297850727068, guid: bd002065eefe61e46822ac8aae533cfb, type: 3}
   fileManager: {fileID: 261663842}
-  teamManager: {fileID: 0}
+  teamManager: {fileID: 1371010132}
 --- !u!1 &1486934064
 GameObject:
   m_ObjectHideFlags: 0

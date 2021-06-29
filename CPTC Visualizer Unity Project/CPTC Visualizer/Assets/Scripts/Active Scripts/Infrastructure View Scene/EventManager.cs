@@ -17,7 +17,7 @@ public class EventManager: MonoBehaviour
     [SerializeField]
     int secondPeriodIndex;
     [SerializeField]
-    Canvas notificationCanvas;
+    Canvas mainCanvas;
     // [SerializeField]
     // private List<UpdateDataPacket> events;
     /// <summary>
@@ -35,12 +35,17 @@ public class EventManager: MonoBehaviour
     /// </summary>
     [SerializeField]
     private List<NotificationButton> displayedEvents;
+    /// <summary>
+    /// An empty game object instantiated to hold the notifications in the heirarchy
+    /// </summary>
+    [SerializeField]
+    private GameObject notifications;
 
     [Header("Game Object Prefabs")]
     [SerializeField]
-    private GameObject bannerGO;
+    private GameObject bannerPrefab;
     [SerializeField]
-    private NotificationButton markerGO;
+    private NotificationButton markerPrefab;
 
     [Header("Manager References")]
     [SerializeField]
@@ -74,16 +79,16 @@ public class EventManager: MonoBehaviour
     void Start()
     {
         // events = new List<UpdateDataPacket>();
+
+        // Instance an empty object to hold all of the notification objects in the Heirarchy
+        notifications = new GameObject();
+        notifications.transform.SetParent(mainCanvas.transform, false);
+        notifications.name = "Notification Buttons";
     }
 
     // Update is called once per frame
     void Update()
     {
-        // move to input manager
-        if(Input.GetKeyDown(KeyCode.F))
-        {
-            //LoadEventsFromJSON();
-        }
         // display selected alerts every loop of a timer during AI runtime
         // display selected alerts every input from production team - Using Config files
     }
@@ -106,8 +111,13 @@ public class EventManager: MonoBehaviour
             alert.TimeStamp = alert.TimeStamp.AddMinutes(_delay);
         }
 
-        // check if new alerts should be loaded into the systema in last cycle 
-        if (loadedEvents == null || // have alerts not been loaded in yet this runtime? , or 
+        if (loadedEvents == null) 
+        {
+            loadedEvents = new List<AlertData>();
+        }
+
+        // check if new alerts should be loaded into the system
+        if( loadedEvents.Count <= 0 || // have alerts not been loaded in yet this runtime? , or 
             newAlerts[newAlerts.Count - 1].TimeStamp != loadedEvents[loadedEvents.Count - 1].TimeStamp)// are the timestamps of the last alerts in the list of loaded alerts and the list of new alerts the same? (So as not to duplicate alerts which have already been loaded into the system)
         {
             // for each alert to be loaded in ...
@@ -135,6 +145,8 @@ public class EventManager: MonoBehaviour
                 // add the new alert to the list of alerts loaded into the system
                 loadedEvents.Add(newAlerts[i]);
             }
+            Debug.Log($"New Events Loaded from {_alertsFile}");
+            DisplaySelectedAlerts();
         }
     }
     public void LoadPriorityAlerts()
@@ -146,17 +158,21 @@ public class EventManager: MonoBehaviour
     /// </summary>
     public void DisplaySelectedAlerts()
     {
-        // pass reference to list of teams
-        // pass reference to list of nodes
+        // for now, just set all alerts to be selected. In the future this would pull from the AI or the Human's selections
+        selectedEvents = loadedEvents;
         // take list of Alerts and create a notification for each of them. 
-        // set the notification as a child of the node
-        // set the notification's local location to the center of the node
         foreach(AlertData alert in selectedEvents)
         {
-            // get reference to notification button
+            // instance a new notification button
+            displayedEvents.Add(Instantiate(markerPrefab, notifications.transform));
+            // set position of the notification to the side of and in front of the node's position
+            // make a simplified reference to the notification component of the instanced object
+            NotificationButton notif = displayedEvents[displayedEvents.Count - 1].GetComponent<NotificationButton>();
+            // add the button to its team's list of buttons
+            alert.Team.NotifMarkers.Add(notif);
             // add this alert to that notification button
-            // add the button to a team's list of buttons
-            // set the button to active
+            notif.Alert = alert;
+            notif.name = $"{alert.Team} at {alert.MainNode.name}";
         }
     }
     #endregion Alert Methods

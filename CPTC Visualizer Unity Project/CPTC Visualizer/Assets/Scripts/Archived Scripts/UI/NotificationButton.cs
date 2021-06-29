@@ -12,14 +12,17 @@ public enum NotificationType { Banner, Marker}
 public class NotificationButton: MonoBehaviour
 {
     #region Fields
-
+    [Header("Tracked Fields")]
     [SerializeField]
     private NotificationType notifType;
+    [SerializeField]
+    private AlertData alert;
 
     private int affectedNodeID;
     private int affectedTeamID;
     private CCDCAttackType attackType;
 
+    [Header("Object References")]
     [SerializeField]
     private Image buttonSprite;
     private Image bannerSprite;
@@ -28,7 +31,14 @@ public class NotificationButton: MonoBehaviour
     #endregion Fields
     
     #region Properties
-
+    /// <summary>
+    /// Gets or Sets the alert this notification pertains to
+    /// </summary>
+    public AlertData Alert
+    {
+        get { return alert; }
+        set { alert = value; }
+    }
     /// <summary>
     /// Gets or sets what node this notification pertains-to.
     /// </summary>

@@ -11,6 +11,8 @@ using UnityEngine.SceneManagement;
 public class InfraInputManager: InputManager
 {
     #region Fields
+    [SerializeField]
+    private EventManager eventManager;
 
     [Header("Infrastructure Inputs")]
     [SerializeField]
@@ -19,6 +21,8 @@ public class InfraInputManager: InputManager
     private KeyCode startProgram = KeyCode.Return;
     [SerializeField]
     private KeyCode startVisualizing = KeyCode.Space;
+    [SerializeField]
+    private KeyCode readAlerts = KeyCode.F;
 
     #endregion Fields
 
@@ -80,6 +84,11 @@ public class InfraInputManager: InputManager
 
             // Copy example infrastructure to all teams.
 
+        }
+        // Manually Read alerts from the JSON file
+        if (Input.GetKeyDown(readAlerts))
+        {
+            eventManager.LoadAlerts(GameManager.Instance.AlertFileName,GameManager.Instance.TimeDelay);
         }
     }
 }

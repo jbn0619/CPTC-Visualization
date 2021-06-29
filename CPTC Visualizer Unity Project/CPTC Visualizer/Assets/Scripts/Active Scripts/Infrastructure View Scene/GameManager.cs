@@ -184,6 +184,20 @@ public class GameManager: Singleton<GameManager>
     {
         get { return osSprites; }
     }
+    /// <summary>
+    /// Gets a string for the name of the file used to load Alert data into the system
+    /// </summary>
+    public string AlertFileName
+    {
+        get { return alertsFile; }
+    }
+    /// <summary>
+    /// Gets a string for the name of the file used to laod Infrastructure data into the system
+    /// </summary>
+    public string InfraFileName
+    {
+        get { return infraFile; }
+    }
     #endregion General Properties
     #region Competition Properties
 
@@ -219,7 +233,11 @@ public class GameManager: Singleton<GameManager>
 
     public DateTime StartOfVisualizer { get; set; }
 
-    public double TimeDelay { get; set; }
+    public double TimeDelay 
+    {
+        get { return timeDelay; }
+        set { timeDelay = value; }
+    }
 
     #endregion Competition Properties
 
