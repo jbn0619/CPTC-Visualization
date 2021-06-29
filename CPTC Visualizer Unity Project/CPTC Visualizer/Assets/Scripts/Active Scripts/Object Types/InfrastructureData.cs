@@ -366,7 +366,7 @@ public class InfrastructureData: MonoBehaviour
         positioningRadius = (networkObjects.Count + 1) * 1.25f;
         foreach(GameObject network in networkObjects)
         {
-            network.transform.position = new Vector3(Mathf.Cos(currentAngle) * positioningRadius, Mathf.Sin(currentAngle) * positioningRadius, 0);
+            network.transform.position = new Vector3(Mathf.Cos(currentAngle) * positioningRadius * network.transform.localScale.x, Mathf.Sin(currentAngle) * positioningRadius * network.transform.localScale.x, 0);
             currentAngle += degreeOffset;
         }
     }
@@ -395,14 +395,15 @@ public class InfrastructureData: MonoBehaviour
             // Set basic positions of the nodes within the network
             for(int i = 0; i < nodes.Count; i++)
             {
+                float radius = 0.9f;
                 if ((i >= 6 && i < 12) || i >= 18 && i < 24)
                 {
                     // If the node is on an even ring of the network, offset it's rotational position by 1/2 radians
-                    nodes[i].transform.localPosition = new Vector3(Mathf.Cos(angleOffset * ((i % 6) + 0.5f)) * (i / 6 + 1), Mathf.Sin(angleOffset * ((i % 6) + 0.5f)) * (i / 6 + 1), 0);
+                    nodes[i].transform.localPosition = new Vector3(Mathf.Cos(angleOffset * ((i % 6) * radius + 0.5f)) * (i / 6 + 1), Mathf.Sin(angleOffset * ((i % 6) + 0.5f)) * (i / 6 + 1) * radius, 0);
                 }
                 else
                 {
-                    nodes[i].transform.localPosition = new Vector3(Mathf.Cos(angleOffset * (i % 6)) * (i / 6 + 1), Mathf.Sin(angleOffset * (i % 6)) * (i / 6 + 1), 0);
+                    nodes[i].transform.localPosition = new Vector3(Mathf.Cos(angleOffset * (i % 6)) * (i / 6 + 1) * radius, Mathf.Sin(angleOffset * (i % 6)) * (i / 6 + 1) * radius, 0);
                 }
                 debug += $" -- NODE : {nodes[i].name} : {nodes[i].transform.position} : {nodes[i].transform.localPosition}\n";
             }                     
