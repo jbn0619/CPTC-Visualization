@@ -144,49 +144,12 @@ public class InfrastructureData: MonoBehaviour
     {
         // reset list of connections made between nodes
         connectionsById = new List<Vector2>();
-        
-        /* Functionality moved to TeamManager
-         * // Establish list of available team colors
-        availableColors = new List<Color>();
-        availableColors.Add(new Color(135,15,133));
-        availableColors.Add(new Color(43,173,115));
-        availableColors.Add(new Color(99,18,153));
-        availableColors.Add(new Color(48,23,163));
-        availableColors.Add(new Color(31,92,158));
-        availableColors.Add(new Color(140,26,26));
-        availableColors.Add(new Color(74,168,33));
-        availableColors.Add(new Color(194,128,46));
-        availableColors.Add(new Color(115,13,66));
-        availableColors.Add(new Color(194,184,54));
-
-        // Establish list of available team Names
-        availableNames = new List<String>();
-        availableNames.Add("Rattlesnakes");
-        availableNames.Add("Coyotes");
-        availableNames.Add("Deer");
-        availableNames.Add("Jackals");
-        availableNames.Add("Anaconda");
-        availableNames.Add("Pumas");
-        availableNames.Add("Dragonflies");
-        availableNames.Add("Capybaras");
-        availableNames.Add("Racoons");
-        availableNames.Add("Lizards");
-
-        // set team names and colors for each team
-        foreach (TeamData t in teams)
-        {
-            t.TeamName = GetRandomName();
-            t.TeamColor = GetRandomColor();
-        }*/
-
     }
 
     // Update is called once per frame
     void Update()
     {
-        // to get updated states and teams that have accessed the nodes.
-        // if(live){ GameManager.Instance.FileManager.UpdateNodes();}
-        // Do we want to draw the raycasts every tick? would we be changing the positions of the nodes?
+
     }
 
     
@@ -324,7 +287,6 @@ public class InfrastructureData: MonoBehaviour
 
             int scalar = networks[netCount].Nodes.Count / 6;
             networkObjects[netCount].transform.localScale = new Vector3(1 + scalar / 10f,1 + scalar / 10f, 1f);
-            Debug.Log("Nodes Count: " + networks[netCount].Nodes.Count);
 
             // instantiate the nodes within this network 
             foreach (NodeData node in networks[netCount].Nodes)
@@ -393,7 +355,6 @@ public class InfrastructureData: MonoBehaviour
                 }
             }
         }
-
     }
     
     public void PositionNetworks()
@@ -412,8 +373,10 @@ public class InfrastructureData: MonoBehaviour
 
     public void PositionNodes()
     {
-        foreach(NetworkData network in networks)
+        string debug = $"Position Nodes() :\n INFRASTRUCTURE {name}: \n";
+        foreach (NetworkData network in networks) 
         {
+            debug += $" - NETWORK {network.name}:\n";
             List<GameObject> nodes = network.GetComponent<NetworkData>().NodeObjects;
 
             float angleOffset;
@@ -441,9 +404,10 @@ public class InfrastructureData: MonoBehaviour
                 {
                     nodes[i].transform.localPosition = new Vector3(Mathf.Cos(angleOffset * (i % 6)) * (i / 6 + 1), Mathf.Sin(angleOffset * (i % 6)) * (i / 6 + 1), 0);
                 }
-                
+                debug += $" -- NODE : {nodes[i].name} : {nodes[i].transform.position} : {nodes[i].transform.localPosition}\n";
             }                     
         }
+        Debug.Log(debug);
     }
     
     /*Funtionality moved to FIlemanager. Names and COlors are now being read from a file.
