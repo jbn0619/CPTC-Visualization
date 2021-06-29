@@ -386,6 +386,7 @@ public class GameManager: Singleton<GameManager>
         mainInfra.PositionNetworks();
         mainInfra.PositionNodes();
         mainInfra.DrawAllConnections();
+
         // set positions of all team infrastructures
         foreach(GameObject team in teamManager.TeamObjects)
         {
@@ -393,6 +394,9 @@ public class GameManager: Singleton<GameManager>
             team.GetComponent<TeamData>().Infra.PositionNodes();
             team.GetComponent<TeamData>().Infra.DrawAllConnections();
         }
+        // Temporary Positioning until main infra works
+        mainInfra.gameObject.SetActive(false);
+        teamManager.TeamObjects[0].GetComponent<TeamData>().InfraObject.SetActive(true);
     }
 
     /*

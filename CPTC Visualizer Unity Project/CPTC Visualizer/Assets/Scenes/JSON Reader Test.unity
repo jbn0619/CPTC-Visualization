@@ -525,12 +525,12 @@ MonoBehaviour:
   prefabNetwork: {fileID: 1997012330732690743, guid: e6b8d870b7b772b4ea2cfbf28c461ea6, type: 3}
   prefabInfrastructure: {fileID: 4531087110079519839, guid: 1b4bde8715dca1341bb9a0cd68bee61f, type: 3}
   osSprites:
-  - {fileID: 21300000, guid: dab2fb4c5fb7e434faff9a61412e0d06, type: 3}
-  - {fileID: 21300000, guid: fdaa90bff7d034940b22a8a38e881212, type: 3}
-  - {fileID: 21300000, guid: c91ceb9fb730e0346b28fc1b8065225c, type: 3}
-  - {fileID: 21300000, guid: 8a21fefe5ca66834baea8374917f11f7, type: 3}
-  - {fileID: 21300000, guid: 47a8f8870bba9534397643fbd3ea875f, type: 3}
-  - {fileID: 21300000, guid: 5444e32910d3f5c4b9ecf5a193ec6e36, type: 3}
+  - {fileID: 21300000, guid: a0d49b8cc0ce9c040801617cd6bc6eb2, type: 3}
+  - {fileID: 21300000, guid: 657be369130bc7146b3fc3696129eb98, type: 3}
+  - {fileID: 21300000, guid: dade1916190b87142ab3ec200a4b44af, type: 3}
+  - {fileID: 21300000, guid: 2bf695a44bb87374d81c4c59d74da0fb, type: 3}
+  - {fileID: 21300000, guid: fbfea0cbdc6087e4ab4e46a80dce89e1, type: 3}
+  - {fileID: 21300000, guid: 961bfd863b735e747bda7311e38ce7af, type: 3}
   toControllerButton: {fileID: 1619502855}
   inputManager: {fileID: 183641911}
   teamManager: {fileID: 1371010132}
