@@ -435,8 +435,11 @@ public class InfrastructureData: MonoBehaviour
             // Each ring is made up of up to 6 nodes, and makes a new ring when it exceeds that amount
             for(int i = 0; i < nodes.Count; i++)
             {
+                // Change the radius offset based off of how many rings there are in the network
+                // Smaller networks need to take up more of the network hence higher offset
                 float radiusOffset = 0.95f;
                 radiusOffset -= 0.2f * (nodes.Count / 6);
+
                 if ((i / 6) % 2 == 1)
                 {
                     // If the node is on an even ring of the network, offset it's rotational position by 1/2 radians
