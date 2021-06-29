@@ -4,7 +4,11 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public enum NotificationType { Banner, Marker}
-
+/// <summary>
+/// Author: Unknown
+///     Ben Wetzel - Summer 2021
+/// Purpose: Display prioritized alert data on the screne
+/// </summary>
 public class NotificationButton: MonoBehaviour
 {
     #region Fields
@@ -94,6 +98,7 @@ public class NotificationButton: MonoBehaviour
     {
         //affectedNodeID = -1;
         //affectedTeamID = -1;
+
     }
 
     // Update is called once per frame

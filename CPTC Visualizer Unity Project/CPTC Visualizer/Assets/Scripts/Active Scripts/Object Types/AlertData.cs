@@ -35,7 +35,9 @@ public class AlertData
 
     [Header("Object References")]
     [SerializeField]
-    private NodeData node;
+    private NodeData mainNode;
+    [SerializeField]
+    private NodeData teamNode;
     [SerializeField]
     private TeamData team;
 
@@ -72,12 +74,20 @@ public class AlertData
         set { timeStamp = value; }
     }
     /// <summary>
-    /// get and set the Alert's reference to its node
+    /// get and set the Alert's reference to its node in the Main infrastructure
     /// </summary>
-    public NodeData Node
+    public NodeData MainNode
     {
-        get { return node; }
-        set { node = value; }
+        get { return mainNode; }
+        set { mainNode = value; }
+    }
+    /// <summary>
+    /// get and set the Alert's reference to its node in the Team's infrastructure
+    /// </summary>
+    public NodeData TeamNode
+    {
+        get { return teamNode; }
+        set { teamNode = value; }
     }
     /// <summary>
     /// Get and set the Alert's reference to its team
