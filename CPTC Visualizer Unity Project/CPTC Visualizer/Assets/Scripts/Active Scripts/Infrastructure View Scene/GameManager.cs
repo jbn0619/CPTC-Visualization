@@ -247,10 +247,10 @@ public class GameManager: Singleton<GameManager>
         if(loadDataFromControllerCount >= loadDataFromControllerTime)
         {
             loadDataFromControllerCount = 0.0f;
-            LoadAlerts();
+            eventManager.LoadAlerts(alertsFile, timeDelay);
         }
         
-        // Check if we need to check for a config update
+        /*// Check if we need to check for a config update
         configUpdateCount += Time.deltaTime;
         if(configUpdateCount >= configUpdateTime)
         {
@@ -280,7 +280,7 @@ public class GameManager: Singleton<GameManager>
         {
             attackCheckCount = 0.0f;
             //eventManager.ReadEvent();
-        }
+        }*/
 
         if(Input.GetKeyDown(KeyCode.Pause))
         {
@@ -375,25 +375,6 @@ public class GameManager: Singleton<GameManager>
             team.GetComponent<TeamData>().Infra.PositionNodes();
             team.GetComponent<TeamData>().Infra.DrawAllConnections();
         }
-    }
-
-    /// <summary>
-    /// Load all events from the events file passed by the COntroller scene to their teams and nodes
-    /// Will probably need to be moved into Events manager later, and integrete the Priority queue and notifications - BW
-    /// </summary>
-    private void LoadAlerts()
-    {
-        List<AlertData> newAlerts = fileManager.CreateAlertsFromJSON(alertsFile, "Alerts\\");
-        foreach(AlertData alert in newAlerts)
-        {
-            // add that alert and the NodeIP to the TeamData in team manager's list of teams.
-            teamManager.Teams[alert.TeamID].Alerts.Add(alert);
-            teamManager.Teams[alert.TeamID].NodeIPs.Add(alert.NodeIP);
-            // and add that team and its ID to the Node's list of teams and team IDs
-            mainInfra.FindNodeObjectByIP(alert.NodeIP).GetComponent<NodeData>().TeamIDs.Add(alert.TeamID);
-            mainInfra.FindNodeObjectByIP(alert.NodeIP).GetComponent<NodeData>().Teams.Add(MainInfra.Teams[alert.TeamID]);
-        }
-        
     }
 
     /*

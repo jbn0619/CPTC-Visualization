@@ -33,6 +33,12 @@ public class AlertData
     [SerializeField]
     private DateTime timeStamp;
 
+    [Header("Object References")]
+    [SerializeField]
+    private NodeData node;
+    [SerializeField]
+    private TeamData team;
+
     #endregion Fields
     #region Properties
     /// <summary>
@@ -58,10 +64,28 @@ public class AlertData
     }
     /// <summary>
     /// Get the time (modified with a delay) of when the team triggered the alert.
+    /// or Set the time to include the time Delay
     /// </summary>
     public DateTime TimeStamp
     {
         get { return this.timeStamp; }
+        set { timeStamp = value; }
+    }
+    /// <summary>
+    /// get and set the Alert's reference to its node
+    /// </summary>
+    public NodeData Node
+    {
+        get { return node; }
+        set { node = value; }
+    }
+    /// <summary>
+    /// Get and set the Alert's reference to its team
+    /// </summary>
+    public TeamData Team
+    {
+        get { return team; }
+        set { team = value; }
     }
     #endregion Properties
 
