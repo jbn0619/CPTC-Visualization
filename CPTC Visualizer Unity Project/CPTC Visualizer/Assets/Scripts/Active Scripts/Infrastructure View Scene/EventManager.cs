@@ -35,11 +35,6 @@ public class EventManager: MonoBehaviour
     /// </summary>
     [SerializeField]
     private List<NotificationButton> displayedEvents;
-    /// <summary>
-    /// An empty game object instantiated to hold the notifications in the heirarchy
-    /// </summary>
-    [SerializeField]
-    private GameObject notifications;
 
     [Header("Game Object Prefabs")]
     [SerializeField]
@@ -80,10 +75,6 @@ public class EventManager: MonoBehaviour
     {
         // events = new List<UpdateDataPacket>();
 
-        // Instance an empty object to hold all of the notification objects in the Heirarchy
-        notifications = new GameObject();
-        notifications.transform.SetParent(mainCanvas.transform, false);
-        notifications.name = "Notification Buttons";
     }
 
     // Update is called once per frame
@@ -146,7 +137,7 @@ public class EventManager: MonoBehaviour
                 loadedEvents.Add(newAlerts[i]);
             }
             Debug.Log($"New Events Loaded from {_alertsFile}");
-            DisplaySelectedAlerts();
+            DisplaySelectedAlerts(); // Move later once manual controls are set up between controller and infra scenes
         }
     }
     public void LoadPriorityAlerts()
@@ -164,15 +155,19 @@ public class EventManager: MonoBehaviour
         foreach(AlertData alert in selectedEvents)
         {
             // instance a new notification button
-            displayedEvents.Add(Instantiate(markerPrefab, notifications.transform));
+            displayedEvents.Add(Instantiate(markerPrefab, transform));
             // set position of the notification to the side of and in front of the node's position
             // make a simplified reference to the notification component of the instanced object
             NotificationButton notif = displayedEvents[displayedEvents.Count - 1].GetComponent<NotificationButton>();
+            notif.Team = alert.Team;
+            notif.Node = teamManager.Teams[0].Infra.FindNodeObjectByIP(alert.NodeIP).GetComponent<NodeData>(); // Temporary access to the first team infrastructure. Remedy once DeepCopy is built for InfrastructureData
             // add the button to its team's list of buttons
             alert.Team.NotifMarkers.Add(notif);
             // add this alert to that notification button
             notif.Alert = alert;
-            notif.name = $"{alert.Team} at {alert.MainNode.name}";
+            notif.name = $"{alert.Team.name} at {alert.MainNode.name}";
+            // Set the position of the notification to be the position of the node.
+            notif.gameObject.transform.position = notif.Node.gameObject.transform.position;
         }
     }
     #endregion Alert Methods
