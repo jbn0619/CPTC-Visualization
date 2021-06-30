@@ -49,13 +49,12 @@ MonoBehaviour:
   ip: 
   hostName: 
   hostDescription: 
-  os: 
+  os: 0
   index: 0
   connections: 
   connectionGOS: []
   nodeSprite: {fileID: 6725634808683633353}
   teams: []
-  values: []
   wedgeColors: []
   wedgePrefab: {fileID: 1261249942711030587, guid: 783324dbf110c1b4cbed88f515d323a3, type: 3}
   teamIDs: 
@@ -83,7 +82,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 7.5, y: 7.5}
   m_EdgeRadius: 0
 --- !u!114 &7148382227594333984
 MonoBehaviour:
