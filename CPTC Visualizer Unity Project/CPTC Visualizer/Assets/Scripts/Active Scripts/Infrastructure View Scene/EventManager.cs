@@ -161,6 +161,7 @@ public class EventManager: MonoBehaviour
             NotificationButton notif = displayedEvents[displayedEvents.Count - 1].GetComponent<NotificationButton>();
             notif.Team = alert.Team;
             notif.Node = teamManager.Teams[0].Infra.FindNodeObjectByIP(alert.NodeIP).GetComponent<NodeData>(); // Temporary access to the first team infrastructure. Remedy once DeepCopy is built for InfrastructureData
+            notif.Node.SplitSprite();
             // add the button to its team's list of buttons
             alert.Team.NotifMarkers.Add(notif);
             // add this alert to that notification button
