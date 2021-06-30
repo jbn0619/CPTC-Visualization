@@ -63,6 +63,8 @@ public class NodeData: MonoBehaviour
     private float value;
     public List<Color> wedgeColors;
     public Image wedgePrefab;
+    protected List<Image> wedges;
+    protected Vector3 pos;
     /// <summary>
     /// A list of Infrastructure.teams indexes for teams currently accessing this node
     /// </summary>
@@ -282,6 +284,7 @@ public class NodeData: MonoBehaviour
     void Start()
     {
         nodeSprite = this.GetComponent<SpriteRenderer>();
+        pos = Camera.main.WorldToScreenPoint(this.transform.position);
         SplitSprite();
     }
 
@@ -289,6 +292,13 @@ public class NodeData: MonoBehaviour
     void Update()
     {
         //SplitSprite();
+        if (wedges != null)
+        {
+            for (int i = 0; i < wedges.Count; i++)
+            {
+                wedges[i].transform.position = pos;
+            }
+        }
     }
 
     /// <summary>
@@ -380,6 +390,7 @@ public class NodeData: MonoBehaviour
             newWedge.transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, zRotation));
             newWedge.name = $"{this.name} Wedge {i}";
             zRotation -= newWedge.fillAmount * 360f;
+            //wedges.Add(newWedge);
         }
     }
     /*Redundant code. We Won't be cloning nodes in the forseable future. - Ben 
