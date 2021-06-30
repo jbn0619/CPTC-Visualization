@@ -161,6 +161,7 @@ public class EventManager: MonoBehaviour
             // make a simplified reference to the notification component of the instanced object
             NotificationButton notif = displayedEvents[displayedEvents.Count - 1].GetComponent<NotificationButton>();
             notif.Team = alert.Team;
+            displayedEvents[displayedEvents.Count - 1].GetComponent<SpriteRenderer>().color = alert.Team.TeamColor;
             notif.Node = alert.MainNode;
             // display the node's updated pie chart
             notif.Node.SplitSprite();

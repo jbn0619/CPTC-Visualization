@@ -371,7 +371,7 @@ public class NodeData: MonoBehaviour
         
         for (int i = 0; i < teams.Count; i++)
         {
-            value = 1 / (float)teams.Count;
+            value = 1f / (float)teams.Count;
             Image newWedge = Instantiate(wedgePrefab) as Image;
             newWedge.transform.SetParent(transform, false);
             newWedge.color = teams[i].TeamColor;
