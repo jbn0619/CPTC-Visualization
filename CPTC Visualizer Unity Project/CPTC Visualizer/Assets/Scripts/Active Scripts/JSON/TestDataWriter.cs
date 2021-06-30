@@ -113,19 +113,33 @@ public class TestDataWriter: MonoBehaviour
         if(GameManager.Instance.MainInfra != null)
         {
             InfrastructureData infra = GameManager.Instance.MainInfra;
-            int nodeCount = infra.AllNodes.Count;
+            int nodeCount = infra.AllNodes.Count - 1;
             List<AlertData> alerts = new List<AlertData>();
+
+            // store a list of all nodes the team has not visited this round
+            List<NodeData> unvisitedNodes = new List<NodeData>(infra.AllNodes);
+
             // create an alert for every member of each team in the competition
             foreach(TeamData team in infra.Teams)
             {
+                // loop through for each member of the team ...
                 for(int i = 0; i < membersPerTeam; i++)
                 {
+                    // grab a random int to determine node this member is visiting
+                    int rand = (int)UnityEngine.Random.Range(0, nodeCount);
+                    // add the newly created alert data to the list for the file
                     alerts.Add(new AlertData(
                         (CPTCEvents)UnityEngine.Random.Range(0, numberOfAlertTypes),
-                        infra.AllNodes[(int)UnityEngine.Random.Range(0, nodeCount)].Ip,
+                        unvisitedNodes[rand].Ip,
                         team.ID,
                         DateTime.Now));
+                    // remove the node they visited from the list of available nodes to visit
+                    unvisitedNodes.RemoveAt(rand);
+                    nodeCount--;
                 }
+                // reset the list of available nodes to be visited
+                unvisitedNodes = new List<NodeData>(infra.AllNodes);
+                nodeCount = infra.AllNodes.Count - 1;
             }
             // TODO: make the alerts only activate in nodes the teams can accsess
             // save an alert list to a new JSON file

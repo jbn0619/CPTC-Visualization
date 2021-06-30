@@ -60,11 +60,13 @@ public class NodeData: MonoBehaviour
     /// </summary>
     [SerializeField]
     protected List<TeamData> teams;
+
     private float value;
     public List<Color> wedgeColors;
     public Image wedgePrefab;
     protected List<Image> wedges;
     protected Vector3 pos;
+
     /// <summary>
     /// A list of Infrastructure.teams indexes for teams currently accessing this node
     /// </summary>
@@ -369,7 +371,7 @@ public class NodeData: MonoBehaviour
         
         for (int i = 0; i < teams.Count; i++)
         {
-            value = 1 / teams.Count;
+            value = 1 / (float)teams.Count;
             Image newWedge = Instantiate(wedgePrefab) as Image;
             newWedge.transform.SetParent(transform, false);
             newWedge.color = teams[i].TeamColor;

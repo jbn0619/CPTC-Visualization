@@ -115,11 +115,11 @@ public class EventManager: MonoBehaviour
             for (int i = 0; i < newAlerts.Count; i++)
             {
                 // set a reference to the version of the node within the main architecture
-                newAlerts[i].MainNode = mainInfra.FindNodeObjectByIP(newAlerts[i].NodeIP).GetComponent<NodeData>();
-                // add the team to the node's list of teams 
+                newAlerts[i].MainNode = teamManager.Teams[0].Infra.FindNodeObjectByIP(newAlerts[i].NodeIP).GetComponent<NodeData>(); // switch from the main infrastructure until infrastructure's deep cpoy is completed
+                // add the team's ID number to the node's list of team ID numbers
                 newAlerts[i].MainNode.TeamIDs.Add(newAlerts[i].TeamID);
-                // add the team's ID number to the node's list of team ID numbers 
-                newAlerts[i].MainNode.Teams.Add(mainInfra.Teams[newAlerts[i].TeamID]);
+                // add the team to the node's list of teams 
+                newAlerts[i].MainNode.Teams.Add(teamManager.Teams[newAlerts[i].TeamID]);
 
                 // set the alert's team to a reference of that team in the teamManager
                 newAlerts[i].Team = teamManager.Teams[newAlerts[i].TeamID];
@@ -130,6 +130,8 @@ public class EventManager: MonoBehaviour
 
                 // set a reference to the version of the node within the team's architecture
                 newAlerts[i].TeamNode = newAlerts[i].Team.Infra.FindNodeObjectByIP(newAlerts[i].NodeIP).GetComponent<NodeData>();
+                // add the team's ID number to the node's list of team ID numbers
+                newAlerts[i].TeamNode.TeamIDs.Add(newAlerts[i].TeamID);
                 // add a reference to the team in the version of the node within the team's infrastructure
                 newAlerts[i].TeamNode.Teams.Add(newAlerts[i].Team);
 
@@ -156,17 +158,18 @@ public class EventManager: MonoBehaviour
         {
             // instance a new notification button
             displayedEvents.Add(Instantiate(markerPrefab, transform));
-            // set position of the notification to the side of and in front of the node's position
             // make a simplified reference to the notification component of the instanced object
             NotificationButton notif = displayedEvents[displayedEvents.Count - 1].GetComponent<NotificationButton>();
             notif.Team = alert.Team;
-            notif.Node = teamManager.Teams[0].Infra.FindNodeObjectByIP(alert.NodeIP).GetComponent<NodeData>(); // Temporary access to the first team infrastructure. Remedy once DeepCopy is built for InfrastructureData
+            notif.Node = alert.MainNode;
+            // display the node's updated pie chart
             notif.Node.SplitSprite();
             // add the button to its team's list of buttons
             alert.Team.NotifMarkers.Add(notif);
-            // add this alert to that notification button
-            notif.Alert = alert;
+            // set the notification's name
             notif.name = $"{alert.Team.name} at {alert.MainNode.name}";
+            // add this alert to the notification button
+            notif.Alert = alert;
             // Set the position of the notification to be the position of the node.
             notif.gameObject.transform.position = notif.Node.gameObject.transform.position;
         }

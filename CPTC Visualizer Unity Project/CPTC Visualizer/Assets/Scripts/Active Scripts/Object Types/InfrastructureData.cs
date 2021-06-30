@@ -307,6 +307,7 @@ public class InfrastructureData: MonoBehaviour
     {
         int netCount = 0;
         int nodeCount = 0;
+        string debug = $"{name}.InstanceChildren\n";
         // create gameObjects for all the networks
         foreach (NetworkData net in networks)
         {
@@ -324,7 +325,7 @@ public class InfrastructureData: MonoBehaviour
 
             int scalar = (networks[netCount].Nodes.Count / 6);
             networkObjects[netCount].transform.localScale = new Vector3(1 + scalar / 9f, 1 + scalar / 9f, 1f);
-            Debug.Log("Nodes Count: " + networks[netCount].Nodes.Count);
+            debug += $" - Network: {networkObjects[netCount].name} | Nodes Count: {networks[netCount].Nodes.Count}\n";
 
             // instantiate the nodes within this network 
             foreach (NodeData node in networks[netCount].Nodes)
@@ -349,7 +350,8 @@ public class InfrastructureData: MonoBehaviour
                 allNodeObjects[nodeCount].GetComponent<NodeData>().InstanceData(nodeCount);
                 // add the new node gameObject to the network's list of its node objects
                 networkObjects[netCount].GetComponent<NetworkData>().AddNodeObject(allNodeObjects[nodeCount]);
-                
+
+                debug += $" -- {allNodeObjects[nodeCount].name}\n";
                 nodeCount++;
             }
             
@@ -395,7 +397,7 @@ public class InfrastructureData: MonoBehaviour
                 }
             }
         }
-
+        Debug.Log(debug);
     }
     
     public void PositionNetworks()
