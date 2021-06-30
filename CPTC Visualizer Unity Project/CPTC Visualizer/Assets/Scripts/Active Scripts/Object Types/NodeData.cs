@@ -365,8 +365,11 @@ public class NodeData: MonoBehaviour
         /// Loops through all the teams accessing the node and makes that many circle segments
         /// ** Will run if data is added to teams list **
         /// </summary>
+  
+        
         for (int i = 0; i < teams.Count; i++)
         {
+            value = 1 / teams.Count;
             Image newWedge = Instantiate(wedgePrefab) as Image;
             newWedge.transform.SetParent(transform, false);
             newWedge.color = teams[i].TeamColor;
