@@ -382,6 +382,7 @@ public class NodeData: MonoBehaviour
         /// <summary>
         /// Test data for above loop that takes data given in unity interface and converts that to a pie graph
         /// </summary>
+        /*
         zRotation = 0f;
         float testValue = .25f; // for testing the sprite color
 
@@ -396,6 +397,7 @@ public class NodeData: MonoBehaviour
             zRotation -= newWedge.fillAmount * 360f;
             //wedges.Add(newWedge);
         }
+        */
     }
 
 
