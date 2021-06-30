@@ -16,15 +16,19 @@ public class NotificationButton: MonoBehaviour
     [SerializeField]
     private NotificationType notifType;
     [SerializeField]
+    private TeamData team;
+    [SerializeField]
+    private NodeData node;
+    [SerializeField]
     private AlertData alert;
 
-    private int affectedNodeID;
-    private int affectedTeamID;
+    // private int affectedNodeID;
+    // private int affectedTeamID;
     private CCDCAttackType attackType;
 
     [Header("Object References")]
     [SerializeField]
-    private Image buttonSprite;
+    private SpriteRenderer buttonSprite;
     private Image bannerSprite;
     private GameObject correspondingBanner;
     
@@ -42,30 +46,30 @@ public class NotificationButton: MonoBehaviour
     /// <summary>
     /// Gets or sets what node this notification pertains-to.
     /// </summary>
-    public int AffectedNodeID
+    public NodeData Node
     {
         get
         {
-            return affectedNodeID;
+            return node;
         }
         set
         {
-            affectedNodeID = value;
+            node = value;
         }
     }
 
     /// <summary>
     /// Gets or sets what team this notification pertains-to.
     /// </summary>
-    public int AffectedTeamID
+    public TeamData Team
     {
         get
         {
-            return affectedTeamID;
+            return team;
         }
         set
         {
-            affectedTeamID = value;
+            team = value;
         }
     }
 
@@ -141,7 +145,7 @@ public class NotificationButton: MonoBehaviour
     public void OnMarkerClick()
     {
         // Clean-up this banner's reference from the ccdcTeam, then destroy it.
-        GameManager.Instance.TeamManager.Teams[affectedTeamID].NotifBanners.Remove(correspondingBanner);
+        team.NotifBanners.Remove(correspondingBanner);
         Destroy(correspondingBanner);
 
         // Play the video.
@@ -149,7 +153,7 @@ public class NotificationButton: MonoBehaviour
         vidMan.PlayAttackVideo((int)attackType);
 
         // Remove this marker's reference from the ccdcTeam, then destroy it.
-        GameManager.Instance.TeamManager.Teams[affectedTeamID].NotifMarkers.Remove(this);
+        team.NotifMarkers.Remove(this);
         Destroy(this.gameObject);
     }
 }
