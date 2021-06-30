@@ -53,6 +53,8 @@ public class GameManager: Singleton<GameManager>
     [SerializeField]
     private GameObject mainCanvas;
     [SerializeField]
+    private Canvas fluidCanvas;
+    [SerializeField]
     private GameObject notificationControls;
 
     [Header("Timer Fields")]
@@ -348,7 +350,7 @@ public class GameManager: Singleton<GameManager>
             // Instantiate an Infrastructure prefab for the mainInfra
             GameObject mainInfraObject = Instantiate(prefabInfrastructure);
             // set canvas as parent of the infrastructure
-            mainInfraObject.transform.SetParent(mainCanvas.transform, false);
+            mainInfraObject.transform.SetParent(fluidCanvas.gameObject.transform, false);
             mainInfraObject.name = "Main Infrastructure View";
             // grab a ref to its prefabed infra data
             mainInfra = mainInfraObject.GetComponent<InfrastructureData>();
@@ -362,7 +364,7 @@ public class GameManager: Singleton<GameManager>
 
             // Instance an empty to hold all of the team Infrastructure objects in the Heirarchy
             GameObject emptyHolder = new GameObject();
-            emptyHolder.transform.SetParent(mainCanvas.transform, false);
+            emptyHolder.transform.SetParent(fluidCanvas.gameObject.transform, false);
             emptyHolder.name = "Team Infrastructures";
 
             // Instance the team Infrastructure Objects childed to the empty object and instance all of their children within them
