@@ -372,6 +372,7 @@ public class NodeData: MonoBehaviour
             newWedge.color = teams[i].TeamColor;
             newWedge.fillAmount = value;
             newWedge.transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, zRotation));
+            newWedge.name = $"{name} Wedge {i}";
             zRotation -= newWedge.fillAmount * 360f;
         }
 
