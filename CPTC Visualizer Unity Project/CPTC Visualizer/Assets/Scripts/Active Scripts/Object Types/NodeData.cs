@@ -330,6 +330,15 @@ public class NodeData: MonoBehaviour
         // this.connections    = _connections;
         // this.teamIDs          = _teamIDs;
     }
+    public NodeData DeepCopy()
+    {
+        NodeData returnNode = new NodeData();
+        string osInt = os.ToString();
+        OperatingSystems osCopy;
+        Enum.TryParse(osInt, out osCopy);
+        returnNode.SetData(String.Copy(ip), String.Copy(hostName), String.Copy(hostDescription), osCopy);
+        return returnNode;
+    }
 
     /// <summary>
     /// Use the data from the FileReader to add references to newly instanced GameObjects

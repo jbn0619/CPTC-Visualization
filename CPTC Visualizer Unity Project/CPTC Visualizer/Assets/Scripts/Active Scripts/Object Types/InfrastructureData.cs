@@ -299,6 +299,27 @@ public class InfrastructureData: MonoBehaviour
         this.allNodes = _nodes;
         this.teams = _teams;
     }
+    public InfrastructureData DeepCopy()
+    {
+        InfrastructureData infraClone = new InfrastructureData();
+        List<NetworkData> networkClones = new List<NetworkData>();
+        foreach(NetworkData net in networks)
+        {
+            networkClones.Add(net.DeepCopy());
+        }
+        List<NodeData> nodeClones = new List<NodeData>();
+        foreach(NodeData node in AllNodes)
+        {
+            nodeClones.Add(node.DeepCopy());
+        }
+        List<TeamData> teamClones = new List<TeamData>();
+        foreach(TeamData team in teams)
+        {
+            teamClones.Add(team); // Still want to keep the same regerence to the teamManager team
+        }
+        infraClone.SetData(networkClones, nodeClones, teamClones);
+        return infraClone;
+    }
 
     /// <summary>
     /// Instantiate child network and node objects, and set data lists to reference the scripts attetched to the objects
