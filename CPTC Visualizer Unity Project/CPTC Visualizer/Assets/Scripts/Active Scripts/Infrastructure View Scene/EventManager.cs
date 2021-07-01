@@ -115,7 +115,7 @@ public class EventManager: MonoBehaviour
             for (int i = 0; i < newAlerts.Count; i++)
             {
                 // set a reference to the version of the node within the main architecture
-                newAlerts[i].MainNode = teamManager.Teams[0].Infra.FindNodeObjectByIP(newAlerts[i].NodeIP).GetComponent<NodeData>(); // switch from the main infrastructure until infrastructure's deep cpoy is completed
+                newAlerts[i].MainNode = mainInfra.FindNodeObjectByIP(newAlerts[i].NodeIP).GetComponent<NodeData>();
                 // add the team's ID number to the node's list of team ID numbers
                 newAlerts[i].MainNode.TeamIDs.Add(newAlerts[i].TeamID);
                 // add the team to the node's list of teams 
@@ -142,7 +142,7 @@ public class EventManager: MonoBehaviour
             DisplaySelectedAlerts(); // Move later once manual controls are set up between controller and infra scenes
         }
     }
-    public void LoadPriorityAlerts()
+    public void LoadSelectedAlerts()
     {
         // move alerts from loaded list to display based on if the AI or Human Operators indicated to do so, depending on if the stream is in off-ari mode or on-air mode
     }

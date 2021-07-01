@@ -358,7 +358,8 @@ public class GameManager: Singleton<GameManager>
             // Grab Data from all Infrastructures
             List<InfrastructureData> infras = fileManager.CreateInfrasFromJSON(infraFile, "Infrastructure\\Database\\");
             // set the object's infra data to the data from the JSON file to the first Infrastructure in the list.
-            mainInfra.SetData(infras[0].Networks, infras[0].AllNodes, infras[0].Teams);
+            InfrastructureData tempInfra = infras[0].DeepCopy();
+            mainInfra.SetData(tempInfra.Networks, tempInfra.AllNodes, tempInfra.Teams);
             // instantiate the child objects with the data
             mainInfra.InstanceChildren();
 
@@ -397,8 +398,8 @@ public class GameManager: Singleton<GameManager>
             team.GetComponent<TeamData>().Infra.DrawAllConnections();
         }
         // Temporary Positioning until main infra works
-        mainInfra.gameObject.SetActive(false);
-        teamManager.TeamObjects[0].GetComponent<TeamData>().InfraObject.SetActive(true);
+        // mainInfra.gameObject.SetActive(false);
+        // teamManager.TeamObjects[0].GetComponent<TeamData>().InfraObject.SetActive(true);
     }
 
     /*

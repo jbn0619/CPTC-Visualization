@@ -159,7 +159,7 @@ public class TeamManager : MonoBehaviour
             // set team list to reference instanced TeamData
             teams[i] = teamObjects[i].GetComponent<TeamData>();
             // set the team's infrastructure to include them on its team list
-            // teamObjects[i].GetComponent<TeamData>().Infra.Teams.Add(teams[i]); // Uncomment when the Infrastructures are able to Deep clone. Don't want the mainInfra to have extra teams on it.
+            teamObjects[i].GetComponent<TeamData>().Infra.Teams.Add(teams[i]); 
             // Add the teams to the Main Infrastructure
             GameManager.Instance.MainInfra.Teams.Add(teamObjects[i].GetComponent<TeamData>());
         }        
