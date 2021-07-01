@@ -107,6 +107,9 @@ public class NotificationButton: MonoBehaviour
 
     #endregion Properties
 
+    /// <summary>
+    /// Placeholder functionality for User clicking on the Notification marker
+    /// </summary>
     private void OnMouseDown()
     {
         Debug.Log($"{name} Marker clicked!");
