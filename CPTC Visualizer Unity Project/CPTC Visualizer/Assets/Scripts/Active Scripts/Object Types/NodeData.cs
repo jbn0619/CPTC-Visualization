@@ -67,6 +67,8 @@ public class NodeData: MonoBehaviour
     protected List<Image> wedges;
     protected Vector3 pos;
 
+    protected TeamManager teamManager;
+
     /// <summary>
     /// A list of Infrastructure.teams indexes for teams currently accessing this node
     /// </summary>
@@ -286,6 +288,7 @@ public class NodeData: MonoBehaviour
     void Start()
     {
         nodeSprite = this.GetComponent<SpriteRenderer>();
+        teamManager = GameManager.Instance.TeamManager;
         pos = Camera.main.WorldToScreenPoint(this.transform.position);
         SplitSprite();
     }
@@ -358,27 +361,29 @@ public class NodeData: MonoBehaviour
     /// </summary>
     public void SplitSprite()
     {
-        // Size of each segment
-        //float value = 1 / teams.Count;
-
         float zRotation = 0f;
 
         /// <summary>
         /// Loops through all the teams accessing the node and makes that many circle segments
         /// ** Will run if data is added to teams list **
         /// </summary>
-  
-        
-        for (int i = 0; i < teams.Count; i++)
+
+        for (int i = 0; i < teamManager.Teams.Count; i++)
         {
-            value = 1f / (float)teams.Count;
-            Image newWedge = Instantiate(wedgePrefab) as Image;
-            newWedge.transform.SetParent(transform, false);
-            newWedge.color = teams[i].TeamColor;
-            newWedge.fillAmount = value;
-            newWedge.transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, zRotation));
-            newWedge.name = $"{name} Wedge {i}";
-            zRotation -= newWedge.fillAmount * 360f;
+            for (int j = 0; j < teams.Count; j++)
+            {
+                if (teams[j].TeamColor == teamManager.Teams[i].TeamColor)
+                {
+                    value = 1f / (float)teams.Count;
+                    Image newWedge = Instantiate(wedgePrefab) as Image;
+                    newWedge.transform.SetParent(transform, false);
+                    newWedge.color = teams[j].TeamColor;
+                    newWedge.fillAmount = value;
+                    newWedge.transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, zRotation));
+                    newWedge.name = $"{name} Wedge {j}";
+                    zRotation -= newWedge.fillAmount * 360f;
+                }
+            }
         }
 
         /// <summary>
