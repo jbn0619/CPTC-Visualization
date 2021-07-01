@@ -64,7 +64,7 @@ public class NodeData: MonoBehaviour
     private float value;
     public List<Color> wedgeColors;
     public Image wedgePrefab;
-    protected List<Image> wedges;
+    protected List<Image> wedges = new List<Image>();
     protected Vector3 pos;
 
     protected TeamManager teamManager;
@@ -296,14 +296,7 @@ public class NodeData: MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //SplitSprite();
-        if (wedges != null)
-        {
-            for (int i = 0; i < wedges.Count; i++)
-            {
-                wedges[i].transform.position = pos;
-            }
-        }
+
     }
 
     /// <summary>
@@ -377,6 +370,17 @@ public class NodeData: MonoBehaviour
         /// ** Will run if data is added to teams list **
         /// </summary>
 
+        if (wedges.Count > 0)
+        {
+            while (wedges.Count > 0)
+            {
+                Destroy(wedges[0]);
+                wedges.RemoveAt(0);
+            }
+        }
+
+        int test = 0;
+
         for (int i = 0; i < teamManager.Teams.Count; i++)
         {
             for (int j = 0; j < teams.Count; j++)
@@ -384,15 +388,25 @@ public class NodeData: MonoBehaviour
                 if (teams[j].TeamColor == teamManager.Teams[i].TeamColor)
                 {
                     value = 1f / (float)teams.Count;
-                    Image newWedge = Instantiate(wedgePrefab) as Image;
-                    newWedge.transform.SetParent(transform, false);
-                    newWedge.color = teams[j].TeamColor;
-                    newWedge.fillAmount = value;
-                    newWedge.transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, zRotation));
-                    newWedge.name = $"{name} Wedge {j}";
-                    zRotation -= newWedge.fillAmount * 360f;
+                    wedges.Add(Instantiate(wedgePrefab) as Image);
+                    wedges[wedges.Count - 1].transform.SetParent(transform, false);
+                    wedges[wedges.Count - 1].color = teams[j].TeamColor;
+                    wedges[wedges.Count - 1].fillAmount = value;
+                    wedges[wedges.Count - 1].transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, zRotation));
+                    wedges[wedges.Count - 1].name = $"{name} Wedge {j}";
+                    zRotation -= wedges[wedges.Count - 1].fillAmount * 360f;
+                    test++;
                 }
             }
+            if (test >= teams.Count)
+            {
+                break;
+            }
+        }
+
+        for (int i = 0; i < teamManager.Teams.Count; i++)
+        {
+            Debug.Log("team " + i + ": " + teamManager.Teams[i].TeamName);
         }
 
         /// <summary>
