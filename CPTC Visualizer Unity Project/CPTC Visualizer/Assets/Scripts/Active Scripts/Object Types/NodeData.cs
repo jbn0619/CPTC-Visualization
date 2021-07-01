@@ -364,7 +364,7 @@ public class NodeData: MonoBehaviour
     public void SplitSprite()
     {
         float zRotation = 0f;
-
+        string debug = $"{name}.SplitString\n";
         /// <summary>
         /// Loops through all the teams accessing the node and makes that many circle segments
         /// ** Will run if data is added to teams list **
@@ -377,12 +377,15 @@ public class NodeData: MonoBehaviour
                 Destroy(wedges[0]);
                 wedges.RemoveAt(0);
             }
+            debug += $" - Old Wedges Removed\n";
         }
 
         int test = 0;
 
+        debug += " - All Teams - \n";
         for (int i = 0; i < teamManager.Teams.Count; i++)
         {
+            debug += $" -- team {i} : {teamManager.Teams[i].TeamName}\n";
             for (int j = 0; j < teams.Count; j++)
             {
                 if (teams[j].TeamColor == teamManager.Teams[i].TeamColor)
@@ -403,11 +406,7 @@ public class NodeData: MonoBehaviour
                 break;
             }
         }
-
-        for (int i = 0; i < teamManager.Teams.Count; i++)
-        {
-            Debug.Log("team " + i + ": " + teamManager.Teams[i].TeamName);
-        }
+        Debug.Log(debug);
 
         /// <summary>
         /// Test data for above loop that takes data given in unity interface and converts that to a pie graph

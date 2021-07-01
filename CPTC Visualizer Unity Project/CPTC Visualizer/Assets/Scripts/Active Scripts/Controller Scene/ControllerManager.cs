@@ -66,7 +66,7 @@ public class ControllerManager: MonoBehaviour
     /// <summary>
     /// old data Laforge server data from the last pull
     /// </summary>
-    private List<InfrastructureData> oldLaforgeInfras;
+    private List<GameObject> oldLaforgeInfras;
     /// <summary>
     /// old splunk data from the last pull. 
     /// </summary>
@@ -153,16 +153,26 @@ public class ControllerManager: MonoBehaviour
     /// </summary>
     public void SendInfrastructureToScene()
     {
-        // 
-        List<InfrastructureData> newLaforgeInfras = fileManager.CreateInfrasFromJSON(laforgeJSON_fileName, "Infrastructure\\Database\\");
+        // retrieve data from new file
+        List<GameObject> newLaforgeInfras = fileManager.CreateInfrasFromJSON(laforgeJSON_fileName, "Infrastructure\\Database\\");
         // if the old data hasn't been pulled from the file yet, or the new data is different from the old data
         for (int i = 0; i < newLaforgeInfras.Count; i++)
         {
-            if(oldLaforgeInfras == null || newLaforgeInfras[i] != oldLaforgeInfras[i])
+            InfrastructureData newInfra = newLaforgeInfras[i].GetComponent<InfrastructureData>();
+            InfrastructureData oldInfra = oldLaforgeInfras[i].GetComponent<InfrastructureData>();
+            // Check if updated infrastructure information needs to be loaded to Infra Scene
+            if (oldLaforgeInfras == null || newInfra != oldInfra)
             {
+                // Save the data within the Controller Scene as data to be compared against later
                 oldLaforgeInfras = newLaforgeInfras;
+                // convert data to saveable format
+                List<InfrastructureData> saveInfras = new List<InfrastructureData>();
+                for (int j = 0; j < newLaforgeInfras.Count; j++)
+                {
+                    saveInfras.Add(oldLaforgeInfras[j].GetComponent<InfrastructureData>());
+                }
                 // pass the data along to the Infrastructue Scene's filepath
-                fileManager.SaveToJSON(infraFileName, newLaforgeInfras);
+                fileManager.SaveToJSON(infraFileName, saveInfras);
             }
         }
     }

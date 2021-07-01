@@ -355,13 +355,6 @@ public class GameManager: Singleton<GameManager>
             // grab a ref to its prefabed infra data
             mainInfra = mainInfraObject.GetComponent<InfrastructureData>();
 
-            // Grab Data from all Infrastructures
-            List<InfrastructureData> infras = fileManager.CreateInfrasFromJSON(infraFile, "Infrastructure\\Database\\");
-            // set the object's infra data to the data from the JSON file to the first Infrastructure in the list.
-            InfrastructureData tempInfra = infras[0].DeepCopy();
-            mainInfra.SetData(tempInfra.Networks, tempInfra.AllNodes, tempInfra.Teams);
-            // instantiate the child objects with the data
-            mainInfra.InstanceChildren();
 
             // Instance an empty to hold all of the team Infrastructure objects in the Heirarchy
             GameObject emptyHolder = new GameObject();
@@ -369,20 +362,22 @@ public class GameManager: Singleton<GameManager>
             emptyHolder.name = "Team Infrastructures";
 
             // Instance the team Infrastructure Objects childed to the empty object and instance all of their children within them
-            List<GameObject> infraObjects = new List<GameObject>();
+            List<GameObject> infraObjects = fileManager.CreateInfrasFromJSON(infraFile, "Infrastructure\\Database\\");
             List<int> teamIds = new List<int>();
-            for(int i = 0; i < infras.Count; i++)
+            for(int i = 0; i < infraObjects.Count; i++)
             {
-                infraObjects.Add(Instantiate(prefabInfrastructure));
-                infraObjects[i].transform.SetParent(emptyHolder.transform, false);
-                infraObjects[i].GetComponent<InfrastructureData>().SetData(infras[i].Networks, infras[i].AllNodes, infras[i].Teams);
-                infraObjects[i].GetComponent<InfrastructureData>().InstanceChildren();
-                infraObjects[i].SetActive(false);
+                infraObjects[i].transform.SetParent(emptyHolder.transform);
                 teamIds.Add(i);
             }
-
             // Instance the Team Objects and pass their data to them
             teamManager.InstanceTeams(teamIds, infraObjects);
+
+
+            //Set Data for the MainInfra Object 
+            InfrastructureData tempInfra = infraObjects[0].GetComponent<InfrastructureData>().DeepCopy();
+            mainInfra.SetData(tempInfra.Networks, tempInfra.AllNodes);
+            // instantiate the child objects with the data
+            mainInfra.InstanceChildren();
         }
 
         // Set positions of main infrastructure

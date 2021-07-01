@@ -292,12 +292,10 @@ public class InfrastructureData: MonoBehaviour
     /// </summary>
     /// <param name="_networks">Networks of nodes within the server</param>
     /// <param name="_nodes">all nodes within the server</param>
-    /// <param name="_teams">all of the teams competing in the competition</param>
-    public void SetData(List<NetworkData> _networks, List<NodeData> _nodes, List<TeamData> _teams)
+    public void SetData(List<NetworkData> _networks, List<NodeData> _nodes)
     {
         this.networks = _networks;
         this.allNodes = _nodes;
-        this.teams = _teams;
     }
     public InfrastructureData DeepCopy()
     {
@@ -312,12 +310,7 @@ public class InfrastructureData: MonoBehaviour
         {
             nodeClones.Add(node.DeepCopy());
         }
-        List<TeamData> teamClones = new List<TeamData>();
-        foreach(TeamData team in teams)
-        {
-            teamClones.Add(team); // Still want to keep the same regerence to the teamManager team
-        }
-        infraClone.SetData(networkClones, nodeClones, teamClones);
+        infraClone.SetData(networkClones, nodeClones);
         return infraClone;
     }
 

@@ -191,33 +191,15 @@ public class FileManager: MonoBehaviour
         Debug.Log($"Alerts successfully created from {filePath}");
         return returnAlerts;
     }
-    /// <summary>
-    /// Create list of all system nodes from JSON file
-    /// </summary>
-    /// <param name="_fileName">name of the file with the data</param>
-    /// <param name="_filePathExtension">name of the directory within the root directory</param>
-    /// <returns></returns>
-    public List<NodeData> CreateNodesFromJSON(string _fileName, string _filePathExtension)
-    {
-        // Log the filepath to the Debug
-        string filePath = rootFilePath + _filePathExtension + _fileName;
-        Debug.Log("...Loading New Node Data ...");
-
-        List<InfrastructureData> infras = CreateInfrasFromJSON(_fileName, _filePathExtension);
-        // create list of nodes from the Infra stored in the JSON 
-        List<NodeData> nodes = infras[0].AllNodes;
-
-        Debug.Log($"{nodes.Count} system nodes successfully loaded from {filePath}");
-        return nodes;
-    }
 
     /// <summary>
     /// Creates a list of all InfrastructureDatas passed by the Laforge Topology
     /// </summary>
     /// <param name="_fileName"></param>
     /// <param name="_filePathExtension"></param>
-    public List<InfrastructureData> CreateInfrasFromJSON(string _fileName, string _filePathExtension)
+    public List<GameObject> CreateInfrasFromJSON(string _fileName, string _filePathExtension)
     {
+        GameObject prefabInfras = GameManager.Instance.InfraPrefab;
         // Log the filepath to the Debug
         string filePath = rootFilePath + _filePathExtension + _fileName;
         Debug.Log("... Loading New Infrastructure Data ...");
@@ -234,12 +216,16 @@ public class FileManager: MonoBehaviour
         LaforgeShell shell = JsonUtility.FromJson<LaforgeShell>(JSONString);
         List<Infrastructure> infras = shell.data.environment.EnvironmentToBuild[0].buildToTeam;
 
-        // create rudimentary teams using the number of infrastructures and the team numbers assigned to them
-        List<InfrastructureData> returnInfras = new List<InfrastructureData>();
-        for(int i = 0; i < infras.Count; i++)
+        // Create List of Game Objects
+        List<GameObject> returnInfras = new List<GameObject>();
+        // Instantiate team and add data from the file to the game Object
+        for (int i = 0; i < infras.Count; i++)
         {
-            InfrastructureData teamInfra = HolderToData(infras[i], new List<TeamData>());
-            returnInfras.Add(teamInfra);
+            returnInfras.Add(Instantiate(prefabInfras));
+            InfrastructureData teamInfra = HolderToData(infras[i]);
+            returnInfras[i].GetComponent<InfrastructureData>().SetData(teamInfra.Networks, teamInfra.AllNodes);
+            returnInfras[i].GetComponent<InfrastructureData>().InstanceChildren();
+            returnInfras[i].SetActive(false);
         }
         Debug.Log($"Infrastructures successfully created from {filePath}");
         return returnInfras;
@@ -517,7 +503,7 @@ public class FileManager: MonoBehaviour
     {
         return new ProNetwork(_network.NetworkName, _network.Ip, new SubNetworkContainer(_network.VDI), DataToHolder(_network.Nodes));
     }
-    private InfrastructureData HolderToData(Infrastructure _infra, List<TeamData> _teams)
+    private InfrastructureData HolderToData(Infrastructure _infra)
     {
         InfrastructureData infra = new InfrastructureData();
         List<NodeData> nodes = new List<NodeData>();
@@ -529,7 +515,7 @@ public class FileManager: MonoBehaviour
                 nodes[nodes.Count - 1].Index = nodes.Count - 1;
             }
         }
-        infra.SetData(HolderToData(_infra.TeamToProvisionedNetwork), nodes, _teams);
+        infra.SetData(HolderToData(_infra.TeamToProvisionedNetwork), nodes);
         return infra;
     }
     private Infrastructure DataToHolder(InfrastructureData _infra, int _teamNum)
