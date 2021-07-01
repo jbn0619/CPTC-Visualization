@@ -104,15 +104,20 @@ public class NotificationButton: MonoBehaviour
             ChangeBannerSprite();
         }
     }
-    
+
     #endregion Properties
-    
+
+    private void OnMouseDown()
+    {
+        Debug.Log($"{name} Marker clicked!");
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         //affectedNodeID = -1;
         //affectedTeamID = -1;
-
+        
     }
 
     // Update is called once per frame
