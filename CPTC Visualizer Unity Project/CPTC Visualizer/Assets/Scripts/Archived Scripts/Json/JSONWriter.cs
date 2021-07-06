@@ -8,7 +8,10 @@ using Assets.Scripts;
 
 public enum CCDCAttackType { Implant, EscelatePrivledges, EditFirewall, DenialOfService, DataSwap }
 
-public enum CPTCEvents { NetworkScan, Discovery, Exploit, ShutDown, StartUp }
+public enum CPTCEvents { Valid_Account, Group_Policies, Password_Cracking, Vulnerability_Scanning, 
+    Command_and_Scripting_Interpreter, Network_Service_Scanning, Remote_Desktop_Protocol, SMB, SSH, WinRM, Create_Account, Scanning_IP_Blocks
+}
+// public enum CPTCEvents { NetworkScan, Discovery, Exploit, ShutDown, StartUp }
 
 public enum NodeTypes { Workstation, RootWorkstation, SecureDrop, SecuredServer, VDI, VPN, WWW, AD, Azure, CA, DNS, EDMS, Fileshare, HyperV, MailExchange }
 
