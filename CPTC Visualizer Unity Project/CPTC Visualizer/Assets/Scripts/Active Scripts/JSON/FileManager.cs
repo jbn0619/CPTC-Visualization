@@ -170,7 +170,7 @@ public class FileManager: MonoBehaviour
 
         foreach (string line in ReadFile(_fileName, _filePathExtension))
         {
-            JSONString += line.Replace("\\", "").Trim();
+            JSONString += line.Replace("\\", "").Replace(" ", "_").Trim();
         }
         Debug.Log($"Splunk Alerts File: {filePath} found. Reading Data ...");
 
