@@ -338,7 +338,7 @@ public class InfrastructureData: MonoBehaviour
             networkObjects[netCount].name = net.NetworkName;
 
             int scalar = (networks[netCount].Nodes.Count / 6);
-            networkObjects[netCount].transform.localScale = new Vector3(1 + scalar / 9f, 1 + scalar / 9f, 1f);
+            networkObjects[netCount].transform.localScale = new Vector3(1 + scalar / 2f, 1 + scalar / 2f, 1f);
             debug += $" - Network: {networkObjects[netCount].name} | Nodes Count: {networks[netCount].Nodes.Count}\n";
 
             // instantiate the nodes within this network 
@@ -420,7 +420,7 @@ public class InfrastructureData: MonoBehaviour
         Vector3 center = new Vector3(0,0,0);
         float degreeOffset = 2 * Mathf.PI / networkObjects.Count;
         float currentAngle = Mathf.PI / 4;
-        positioningRadius = (networkObjects.Count + 1) * 1.25f;
+        positioningRadius = (networkObjects.Count);
         foreach(GameObject network in networkObjects)
         {
             network.transform.position = new Vector3(Mathf.Cos(currentAngle) * positioningRadius * network.transform.localScale.x, Mathf.Sin(currentAngle) * positioningRadius * network.transform.localScale.x, 0);
