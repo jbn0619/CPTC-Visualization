@@ -63,8 +63,8 @@ public class NodeData: MonoBehaviour
 
     private float value;
     public List<Color> wedgeColors;
-    public Image wedgePrefab;
-    protected List<Image> wedges = new List<Image>();
+    public GameObject wedgePrefab;
+    protected List<GameObject> wedges = new List<GameObject>();
     protected Vector3 pos;
 
     protected TeamManager teamManager;
@@ -391,13 +391,14 @@ public class NodeData: MonoBehaviour
                 if (teams[j].TeamColor == teamManager.Teams[i].TeamColor)
                 {
                     value = 1f / (float)teams.Count;
-                    wedges.Add(Instantiate(wedgePrefab) as Image);
-                    wedges[wedges.Count - 1].transform.SetParent(transform, false);
-                    wedges[wedges.Count - 1].color = teams[j].TeamColor;
-                    wedges[wedges.Count - 1].fillAmount = value;
-                    wedges[wedges.Count - 1].transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, zRotation));
-                    wedges[wedges.Count - 1].name = $"{name} Wedge {j}";
-                    zRotation -= wedges[wedges.Count - 1].fillAmount * 360f;
+                    wedges.Add(Instantiate(wedgePrefab) as GameObject);
+                    Image component = wedges[wedges.Count - 1].GetComponent<Image>();
+                    component.transform.SetParent(transform, false);
+                    component.color = teams[j].TeamColor;
+                    component.fillAmount = value;
+                    component.transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, zRotation));
+                    component.name = $"{name} Wedge {j}";
+                    zRotation -= component.fillAmount * 360f;
                     test++;
                 }
             }

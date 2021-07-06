@@ -56,7 +56,7 @@ MonoBehaviour:
   nodeSprite: {fileID: 6725634808683633353}
   teams: []
   wedgeColors: []
-  wedgePrefab: {fileID: 1261249942711030587, guid: 783324dbf110c1b4cbed88f515d323a3, type: 3}
+  wedgePrefab: {fileID: 1261249942711030565, guid: 783324dbf110c1b4cbed88f515d323a3, type: 3}
   teamIDs: 
 --- !u!61 &1471689075112016534
 BoxCollider2D:
