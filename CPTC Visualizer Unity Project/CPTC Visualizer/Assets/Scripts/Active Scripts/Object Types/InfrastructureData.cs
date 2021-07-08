@@ -453,8 +453,8 @@ public class InfrastructureData: MonoBehaviour
             {
                 // Change the radius offset based off of how many rings there are in the network
                 // Smaller networks need to take up more of the network hence higher offset
-                float radiusOffset = 0.95f;
-                radiusOffset -= 0.2f * (nodes.Count / 6);
+                float radiusOffset = 1f;
+                radiusOffset -= 0.2125f * (nodes.Count / 6);
 
                 if ((i / 6) % 2 == 1)
                 {
