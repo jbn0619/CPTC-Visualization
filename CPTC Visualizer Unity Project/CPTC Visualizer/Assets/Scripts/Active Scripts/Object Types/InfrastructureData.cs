@@ -338,7 +338,18 @@ public class InfrastructureData: MonoBehaviour
             networkObjects[netCount].name = net.NetworkName;
 
             int scalar = (networks[netCount].Nodes.Count / 6);
-            networkObjects[netCount].transform.localScale = new Vector3(1 + scalar / 2f, 1 + scalar / 2f, 1f);
+
+            // Account for the networks that will have nodes placed into the center of them and shrink them a bit from the main scalar
+            if(networks[netCount].Nodes.Count % 6 == 1)
+            {
+                networkObjects[netCount].transform.localScale = new Vector3(1 + (scalar - 0.4f) / 2f, 1 + (scalar - 0.4f) / 2f, 1f);
+            }
+            // Otherwise, treat the networks scaling like normal
+            else
+            {
+                networkObjects[netCount].transform.localScale = new Vector3(1 + scalar / 2f, 1 + scalar / 2f, 1f);
+            }
+            
             debug += $" - Network: {networkObjects[netCount].name} | Nodes Count: {networks[netCount].Nodes.Count}\n";
 
             // instantiate the nodes within this network 
@@ -446,27 +457,55 @@ public class InfrastructureData: MonoBehaviour
             }
 
             
-
-            // Set basic positions of the nodes within the network
-            // Each ring is made up of up to 6 nodes, and makes a new ring when it exceeds that amount
-            for(int i = 0; i < nodes.Count; i++)
+            if(nodes.Count % 6 == 1)
             {
-                // Change the radius offset based off of how many rings there are in the network
-                // Smaller networks need to take up more of the network hence higher offset
-                float radiusOffset = 1f;
-                radiusOffset -= 0.2125f * (nodes.Count / 6);
+                // Set the first node to be the center of the network
+                nodes[0].transform.localPosition = new Vector3(0,0,0);
 
-                if ((i / 6) % 2 == 1)
+                // Set basic positions of the nodes within the network
+                // Each ring is made up of up to 6 nodes, and makes a new ring when it exceeds that amount
+                for(int i = 0; i < nodes.Count - 1; i++)
                 {
-                    // If the node is on an even ring of the network, offset it's rotational position by 1/2 radians
-                    nodes[i].transform.localPosition = new Vector3(Mathf.Cos(angleOffset * ((i % 6) + 0.5f)) * (i / 6 + 1) * radiusOffset, Mathf.Sin(angleOffset * ((i % 6) + 0.5f)) * (i / 6 + 1) * radiusOffset, 0);
+                    // Change the radius offset based off of how many rings there are in the network
+                    // Smaller networks need to take up more of the network hence higher offset
+                    float radiusOffset = 1f;
+                    radiusOffset -= 0.2125f * (nodes.Count / 6 - 1);
+
+                    if ((i / 6) % 2 == 1)
+                    {
+                        // If the node is on an even ring of the network, offset it's rotational position by 1/2 radians
+                        nodes[i+1].transform.localPosition = new Vector3(Mathf.Cos(angleOffset * ((i % 6) + 0.5f)) * (i / 6 + 1) * radiusOffset, Mathf.Sin(angleOffset * ((i % 6) + 0.5f)) * (i / 6 + 1) * radiusOffset, 0);
+                    }
+                    else
+                    {
+                        nodes[i+1].transform.localPosition = new Vector3(Mathf.Cos(angleOffset * (i % 6)) * (i / 6 + 1) * radiusOffset, Mathf.Sin(angleOffset * (i % 6)) * (i / 6 + 1) * radiusOffset, 0);
+                    }
                 }
-                else
+            }
+            // If there isn't a node to place in the center first, continue with the ring placement
+            else
+            {
+                // Set basic positions of the nodes within the network
+                // Each ring is made up of up to 6 nodes, and makes a new ring when it exceeds that amount
+                for(int i = 0; i < nodes.Count; i++)
                 {
-                    nodes[i].transform.localPosition = new Vector3(Mathf.Cos(angleOffset * (i % 6)) * (i / 6 + 1) * radiusOffset, Mathf.Sin(angleOffset * (i % 6)) * (i / 6 + 1) * radiusOffset, 0);
-                }
-                
-            }                     
+                    // Change the radius offset based off of how many rings there are in the network
+                    // Smaller networks need to take up more of the network hence higher offset
+                    float radiusOffset = 1f;
+                    radiusOffset -= 0.2125f * (nodes.Count / 6);
+
+                    if ((i / 6) % 2 == 1)
+                    {
+                        // If the node is on an even ring of the network, offset it's rotational position by 1/2 radians
+                        nodes[i].transform.localPosition = new Vector3(Mathf.Cos(angleOffset * ((i % 6) + 0.5f)) * (i / 6 + 1) * radiusOffset, Mathf.Sin(angleOffset * ((i % 6) + 0.5f)) * (i / 6 + 1) * radiusOffset, 0);
+                    }
+                    else
+                    {
+                        nodes[i].transform.localPosition = new Vector3(Mathf.Cos(angleOffset * (i % 6)) * (i / 6 + 1) * radiusOffset, Mathf.Sin(angleOffset * (i % 6)) * (i / 6 + 1) * radiusOffset, 0);
+                    }
+                    
+                }     
+            }             
         }
     }
     
