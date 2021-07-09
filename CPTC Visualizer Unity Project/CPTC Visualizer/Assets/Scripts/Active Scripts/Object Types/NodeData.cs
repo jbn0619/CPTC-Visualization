@@ -430,8 +430,6 @@ public class NodeData: MonoBehaviour
         */
     }
 
-
-
     /*Redundant code. We Won't be cloning nodes in the forseable future. - Ben 
      * /// <summary>
     /// Create a new NodeData with all of the data from this node
