@@ -38,6 +38,8 @@ public class FocusableObject : MonoBehaviour
     /// </summary>
     IEnumerator LerpCamera(Vector3 newPos, float zoomMin, float zoomMax)
     {
+        InputManager manager = GameObject.Find("InputManager").GetComponent<InputManager>();
+        manager.ZoomEnabled = false;
         float timeElapsed = 0.0f;
 
         // Make the duration inversely proportional to the distance between the camera and the node.
@@ -94,5 +96,6 @@ public class FocusableObject : MonoBehaviour
         // At the end, set the camera's position and camera zoom to the final position
         Camera.main.transform.position = newPos;
         Camera.main.orthographicSize = zoomMin;
+        manager.ZoomEnabled = true;
     }
 }
