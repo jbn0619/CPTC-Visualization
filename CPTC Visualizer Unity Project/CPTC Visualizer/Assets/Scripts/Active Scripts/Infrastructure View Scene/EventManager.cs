@@ -13,7 +13,6 @@ using System;
 public class EventManager: MonoBehaviour
 {
     #region Fields
-
     [SerializeField]
     int secondPeriodIndex;
     [SerializeField]

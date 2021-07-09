@@ -61,12 +61,14 @@ public class ControllerManager: MonoBehaviour
     /// Incoming data from splunk querry application
     /// </summary>
     [SerializeField]
-    private string splunkJSON_fileName = "test_FromSplunk.json";
+    private string splunkJSON_fileName;
+    [SerializeField]
+    private string splunkJSON_filePath;
 
     /// <summary>
     /// old data Laforge server data from the last pull
     /// </summary>
-    private List<GameObject> oldLaforgeInfras;
+    private List<InfrastructureData> oldLaforgeInfras;
     /// <summary>
     /// old splunk data from the last pull. 
     /// </summary>
@@ -154,14 +156,12 @@ public class ControllerManager: MonoBehaviour
     public void SendInfrastructureToScene()
     {
         // retrieve data from new file
-        List<GameObject> newLaforgeInfras = fileManager.CreateInfrasFromJSON(laforgeJSON_fileName, "Infrastructure\\Database\\");
+        List<InfrastructureData> newLaforgeInfras = fileManager.CreateInfrasFromJSON(laforgeJSON_fileName, "Infrastructure\\Database\\");
         // if the old data hasn't been pulled from the file yet, or the new data is different from the old data
         for (int i = 0; i < newLaforgeInfras.Count; i++)
         {
-            InfrastructureData newInfra = newLaforgeInfras[i].GetComponent<InfrastructureData>();
-            InfrastructureData oldInfra = oldLaforgeInfras[i].GetComponent<InfrastructureData>();
             // Check if updated infrastructure information needs to be loaded to Infra Scene
-            if (oldLaforgeInfras == null || newInfra != oldInfra)
+            if (oldLaforgeInfras == null || newLaforgeInfras[i] != oldLaforgeInfras[i])
             {
                 // Save the data within the Controller Scene as data to be compared against later
                 oldLaforgeInfras = newLaforgeInfras;
@@ -169,7 +169,7 @@ public class ControllerManager: MonoBehaviour
                 List<InfrastructureData> saveInfras = new List<InfrastructureData>();
                 for (int j = 0; j < newLaforgeInfras.Count; j++)
                 {
-                    saveInfras.Add(oldLaforgeInfras[j].GetComponent<InfrastructureData>());
+                    saveInfras.Add(oldLaforgeInfras[j]);
                 }
                 // pass the data along to the Infrastructue Scene's filepath
                 fileManager.SaveToJSON(infraFileName, saveInfras);
@@ -181,7 +181,7 @@ public class ControllerManager: MonoBehaviour
     /// </summary>
     public void SendAlertsToScene()
     {
-        List<AlertData> newSplunk = fileManager.CreateAlertsFromJSON(splunkJSON_fileName, "Alerts\\");
+        List<AlertData> newSplunk = fileManager.CreateAlertsFromJSON(splunkJSON_fileName, splunkJSON_filePath);
         // if the old data hasn't been pulled from the file yet, or the new data is different from the old data
         for (int i = 0; i < newSplunk.Count; i++)
         {

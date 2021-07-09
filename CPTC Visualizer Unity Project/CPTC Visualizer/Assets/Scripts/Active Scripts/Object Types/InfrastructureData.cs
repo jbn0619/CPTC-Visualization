@@ -22,9 +22,9 @@ public class InfrastructureData: MonoBehaviour
     /// List of all Nodes within the Simulation
     /// </summary>
     [SerializeField]
-    private List<NodeData> allNodes;
+    private List<NodeData> nodes;
     /// <summary>
-    /// List of all Teams within the Simulation
+    /// List of all Teams operating in the architecture
     /// </summary>
     [SerializeField]
     private List<TeamData> teams;
@@ -34,7 +34,7 @@ public class InfrastructureData: MonoBehaviour
     /// </summary>
     [Header("GameObject References")]
     [SerializeField]
-    private List<GameObject> allNodeObjects;
+    private List<GameObject> nodeObjects;
     /// <summary>
     /// List of all Network GameObjects in the Unity
     /// </summary>
@@ -90,7 +90,7 @@ public class InfrastructureData: MonoBehaviour
     {
         get
         {
-            return allNodes;
+            return nodes;
         }
     }
     /// <summary>
@@ -100,7 +100,7 @@ public class InfrastructureData: MonoBehaviour
     {
         get
         {
-            return allNodeObjects;
+            return nodeObjects;
         }
     }
 
@@ -201,7 +201,7 @@ public class InfrastructureData: MonoBehaviour
     /// <returns></returns>
     public GameObject FindNodeObjectByIP(string _searchIP)
     {
-        foreach(GameObject obj in this.allNodeObjects)
+        foreach(GameObject obj in this.nodeObjects)
         {
             if(obj.GetComponent<NodeData>().Ip == _searchIP)
             {
@@ -217,7 +217,7 @@ public class InfrastructureData: MonoBehaviour
     /// <returns>target Node�s Game Object</returns>
     public GameObject FindNodeObjectByID(int _searchID)
     {
-        foreach(GameObject obj in this.allNodeObjects)
+        foreach(GameObject obj in this.nodeObjects)
         {
             if(obj.GetComponent<NodeData>().Index == _searchID)
             {
@@ -234,7 +234,7 @@ public class InfrastructureData: MonoBehaviour
     /// <returns>Target NodeData from allNodes</returns>
     public NodeData FindNodeDataByID(int _searchID)
     {
-        foreach (NodeData data in this.allNodes)
+        foreach (NodeData data in this.nodes)
         {
             if (data.Index == _searchID)
             {
@@ -271,15 +271,15 @@ public class InfrastructureData: MonoBehaviour
         mat.SetPass(0);
         GL.Begin(GL.LINES);
         GL.Color(Color.white);
-        foreach(NodeData node in this.allNodes)
+        foreach(NodeData node in this.nodes)
         {
             foreach(int id in node.Connections)
             {
                 if(!(connectionsById.Contains(new Vector2(node.Index, id)) || connectionsById.Contains(new Vector2(id, node.Index))))
                 {
                     connectionsById.Add(new Vector2(id,node.Index));
-                    GL.Vertex(allNodeObjects[node.Index].transform.position);
-                    GL.Vertex(allNodeObjects[id].transform.position);
+                    GL.Vertex(nodeObjects[node.Index].transform.position);
+                    GL.Vertex(nodeObjects[id].transform.position);
                 }
             }
         }
@@ -295,7 +295,7 @@ public class InfrastructureData: MonoBehaviour
     public void SetData(List<NetworkData> _networks, List<NodeData> _nodes)
     {
         this.networks = _networks;
-        this.allNodes = _nodes;
+        this.nodes = _nodes;
     }
     public InfrastructureData DeepCopy()
     {
@@ -346,9 +346,9 @@ public class InfrastructureData: MonoBehaviour
             {
                 // Handle GameObject References
                 // Instantiate using the InfrastructureData's tranform as a base. 
-                allNodeObjects.Add(Instantiate(GameManager.Instance.NodePrefab, transform.position, transform.rotation));
+                nodeObjects.Add(Instantiate(GameManager.Instance.NodePrefab, transform.position, transform.rotation));
                 // set the new node to be a child of the correct network
-                allNodeObjects[nodeCount].transform.parent = networkObjects[netCount].transform;
+                nodeObjects[nodeCount].transform.parent = networkObjects[netCount].transform;
                 
                 // Create nodes to be in the background of the nodes, for the sake of visibility with the background
                 /* Deprecated, but don't want to remove in case it is needed again.
@@ -360,12 +360,12 @@ public class InfrastructureData: MonoBehaviour
 
                 // Handle Data References
                 // set the new game object's NodeData component's variables to the values from the data passed by the JSON file
-                allNodeObjects[nodeCount].GetComponent<NodeData>().SetData(node.Ip, node.HostName, node.HostDescription, node.OS);
-                allNodeObjects[nodeCount].GetComponent<NodeData>().InstanceData(nodeCount);
+                nodeObjects[nodeCount].GetComponent<NodeData>().SetData(node.Ip, node.HostName, node.HostDescription, node.OS);
+                nodeObjects[nodeCount].GetComponent<NodeData>().InstanceData(nodeCount);
                 // add the new node gameObject to the network's list of its node objects
-                networkObjects[netCount].GetComponent<NetworkData>().AddNodeObject(allNodeObjects[nodeCount]);
+                networkObjects[netCount].GetComponent<NetworkData>().AddNodeObject(nodeObjects[nodeCount]);
 
-                debug += $" -- {allNodeObjects[nodeCount].name}\n";
+                debug += $" -- {nodeObjects[nodeCount].name}\n";
                 nodeCount++;
             }
             
@@ -373,10 +373,10 @@ public class InfrastructureData: MonoBehaviour
         }
 
 
-        for (int i = 0; i < allNodes.Count; i++)
+        for (int i = 0; i < nodes.Count; i++)
         {
             // set infrastructure references to the node scripts connected to the game Objects
-            allNodes[i] = allNodeObjects[i].GetComponent<NodeData>();
+            nodes[i] = nodeObjects[i].GetComponent<NodeData>();
         }
         for(int i = 0; i < networks.Count; i++)
         {

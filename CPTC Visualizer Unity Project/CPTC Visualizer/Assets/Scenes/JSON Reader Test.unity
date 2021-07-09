@@ -422,7 +422,7 @@ GameObject:
   - component: {fileID: 832347106}
   - component: {fileID: 832347105}
   m_Layer: 5
-  m_Name: Image
+  m_Name: DataReadIntervalBacking
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -796,6 +796,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8135173377d9da744954110d774b2745, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  filePath: 
   secondPeriodIndex: 0
   mainCanvas: {fileID: 1917393983}
   displayedEvents: []
@@ -1466,7 +1467,7 @@ GameObject:
   - component: {fileID: 1987100158}
   - component: {fileID: 1987100157}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: Node Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
