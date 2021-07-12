@@ -94,7 +94,7 @@ public class EventManager: MonoBehaviour
         // grab a reference to the mainInfrastructure
         InfrastructureData mainInfra = GameManager.Instance.MainInfra;
         // pull a list of new alerts from the controler's alerts file
-        List<AlertData> newAlerts = fileManager.CreateAlertsFromJSON(_alertsFile, "Alerts\\");
+        List<AlertData> newAlerts = fileManager.CreateAlertsFromJSON(_alertsFile, "C:\\ProgramData\\CSEC Visualizer\\Alerts\\");
         // add the competition delay to new Events
         foreach(AlertData alert in newAlerts)
         {
