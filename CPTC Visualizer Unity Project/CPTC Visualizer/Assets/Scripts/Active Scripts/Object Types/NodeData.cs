@@ -349,8 +349,23 @@ public class NodeData: MonoBehaviour
     /// </summary>
     private void ChangeSprite()
     {
+        int spriteIndex;
+        switch ((int)os)
+        {
+            case 2:
+            case 3:
+            case 4:
+            case 5:
+                spriteIndex = 1;
+                break;
+            case 0:
+            case 1:
+            default:
+                spriteIndex = 0;
+                break;
+        }
         //Sprite newSprite = GeneralResources.Instance.NodeSprites[(int)type];
-        Sprite newSprite = GameManager.Instance.OsSprites[(int)os];
+        Sprite newSprite = GameManager.Instance.OsSprites[spriteIndex];
         nodeSprite.sprite = newSprite;
         Vector3 temp = nodeSprite.transform.localScale;
         temp.x *= .15f;
