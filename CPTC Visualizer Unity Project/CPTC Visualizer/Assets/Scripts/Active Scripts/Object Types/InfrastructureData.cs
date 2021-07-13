@@ -342,12 +342,12 @@ public class InfrastructureData: MonoBehaviour
             // Account for the networks that will have nodes placed into the center of them and shrink them a bit from the main scalar
             if(networks[netCount].Nodes.Count % 6 == 1)
             {
-                networkObjects[netCount].transform.localScale = new Vector3(1 + (scalar - 0.4f) / 2f, 1 + (scalar - 0.4f) / 2f, 1f);
+                networkObjects[netCount].transform.localScale = new Vector3(1 + (scalar - 0.4f) / 1.75f, 1 + (scalar - 0.4f) / 1.75f, 1f);
             }
             // Otherwise, treat the networks scaling like normal
             else
             {
-                networkObjects[netCount].transform.localScale = new Vector3(1 + scalar / 2f, 1 + scalar / 2f, 1f);
+                networkObjects[netCount].transform.localScale = new Vector3(1 + scalar / 1.75f, 1 + scalar / 1.75f, 1f);
             }
             
             debug += $" - Network: {networkObjects[netCount].name} | Nodes Count: {networks[netCount].Nodes.Count}\n";
@@ -431,7 +431,7 @@ public class InfrastructureData: MonoBehaviour
         Vector3 center = new Vector3(0,0,0);
         float degreeOffset = 2 * Mathf.PI / networkObjects.Count;
         float currentAngle = Mathf.PI / 4;
-        positioningRadius = (networkObjects.Count);
+        positioningRadius = (networkObjects.Count - 1.5f);
         foreach(GameObject network in networkObjects)
         {
             network.transform.position = new Vector3(Mathf.Cos(currentAngle) * positioningRadius * network.transform.localScale.x, Mathf.Sin(currentAngle) * positioningRadius * network.transform.localScale.x, 0);
@@ -457,6 +457,7 @@ public class InfrastructureData: MonoBehaviour
             }
 
             
+            // If there is the capability to have a central node, place it there first and continue with the placement
             if(nodes.Count % 6 == 1)
             {
                 // Set the first node to be the center of the network
@@ -469,7 +470,7 @@ public class InfrastructureData: MonoBehaviour
                     // Change the radius offset based off of how many rings there are in the network
                     // Smaller networks need to take up more of the network hence higher offset
                     float radiusOffset = 1f;
-                    radiusOffset -= 0.2125f * (nodes.Count / 6 - 1);
+                    radiusOffset -= 0.35f * (nodes.Count / 6 - 1);
 
                     if ((i / 6) % 2 == 1)
                     {
