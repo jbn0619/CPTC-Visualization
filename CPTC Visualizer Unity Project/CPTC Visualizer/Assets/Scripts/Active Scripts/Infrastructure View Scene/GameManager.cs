@@ -13,7 +13,15 @@ using UnityEngine.UI;
 public class GameManager: Singleton<GameManager>
 {
     #region Fields
+    [Header("Data from Controller Scene")]
+    [SerializeField]
+    private string infraFile = "test_controllerToInfraScene.json";
+    [SerializeField]
+    private string alertsFile = "test_controllerToAlertsScene.json";
+    [SerializeField]
+    private TestDataWriter dataWriter;
 
+    [Header("Essential GameObjects")]
     [SerializeField]
     private Camera mainCam;
     [SerializeField]
@@ -25,7 +33,9 @@ public class GameManager: Singleton<GameManager>
     [SerializeField]
     private GameObject prefabInfrastructure;
     [SerializeField]
-    private string infraFile;
+    private List<Sprite> osSprites;
+    [SerializeField]
+    private Button toControllerButton;
 
     [Header("Manager GameObjects")]
     [SerializeField]
@@ -40,25 +50,30 @@ public class GameManager: Singleton<GameManager>
     private VideoManager videoManager;
     [SerializeField]
     private FileManager fileManager;
-    
-    public GameObject notificationControls;
+    [SerializeField]
+    private GameObject mainCanvas;
+    [SerializeField]
+    private Canvas fluidCanvas;
+    [SerializeField]
+    private GameObject notificationControls;
 
-    [Header("Time fields")]
-
+    [Header("Timer Fields")]
     [SerializeField]
     private System.DateTime startOfComp;
     [SerializeField]
     private System.DateTime startOfVisualizer;
     [SerializeField]
     private double timeDelay;
-
     [SerializeField]
     private float stateCheckTime;
     private float stateCheckCount;
-
     [SerializeField]
     private float attackCheckTime;
     private float attackCheckCount;
+    [SerializeField]
+    public float loadDataFromControllerTime;
+    [SerializeField]
+    private float loadDataFromControllerCount;
 
     private bool readDateStarted;
     private bool compStarted;
@@ -72,7 +87,6 @@ public class GameManager: Singleton<GameManager>
     private float dataReadInterval;
     [SerializeField]
     private Text dataText;
-    
     #endregion Fields
     
     #region Manager Properties
@@ -131,7 +145,8 @@ public class GameManager: Singleton<GameManager>
             return mainInfra;
         }
     }
-
+    #endregion Manager Properties
+    #region General Properties
     /// <summary>
     /// A prefab Game Object used to create Node objects
     /// </summary>
@@ -164,9 +179,28 @@ public class GameManager: Singleton<GameManager>
             return this.prefabInfrastructure;
         }
     }
-
-    #endregion Manager Properties
-
+    /// <summary>
+    /// A list of all sprites used to show the different types of nodes
+    /// </summary>
+    public List<Sprite> OsSprites
+    {
+        get { return osSprites; }
+    }
+    /// <summary>
+    /// Gets a string for the name of the file used to load Alert data into the system
+    /// </summary>
+    public string AlertFileName
+    {
+        get { return alertsFile; }
+    }
+    /// <summary>
+    /// Gets a string for the name of the file used to laod Infrastructure data into the system
+    /// </summary>
+    public string InfraFileName
+    {
+        get { return infraFile; }
+    }
+    #endregion General Properties
     #region Competition Properties
 
     /// <summary>
@@ -201,19 +235,25 @@ public class GameManager: Singleton<GameManager>
 
     public DateTime StartOfVisualizer { get; set; }
 
-    public double TimeDelay { get; set; }
+    public double TimeDelay 
+    {
+        get { return timeDelay; }
+        set { timeDelay = value; }
+    }
 
     #endregion Competition Properties
 
     // Start is called before the first frame update
     void Start()
     {
+        toControllerButton.onClick.AddListener(delegate {  GoToControllerScene(); });
         mainCam = Camera.main;
         readDateStarted = false;
         compStarted = false;
         stateCheckCount = 0.0f;
         attackCheckCount = 0.0f;
         configUpdateCount = 0.0f;
+        loadDataFromControllerCount = 0.0f;
         configUpdateTime = 5;
 
         BuildInfrastructure();
@@ -222,7 +262,15 @@ public class GameManager: Singleton<GameManager>
     // Update is called once per frame
     void Update()
     {
-        // Check if we need to check for a config update
+        // Check if new alert files should be looked for
+        loadDataFromControllerCount += Time.deltaTime;
+        if(loadDataFromControllerCount >= loadDataFromControllerTime)
+        {
+            loadDataFromControllerCount = 0.0f;
+            eventManager.LoadAlerts(alertsFile, timeDelay);
+        }
+        
+        /*// Check if we need to check for a config update
         configUpdateCount += Time.deltaTime;
         if(configUpdateCount >= configUpdateTime)
         {
@@ -236,7 +284,6 @@ public class GameManager: Singleton<GameManager>
 
         // Check if we need to read node states.
         stateCheckCount += Time.deltaTime;
-
         if(readDateStarted)
         {
             // Update nodes
@@ -253,7 +300,7 @@ public class GameManager: Singleton<GameManager>
         {
             attackCheckCount = 0.0f;
             //eventManager.ReadEvent();
-        }
+        }*/
 
         if(Input.GetKeyDown(KeyCode.Pause))
         {
@@ -268,13 +315,6 @@ public class GameManager: Singleton<GameManager>
                 }
             }
         }
-        // Generates team names and colors
-        //if(Input.GetKeyDown(KeyCode.C))
-        //{
-        //    //teamManager.GenerateTeamNames();
-        //    //teamManager.ReadTeams();
-        //    //injectNotifManager.CreateTestInject();
-        //}
     }
 
     private void UpdateConfigFile()
@@ -289,24 +329,72 @@ public class GameManager: Singleton<GameManager>
 
         Debug.Log("Infrastructure Config file successfully updated.");
     }
+    /// <summary>
+    /// Method for the Scene transfer button to execute when it's pressed
+    /// </summary>
+    private void GoToControllerScene()
+    {
+        // Make new dummy event data
+        dataWriter.WriteAlertData();
+        // switch scenes to the Controller Scene
+        SceneManager.LoadScene(sceneName: "Controller");
+    }
 
-    private void BuildInfrastructure()
+    /// <summary>
+    /// Instance all Infrastructure Game Objects if they are not instanced, and assign their children's positions
+    /// </summary>
+    public void BuildInfrastructure()
     {
         if(mainInfra == null)
         {
-            // this is really wonky right now and I just want to get it working before I worry about making it function well. - BW
-            // make the object exist in the scene
+            // Instantiate an Infrastructure prefab for the mainInfra
             GameObject mainInfraObject = Instantiate(prefabInfrastructure);
-            // grab a ref to its infra data
-            this.mainInfra = mainInfraObject.GetComponent<InfrastructureData>();
-            // set the object's infra data to the data from the JSON file
-            InfrastructureData tempInfra = fileManager.CreateInfraFromJSON(infraFile, "Infrastructure\\Database\\");
-            mainInfra.SetData(tempInfra.Networks, tempInfra.AllNodes, tempInfra.Teams);
+            // set canvas as parent of the infrastructure
+            mainInfraObject.transform.SetParent(fluidCanvas.gameObject.transform, false);
+            mainInfraObject.name = "Main Infrastructure View";
+            // grab a ref to its prefabed infra data
+            mainInfra = mainInfraObject.GetComponent<InfrastructureData>();
+
+
+            // Instance an empty to hold all of the team Infrastructure objects in the Heirarchy
+            GameObject emptyHolder = new GameObject();
+            emptyHolder.transform.SetParent(fluidCanvas.gameObject.transform, false);
+            emptyHolder.name = "Team Infrastructures";
+
+            // Instance the team Infrastructure Objects childed to the empty object and instance all of their children within them
+            List<GameObject> infraObjects = fileManager.CreateInfrasFromJSON(infraFile, "Infrastructure\\Database\\");
+            List<int> teamIds = new List<int>();
+            for(int i = 0; i < infraObjects.Count; i++)
+            {
+                infraObjects[i].transform.SetParent(emptyHolder.transform);
+                teamIds.Add(i);
+            }
+            // Instance the Team Objects and pass their data to them
+            teamManager.InstanceTeams(teamIds, infraObjects);
+
+
+            //Set Data for the MainInfra Object 
+            InfrastructureData tempInfra = infraObjects[0].GetComponent<InfrastructureData>().DeepCopy();
+            mainInfra.SetData(tempInfra.Networks, tempInfra.AllNodes);
             // instantiate the child objects with the data
             mainInfra.InstanceChildren();
         }
+
+        // Set positions of main infrastructure
         mainInfra.PositionNetworks();
+        mainInfra.PositionNodes();
         mainInfra.DrawAllConnections();
+
+        // set positions of all team infrastructures
+        foreach(GameObject team in teamManager.TeamObjects)
+        {
+            team.GetComponent<TeamData>().Infra.PositionNetworks();
+            team.GetComponent<TeamData>().Infra.PositionNodes();
+            team.GetComponent<TeamData>().Infra.DrawAllConnections();
+        }
+        // Temporary Positioning until main infra works
+        // mainInfra.gameObject.SetActive(false);
+        // teamManager.TeamObjects[0].GetComponent<TeamData>().InfraObject.SetActive(true);
     }
 
     /*

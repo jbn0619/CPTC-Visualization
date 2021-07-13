@@ -8,7 +8,14 @@ using Assets.Scripts;
 
 public enum CCDCAttackType { Implant, EscelatePrivledges, EditFirewall, DenialOfService, DataSwap }
 
+public enum CPTCEvents { Valid_Account, Group_Policies, Password_Cracking, Vulnerability_Scanning, 
+    Command_and_Scripting_Interpreter, Network_Service_Scanning, Remote_Desktop_Protocol, SMB, SSH, WinRM, Create_Account, Scanning_IP_Blocks
+}
+// public enum CPTCEvents { NetworkScan, Discovery, Exploit, ShutDown, StartUp }
+
 public enum NodeTypes { Workstation, RootWorkstation, SecureDrop, SecuredServer, VDI, VPN, WWW, AD, Azure, CA, DNS, EDMS, Fileshare, HyperV, MailExchange }
+
+public enum OperatingSystems { w2k16, w2k12, ubuntu18, ubuntu20, cptckali, kali }
 
 public enum NodeState { Off, On, NotWorking}
 
@@ -437,7 +444,9 @@ public class JSONWriter: MonoBehaviour
         return newInfra;
     }
     */
-    /// <summary>
+    
+    /* This is more fitting within the function of FileManager, but is also being used within the forseable future.
+     * /// <summary>
     /// Saves any generated data to a Json file.
     /// </summary>
     private void SaveToJson(CPTCData data)
@@ -462,6 +471,7 @@ public class JSONWriter: MonoBehaviour
             Debug.Log(e.Message);
         }
     }
+    */
 
     #region UI Methods
 

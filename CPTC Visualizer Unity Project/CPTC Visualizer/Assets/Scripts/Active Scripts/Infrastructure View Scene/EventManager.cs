@@ -7,6 +7,7 @@ using System;
 
 /// <summary>
 /// Author: Justin Neft
+///     Ben Wetzel - Summer 2021
 /// Function: Reads events from a JSON file, then changes the corresponding infrastructures accordingly.
 /// </summary>
 public class EventManager: MonoBehaviour
@@ -16,26 +17,43 @@ public class EventManager: MonoBehaviour
     [SerializeField]
     int secondPeriodIndex;
     [SerializeField]
-    Canvas notificationCanvas;
-
-    private List<UpdateDataPacket> events;
-
+    Canvas mainCanvas;
+    // [SerializeField]
+    // private List<UpdateDataPacket> events;
+    /// <summary>
+    /// All alerts loaded from the file.
+    /// </summary>
     [SerializeField]
-    private double attackDelay;
+    private List<AlertData> loadedEvents;
+    /// <summary>
+    /// Alerts selected by the AI or the Production team to be displayed by the Infrastructure Scene
+    /// </summary>
+    [SerializeField]
+    private List<AlertData> selectedEvents;
+    /// <summary>
+    /// List of buttons which are currently displaying an alert to the stream
+    /// </summary>
+    [SerializeField]
+    private List<NotificationButton> displayedEvents;
 
     [Header("Game Object Prefabs")]
     [SerializeField]
-    private GameObject bannerGO;
+    private GameObject bannerPrefab;
     [SerializeField]
-    private NotificationButton markerGO;
+    private NotificationButton markerPrefab;
+
+    [Header("Manager References")]
     [SerializeField]
     private FileManager fileManager;
+    [SerializeField]
+    private TeamManager teamManager;
 
     #endregion Fields
 
     #region Properties
 
-    /// <summary>
+    /*Delay Time is tracked by the game manager. cut down to one variable
+     * /// <summary>
     /// Gets or sets the delay given to attacks' times.
     /// </summary>
     public double AttackDelay
@@ -48,26 +66,119 @@ public class EventManager: MonoBehaviour
         {
             attackDelay = value;
         }
-    }
+    }*/
 
     #endregion Properties
 
     // Start is called before the first frame update
     void Start()
     {
-        events = new List<UpdateDataPacket>();
+        // events = new List<UpdateDataPacket>();
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.F))
-        {
-            LoadEventsFromJSON();
-        }
+        // display selected alerts every loop of a timer during AI runtime
+        // display selected alerts every input from production team - Using Config files
     }
 
+    #region Alert Methods
     /// <summary>
+    /// Look for alerts file from Controller scene and load them into the system if they are not already loaded
+    /// </summary>
+    /// <param name="_alertsFile">Name of the file Alerts are stored in</param>
+    /// <param name="_delay">delay in minutes the Alerts' DateTime is to be shifted forward</param>
+    public void LoadAlerts(string _alertsFile, double _delay)
+    {
+        // grab a reference to the mainInfrastructure
+        InfrastructureData mainInfra = GameManager.Instance.MainInfra;
+        // pull a list of new alerts from the controler's alerts file
+        List<AlertData> newAlerts = fileManager.CreateAlertsFromJSON(_alertsFile, "Alerts\\");
+        // add the competition delay to new Events
+        foreach(AlertData alert in newAlerts)
+        {
+            alert.TimeStamp = alert.TimeStamp.AddMinutes(_delay);
+        }
+
+        if (loadedEvents == null) 
+        {
+            loadedEvents = new List<AlertData>();
+        }
+
+        // check if new alerts should be loaded into the system
+        if( loadedEvents.Count <= 0 || // have alerts not been loaded in yet this runtime? , or 
+            newAlerts[newAlerts.Count - 1].TimeStamp != loadedEvents[loadedEvents.Count - 1].TimeStamp)// are the timestamps of the last alerts in the list of loaded alerts and the list of new alerts the same? (So as not to duplicate alerts which have already been loaded into the system)
+        {
+            // for each alert to be loaded in ...
+            for (int i = 0; i < newAlerts.Count; i++)
+            {
+                // set a reference to the version of the node within the main architecture
+                newAlerts[i].MainNode = mainInfra.FindNodeObjectByIP(newAlerts[i].NodeIP).GetComponent<NodeData>();
+                // add the team's ID number to the node's list of team ID numbers
+                newAlerts[i].MainNode.TeamIDs.Add(newAlerts[i].TeamID);
+                // add the team to the node's list of teams 
+                newAlerts[i].MainNode.Teams.Add(teamManager.Teams[newAlerts[i].TeamID]);
+
+                // set the alert's team to a reference of that team in the teamManager
+                newAlerts[i].Team = teamManager.Teams[newAlerts[i].TeamID];
+                // add the alert to the list of alerts its team is tracking
+                newAlerts[i].Team.Alerts.Add(newAlerts[i]);
+                // add the node to the team's list of current nodes
+                newAlerts[i].Team.NodeIPs.Add(newAlerts[i].NodeIP);
+
+                // set a reference to the version of the node within the team's architecture
+                newAlerts[i].TeamNode = newAlerts[i].Team.Infra.FindNodeObjectByIP(newAlerts[i].NodeIP).GetComponent<NodeData>();
+                // add the team's ID number to the node's list of team ID numbers
+                newAlerts[i].TeamNode.TeamIDs.Add(newAlerts[i].TeamID);
+                // add a reference to the team in the version of the node within the team's infrastructure
+                newAlerts[i].TeamNode.Teams.Add(newAlerts[i].Team);
+
+                // add the new alert to the list of alerts loaded into the system
+                loadedEvents.Add(newAlerts[i]);
+            }
+            Debug.Log($"New Events Loaded from {_alertsFile}");
+            DisplaySelectedAlerts(); // Move later once manual controls are set up between controller and infra scenes
+        }
+    }
+    public void LoadSelectedAlerts()
+    {
+        // move alerts from loaded list to display based on if the AI or Human Operators indicated to do so, depending on if the stream is in off-ari mode or on-air mode
+    }
+    /// <summary>
+    /// Display alert notifications chosen by Production team (on-air time) or AI (off-air time) at their nodes
+    /// </summary>
+    public void DisplaySelectedAlerts()
+    {
+        // for now, just set all alerts to be selected. In the future this would pull from the AI or the Human's selections
+        selectedEvents = loadedEvents;
+        // take list of Alerts and create a notification for each of them. 
+        foreach(AlertData alert in selectedEvents)
+        {
+            // instance a new notification button
+            displayedEvents.Add(Instantiate(markerPrefab, transform));
+            // make a simplified reference to the notification component of the instanced object
+            NotificationButton notif = displayedEvents[displayedEvents.Count - 1].GetComponent<NotificationButton>();
+            notif.Team = alert.Team;
+            displayedEvents[displayedEvents.Count - 1].GetComponent<SpriteRenderer>().color = alert.Team.TeamColor;
+            notif.Node = alert.MainNode;
+            // display the node's updated pie chart
+            notif.Node.SplitSprite();
+            // add the button to its team's list of buttons
+            alert.Team.NotifMarkers.Add(notif);
+            // set the notification's name
+            notif.name = $"{alert.Team.name} at {alert.MainNode.name}";
+            // add this alert to the notification button
+            notif.Alert = alert;
+            // Set the position of the notification to be the position of the node.
+            notif.gameObject.transform.position = notif.Node.gameObject.transform.position;
+        }
+    }
+    #endregion Alert Methods
+
+    /* Used old Event system. Outdated data structures
+     * /// <summary>
     /// Loads the events from events.json (if it exists), then deletes the file.
     /// </summary>
     public void LoadEventsFromJSON()
@@ -132,7 +243,7 @@ public class EventManager: MonoBehaviour
     public void StartUpNode(int _nodeID)
     {
         GameManager.Instance.MainInfra.FindNodeDataByID(_nodeID).NodeSprite.color = Color.cyan;
-    }
+    }*/
 
     // DEPRECATED METHODS
     /*

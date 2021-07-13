@@ -30,10 +30,10 @@ public class NodeData: MonoBehaviour
     [SerializeField]
     protected string hostDescription;
     /// <summary>
-    /// Type of Operating System the node's system uses
+    /// Store enumeration of the node's host Operating System
     /// </summary>
     [SerializeField]
-    protected string os;
+    protected OperatingSystems os;
     /// <summary>
     /// index of this node within Infra.AllNodes
     /// </summary>
@@ -43,7 +43,7 @@ public class NodeData: MonoBehaviour
     /// A list of Infra.AllNodes indecies for adjacent Nodes
     /// </summary>
     [SerializeField]
-    protected List<int> connections; 
+    protected List<int> connections;
     /// <summary>
     /// Linerenderers used to draw connections between adjacent Nodes
     /// </summary>
@@ -60,11 +60,17 @@ public class NodeData: MonoBehaviour
     /// </summary>
     [SerializeField]
     protected List<TeamData> teams;
-    public List<float> values;
+
+    private float value;
     public List<Color> wedgeColors;
-    public Image wedgePrefab;
+    public GameObject wedgePrefab;
+    protected List<GameObject> wedges = new List<GameObject>();
+    protected Vector3 pos;
+
+    protected TeamManager teamManager;
+
     /// <summary>
-    /// A list of ID numbers for teams currently accessing this node
+    /// A list of Infrastructure.teams indexes for teams currently accessing this node
     /// </summary>
     [SerializeField]
     protected List<int> teamIDs;
@@ -136,7 +142,7 @@ public class NodeData: MonoBehaviour
     /// <summary>
     /// Gets this node's Operating System
     /// </summary>
-    public string OS
+    public OperatingSystems OS
     {
         get { return this.os; }
     }
@@ -282,13 +288,15 @@ public class NodeData: MonoBehaviour
     void Start()
     {
         nodeSprite = this.GetComponent<SpriteRenderer>();
+        teamManager = GameManager.Instance.TeamManager;
+        pos = Camera.main.WorldToScreenPoint(this.transform.position);
         SplitSprite();
     }
 
     // Update is called once per frame
     void Update()
     {
-        //SplitSprite();
+
     }
 
     /// <summary>
@@ -303,7 +311,7 @@ public class NodeData: MonoBehaviour
     /// <param name="_state"> tracks what state the node is currently experiencing</param>
     /// <param name="_connections"> tracks the interger IDs of adjecent Nodes</param>
     /// <param name="_teamIDs">list of all teams accessing this node</param>
-    public void SetData(string _ip, string _hostname, string _hostDescription, string _os)
+    public void SetData(string _ip, string _hostname, string _hostDescription, OperatingSystems _os)
     {
         this.ip             = _ip;
         this.hostName = _hostname;
@@ -315,6 +323,15 @@ public class NodeData: MonoBehaviour
         // this.connections    = _connections;
         // this.teamIDs          = _teamIDs;
     }
+    public NodeData DeepCopy()
+    {
+        NodeData returnNode = new NodeData();
+        string osInt = os.ToString();
+        OperatingSystems osCopy;
+        Enum.TryParse(osInt, out osCopy);
+        returnNode.SetData(String.Copy(ip), String.Copy(hostName), String.Copy(hostDescription), osCopy);
+        return returnNode;
+    }
 
     /// <summary>
     /// Use the data from the FileReader to add references to newly instanced GameObjects
@@ -324,10 +341,7 @@ public class NodeData: MonoBehaviour
     {
         name = hostName;
         index = _index;
-        foreach(int teamID in this.teamIDs)
-        {
-            this.teams.Add(GameManager.Instance.MainInfra.FindTeamByID(teamID));
-        }
+        ChangeSprite();
     }
 
     /// <summary>
@@ -336,9 +350,12 @@ public class NodeData: MonoBehaviour
     private void ChangeSprite()
     {
         //Sprite newSprite = GeneralResources.Instance.NodeSprites[(int)type];
-        Sprite newSprite = Resources.Load<Sprite>(type.ToString() + "_Icon");
+        Sprite newSprite = GameManager.Instance.OsSprites[(int)os];
         nodeSprite.sprite = newSprite;
-        nodeSprite.transform.localScale = new Vector3(.15f, .15f, 1);
+        Vector3 temp = nodeSprite.transform.localScale;
+        temp.x *= .15f;
+        temp.y *= .15f;
+        nodeSprite.transform.localScale = temp;
     } 
 
     /// <summary>
@@ -346,45 +363,75 @@ public class NodeData: MonoBehaviour
     /// </summary>
     public void SplitSprite()
     {
-        // Used to convert degrees to a decimal between 0 and 1
-        //float degree = 1 / 360;
-        // The segments for the different colors on a circle
-        //float segment = 360 / teamIDs.Count;
-
         float zRotation = 0f;
-        /*
-        // Loops through all the teams accessing the node and makes that many circle segments
-        for (int i = 0; i < teamIDs.Count; i++)
+        string debug = $"{name}.SplitString\n";
+        /// <summary>
+        /// Loops through all the teams accessing the node and makes that many circle segments
+        /// ** Will run if data is added to teams list **
+        /// </summary>
+
+        if (wedges.Count > 0)
         {
-            Image newWedge = Instantiate(wedgePrefab) as Image;
-            newWedge.transform.SetParent(transform, false);
-            newWedge.color = teams[i].TeamColor;
-            newWedge.fillAmount = segment * degree;
-            newWedge.transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, zRotation));
-            zRotation -= newWedge.fillAmount * 360f;
-        }*/
+            while (wedges.Count > 0)
+            {
+                Destroy(wedges[0]);
+                wedges.RemoveAt(0);
+            }
+            debug += $" - Old Wedges Removed\n";
+        }
+
+        int test = 0;
+
+        debug += " - All Teams - \n";
+        for (int i = 0; i < teamManager.Teams.Count; i++)
+        {
+            debug += $" -- team {i} : {teamManager.Teams[i].TeamName}\n";
+            for (int j = 0; j < teams.Count; j++)
+            {
+                if (teams[j].TeamColor == teamManager.Teams[i].TeamColor)
+                {
+                    value = 1f / (float)teams.Count;
+                    wedges.Add(Instantiate(wedgePrefab) as GameObject);
+                    Image component = wedges[wedges.Count - 1].GetComponent<Image>();
+                    component.transform.SetParent(transform, false);
+                    component.color = teams[j].TeamColor;
+                    component.fillAmount = value;
+                    component.transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, zRotation));
+                    component.name = $"{name} Wedge {j}";
+                    zRotation -= component.fillAmount * 360f;
+                    test++;
+                }
+            }
+            if (test >= teams.Count)
+            {
+                break;
+            }
+        }
+        Debug.Log(debug);
 
         /// <summary>
         /// Test data for above loop that takes data given in unity interface and converts that to a pie graph
         /// </summary>
-        float total = 0f;
+        /*
         zRotation = 0f;
+        float testValue = .25f; // for testing the sprite color
 
-        for (int i = 0; i < values.Count; i++)
-        {
-            total += values[i];
-        }
-
-        for (int i = 0; i < values.Count; i++)
+        for (int i = 0; i < wedgeColors.Count; i++)
         {
             Image newWedge = Instantiate(wedgePrefab) as Image;
             newWedge.transform.SetParent(transform, false);
             newWedge.color = wedgeColors[i];
-            newWedge.fillAmount = values[i] / total;
+            newWedge.fillAmount = testValue;
             newWedge.transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, zRotation));
+            newWedge.name = $"{this.name} Wedge {i}";
             zRotation -= newWedge.fillAmount * 360f;
+            //wedges.Add(newWedge);
         }
+        */
     }
+
+
+
     /*Redundant code. We Won't be cloning nodes in the forseable future. - Ben 
      * /// <summary>
     /// Create a new NodeData with all of the data from this node

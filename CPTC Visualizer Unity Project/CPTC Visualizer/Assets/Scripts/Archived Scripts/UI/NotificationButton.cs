@@ -4,54 +4,72 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public enum NotificationType { Banner, Marker}
-
+/// <summary>
+/// Author: Unknown
+///     Ben Wetzel - Summer 2021
+/// Purpose: Display prioritized alert data on the screne
+/// </summary>
 public class NotificationButton: MonoBehaviour
 {
     #region Fields
-
+    [Header("Tracked Fields")]
     [SerializeField]
     private NotificationType notifType;
+    [SerializeField]
+    private TeamData team;
+    [SerializeField]
+    private NodeData node;
+    [SerializeField]
+    private AlertData alert;
 
-    private int affectedNodeID;
-    private int affectedTeamID;
+    // private int affectedNodeID;
+    // private int affectedTeamID;
     private CCDCAttackType attackType;
 
+    [Header("Object References")]
     [SerializeField]
-    private Image buttonSprite;
+    private SpriteRenderer buttonSprite;
     private Image bannerSprite;
     private GameObject correspondingBanner;
     
     #endregion Fields
     
     #region Properties
-
+    /// <summary>
+    /// Gets or Sets the alert this notification pertains to
+    /// </summary>
+    public AlertData Alert
+    {
+        get { return alert; }
+        set { alert = value; }
+    }
     /// <summary>
     /// Gets or sets what node this notification pertains-to.
     /// </summary>
-    public int AffectedNodeID
+    public NodeData Node
     {
         get
         {
-            return affectedNodeID;
+            return node;
         }
         set
         {
-            affectedNodeID = value;
+            node = value;
         }
     }
 
     /// <summary>
     /// Gets or sets what team this notification pertains-to.
     /// </summary>
-    public int AffectedTeamID
+    public TeamData Team
     {
         get
         {
-            return affectedTeamID;
+            return team;
         }
         set
         {
-            affectedTeamID = value;
+            team = value;
         }
     }
 
@@ -86,14 +104,23 @@ public class NotificationButton: MonoBehaviour
             ChangeBannerSprite();
         }
     }
-    
+
     #endregion Properties
-    
+
+    /// <summary>
+    /// Placeholder functionality for User clicking on the Notification marker
+    /// </summary>
+    private void OnMouseDown()
+    {
+        Debug.Log($"{name} Marker clicked!");
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         //affectedNodeID = -1;
         //affectedTeamID = -1;
+        
     }
 
     // Update is called once per frame
@@ -126,7 +153,7 @@ public class NotificationButton: MonoBehaviour
     public void OnMarkerClick()
     {
         // Clean-up this banner's reference from the ccdcTeam, then destroy it.
-        GameManager.Instance.TeamManager.CCDCTeams[affectedTeamID].NotifBanners.Remove(correspondingBanner);
+        team.NotifBanners.Remove(correspondingBanner);
         Destroy(correspondingBanner);
 
         // Play the video.
@@ -134,7 +161,7 @@ public class NotificationButton: MonoBehaviour
         vidMan.PlayAttackVideo((int)attackType);
 
         // Remove this marker's reference from the ccdcTeam, then destroy it.
-        GameManager.Instance.TeamManager.CCDCTeams[affectedTeamID].NotifMarkers.Remove(this);
+        team.NotifMarkers.Remove(this);
         Destroy(this.gameObject);
     }
 }

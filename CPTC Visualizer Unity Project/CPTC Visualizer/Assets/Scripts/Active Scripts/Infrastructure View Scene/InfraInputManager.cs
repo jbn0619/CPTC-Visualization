@@ -11,6 +11,8 @@ using UnityEngine.SceneManagement;
 public class InfraInputManager: InputManager
 {
     #region Fields
+    [SerializeField]
+    private EventManager eventManager;
 
     [Header("Infrastructure Inputs")]
     [SerializeField]
@@ -19,6 +21,8 @@ public class InfraInputManager: InputManager
     private KeyCode startProgram = KeyCode.Return;
     [SerializeField]
     private KeyCode startVisualizing = KeyCode.Space;
+    [SerializeField]
+    private KeyCode readAlerts = KeyCode.F;
 
     #endregion Fields
 
@@ -57,7 +61,7 @@ public class InfraInputManager: InputManager
             GameManager.Instance.StartOfComp = System.DateTime.Now;
             Debug.Log(System.DateTime.Now.ToString());
 
-            GameManager.Instance.TeamManager.ReadTeams();
+            // GameManager.Instance.TeamManager.ReadTeams(); // This occurs when Infrastructure is built initially and data is loaded in.
             //DataFormatter.Instance.HasStart = true;
             GameManager.Instance.CompStarted = true;
 
@@ -76,10 +80,15 @@ public class InfraInputManager: InputManager
             //TeamViewAI.Instance.BeginComp();
 
             // Create teams.
-            GameManager.Instance.TeamManager.CreateTeams();
+            // GameManager.Instance.TeamManager.CreateTeams(); // This is now called when the Infrastructure Data is instantiated.
 
             // Copy example infrastructure to all teams.
 
+        }
+        // Manually Read alerts from the JSON file
+        if (Input.GetKeyDown(readAlerts))
+        {
+            eventManager.LoadAlerts(GameManager.Instance.AlertFileName,GameManager.Instance.TimeDelay);
         }
     }
 }

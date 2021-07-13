@@ -6,6 +6,7 @@ using UnityEngine;
 
 /// <summary>
 /// Author: Justin Neft
+///     Ben Wetzel - Summer 2021
 /// Function: Generates phony event and team data to be used for testing. Can easily be slotted into any scene and used on its own.
 /// </summary>
 public class TestDataWriter: MonoBehaviour
@@ -15,7 +16,7 @@ public class TestDataWriter: MonoBehaviour
     [Header("Inputs")]
     [SerializeField]
     private KeyCode writeEvents = KeyCode.LeftBracket;
-    [SerializeField] KeyCode writeTeams = KeyCode.RightBracket;
+    [SerializeField] KeyCode writeAlerts = KeyCode.RightBracket;
     [SerializeField]
     private KeyCode writeInfra = KeyCode.I;
 
@@ -25,13 +26,24 @@ public class TestDataWriter: MonoBehaviour
     [Header("Event Data Params")]
     [SerializeField]
     private uint eventCount = 1;
-    
+
+    [Header("Alert Data Params")]
+    [SerializeField]
+    private string splunkFileName = "test_FromSplunk.json";
+    [SerializeField]
+    private string ControllerToScenesFileName = "test_controllerToInfraScene.json";
+    [SerializeField]
+    private int membersPerTeam = 6;
+    [SerializeField]
+    [Range(1,5)]
+    private int numberOfAlertTypes = 5;
+
     #endregion Fields
-    
+
     #region Properties
-    
+
     #endregion Properties
-    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -42,7 +54,7 @@ public class TestDataWriter: MonoBehaviour
     void Update()
     {
         if (Input.GetKeyDown(writeEvents)) WriteEventData();
-        if (Input.GetKeyDown(writeTeams)) WriteTeamData();
+        if (Input.GetKeyDown(writeAlerts)) WriteAlertData();
         if (Input.GetKeyDown(writeInfra)) WriteInfrastructure();
     }
 
@@ -94,14 +106,50 @@ public class TestDataWriter: MonoBehaviour
     }
 
     /// <summary>
-    /// Writes phony team data for use in testing.
+    /// Writes phony alert data for use in testing.
     /// </summary>
-    public void WriteTeamData()
+    public void WriteAlertData()
     {
-        // TODO STUFF HERE
+        if(GameManager.Instance.MainInfra != null)
+        {
+            InfrastructureData infra = GameManager.Instance.MainInfra;
+            int nodeCount = infra.AllNodes.Count - 1;
+            List<AlertData> alerts = new List<AlertData>();
+
+            // store a list of all nodes the team has not visited this round
+            List<NodeData> unvisitedNodes = new List<NodeData>(infra.AllNodes);
+
+            // create an alert for every member of each team in the competition
+            foreach(TeamData team in infra.Teams)
+            {
+                // loop through for each member of the team ...
+                for(int i = 0; i < membersPerTeam; i++)
+                {
+                    // grab a random int to determine node this member is visiting
+                    int rand = (int)UnityEngine.Random.Range(0, nodeCount);
+                    // add the newly created alert data to the list for the file
+                    alerts.Add(new AlertData(
+                        (CPTCEvents)UnityEngine.Random.Range(0, numberOfAlertTypes),
+                        unvisitedNodes[rand].Ip,
+                        team.ID,
+                        DateTime.Now));
+                    // remove the node they visited from the list of available nodes to visit
+                    unvisitedNodes.RemoveAt(rand);
+                    nodeCount--;
+                }
+                // reset the list of available nodes to be visited
+                unvisitedNodes = new List<NodeData>(infra.AllNodes);
+                nodeCount = infra.AllNodes.Count - 1;
+            }
+            // TODO: make the alerts only activate in nodes the teams can accsess
+            // save an alert list to a new JSON file
+            fileManager.SaveToJSON(splunkFileName, alerts);
+            Debug.Log($"New Dummy Splunk Data Generated\n   Number Of Alert Types: {numberOfAlertTypes}\n   Number of Teams: {infra.Teams}");
+        }
     }
 
-    /// <summary>
+    /*This method is not called, and is more within the functions of FileReader
+     * /// <summary>
     /// Writes update data packets to a json format.
     /// </summary>
     /// <param name="fileName">The new file's name.</param>
@@ -130,5 +178,5 @@ public class TestDataWriter: MonoBehaviour
         {
             Debug.Log(e.Message);
         }
-    }
+    }*/
 }

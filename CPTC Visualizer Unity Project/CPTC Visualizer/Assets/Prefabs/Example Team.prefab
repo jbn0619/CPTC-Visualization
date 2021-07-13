@@ -43,7 +43,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 219d601b0fa4792439b76a7a9af61242, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 0
   teamName: 
-  teamColor: {r: 0, g: 0, b: 0, a: 0}
+  teamColor: {r: 0, g: 0, b: 0, a: 1}
   alerts: []
-  discoveredNodeIds: 
+  nodeIPs: []

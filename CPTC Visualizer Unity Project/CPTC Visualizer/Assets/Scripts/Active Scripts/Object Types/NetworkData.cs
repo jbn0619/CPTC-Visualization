@@ -209,6 +209,18 @@ public class NetworkData: MonoBehaviour
         this.vdi = _visibleToStart;
         // this.connections = _connections;
     }
+    public NetworkData DeepCopy()
+    {
+        NetworkData returnNet = new NetworkData();
+        List<NodeData> nodeCopies = new List<NodeData>();
+        foreach(NodeData node in nodes)
+        {
+            nodeCopies.Add(node.DeepCopy());
+        }
+        string vdiString = vdi.ToString();
+        returnNet.SetData(String.Copy(networkName),String.Copy(ip),nodeCopies, bool.Parse(vdiString));
+        return returnNet;
+    }
  
     /// <summary>
     /// Adds the node object to the network's list of node objects if the passed object has a NodeData with an hostname on the network's list
