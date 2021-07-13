@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public enum AttackType
@@ -22,6 +23,14 @@ public enum AttackType
 
 public interface IChainable 
 {
-    public AttackType Type { get; }
+    //public AttackType Type { get; }
+
+    public DateTime Timestamp { get; }
+
+    public string Location { get; }
+
+    public int Team { get; }
+
+    public string EventName { get; }
 
 }

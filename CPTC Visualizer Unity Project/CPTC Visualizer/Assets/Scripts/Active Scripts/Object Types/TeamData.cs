@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 /// <summary>
 /// Author: Justin Neft
 ///     Ben Wetzel - Summer 2021
+///     Robley Evans - Attack chains
 /// Function: Data container that is tied to a game object. Represents a competing team in the CPTC competition, and contains team-specific information as well as a copy of the infrastructure for them to modify.
 /// </summary>
 public class TeamData: MonoBehaviour
@@ -45,13 +47,19 @@ public class TeamData: MonoBehaviour
     /// </summary>
     protected InfrastructureData infra;
 
+    /// <summary>
+    /// List of attack chains that the teams have
+    /// </summary>
+    [SerializeField]
+    private List<Chain> attackChains;
+
     // Legacy Fields
     protected PriorityQueue queue;
     private List<UptimeChartData> uptimeCharts;
     private List<NotificationButton> notifMarkers;
     private List<GameObject> notifBanners;
 
-
+    private float checkTimer;
     #endregion Fields
 
     #region Properties
@@ -190,7 +198,8 @@ public class TeamData: MonoBehaviour
         uptimeCharts = new List<UptimeChartData>();
         notifBanners = new List<GameObject>();
         notifMarkers = new List<NotificationButton>();
-        
+        attackChains = new List<Chain>();
+        checkTimer = 300f;
     }
 
     // Start is called before the first frame update
@@ -198,10 +207,40 @@ public class TeamData: MonoBehaviour
     {
         
     }
+
+    public void SetupQueue()
+    {
+        queue = new PriorityQueue();
+    }
+
+    public void AddEvent(IChainable _event)
+    {
+        int count = attackChains.Count;
+        for (int i = 0; i < count; i++)
+        {
+            if (_event.Location == attackChains[i].Location)
+            {
+                attackChains[i].AddLink(_event);
+                return;
+            }
+        }
+
+        attackChains.Add(new Chain(_event));
+    }
+
     // Update is called once per frame
     void Update()
     {
-
+        checkTimer -= Time.deltaTime;
+        if (checkTimer <= 0)
+        {
+            checkTimer = 300f;
+            int count = attackChains.Count;
+            for (int i = 0; i < count; i++)
+            {
+                attackChains[i].CheckActive();
+            }
+        }
     }
     /// <summary>
     /// Transfer data to the Team Component of a team's game object
@@ -221,10 +260,4 @@ public class TeamData: MonoBehaviour
         alerts = new List<AlertData>();
         nodeIPs = new List<string>();
     }
-
-    public void SetupQueue()
-    {
-        queue = new PriorityQueue();
-    }
-
 }
