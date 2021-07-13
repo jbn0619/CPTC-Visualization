@@ -31,7 +31,7 @@ public class GameManager: Singleton<GameManager>
     [SerializeField]
     private GameObject prefabNetwork;
     [SerializeField]
-    private GameObject prefabInfrastructure;
+    private GameObject prefabInfra;
     [SerializeField]
     private List<Sprite> osSprites;
     [SerializeField]
@@ -176,7 +176,7 @@ public class GameManager: Singleton<GameManager>
     {
         get
         {
-            return this.prefabInfrastructure;
+            return this.prefabInfra;
         }
     }
     /// <summary>
@@ -317,7 +317,8 @@ public class GameManager: Singleton<GameManager>
         }
     }
 
-    private void UpdateConfigFile()
+    /*Moved to FileManager 
+     * private void UpdateConfigFile()
     {
         List<string> fileData = fileManager.ReadFile("Config_Infrastructure.txt", "Infrastructure\\");
 
@@ -328,7 +329,7 @@ public class GameManager: Singleton<GameManager>
         dataText.text = ("Data Read Interval : " + dataReadInterval);
 
         Debug.Log("Infrastructure Config file successfully updated.");
-    }
+    }*/
     /// <summary>
     /// Method for the Scene transfer button to execute when it's pressed
     /// </summary>
@@ -348,7 +349,7 @@ public class GameManager: Singleton<GameManager>
         if(mainInfra == null)
         {
             // Instantiate an Infrastructure prefab for the mainInfra
-            GameObject mainInfraObject = Instantiate(prefabInfrastructure);
+            GameObject mainInfraObject = Instantiate(prefabInfra);
             // set canvas as parent of the infrastructure
             mainInfraObject.transform.SetParent(fluidCanvas.gameObject.transform, false);
             mainInfraObject.name = "Main Infrastructure View";
@@ -362,19 +363,25 @@ public class GameManager: Singleton<GameManager>
             emptyHolder.name = "Team Infrastructures";
 
             // Instance the team Infrastructure Objects childed to the empty object and instance all of their children within them
-            List<GameObject> infraObjects = fileManager.CreateInfrasFromJSON(infraFile, "Infrastructure\\Database\\");
+            List<InfrastructureData> teamInfraData = fileManager.CreateInfrasFromJSON(infraFile, "Infrastructure\\Database\\");
+            List<GameObject> teamInfraObjects = new List<GameObject>();
             List<int> teamIds = new List<int>();
-            for(int i = 0; i < infraObjects.Count; i++)
+            for(int i = 0; i < teamInfraData.Count; i++)
             {
-                infraObjects[i].transform.SetParent(emptyHolder.transform);
+
+                teamInfraObjects.Add(Instantiate(prefabInfra));
+                teamInfraObjects[i].GetComponent<InfrastructureData>().SetData(teamInfraData[i].Networks, teamInfraData[i].AllNodes);
+                teamInfraObjects[i].GetComponent<InfrastructureData>().InstanceChildren();
+                teamInfraObjects[i].SetActive(false);
+                teamInfraObjects[i].transform.SetParent(emptyHolder.transform);
                 teamIds.Add(i);
             }
             // Instance the Team Objects and pass their data to them
-            teamManager.InstanceTeams(teamIds, infraObjects);
+            teamManager.InstanceTeams(teamIds, teamInfraObjects);
 
 
             //Set Data for the MainInfra Object 
-            InfrastructureData tempInfra = infraObjects[0].GetComponent<InfrastructureData>().DeepCopy();
+            InfrastructureData tempInfra = teamInfraObjects[0].GetComponent<InfrastructureData>().DeepCopy();
             mainInfra.SetData(tempInfra.Networks, tempInfra.AllNodes);
             // instantiate the child objects with the data
             mainInfra.InstanceChildren();

@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v3.1",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v3.1": {
+      "SplunkInterpreterProgram/1.0.0": {
+        "runtime": {
+          "SplunkInterpreterProgram.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "SplunkInterpreterProgram/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

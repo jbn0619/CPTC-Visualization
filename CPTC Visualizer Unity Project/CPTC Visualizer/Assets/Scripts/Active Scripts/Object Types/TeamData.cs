@@ -45,6 +45,7 @@ public class TeamData: MonoBehaviour
     /// <summary>
     /// Reference to the Infra object's InfrastructureData
     /// </summary>
+    [SerializeField]
     protected InfrastructureData infra;
 
     /// <summary>

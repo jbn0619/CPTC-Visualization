@@ -33,6 +33,7 @@ public class InputManager: MonoBehaviour
     private float zoomSensitivity = 1.0f/3.0f;
     [SerializeField]
     private float orthToLocalScale = 5f;
+    private bool zoomEnabled = true;
     /*
     [Header("Controller Inputs")]
     [SerializeField]
@@ -50,6 +51,18 @@ public class InputManager: MonoBehaviour
     #endregion Fields
 
     #region Properties
+
+    public bool ZoomEnabled
+    {
+        get
+        { 
+            return zoomEnabled;
+        }
+        set
+        { 
+            zoomEnabled = value;
+        }
+    }
 
     #endregion Properties
 
@@ -106,33 +119,36 @@ public class InputManager: MonoBehaviour
             mainCam.transform.position += new Vector3(newMoveSpeed, 0, 0);
         }
 
-        // On scroll down, zoom out if there is the room to
-        if(mainCam.orthographicSize < zoomMax-zoomSensitivity && Input.mouseScrollDelta.y < 0)
+        if(zoomEnabled)
         {
-            // Change the orthographic size of the camera
-            mainCam.orthographicSize += 1 * zoomSensitivity;
+            // On scroll down, zoom out if there is the room to
+            if(mainCam.orthographicSize < zoomMax-zoomSensitivity && Input.mouseScrollDelta.y < 0)
+            {
+                // Change the orthographic size of the camera
+                mainCam.orthographicSize += 1 * zoomSensitivity;
 
-            // Transform the camera to keep the background in a similar scale to the zoom
-            // 5 is the arbitrary conversion between orthographic scale and the local scale of the camera (Can be tinkered with to find a more exact rate)
-            Vector3 tempScale = mainCam.transform.localScale;
-            tempScale.x += zoomSensitivity / 5;
-            tempScale.y += zoomSensitivity / 5;
-            mainCam.transform.localScale = tempScale;
-        }
+                // Transform the camera to keep the background in a similar scale to the zoom
+                // 5 is the arbitrary conversion between orthographic scale and the local scale of the camera (Can be tinkered with to find a more exact rate)
+                Vector3 tempScale = mainCam.transform.localScale;
+                tempScale.x += zoomSensitivity / 5;
+                tempScale.y += zoomSensitivity / 5;
+                mainCam.transform.localScale = tempScale;
+            }
 
-        // On scroll up, zoom in as long as it doesn't go too small
-        if(mainCam.orthographicSize > zoomMin+zoomSensitivity && Input.mouseScrollDelta.y > 0)
-        {
-            // Change the orthographic size of the camera
-            mainCam.orthographicSize -= 1 * zoomSensitivity;
+            // On scroll up, zoom in as long as it doesn't go too small
+            if(mainCam.orthographicSize > zoomMin+zoomSensitivity && Input.mouseScrollDelta.y > 0)
+            {
+                // Change the orthographic size of the camera
+                mainCam.orthographicSize -= 1 * zoomSensitivity;
 
-            // Transform the camera to keep the background in a similar scale to the zoom
-            // OrthToLocalScale has yet to be balanced definitely, best number so far was 5
-            Vector3 tempScale = mainCam.transform.localScale;
-            tempScale.x -= zoomSensitivity / orthToLocalScale;
-            tempScale.y -= zoomSensitivity / orthToLocalScale;
-            mainCam.transform.localScale = tempScale;
-            
+                // Transform the camera to keep the background in a similar scale to the zoom
+                // OrthToLocalScale has yet to be balanced definitely, best number so far was 5
+                Vector3 tempScale = mainCam.transform.localScale;
+                tempScale.x -= zoomSensitivity / orthToLocalScale;
+                tempScale.y -= zoomSensitivity / orthToLocalScale;
+                mainCam.transform.localScale = tempScale;
+                
+            }
         }
     }
 }

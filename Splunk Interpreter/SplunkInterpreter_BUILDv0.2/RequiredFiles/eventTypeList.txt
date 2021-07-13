@@ -1,0 +1,12 @@
+ValidAccount
+GroupPolicies
+PasswordCracking
+VulnerabilityScanning
+CommandAndScriptingInterpreter
+NetworkServiceScanning
+RemoteDesktopProtocol
+SMB
+SSH
+WinRM
+CreateAccount
+ScanningIPBlocks

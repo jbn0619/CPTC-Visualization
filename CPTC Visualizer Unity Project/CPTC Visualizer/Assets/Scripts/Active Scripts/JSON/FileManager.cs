@@ -51,9 +51,7 @@ public class FileManager: MonoBehaviour
 
         if(Input.GetKeyDown(readFileKey))
         {
-            List<string> fileData = new List<string>();
-
-            fileData = ReadFile("Test File", "Test Folder\\");
+            List<string> fileData = ReadFile(rootFilePath + "Test Folder\\Test File");
 
             for(int i = 0; i < fileData.Count; i++)
             {
@@ -71,15 +69,14 @@ public class FileManager: MonoBehaviour
     /// <param name="_fileData"></param>
     /// <param name="_filePathExtension"></param>
     /// <returns></returns>
-    public List<string> ReadFile(string _fileName, string _filePathExtension)
+    public List<string> ReadFile(string _filePath)
     {
         List<string> fileData = new List<string>();
-        string filePath = rootFilePath + _filePathExtension + _fileName;
 
         try
         {
             // Reads the file and adds aplicable lines to fileData.
-            using (StreamReader reader = new StreamReader(filePath))
+            using (StreamReader reader = new StreamReader(_filePath))
             {
                 while (reader.Peek() > -1)
                 {
@@ -92,12 +89,12 @@ public class FileManager: MonoBehaviour
                 }
             }
 
-            Debug.Log($"{filePath} was Read Successfully!");
+            Debug.Log($"{_filePath} was Read Successfully!");
             return fileData;
         }
         catch(FileNotFoundException e)
         {
-            Debug.Log("The file at filepath " + filePath + " could not be found!");
+            Debug.Log("The file at filepath " + _filePath + " could not be found!");
             Debug.Log(e);
         }
 
@@ -142,7 +139,7 @@ public class FileManager: MonoBehaviour
 
         string JSONString = null;
 
-        foreach(string line in ReadFile(_fileName, _filePathExtension))
+        foreach(string line in ReadFile(filePath))
         {
             JSONString += line;
         }
@@ -163,14 +160,14 @@ public class FileManager: MonoBehaviour
     public List<AlertData> CreateAlertsFromJSON(string _fileName, string _filePathExtension)
     {
         // Log the filepath to the Debug
-        string filePath = rootFilePath + _filePathExtension + _fileName;
+        string filePath =  _filePathExtension + _fileName;
         Debug.Log("... Loading New Splunk Alert Data ...");
 
         string JSONString = null;
 
-        foreach (string line in ReadFile(_fileName, _filePathExtension))
+        foreach (string line in ReadFile(filePath))
         {
-            JSONString += line.Replace("\\", "").Replace(" ", "_").Trim();
+            JSONString += line.Replace("\\", "").Trim();
         }
         Debug.Log($"Splunk Alerts File: {filePath} found. Reading Data ...");
 
@@ -197,18 +194,17 @@ public class FileManager: MonoBehaviour
     /// </summary>
     /// <param name="_fileName"></param>
     /// <param name="_filePathExtension"></param>
-    public List<GameObject> CreateInfrasFromJSON(string _fileName, string _filePathExtension)
+    public List<InfrastructureData> CreateInfrasFromJSON(string _fileName, string _filePathExtension)
     {
-        GameObject prefabInfras = GameManager.Instance.InfraPrefab;
         // Log the filepath to the Debug
         string filePath = rootFilePath + _filePathExtension + _fileName;
         Debug.Log("... Loading New Infrastructure Data ...");
 
         string JSONString = null;
 
-        foreach (string line in ReadFile(_fileName, _filePathExtension))
+        foreach (string line in ReadFile(filePath))
         {
-            JSONString += line.Replace('\\', ' ').Trim();
+            JSONString += line.Replace("\\", "").Trim();
         }
         Debug.Log($"Infrastructure File: {filePath} found. Reading Data ...");
 
@@ -216,17 +212,9 @@ public class FileManager: MonoBehaviour
         LaforgeShell shell = JsonUtility.FromJson<LaforgeShell>(JSONString);
         List<Infrastructure> infras = shell.data.environment.EnvironmentToBuild[0].buildToTeam;
 
-        // Create List of Game Objects
-        List<GameObject> returnInfras = new List<GameObject>();
-        // Instantiate team and add data from the file to the game Object
-        for (int i = 0; i < infras.Count; i++)
-        {
-            returnInfras.Add(Instantiate(prefabInfras));
-            InfrastructureData teamInfra = HolderToData(infras[i]);
-            returnInfras[i].GetComponent<InfrastructureData>().SetData(teamInfra.Networks, teamInfra.AllNodes);
-            returnInfras[i].GetComponent<InfrastructureData>().InstanceChildren();
-            returnInfras[i].SetActive(false);
-        }
+        // translate data into the proper format
+        List<InfrastructureData> returnInfras = HolderToData(infras);
+
         Debug.Log($"Infrastructures successfully created from {filePath}");
         return returnInfras;
     }
@@ -399,7 +387,7 @@ public class FileManager: MonoBehaviour
         Debug.Log($"Loading Team Names and Colors from : {filePath} ...");
 
         // Load Data from file into Local Variables
-        foreach (string line in ReadFile(_fileName, _filePathExtension))
+        foreach (string line in ReadFile(filePath))
         {
             string[] lines = line.Split(':');
 
@@ -422,6 +410,24 @@ public class FileManager: MonoBehaviour
             returnTeams.RemoveAt(i);
         }
         return returnTeams;
+    }
+
+    //"Infrastructure\\" , "Config_Infrastructure.txt"
+    public void UpdateConfigFile(string _filePathExtension, string _fileName)
+    {
+        // log the filepath of the text file
+        string filePath = rootFilePath + _filePathExtension + _fileName;
+        Debug.Log($"Loading Team Names and Colors from : {filePath} ...");
+
+        List<string> fileData = ReadFile(filePath);
+
+        fileData[1] = fileData[1].Remove(0, 18);
+
+        // dataReadInterval = int.Parse(fileData[1]);
+
+        // dataText.text = ("Data Read Interval : " + dataReadInterval);
+
+        Debug.Log("Infrastructure Config file successfully updated.");
     }
 
     public void GenerateDatabase()
@@ -596,6 +602,15 @@ public class FileManager: MonoBehaviour
             networks.Add(DataToHolder(netData));
         }
         return networks;
+    }
+    private List<InfrastructureData> HolderToData(List<Infrastructure> _infras)
+    {
+        List<InfrastructureData> infras = new List<InfrastructureData>();
+        foreach (Infrastructure infra in _infras)
+        {
+            infras.Add(HolderToData(infra));
+        }
+        return infras;
     }
     #endregion List Conversion
     #endregion Helper Methods
