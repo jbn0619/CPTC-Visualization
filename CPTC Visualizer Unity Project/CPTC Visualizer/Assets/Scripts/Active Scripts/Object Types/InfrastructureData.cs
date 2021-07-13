@@ -284,7 +284,7 @@ public class InfrastructureData: MonoBehaviour
             }
         }
         GL.End();
-        Debug.Log($"{name} : End of drawing");
+        // Debug.Log($"{name} : End of drawing");
     }
 
     /// <summary>
@@ -422,7 +422,7 @@ public class InfrastructureData: MonoBehaviour
                 }
             }
         }
-        Debug.Log(debug);
+        // Debug.Log(debug);
     }
     
     public void PositionNetworks()

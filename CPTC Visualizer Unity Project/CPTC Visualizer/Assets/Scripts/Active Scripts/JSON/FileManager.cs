@@ -134,8 +134,9 @@ public class FileManager: MonoBehaviour
     /// <returns></returns>
     public UpdateDataPacket CreateDataFromJSON(string _fileName, string _filePathExtension)
     {
+        string debug = "";
         string filePath = rootFilePath + _filePathExtension + _fileName;
-        Debug.Log("JSON File Path: " + filePath);
+        debug += $"JSON File Path: {filePath}\n";
 
         string JSONString = null;
 
@@ -146,8 +147,8 @@ public class FileManager: MonoBehaviour
 
         UpdateDataPacket dataPacket = JsonUtility.FromJson<UpdateDataPacket>(JSONString);
 
-        Debug.Log("Data packet successfully created from JSON.");
-
+        debug += "Data packet successfully created from JSON.\n";
+        Debug.Log(debug);
         return dataPacket;
     }
 
@@ -159,9 +160,10 @@ public class FileManager: MonoBehaviour
     /// <returns></returns>
     public List<AlertData> CreateAlertsFromJSON(string _fileName, string _filePathExtension)
     {
+        string debug = "";
         // Log the filepath to the Debug
         string filePath =  _filePathExtension + _fileName;
-        Debug.Log("... Loading New Splunk Alert Data ...");
+        debug += "... Loading New Splunk Alert Data ...\n";
 
         string JSONString = null;
 
@@ -169,7 +171,7 @@ public class FileManager: MonoBehaviour
         {
             JSONString += line.Replace("\\", "").Trim();
         }
-        Debug.Log($"Splunk Alerts File: {filePath} found. Reading Data ...");
+        debug += $"Splunk Alerts File: {filePath} found. Reading Data ...\n";
 
         // Grab the shell with the list of alerts
         SplunkAlertsShell shell = JsonUtility.FromJson<SplunkAlertsShell>(JSONString);
@@ -185,7 +187,8 @@ public class FileManager: MonoBehaviour
         // build the new OverInfrastructure based on the first infrastructure in the list
         List<AlertData> returnAlerts = HolderToData(alerts, fromSplunk);
 
-        Debug.Log($"Alerts successfully created from {filePath}");
+        debug += $"Alerts successfully created from {filePath}\n";
+        Debug.Log(debug);
         return returnAlerts;
     }
 
@@ -196,9 +199,10 @@ public class FileManager: MonoBehaviour
     /// <param name="_filePathExtension"></param>
     public List<InfrastructureData> CreateInfrasFromJSON(string _fileName, string _filePathExtension)
     {
+        string debug = "";
         // Log the filepath to the Debug
         string filePath = rootFilePath + _filePathExtension + _fileName;
-        Debug.Log("... Loading New Infrastructure Data ...");
+        debug += "... Loading New Infrastructure Data ...\n";
 
         string JSONString = null;
 
@@ -206,7 +210,7 @@ public class FileManager: MonoBehaviour
         {
             JSONString += line.Replace("\\", "").Trim();
         }
-        Debug.Log($"Infrastructure File: {filePath} found. Reading Data ...");
+        debug += $"Infrastructure File: {filePath} found. Reading Data ...\n";
 
         // Grab the shell with the list of infrastructures
         LaforgeShell shell = JsonUtility.FromJson<LaforgeShell>(JSONString);
@@ -215,7 +219,8 @@ public class FileManager: MonoBehaviour
         // translate data into the proper format
         List<InfrastructureData> returnInfras = HolderToData(infras);
 
-        Debug.Log($"Infrastructures successfully created from {filePath}");
+        debug += $"Infrastructures successfully created from {filePath}\n";
+        Debug.Log(debug);
         return returnInfras;
     }
 
@@ -370,6 +375,7 @@ public class FileManager: MonoBehaviour
     /// <returns>Return a list of sorted teams</returns>
     public List<TeamData> SetTeamNamesFromFile(List<int> _ids, List<GameObject> _infraObjects, string _filePathExtension, string _fileName)
     {
+        string debug = "";
         // create list of teams to return
         List<TeamData> returnTeams = new List<TeamData>();
         for (int i = 0; i < _ids.Count; i++)
@@ -384,7 +390,7 @@ public class FileManager: MonoBehaviour
 
         // log the filepath of the text file
         string filePath = rootFilePath + _filePathExtension + _fileName;
-        Debug.Log($"Loading Team Names and Colors from : {filePath} ...");
+        debug += $"Loading Team Names and Colors from : {filePath} ...\n";
 
         // Load Data from file into Local Variables
         foreach (string line in ReadFile(filePath))
@@ -394,7 +400,7 @@ public class FileManager: MonoBehaviour
             teamNames.Add(lines[0]);
             teamColors.Add(lines[1]);
         }
-        Debug.Log($"Names and Colors Successfully Loaded from File.");
+        debug += $"Names and Colors Successfully Loaded from File.\n";
 
         // bundle up the data into the return list of TeamDatas
         Color readColor;
@@ -409,15 +415,17 @@ public class FileManager: MonoBehaviour
             returnTeams.Insert(returnTeams[i].ID, returnTeams[i]);
             returnTeams.RemoveAt(i);
         }
+        Debug.Log(debug);
         return returnTeams;
     }
 
     //"Infrastructure\\" , "Config_Infrastructure.txt"
     public void UpdateConfigFile(string _filePathExtension, string _fileName)
     {
+        string debug = "";
         // log the filepath of the text file
         string filePath = rootFilePath + _filePathExtension + _fileName;
-        Debug.Log($"Loading Team Names and Colors from : {filePath} ...");
+        debug += $"Loading Team Names and Colors from : {filePath} ...\n";
 
         List<string> fileData = ReadFile(filePath);
 
@@ -427,7 +435,8 @@ public class FileManager: MonoBehaviour
 
         // dataText.text = ("Data Read Interval : " + dataReadInterval);
 
-        Debug.Log("Infrastructure Config file successfully updated.");
+        debug += "Infrastructure Config file successfully updated.\n";
+        Debug.Log(debug);
     }
 
     public void GenerateDatabase()
