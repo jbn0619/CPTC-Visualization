@@ -126,7 +126,21 @@ namespace Assets.Scripts
     [Serializable]
     public class AgentContainer
     {
-        // This is currently empty because we don't have an example of the agent's data format yet. - Ben
+        // No references for values yet. I'll need to ask bradley harker for what those'll look like. -Ben
+        public string clientId;
+        public string hostname;
+        public int upTime;
+        public int bootTime;
+        public AgentContainer(string _clientID, string _hostName, int _upTime, int _bootTime)
+        {
+            clientId = _clientID;
+            hostname = _hostName;
+            upTime = _upTime;
+            bootTime = _bootTime;
+        }
+        /// <summary>
+        /// Empty to allow for null references until example values are retrieved.
+        /// </summary>
         public AgentContainer()
         {
 
