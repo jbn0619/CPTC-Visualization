@@ -420,6 +420,7 @@ public class FileManager: MonoBehaviour
     }
 
     //"Infrastructure\\" , "Config_Infrastructure.txt"
+    // Moved from Game Manager. Will take inputs between scenes (Infrastructure and Controller) to allow for remote control of the system from the controller runtime.
     public void UpdateConfigFile(string _filePathExtension, string _fileName)
     {
         string debug = "";

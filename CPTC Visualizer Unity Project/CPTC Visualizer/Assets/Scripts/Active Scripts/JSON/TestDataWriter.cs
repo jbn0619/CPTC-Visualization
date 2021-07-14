@@ -106,10 +106,11 @@ public class TestDataWriter: MonoBehaviour
     }
 
     /// <summary>
-    /// Writes phony alert data for use in testing.
+    /// Writes phony alert data for use in testing. Based on the values from Main Infra
     /// </summary>
     public void WriteAlertData()
     {
+        // Check if the infrastructure exists
         if(GameManager.Instance.MainInfra != null)
         {
             InfrastructureData infra = GameManager.Instance.MainInfra;

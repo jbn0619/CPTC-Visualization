@@ -257,13 +257,16 @@ public class InfrastructureData: MonoBehaviour
         int netCount = 0;
         int nodeCount = 0;
         string debug = $"{name}.InstanceChildren\n";
+        // move old information to a temp holder 
         List<NetworkData> tempNets = new List<NetworkData>();
         for(int i = 0; i < networks.Count; i++)
         {
             tempNets.Add(networks[i].DeepCopy());
         }
+        // refresh internal lists of nodes and networks
         networks.Clear();
         nodes.Clear();
+
         // create gameObjects for all the networks
         foreach (NetworkData net in tempNets)
         {
@@ -334,7 +337,7 @@ public class InfrastructureData: MonoBehaviour
         {
             networks[i].Index = i;
 
-            // set all nodes in the network to reference the instances nodes in the infrastructure
+            // set all nodes in this network to reference the instances nodes in the infrastructure
             for(int j = 0; j < networks[i].Nodes.Count;j++)
             {
                 networks[i].AddNodeData(nodes[networkedNodes], j);

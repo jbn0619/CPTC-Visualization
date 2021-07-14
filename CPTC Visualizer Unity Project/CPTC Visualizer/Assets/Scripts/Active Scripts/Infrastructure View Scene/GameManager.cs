@@ -395,9 +395,6 @@ public class GameManager: Singleton<GameManager>
             team.GetComponent<TeamData>().Infra.PositionNodes();
             team.GetComponent<TeamData>().Infra.DrawAllConnections();
         }
-        // Temporary Positioning until main infra works
-        // mainInfra.gameObject.SetActive(false);
-        // teamManager.TeamObjects[0].GetComponent<TeamData>().InfraObject.SetActive(true);
     }
 
     /*
