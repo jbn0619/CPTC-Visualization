@@ -373,7 +373,7 @@ public class FileManager: MonoBehaviour
     /// <param name="_filePathExtension">File's location within the root directory</param>
     /// <param name="_fileName">name of the file</param>
     /// <returns>Return a list of sorted teams</returns>
-    public List<TeamData> SetTeamNamesFromFile(List<int> _ids, List<GameObject> _infraObjects, string _filePathExtension, string _fileName)
+    public List<TeamData> SetTeamNamesFromFile(List<int> _ids, List<InfrastructureData> _infraObjects, string _filePathExtension, string _fileName)
     {
         string debug = "";
         // create list of teams to return

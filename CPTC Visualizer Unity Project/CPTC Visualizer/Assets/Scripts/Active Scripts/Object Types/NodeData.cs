@@ -337,8 +337,9 @@ public class NodeData: MonoBehaviour
     /// Use the data from the FileReader to add references to newly instanced GameObjects
     /// </summary>
     /// <param name="_index">Index of the Node within Infra.AllNodes</param>
-    public void InstanceData(int _index)
+    public void SetInstanceToData(string _ip, string _hostname, string _hostDescription, OperatingSystems _os, int _index)
     {
+        SetData(_ip, _hostname, _hostDescription, _os);
         name = hostName;
         index = _index;
         ChangeSprite();

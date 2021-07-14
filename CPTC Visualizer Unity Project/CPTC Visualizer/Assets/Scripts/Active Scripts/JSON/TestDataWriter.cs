@@ -113,11 +113,11 @@ public class TestDataWriter: MonoBehaviour
         if(GameManager.Instance.MainInfra != null)
         {
             InfrastructureData infra = GameManager.Instance.MainInfra;
-            int nodeCount = infra.AllNodes.Count - 1;
+            int nodeCount = infra.Nodes.Count - 1;
             List<AlertData> alerts = new List<AlertData>();
 
             // store a list of all nodes the team has not visited this round
-            List<NodeData> unvisitedNodes = new List<NodeData>(infra.AllNodes);
+            List<NodeData> unvisitedNodes = new List<NodeData>(infra.Nodes);
 
             // create an alert for every member of each team in the competition
             foreach(TeamData team in infra.Teams)
@@ -138,8 +138,8 @@ public class TestDataWriter: MonoBehaviour
                     nodeCount--;
                 }
                 // reset the list of available nodes to be visited
-                unvisitedNodes = new List<NodeData>(infra.AllNodes);
-                nodeCount = infra.AllNodes.Count - 1;
+                unvisitedNodes = new List<NodeData>(infra.Nodes);
+                nodeCount = infra.Nodes.Count - 1;
             }
             // TODO: make the alerts only activate in nodes the teams can accsess
             // save an alert list to a new JSON file

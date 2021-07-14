@@ -114,7 +114,7 @@ public class EventManager: MonoBehaviour
             for (int i = 0; i < newAlerts.Count; i++)
             {
                 // set a reference to the version of the node within the main architecture
-                newAlerts[i].MainNode = mainInfra.FindNodeObjectByIP(newAlerts[i].NodeIP).GetComponent<NodeData>();
+                newAlerts[i].MainNode = mainInfra.FindNodeByIP(newAlerts[i].NodeIP).GetComponent<NodeData>();
                 // add the team's ID number to the node's list of team ID numbers
                 newAlerts[i].MainNode.TeamIDs.Add(newAlerts[i].TeamID);
                 // add the team to the node's list of teams 
@@ -128,7 +128,7 @@ public class EventManager: MonoBehaviour
                 newAlerts[i].Team.NodeIPs.Add(newAlerts[i].NodeIP);
 
                 // set a reference to the version of the node within the team's architecture
-                newAlerts[i].TeamNode = newAlerts[i].Team.Infra.FindNodeObjectByIP(newAlerts[i].NodeIP).GetComponent<NodeData>();
+                newAlerts[i].TeamNode = newAlerts[i].Team.Infra.FindNodeByIP(newAlerts[i].NodeIP).GetComponent<NodeData>();
                 // add the team's ID number to the node's list of team ID numbers
                 newAlerts[i].TeamNode.TeamIDs.Add(newAlerts[i].TeamID);
                 // add a reference to the team in the version of the node within the team's infrastructure

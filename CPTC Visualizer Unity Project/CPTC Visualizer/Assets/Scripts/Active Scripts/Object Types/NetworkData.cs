@@ -34,14 +34,10 @@ public class NetworkData: MonoBehaviour
     protected bool vdi;
 
     /// <summary>
-    /// List of the Node GameObjects childed to this object
-    /// </summary>
-    [Header("Script References")]
-    [SerializeField]
-    protected List<GameObject> nodeObjects;
-    /// <summary>
     /// Index of this network within the Infra.Networks list
     /// </summary>
+    [Header("References")]
+    [SerializeField]
     private int index;
     /// <summary>
     /// List of Infra.Networks Indecies of adjacent Networks
@@ -130,16 +126,6 @@ public class NetworkData: MonoBehaviour
         }
     }
     /// <summary>
-    /// Gets a list of node objects within this network.
-    /// </summary>
-    public List<GameObject> NodeObjects
-    {
-        get
-        {
-            return nodeObjects;
-        }
-    }
-    /// <summary>
     /// Gets a list of gameObjects that represent this network's connections.
     /// </summary>
     public List<LineRenderer> ConnectionGOS
@@ -221,30 +207,7 @@ public class NetworkData: MonoBehaviour
         returnNet.SetData(String.Copy(networkName),String.Copy(ip),nodeCopies, bool.Parse(vdiString));
         return returnNet;
     }
- 
-    /// <summary>
-    /// Adds the node object to the network's list of node objects if the passed object has a NodeData with an hostname on the network's list
-    /// </summary>
-    /// <param name="_node">node gameObject to be added to network's nodeObjects list</param>
-    public void AddNodeObject(GameObject _node)
-    {
-        if(_node.GetComponent<NodeData>())
-        {
-            string searchName = _node.GetComponent<NodeData>().HostName;
-            foreach (NodeData node in this.nodes)
-            {
-                if (node.HostName == searchName)
-                {
-                    nodeObjects.Add(_node);
-                    break;
-                }
-            }
-        }
-        else
-        {
-            //is not a Node object
-        }
-    }
+
     /// <summary>
     /// Replaces the NodeData at the given index
     /// </summary>
