@@ -30,6 +30,15 @@ public class UIManager: Singleton<UIManager>
     [SerializeField]
     private Text elapsedTimeText;
 
+    [SerializeField]
+    private Canvas mainCanvas;
+    [SerializeField]
+    private Canvas teamCanvas;
+    [SerializeField]
+    private GameObject mainButton;
+    [SerializeField]
+    private GameObject teamButton;
+
     #endregion Fields
 
     #region Properties
@@ -83,7 +92,6 @@ public class UIManager: Singleton<UIManager>
                 }
             }
         }
-        
     }
 
     public void ToggleNotifBanner()
