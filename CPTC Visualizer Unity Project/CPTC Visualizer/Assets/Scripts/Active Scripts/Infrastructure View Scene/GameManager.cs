@@ -36,6 +36,10 @@ public class GameManager: Singleton<GameManager>
     private List<Sprite> osSprites;
     [SerializeField]
     private Button toControllerButton;
+    [SerializeField]
+    private Button toTeamButton;
+    [SerializeField]
+    private Button toMainButton;
 
     [Header("Manager GameObjects")]
     [SerializeField]
@@ -52,6 +56,8 @@ public class GameManager: Singleton<GameManager>
     private FileManager fileManager;
     [SerializeField]
     private GameObject mainCanvas;
+    [SerializeField]
+    private GameObject teamCanvas;
     [SerializeField]
     private Canvas fluidCanvas;
     [SerializeField]
@@ -247,6 +253,8 @@ public class GameManager: Singleton<GameManager>
     void Start()
     {
         toControllerButton.onClick.AddListener(delegate {  GoToControllerScene(); });
+        toTeamButton.onClick.AddListener(delegate { SwitchSceneView(1); });
+        toMainButton.onClick.AddListener(delegate { SwitchSceneView(2); });
         mainCam = Camera.main;
         readDateStarted = false;
         compStarted = false;
@@ -341,6 +349,20 @@ public class GameManager: Singleton<GameManager>
         SceneManager.LoadScene(sceneName: "Controller");
     }
 
+    private void SwitchSceneView(int view)
+    {
+        if (view == 1)
+        {
+            mainCanvas.SetActive(false);
+            teamCanvas.SetActive(true);
+        }
+        if (view == 2)
+        {
+            mainCanvas.SetActive(true);
+            teamCanvas.SetActive(false);
+        }
+    }
+
     /// <summary>
     /// Instance all Infrastructure Game Objects if they are not instanced, and assign their children's positions
     /// </summary>
@@ -395,9 +417,6 @@ public class GameManager: Singleton<GameManager>
             team.GetComponent<TeamData>().Infra.PositionNodes();
             team.GetComponent<TeamData>().Infra.DrawAllConnections();
         }
-        // Temporary Positioning until main infra works
-        // mainInfra.gameObject.SetActive(false);
-        // teamManager.TeamObjects[0].GetComponent<TeamData>().InfraObject.SetActive(true);
     }
 
     /*

@@ -38,11 +38,6 @@ public class TeamData: MonoBehaviour
     [SerializeField]
     protected List<string> nodeIPs;
     /// <summary>
-    /// This team's Infrastructure gameObject
-    /// </summary>
-    [SerializeField]
-    protected GameObject infraObject;
-    /// <summary>
     /// Reference to the Infra object's InfrastructureData
     /// </summary>
     [SerializeField]
@@ -245,7 +240,7 @@ public class TeamData: MonoBehaviour
     /// <param name="_id">Team's index in the Manager teams list</param>
     /// <param name="_name">Random name of the team</param>
     /// <param name="_color">Random color assigned to the team</param>
-    /// <param name="_infraObject">Object Instance of the Team's Infrastructure topology</param>
+    /// <param name="_infra"> Instance of the Team's Infrastructure topology</param>
     public void SetData(int _id, string _name, Color _color, InfrastructureData _infra)
     {
         id = _id;
