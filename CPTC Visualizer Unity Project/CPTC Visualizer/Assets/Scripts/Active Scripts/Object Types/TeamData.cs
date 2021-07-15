@@ -47,6 +47,11 @@ public class TeamData: MonoBehaviour
     /// </summary>
     [SerializeField]
     protected InfrastructureData infra;
+    /// <summary>
+    /// References to Notifications this team has triggered
+    /// </summary>
+    [SerializeField]
+    private List<NotificationButton> notifMarkers;
 
     /// <summary>
     /// List of attack chains that the teams have
@@ -57,7 +62,6 @@ public class TeamData: MonoBehaviour
     // Legacy Fields
     protected PriorityQueue queue;
     private List<UptimeChartData> uptimeCharts;
-    private List<NotificationButton> notifMarkers;
     private List<GameObject> notifBanners;
 
     private float checkTimer;
@@ -131,14 +135,6 @@ public class TeamData: MonoBehaviour
         {
             infra = value;
         }
-    }
-
-    /// <summary>
-    /// Gets a reference to this team's Infrastructure Object
-    /// </summary>
-    public GameObject InfraObject
-    {
-        get { return infraObject; }
     }
 
     /// <summary>
@@ -250,14 +246,13 @@ public class TeamData: MonoBehaviour
     /// <param name="_name">Random name of the team</param>
     /// <param name="_color">Random color assigned to the team</param>
     /// <param name="_infraObject">Object Instance of the Team's Infrastructure topology</param>
-    public void SetData(int _id, string _name, Color _color, GameObject _infraObject)
+    public void SetData(int _id, string _name, Color _color, InfrastructureData _infra)
     {
         id = _id;
         teamName = _name;
         teamColor = _color;
-        infraObject = _infraObject;
-        infraObject.name = $"{_name}'s Infrastructure View";
-        infra = infraObject.GetComponent<InfrastructureData>();
+        infra = _infra;
+        infra.name = $"{_name}'s Infrastructure View";
         alerts = new List<AlertData>();
         nodeIPs = new List<string>();
     }
