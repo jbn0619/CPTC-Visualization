@@ -92,8 +92,6 @@ public class UIManager: Singleton<UIManager>
                 }
             }
         }
-
-        mainCanvas.SetActive
     }
 
     public void ToggleNotifBanner()
