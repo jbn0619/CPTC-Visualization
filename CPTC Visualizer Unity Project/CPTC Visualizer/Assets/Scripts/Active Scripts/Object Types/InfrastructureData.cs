@@ -377,7 +377,7 @@ public class InfrastructureData: MonoBehaviour
         // Position each network in a circular manner based off of a center point 0,0,0
         Vector3 center = new Vector3(0,0,0);
         float degreeOffset = 2 * Mathf.PI / networks.Count;
-        float currentAngle = Mathf.PI / 4;
+        float currentAngle = 3 * Mathf.PI / 4;
         positioningRadius = (networks.Count - 1.5f);
         foreach(NetworkData network in networks)
         {
