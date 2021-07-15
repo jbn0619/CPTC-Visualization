@@ -31,13 +31,24 @@ public class UIManager: Singleton<UIManager>
     private Text elapsedTimeText;
 
     [SerializeField]
-    private GameObject mainCanvas;
+    private Button nextTeam;
     [SerializeField]
-    private GameObject teamCanvas;
+    private Button leftArrow;
     [SerializeField]
-    private GameObject mainButton;
+    private Button rightArrow;
     [SerializeField]
-    private GameObject teamButton;
+    private Text teamName;
+    [SerializeField]
+    private Text nodeNumber;
+    [SerializeField]
+    private Image teamColor;
+    [SerializeField]
+    private Image nodeColor;
+
+    private int teamShown = 0;
+    private int nodeShown = 1;
+
+    private TeamManager teamManagerScript;
 
     #endregion Fields
 
@@ -58,10 +69,14 @@ public class UIManager: Singleton<UIManager>
     
     // Start is called before the first frame update
     void Start()
-    {
+    { 
+        nextTeam.onClick.AddListener(delegate { NextTeam(); });
+        leftArrow.onClick.AddListener(delegate { ChangeNode(-1); });
+        rightArrow.onClick.AddListener(delegate { ChangeNode(1); });
         showTimerStarted = false;
         elapsedTime = 0.0f;
         timeUntilShow = 0.0f;
+        teamManagerScript = GameManager.Instance.TeamManager;
     }
 
     // Update is called once per frame
@@ -107,5 +122,33 @@ public class UIManager: Singleton<UIManager>
             showTimerStarted = false;
             showNotifBanner.gameObject.SetActive(false);
         }
+    }
+
+    public void NextTeam()
+    {
+        if (teamShown >= teamManagerScript.Teams.Count - 1)
+        {
+            teamShown = 0;
+        }
+        else
+        {
+            teamShown++;
+        }
+
+        teamName.text = teamManagerScript.Teams[teamShown].TeamName;
+        teamColor.color = teamManagerScript.Teams[teamShown].TeamColor;
+        nodeColor.color = teamManagerScript.Teams[teamShown].TeamColor;
+        Debug.Log(teamShown);
+        Debug.Log(teamManagerScript.Teams[teamShown].TeamColor);
+        Debug.Log(teamManagerScript.Teams[teamShown].TeamName);
+    }
+
+    public void ChangeNode(int change)
+    {
+        if (change == -1 && nodeShown == 1)
+        {
+            nodeShown += change;
+        }
+        nodeNumber.text = "" + change;
     }
 }
