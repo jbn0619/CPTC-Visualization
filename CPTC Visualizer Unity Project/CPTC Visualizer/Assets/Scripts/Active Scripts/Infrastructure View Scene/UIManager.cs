@@ -31,9 +31,9 @@ public class UIManager: Singleton<UIManager>
     private Text elapsedTimeText;
 
     [SerializeField]
-    private Canvas mainCanvas;
+    private GameObject mainCanvas;
     [SerializeField]
-    private Canvas teamCanvas;
+    private GameObject teamCanvas;
     [SerializeField]
     private GameObject mainButton;
     [SerializeField]
@@ -92,6 +92,8 @@ public class UIManager: Singleton<UIManager>
                 }
             }
         }
+
+        mainCanvas.SetActive
     }
 
     public void ToggleNotifBanner()
