@@ -280,7 +280,8 @@ public class GameManager: Singleton<GameManager>
         loadDataFromControllerCount = 0.0f;
         configUpdateTime = 5;
 
-        BuildInfrastructure();
+        // Moved to InfraInputManager to be handled on a controlled input
+        //BuildInfrastructure();
     }
 
     // Update is called once per frame
