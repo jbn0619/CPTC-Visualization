@@ -80,7 +80,7 @@ public class InfraInputManager: InputManager
             //TeamViewAI.Instance.BeginComp();
 
             // Create teams.
-            // GameManager.Instance.TeamManager.CreateTeams(); // This is now called when the Infrastructure Data is instantiated.
+            GameManager.Instance.BuildInfrastructure(); // This is now called when the Infrastructure Data is instantiated.
 
             // Copy example infrastructure to all teams.
 
