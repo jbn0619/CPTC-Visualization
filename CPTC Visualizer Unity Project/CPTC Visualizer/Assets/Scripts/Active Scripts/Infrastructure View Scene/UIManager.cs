@@ -145,10 +145,7 @@ public class UIManager: Singleton<UIManager>
 
     public void ChangeNode(int change)
     {
-        if (change == -1 && nodeShown == 1)
-        {
-            nodeShown += change;
-        }
+        nodeShown += change;
         nodeNumber.text = "" + change;
     }
 }
