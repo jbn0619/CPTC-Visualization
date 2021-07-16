@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+enum View { team, main}
+
 /// <summary>
 /// Author: Justin Neft
 /// Function: Keeps track of all UI elements in the scene, and modifies them as-needed.
@@ -30,6 +32,7 @@ public class UIManager: Singleton<UIManager>
     [SerializeField]
     private Text elapsedTimeText;
 
+    [Header("Team View UI")]
     [SerializeField]
     private Button nextTeam;
     [SerializeField]
@@ -44,11 +47,13 @@ public class UIManager: Singleton<UIManager>
     private Image teamColor;
     [SerializeField]
     private Image nodeColor;
+    [SerializeField]
+    private InfrastructureData displayedInfra;
 
     private int teamShown = 0;
     private int nodeShown = 1;
 
-    private TeamManager teamManagerScript;
+    private TeamManager teamManager;
 
     #endregion Fields
 
@@ -76,7 +81,7 @@ public class UIManager: Singleton<UIManager>
         showTimerStarted = false;
         elapsedTime = 0.0f;
         timeUntilShow = 0.0f;
-        teamManagerScript = GameManager.Instance.TeamManager;
+        teamManager = GameManager.Instance.TeamManager;
     }
 
     // Update is called once per frame
@@ -126,7 +131,7 @@ public class UIManager: Singleton<UIManager>
 
     public void NextTeam()
     {
-        if (teamShown >= teamManagerScript.Teams.Count - 1)
+        if (teamShown >= teamManager.Teams.Count - 1)
         {
             teamShown = 0;
         }
@@ -135,12 +140,13 @@ public class UIManager: Singleton<UIManager>
             teamShown++;
         }
 
-        teamName.text = teamManagerScript.Teams[teamShown].TeamName;
-        teamColor.color = teamManagerScript.Teams[teamShown].TeamColor;
-        nodeColor.color = teamManagerScript.Teams[teamShown].TeamColor;
-        Debug.Log(teamShown);
-        Debug.Log(teamManagerScript.Teams[teamShown].TeamColor);
-        Debug.Log(teamManagerScript.Teams[teamShown].TeamName);
+        teamName.text = teamManager.Teams[teamShown].TeamName;
+        teamColor.color = teamManager.Teams[teamShown].TeamColor;
+        nodeColor.color = teamManager.Teams[teamShown].TeamColor;
+        GameManager.Instance.ChangeDisplayedInfra(teamManager.Teams[teamShown].Infra);
+        Debug.Log($"{teamShown}\n" +
+            $"{teamManager.Teams[teamShown].TeamColor}\n" +
+            $"{teamManager.Teams[teamShown].TeamName}");
     }
 
     public void ChangeNode(int change)
