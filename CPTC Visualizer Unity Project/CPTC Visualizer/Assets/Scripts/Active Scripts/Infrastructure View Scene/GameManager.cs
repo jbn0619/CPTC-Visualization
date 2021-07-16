@@ -27,6 +27,8 @@ public class GameManager: Singleton<GameManager>
     [SerializeField]
     private InfrastructureData mainInfra;
     [SerializeField]
+    private InfrastructureData currentInfra;
+    [SerializeField]
     private GameObject prefabNode;
     [SerializeField]
     private GameObject prefabNetwork;
@@ -40,6 +42,14 @@ public class GameManager: Singleton<GameManager>
     private Button toTeamButton;
     [SerializeField]
     private Button toMainButton;
+     
+    [Header("Canvas Elements")]
+    [SerializeField]
+    private GameObject nodeCanvas;
+    [SerializeField]
+    private GameObject overviewCanvas;
+    [SerializeField]
+    private GameObject teamCanvas;
 
     [Header("Manager GameObjects")]
     [SerializeField]
@@ -55,19 +65,13 @@ public class GameManager: Singleton<GameManager>
     [SerializeField]
     private FileManager fileManager;
     [SerializeField]
-    private GameObject mainCanvas;
-    [SerializeField]
-    private GameObject teamCanvas;
-    [SerializeField]
-    private Canvas fluidCanvas;
-    [SerializeField]
     private GameObject notificationControls;
 
-    [Header("Timer Fields")]
     [SerializeField]
     private System.DateTime startOfComp;
     [SerializeField]
     private System.DateTime startOfVisualizer;
+    [Header("Timer Fields")]
     [SerializeField]
     private double timeDelay;
     [SerializeField]
@@ -205,6 +209,18 @@ public class GameManager: Singleton<GameManager>
     public string InfraFileName
     {
         get { return infraFile; }
+    }
+    public GameObject OverviewCanvas
+    {
+        get { return overviewCanvas; }
+    }
+    public GameObject NodeCanvas
+    {
+        get { return nodeCanvas; }
+    }
+    public GameObject TeamCanvas
+    {
+        get { return teamCanvas; }
     }
     #endregion General Properties
     #region Competition Properties
@@ -354,12 +370,12 @@ public class GameManager: Singleton<GameManager>
     {
         if (view == 1)
         {
-            mainCanvas.SetActive(false);
+            overviewCanvas.SetActive(false);
             teamCanvas.SetActive(true);
         }
         if (view == 2)
         {
-            mainCanvas.SetActive(true);
+            overviewCanvas.SetActive(true);
             teamCanvas.SetActive(false);
         }
     }
@@ -374,12 +390,12 @@ public class GameManager: Singleton<GameManager>
             // Instantiate an Infrastructure prefab for the mainInfra
             mainInfra = Instantiate(prefabInfra).GetComponent<InfrastructureData>();
             // set canvas as parent of the infrastructure
-            mainInfra.transform.SetParent(fluidCanvas.gameObject.transform, false);
+            mainInfra.transform.SetParent(nodeCanvas.gameObject.transform, false);
             mainInfra.name = "Main Infrastructure View";
 
             // Instance an empty to hold all of the team Infrastructure objects in the Heirarchy
             GameObject emptyHolder = new GameObject();
-            emptyHolder.transform.SetParent(fluidCanvas.gameObject.transform, false);
+            emptyHolder.transform.SetParent(nodeCanvas.gameObject.transform, false);
             emptyHolder.name = "Team Infrastructures";
 
             // Instance the team Infrastructure Objects childed to the empty object and instance all of their children within them
@@ -418,6 +434,19 @@ public class GameManager: Singleton<GameManager>
             team.GetComponent<TeamData>().Infra.PositionNodes();
             team.GetComponent<TeamData>().Infra.DrawAllConnections();
         }
+
+        currentInfra = mainInfra;
+    }
+
+    /// <summary>
+    /// Set the Infrastructre to be active on the NodeCanvas
+    /// </summary>
+    /// <param name="_newInfra">Infrastructure to replace the currently displayed Infrastructure</param>
+    public void ChangeDisplayedInfra(InfrastructureData _newInfra)
+    {
+        currentInfra.gameObject.SetActive(false);
+        currentInfra = _newInfra;
+        currentInfra.gameObject.SetActive(true);
     }
 
     /*
