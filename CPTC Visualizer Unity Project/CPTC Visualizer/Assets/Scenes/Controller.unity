@@ -1386,8 +1386,7 @@ MonoBehaviour:
   generateTestDataTime: 0
   laforgeJSON_fileName: cptc_finals_2020_laforge_topo.json
   splunkJSON_fileName: TESTDATA.json
-  splunkJSON_filePath: C:\Users\bew34\Documents\GitHub\CPTC-Visualization\Splunk
-    Interpreter\SplunkInterpreter_BUILDv0.2\RequiredFiles\TestData\
+  splunkJSON_filePath: C:\ProgramData\CSEC Visualizer\Splunk Interpreter\SplunkInterpreter_BUILDv0.2\RequiredFiles\TestData\
   infraFileName: test_controllerToInfraScene.json
   alertsFileName: test_controllerToAlertsScene.json
 --- !u!114 &1144901411

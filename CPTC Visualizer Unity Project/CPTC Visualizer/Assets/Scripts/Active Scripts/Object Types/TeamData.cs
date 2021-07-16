@@ -36,6 +36,14 @@ public class TeamData: MonoBehaviour
     [SerializeField]
     protected List<string> nodeIPs;
     /// <summary>
+    /// List of Nodes in the main Overview Infrastructure which the team is working on.
+    /// </summary>
+    protected List<NodeData> mainNodes;
+    /// <summary>
+    /// List of nodes in the team's Infrastructure which the team is currently working on
+    /// </summary>
+    protected List<NodeData> teamNodes;
+    /// <summary>
     /// Reference to the Infra object's InfrastructureData
     /// </summary>
     [SerializeField]
@@ -107,6 +115,20 @@ public class TeamData: MonoBehaviour
         {
             nodeIPs = value;
         }
+    }
+    /// <summary>
+    /// A list of references to the nodes this team is at in the main infra
+    /// </summary>
+    public List<NodeData> MainNodes
+    {
+        get { return mainNodes; }
+    }
+    /// <summary>
+    /// A list of references to the nodes this team is at in their team infra
+    /// </summary>
+    public List<NodeData> TeamNodes
+    {
+        get { return teamNodes; }
     }
 
     /// <summary>

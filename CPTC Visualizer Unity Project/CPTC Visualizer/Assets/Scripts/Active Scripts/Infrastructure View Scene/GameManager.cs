@@ -269,8 +269,8 @@ public class GameManager: Singleton<GameManager>
     void Start()
     {
         toControllerButton.onClick.AddListener(delegate {  GoToControllerScene(); });
-        toTeamButton.onClick.AddListener(delegate { SwitchSceneView(1); });
-        toMainButton.onClick.AddListener(delegate { SwitchSceneView(2); });
+        toTeamButton.onClick.AddListener(delegate { SwitchView(1); });
+        toMainButton.onClick.AddListener(delegate { SwitchView(2); });
         mainCam = Camera.main;
         readDateStarted = false;
         compStarted = false;
@@ -365,17 +365,19 @@ public class GameManager: Singleton<GameManager>
         SceneManager.LoadScene(sceneName: "Controller");
     }
 
-    private void SwitchSceneView(int view)
+    private void SwitchView(int view)
     {
         if (view == 1)
         {
             overviewCanvas.SetActive(false);
             teamCanvas.SetActive(true);
+            ChangeDisplayedInfra(teamManager.Teams[0].Infra);
         }
         if (view == 2)
         {
             overviewCanvas.SetActive(true);
             teamCanvas.SetActive(false);
+            ChangeDisplayedInfra(mainInfra);
         }
     }
 
@@ -419,6 +421,9 @@ public class GameManager: Singleton<GameManager>
             
             // Instance the Team Objects and pass their data to them
             teamManager.InstanceTeams(teamIds, teamInfras);
+
+            currentInfra = mainInfra;
+            SwitchView(2);
         }
 
         // Set positions of main infrastructure
@@ -434,11 +439,10 @@ public class GameManager: Singleton<GameManager>
             team.GetComponent<TeamData>().Infra.DrawAllConnections();
         }
 
-        currentInfra = mainInfra;
     }
 
     /// <summary>
-    /// Set the Infrastructre to be active on the NodeCanvas
+    /// Set the active infra for the NodeCanvas
     /// </summary>
     /// <param name="_newInfra">Infrastructure to replace the currently displayed Infrastructure</param>
     public void ChangeDisplayedInfra(InfrastructureData _newInfra)

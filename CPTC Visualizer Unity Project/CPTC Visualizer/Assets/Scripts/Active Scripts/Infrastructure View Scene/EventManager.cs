@@ -124,8 +124,9 @@ public class EventManager: MonoBehaviour
                 newAlerts[i].Team = teamManager.Teams[newAlerts[i].TeamID];
                 // add the alert to the list of alerts its team is tracking
                 newAlerts[i].Team.Alerts.Add(newAlerts[i]);
-                // add the node to the team's list of current nodes
-                newAlerts[i].Team.NodeIPs.Add(newAlerts[i].NodeIP);
+                // add the main infra node to the team's list of current nodes
+                newAlerts[i].Team.MainNodes.Add(newAlerts[i].MainNode);
+
 
                 // set a reference to the version of the node within the team's architecture
                 newAlerts[i].TeamNode = newAlerts[i].Team.Infra.FindNodeByIP(newAlerts[i].NodeIP).GetComponent<NodeData>();
@@ -133,6 +134,8 @@ public class EventManager: MonoBehaviour
                 newAlerts[i].TeamNode.TeamIDs.Add(newAlerts[i].TeamID);
                 // add a reference to the team in the version of the node within the team's infrastructure
                 newAlerts[i].TeamNode.Teams.Add(newAlerts[i].Team);
+                // Add a reference to the team infra node this team is at
+                newAlerts[i].Team.TeamNodes.Add(newAlerts[i].TeamNode);
 
                 // add the new alert to the list of alerts loaded into the system
                 loadedEvents.Add(newAlerts[i]);

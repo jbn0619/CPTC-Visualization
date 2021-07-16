@@ -144,6 +144,7 @@ public class UIManager: Singleton<UIManager>
         teamColor.color = teamManager.Teams[teamShown].TeamColor;
         nodeColor.color = teamManager.Teams[teamShown].TeamColor;
         GameManager.Instance.ChangeDisplayedInfra(teamManager.Teams[teamShown].Infra);
+        // jump to the 1st node in the team's list of nodes
         Debug.Log($"{teamShown}\n" +
             $"{teamManager.Teams[teamShown].TeamColor}\n" +
             $"{teamManager.Teams[teamShown].TeamName}");
