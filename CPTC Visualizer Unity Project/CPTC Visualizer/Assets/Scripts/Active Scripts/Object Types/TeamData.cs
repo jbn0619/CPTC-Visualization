@@ -38,10 +38,12 @@ public class TeamData: MonoBehaviour
     /// <summary>
     /// List of Nodes in the main Overview Infrastructure which the team is working on.
     /// </summary>
+    [SerializeField]
     protected List<NodeData> mainNodes;
     /// <summary>
     /// List of nodes in the team's Infrastructure which the team is currently working on
     /// </summary>
+    [SerializeField]
     protected List<NodeData> teamNodes;
     /// <summary>
     /// Reference to the Infra object's InfrastructureData
@@ -204,7 +206,8 @@ public class TeamData: MonoBehaviour
         uptimeCharts = new List<UptimeChartData>();
         notifBanners = new List<GameObject>();
         notifMarkers = new List<NotificationButton>();
-        
+        mainNodes = new List<NodeData>();
+        teamNodes = new List<NodeData>();
     }
 
     // Start is called before the first frame update
